@@ -1,0 +1,350 @@
+/********************************************************************************
+ * This is the CSS declaration of Welcome page
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "skins/default/default";
+/********************************************************************************
+ * Connection Guide view
+ ********************************************************************************/
+.w-welcome-connection-guide-ctn {
+    background-color: #f6f6f6;
+    background-image: url('../images/welcome_bg_100X100.png');
+    height: 100%;
+    position: relative;
+    width: 100%;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+
+    .content-ctn {
+        background-image: url('../images/connection-guide-bg-300X300.png');
+        background-repeat: no-repeat;
+        height: 325px;
+        position: relative;
+        width: 615px;
+
+        .tips-ctn {
+            bottom: 30px;
+            position: absolute;
+            right: 0;
+            text-shadow: 0 1px 0 #fff;
+            width: 380px;
+
+            h1 {
+                color: #000;
+                font-size: 22px;
+                font-weight: normal;
+            }
+
+            .tips {
+                margin: 10px 0;
+            }
+        }
+    }
+}
+
+/********************************************************************************
+ * Device view
+ ********************************************************************************/
+.w-welcome-device-ctn {
+    min-width: 305px;
+    overflow: visible;
+    padding-top: 40px;
+    position: relative;
+    -webkit-animation: fade-in-device 1.5s;
+    -webkit-transition: width 1s;
+
+    .stage-ctn {
+        position: relative;
+
+        .screen-wrap {
+            -webkit-transform-origin: 50% 50%;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transition: -webkit-transform .7s ease-out;
+
+            .screen-ctn {
+                @include misc-sprite(device-default);
+                height: 430px;
+                margin: 0 auto;
+                position: relative;
+                width: 222px;
+
+                .screen {
+                    background-color: #000;
+                    position: absolute;
+
+                    img {
+                        -webkit-transition: opacity .4s;
+                    }
+                }
+            }
+        }
+
+        .tip {
+            background-color: rgba(0, 0, 0, .6);
+            border-radius: 3px;
+            color: #fff;
+            display: none;
+            left: 50%;
+            margin: -14px 0 0 -75px;
+            padding: 12px 0px;
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            width: 150px;
+
+            .ctn {
+                -webkit-box-align: center;
+                -webkit-box-pack: center;
+
+                .icon {
+                    height: 16px;
+                    margin-right: 5px;
+                    width: 16px;
+
+                    &.success {
+                        @include sprite-sprite(success);
+                    }
+
+                    &.fail {
+                        @include sprite-sprite(fail);
+                    }
+                }
+            }
+        }
+
+        .button-set-ring  {
+            display: none;
+            margin-left: -50px;
+            left: 50%;
+            position: absolute;
+            top: 65%;
+            width: 100px;
+        }
+    }
+
+    &.isPad {
+        padding: 100px 20px 0;
+
+        .w-welcome-device-tools-ctn {
+            bottom: auto;
+            top: 390px;
+        }
+    }
+
+    &.turn-left {
+        -webkit-transition: width .5s;
+
+        .screen-wrap {
+            -webkit-transform: rotate(-90deg);
+            -webkit-transition-timing-function: ease-in;
+        }
+    }
+
+    &.turn-right {
+        -webkit-transition: width .5s;
+
+        .screen-wrap {
+            -webkit-transform: rotate(90deg);
+            -webkit-transition-timing-function: ease-in;
+        }
+    }
+
+    &.turn-down {
+        .screen-wrap {
+            -webkit-transform: rotate(180deg);
+        }
+    }
+}
+
+/********************************************************************************
+ * Welcome view
+ ********************************************************************************/
+.w-welcome-ctn {
+    height: 100%;
+    position: relative;
+
+    .content {
+        background-image: url('../images/welcome_bg_100X100.png');
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: relative;
+        -webkit-box-flex: 1;
+    }
+
+    footer {
+        @include footer-panel;
+        height: 36px;
+        padding: 0 10px;
+        -webkit-box-align: center;
+    }
+}
+
+.w-welcome-device-tools-ctn {
+    bottom: -45px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    -webkit-transition: bottom .2s linear;
+
+    button {
+        .icon {
+            height: 16px;
+            width: 16px;
+        }
+    }
+
+    .usb-tip {
+        height: 16px;
+        line-height: 16px;
+        text-shadow: 0 1px 0 #fff;
+
+        .icon.info {
+            @include sprite-sprite(info);
+            display: inline-block;
+            height: 16px;
+            margin-right: 5px;
+            vertical-align: top;
+            width: 16px;
+        }
+    }
+}
+
+.w-welcome-billboard {
+    margin: 40px 20px;
+    position: relative;
+    -webkit-box-flex: 1;
+    .ctn {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+
+        iframe {
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            -webkit-transition: opacity .2s;
+        }
+    }
+}
+
+.w-welcome-capacity {
+    -webkit-box-flex: 1;
+
+    .phone-capacity,
+    .external-capacity {
+        -webkit-box-align: center;
+
+        .icon {
+            height: 16px;
+            margin-right: 5px;
+            width: 16px;
+        }
+    }
+
+    .phone-capacity {
+        margin-right: 20px;
+    }
+
+    .phone-capacity .icon {
+        @include sprite-sprite(device);
+    }
+
+    .external-capacity .icon {
+        @include sprite-sprite(sd);
+    }
+
+    .progress {
+        margin-right: 10px;
+        width: 100px;
+    }
+
+    .ratio {
+        font-size: 11px;
+    }
+}
+
+.w-welcome-filetools-ctn {
+    .button-open-sd {
+        width: 80px;
+    }
+
+    .auto-backup-ctn {
+        display: none;
+
+        .auto-backup-icon {
+            margin-left: 5px;
+            margin-top: -1px;
+        }
+
+        .in-process {
+            background-image: url('../images/process.gif');
+            height: 16px;
+            width: 16px;
+        }
+    }
+}
+
+.w-welcome-flash-tip {
+    padding: 10px 0;
+    width: 225px;
+
+    .pic-ctn {
+        @include sprite-sprite(light);
+        height: 48px;
+        width: 43px;
+    }
+
+    .content-ctn {
+        padding-left: 10px;
+        -webkit-box-flex: 1;
+
+        .title {
+            color: #000;
+            margin-bottom: 5px;
+        }
+    }
+
+    .button-close {
+        @include button-close;
+        position: absolute;
+        right: 8px;
+        top: 5px;
+    }
+}
+
+@-webkit-keyframes fade-in-device {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(-140px);
+    }
+    50% {
+        opacity: 0;
+        -webkit-transform: translateX(-140px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0)
+    }
+}
+
+@-webkit-keyframes runningProcess {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    25% {
+        -webkit-transform: rotate(90deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    75% {
+        -webkit-transform: rotate(270deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}

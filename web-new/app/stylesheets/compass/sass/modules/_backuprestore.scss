@@ -1,0 +1,594 @@
+/********************************************************************************
+ * This is the CSS declaration of Welcome page
+ *
+ * @author chentian@wandoujia.com
+ ********************************************************************************/
+@import "skins/default/default";
+/********************************************************************************
+ * Backup
+ ********************************************************************************/
+.w-backup-choose-type {
+    width: 358px;
+    margin: 25px auto;
+
+    .content {
+        .button {
+            background-image: -webkit-linear-gradient(-90deg, #fff 0%, #f6f6f6 100%);
+            border: $componentBorderColor 1px solid;
+            border-radius: 3px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+            cursor: pointer;
+            height: 76px;
+            margin-bottom: 5px;
+            width: 358px;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+
+            &:hover {
+                background-image: -webkit-linear-gradient(-90deg, #fff 0%, #fcfcfc 100%);
+            };
+
+            &:active {
+                background-image: -webkit-linear-gradient(-90deg, #f6f6f6 0%, #fff 100%);
+            };
+
+            .icon {
+                height: 42px;
+                width: 48px;
+            }
+
+            .local-icon {
+                @include sprite-sprite(backup-pc-btn);
+            }
+
+            .remote-icon {
+                @include sprite-sprite(backup-cloud-btn);
+            }
+        }
+
+        .title {
+            margin-left: 20px;
+        }
+    }
+
+    .content + .content {
+        margin-top: 15px;
+    }
+}
+
+
+.w-backup-restore-choose-type,
+.w-backup-choose-app-type {
+    .title {
+        margin-bottom: 10px;
+    }
+
+    .content {
+        margin-top: 15px;
+
+        label {
+            -webkit-box-align: center;
+
+            input {
+                margin-right: 5px;
+            }
+        }
+
+        .desc {
+            margin-top: 5px;
+            margin-left: 20px;
+        }
+
+        .desc-middle {
+            margin-bottom: 15px;
+        }
+
+        em {
+            color: $textHighlight;
+        }
+
+        .beta {
+            @include sprite-sprite(beta);
+            height: 12px;
+            margin-left: 5px;
+            width: 25px;
+        }
+
+        .button-login {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+    }
+}
+
+.w-backup-restore-choose-data {
+    .title {
+        font-weight: bold;
+    }
+
+    .header {
+        background-color: $bgColor;
+        border: 1px $borderColor solid;
+        font-weight: bold;
+        height: 20px;
+        margin-top: 10px;
+        -webkit-box-align: center;
+
+        .backup-type {
+            margin-left: 35px;
+            -webkit-box-flex: 1;
+        }
+
+        .backup-number {
+            width: 152px;
+        }
+    }
+
+    .list-ctn {
+        position: relative;
+
+        .loading {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .permission-tip {
+            display: none;
+        }
+
+        .list li {
+            border: 1px $borderColor solid;
+            border-top-width: 0;
+
+            label {
+                cursor: pointer;
+                height: 35px;
+                -webkit-box-align: center;
+
+                input[type="checkbox"] {
+                    margin: {
+                        left: 10px;
+                        right: 10px;
+                    }
+                }
+
+                .type {
+                    -webkit-box-flex: 1;
+                    -webkit-box-align: center;
+                    margin-right: 5px;
+                }
+
+                .count {
+                    width: 150px;
+                }
+
+                .beta {
+                    @include sprite-sprite(beta);
+                    height: 12px;
+                    width: 25px;
+                    margin: 0 5px;
+                }
+
+                .app-data-tip-ctn {
+                    @include sprite-sprite(help);
+                    height: 16px;
+                    width: 16px;
+                }
+            }
+        }
+    }
+}
+
+.w-backup-choose-location {
+    .title {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .content {
+        .file-name {
+            width: 475px;
+        }
+
+        .file-path-ctn {
+            margin-top: 15px;
+
+            .button-set-location {
+                float: right;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.w-backup-progress,
+.w-backup-remote-progress,
+.w-restore-progress {
+    margin-top: 5px;
+
+    .title {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .progress-ctn {
+        .error {
+            color: #ff5404;
+        }
+
+        .icon-ctn {
+            height: 32px;
+            width: 32px;
+            margin-right: 15px;
+        }
+
+        .icon-type-1 {
+            @include sprite-sprite(icon-contact-32);
+        }
+
+        .icon-type-3 {
+            @include sprite-sprite(icon-sms-32);
+        }
+
+        .icon-type-8 {
+            @include sprite-sprite(icon-app-32);
+        }
+
+        .icon-type-10 {
+            @include sprite-sprite(icon-appdata-32);
+        }
+
+        .item {
+            margin-bottom: 15px;
+            -webkit-box-align: end;
+        }
+
+        .status {
+            height: 32px;
+
+            progress {
+                width: 365px;
+            }
+
+            .progress-desc {
+            }
+        }
+
+        .progress-num {
+            margin-left: 15px;
+        }
+    }
+
+    .download-ctn {
+        margin-left: 10px;
+    }
+
+    .privacy-tip,
+    .mobile-tip {
+        background-color: $bgColor;
+        border: 1px solid $borderColor;
+        border-radius: 2px;
+        padding: 5px 0;
+        text-shadow: 0 1px 0 #fff;
+
+        p {
+            text-align: center;
+        }
+    }
+}
+
+.w-backup-error-item-list {
+    margin-top: 5px;
+
+    .title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .app-list-ctn {
+        height: 144px;
+        overflow-y: auto;
+        border: 1px $borderColor solid;
+        -webkit-box-align: center;
+
+        li {
+            padding: 1px 0;
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            -webkit-box-align: center;
+            -webkit-box-flex: 1;
+
+            .icon {
+                height: 36px;
+                margin: 0 5px 0 5px;
+                width: 36px;
+
+                img {
+                    height: 36px;
+                    width: 36px;
+                }
+            }
+
+            .name {
+                -webkit-box-flex: 1;
+            }
+
+            .size {
+                width: 85px;
+            }
+        }
+
+        li:last-child {
+            border-bottom: 0 solid #ccc;
+        }
+    }
+}
+
+/********************************************************************************
+ * Restore
+ ********************************************************************************/
+.w-restore-choose-file,
+.w-restore-choose-date {
+    .title {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .header {
+        background-color: $bgColor;
+        border: 1px $borderColor solid;
+        border-bottom-width: 0;
+        font-weight: bold;
+        height: 20px;
+        margin-top: 10px;
+        padding-right: 12px;
+        -webkit-box-align: center;
+
+        .file-name {
+            margin-left: 35px;
+            -webkit-box-flex: 1;
+        }
+
+        .count-wrap {
+            margin-right: 5px;
+            text-align: center;
+            width: 35px;
+
+            .contact-number,
+            .sms-number,
+            .app-number {
+                display: inline-block;
+                height: 16px;
+                vertical-align: text-top;
+                width: 16px;
+            }
+
+            .contact-number {
+                @include sprite-sprite(icon-contact);
+            }
+
+            .sms-number {
+                @include sprite-sprite(icon-sms);
+            }
+
+            .app-number {
+                @include sprite-sprite(icon-app);
+            }
+        }
+    }
+
+    .list-ctn {
+        border: 1px $borderColor solid;
+        position: relative;
+
+        .loading {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .list {
+            height: 144px;
+            overflow-y: scroll;
+
+            li {
+                border-bottom: 1px $borderColor solid;
+
+                label {
+                    cursor: pointer;
+                    height: 35px;
+                    -webkit-box-align: center;
+
+                    input[type="radio"] {
+                        margin: {
+                            left: 10px;
+                            right: 10px;
+                        }
+                    }
+
+                    .info_loading {
+                        margin: 0px 0px 0px 4px;
+                    }
+
+                    .file-name {
+                        width: 257px;
+                        -webkit-box-flex: 1;
+                    }
+
+                    .contact-number,
+                    .sms-number,
+                    .app-number  {
+                        margin-right: 5px;
+                        text-align: center;
+                        width: 35px;
+                    }
+                }
+            }
+
+            .load-more-ctn {
+                text-align: center;
+                height: 35px;
+                line-height: 35px;
+                display: none;
+
+                .button-load-more {
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+
+    .tip-link {
+        margin-top: 10px;
+        margin-left: 2px;
+
+        .old-version-tip {
+            @include sprite-sprite(help);
+            height: 16px;
+            width: 16px;
+            float: right;
+            margin-top: 2px;
+            margin-right: 292px;
+        }
+
+        .locale-patch{
+            margin-right: 255px
+        }
+    }
+}
+
+.w-restore-choose-date {
+    .header {
+        .date {
+            margin-left: 35px;
+            -webkit-box-flex: 1;
+        }
+
+        .device {
+            width: 135px;
+        }
+    }
+
+    .list-ctn .list li label {
+        .date {
+            -webkit-box-flex: 1;
+        }
+
+        .device {
+            width: 135px;
+        }
+    }
+}
+
+.old-version-tip {
+    width: 200px;
+}
+
+.w-restore-choose-account {
+    .account-ctn {
+        margin-top: 8px;
+
+        .w-contact-account-selector {
+            width: 330px;
+            max-width: 330px;
+        }
+    }
+}
+
+.w-restore-app-tip {
+    .image-ctn {
+        @include misc-sprite(restore-app-tip);
+        float: left;
+        height: 163px;
+        width: 222px;
+    }
+
+    .content-ctn {
+        float: left;
+        height: 163px;
+        margin-left: 20px;
+        margin-top: 5px;
+        width: 180px;
+    }
+}
+
+.w-restore-delete-data {
+    .title {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .list li {
+        margin-top: 10px;
+        margin-left: 10px;
+
+        label {
+            cursor: pointer;
+            height: 35px;
+            -webkit-box-align: center;
+        }
+
+        .radio-item {
+            margin-right: 5px;
+        }
+    }
+}
+
+.w-backup-auto-tip {
+    .pic-ctn {
+        height: 161px;
+        margin-top: 15px;
+        margin-left: 15px;
+        width: 95px;
+    }
+
+    .pic-local-ctn {
+        @include sprite-sprite(auto-backup-local);
+    }
+
+    .pic-remote-ctn {
+        @include sprite-sprite(auto-backup-remote);
+    }
+
+    .content-ctn {
+        margin-left: 25px;
+        margin-top: 15px;
+        -webkit-box-flex: 1;
+
+        .title {
+            font-size: 18px;
+        }
+
+        .desc {
+            width: 340px;
+
+            em {
+                color: $textPrimary;
+            }
+        }
+    }
+}
+
+.w-backup-app-data-tip {
+    .backup-pic-ctn {
+        @include misc-sprite(app-data-backup-tip);
+        height: 131px;
+        width: 103px;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .content-ctn {
+        margin-left: 20px;
+        -webkit-box-flex: 1;
+
+        em {
+            color: $textHighlight;
+        }
+    }
+}

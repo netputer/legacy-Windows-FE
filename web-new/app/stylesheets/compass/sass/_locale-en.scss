@@ -1,0 +1,106 @@
+/********************************************************************************
+ * This is the CSS declaration of en-us locale style
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ body.locale-en-us {
+    &,
+    button,
+    input,
+    textarea {
+        font: 12px/1.5em 'Sergio UI', Arial, sans-serif;
+        text-rendering: auto;
+    }
+
+    .w-contact-detail-panel {
+        .info-ctn {
+            dt {
+                margin: 0 5px 12px 0;
+                text-align: right;
+                width: 90px;
+            }
+
+            dd {
+                max-width: 237px;
+                min-width: 205px;
+            }
+        }
+    }
+
+    .w-contact-detail-panel.edit {
+        .contact-info {
+            dt {
+                width: 120px;
+            }
+
+            .input-phone,
+            .input-email,
+            .input-im,
+            .input-address,
+            .input-organization {
+                width: 170px;
+            }
+
+            .input-note {
+                width: 170px;
+            }
+        }
+
+        .category-selector {
+            margin-bottom: 15px;
+            padding: 0 20px;
+        }
+    }
+
+    .w-app-mount-sd-tip {
+        .mount-sd {
+            @include misc-sprite(unmount-sd-en);
+        }
+    }
+
+    .w-contact-sim-tip {
+        .sim-tip {
+            @include misc-sprite(sim-tip-en);
+        }
+    }
+
+    .w-misc-sd-mount-ctn {
+        .mount-sd-tip {
+            @include misc-sprite(unmount-sd-en);
+        }
+    }
+
+    .w-contact-quick-add-panel {
+        header {
+            @include misc-sprite(contact-bg-en);
+        }
+    }
+
+    .wel-tip-content {
+        a.app-tip-title {
+            cursor: default;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .w-restore-app-tip {
+        .image-ctn {
+            @include misc-sprite(restore-app-tip-en);
+        }
+
+        .btn-next {
+            margin-top: 50px;
+        }
+    }
+
+    .w-message-item-ctn li {
+        padding: 0 20px 23px;
+
+        .content-wrap {
+            max-width: 62%;
+        }
+    }
+}

@@ -1,0 +1,232 @@
+﻿.w-progress {
+	background: url(../images/loading_16X16.gif) no-repeat center center;
+	display: none;
+	height: 16px;
+	position: absolute;
+	right: 12px;
+	top: 9px;
+	width: 16px;
+}
+
+/********************************************************************************
+ * Misc
+ ********************************************************************************/
+
+.w-pub-ctn-grey-bg {
+	background-color: #f6f6f6;
+}
+
+.form-field-error {
+	color: #cd3705;
+	display: none;
+}
+
+.editing .validating input:not(:focus):invalid + .form-field-error {
+	display: block;
+}
+
+.wd-hidden {
+	display: none;
+}
+
+.wd-invisible {
+	visibility: hidden;
+}
+
+/* multi status checkbox class*/
+.w-checkbox-part-checked {
+	opacity: 0.5;
+}
+
+/* specified the layout of the left side and content */
+.w-nav {
+	border-right: 1px solid #dee;
+	display: -webkit-box;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	width: 180px;
+	-webkit-box-orient: vertical;
+}
+
+.w-nav .w-nav-container {
+	margin-top: 28px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-box-flex: 1;
+}
+
+.w-content {
+	border-right: 1px #e5e5e5 solid;
+	height: 100%;
+	left: 181px;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: auto;
+}
+
+/********************************************************************************
+ * Page layout
+ ********************************************************************************/
+.w-page {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+.w-page .w-page-top {
+	border-bottom: 1px solid #ddd;
+	height: 30px;
+	position: absolute;
+	width: 100%;
+}
+.w-page-top-shadow {
+	position: absolute;
+	top: 31px;
+	width: 100%;
+	height: 1px;
+	box-shadow: 0px 6px 6px #ECECEC;
+}
+
+.w-page .w-page-left, .w-page .w-page-right {
+	bottom: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: absolute;
+	top: 32px;
+}
+
+.w-page .w-page-left.mask::after {
+	background-image: url(../images/content_mask_1X35.png);
+	bottom: 15px;
+	display: block;
+	content: '';
+	height: 35px;
+	left: 0;
+	pointer-events: none;
+	position: absolute;
+	right: 10px;
+	width: 100%;
+}
+
+.w-page .w-page-left {
+	border-right: 1px solid #ddd;
+	box-shadow: 6px 0 24px #eee inset;
+}
+
+.w-page .w-page-right {
+	background-color: #F6F6F6;
+	right: 0;
+	box-shadow: -6px 0 24px #eee inset;
+}
+
+.w-page .w-page-iframe {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+/**********************************************
+ 各类选择器样式
+ **********************************************/
+.w-selector-body {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	width: 600px;
+	height: 325px;
+}
+
+.w-selector-body + p {
+	line-height: 42px;
+	position: absolute;
+}
+
+.w-selector-header-button {
+	margin-bottom: 15px;
+}
+
+.w-selector-header-button span {
+	margin-left: 10px;
+}
+/***********************************************
+ weibo share css
+ ************************************************/
+.w-social-share-oauth input {
+	width: 269px;
+}
+.w-social-share-oauth .oauth-tip {
+	margin-top: 2.7em;
+}
+.w-social-share-oauth .error, .w-social-share-share .error, .w-social-share-share .pic-size-tip {
+	color: #f76200;
+}
+.w-social-share-share .exit-oauth {
+	float: right;
+}
+.w-social-share-share .nickname {
+	float: right;
+	margin-right: 10px;
+}
+.w-social-share-share .header {
+	margin-bottom: 10px;
+}
+.w-social-share-share textarea {
+	width: 358px;
+	height: 4.5em;
+}
+.w-social-share-share.compact-mode textarea {
+	width: 358px;
+	height: 6em;
+}
+.w-social-share-share .share-tip {
+	height: 16px;
+	min-width: 16px;
+}
+.w-social-share-panel .share-preview {
+	width: 370px;
+	height: 250px;
+	border: 1px solid #ddd;
+	overflow: hidden;
+	position: absolute;
+	top: 38px;
+}
+.w-social-share-panel .share-preview-content {
+	overflow-x: hidden;
+    overflow-y: scroll;
+	display: -webkit-box;
+	-webkit-box-orient: horizontal;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+}
+.w-social-share-panel .share-preview-header {
+	height: 24px;
+	width: 355px;
+	padding-left: 15px;
+	background-color: #eee;
+	border-bottom: 1px solid #ddd;
+}
+.w-social-share-panel .view-from-pc {
+	float: right;
+	margin-top: -25px;
+	margin-right: 15px;
+}
+.w-social-share-panel footer {
+	height: 290px;
+	position: relative;
+}
+.w-social-share-panel.compact-mode footer {
+	height: auto;
+    padding-bottom: 16px;
+	position: relative;
+}
+.w-social-share-panel .turn-left {
+	-webkit-transform: rotate(-90deg);
+}
+.w-social-share-panel .turn-down {
+	-webkit-transform: rotate(180deg);
+}
+.w-social-share-panel .turn-right {
+	-webkit-transform: rotate(90deg);
+}

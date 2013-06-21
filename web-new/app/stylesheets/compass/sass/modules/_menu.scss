@@ -1,0 +1,146 @@
+/********************************************************************************
+ * This is the CSS declaration of Sidebar Menu
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ @import "skins/default/default";
+ /********************************************************************************
+ * Menus
+ ********************************************************************************/
+.w-menu {
+    overflow-y: auto;
+    padding: 19px 4px 0 3px;
+    -webkit-box-flex: 1;
+
+    .menu-title {
+        padding-left: 5px;
+        -webkit-box-align: center;
+
+        hr {
+            margin-left: 5px;
+            -webkit-box-flex: 1;
+        }
+    }
+}
+
+.w-sidebar-menu {
+    .root {
+        line-height: 28px;
+
+        .title {
+            padding-right: 10px;
+            text-shadow: 0 1px 0 #fff;
+            -webkit-box-align: center;
+
+            .label {
+                -webkit-box-flex: 1;
+            }
+
+            .count {
+                display: none;
+                text-shadow: none;
+            }
+
+            .icon {
+                height: 16px;
+                margin: 0 8px 0 18px;
+                width: 16px;
+            }
+
+            .count {
+                background-color: #aaa;
+                border-radius: 2px;
+                color: #fff;
+                font-size: 10px;
+                line-height: 14px;
+                min-width: 16px;
+                padding: 0 2px;
+                text-align: center;
+
+                &.highlight {
+                    background-color: $standardColor;
+                    color: #fff;
+                }
+            }
+        }
+
+        @each $icon in home, contact, sms, app, music, photo, video, optimize, gallery, wash {
+            .title {
+                .icon {
+                    &.#{$icon} {
+                        @include sprite-sprite(nav-#{$icon});
+                    }
+                }
+            }
+
+            &:not(.selected) {
+                .title:hover {
+                    .icon {
+                        &.#{$icon} {
+                            @include sprite-sprite(nav-#{$icon}-hover);
+                        }
+                    }
+                }
+            }
+
+            &.selected {
+                .title {
+                    .icon {
+                        &.#{$icon} {
+                            @include sprite-sprite(nav-#{$icon}-active);
+                        }
+                    }
+                }
+            }
+        }
+
+        &:not(.selected) {
+            .title:hover {
+                color: $textPrimary;
+            }
+        }
+
+        &.selected {
+            .title {
+                background-image: -webkit-gradient(linear, left top, left bottom, from(#5bb70d), to(#4eaa00));
+                color: #fff;
+                text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+            }
+        }
+
+        &:not(.selected):hover {
+            .title {
+                background-image: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#eee));
+
+                .count {
+                    background-color: $standardColor;
+                }
+            }
+        }
+
+        &.selected .title .count {
+            background-color: #fff;
+            background-image: none;
+            color: $textPrimary;
+            display: block;
+        }
+    }
+}
+
+.w-menu-shadow {
+    height: 0;
+    overflow: visible;
+    position: relative;
+
+    .shadow {
+        background-color: transparent;
+        background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.2), transparent);
+        height: 8px;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        top: -8px;
+        width: 100%;
+        -webkit-mask-box-image: -webkit-linear-gradient(left, transparent 0%, rgba(0,0,0,0.8) 50%, transparent 100%);
+    }
+}

@@ -1,0 +1,49 @@
+@charset "UTF-8";
+@import "sprite/*.png";
+@import "misc/*.png";
+
+/**
+ * Base declaration
+ */
+@import "reset";
+@import "layout";
+@import "typography";
+@import "form";
+@import "misc";
+@import "anima";
+
+/**
+ * UI components
+ */
+@import "ui/toolbar";
+@import "ui/window";
+@import "ui/menu";
+@import "ui/smartlist";
+
+/**
+ * Moduels
+ */
+@import "modules/menu";
+@import "modules/doraemon";
+@import "modules/browser";
+@import "modules/app";
+@import "modules/contact";
+@import "modules/message";
+@import "modules/taskManager";
+@import "modules/music";
+@import "modules/video";
+@import "modules/photo";
+
+@import "modules/iTunes";
+@import "modules/welcome";
+@import "modules/sync";
+@import "modules/optimize";
+@import "modules/social";
+@import "modules/backuprestore";
+@import "modules/wash";
+
+/**
+ * Localization styles
+ */
+@import "locale-en"
+

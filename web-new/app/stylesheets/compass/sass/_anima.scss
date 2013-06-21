@@ -1,0 +1,47 @@
+.w-anima-fade-in-fast {
+    -webkit-animation: anima-fadeIn .2s;
+}
+
+.w-anima-fade-in {
+    -webkit-animation: anima-fadeIn .4s;
+}
+
+.w-anima-pop-in {
+    -webkit-animation: anima-pop-in .4s;
+}
+
+@-webkit-keyframes anima-fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes anima-breath {
+    0% {
+        opacity: 0.3;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+
+@-webkit-keyframes anima-pop-in {
+    0% {
+        -webkit-transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1.1);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+}

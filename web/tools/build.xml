@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<project basedir="." default="compile">
+
+	<property name="charset" value="utf-8" />
+	<property name="outputdir" value="../build" />
+	<property name="srcdir" value="../src" />
+
+	<taskdef name="jscomp" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="compiler.jar" />
+
+	<!-- 
+        Build Wonder Project
+        This task will generate two files
+        1. wonder-latest-dev.js - Use for development test.
+        2. wonder-latest-min.js - Use for release project.
+     -->
+	<target name="init">
+		<copy todir="${outputdir}/templates">
+			<fileset dir="${srcdir}">
+				<include name="**/*.tpl" />
+				<include name="**/*.html" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="concat" depends="init">
+		<concat destfile="${outputdir}/wonder-latest-dev.js" encoding="${charset}" outputencoding="${charset}">
+			<path path="../src/seed.js" />
+			<path path="../src/utils.js" />
+
+			<path path="../src/ui/event.js" />
+			<path path="../src/ui/uibase.js" />
+			<path path="../src/ui/button.js" />
+			<path path="../src/ui/toolbar.js" />
+			<path path="../src/ui/menu.js" />
+			<path path="../src/ui/grid.js" />
+			<path path="../src/ui/window.js" />
+			<path path="../src/ui/dialog.js" />
+			<path path="../src/ui/progressMonitor.js" />
+			<path path="../src/ui/status.js" />
+			<path path="../src/ui/wizard.js" />
+			<path path="../src/ui/notification.js" />
+			<path path="../src/ui/selectDelegate.js" />
+			<path path="../src/ui/clipImage.js" />
+
+			<path path="../src/module/contact/group.js" />
+			<path path="../src/module/contact/contactpanel/avatarEditor.js" />
+
+			<path path="../src/module/pageManager.js" />
+
+			<path path="../src/module/photo/data.js" />
+			<path path="../src/module/photo/photoView.js" />
+			<path path="../src/module/photo/photo.js" />
+
+			<path path="../src/module/video/data.js" />
+			<path path="../src/module/video/videoContent.js" />
+			<path path="../src/module/video/videoThread.js" />
+			<path path="../src/module/video/videoItem.js" />
+			<path path="../src/module/video/video.js" />
+
+
+		</concat>
+		<concat destfile="${outputdir}/style.css" encoding="${charset}" outputencoding="${charset}">
+			<path path="../style/common.css" />
+
+
+			<path path="../style/uicss/button.css" />
+			<path path="../style/uicss/window.css" />
+			<path path="../style/uicss/grid.css" />
+			<path path="../style/uicss/misc.css" />
+			<path path="../style/uicss/clipImage.css" />
+
+			<path path="../style/photo.css" />
+
+			<path path="../style/video.css" />
+
+		</concat>
+	</target>
+	<target name="compile" depends="concat">
+		<jscomp compilationLevel="whitespace" warning="verbose" debug="false" output="${outputdir}/wonder-latest-min.js">
+			<sources dir="${outputdir}">
+				<file name="wonder-latest-dev.js" />
+			</sources>
+		</jscomp>
+	</target>
+
+</project>

@@ -1,0 +1,211 @@
+ /********************************************************************************
+ * This is the CSS declaration of Doraemon
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ @import "skins/default/default";
+/********************************************************************************
+ * Menus
+ ********************************************************************************/
+.w-menu-doraemon {
+    .menu-title {
+        .button-management {
+            @include sprite-sprite(manage);
+            height: 16px;
+            margin-left: 5px;
+            opacity: .5;
+            width: 16px;
+
+            &.white {
+                @include sprite-sprite(manage-white);
+                display: none;
+            }
+
+            &:hover {
+                opacity: .7;
+            }
+
+            &:active {
+                opacity: .85;
+            }
+        }
+    }
+
+    .root {
+        &.highlight-anima {
+            background-color: #f1de93;
+            color: $textHighlight;
+            -webkit-animation: {
+                name: highlight;
+                duration: 3s;
+                iteration-count: 1;
+                timing-function: linear;
+            }
+        }
+
+        .title .star-extension {
+            @include sprite-sprite(star-extension);
+            height: 16px;
+            margin-left: 5px;
+            width: 16px;
+        }
+
+        &.selected {
+            .title .star-extension {
+                @include sprite-sprite(star-extension-active);
+            }
+        }
+
+        @each $icon in app, music, video, ebook, wallpaper, funny, game, dev {
+            .title {
+                .category {
+                    &.#{$icon} {
+                        @include sprite-sprite(cate-#{$icon});
+                    }
+                }
+            }
+
+            &:not(.selected):not(.highlight) {
+                .title:hover {
+                    .category {
+                        &.#{$icon} {
+                            @include sprite-sprite(cate-#{$icon}-hover);
+                        }
+                    }
+                }
+            }
+
+            &.selected {
+                .title {
+                    .category {
+                        &.#{$icon} {
+                            @include sprite-sprite(cate-#{$icon}-active);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@-webkit-keyframes highlight {
+    0% {
+        background-color: transparent;
+    }
+    5% {
+        background-color: #f1de93;
+    }
+    20% {
+        background-color: transparent;
+    }
+    35% {
+        background-color: #f1de93;
+    }
+    50% {
+        background-color: transparent;
+    }
+    65% {
+        background-color: #f1de93;
+    }
+    100% {
+        background-color: #f1de93;
+    }
+}
+
+/********************************************************************************
+ * Doraemon Module main
+ ********************************************************************************/
+.w-doraemon-module-main {
+    .w-ui-toolbar {
+        .debug-wrap {
+            -webkit-box-align: center;
+            -webkit-box-flex: 1;
+            -webkit-box-pack: end;
+
+            span {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+/********************************************************************************
+ * Extension management list and item
+ ********************************************************************************/
+.w-extension-list-ctn {
+    margin-top: 1px;
+    -webkit-box-flex: 1;
+
+    .w-smart-list-header {
+        .name {
+            margin-left: 45px;
+            margin-right: 5px;
+            -webkit-box-flex: 1;
+        }
+
+        .developer {
+            margin-right: 5px;
+            width: 200px;
+        }
+
+        .category {
+            margin-right: 5px;
+            width: 120px;
+        }
+
+        .fav {
+            width: 100px;
+        }
+    }
+}
+
+.w-extension-list-item {
+    padding: 4px 0;
+    -webkit-box-align: center;
+
+    .item-checker-wrap {
+        padding: 9px 10px;
+
+        .item-checker {
+            margin-top: -2px;
+        }
+    }
+
+    .icon {
+        height: 36px;
+        margin-right: 5px;
+        width: 36px;
+
+        img {
+            height: 36px;
+            width: 36px;
+        }
+    }
+
+    .name {
+        margin-right: 5px;
+        -webkit-box-flex: 1;
+    }
+
+    .developer {
+        margin-right: 5px;
+        width: 200px;
+    }
+
+    .category {
+        margin-right: 5px;
+        width: 120px;
+    }
+
+    .fav {
+        width: 100px;
+    }
+
+    .dev-mode {
+        width: 235px;
+
+        span {
+            margin-right: 10px;
+        }
+    }
+}

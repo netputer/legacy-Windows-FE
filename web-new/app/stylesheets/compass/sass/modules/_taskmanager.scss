@@ -1,0 +1,349 @@
+/********************************************************************************
+ * This is the CSS declaration of Task Manager Module
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "../skins/default/default";
+/********************************************************************************
+ * TaskManager Module Main
+ ********************************************************************************/
+.w-task-module-main {
+    overflow: hidden;
+
+    .ctn {
+        background-color: #fff;
+        box-shadow: 1px 0 10px rgba(0, 0, 0, .2);
+        overflow: visible;
+        position: relative;
+        -webkit-box-flex: 1;
+
+        .w-ui-toolbar {
+            .button-close {
+                @include button-close;
+                margin-top: -8px;
+                position: absolute;
+                right: 10px;
+                top: 50%;
+            }
+        }
+
+        .w-task-mask {
+            left: 100%;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            -webkit-transition: background-color, .5s;
+        }
+    }
+
+    &.w-task-module-fade-in {
+        .ctn {
+            -webkit-animation: module-fade-in .5s;
+        }
+    }
+
+    &.w-task-module-fade-out {
+        .ctn {
+            -webkit-animation: module-fade-out .5s;
+        }
+    }
+}
+
+@-webkit-keyframes module-fade-in {
+    0% {
+        -webkit-transform: translateX(-100%);
+    }
+    100% {
+        -webkit-transform: translateX(0)
+    }
+}
+
+@-webkit-keyframes module-fade-out {
+    0% {
+        -webkit-transform: translateX(0)
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+    }
+}
+
+/********************************************************************************
+ * TaskManager main view
+ ********************************************************************************/
+.w-task-manager-ctn {
+    @include footer-panel;
+    cursor: pointer;
+    height: 36px;
+    overflow: hidden;
+    padding: 0 4px;
+    position: relative;
+
+    .item {
+        display: none;
+        height: 36px;
+        position: relative;
+        text-align: center;
+        text-shadow: 0 1px 0 #fff;
+
+        .content {
+            bottom: 0;
+            height: 36px;
+            left: 0;
+            position: absolute;
+            -webkit-box-align: center;
+
+            .icon {
+                height: 16px;
+                margin: 0 5px 0 18px;
+                width: 16px;
+
+                &.add {
+                    @include sprite-sprite(add-task);
+                }
+
+                &.finish {
+                    @include sprite-sprite(pass);
+                }
+            }
+        }
+
+        &.cache {
+            display: block;
+
+            .icon {
+                @include sprite-sprite(down);
+            }
+        }
+
+        &.active {
+            .active-wrap {
+                background-image: url(../images/down-anima-bg-16X32.png);
+                height: 12px;
+                margin: 0 5px 0 18px;
+                position: relative;
+                width: 16px;
+                -webkit-animation: {
+                    name: anima-task-bg;
+                    duration: 3s;
+                    iteration-count: infinite;
+                    timing-function: linear;
+                }
+
+                .icon {
+                    @include sprite-sprite(down-wrap);
+                    margin: 0;
+                    position: absolute;
+                    top: -2px;
+                }
+            }
+        }
+
+        &.error {
+            .icon {
+                @include sprite-sprite(error);
+            }
+        }
+
+        &.push {
+            .icon {
+                @include sprite-sprite(push);
+            }
+        }
+    }
+}
+
+@-webkit-keyframes anima-task-bg {
+    0% {
+        background-position-y: 0;
+    }
+    100% {
+        background-position-y: 48px;
+    }
+}
+
+.w-task-anima {
+    height: 80px;
+    left: 50px;
+    pointer-events: none;
+    position: absolute;
+    width: 80px;
+
+    &.start-download-anima {
+        -webkit-animation: {
+            name: newTask;
+            duration: 2s;
+            iteration-count: 1;
+            timing-function: linear;
+        }
+    }
+
+    &.start-download-anima {
+        @include sprite-sprite(new-download);
+    }
+}
+
+@-webkit-keyframes newTask {
+    0% {
+        bottom: 180px;
+        display: block;
+        opacity: 0;
+    }
+    33% {
+        bottom: 40px;
+        opacity: 1;
+    }
+    66% {
+        bottom: 40px;
+        opacity: 1;
+    }
+    100% {
+        bottom: 40px;
+        display: none;
+        opacity: 0;
+    }
+}
+
+.w-task-list-ctn {
+    margin-top: 1px;
+    position: relative;
+    -webkit-box-flex: 1;
+
+    header {
+        .name {
+            margin-left: 37px;
+            max-height: 36px;
+            overflow: hidden;
+            word-break: break-all;
+            -webkit-box-flex: 1;
+        }
+
+        .size {
+            margin-left: 5px;
+            width: 100px;
+        }
+
+        .progress {
+            max-height: 36px;
+            overflow: hidden;
+            word-break: break-all;
+            width: 230px;
+        }
+
+        .action {
+            width: 245px;
+        }
+    }
+}
+
+.w-task-manager-list-item {
+    padding: 4px 0;
+    -webkit-box-align: center;
+
+    .item-checker-wrap {
+        padding: 9px 10px;
+    }
+
+    .icon {
+        margin-right: 10px;
+        height: 36px;
+        width: 36px;
+
+        img {
+            height: 36px;
+            width: 36px;
+        }
+    }
+
+    .title {
+        max-height: 36px;
+        overflow: hidden;
+        word-break: break-word;
+        -webkit-box-flex: 1;
+    }
+
+    .size {
+        margin-left: 5px;
+        width: 100px;
+    }
+
+    .status {
+        max-height: 36px;
+        overflow: hidden;
+        width: 230px;
+
+        .progress {
+            height: 18px;
+            -webkit-box-align: center;
+
+            progress {
+                -webkit-box-flex: 1;
+            }
+        }
+    }
+
+    .action {
+        padding-left: 15px;
+        width: 230px;
+
+        span {
+            margin-left: 20px;
+        }
+    }
+}
+
+.w-task-monitor-item {
+    display: none;
+    overflow: hidden;
+}
+
+/********************************************************************************
+ * TaskManager dashboard view
+ ********************************************************************************/
+.w-task-dashboard {
+    padding: 5px;
+    min-width: 100px;
+
+    li {
+        min-width: 80px;
+        -webkit-box-align: center;
+
+        .icon {
+            height: 16px;
+            margin-right: 5px;
+            width: 16px;
+
+            @each $icon in speed, complete, active, error {
+                &.#{$icon} {
+                    @include sprite-sprite(#{$icon}-white);
+                }
+            }
+        }
+    }
+}
+
+.w-task-popup-tip {
+    margin: 5px 0;
+    position: relative;
+    width: 240px;
+
+    h2 {
+        color: #000;
+    }
+
+    p {
+        margin: 5px 0;
+    }
+
+    .button-connect,
+    .button-change-disk {
+        float: right;
+    }
+
+    .button-close {
+        @include button-close;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}

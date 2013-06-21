@@ -1,0 +1,194 @@
+ /********************************************************************************
+ * This is the CSS declaration of Social
+ * 
+ * @author sunqiao@wandoujia.com
+ ********************************************************************************/
+ @import "../skins/default/default";
+/********************************************************************************
+ * social platform selector
+ ********************************************************************************/
+ 
+.w-social-platform-selector {
+    .social-platform {
+        border: none;
+        cursor: pointer;
+        height: 16px;
+        margin-top: -4px;
+        width: 16px;
+
+        &:hover {
+            border: none;
+        }
+        
+        &[data-type="sina"] {
+            @include sprite-sprite(sina-off);
+            
+        &:checked,
+            &:checked:hover{
+                @include sprite-sprite(sina);
+            }
+        }
+
+        &[data-type="qzone"] {
+            @include sprite-sprite(qzone-off);
+            
+            &:checked,
+            &:checked:hover{
+                @include sprite-sprite(qzone);
+            }
+        }
+
+        &[data-type="tqq"] {
+            @include sprite-sprite(tqq-off);
+                
+            &:checked,
+            &:checked:hover{
+                @include sprite-sprite(tqq);
+            }
+        }
+
+        &[data-type="renren"] {
+            @include sprite-sprite(renren-off);
+            
+            &:checked,
+            &:checked:hover{
+                @include sprite-sprite(renren);
+            }
+        }
+
+        + .social-platform {
+            margin-left: 3px;
+        }
+    }
+
+    .big-ctn {
+        width: 300px;
+        margin-bottom: 20px;
+
+        .social-platform-big {
+            border: none;
+            cursor: pointer;
+            height: 39px;
+            width: 39px;
+
+            &:hover {
+                border: none;
+            }
+            
+            &[data-type="sina"] {
+                @include sprite-sprite(weibo-default);
+                
+                &:checked,
+                &:checked:hover{
+                    @include sprite-sprite(weibo-bind);
+                }
+                &:hover{
+                    @include sprite-sprite(weibo-hover);
+                }
+                &:active{
+                    @include sprite-sprite(weibo-down);
+                }
+            }
+
+            &[data-type="qzone"] {
+                @include sprite-sprite(qzone-default);
+                
+                &:checked,
+                &:checked:hover{
+                    @include sprite-sprite(qzone-bind);
+                }
+                &:hover{
+                    @include sprite-sprite(qzone-hover);
+                }
+                &:active{
+                    @include sprite-sprite(qzone-down);
+                }
+            }
+
+            &[data-type="tqq"] {
+                @include sprite-sprite(qq-weibo-default);
+                
+                &:checked,
+                &:checked:hover{
+                    @include sprite-sprite(qq-weibo-bind);
+                }
+                &:hover{
+                    @include sprite-sprite(qq-weibo-hover);
+                }
+                &:active{
+                    @include sprite-sprite(qq-weibo-down);
+                }
+            }
+            
+            &[data-type="renren"] {
+                @include sprite-sprite(renren-default);
+                
+                &:checked,
+                &:checked:hover{
+                    @include sprite-sprite(renren-bind);
+                }
+                &:hover{
+                    @include sprite-sprite(renren-hover);
+                }
+                &:active{
+                    @include sprite-sprite(renren-down);
+                }
+            }
+
+            + .social-platform {
+                margin-left: 3px;
+            }
+        }
+
+        span {
+            margin-left: 20px;
+            margin-right: 60px;
+        }
+    }
+}
+
+.w-social-share-share {
+    .share-tip {
+        float:right;
+    }
+
+    .send-loading {
+        float: right;
+        display: none;
+        margin-top: -2px;
+    }
+
+    .sending {
+        display: inline-block;
+    }
+}
+
+.w-quick-share-ctn {
+    -webkit-box-align: center;
+
+    .icon {
+        @include sprite-sprite(success);
+        height: 16px;
+        margin-right: 5px;
+        width: 16px;
+    }
+
+    .item-ctn {
+        margin-left: 15px;
+        -webkit-box-flex: 1;
+
+        li {
+            display: inline-block;
+            float: left;
+            text-decoration : underline;
+
+            &:hover {
+                cursor: pointer;
+            }
+            
+            + li {
+                margin-left: 10px;
+            }
+        }
+    }
+}

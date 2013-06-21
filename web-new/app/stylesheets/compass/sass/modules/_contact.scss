@@ -1,0 +1,1083 @@
+/********************************************************************************
+ * This is the CSS declaration of Contact Module
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "../skins/default/default";
+/********************************************************************************
+ * Contact module main
+ ********************************************************************************/
+.w-contact-module-main {
+    .w-contact-ctn {
+        margin-top: 1px;
+        position: relative;
+        -webkit-box-flex: 1;
+    }
+}
+
+/********************************************************************************
+ * Contact Panel
+ ********************************************************************************/
+.w-contact-panel {
+    border-left: 1px $borderColor solid;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 377px;
+}
+
+/********************************************************************************
+ * Contacts List
+ ********************************************************************************/
+.w-contact-list {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 378px;
+    top: 0;
+
+    .count-tip {
+        background-color: $bgColor;
+        border-bottom: 1px $borderColor solid;
+        display: block;
+        line-height: 22px;
+        text-align: center;
+    }
+
+    .pinyin-hint {
+        background-color: rgba(0, 0, 0, .6);
+        border-radius: 5px;
+        color: #fff;
+        display: none;
+        font-size: 25px;
+        height: 50px;
+        left: 50%;
+        line-height: 50px;
+        margin-left: -25px;
+        pointer-events: none;
+        position: absolute;
+        text-align: center;
+        top: 100px;
+        width: 50px;
+    }
+}
+
+ /********************************************************************************
+ * Quick Add Panel
+ ********************************************************************************/
+.w-contact-quick-add-panel {
+    background-color: $bgColor;
+    height: 100%;
+    left: 0;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+
+    header {
+        @include misc-sprite(contact-bg);
+        height: 100px;
+        padding: 80px 30px 0 105px;
+        width: 242px;
+
+        p + p {
+            margin-top: 1em;
+        }
+    }
+
+    .legend {
+        margin: 30px 0 17px 20px;
+
+        .icon {
+            @include sprite-sprite(cross);
+            display: inline-block;
+            height: 12px;
+            margin-bottom: -1px;
+            margin-right: 10px;
+            width: 12px;
+
+        }
+    }
+
+    dl {
+        dt {
+            clear: left;
+            float: left;
+            line-height: 32px;
+            margin: {
+                bottom: 10px;
+                left: 42px;
+            }
+            width: 60px;
+
+            label {
+                display: block;
+            }
+        }
+
+        dd {
+            height: 32px;
+            float: left;
+            -webkit-box-align: center;
+
+            input {
+                width: 230px;
+            }
+        }
+    }
+
+    .account-ctn {
+        .w-ui-button {
+            width: 242px;
+        }
+    }
+
+    .btn-ctn {
+        margin-left: 102px;
+        -webkit-box-align: center;
+
+        .running {
+            display: none;
+            height: 25px;
+            margin-left: 10px;
+            width: 25px;
+        }
+
+        .hint {
+            margin-left: 10px;
+        }
+    }
+}
+
+/********************************************************************************
+ * Detail Panel
+ ********************************************************************************/
+.w-contact-detail-panel {
+    background: {
+        color: #fff;
+        image: url(../images/right_panel_bg_377X180.png);
+        repeat: no-repeat;
+    }
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    .contact-info {
+        overflow-y: auto;
+        -webkit-box-flex: 1;
+
+        h1 {
+            margin: {
+                left: 20px;
+                top: 12px;
+            }
+        }
+
+        .header-ctn {
+            padding: 15px;
+
+            .avatar {
+                height: 90px;
+                margin-right: 15px;
+                position: relative;
+                width: 90px;
+
+                img {
+                    height: 90px;
+                    width: 90px;
+                }
+
+                .mask {
+                    background-color: rgba(255, 255, 255, .4);
+                    box-shadow: 0 0 7px 3px #f2fac0 inset;
+                    height: 100%;
+                    left: 0;
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+
+                    .tip {
+                        background-color: rgba(0, 0, 0, .5);
+                        bottom: 0;
+                        color: #fff;
+                        height: 23px;
+                        line-height: 23px;
+                        position: absolute;
+                        text-align: center;
+                        width: 100%;
+                    }
+                }
+
+                &.button-avatar {
+                    cursor: pointer;
+                }
+            }
+
+            .infos {
+                -webkit-box-flex: 1;
+
+                .name {
+                    font-size: 32px;
+                    line-height: 48px;
+                    min-height: 48px;
+                }
+
+                .nickname {
+                    line-height: 30px;
+                    -webkit-box-flex: 1;
+                }
+            }
+        }
+
+        .info-ctn {
+            padding: 12px 10px 0 20px;
+
+            dt {
+                clear: left;
+                float: left;
+                margin-bottom: 12px;
+                width: 60px;
+            }
+
+            dd {
+                display: inline-block;
+                margin-bottom: 12px;
+                max-width: 277px;
+                min-width: 265px;
+            }
+
+            .note {
+                word-break: break-word;
+            }
+        }
+
+        .button-email {
+            @include sprite-sprite(mail);
+            cursor: pointer;
+            display: inline-block;
+            height: 16px;
+            margin-left: 5px;
+            vertical-align: text-bottom;
+            width: 16px;
+
+            &:hover {
+                @include sprite-sprite(mail-hover);
+            }
+
+            &:active {
+                @include sprite-sprite(mail-active);
+            }
+        }
+
+        .button-dial {
+            @include sprite-sprite(dial);
+            cursor: pointer;
+            display: inline-block;
+            height: 16px;
+            margin-left: 5px;
+            vertical-align: text-bottom;
+            width: 16px;
+
+            &:hover {
+                @include sprite-sprite(dial-hover);
+            }
+
+            &:active {
+                @include sprite-sprite(dial-active);
+            }
+        }
+
+        .sms-ctn {
+            .w-message-threads-ctn {
+                background-image: none;
+                height: auto;
+                position: relative;
+                width: 100%;
+
+                .w-message-threads-list-ctn {
+                    overflow-y: visible;
+                }
+            }
+        }
+    }
+}
+
+/********************************************************************************
+ * Detail Edit Panel
+ ********************************************************************************/
+.w-contact-detail-panel.edit {
+    .contact-info {
+        dt {
+            margin-right: 10px;
+            width: 95px;
+
+            button {
+                width: 100%;
+            }
+        }
+
+        dd {
+            min-width: 215px;
+            overflow: visible;
+        }
+
+        .input-name {
+            height: auto;
+            line-height: 32px;
+            vertical-align: top;
+            width: 220px;
+        }
+
+        .nickname {
+            margin: 5px 0;
+
+            .input-nickname {
+                width: 220px;
+            }
+        }
+
+        .input-phone,
+        .input-email,
+        .input-im,
+        .input-address,
+        .input-organization {
+            height: 25px;
+            width: 190px;
+        }
+
+        .input-note {
+            height: 4em;
+            width: 190px;
+
+            + .button-delete {
+                vertical-align: top;
+            }
+        }
+
+        .button-delete {
+            @include sprite-sprite(delete);
+            cursor: default;
+            display: inline-block;
+            height: 16px;
+            margin-left: 10px;
+            vertical-align: middle;
+            width: 16px;
+
+            &:hover {
+                @include sprite-sprite(delete-hover);
+            }
+
+            &:active {
+                @include sprite-sprite(delete-active);
+            }
+        }
+    }
+
+    .account-ctn {
+        .w-ui-button {
+            width: 202px;
+        }
+    }
+
+    .category-selector {
+        margin-bottom: 15px;
+        padding: 0 20px;
+    }
+
+    .btn-ctn {
+        background-color: $bgColor;
+        border-top: 1px $borderColor solid;
+        padding: 10px 15px;
+    }
+}
+
+/********************************************************************************
+ * Batch Contacts Panel
+ ********************************************************************************/
+.w-contact-batch-contacts {
+    background-color: $bgColor;
+    bottom: 0;
+    left: 0;
+    padding: 15px;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .title {
+        text-align: center;
+    }
+
+    .actions {
+        margin: 7px 0 10px 0;
+        text-align: center;
+    }
+
+    .button-deselect {
+        margin-left: 12px;
+    }
+
+    .w-contact-batch-contacts-list-ctn {
+        background: #fff;
+        border: 1px $borderColor solid;
+        -webkit-box-flex: 1;
+
+        .w-contact-list-item {
+            .item-checker-wrap,
+            .star,
+            .group-menu {
+                display: none;
+            }
+
+            &:hover {
+                .button-close {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.w-contact-list-item {
+    padding: 4px 0;
+    position: relative;
+
+    .item-checker-wrap {
+        padding: 5px 10px;
+
+        .item-checker {
+            margin-top: 5px;
+        }
+    }
+
+    .star {
+        -webkit-box-align: center;
+
+        .star-img {
+            @include sprite-sprite(star);
+            height: 15px;
+            width: 15px;
+
+            &:hover {
+                @include sprite-sprite(star-hover);
+            }
+        }
+
+        &.starred {
+            .star-img {
+                @include sprite-sprite(starred);
+
+                &:hover {
+                    @include sprite-sprite(starred-hover);
+                }
+
+                &:active {
+                    @include sprite-sprite(starred-active);
+                }
+            }
+        }
+
+        &.starring {
+            -webkit-animation: {
+                name: star-processing;
+                duration: .5s;
+                iteration-count: infinite;
+            }
+        }
+    }
+
+    .avatar {
+        height: 36px;
+        margin: 0 10px;
+        width: 36px;
+
+        img {
+            height: 36px;
+            width: 36px;
+        }
+    }
+
+    .body {
+        -webkit-box-flex: 1;
+    }
+
+    .group-menu {
+        margin-right: 12px;
+        -webkit-box-align: center;
+
+        li {
+            height: 8px;
+            width: 8px;
+
+            + li {
+                margin-left: 1px
+            }
+        }
+    }
+
+    .button-close {
+        @include button-close;
+        display: none;
+        margin-top: -8px;
+        position: absolute;
+        right: 8px;
+        top: 50%;
+    }
+}
+
+@-webkit-keyframes star-processing {
+    from {
+        opacity: 0;
+    }
+    40% {
+        opacity: .4;
+    }
+    80% {
+        opacity: .8;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.w-contact-group-list {
+    background-color: #fff;
+    border: 1px $standardColor solid;
+    padding: 5px;
+    pointer-events: none;
+    position: absolute;
+
+    .group-menu {
+        li {
+            height: 8px;
+            width: 8px;
+
+            + li {
+                margin-left: 1px
+            }
+        }
+    }
+
+    .group-list {
+        margin-top: 5px;
+
+        li {
+            -webkit-box-align: center;
+
+            .squar {
+                height: 8px;
+                margin-right: 3px;
+                width: 8px;
+            }
+        }
+    }
+}
+
+/********************************************************************************
+ * Detail Edit Panel
+ ********************************************************************************/
+.w-contact-avatar-editor {
+    -webkit-box-flex: 1;
+
+    .ctrl-ctn {
+        -webkit-box-align: center;
+
+        .btn-ctn {
+            -webkit-box-flex: 1;
+        }
+    }
+}
+
+.w-contact-groups group {
+    background-color: #ececec;
+    border-radius: 2px;
+    display: block;
+    float: left;
+    height: 22px;
+    line-height: 22px;
+    margin-right: 5px;
+    padding: 0 5px;
+}
+
+.w-contact-account-group {
+    position: absolute;
+    right: 0;
+    top: 1px;
+}
+.w-contact-account-group .w-contact-account text,
+.w-contact-account-group .w-contact-group text{
+    display: inline-block;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+.w-contact-account-group label {
+    color: #646464;
+    position: absolute;
+    left: -40px;
+    top: 8px;
+}
+
+.w-group-manager-header {
+    margin-bottom: 15px;
+}
+
+.w-group-manager-body {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    height: 200px;
+    width: 420px;
+}
+
+.w-group-manager-body input[type="text"] {
+    height: 23px;
+    width: 85px;
+}
+
+.w-contact-group-add {
+    float: right;
+}
+
+.w-group-manager-body .w-grid-header-row .w-grid-column:first-child,
+.w-group-manager-body .w-grid-row .w-grid-column:first-child {
+    padding-left: 12px;
+}
+
+.w-contact .w-progress {
+    right: 210px;
+}
+
+.w-menu-group-manager-item {
+    padding: 5px 0 2px 12px;
+}
+
+/********************************************************************************
+ * Group tag
+ ********************************************************************************/
+.w-grid-group-menu{
+    background: #fff;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+    padding: 5px;
+    border: 1px solid #6DB800;
+    line-height: 24px;
+}
+.w-grid-group-menu > ul{
+    padding-top: 10px;
+}
+.w-grid-group-menu > ul > li > span{
+    display: inline-block;
+    margin-right: 8px;
+}
+.w-contact-groups-tag,
+.w-grid-group-menu > div {
+    background: #fff;
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    margin-right: 13px;
+}
+.w-contact-groups-tag > span,
+.w-grid-group-menu > div span,
+.w-grid-group-menu > ul span {
+    display: block;
+    height:8px;
+    width: 8px;
+    margin-left: 1px;
+}
+
+.w-contact-account-menu text{
+    display: inline-block;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+.w-contact-readOnly{
+    color: #646464;
+}
+.w-grid-row.highlight .w-contact-readyOnly{
+    color: #3C7800;
+}
+.w-contact-readyOnly img{
+    opacity: .5;
+}
+.w-ui-menu-container .addor-item{
+    padding-left: 32px;
+}
+.w-group-addor{
+    width: 360px;
+
+    input {
+      margin-left: 10px;
+    }
+}
+.w-group-addor .tip{
+    margin-left: 10px;
+    color: #F76200;
+}
+
+
+
+/*import and export style*/
+.w-import-export-wifi-tip{
+    width:320px;
+    line-height: 20px;
+}
+
+.w-contact-import,
+.w-contact-export{
+    width: 400px;
+    height: 160px;
+}
+.w-contact-import h6,
+.w-contact-export h6,
+.w-contact-import-account h6{
+    margin-bottom: 10px;
+}
+.w-contact-import .duplicate-ctn {
+    margin-top: 5px;
+}
+.w-contact-export li {
+    height: 30px;
+    line-height: 30px;
+}
+.w-contact-import .invalid{
+    line-height: 30px;
+    color:#F76200;
+}
+.w-contact-import-account{
+    width: 300px;
+}
+.w-contact-import-account .w-contact-account-group{
+    position: relative;
+    margin-left: 35px;
+}
+.w-contact-import-account label{
+    top: 3px;
+}
+.w-contact-import.step1 .browser{
+    float: right;
+}
+
+
+.w-contact-import.step1 input{
+    height: 25px;
+    width: 320px;
+}
+
+
+.failed-list{
+    border: 1px solid #dedede;
+    height: 131px;
+}
+
+.w-contact-import .progress {
+    float: right;
+}
+
+/* style for header photo*/
+.w-contact-edit-head-select-container{
+    position: relative;
+}
+.w-contact-edit-head-panel{
+    width: 633px;
+    height:374px;
+    position:relative;
+    overflow:hidden;
+}
+.w-contact-edit-head-panel .w-contact-del-head{
+    position:absolute;
+    right: 3px;
+    top: 7px;
+}
+.w-contact-edit-head-panel .w-contact-edit-head-select-btns{
+    display:inline;
+}
+.w-contact-edit-head-panel .w-contact-edit-head-photo-container{
+    width: 620px;
+    height: 309px;
+    margin-top: 15px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding:11px 0 11px 11px;
+}
+
+.w-export-check-btn{
+    position: absolute;
+    left: 15px;
+}
+
+.w-contact-edit-head-photo-wrap{
+    height: 309px;
+    overflow:auto;
+}
+.w-contact-edit-head-photo-wrap .w-contact-edit-head-tip{
+    text-align: center;
+}
+.w-contact-edit-head-photos img{
+    cursor: pointer;
+}
+.w-contact-edit-head-library{
+    display:none;
+}
+.w-contact-edit-head-img-wrap{
+    width: 136px;
+    height: 100px;
+    overflow:hidden;
+    border:1px solid #ddd;
+    margin-bottom: 10px;
+    margin-right:10px;
+    float: left;
+    padding: 2px;
+}
+.w-contact-edit-head-photos img{
+    float: left;
+}
+.w-contact-edit-head-clip{
+    width: 620px;
+    height: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding:4px;
+}
+.w-contact-edit-head-return{
+    position: absolute;
+    left: 16px;
+    bottom: 15px;
+}
+.w-contact-pic-format-tip{
+    display: block;
+    width: 100%;
+    height: 12px;
+    line-height: 12px;
+}
+.w-contact-edit-head-panel .w-rotate-90{
+    -webkit-transform: rotate(90deg);
+}
+
+.w-contact-edit-head-panel .w-rotate-180{
+    -webkit-transform: rotate(180deg);
+}
+
+.w-contact-edit-head-panel .w-rotate-270{
+    -webkit-transform: rotate(270deg);
+}
+
+.w-contact-export .progress {
+    float: right;
+}
+
+/********************************************************************************
+ * Import
+ ********************************************************************************/
+.w-contact-import-selectfile-body-ctn {
+    .file{
+      height: 25px;
+      width: 320px;
+    }
+
+    .title{
+      margin-bottom: 5px;
+    }
+
+    .browser{
+      float: right;
+    }
+}
+
+.w-contact-import-select-account-body-ctn{
+    .title{
+        margin-bottom: 5px;
+    }
+}
+
+.w-contact-import-process-body{
+    min-height: 56px;
+
+    .title {
+        margin-bottom: 5px;
+    }
+
+    li {
+        height: 30px;
+        line-height: 30px;
+
+        label {
+            display: block;
+
+            input {
+                margin-right: 5px;
+            }
+        }
+
+        .account {
+            display: block;
+
+            button {
+                margin: -3px 0 0 5px;
+                width: 140px;
+            }
+        }
+    }
+
+    .progress-desc {
+        -webkit-box-flex: 1;
+    }
+
+    .progress-ctn {
+        margin: 5px auto;
+
+        progress {
+            -webkit-box-flex: 1;
+        }
+    }
+}
+
+.w-import-autobackup-body-ctn {
+    .header {
+        background-color: $bgColor;
+        border: 1px $borderColor solid;
+        border-bottom-width: 0;
+        font-weight: bold;
+        height: 35px;
+        margin-top: 10px;
+        -webkit-box-align: center;
+
+        .backup-record {
+            margin-left: 80px;
+            -webkit-box-flex: 1;
+        }
+
+        .contact-number {
+            width: 80px;
+        }
+    }
+
+    .list-ctn {
+        border: 1px $borderColor solid;
+        position: relative;
+
+        .list {
+            height: 142px;
+            overflow-y: auto;
+
+            li {
+                border: 1px $borderColor solid;
+                border-top-width: 0;
+
+                label {
+                    height: 35px;
+                    -webkit-box-align: center;
+
+                    input[type="radio"] {
+                        margin: {
+                            left: 10px;
+                            right: 10px;
+                        }
+                    }
+
+                    .date {
+                        margin-right: 5px;
+                        width: 75px;
+                    }
+
+                    .title {
+                        -webkit-box-flex: 1;
+                    }
+
+                    .count {
+                        width: 60px;
+                    }
+                }
+            }
+        }
+
+        .loading {
+            position: absolute;
+            left: 45%;
+            top: 10px;
+        }
+    }
+}
+
+/********************************************************************************
+ * Export
+ ********************************************************************************/
+.w-contact-export-body {
+    .title {
+        margin-bottom: 5px;
+    }
+
+    li {
+        height: 30px;
+        line-height: 30px;
+
+        label {
+            display: block;
+
+            input {
+                margin-right: 5px;
+            }
+        }
+
+        .account {
+            display: block;
+
+            button {
+                margin: -3px 0 0 5px;
+                width: 140px;
+            }
+        }
+    }
+
+    .progress-desc {
+        -webkit-box-flex: 1;
+    }
+
+    .progress-ctn {
+        margin-top: 5px;
+
+        progress {
+            -webkit-box-flex: 1;
+        }
+    }
+}
+
+/********************************************************************************
+ * Contact module main
+ ********************************************************************************/
+.w-contact-sim-tip {
+    margin-top: 10px;
+
+    h1 {
+        margin-bottom: 5px;
+    }
+
+    .sim-tip {
+        @include misc-sprite(sim-tip);
+        height: 370px;
+        margin: 1em auto 0;
+        width: 466px;
+    }
+}
+
+.w-photo-gallery-ctn.w-contact-avatar-list {
+    background-image: none;
+    border: 1px $borderColor solid;
+    border-radius: 3px;
+    margin-top: 10px;
+
+    .w-photo-thread .photo-ctn {
+        padding: 5px 5px 5px 25px;
+    }
+}

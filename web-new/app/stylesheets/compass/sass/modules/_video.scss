@@ -1,0 +1,76 @@
+/********************************************************************************
+ * This is the CSS declaration of Video Module
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "../skins/default/default";
+
+/********************************************************************************
+ * Video List and Item
+ ********************************************************************************/
+.w-video-list-header {
+    .check-select-all-wrap {
+        padding: 0 15px;
+    }
+
+    .title {
+        margin-right: 5px;
+        -webkit-box-flex: 1;
+    }
+
+    .format {
+        width: 100px;
+    }
+
+    .size {
+        width: 100px;
+    }
+}
+
+.w-video-list-item {
+    padding: 5px 0;
+    -webkit-box-align: center;
+
+    .item-checker-wrap {
+        padding: 0 15px;        
+    }
+
+    .title {
+        margin-right: 5px;
+        -webkit-box-flex: 1;
+    }
+
+    .format {
+        width: 100px;
+    }
+
+    .size {
+        width: 100px;
+    }
+}
+
+/********************************************************************************
+ * Import local videos window
+ ********************************************************************************/
+.w-video-local-import {
+    -webkit-box-flex: 1;
+
+    .btn-ctn {
+        -webkit-box-align: center;
+
+        .tip {
+            margin-left: 10px;
+            -webkit-box-flex: 1;
+        }
+    }
+
+    .support-tip {
+        margin: 5px 0;
+    }
+
+    .w-video-local-import-list {
+        border: 1px $borderColor solid;
+        border-radius: 3px;
+        -webkit-box-flex: 1;
+    }
+}
