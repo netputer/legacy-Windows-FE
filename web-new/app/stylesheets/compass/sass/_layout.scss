@@ -54,9 +54,11 @@ html, body, .w-main {
     position: relative;
 
     .sidebar {
+        background-color: #43484d;
+        border-left: 1px solid #717375;
         height: 100%;
         position: absolute;
-        width: 180px;
+        width: 189px;
     }
 
     .module-ctn {
@@ -66,7 +68,7 @@ html, body, .w-main {
             width: 1px 1px 0;
         }
         bottom: 0;
-        left: 180px;
+        left: 190px;
         overflow: hidden;
         position: absolute;
         right: 0;
