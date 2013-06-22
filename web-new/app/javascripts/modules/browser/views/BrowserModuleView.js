@@ -8,7 +8,8 @@
         'Environment',
         'browser/views/BrowserView',
         'doraemon/collections/ExtensionsCollection',
-        'doraemon/models/ExtensionModel'
+        'doraemon/models/ExtensionModel',
+        'WindowController'
     ], function (
         _,
         Backbone,
@@ -17,7 +18,8 @@
         Environment,
         BrowserView,
         ExtensionsCollection,
-        ExtensionModel
+        ExtensionModel,
+        WindowController
     ) {
         console.log('BrowserModuleView - File loaded.');
 
@@ -53,7 +55,6 @@
                 this.$('.w-browser').addClass('w-layout-hidden');
 
                 var $browser = this.$('#' + IFRAME_PREFIX + extensionModel.id);
-
                 if ($browser.length > 0) {
                     $browser.removeClass('w-layout-hidden');
                 } else {
@@ -62,16 +63,21 @@
                         model : extensionModel,
                         autoGotoURL : gotoURL
                     }).render().$el;
-
                     this.$el.prepend($browser);
                 }
+
+                var iframe = $browser.find('iframe');
+                WindowController.navigationState(iframe.attr('id'));
             },
             navigate : function (extensionModel, url) {
                 this.goto(extensionModel, false);
 
-                this.$('#' + IFRAME_PREFIX + extensionModel.id).find('iframe').attr({
+                var iframe = this.$('#' + IFRAME_PREFIX + extensionModel.id).find('iframe');
+                iframe.attr({
                     src : url
                 });
+
+                WindowController.navigationState(iframe.attr('id'));
             },
             navigateToThirdParty : function (extentionId, extentionName, url, isPreview) {
                 var extension = ExtensionsCollection.getInstance().get(extentionId);

@@ -15,13 +15,13 @@
         'Internationalization',
         'ui/TemplateFactory',
         'ui/behavior/ButtonSetMixin',
-        'utilities/FormatString',
+        'utilities/StringUtil',
         'music/iTunes/iTunesData'
     ], function (
         _,
         doT,
         $,
-        Log,
+        log,
         IO,
         Panel,
         AlertWindow,
@@ -32,7 +32,7 @@
         Internationalization,
         TemplateFactory,
         ButtonSetMixin,
-        FormatString,
+        StringUtil,
         iTunesData
     ) {
 
@@ -64,10 +64,9 @@
                 this.draggable = true;
                 this.disableX  = true;
                 this.buttons   = buttons;
-                this.$bodyContent = (doT.template(TemplateFactory.get('iTunes', 'iTunes-import')))
-                                    ({
-                                        title : localeText.IMPORTING_TITLE
-                                    });
+                this.$bodyContent = (doT.template(TemplateFactory.get('iTunes', 'iTunes-import')))({
+                    title : localeText.IMPORTING_TITLE
+                });
             },
 
             render : function () {
@@ -94,7 +93,7 @@
                     this.importAudiosData = {};
                     this.createPlaylistData = {};
 
-                    Log({
+                    log({
                         'event' : 'debug.itunes.import',
                         'type' : 'all'
                     });
@@ -105,7 +104,7 @@
                     this.createPlaylistData.playlist_id = data.playlistIds.join(',');
                     this.isCreatePlaylist = true;
 
-                    Log({
+                    log({
                         'event' : 'debug.itunes.import',
                         'type' : 'playlist'
                     });
@@ -115,7 +114,7 @@
                     this.importAudiosData.itunes_id = data.iTunesIds.join(',');
                     this.isCreatePlaylist = false;
 
-                    Log({
+                    log({
                         'event' : 'debug.itunes.import',
                         'type' : 'audios'
                     });
@@ -135,7 +134,7 @@
                 }
             },
 
-            renderProgress : function (data) {
+            renderProgress: function (data) {
                 var progress = this.$('.' + data.className);
                 if (progress.length) {
                     progress.remove();
@@ -245,12 +244,12 @@
                     tip : Internationalization.music.AUDIOS_IMPORT_FAILD,
                     className : importAudiosProgressCls,
                     isFaild : true,
-                    current : data.success && data.success.length || 0,
+                    current : data.success && (data.success.length || 0),
                     total : data.total
                 };
                 this.renderProgress(audiosData);
 
-                var tip = FormatString(Internationalization.music.IMPORT_AUDIOS_FAILD_TIP, data.failed.length);
+                var tip = StringUtil.format(Internationalization.music.IMPORT_AUDIOS_FAILD_TIP, data.failed.length);
                 var buttons = [{
                     $button : $('<button/>').addClass('primary retry').html(Internationalization.common.RETRY_TEXT),
                     eventName : 'RETRY'
@@ -311,7 +310,7 @@
                 } else {
                     this.createPlaylistFail(data);
 
-                    var tip = FormatString(Internationalization.music.CREATE_PLAYLIST_FAILD_TIP, data.failed.length);
+                    var tip = StringUtil.format(Internationalization.music.CREATE_PLAYLIST_FAILD_TIP, data.failed.length);
                     var buttons = [
                         {
                             $button : $('<button/>').addClass('primary retry').html(Internationalization.common.RETRY_TEXT),
@@ -361,7 +360,7 @@
                     tip : Internationalization.music.CREATE_PLAYLIST_FAILD,
                     className : createPlaylistCls,
                     isFaild : true,
-                    current : data.success && data.success.length || 0,
+                    current : data.success && (data.success.length || 0),
                     total : data.total
                 };
                 this.renderProgress(playlistData);

@@ -19,7 +19,10 @@
     ) {
         console.log('WindowController - File loaded');
 
+        var history = window.history;
+
         var WindowController = function () {};
+
         WindowController.blockWindowAsync = function () {
             var deferred = $.Deferred();
 
@@ -58,6 +61,27 @@
             });
 
             return deferred.promise();
+        };
+
+        WindowController.navigationState = function (id) {
+            var $iframe;
+            var branch;
+
+            if (!id) {
+                window.externalCall('', 'navigation', JSON.stringify({
+                    id : '',
+                    canGoBack : false,
+                    canGoForward : false
+                }));
+            } else {
+                $iframe = $(id);
+                branch = $iframe.attr('branch');
+                window.externalCall('', 'navigation', JSON.stringify({
+                    id : id,
+                    canGoBack : history.backCount(id, branch) ? true : false,
+                    canGoForward : history.forwardCount(id, branch) ? true : false
+                }));
+            }
         };
 
         return WindowController;

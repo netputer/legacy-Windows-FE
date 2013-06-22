@@ -13,10 +13,6 @@
 </script>
 
 <script type="text/x-ui-template" id="pim-menu">
-    <div class="menu-title hbox">
-        <span class="text-thirdly">{{= i18n.misc.TITLE_PIM }}</span>
-        <hr />
-    </div>
     <menu class="w-sidebar-menu"></menu>
 </script>
 
@@ -152,6 +148,11 @@
 
 <script type="text/x-ui-template" id="close-auto-start">
     <div class="tip">{{= i18n.welcome.CLOSE_AUTO_START }}</div>
+    <div class="button-close"></div>
+</script>
+
+<script type="text/x-ui-template" id="new_ia">
+    <div class="tip">{{= i18n.welcome.NEW_IA_QUESTIONNAIRE }}</div>
     <div class="button-close"></div>
 </script>
 </templates>

@@ -24,7 +24,6 @@
         var exportSelectView;
         var exportProgressView;
         var ExportController = Backbone.View.extend({
-
             start : function (selectedConversationCount, selectSmsCount, allSms) {
                 exportSelectView = ExportSelectView.getInstance();
                 exportProgressView = ExportProgressView.getInstance();

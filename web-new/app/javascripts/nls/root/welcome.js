@@ -52,5 +52,6 @@ define({
     FLASH_TIP_TITLE : '您刷机了吗？',
     FLASH_TIP_DESC : '豌豆荚可以快速帮您恢复数据到手机上哦。赶快去试试吧！',
 
+    NEW_IA_QUESTIONNAIRE : '偷偷问一下，您喜欢豌豆荚新的样子吗？<span class="link button-like" style="margin-left: 15px">喜欢</span><span class="link button-unlike"  style="margin-left: 15px">不喜欢</span><span class="link button-whatever"  style="margin-left: 15px">没感觉</span>',
     CLOSE_AUTO_START : '为方便您管理手机，豌豆荚在您手机连上电脑后会自动启动。如果您不希望自动启动，可以在 <span class="link button-setup">设置</span> 中关闭'
 });
