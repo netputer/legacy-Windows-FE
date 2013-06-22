@@ -521,7 +521,8 @@
     }
 }
 
-.w-misc-device-close-auto-start {
+.w-misc-device-close-auto-start,
+.w-misc-new-ia {
     @include yellow-panel;
     border-bottom: 1px $splitLineColor solid;
     box-shadow: 0 -1px 1px rgba(0, 0, 0, .05) inset, 0 1px 0 #fff;

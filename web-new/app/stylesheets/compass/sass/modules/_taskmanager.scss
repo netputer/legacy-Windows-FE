@@ -72,7 +72,7 @@
  * TaskManager main view
  ********************************************************************************/
 .w-task-manager-ctn {
-    @include footer-panel;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#5f6367), to(#53575b));
     cursor: pointer;
     height: 36px;
     overflow: hidden;
@@ -84,7 +84,6 @@
         height: 36px;
         position: relative;
         text-align: center;
-        text-shadow: 0 1px 0 #fff;
 
         .content {
             bottom: 0;
@@ -105,6 +104,10 @@
                 &.finish {
                     @include sprite-sprite(pass);
                 }
+            }
+
+            .text-secondary {
+                color: #999;
             }
         }
 
@@ -143,6 +146,10 @@
             .icon {
                 @include sprite-sprite(error);
             }
+
+            .desc {
+                color: #FC7668;
+            }
         }
 
         &.push {
@@ -174,7 +181,6 @@
             name: newTask;
             duration: 2s;
             iteration-count: 1;
-            timing-function: linear;
         }
     }
 
@@ -305,8 +311,9 @@
     min-width: 100px;
 
     li {
-        min-width: 80px;
+        min-width: 90px;
         -webkit-box-align: center;
+
 
         .icon {
             height: 16px;
@@ -335,8 +342,7 @@
         margin: 5px 0;
     }
 
-    .button-connect,
-    .button-change-disk {
+    .button-connect {
         float: right;
     }
 

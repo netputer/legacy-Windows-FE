@@ -8,80 +8,70 @@
  * Menus
  ********************************************************************************/
 .w-menu-doraemon {
-    .menu-title {
-        .button-management {
-            @include sprite-sprite(manage);
-            height: 16px;
-            margin-left: 5px;
-            opacity: .5;
-            width: 16px;
-
-            &.white {
-                @include sprite-sprite(manage-white);
-                display: none;
+    .w-sidebar-menu {
+        .root {
+            &.highlight-anima {
+                background-color: #f1de93;
+                color: $textHighlight;
+                -webkit-animation: {
+                    name: highlight;
+                    duration: 3s;
+                    iteration-count: 1;
+                }
             }
 
-            &:hover {
-                opacity: .7;
+            .icon {
+                height: 30px;
+                margin: 0 10px 0 15px;
+                width: 30px;
+
+                .img {
+                    @include sprite-sprite(dor-default);
+                    border-radius: 3px;
+                    height: 30px;
+                    width: 30px;
+                }
             }
 
-            &:active {
-                opacity: .85;
-            }
-        }
-    }
-
-    .root {
-        &.highlight-anima {
-            background-color: #f1de93;
-            color: $textHighlight;
-            -webkit-animation: {
-                name: highlight;
-                duration: 3s;
-                iteration-count: 1;
-                timing-function: linear;
-            }
-        }
-
-        .title .star-extension {
-            @include sprite-sprite(star-extension);
-            height: 16px;
-            margin-left: 5px;
-            width: 16px;
-        }
-
-        &.selected {
-            .title .star-extension {
-                @include sprite-sprite(star-extension-active);
-            }
-        }
-
-        @each $icon in app, music, video, ebook, wallpaper, funny, game, dev {
             .title {
-                .category {
-                    &.#{$icon} {
-                        @include sprite-sprite(cate-#{$icon});
+                font-size: 13px;
+                height: 40px;
+
+                @each $icon in dor-18, dor-223, dor-235, dor-258, dor-255 , dor-256, dor-254 {
+                    & .#{$icon} {
+                        @include sprite-sprite(#{$icon});
                     }
                 }
-            }
 
-            &:not(.selected):not(.highlight) {
-                .title:hover {
-                    .category {
-                        &.#{$icon} {
-                            @include sprite-sprite(cate-#{$icon}-hover);
+                .button-ctn {
+                    left: 53px;
+                    position: relative;
+
+                    .button-management {
+                        @include sprite-sprite(manage);
+                            height: 16px;
+                            opacity: .5;
+                            width: 16px;
+
+                        &.white {
+                            @include sprite-sprite(manage-white);
+                            display: none;
+                        }
+
+                        &:hover {
+                            opacity: .7;
+                        }
+
+                        &:active {
+                            opacity: .85;
                         }
                     }
                 }
             }
 
-            &.selected {
-                .title {
-                    .category {
-                        &.#{$icon} {
-                            @include sprite-sprite(cate-#{$icon}-active);
-                        }
-                    }
+            .gallery {
+                .icon {
+                    @include sprite-sprite(gallery);
                 }
             }
         }
@@ -93,22 +83,22 @@
         background-color: transparent;
     }
     5% {
-        background-color: #f1de93;
+        background-color: rgba(110, 184, 0, .40);
     }
     20% {
         background-color: transparent;
     }
     35% {
-        background-color: #f1de93;
+        background-color: rgba(110, 184, 0, .40);
     }
     50% {
         background-color: transparent;
     }
     65% {
-        background-color: #f1de93;
+        background-color: rgba(110, 184, 0, .40);
     }
     100% {
-        background-color: #f1de93;
+        background-color: transparent
     }
 }
 
@@ -119,12 +109,15 @@
     .w-ui-toolbar {
         .debug-wrap {
             -webkit-box-align: center;
-            -webkit-box-flex: 1;
-            -webkit-box-pack: end;
 
             span {
                 font-size: 14px;
             }
+        }
+
+        .flex-right {
+            -webkit-box-flex: 1;
+            -webkit-box-pack: end;
         }
     }
 }
