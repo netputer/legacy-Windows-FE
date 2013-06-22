@@ -117,6 +117,13 @@ module.exports = function (grunt) {
                     ]
                 }]
             }
+        },
+        qunit: {
+            all : {
+                options: {
+                    urls: ['http://localhost/~lixiaopeng/web-new/test/index.html']
+                }
+            }
         }
     });
 
@@ -125,9 +132,6 @@ module.exports = function (grunt) {
         'compass:server',
         'watch',
         'livereload-start'
-    ]);
-
-    grunt.registerTask('test', [
     ]);
 
     grunt.registerTask('build', [
@@ -142,4 +146,9 @@ module.exports = function (grunt) {
         'requirejs',
         'usemin'
     ]);
+
+    grunt.registerTask('test', function(){
+        grunt.option('force', true);
+        grunt.task.run('qunit');
+    });
 };
