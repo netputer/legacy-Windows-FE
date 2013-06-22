@@ -3,7 +3,7 @@ require(['Configuration'], function(Configuration) {
 
     test('configuration existence', 2, function() {
         ok(Configuration, 'Configuration exists');
-        ok(window.CONFIG, 'window.Configuration exists');
+        ok(window.Configuration, 'window.Configuration exists');
     });
 
     test('configuration frozen', 2, function() {
