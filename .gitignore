@@ -15,3 +15,5 @@ web/.pydevproject
 
 /web/tools/build-zeke.xml
 *.sublime-project
+
+.project
