@@ -20,6 +20,8 @@
     "grunt-usemin": "~0.1.10",
     "grunt-mocha": "~0.3.0",
     "grunt-concurrent": "~0.1.0",
+    "qunit-reporter-junit":"~1.0.1",
+    "grunt-contrib-qunit": "~0.2.2",
     "matchdep": "~0.1.1"
   },
   "engines": {
