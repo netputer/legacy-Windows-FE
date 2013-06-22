@@ -1,24 +1,42 @@
 <templates>
-<script type="text/x-ui-template" id="nav-title">
-    <span class="text-thirdly">{{= i18n.misc.TITLE_DOWNLOAD }}</span>
-    <hr />
-    <div class="button-ctn">
-        <div class="button-management" data-title="{{= i18n.misc.MANGEMENT }}"></div>
-        <div class="button-management white" data-title="{{= i18n.misc.MANGEMENT }}"></div>
-    </div>
-</script>
-
 <script type="text/x-ui-template" id="menu">
     <menu class="w-sidebar-menu"></menu>
 </script>
 
+<script type="text/x-ui-template" id="welcome-item">
+    <li class="root welcome">
+        <div class='title hbox'>
+            <div class="icon category" data-title="welcome"></div>
+            {{= i18n.misc.NAV_WELCOME_TO_WDJ}}
+        </div>
+    </li>
+</script>
+
 <script type="text/x-ui-template" id="menu-item">
+    {{? it.inWhiteList }}
     <div class="title hbox">
-        <div class="icon category {{= it.cateid || 'dev' }}" data-title="{{= it.displayCategory || it.catetitle }}"></div>
+        <div class="icon category dor-{{= it.id}}">
+        </div>
         {{= it.name }}
-        {{? it.star }}
-        <div class="star-extension" data-title="豌豆荚优质内容"></div>
-        {{?}}
+    </div>
+    {{??}}
+    <div class="title hbox">
+        <div class="icon category">
+            <img class="img" src="{{= it.icon}}"/>
+        </div>
+        {{= it.name }}
+    </div>
+    {{?}}
+</script>
+
+<script type="text/x-ui-template" id="gallery-switch">
+    <div class="title hbox gallery">
+        <div class="icon category"></div>
+        {{= it.name }}
+        <div class="button-ctn">
+            <div class="button-management" data-title="{{= i18n.misc.MANGEMENT }}"></div>
+            <div class="button-management white" data-title="{{= i18n.misc.MANGEMENT }}"></div>
+        </div>
     </div>
 </script>
 
@@ -57,9 +75,16 @@
     <button class="w-icon-btn button-unstar min">
         <span class="icon delete"></span>{{= i18n.misc.REMOVE_COLLECT }}
     </button>
-    <div class="debug-wrap hbox">
-        <div class="text-secondary">{{= i18n.misc.DEVELOPER_LABEL }}</div>
-        <button class="button-load-extention min">{{= i18n.misc.LOAD_EXTENTION }}</button>
+    <div class="flex-right hbox">
+        <div class="debug-wrap hbox">
+            <div class="text-secondary">{{= i18n.misc.DEVELOPER_LABEL }}</div>
+            <button class="button-load-extention min">{{= i18n.misc.LOAD_EXTENTION }}</button>
+        </div>
+        <div class="split"></div>
+        <button class="w-icon-btn button-reset min">
+            <span class="icon reset"></span>
+            {{= i18n.misc.REST_EXTENTION }}
+        </button>
     </div>
 </script>
 
@@ -143,24 +168,8 @@
 
 <script type="text/x-ui-template" id="browser-toolbar">
     {{? it.id.toString() !== '305' }}
-    <button class="w-icon-btn browser-nav button-back min" title="{{= i18n.misc.BACK }}">
-        <span class="icon back"></span>
-    </button>
-    <button class="w-icon-btn browser-nav button-forward min" title="{{= i18n.misc.FORWARD }}">
-        <span class="icon forward"></span>
-    </button>
-    <button class="w-icon-btn browser-nav button-refresh min" title="{{= i18n.misc.REFRESH }}">
-        <span class="icon nav-refresh"></span>
-    </button>
-    <div class="split"></div>
     <button class="w-icon-btn browser-nav button-star min">
         <span class="icon star"></span>
-    </button>
-    <button class="w-icon-btn browser-nav button-share min" title="{{= i18n.common.SHARE }}">
-        <span class="icon share"></span>
-    </button>
-    <button class="w-icon-btn browser-nav button-report min" title="{{= i18n.misc.REPORT_PROBLEM }}">
-        <span class="icon report"></span>
     </button>
     <span class="developer-wrap hbox">
         <div class="split"></div>

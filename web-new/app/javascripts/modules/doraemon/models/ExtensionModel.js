@@ -2,10 +2,12 @@
 (function (window, undefined) {
     define([
         'IOBackendDevice',
+        'underscore',
         'Configuration',
         'Internationalization'
     ], function (
         IO,
+        _,
         CONFIG,
         i18n
     ) {
@@ -48,6 +50,9 @@
             return newOrder;
         };
 
+        //whiteList for stupid CDN CACHE
+        var whiteList = ['18', '223', '235', '258', '255', '256', '254'];
+
         var ExtensionModel = Backbone.Model.extend({
             defaults : {
                 selected : false,
@@ -57,7 +62,8 @@
                 category : '',
                 displayCategory : '',
                 fav : '',
-                star : 0
+                star : 0,
+                inWhiteList : false
             },
             initialize : function () {
                 this.on('change:selected', function (model, selected) {
@@ -78,6 +84,7 @@
                         displayCategory : i18n.misc['EXT_CATE_' + this.get('cateid').toUpperCase()]
                     });
                 }
+                this.set('inWhiteList', _.contains(whiteList, this.id));
             },
             setCategory : function (extension, cateid) {
                 this.set({

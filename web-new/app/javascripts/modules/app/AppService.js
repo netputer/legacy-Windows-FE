@@ -468,15 +468,19 @@
                 }
 
                 appsCollection.uninstallAppsAsync(ids, session).done(function (resp) {
-                    if (Device.get('isWifi') || Device.get('isInternet')) {
-                        alert(i18n.app.CONFIRM_UNINSTALL_ON_DEVICE);
-                    } else {
-                        var failed = resp.body.failed;
-                        if (failed && failed.length > 0) {
-                            if (batchActionWindow !== undefined) {
-                                batchActionWindow.remove();
-                            }
+                    var failed = resp.body.failed;
+
+                    if (failed && failed.length) {
+                        if (batchActionWindow !== undefined) {
+                            batchActionWindow.remove();
                         }
+
+                        if (!Device.get('isUSB') && failed.length < ids.length) {
+                            alert(i18n.app.CONFIRM_UNINSTALL_ON_DEVICE);
+                        }
+
+                    } else if (!Device.get('isUSB')) {
+                        alert(i18n.app.CONFIRM_UNINSTALL_ON_DEVICE);
                     }
 
                     deferred.resolve(resp);
@@ -593,12 +597,10 @@
 
         AppService.batchUninstallAsync = function (ids) {
             var deferred = $.Deferred();
-
             var appsCollection = AppsCollection.getInstance();
 
             var callback = function (resp) {
                 var failed = resp.body.failed;
-
                 var success = resp.body.success;
 
                 if (failed && failed.length > 0) {

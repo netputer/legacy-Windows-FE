@@ -106,21 +106,23 @@
                     }
                 }));
 
-                this.listenTo(Device, 'change:isFastADB', function (device, isFastADB) {
-                    if (this.collection.loading || this.collection.syncing || isFastADB) {
-                        this.$('.empty-tip').toggle(false);
-                        return;
-                    }
-                });
-
-                this.listenTo(Account, 'change:isLogin', function (account, isLogin) {
-                    if (this.collection.data.photo_type === CONFIG.enums.PHOTO_CLOUD_TYPE && isLogin) {
-                        this.$('.empty-tip').html(i18n.photo.EMPTY_TIP_PHOTO_CLOUD_NOT_LOGIN).show();
-                        return;
-                    }
-                });
+                this.listenTo(Device, 'change:isFastADB', this.toggleEmptyTip);
+                this.listenTo(Account, 'change:isLogin', this.toggleEmptyTip);
             },
             toggleEmptyTip : function (toggle) {
+                if (this.collection.data.photo_type === CONFIG.enums.PHOTO_CLOUD_TYPE && !Account.get('isLogin')) {
+                    this.$('.empty-tip').html(i18n.photo.EMPTY_TIP_PHOTO_CLOUD_NOT_LOGIN).show();
+                    return;
+                }
+
+                if (this.collection.loading || this.collection.syncing || Device.get('isFastADB')) {
+                    this.$('.empty-tip').toggle(false);
+                    return;
+                }
+
+                if (typeof toggle !== 'boolean') {
+                    return;
+                }
 
                 if (toggle) {
                     if (Device.get('isConnected') && !Device.get('hasSDCard') && !Device.get('hasEmulatedSD')) {

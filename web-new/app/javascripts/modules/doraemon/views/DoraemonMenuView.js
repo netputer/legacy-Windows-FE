@@ -43,38 +43,50 @@
     ) {
         console.log('DoraemonMenuView - File loaded.');
 
-        var TitleView = Backbone.View.extend({
-            template : doT.template(TemplateFactory.get('doraemon', 'nav-title')),
-            className : 'menu-title hbox',
-            render : function () {
-                this.$el.html(this.template({}));
+        var WelcomeItemView = {
+            view : Backbone.View.extend({
+                template: doT.template(TemplateFactory.get('doraemon', 'welcome-item')),
+                initialize: function () {
+                    Backbone.on('switchModule', function (data) {
+                        if (data.module !== 'welcome') {
+                            this.$el.find('li').removeClass('selected highlight');
+                            this.selected = false;
+                        }
+                    }.bind(this));
+                },
+                selected : false,
+                render: function () {
+                    this.$el.html(this.template({}));
+                    if (this.selected) {
+                        this.$el.find('li').addClass('selected highlight');
+                    }
+                    return this;
+                },
+                clickItem : function () {
+                    this.setSelected(true);
+                },
+                setSelected : function (selected) {
+                    this.selected = selected;
+                    if (selected) {
+                        this.$el.find('li').addClass('selected highlight');
+                        this.trigger('itemSelected');
 
-                this.$('.button-ctn').toggle(FunctionSwitch.ENABLE_DORAEMON);
-
-                var popupTip = new PopupTip({
-                    $host : this.$('.button-management')
-                });
-
-                return this;
-            },
-            clickButtonManagement : function (evt) {
-                if (!Account.get('isLogin')) {
-                    Account.loginAsync(i18n.misc.LOGIN_TO_MANAGE, 'gallery-manage');
-                } else {
-                    Backbone.trigger('switchModule', {
-                        module : 'doraemon'
-                    });
+                        Backbone.trigger('switchModule', {
+                            module : 'welcome',
+                            tab : 'welcome'
+                        });
+                    } else {
+                        this.$el.find('li').removeClass('selected highlight');
+                    }
+                },
+                events : {
+                    'click' : 'clickItem'
                 }
-
-                log({
-                    'event' : 'ui.click.dora.button_manage',
-                    'isLogin' : Account.get('isLogin')
-                });
-            },
-            events : {
-                'click .button-management' : 'clickButtonManagement'
+            }),
+            getInstance : function () {
+                return new this.view();
             }
-        });
+        };
 
         var extensionsCollection;
 
@@ -82,6 +94,34 @@
             className : 'w-menu-doraemon',
             template : doT.template(TemplateFactory.get('doraemon', 'menu')),
             initialize : function () {
+
+                var welcomeItem;
+                var selectedWelcome = false;
+                Object.defineProperties(this, {
+                    welcomeItem : {
+                        set : function (value) {
+                            welcomeItem = value;
+                        },
+                        get : function () {
+                            return welcomeItem;
+                        }
+                    },
+                    selectedWelcome : {
+                        set : function (value) {
+                            selectedWelcome = value;
+                        },
+                        get : function () {
+                            return selectedWelcome;
+                        }
+                    }
+                });
+
+                Backbone.on('switchModule', function (data) {
+                    if (data.module !== 'welcome') {
+                        this.selectedWelcome = false;
+                    }
+                }, this);
+
                 extensionsCollection = ExtensionsCollection.getInstance();
 
                 extensionsCollection.on('refresh', this.buildList, this);
@@ -100,9 +140,23 @@
                     GallerySwitchView.getInstance().$el.detach();
                 }
 
+                if (this.welcomeItem) {
+                    this.stopListening(this.welcomeItem, 'itemSelected');
+                    this.welcomeItem.remove();
+                }
+
                 var $menuCtn = this.$('.w-sidebar-menu').empty();
 
+                this.welcomeItem = WelcomeItemView.getInstance();
+                this.listenTo(this.welcomeItem, 'itemSelected', function () {
+                    this.trigger('welcomeItemSelected');
+                });
+                if (this.selectedWelcome) {
+                    this.welcomeItem.setSelected(true);
+                }
+
                 var fragment = document.createDocumentFragment();
+                fragment.appendChild(this.welcomeItem.render().$el[0]);
                 extensionsCollection.each(function (extension) {
                     var menuItemView = MenuItemView.getInstance({
                         model : extension
@@ -124,15 +178,19 @@
                     this.$('.w-sidebar-menu').append(GallerySwitchView.getInstance().render().$el);
                 }
 
-                var titleView = new TitleView().render();
-
-                this.$el.prepend(titleView.$el);
-
-                titleView.on('showModule', function () {
-                    this.trigger('showModule');
-                }, this);
-
                 return this;
+            },
+            deselectWelcome : function () {
+                if (this.welcomeItem) {
+                    this.welcomeItem.setSelected(false);
+                }
+                this.selectedWelcome = false;
+            },
+            selectWelcome : function () {
+                if (this.welcomeItem) {
+                    this.welcomeItem.setSelected(true);
+                }
+                this.selectedWelcome = true;
             }
         });
 
