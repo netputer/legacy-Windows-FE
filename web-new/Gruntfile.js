@@ -121,7 +121,7 @@ module.exports = function (grunt) {
         qunit: {
             all : {
                 options: {
-                    urls: ['http://localhost/~lixiaopeng/web-new/test/index.html']
+                    urls: ['http://192.168.100.31:8090/web-new/test/index.html']
                 }
             }
         }
