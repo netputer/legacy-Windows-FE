@@ -1,0 +1,135 @@
+/*global define*/
+(function (window) {
+    define([
+        'underscore',
+        'jquery',
+        'doT',
+        'ui/TemplateFactory',
+        'ui/Panel',
+        'Configuration',
+        'Log',
+        'IO',
+        'Device',
+        'Internationalization',
+        'Environment'
+    ], function (
+        _,
+        $,
+        doT,
+        TemplateFactory,
+        Panel,
+        CONFIG,
+        log,
+        IO,
+        Device,
+        i18n,
+        Environment
+    ) {
+        console.log('BindingDeviceWindowView - File loaded. ');
+
+        var BindingDeviceWindowView = Panel.extend({
+            initialize : function () {
+                BindingDeviceWindowView.__super__.initialize.apply(this, arguments);
+
+                this.once('show', function () {
+                    this.$('.w-ui-window-footer-monitor').append($('<span>').html(i18n.misc.BINDING_WARNING).addClass('text-secondary'));
+
+                    log({
+                        'event' : 'offline.window.show'
+                    });
+                }, this);
+
+                this.once('remove', function () {
+                    this.trigger('closed');
+                }, this);
+
+                this.once('button-unbind', this.clickButtonUnbinding, this);
+                this.once('button-bind', this.clickButtonBinding, this);
+            },
+            clickButtonBinding : function () {
+                IO.requestAsync(CONFIG.actions.WINDOW_DEVICE_BIND);
+
+                this.remove();
+
+                log({
+                    'event' : 'offline.window.yes'
+                });
+            },
+            clickButtonUnbinding : function () {
+                IO.requestAsync(CONFIG.actions.WINDOW_DEVICE_UNBIND);
+
+                this.remove();
+
+                log({
+                    'event' : 'offline.window.no'
+                });
+            },
+            loadContentAndShow : function () {
+                // locd local english bind device window version
+                if (Environment.get('locale') !== CONFIG.enums.LOCALE_DEFAULT &&
+                        Environment.get('locale') !== CONFIG.enums.LOCALE_ZH_CN) {
+                    this.$bodyContent = $(doT.template(TemplateFactory.get('misc', 'binding-devie-i18n'))({}));
+                    this.show();
+                    return;
+                }
+
+                IO.requestAsync({
+                    url : 'http://www.wandoujia.com/cloud/bind_auto.html',
+                    success : function (resp) {
+                        this.$bodyContent = $('<div>').html(resp);
+                        this.show();
+                    }.bind(this),
+                    error : function () {
+                        this.$bodyContent = $(doT.template(TemplateFactory.get('misc', 'binding-devie'))({}));
+                        this.show();
+                    }.bind(this)
+                });
+            },
+            checkAsync : function () {
+                var deferred = $.Deferred();
+
+                var check = function (Device) {
+                    if (!Device.get('isFastADB') && Device.get('isConnected')) {
+                        IO.requestAsync(CONFIG.actions.WINDOW_DEVICE_NEED_BIND).done(function (resp) {
+                            if (!resp.body.value) {
+                                this.trigger('closed');
+                            } else {
+                                this.loadContentAndShow();
+                            }
+                            deferred.resolve(resp);
+                        }.bind(this)).fail(deferred.reject);
+                        Device.off('change', check);
+                    }
+                };
+
+                if (Environment.get('deviceId') !== 'Default') {
+                    if (!Device.get('isFastADB') && Device.get('isConnected')) {
+                        check.call(this, Device);
+                    } else {
+                        Device.on('change', check, this);
+                    }
+                }
+
+                return deferred.promise();
+            }
+        });
+
+        var factory = _.extend({
+            getInstance : function (args) {
+                return new BindingDeviceWindowView({
+                    title : i18n.misc.BINDING_DEVICE,
+                    buttons : [{
+                        $button : $('<button>').html(i18n.misc.BIND).addClass('primary'),
+                        eventName : 'button-bind'
+                    }, {
+                        $button : $('<button>').html(i18n.misc.UNBIND),
+                        eventName : 'button-unbind'
+                    }],
+                    disableX : true
+                });
+            }
+        });
+
+        return factory;
+    });
+}(this));
