@@ -7,7 +7,10 @@
         'Device',
         'Log',
         'ui/TemplateFactory',
-        'Internationalization'
+        'Internationalization',
+        'Account',
+        'Configuration',
+        'WindowController'
     ], function (
         Backbone,
         _,
@@ -15,14 +18,17 @@
         Device,
         log,
         TemplateFactory,
-        i18n
+        i18n,
+        Account,
+        CONFIG,
+        WincowController
     ) {
         console.log('GallerySwitchView - File loaded.');
 
         var GallerySwitchView = Backbone.View.extend({
             tagName : 'li',
             className : 'root',
-            template : doT.template(TemplateFactory.get('doraemon', 'menu-item')),
+            template : doT.template(TemplateFactory.get('doraemon', 'gallery-switch')),
             initialize : function () {
                 Backbone.on('switchModule', function (data) {
                     this.$el.toggleClass('selected highlight', data.module === 'gallery');
@@ -37,6 +43,23 @@
 
                 return this;
             },
+            clickButtonManagement : function (evt) {
+                evt.stopPropagation();
+                evt.preventDefault();
+
+                if (!Account.get('isLogin')) {
+                    Account.loginAsync(i18n.misc.LOGIN_TO_MANAGE, 'gallery-manage');
+                } else {
+                    Backbone.trigger('switchModule', {
+                        module : 'doraemon'
+                    });
+                }
+
+                log({
+                    'event' : 'ui.click.dora.button_manage',
+                    'isLogin' : Account.get('isLogin')
+                });
+            },
             clickItem : function () {
                 Backbone.trigger('switchModule', {
                     module : 'gallery'
@@ -49,7 +72,8 @@
                 });
             },
             events : {
-                'click' : 'clickItem'
+                'click' : 'clickItem',
+                'click .button-management' : 'clickButtonManagement'
             }
         });
 

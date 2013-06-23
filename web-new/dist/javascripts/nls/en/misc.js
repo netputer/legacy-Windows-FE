@@ -44,6 +44,8 @@ define({
     RELOAD_EXTENTION : 'Reload extension',
     RELOAD_SUCCESS : 'Reload successful',
     MANGEMENT : 'Mange',
+    REST_EXTENTION : 'Reset extensions',
+    CONFIRM_RESET_EXTENTION : 'Are you ture you want to replace all starred resources to the default state?',
     ADD_TO_COLLECT : 'Add extension',
     BATCH_UNSTAR_PLUGINS : '<p>Remove the {1} selected extenion(s)？</p>',
     PUBLISH : 'Publish',

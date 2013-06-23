@@ -17,7 +17,6 @@
         'main/views/NavView',
         'main/collections/PIMCollection',
         'task/views/TaskMonitorView',
-        'task/views/TaskModuleView',
         'backuprestore/BackupController',
         'doraemon/views/GallerySwitchView',
         'main/views/FastUSBNotificationView'
@@ -36,7 +35,6 @@
         NavView,
         PIMCollection,
         TaskMonitorView,
-        TaskModuleView,
         BackupController,
         GallerySwitchView,
         FastUSBNotificationView
@@ -114,7 +112,7 @@
                 }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_TASK_MANAGER:
-                TaskModuleView.getInstance().slideIn();
+                TaskMonitorView.getInstance().showListView();
                 break;
             }
         };
