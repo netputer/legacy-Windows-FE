@@ -203,12 +203,11 @@
                 var originalApp = this.model;
 
                 this.model.hideWebAppAsync().done(function () {
-                    // show confirm to ask user if we should uninstall the app
+                    // Show confirm to ask user if we should uninstall the app
                     if (!originalApp.get('isWeb') && Device.get('isConnected')) {
-                        var tip = StringUtil.format(i18n.app.UNINSTALL_AFTER_HIDE, this.model.get('base_info').name);
-                        confirm(tip, function () {
+                        confirm(StringUtil.format(i18n.app.UNINSTALL_AFTER_HIDE, this.model.get('base_info').name), function () {
                             originalApp.uninstallAsync();
-                        }, this);
+                        });
                     }
 
                     var webAppsCollection = WebAppsCollection.getInstance();

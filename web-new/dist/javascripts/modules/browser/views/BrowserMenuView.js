@@ -6,14 +6,16 @@
         'doT',
         'jquery',
         'Log',
-        'ui/TemplateFactory'
+        'ui/TemplateFactory',
+        'ui/WindowState'
     ], function (
         _,
         Backbone,
         doT,
         $,
         log,
-        TemplateFactory
+        TemplateFactory,
+        WindowState
     ) {
         console.log('BrowserMenuView - File loaded.');
 
@@ -28,6 +30,7 @@
                     }
                 }.bind(this));
                 this.listenTo(this.model, 'change:extension', this.render);
+                this.listenTo(WindowState, 'resize', this.relocatePointer);
             },
             remove : function () {
                 this.options.$iframe.remove();
@@ -39,13 +42,36 @@
                     var $targetItem = this.$('li.root-item[data="' + contentDocument.location.href + '"]');
                     if ($targetItem.length > 0) {
                         this.$('.root-item.selected').removeClass('selected');
-                        $targetItem.addClass('selected');
+                        $targetItem.addClass('selected'); 
                     }
+                }
+                this.relocatePointer();
+            },
+            relocatePointer : function () {
+                var $targetTab =  this.$('.root-item.selected');
+                if ($targetTab.length > 0) {
+                    var $pointer = this.$el.parent().find('.w-browser-menu-pointer').show();
+
+                    var oldTransition = $pointer.css('-webkit-transition');
+
+                    $pointer.css({
+                        '-webkit-transition' : 'none'
+                    });
+
+                    $pointer.css({
+                        left : $targetTab[0].offsetLeft,
+                        width : $targetTab[0].offsetWidth
+                    });
+
+                    setTimeout(function () {
+                        $pointer.css({
+                            '-webkit-transition' : oldTransition
+                        });
+                    }, 0);
                 }
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
-
                 this.selectTargetItem();
 
                 return this;
@@ -59,6 +85,8 @@
                     $target.addClass('selected');
                 }
                 var data = $target.attr('data');
+                this.relocatePointer();
+            
                 this.trigger('select', data);
 
                 log({

@@ -185,6 +185,23 @@
                     return !extension.get('dev_mode');
                 });
             },
+            reloadAsync : function () {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.PLUGIN_RELOAD,
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            deferred.resolve(resp);
+                        } else {
+                            console.error('ExtensionsCollection - Reload failed.');
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+
+                return deferred.promise();
+            },
             unstarredAsync : function (ids) {
                 var deferred = $.Deferred();
 
