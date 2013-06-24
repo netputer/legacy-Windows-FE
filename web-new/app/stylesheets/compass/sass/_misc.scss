@@ -401,6 +401,7 @@
                 iteration-count: infinite;
                 name: bounce_followingBallsG;
             }
+            -webkit-transform: translate3d(0, 0, 0);
 
             &.ball1 {
                 -webkit-animation-delay: 0;
@@ -423,16 +424,16 @@
 
 @-webkit-keyframes bounce_followingBallsG {
     0% {
-        left: 0;
-        background-color: $standardColor;
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
     }
     50% {
-        left: 71px;
-        background-color: #fff;
+        opacity: 0;
+        -webkit-transform: translate3d(71px, 0, 0);
     }
     100%{
-        left: 0;
-        background-color: $standardColor;
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
     }
 }
 
