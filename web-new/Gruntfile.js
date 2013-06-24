@@ -71,7 +71,7 @@ module.exports = function (grunt) {
             server : '.tmp'
         },
         useminPrepare : {
-            html : '<%= yeoman.app %>/index.html',
+            html : ['<%= yeoman.app %>/index.html', '<%= yeoman.app %>/javascripts/modules/photo/photo.html'],
             options : {
                 dest : '<%= yeoman.dist %>'
             }
@@ -94,11 +94,10 @@ module.exports = function (grunt) {
         },
         htmlmin : {
             dist : {
-                options : {},
                 files : [{
                     expand : true,
                     cwd : '<%= yeoman.app %>',
-                    src : '*.html',
+                    src : ['*.html', 'javascripts/{,*/}*/*.html'],
                     dest : '<%= yeoman.dist %>'
                 }]
             }
@@ -147,7 +146,7 @@ module.exports = function (grunt) {
         'usemin'
     ]);
 
-    grunt.registerTask('test', function(){
+    grunt.registerTask('test', function () {
         grunt.option('force', true);
         grunt.task.run('qunit');
     });

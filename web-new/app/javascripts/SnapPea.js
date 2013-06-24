@@ -39,7 +39,7 @@
 (function (window) {
     'use strict';
 
-    require([
+    define([
         'jquery',
         'main/views/MainView',
         'main/views/SuggestionInstallWindowView',

@@ -127,17 +127,6 @@
     </div>
 </script>
 
-<script type="text/x-ui-template" id="font-style-xp">
-    <style type="text/css">
-        body,
-        button,
-        input,
-        textarea {
-            font: 12px/1.5em Arial, Helvetica, SimSun, sans-serif;
-        }
-    </style>
-</script>
-
 <script type="text/x-ui-template" id="batch-error-window">
     <div>{{= it.tip }}</div>
     {{? it.errorInfo }}
