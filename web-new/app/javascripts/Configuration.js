@@ -269,6 +269,7 @@
                 PLUGIN_ADD : 'wdj://sidebar/add_item.json',
                 PLUGIN_UPDATE : 'wdj://sidebar/update.json',
                 PLUGIN_LOAD_LOCAL : 'wdj://sidebar/load_local_extension.json',
+                PLUGIN_RELOAD : 'wdj://sidebar/reload_list.json',
 
                 // Rom Flash
                 FLASH_ROM_FLASHABLE : 'wdj://flash/is_flashable.json',
@@ -447,7 +448,7 @@
                 NAVIGATE_TYPE_IMPORT_VIDEO : 'import_video',
                 NAVIGATE_TYPE_THEME : 'themes',
                 NAVIGATE_TYPE_APP_WASH : 'wash',
-                NAVIGATE_TYPE_TASK_MANAGER : 'tast_manager',
+                NAVIGATE_TYPE_TASK_MANAGER : 'task_manager',
 
                 /* Update ignore states */
                 UPDATE_IGNORE_NONE : 'none',
@@ -525,6 +526,9 @@
                 TASK_DEFAULT_ICON_PATH_BOOK : 'images/icon_default_ebook_36X36.png',
                 TASK_DEFAULT_ICON_PATH_FILE : 'images/icon_default_file_36X36.png',
                 IMAGE_SPACER : 'images/spacer-20X20.png',
+
+                /* Doraemon icon */
+                DORAENON_DEFAULT : 'images/default.png',
 
                 /* Model type */
                 MODEL_TYPE_APPLICATION : 'app',

@@ -143,11 +143,11 @@ button.w-icon-btn {
         width: 16px;
 
         @each $icon in add-grey, pause, start, delete, open-folder,
-             add, mark-as-read, refresh, import, export, back, forward,
+             add, mark-as-read, refresh, import, export,
              update, up, down, star, sd, device, play-black, pause-black,
              refresh-black, fullscreen-black, share-black, merge, ring, itunes,
-             open-folder-black, comment, share, like, dislike, reload, report, fullscreen,
-             nav-refresh, move-down {
+             open-folder-black, comment, share, like, dislike, reload, fullscreen,
+             move-down, reset {
             &.#{$icon} {
                 @include sprite-sprite(#{$icon});
             }

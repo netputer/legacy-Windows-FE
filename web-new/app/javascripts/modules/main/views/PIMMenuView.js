@@ -195,5 +195,6 @@
         });
 
         return factory;
+        
     });
 }(this, this.document));

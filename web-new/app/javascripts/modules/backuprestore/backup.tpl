@@ -32,7 +32,7 @@
             {{? item.type !== 10 || FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE }}
             <li>
                 <label class="item-wrap hbox">
-                    <input class="file-radio" type="checkbox" name="type" value="{{= item.type }}" 
+                    <input class="file-radio" type="checkbox" name="type" value="{{= item.type }}"
                         {{= (!it.isBackup && item.count === 0) ? 'disabled' : '' }} />
                     <div class="type hbox">
                         {{= i18n.backup_restore.BR_TYPE_WORD_ENUM[item.type] }}

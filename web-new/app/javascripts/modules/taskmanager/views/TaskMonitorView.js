@@ -104,8 +104,6 @@
 
                                 popupPanel.show();
 
-
-
                                 log({
                                     'event' : 'debug.taskManager.out_of_space_notifi_show'
                                 });

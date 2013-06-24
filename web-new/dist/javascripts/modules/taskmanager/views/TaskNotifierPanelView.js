@@ -1,19 +1,21 @@
-/*global define, Backbone, _*/
+/*global define*/
 (function (window, undefined) {
     define([
+        'underscore',
         'ui/TemplateFactory',
         'ui/PopupPanel',
         'IO',
         'Configuration',
-        'Device',
-        'Log'
+        'Log',
+        'Device'
     ], function (
+        _,
         TemplateFactory,
         PopupPanel,
         IO,
         CONFIG,
-        Device,
-        log
+        log,
+        Device
     ) {
         console.log('TaskNotifierPanelView - File loaded. ');
 

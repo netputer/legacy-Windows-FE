@@ -49,7 +49,7 @@
 
             var done = function (resp) {
                 resp = JSON.parse(resp);
-                resp.state_line = resp.state_code;
+                resp.state_line = resp.state_line || resp.state_code;
 
                 console.log('IO - Callback message for \'' + originalURL + '\'', resp);
 

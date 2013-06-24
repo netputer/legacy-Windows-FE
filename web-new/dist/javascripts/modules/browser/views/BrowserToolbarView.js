@@ -18,7 +18,8 @@
         'doraemon/collections/ExtensionsCollection',
         'doraemon/views/ReportWindowView',
         'social/SocialService',
-        'utilities/StringUtil'
+        'utilities/StringUtil',
+        'WindowController'
     ], function (
         _,
         doT,
@@ -37,7 +38,8 @@
         ExtensionsCollection,
         ReportWindowView,
         SocialService,
-        StringUtil
+        StringUtil,
+        WindowController
     ) {
         console.log('BrowserToolbarView - File loaded.');
 
@@ -101,16 +103,10 @@
                 BrowserToolbarView.__super__.remove.call(this);
             },
             setButtonState : function () {
-                this.$('.button-back').prop({
-                    disabled : history.backCount(this.frameId, this.frameBranch) === 0
-                });
-
-                this.$('.button-forward').prop({
-                    disabled : history.forwardCount(this.frameId, this.frameBranch) === 0
-                });
+                WindowController.navigationState(this.frameId);
 
                 var $buttonStar = this.$('.button-star');
-                var $buttonShare = this.$('.button-share');
+
                 if (FunctionSwitch.ENABLE_DORAEMON) {
                     $buttonStar.prop({
                         disabled : this.model.get('dev_mode') === true
@@ -124,7 +120,6 @@
                     });
                 } else {
                     $buttonStar.remove();
-                    $buttonShare.remove();
                 }
 
                 if (!!extensionsCollection.get(this.model.id)) {
@@ -137,10 +132,6 @@
                     });
                 }
 
-                this.$('.button-report').prop({
-                    disabled : this.model.get('dev_mode') === true
-                });
-
                 this.$('.developer-wrap').toggle(FunctionSwitch.PRIVACY.ENABLE_DEBUG &&
                                                     this.model.get('dev_mode') === true);
             },
@@ -152,7 +143,8 @@
                     $iframe : this.$iframe
                 });
 
-                this.$el.append(this.menuView.render().$el);
+                this.$el.prepend(this.menuView.render().$el);
+                this.$el.append("<div class='w-browser-menu-pointer'></div>");
 
                 this.listenTo(this.menuView, 'select', function (url) {
                     this.$iframe[0].src = url;
@@ -167,15 +159,6 @@
             refreshBrowser : function () {
                 var iframe = this.$iframe[0];
                 iframe.reload(iframe.contentDocument.location.href);
-            },
-            clickButtonRefresh : function () {
-                this.refreshBrowser();
-            },
-            clickButtonBack : function () {
-                history.back2(this.frameId, this.frameBranch);
-            },
-            clickButtonForward : function () {
-                history.forward2(this.frameId, this.frameBranch);
             },
             clickButtonStar : function () {
                 if (!Account.get('isLogin')) {
@@ -202,50 +185,8 @@
                     }
                 }
             },
-            clickButtonShare : function () {
-                var data = {
-                    textUrl : StringUtil.format(CONFIG.enums.SOCIAL_TEXT_PREVIEW_URL, CONFIG.enums.SOCIAL_DORAEMON_EXTENSION, this.model.id),
-                    hasPreview : false,
-                    shareData : {
-                        need_shell : 0,
-                        rotation : 0
-                    },
-                    extraData : {
-                        extension_id : this.model.id,
-                        extension_title : this.model.get('name')
-                    },
-                    type : CONFIG.enums.SOCIAL_DORAEMON_EXTENSION
-                };
-
-                SocialService.setContent(data);
-                SocialService.show();
-            },
-            clickButtonReport : function () {
-                var reportWindowView = ReportWindowView.getInstance({
-                    model : this.model,
-                    currentURL : this.$iframe[0].contentDocument.location.href
-                });
-
-                reportWindowView.show();
-            },
-            clickButtonReload : function () {
-                this.model.downloadAsync().done(function (resp) {
-                    var newExtension = JSON.parse(resp.body.value);
-                    var extension = extensionsCollection.get(newExtension.id);
-                    extension.set(newExtension);
-                    this.refreshBrowser();
-                }.bind(this)).fail(function (resp) {
-                    alert(resp.state_line);
-                });
-            },
             events : {
-                'click .button-refresh' : 'clickButtonRefresh',
-                'click .button-back' : 'clickButtonBack',
-                'click .button-forward' : 'clickButtonForward',
-                'click .button-star' : 'clickButtonStar',
-                'click .button-share' : 'clickButtonShare',
-                'click .button-report' : 'clickButtonReport',
-                'click .button-reload' : 'clickButtonReload'
+                'click .button-star' : 'clickButtonStar'
             }
         });
 
