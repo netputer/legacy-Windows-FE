@@ -1,5 +1,4 @@
 require.config({
-    baseUrl : '../../',
     paths : {
         jquery : '../bower_components/jquery/jquery',
         doT : '../bower_components/dot/doT',
@@ -41,28 +40,22 @@ require.config({
     }
 });
 
-if (window.OneRingRequest === undefined) {
-    window.OneRingRequest = function () {};
-    window.OneRingStreaming = function () {};
-}
+(function (window, document) {
+    var QUERYSTRING_PATTERN_PREFIX = '[\?\&\#]';
+    var QUERYSTRING_PATTERN_SUFFIX = '=([^&]*)';
 
-require([
-    'underscore',
-    'jquery',
-    'doT',
-    'ui/TemplateFactory',
-    'utilities/QueryString',
-    'utilities/BrowserSniffer'
-], function (
-    _,
-    $,
-    doT,
-    TemplateFactory,
-    QueryString,
-    BrowserSniffer
-) {
+    var QueryString = {};
+
+    QueryString.get = function (key, string) {
+        string = string || window.location.search;
+        var matches = string.match(new RegExp(QUERYSTRING_PATTERN_PREFIX + key + QUERYSTRING_PATTERN_SUFFIX, 'i'));
+        var encodedValue = matches && matches[1];
+        var value = encodedValue && decodeURIComponent(encodedValue);
+        return value;
+    };
+
     // Disable `console` object under release mode
-    if (BrowserSniffer.is('wandoujia') && QueryString.get('debug') !== 'true') {
+    if (QueryString.get('debug') !== 'true') {
         var originalConsole = window.console;
 
         var emptFunc = function () {};
@@ -81,10 +74,28 @@ require([
         };
     }
 
-    // Hack for XP can't render Microsoft Yahei clearly
-    if (BrowserSniffer.sysIs('WindowsXP')) {
-        $('head').append(doT.template(TemplateFactory.get('misc', 'font-style-xp'))({}));
-    }
-});
+    var ua = window.navigator.userAgent;
+    if (ua.indexOf('Windows NT 5.1') >= 0 ||
+            ua.indexOf('Windows NT 5.2') >= 0) {
+        var styleNode = document.createElement('style');
+        styleNode.type = 'text/css';
+        styleNode.innerText = [
+            '<style type="text/css">',
+            'body,',
+            'button,',
+            'input,',
+            'textarea {',
+            '    font: 12px/1.5em Arial, Helvetica, SimSun, sans-serif;',
+            '}',
+            '</style>'
+        ].join('');
 
-require(['photo/PhotoModule'], function () {});
+        document.getElementsByName('head')[0].appendChild(styleNode);
+    }
+}(this, this.document));
+
+require([
+    'photo/PhotoModule'
+], function (
+    PhotoModule
+) {});

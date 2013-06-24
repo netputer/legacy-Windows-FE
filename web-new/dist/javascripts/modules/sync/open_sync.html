@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html style="height:auto">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Open Sync</title>
+        <script type="text/javascript" src="../../libraries/require-2.1.2.js"></script>
+        <link rel="stylesheet" href="../../../stylesheets/main.css" type="text/css">
+        <script type="text/javascript" language="JavaScript">
+            require.config({
+                baseUrl : '../../'
+            });
+            require(['EnvironmentConfig'], function () {
+                require([
+                    'jquery',
+                    'utilities/QueryString',
+                    'sync/views/OpenSyncNotifyView'
+                ], function (
+                    $,
+                    QueryString,
+                    OpenSyncNotifyView
+                ) {
+                    var notify = OpenSyncNotifyView.getInstance({
+                        num : QueryString.get('photo_num'),
+                        helper : (QueryString.get('from') === 'helper')
+                    });
+                    $('body').append(notify.render().$el);
+                });
+            });
+        </script>
+        <body class="w-notification-body"></body>
+</head></html>
