@@ -118,10 +118,10 @@
                         this.$('.empty-tip').html(i18n.photo.EMPTY_TIP_PHOTO_CLOUD_NOT_LOGIN).show();
                         return;
                     }
-               });
+                });
             },
             toggleEmptyTip : function (toggle) {
-               if (typeof toggle !== 'boolean') {
+                if (typeof toggle !== 'boolean') {
                     return;
                 }
 
