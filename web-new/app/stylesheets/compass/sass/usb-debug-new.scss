@@ -174,13 +174,21 @@ body,
             font-size: 12px;
             overflow: hidden;
 
-            &.gingerbewad, &.ics, &.jeallybean{
+            &.gingerbread, &.ics, &.jeallybean, &.meizu{
                 background-image: -webkit-radial-gradient(92% 100%, #F7FAFC 0%, #E1E1E1 100%);
+
+                &:hover {
+                    background-image: -webkit-radial-gradient(85% 100%, #F6F9FB 0%, #EDEDED 100%);
+                }
             }
 
             &.miuios {
                 background-image: -webkit-radial-gradient(80% 94%, #FEB42A 4%, #FF710D 100%);
                 color: white;
+
+                &:hover {
+                    background-image: -webkit-radial-gradient(80% 94%, #FFC75F 4%, #FF8128 100%);
+                }
             }
 
             p{
@@ -196,35 +204,63 @@ body,
             &.samsung{
                 background-image: -webkit-radial-gradient(85% 100%, #207BDE 0%, #2749A3 100%);
                 color: white;
+
+                &:hover {
+                    background-image: -webkit-radial-gradient(85% 100%, #4BA1FE 0%, #375DBF 100%);
+                }
             } 
 
             &.huawei, &.lenovo, &.moto{
                 background-image: -webkit-radial-gradient(92% 100%, #F7FAFC 0%, #E1E1E1 100%);
+
+                &:hover {
+                    background-image: -webkit-radial-gradient(85% 100%, #F6F9FB 0%, #EDEDED 100%);
+                }
             }
 
             &.miui {
                 background-image: -webkit-radial-gradient(80% 94%, #FEB42A 4%, #FF710D 100%);
                 color: white;
+
+                &:hover {
+                    background-image: -webkit-radial-gradient(80% 94%, #FFC75F 4%, #FF8128 100%);
+                }
             }
 
             &.sony {
                 background-image: -webkit-radial-gradient(78% 100%, #6D6D6D 11%, #3D3D3D 100%);
                 color: white;
+
+                &:hover {
+                    background-image: -webkit-radial-gradient(78% 100%, #7D7D7D 11%, #4F4F4F 100%);
+                }
             }
 
             &.zte {
                 background-image: -webkit-radial-gradient(80% 100%, #66F9FF 5%, #15A0D7 100%);
                 color: white;
+
+                &:hover {
+                    background-image: -webkit-radial-gradient(80% 100%, #6DFFFF 5%, #2DA7D7 100%);
+                }
             }
 
             &.htc {
                 background-image: -webkit-radial-gradient(77% 100%, #91E13E 12%, #1CB600 100%);
                 color: white;
+
+                &:hover {
+                    background-image: -webkit-radial-gradient(77% 100%, #9AEE43 12%, #1FC900 100%);
+                }
             }
 
             &.moto {
                 background-image: -webkit-radial-gradient(85% 100%, #FF7151 0%, #CB3B41 100%);
                 color: white;
+
+                &:hover {
+                    background-image: -webkit-radial-gradient(85% 100%, #FF8063 0%, #DD3C44 100%);
+                }
             }
         }
     }
