@@ -315,6 +315,7 @@ input[type="email"],
 input[type="password"],
 textarea {
     border: 1px $componentBorderColor solid;
+    box-shadow: 0 1px 0 #fff, 0 1px 3px rgba(0,0,0,.05) inset;
     height: 30px;
     resize: none;
     -webkit-transition: border linear .2s, box-shadow linear .2s, height .2s linear, min-height .2s linear;
@@ -326,7 +327,7 @@ textarea {
     &:focus,
     &:focus:hover {
         border-color: $standardColor;
-        box-shadow: 0 0 3px rgba(109, 184, 0, .6);
+        box-shadow: 0 1px 0 #fff, 0 0 3px rgba(109, 184, 0, .6), 0 1px 3px rgba(0,0,0,.05) inset;
     }
 
     &:disabled {
@@ -338,7 +339,8 @@ textarea {
 input:invalid,
 input:focus:invalid,
 textarea:invalid,
-textarea:focus:invalid {
+textarea:focus:invalid,
+input.invalid {
     border-color: $textHighlight;
 }
 
