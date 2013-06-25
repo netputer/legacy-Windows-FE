@@ -161,80 +161,80 @@
         mainView.regModule('app-wash', AppWashModuleView);
         mainView.regModule('gallery', GalleryView);
 
-        var init = function () {
-            var connectedHandler = function (Device, isConnected) {
-                if (isConnected) {
-                    SuggestionInstallWindowView.getInstance().check();
-                    Device.off('change:isConnected', connectedHandler);
-                }
-            };
+        // var init = function () {
+        //     var connectedHandler = function (Device, isConnected) {
+        //         if (isConnected) {
+        //             SuggestionInstallWindowView.getInstance().check();
+        //             Device.off('change:isConnected', connectedHandler);
+        //         }
+        //     };
 
-            var bindingDeviceWindowView = BindingDeviceWindowView.getInstance();
+        //     var bindingDeviceWindowView = BindingDeviceWindowView.getInstance();
 
-            bindingDeviceWindowView.once('closed', function () {
-                // Suggestion install
-                if (FunctionSwitch.ENABLE_SUGGESTION_INSTALL) {
-                    if (Device.get('isConnected')) {
-                        SuggestionInstallWindowView.getInstance().check();
-                    } else {
-                        Device.on('change:isConnected', connectedHandler);
-                    }
-                }
-            });
+        //     bindingDeviceWindowView.once('closed', function () {
+        //         // Suggestion install
+        //         if (FunctionSwitch.ENABLE_SUGGESTION_INSTALL) {
+        //             if (Device.get('isConnected')) {
+        //                 SuggestionInstallWindowView.getInstance().check();
+        //             } else {
+        //                 Device.on('change:isConnected', connectedHandler);
+        //             }
+        //         }
+        //     });
 
-            bindingDeviceWindowView.checkAsync();
+        //     bindingDeviceWindowView.checkAsync();
 
-            if (!Settings.get('has-used-wash') && FunctionSwitch.ENABLE_APP_WASH) {
-                var initNotification = function () {
-                    setTimeout(function () {
-                        var handler;
-                        var notification = new Notification({
-                            type : 'html',
-                            url : CONFIG.BASE_PATH + 'modules/app/xibaibai.html' + Environment.get('search'),
-                            title : '豌豆洗白白',
-                            onclose : function () {
-                                IO.Backend.Device.offmessage(handler);
-                            }
-                        });
-                        notification.show();
+        //     if (!Settings.get('has-used-wash') && FunctionSwitch.ENABLE_APP_WASH) {
+        //         var initNotification = function () {
+        //             setTimeout(function () {
+        //                 var handler;
+        //                 var notification = new Notification({
+        //                     type : 'html',
+        //                     url : CONFIG.BASE_PATH + 'modules/app/xibaibai.html' + Environment.get('search'),
+        //                     title : '豌豆洗白白',
+        //                     onclose : function () {
+        //                         IO.Backend.Device.offmessage(handler);
+        //                     }
+        //                 });
+        //                 notification.show();
 
-                        handler = IO.Backend.Device.onmessage({
-                            'data.channel' : CONFIG.events.WEB_NAVIGATE
-                        }, function (msg) {
-                            if (msg.type === CONFIG.enums.NAVIGATE_TYPE_APP_WASH) {
-                                notification.cancel();
-                            }
-                        });
+        //                 handler = IO.Backend.Device.onmessage({
+        //                     'data.channel' : CONFIG.events.WEB_NAVIGATE
+        //                 }, function (msg) {
+        //                     if (msg.type === CONFIG.enums.NAVIGATE_TYPE_APP_WASH) {
+        //                         notification.cancel();
+        //                     }
+        //                 });
 
-                        Settings.set('has-used-wash', true, Environment.get('deviceId'));
-                        Settings.set('wash-notification-show-time', new Date().getTime(), Environment.get('deviceId'));
+        //                 Settings.set('has-used-wash', true, Environment.get('deviceId'));
+        //                 Settings.set('wash-notification-show-time', new Date().getTime(), Environment.get('deviceId'));
 
-                        log({
-                            'event' : 'debug.wash.notification_show'
-                        });
-                    }, 1000 * 60);
-                };
+        //                 log({
+        //                     'event' : 'debug.wash.notification_show'
+        //                 });
+        //             }, 1000 * 60);
+        //         };
 
-                if (Device.get('isConnected') && Device.get('isUSB')) {
-                    initNotification.call(this);
-                } else {
-                    var changeHandler = function (Device) {
-                        if (Device.get('isConnected') && Device.get('isUSB')) {
-                            initNotification.call(this);
-                            Device.off('change:isConnected change:isUSB', changeHandler);
-                        }
-                    };
-                    Device.on('change:isConnected change:isUSB', changeHandler);
-                }
-            }
-        };
+        //         if (Device.get('isConnected') && Device.get('isUSB')) {
+        //             initNotification.call(this);
+        //         } else {
+        //             var changeHandler = function (Device) {
+        //                 if (Device.get('isConnected') && Device.get('isUSB')) {
+        //                     initNotification.call(this);
+        //                     Device.off('change:isConnected change:isUSB', changeHandler);
+        //                 }
+        //             };
+        //             Device.on('change:isConnected change:isUSB', changeHandler);
+        //         }
+        //     }
+        // };
 
-        // Binding device
-        if (Environment.get('deviceId') !== 'Default') {
-            init.call(this);
-        } else {
-            Environment.once('change:deviceId', init, this);
-        }
+        // // Binding device
+        // if (Environment.get('deviceId') !== 'Default') {
+        //     init.call(this);
+        // } else {
+        //     Environment.once('change:deviceId', init, this);
+        // }
 
         PerformanceTracker.launch();
     });
