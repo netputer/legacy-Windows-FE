@@ -118,9 +118,12 @@
                         this.$('.empty-tip').html(i18n.photo.EMPTY_TIP_PHOTO_CLOUD_NOT_LOGIN).show();
                         return;
                     }
-                });
+               });
             },
             toggleEmptyTip : function (toggle) {
+               if (typeof toggle !== 'boolean') {
+                    return;
+                }
 
                 if (toggle) {
                     if (Device.get('isConnected') && !Device.get('hasSDCard') && !Device.get('hasEmulatedSD')) {

@@ -3,6 +3,7 @@
     define([
         'backbone',
         'underscore',
+        'doT',
         'jquery',
         'utilities/QueryString',
         'ui/TemplateFactory',
@@ -10,6 +11,7 @@
         'Internationalization',
         'Environment',
         'Configuration',
+        'WindowController',
         'main/views/PIMMenuView',
         'main/collections/PIMCollection',
         'doraemon/views/DoraemonMenuView',
@@ -18,6 +20,7 @@
     ], function (
         Backbone,
         _,
+        doT,
         $,
         QueryString,
         TemplateFactory,
@@ -25,10 +28,10 @@
         i18n,
         Environment,
         CONFIG,
+        WindowController,
         PIMMenuView,
         PIMCollection,
         DoraemonMenuView,
-
         ExtensionsCollection,
         BrowserModuleView
     ) {
@@ -85,7 +88,14 @@
                     } else if (data.module === 'gallery') {
                         this.deselectAll();
                     }
+
+                    WindowController.navigationState();
                 }, this);
+
+                doraemonMenuView.on('welcomeItemSelected', function () {
+                    extensionsCollection.deselectAll();
+                    pimCollection.deselectAll();
+                });
 
                 pimCollection.on('itemSelected', function () {
                     extensionsCollection.deselectAll();
@@ -100,9 +110,9 @@
                 this.$el.on('scroll', _.throttle(toggleShadow.bind(this), 50));
             },
             render : function () {
-                this.$el.prepend(doraemonMenuView.render().$el);
 
                 this.$el.prepend(pimMenuView.render().$el);
+                this.$el.prepend(doraemonMenuView.render().$el);
 
                 setTimeout(function () {
                     var jumpToDefaultExtension = function (id) {
@@ -149,18 +159,14 @@
 
                     if (!redirectExtId) {
                         if (Environment.get('deviceId') === 'Default') {
-                            pimCollection.get(0).set({
-                                selected : true
-                            });
+                            doraemonMenuView.selectWelcome();
                         } else {
-                            if (defaultModule !== undefined) {
+                            if (defaultModule !== undefined && pimCollection.get(defaultModule)) {
                                 pimCollection.get(defaultModule).set({
                                     selected : true
                                 });
                             } else {
-                                pimCollection.get(0).set({
-                                    selected : true
-                                });
+                                doraemonMenuView.selectWelcome();
                             }
                         }
                     } else {
@@ -175,6 +181,7 @@
             deselectAll : function () {
                 pimCollection.deselectAll();
                 extensionsCollection.deselectAll();
+                doraemonMenuView.deselectWelcome();
             }
         });
 

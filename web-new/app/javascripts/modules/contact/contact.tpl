@@ -1,6 +1,106 @@
 <templates>
 <script type="tetx/x-ui-template" id="detail-panel">
-
+    <div class="contact-info">
+        <div class="header-ctn hbox">
+            <div class="avatar">
+                <img src="{{= it.contact.avatar }}" alt="{{! it.contact.name ? (it.contact.name.display_name || '') : '' }}" />
+            </div>
+            <div class="infos vbox">
+                <div class="name">
+                    <span class='wc'>{{! it.contact.displayName || '' }}</span>
+                </div>
+                <div class="nickname">
+                    <span class="text-secondary wc">
+                        {{! (it.contact.nickname && it.contact.nickname[0] && it.contact.nickname[0].name) || '' }}
+                    </span>
+                </div>
+                <div class="switch text-secondary">
+                    <button class="button-edit">{{= i18n.contact.EDIT }}</button>
+                </div>
+            </div>
+        </div>
+        <h1 class="text-primary">{{= i18n.contact.CONTACT_INFO }}</h1>
+        <dl class="info-ctn cf">
+        {{? it.contact.phone }}
+            {{~ it.contact.phone : phone }}
+            {{
+                var targetCate = _.find(it.config.PHONE_OPTION, function(item) {
+                    return item.value === phone.type;
+                });
+                var label = _.isEqual(targetCate, it.config.PHONE_OPTION[it.config.PHONE_OPTION.length - 1]) ? phone.label : targetCate.name;
+            }}
+            <dt class="wc type text-thirdly">{{= label || '' }}</dt>
+            <dd class="wc enable-select">
+                {{! phone.number || '' }}
+                {{? phone.number }}
+                <span class="button-dial" data-title="{{= i18n.contact.DIAL }}" class="dial" data-phone-number="{{= phone.number }}">
+                </span>
+                {{?}}
+            </dd>
+            {{~}}
+        {{?}}
+        {{? it.contact.email }}
+            {{~ it.contact.email : email }}
+            {{
+                var targetCate = _.find(it.config.EMAIL_OPTION, function(item) {
+                    return item.value === email.type;
+                });
+                var label = _.isEqual(targetCate, it.config.EMAIL_OPTION[it.config.EMAIL_OPTION.length - 1]) ? email.label : targetCate.name;
+            }}
+            <dt class="wc type text-thirdly">{{= label || '' }}</dt>
+            <dd class="wc enable-select">
+                {{! email.address  || '' }}
+                {{? email.address }}
+                <span class="button-email" data-title="{{= i18n.contact.SEND_MAIL }}" class="send-email" data-email-id="{{= email.id }}">
+                </span>
+                {{?}}
+            </dd>
+            {{~}}
+        {{?}}
+        {{? it.contact.IM }}
+            {{~ it.contact.IM : im }}
+            {{
+                var label = im.protocol >= 0 ? it.config.IM_OPTION[im.protocol].name : im.label;
+            }}
+            <dt class="wc type text-thirdly">{{= label || '' }}</dt>
+            <dd class="wc enable-select">{{! im.data  || '' }}</dd>
+            {{~}}
+        {{?}}
+        {{? it.contact.address }}
+            {{~ it.contact.address : address }}
+            {{
+                var targetCate = _.find(it.config.ADDRESS_OPTION, function(item) {
+                    return item.value === address.type;
+                });
+                var label = _.isEqual(targetCate, it.config.ADDRESS_OPTION[it.config.ADDRESS_OPTION.length - 1]) ? address.label : targetCate.name;
+            }}
+            <dt class="wc type text-thirdly">{{= label || '' }}</dt>
+            <dd class="wc enable-select">{{! address.formatted_address  || '' }}</dd>
+            {{~}}
+        {{?}}
+        {{? it.contact.organization }}
+            {{~ it.contact.organization : organization }}
+            {{
+                var targetCate = _.find(it.config.ORGANIZATION_OPTION, function(item) {
+                    return item.value === organization.type;
+                });
+                var label = _.isEqual(targetCate, it.config.ORGANIZATION_OPTION[it.config.ORGANIZATION_OPTION.length - 1]) ? organization.label : targetCate.name;
+            }}
+            <dt class="wc type text-thirdly">{{= label || '' }}</dt>
+            <dd class="wc enable-select">{{! organization.company  || '' }}</dd>
+            {{~}}
+        {{?}}
+        {{? it.contact.note }}
+            {{~ it.contact.note : note }}
+            <dt class="wc type text-thirdly">{{= i18n.contact.REMARK }}</dt>
+            <dd class="note enable-select">{{! note.note || '' }}</dd>
+            {{~}}
+        {{?}}
+        </dl>
+        <div class="sms-ctn">
+            <h1 class="text-primary">{{= i18n.contact.CONTACT_RECORD }}</h1>
+        </div>
+    </div>
 </script>
 
 <script type="text/x-ui-template" id="detail-panel-edit">

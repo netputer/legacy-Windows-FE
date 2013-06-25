@@ -70,7 +70,7 @@
                 extensionListView.on('select:change', this.setButtonState, this);
 
                 setTimeout(function () {
-                    this.$('.debug-wrap').toggle(FunctionSwitch.PRIVACY.ENABLE_DEBUG);
+                    this.$('.debug-wrap').toggle(FunctionSwitch.PRIVACY.ENABLE_DEBUG).next().toggle(FunctionSwitch.PRIVACY.ENABLE_DEBUG);
                 }.bind(this));
 
                 this.setButtonState();
@@ -153,6 +153,32 @@
                     'source' : 'toolbar'
                 });
             },
+            clickButtonReset : function () {
+                var ids = extensionsCollection.pluck('id');
+
+                var resetAlert = new AlertWindow({
+                    draggable : true,
+                    disposableName : 'batch-reset-plugin',
+                    disposableChecked : false,
+                    buttonSet : 'yes_no',
+                    $bodyContent : i18n.misc.CONFIRM_EXTENTION
+                });
+
+                resetAlert.once('button_yes', function () {
+                    extensionsCollection.unstarredAsync(ids).done(function () {
+                        extensionsCollection.reloadAsync().done(function () {
+                            extensionsCollection.trigger('update');
+                        });
+                    });
+                });
+
+                resetAlert.show();
+
+                log({
+                    'event' : 'ui.click.dora.reset.button'
+                });
+
+            },
             clickButtonLoadExtention : function () {
                 IO.requestAsync(CONFIG.actions.SELECT_FOLDER).done(function (resp) {
                     if (resp.state_code === 200) {
@@ -186,7 +212,8 @@
                 'click .button-up' : 'clickButtonUp',
                 'click .button-down' : 'clickButtonDown',
                 'click .button-unstar' : 'clickButtonUnstar',
-                'click .button-load-extention' : 'clickButtonLoadExtention'
+                'click .button-load-extention' : 'clickButtonLoadExtention',
+                'click .button-reset' : 'clickButtonReset'
             }
         });
 

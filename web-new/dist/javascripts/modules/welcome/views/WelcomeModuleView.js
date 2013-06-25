@@ -8,7 +8,8 @@
         'Settings',
         'utilities/QueryString',
         'welcome/views/ConnectionGuideView',
-        'welcome/views/CloseAutoStartView'
+        'welcome/views/CloseAutoStartView',
+        'welcome/views/NewIaQuestionnaireView'
     ], function (
         Backbone,
         _,
@@ -17,7 +18,8 @@
         Settings,
         QueryString,
         ConnectionGuideView,
-        CloseAutoStartView
+        CloseAutoStartView,
+        NewIaQuestionnaireView
     ) {
         console.log('WelcomeModuleView - File loaded.');
 
@@ -48,9 +50,13 @@
 
                 this.$el.append(this.contentView.render().$el);
 
-                if (!Settings.get('close_auto_start_view_shown') && QueryString.get('start_source') === 'helper') {
-                    this.$el.append(CloseAutoStartView.getInstance().render().$el);
-                    Settings.set('close_auto_start_view_shown', true);
+                //if (!Settings.get('close_auto_start_view_shown') && QueryString.get('start_source') === 'helper') {
+                //    this.$el.append(CloseAutoStartView.getInstance().render().$el);
+                //    Settings.set('close_auto_start_view_shown', true);
+                //}
+
+                if (!Settings.get('new_ia_questionnaire_chosed')) {
+                    this.$el.append(NewIaQuestionnaireView.getInstance().render().$el);
                 }
 
                 this.rendered = true;
