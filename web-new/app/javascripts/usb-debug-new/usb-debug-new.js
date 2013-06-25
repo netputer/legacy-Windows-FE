@@ -76,7 +76,7 @@ $(document).ready(function () {
                 });
             },
             clickSelect: function (evt) {
-                var tmp = /(\w+)\s(\w+)\s(\w+)/.exec(evt.currentTarget.className);
+                var tmp = /(\w+)\s(\w+)/.exec(evt.currentTarget.className);
                 var type = tmp[1];
                 var version = tmp[2];
                 $.event.trigger('SELECT', [type, version]);

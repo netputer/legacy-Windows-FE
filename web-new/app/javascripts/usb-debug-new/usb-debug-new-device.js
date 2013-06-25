@@ -456,6 +456,47 @@ var systemInfo = {
             }
         }]
     },
+    'gingerbread': {
+        name: 'Android 1.6 - 3.2',
+        steps: [{
+            'des' : '点击进入「应用列表」',
+            'pos' : {
+                left: '251px',
+                top: '192px'
+            },
+        },{
+            'des' : '点击「设置」',
+            'pos' : {
+                left: '225px',
+                top: '67px'
+            }
+        },{
+            'des' : '点击「应用程序」',
+            'pos' : {
+                left: '200px',
+                top: '82px'
+            }
+        },{
+            'des' : '点击「开发」',
+            'pos' : {
+                left: '186px',
+                top: '130px'
+            }
+        },{
+            'des' : '点击「USB 调试」',
+            'pos' : {
+                left: '338px',
+                top: '57px',
+                '-webkit-transform' : 'rotate(180deg)'
+            }
+        },{
+            'des' : '点击「确定」',
+            'pos' : {
+                left: '203px',
+                top: '111px'
+            }
+        }]
+    },
     'meizu': {
         name: '魅族 Flyme',
         steps: [{
