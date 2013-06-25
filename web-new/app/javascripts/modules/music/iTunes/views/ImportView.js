@@ -244,7 +244,7 @@
                     tip : Internationalization.music.AUDIOS_IMPORT_FAILD,
                     className : importAudiosProgressCls,
                     isFaild : true,
-                    current : data.success && (data.success.length || 0),
+                    current : data.success && data.success.length || 0,
                     total : data.total
                 };
                 this.renderProgress(audiosData);
@@ -360,7 +360,7 @@
                     tip : Internationalization.music.CREATE_PLAYLIST_FAILD,
                     className : createPlaylistCls,
                     isFaild : true,
-                    current : data.success && (data.success.length || 0),
+                    current : data.success && data.success.length || 0,
                     total : data.total
                 };
                 this.renderProgress(playlistData);
