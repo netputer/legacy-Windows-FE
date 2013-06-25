@@ -167,7 +167,7 @@
             count : -1,
             order : 70,
             icon : 'optimize'
-         }];
+        }];
 
         var MenuModel = Backbone.Model.extend({
             defaults : {
