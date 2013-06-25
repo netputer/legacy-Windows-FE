@@ -19,7 +19,6 @@
                 delete attrs.app.icons.px78;
                 delete attrs.app.icons.px256;
                 delete attrs.app.imprUrl;
-                delete attrs.recReason.packageName;
                 delete attrs.recReason.reasonType;
                 return attrs;
             },

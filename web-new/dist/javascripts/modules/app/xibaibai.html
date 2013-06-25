@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html style="height: auto">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Xibaibai Notification</title>
+        <script type="text/javascript" src="../../libraries/require-2.1.2.js"></script>
+        <link rel="stylesheet" href="../../../stylesheets/main.css" type="text/css">
+        <script type="text/javascript" language="JavaScript">
+            require.config({
+                baseUrl : "../../"
+            });
+            require(['EnvironmentConfig'], function () {
+                require(['app/wash/views/NotificationView', 'jquery'], function (NotificationView, $) {
+                    $('body').append(NotificationView.getInstance().render().$el);
+                });
+            });
+
+        </script>
+    </head>
+
+    <body class="w-notification-body"></body>
+</html>

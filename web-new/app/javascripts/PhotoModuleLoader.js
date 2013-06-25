@@ -95,21 +95,7 @@ require.config({
 }(this, this.document));
 
 require([
-    'Internationalization',
-    'contact/Contact',
-    'message/Message',
-    'music/Music',
-    'sync/SyncService',
-    'backuprestore/BackupRestore',
-    'SnapPea'
+    'photo/PhotoModule'
 ], function (
-    i18n,
-    Contact,
-    Message,
-    Music,
-    SyncService,
-    BackupRestore,
-    SnapPea
-) {
-    require(['../../../web/build/wonder-latest-dev']);
-});
+    PhotoModule
+) {});
