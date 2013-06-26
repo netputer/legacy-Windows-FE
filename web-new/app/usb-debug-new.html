@@ -46,7 +46,7 @@
                     <div class="hbox message">
                         <div class="number">1</div>
                         <div class="vbox">
-                            <div class="describe">下载快速设置器到手机，打开「USB 调试」开关:<br/>请输入您的手机号码，豌豆荚会免费将系在地址用短信的形式发送到您的手机上</div>
+                            <div class="describe">下载快速设置器到手机，打开「USB 调试」开关:<br/>请输入您的手机号码，豌豆荚会免费将下载地址用短信的形式发送到您的手机上</div>
                             <div class="send-message">
                                 <input type="text"></input>
                                 <button>发送短信</button>
@@ -72,11 +72,19 @@
                 <p class="describe">请按照您的手机品牌选择对应的打开「USB 调试」开关的教程：</p>
                 <ul class="select brands">
                 <% _.each(brands, function(brand){ %><li class="brand <%= brand.className %>">
+
+                    
+                    <% if(brand.className !== 'nobrands'){ %>
                     <div class="top">
+                    <% } else {%>
+                    <div>
+                    <%}%>    
                         <div class="logo <%= brand.className %>"/>
                         <p><%= brand.name %></p>
                     </div>
+                    <% if(brand.className !== 'nobrands'){ %>
                     <div class="check-course"><div class="play"/>查看教程</div>
+                    <% }%>
                 </li><% }); %>
                 </ul>
                 <p class="describe">按&nbsp;Android&nbsp;系统版选择教程</p>

@@ -49,7 +49,9 @@ $(document).ready(function () {
                 {name: '华为手机', className: 'huawei'},
                 {name: '联想手机', className: 'lenovo'},
                 {name: '中兴手机', className: 'zte'},
-                {name: 'MOTO 手机', className: 'moto'}
+                {name: 'MOTO 手机', className: 'moto'},
+                {name: '', className: 'nobrands'},
+                {name: '', className: 'nobrands'}
             ],
             systems: [
                 {name: 'Android 1.6 - 3.2', className: 'gingerbread'},
@@ -77,6 +79,9 @@ $(document).ready(function () {
             },
             clickSelect: function (evt) {
                 var tmp = /(\w+)\s(\w+)/.exec(evt.currentTarget.className);
+                if (tmp[2] === 'nobrands') {
+                    return;
+                }
                 var type = tmp[1];
                 var version = tmp[2];
                 $.event.trigger('SELECT', [type, version]);

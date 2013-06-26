@@ -66,6 +66,14 @@ body,
     .footer-monitor {
         -webkit-box-flex: 1;
     }
+
+    .check-usb-debug {
+        -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.20), inset 0px 2px 0px 0px #85CD48;
+        height: 32px;
+        line-height: 18px;
+        padding: 6px 15px;
+    }
+
 }
 
 .number{
@@ -99,7 +107,7 @@ body,
         -webkit-box-shadow: 0px 1px 10px #999999;
         
         &.brands {
-            margin-right: 182px;
+            margin-right: 62px;
         }
 
         li {
@@ -118,6 +126,7 @@ body,
         p{
             padding-top: 24px;
             text-align: center;
+            text-shadow: 0px 2px 3px rgba(0,0,0,0.21);
         }
 
         .top {
@@ -197,6 +206,11 @@ body,
             height: 120px;
             overflow: hidden;
 
+            &.nobrands{
+                cursor: default;
+                background-image: -webkit-radial-gradient(85% 15%, #F8F8F8 7%, #DFDFDF 100%);
+            }
+
             &.samsung{
                 color: white;
                 background-image: -webkit-radial-gradient(85% 15%, #4BA1FE 0%, #375DBF 100%);
@@ -245,7 +259,7 @@ body,
     .feedback-ctn {
         margin: 22px 58px 22px 58px;
         background: white;
-        -webkit-box-shadow: 0px 0px 3px #000;
+        -webkit-box-shadow: 0px 1px 10px #999999;
         padding: 15px;
         height: 390px;
 
@@ -322,7 +336,7 @@ body,
     .slider-ctn {
         margin: 22px 58px 22px 58px;
         background: white;
-        -webkit-box-shadow: 0px 0px 3px #000;
+        -webkit-box-shadow: 0px 1px 10px #999999;
         padding: 15px;
         height: 390px;
 
@@ -412,7 +426,7 @@ body,
             }
 
             .button {
-                position: absolute;
+                z-index: 10000;
                 width: 185px;
                 height: 330px;
                 position: absolute;
