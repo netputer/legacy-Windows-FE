@@ -21,7 +21,8 @@ require.config({
         video : 'modules/video',
         backuprestore : 'modules/backuprestore',
         social : 'modules/social',
-        sync : 'modules/sync'
+        sync : 'modules/sync',
+        guide : 'modules/welcome/guide'
     },
     shim: {
         doT : {

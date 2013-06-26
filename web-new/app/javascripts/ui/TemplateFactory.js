@@ -22,7 +22,8 @@
         'text!video/video.tpl',
         'text!backuprestore/backup.tpl',
         'text!backuprestore/restore.tpl',
-        'text!app/wash/wash.tpl'
+        'text!app/wash/wash.tpl',
+        'text!guide/guide.tpl'
     ], function (
         $,
         StringUtil,
@@ -43,7 +44,8 @@
         VideoTplStr,
         BackupTplStr,
         RestoreTplStr,
-        WashTplStr
+        WashTplStr,
+        GuideTplStr
     ) {
 
         var templateList = {
@@ -64,7 +66,8 @@
             video : $(StringUtil.compressHTML(VideoTplStr)),
             backup : $(StringUtil.compressHTML(BackupTplStr)),
             restore : $(StringUtil.compressHTML(RestoreTplStr)),
-            wash : $(StringUtil.compressHTML(WashTplStr))
+            wash : $(StringUtil.compressHTML(WashTplStr)),
+            guide : $(StringUtil.compressHTML(GuideTplStr))
         };
 
         var TemplateFactory = {};

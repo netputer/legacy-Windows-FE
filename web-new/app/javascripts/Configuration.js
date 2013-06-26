@@ -5,9 +5,8 @@
     define([], function () {
 
         var Configuration = {
-            BASE_PATH : 'javascripts/',
+            BASE_PATH : window.require.s.contexts._.config.baseUrl,
             actions : {
-
                 BLOCK_WINDOW : 'wdj://window/blocking.json',
 
                 // Universal and device related actions
@@ -219,10 +218,6 @@
                 // eBook Module
                 BOOK_DOWNLOAD : 'wdj://book/download.json',
 
-                // Market Module
-                MARKET_SEARCH_APP : 'wdj://market/search_app.json',
-                MARKET_LIST : 'wdj://market/list.json',
-
                 // Account Module
                 ACCOUNT_LOGIN : 'wdj://account/login.json',
                 ACCOUNT_LOGOUT : 'wdj://account/logout.json',
@@ -314,7 +309,9 @@
                 APP_QUERY_INFO : 'http://apps.wandoujia.com/api/v1/apps',
                 APP_WASH_FEEDBACK : 'http://apps.wandoujia.com/api/v1/xibaibai/feedback',
                 APP_WASH_GET_TEXT : 'http://apps.wandoujia.com/api/v1/xibaibai/feedback',
-                APP_WASH_SCAN : 'http://apps.wandoujia.com/api/v1/xibaibai/scanner'
+                APP_WASH_SCAN : 'http://apps.wandoujia.com/api/v1/xibaibai/scanner',
+
+                ACCOUNT_REG : 'https://account.wandoujia.com/v1/wandoujia/register.json'
             },
             events : {
                 // Backend events - Public events
