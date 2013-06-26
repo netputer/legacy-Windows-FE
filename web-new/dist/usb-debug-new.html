@@ -50,9 +50,9 @@
                             <div class="send-message">
                                 <input type="text"></input>
                                 <button>发送短信</button>
+                                <p>您输入的好像不是一个手机号</p>
                             </div>
                         </div>
-                        <div></div>
                     </div>
                     <div class="hbox help">
                         <div class="number">2</div>
@@ -71,7 +71,7 @@
             <div class="select-ctn">
                 <p class="describe">请按照您的手机品牌选择对应的打开「USB 调试」开关的教程：</p>
                 <ul class="select brands">
-                <% _.each(brands, function(brand){ %><li class="brand <%= brand.className %> vbox">
+                <% _.each(brands, function(brand){ %><li class="brand <%= brand.className %>">
                     <div class="top">
                         <div class="logo <%= brand.className %>"/>
                         <p><%= brand.name %></p>
@@ -81,7 +81,7 @@
                 </ul>
                 <p class="describe">按&nbsp;Android&nbsp;系统版选择教程</p>
                 <ul class="select systems">
-                <% _.each(systems, function(system){ %><li class="system <%= system.className %> vbox">
+                <% _.each(systems, function(system){ %><li class="system <%= system.className %>">
                         <div class="top">
                             <div class="system-logo <%= system.className %>"/>
                             <p><%= system.name %></p>
@@ -102,11 +102,15 @@
                         <div class="pointer"></div>
                     </div>
                     <div class="navigation">
-                        <div class="button left"></div>
                         <div class="number"></div>
                         <div class="steps-describe"></div>
                         <div class="page"></div>
-                        <div class="button right"></div>
+                        <div class="button left">
+                            <div class="icon"></div>
+                        </div>
+                        <div class="button right">
+                            <div class="icon"></div>
+                        </div>
                     </div>
                 </div>
             </div>
