@@ -64,7 +64,7 @@
                             var top = value.top !== undefined ? value.top : position.top;
 
                             var matrix = [0, 0, 0];
-                            this.$el[0].style['-webkit-transform'].replace(/[\w\W]*?\(([\w\W]*?)\)/, function (origin, arg1) {
+                            this.$el[0].style.webkitTransform.replace(/[\w\W]*?\(([\w\W]*?)\)/, function (origin, arg1) {
                                 var temp = arg1.split(',');
                                 _.each(matrix, function (element, index) {
                                     matrix[index] = Number(temp[index].replace('px', ''));

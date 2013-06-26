@@ -1,0 +1,233 @@
+@charset "UTF-8";
+@import "sprite/*.png";
+@import "guide/*.png";
+@import "skins/default/default";
+
+/**
+ * Base declaration
+ */
+@import "reset";
+@import "layout";
+@import "typography";
+@import "form";
+@import "anima";
+
+.w-guide-ctn {
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .content {
+        background-color: #fff;
+        border: 1px $componentBorderColor solid;
+        border-radius: 5px;
+        padding: 5px;
+        -webkit-box-flex: 1;
+        -webkit-transform: translate3d(100%, 0, 0);
+
+        .w-guide-card {
+            overflow: hidden;
+            -webkit-box-flex: 1;
+
+            h1 {
+                margin-bottom: 10px;
+            }
+
+            p {
+                line-height: 1.5em;
+            }
+
+            .stage {
+                background-image: url('../images/welcome_bg_100X100.png');
+                padding: 15px 30px;
+                -webkit-box-flex: 1;
+
+                h1 {
+                    margin-bottom: 10px;
+                }
+
+                p {
+                    line-height: 1.5em;
+                }
+
+                .icon-pass {
+                    @include sprite-sprite(pass);
+                    display: inline-block;
+                    height: sprite-sprite-height(pass);
+                    margin-right: 5px;
+                    vertical-align: middle;
+                    width: sprite-sprite-width(pass);
+                }
+            }
+
+            .control {
+                margin-top: 5px;
+                -webkit-box: {
+                    align: center;
+                    pack: end;
+                }
+
+                .button-skip {
+                    margin-right: 15px;
+                }
+            }
+        }
+    }
+
+    .step-counter-ctn {
+        height: 30px;
+        -webkit-box: {
+            align: center;
+            pack: center;
+        }
+
+        .step-pointer {
+            background-color: $componentBorderColor;
+            border: 3px solid transparent;
+            border-radius: 5px;
+            -webkit-transition: all .2s linear;
+
+            + .step-pointer {
+                margin-left: 10px;
+            }
+
+            &.current {
+                border-color: $standardColor;
+                -webkit-transform: scale(1.5);
+            }
+        }
+    }
+}
+
+.w-guide-bind {
+    .bg {
+        @include guide-sprite(bg-bind);
+        height: guide-sprite-height(bg-bind);
+        margin: 40px 0 40px;
+        width: guide-sprite-width(bg-bind);
+    }
+
+    .success {
+        display: none;
+    }
+}
+
+.w-guide-cloud-backup {
+    .bg {
+        @include guide-sprite(bg-cloud-backup);
+        height: guide-sprite-height(bg-cloud-backup);
+        margin-top: 40px;
+        width: guide-sprite-width(bg-cloud-backup);
+    }
+
+    .section {
+        height: 453px;
+        overflow: auto;
+        -webkit-transform: translate3d(0, 0, 0);
+        -webkit-transition: -webkit-transform .4s ease-out;
+
+        form {
+            margin-top: 25px;
+
+            label {
+                display: block;
+                margin-bottom: 12px;
+
+                .label {
+                    display: inline-block;
+                    font-size: 14px;
+                    text-align: right;
+                    vertical-align: middle;
+                    width: 65px;
+                }
+
+                .text-warning {
+                    display: none;
+                    margin: 5px 0 0 80px;
+                }
+            }
+
+            input {
+                &:not([type="checkbox"]) {
+                    margin-left: 15px;
+                    width: 280px;
+                }
+
+                &.password-verify {
+                    margin-left: 80px;
+                }
+
+                &.pravicy {
+                    margin: -2px 5px 0 80px;
+                }
+
+                &.captcha {
+                    width: 174px;
+                }
+            }
+
+            .captcha-image {
+                cursor: pointer;
+                display: inline-block;
+                height: 32px;
+                margin-left: 10px;
+                vertical-align: middle;
+            }
+        }
+
+        hr {
+            box-shadow: 0 1px 0 #fff;
+            height: 0;
+        }
+        .login-ctn {
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+
+            .button-login {
+                margin-right: 15px;
+            }
+
+            .sns-login {
+                height: 21px;
+                margin-left: 10px;
+
+                li {
+                    cursor: pointer;
+                    height: 21px;
+                    width: 21px;
+
+                    + li {
+                        margin-left: 5px;
+                    }
+                }
+
+                @each $icon in qq, renren, weibo {
+                    .button-#{$icon} {
+                        @include guide-sprite(#{$icon});
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.w-guide-xibaibai {
+    text-align: center;
+
+    .stage {
+        position: relative;
+
+        .bg {
+            @include guide-sprite(bg-xibaibai);
+            bottom: 0;
+            height: guide-sprite-height(bg-xibaibai);
+            left: 0;
+            position: absolute;
+            width: guide-sprite-width(bg-xibaibai);
+        }
+    }
+}

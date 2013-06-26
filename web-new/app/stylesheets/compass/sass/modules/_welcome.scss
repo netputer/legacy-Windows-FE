@@ -53,6 +53,7 @@
     position: relative;
     -webkit-animation: fade-in-device 1.5s;
     -webkit-transition: width 1s;
+    -webkit-transform: translate3d(0, 0, 0);
 
     .stage-ctn {
         position: relative;
@@ -316,18 +317,24 @@
     }
 }
 
+.w-welcome-guide-frame {
+    height: 495px;
+    padding-top: 20px;
+    width: 465px;
+}
+
 @-webkit-keyframes fade-in-device {
     0% {
         opacity: 0;
-        -webkit-transform: translateX(-140px);
+        -webkit-transform: translate3d(-140px, 0, 0);
     }
     50% {
         opacity: 0;
-        -webkit-transform: translateX(-140px);
+        -webkit-transform: translate3d(-140px, 0, 0);
     }
     100% {
         opacity: 1;
-        -webkit-transform: translateX(0)
+        -webkit-transform: translate3d(0, 0, 0);
     }
 }
 

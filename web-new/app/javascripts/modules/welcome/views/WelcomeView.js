@@ -6,20 +6,24 @@
         'doT',
         'ui/TemplateFactory',
         'Device',
+        'FunctionSwitch',
         'welcome/views/DeviceView',
         'welcome/views/CapacityView',
         'welcome/views/FileToolsView',
-        'welcome/views/BillboardView'
+        'welcome/views/BillboardView',
+        'welcome/views/GuideView'
     ], function (
         Backbone,
         _,
         doT,
         TemplateFactory,
         Device,
+        FunctionSwitch,
         DeviceView,
         CapacityView,
         FileToolsView,
-        BillboardView
+        BillboardView,
+        GuideView
     ) {
         console.log('WelcomeView - File loaded.');
 
@@ -29,8 +33,12 @@
             render : function () {
                 this.$el.html(this.template({}));
 
-                this.$('.content').append(DeviceView.getInstance().render().$el)
-                                    .append(BillboardView.getInstance().render().$el);
+                this.$('.content').append(DeviceView.getInstance().render().$el);
+                if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                    this.$('.content').append(GuideView.getInstance().render().$el);
+                } else {
+                    this.$('.content').append(BillboardView.getInstance().render().$el);
+                }
                 this.$('footer').append(CapacityView.getInstance().render().$el)
                                   .append(FileToolsView.getInstance().render().$el);
                 return this;
