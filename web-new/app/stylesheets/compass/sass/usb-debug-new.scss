@@ -114,10 +114,14 @@ body,
         }
 
         li {
+            position: relative;
+
             &:hover {
+
                 .top {
-                    background: rgba(#000, 0);
+                    opacity: 0;
                 }
+
                 .check-course {
                     overflow: hidden;
                     -webkit-transform: translate3d(0, -25px, 0);
@@ -135,7 +139,11 @@ body,
         .top {
             background: rgba(#000, 0.06);
             height: 100%;
-            -webkit-transition: background-color .2s;
+            opacity: 1;
+            position: absolute;
+            top: 0px;
+            width: 100%;
+            -webkit-transition: opacity .2s;
         }
 
         .logo {
@@ -158,6 +166,7 @@ body,
             color: white;
             font-size: 12px;
             line-height: 25px;
+            margin-top: 27px;
             opacity: .7;
             -webkit-transition: all .2s linear;
 
