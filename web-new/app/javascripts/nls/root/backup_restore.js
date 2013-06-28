@@ -42,7 +42,7 @@ define({
     RESTORE_CONFIRM_1_TIP3 : '- 手机剩余电量大于 20%',
     RESTORE_CONFIRM_2_TITLE : '您指定的备份文件无效，请重新指定。',
     RESTORE_CONFIRM_3_TITLE : '您要把联系人恢复到哪个账号？请选择',
-    RESTORE_CONFIRM_4_TITLE : '是否要删除手机上原有数据？已安装的应用程序和SIM卡上的联系人不会被删除。',
+    RESTORE_CONFIRM_4_TITLE : '是否要删除手机上原有数据？',
     RESTORE_CONFIRM_4_TIP1 : '不删除，同时保留两份数据',
     RESTORE_CONFIRM_4_TIP2 : '删除，只需要刚刚恢复的数据',
     DELETING : '正在删除，请稍候...',
@@ -185,7 +185,7 @@ define({
     RESTORE_REMOTE_EMPTY_LIST : '云端还没有您的备份数据。<br />您必须先使用备份到云端功能备份数据，才能从云端进行恢复。',
     RESTORE_BATTERY_TIP : '您的手机电量已不足 20%，继续恢复有可能导致手机电量耗尽造成数据丢失，建议充电后再进行恢复。您确认要继续恢复数据吗？',
     RESTORE_CHOOSE_ACCOUNT_TIP : '您要把联系人恢复到哪个账号？请选择',
-    RESTORE_DELETE_DATA_TIP : '是否要删除手机上原有数据？已安装的应用程序和SIM卡上的联系人不会被删除。',
+    RESTORE_DELETE_DATA_TIP : '是否要删除手机上原有数据？',
     RESTORE_DELETE_DATA_TIP_YES : '删除，只需要刚刚恢复的数据',
     RESTORE_DELETE_DATA_TIP_NO : '不删除，同时保留两份数据',
 
