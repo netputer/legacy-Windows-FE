@@ -16,32 +16,13 @@
         console.log('PIMCollection - File loaded.');
 
         var menus = [{
-            label : i18n.misc.NAV_WELCOME_TO_WDJ,
-            id : 0,
-            root : true,
-            module : 'welcome',
-            tab : 'welcome',
-            count : -1,
-            order : 10,
-            icon : 'home'
-        }, {
-            label : i18n.misc.NAV_OPTIMIZE,
-            id : 18,
-            root : true,
-            module : 'optimize',
-            tab : 'optimize',
-            hide : !FunctionSwitch.ENABLE_OPTIMIZE,
-            count : -1,
-            order : 190,
-            icon : 'optimize'
-        }, {
             label : i18n.misc.NAV_CONTACT,
             module : 'contact',
             tab : 'all',
             id : 1,
             root : true,
             count : -1,
-            order : 30,
+            order : 20,
             icon : 'contact'
         }, {
             label : i18n.misc.NAV_SMS,
@@ -50,7 +31,7 @@
             id : 2,
             root : true,
             count : -1,
-            order : 40,
+            order : 30,
             icon : 'sms'
         }, {
             label : i18n.misc.NAV_APP,
@@ -58,7 +39,7 @@
             tab : 'normal',
             id : 3,
             root : true,
-            order : 20,
+            order : 10,
             icon : 'app'
         }, {
             label : i18n.misc.NAV_MUSIC,
@@ -66,14 +47,14 @@
             root : true,
             module : 'music',
             tab : 'music',
-            order : 50,
+            order : 40,
             icon : 'music'
         }, {
             label : i18n.misc.NAV_PIC,
             id : 5,
             root : true,
             count : -1,
-            order : 60,
+            order : 50,
             icon : 'photo',
             module : 'photo',
             tab : 'phone'
@@ -83,7 +64,7 @@
             root : true,
             module : 'video',
             tab : 'video',
-            order : 70,
+            order : 60,
             icon : 'video'
         }, {
             label : i18n.app.APP_WASH,
@@ -92,7 +73,7 @@
             root : true,
             module : 'app-wash',
             tab : 'app-wash',
-            order : 200,
+            order : 80,
             icon : 'wash',
             hide : !FunctionSwitch.ENABLE_APP_WASH
         }, {
@@ -102,7 +83,7 @@
             parent : 1,
             module : 'contact',
             tab : 'all',
-            order : 80
+            order : 90
         }, {
             label : i18n.misc.NAV_CONTACT_HAS_PHONE,
             id : 8,
@@ -110,7 +91,7 @@
             parent : 1,
             module : 'contact',
             tab : 'hasnumber',
-            order : 90
+            order : 100
         }, {
             label : i18n.misc.NAV_CONTACT_STARRED,
             id : 9,
@@ -118,7 +99,7 @@
             parent : 1,
             module : 'contact',
             tab : 'starred',
-            order : 100
+            order : 110
         }, {
             label : i18n.misc.NAV_SMS_ALL,
             id : 10,
@@ -126,7 +107,7 @@
             parent : 2,
             module : 'message',
             tab : 'all',
-            order : 110
+            order : 120
         }, {
             label : i18n.misc.NAV_SMS_UNREAD,
             id : 11,
@@ -134,7 +115,7 @@
             parent : 2,
             module : 'message',
             tab : 'unread',
-            order : 120
+            order : 130
         }, {
             label : i18n.misc.NAV_APP_INSTALLED,
             id : 12,
@@ -142,7 +123,7 @@
             parent : 3,
             module : 'app',
             tab : 'normal',
-            order : 130
+            order : 140
         }, {
             label : i18n.misc.NAV_APP_SYS,
             id : 13,
@@ -150,7 +131,7 @@
             parent : 3,
             module : 'app',
             tab : 'sys',
-            order : 140
+            order : 150
         }, {
             label : i18n.misc.NAV_APP_UPDATABLE,
             id : 14,
@@ -159,7 +140,7 @@
             module : 'app',
             tab : 'update',
             hide : !FunctionSwitch.ENABLE_APP_UPGRADE,
-            order : 150
+            order : 160
         }, {
             label : i18n.misc.NAV_PIC_PHONE_LIB,
             id : 16,
@@ -176,6 +157,16 @@
             module : 'photo',
             tab : 'lib',
             order : 180
+        }, {
+            label : i18n.misc.NAV_OPTIMIZE,
+            id : 18,
+            root : true,
+            module : 'optimize',
+            tab : 'optimize',
+            hide : !FunctionSwitch.ENABLE_OPTIMIZE,
+            count : -1,
+            order : 70,
+            icon : 'optimize'
         }];
 
         var MenuModel = Backbone.Model.extend({
