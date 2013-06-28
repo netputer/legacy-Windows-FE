@@ -7,7 +7,7 @@
     <li class="root welcome">
         <div class='title hbox'>
             <div class="icon category" data-title="welcome"></div>
-            {{= i18n.misc.NAV_WELCOME_TO_WDJ}}
+            {{= i18n.misc.NAV_WELCOME_TO_WDJ }}
         </div>
     </li>
 </script>
@@ -15,14 +15,14 @@
 <script type="text/x-ui-template" id="menu-item">
     {{? it.inWhiteList }}
     <div class="title hbox">
-        <div class="icon category dor-{{= it.id}}">
+        <div class="icon category dor-{{= it.id }}">
         </div>
         {{= it.name }}
     </div>
     {{??}}
     <div class="title hbox">
         <div class="icon category">
-            <img class="img" src="{{= it.icon}}"/>
+            <img class="img" src="{{= CONFIG.enums.DORAENON_DEFAULT }}"/>
         </div>
         {{= it.name }}
     </div>
