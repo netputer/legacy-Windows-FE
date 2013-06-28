@@ -2,8 +2,35 @@ var titleView;
 var selectView;
 var feedbackView;
 var sliderView;
+var log;
 
 $(document).ready(function () {
+
+    (function(){
+        var Log = function (data) {
+            data = data || {};
+
+            var url ="wdj://window/log.json",
+                datas = [],
+                d;
+                
+            for (d in data) {
+                if (data.hasOwnProperty(d)) {
+                    datas.push(d + '=' + window.encodeURIComponent(data[d]));
+                }
+            }
+            url += '?' + datas.join('&');
+
+            window.OneRingRequest('get', url, '', function (resp) {
+                resp = JSON.parse(resp);
+                if (resp.state_code === 200) {
+                    console.log('Log: ', url);
+                }
+            });
+        };
+        
+        log = Log;
+    }(this));
 
     (function(){
 
@@ -84,6 +111,13 @@ $(document).ready(function () {
                 }
                 var type = tmp[1];
                 var version = tmp[2];
+
+                log({
+                    'event': 'ui.click.new_usb_debug.select',
+                    'type': type,
+                    'version': version
+                });
+
                 $.event.trigger('SELECT', [type, version]);
             }
         };
@@ -113,6 +147,7 @@ $(document).ready(function () {
                 var numInput = me.$el.find('.send-message input');
 
                 var btn = me.$el.find('.send-message button').click(function(){
+
                     var num = $.trim(numInput.val())
 
                     if (num){
@@ -129,6 +164,11 @@ $(document).ready(function () {
                     } 
 
                     connectTip.hide();
+
+                    log({
+                        'event': 'ui.click.new_usb_debug.send_message'
+                    });
+                    
                     $.ajax("http://www.wandoujia.com/sms", {
                         data: {
                             'type': 'USB_SETUP',
@@ -138,6 +178,11 @@ $(document).ready(function () {
                         },
                         error: function(){
                             connectTip.show();
+                        },success: function(){
+                            
+                            log({
+                                'event': 'ui.click.new_usb_debug.send_message.success'
+                            });
                         }
                     });
 
@@ -156,6 +201,17 @@ $(document).ready(function () {
                             
                 });
 
+                me.$el.find('.usb-help').on('click', function(){
+                    log({
+                        'event': 'ui.click.new_usb_debug.feed_back.usb_help'
+                    });
+                });
+
+                me.$el.find('.usb-bbs').on('click', function(){
+                    log({
+                        'event': 'ui.click.new_usb_debug.feed_back.usb_bbs'
+                    });
+                });
                 
             },
             clickReturn: function () {
@@ -188,6 +244,10 @@ $(document).ready(function () {
 
                 me.$el.find('.more').click(function(){
                     $.event.trigger('MORE');
+
+                    log({
+                        'event': 'ui.click.new_usb_debug.more'
+                    });
                 });
 
                 me.$el.find('.left').click(function(){
@@ -195,6 +255,10 @@ $(document).ready(function () {
                         me.moveLeft();
                         me.resetBtn();
                     }
+
+                    log({
+                        'event': 'ui.click.new_usb_debug.left'
+                    });
                 });
 
                 me.$el.find('.right').click(function(){
@@ -202,6 +266,10 @@ $(document).ready(function () {
                         me.moveRight();
                         me.resetBtn();
                     }
+
+                    log({
+                        'event': 'ui.click.new_usb_debug.right'
+                    });
                 });
 
                 me.$el.find('.reload').click(function(){
