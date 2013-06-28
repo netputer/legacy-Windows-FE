@@ -6,14 +6,18 @@
         'doT',
         'Configuration',
         'ui/TemplateFactory',
-        'guide/views/BindView'
+        'guide/views/BindView',
+        'guide/views/CloudBackupView',
+        'guide/views/XibaibaiView'
     ], function (
         Backbone,
         $,
         doT,
         CONFIG,
         TemplateFactory,
-        BindView
+        BindView,
+        CloudBackupView,
+        XibaibaiView
     ) {
         var GuideView = Backbone.View.extend({
             className : 'w-guide-ctn vbox',
@@ -33,6 +37,12 @@
                 this.$el.html(this.template({}));
 
                 this.regCardAsync(BindView.getInstance())
+                    .then(function () {
+                        return this.regCardAsync(CloudBackupView.getInstance());
+                    }.bind(this))
+                    .then(function () {
+                        return this.regCardAsync(XibaibaiView.getInstance());
+                    }.bind(this))
                     .then(this.run.bind(this));
 
                 return this;

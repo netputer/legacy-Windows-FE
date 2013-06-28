@@ -35,15 +35,6 @@
             }
         };
 
-        var onLoadHandler = function () {
-            var $this = $(this);
-            $this.css('background', 'none');
-        };
-
-        var onErrorHandler = function () {
-            this.src = CONFIG.enums.DORAENON_DEFAULT;
-        };
-
         var changeSelectedHandler = function (model, selected) {
             this.$el.toggleClass('selected highlight', selected);
 
@@ -73,19 +64,6 @@
             className : 'root',
             template : doT.template(TemplateFactory.get('doraemon', 'menu-item')),
             initialize : function () {
-
-                var img;
-                Object.defineProperties(this, {
-                    img : {
-                        set : function (value) {
-                            img = value;
-                        },
-                        get : function () {
-                            return img;
-                        }
-                    }
-                });
-
                 extensionsCollection = extensionsCollection || ExtensionsCollection.getInstance();
 
                 this.listenTo(this.model, 'change:selected', changeSelectedHandler);
@@ -94,10 +72,21 @@
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
-                
-                this.img = this.$el.find('img');
-                this.img.on('load', onLoadHandler);
-                this.img.on('error', onErrorHandler);
+
+                var $icon = $(new window.Image());
+
+                var loadHandler = function () {
+                    this.$('.title .icon img').attr('src', this.model.get('icon'));
+                    $icon.remove();
+                }.bind(this);
+
+                var errorHandler = function () {
+                    $icon.remove();
+                };
+
+                $icon.one('load', loadHandler)
+                    .one('error', errorHandler)
+                    .attr('src', this.model.get('icon'));
 
                 return this;
             },
@@ -108,10 +97,6 @@
 
                 this.$el.one('webkitAnimationEnd', animaHandler)
                         .addClass('highlight-anima');
-            },
-            remove : function () {
-                MenuItemView.__super__.remove.call(this, arguments);
-                this.img.off('load');
             },
             clickItem : function () {
                 if (this.model.id !== undefined &&
