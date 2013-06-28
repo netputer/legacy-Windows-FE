@@ -236,6 +236,7 @@
         //     Environment.once('change:deviceId', init, this);
         // }
 
+        window.externalCall('', 'page_ready', '');
         PerformanceTracker.launch();
     });
 }(this));
