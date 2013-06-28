@@ -53,5 +53,34 @@ define({
     FLASH_TIP_DESC : '豌豆荚可以快速帮您恢复数据到手机上哦。赶快去试试吧！',
 
     NEW_IA_QUESTIONNAIRE : '偷偷问一下，您喜欢豌豆荚新的样子吗？<span class="link button-like" style="margin-left: 15px">喜欢</span><span class="link button-unlike"  style="margin-left: 15px">不喜欢</span><span class="link button-whatever"  style="margin-left: 15px">没感觉</span>',
-    CLOSE_AUTO_START : '为方便您管理手机，豌豆荚在您手机连上电脑后会自动启动。如果您不希望自动启动，可以在 <span class="link button-setup">设置</span> 中关闭'
+    CLOSE_AUTO_START : '为方便您管理手机，豌豆荚在您手机连上电脑后会自动启动。如果您不希望自动启动，可以在 <span class="link button-setup">设置</span> 中关闭',
+
+    GUIDE_BIND : '绑定手机',
+    GUIDE_BIND_NOW : '立即绑定',
+    GUIDE_BIND_DESC : '绑定自己的手机后，豌豆荚会帮助您自动备份手机联系人、短信、照片和应用，方便您即时恢复，还可以 Wi-Fi 下自动连接手机，无需手动操作。如果您使用的不是自己的电脑和手机，请不要绑定！',
+    GUIDE_BIND_SUCCESS : '恭喜，你已经成功绑定 {1}，豌豆荚会自动帮您备份此手机的 <strong>联系人、短信、应用和照片。</strong>',
+    GUIDE_CLOUD_BACKUP : '云备份',
+    GUIDE_CLOUD_BACKUP_OPEN : '开启云备份',
+    GUIDE_CLOUD_BACKUP_DESC : '绑定自己的手机后，豌豆荚会帮助您自动备份手机联系人、短信、照片和应用，方便您即时恢复，还可以 Wi-Fi 下自动连接手机，无需手动操作。如果您使用的不是自己的电脑和手机，请不要绑定！',
+    GUIDE_CLOUD_BACKUP_SUCCESS : '恭喜，您已经成功注册并开启了云备份。',
+    GUIDE_REG : '注册豌豆荚',
+    GUIDE_REG_DESC : '开启云备份请先注册豌豆荚账号',
+    GUIDE_REG_NOW : '马上注册',
+    GUIDE_REG_ACCOUNT : '账号',
+    GUIDE_REG_ACCOUNT_PLACEHOLDER : '请使用手机号码或邮箱',
+    GUIDE_REG_ACCOUNT_WARN : '您输入的好像不是一个邮箱/手机号',
+    GUIDE_REG_PASSWORD : '密码',
+    GUIDE_REG_PASSWORD_PLACEHOLDER : '最少 6 位数字或字符',
+    GUIDE_REG_PASSWORD_WARN : '请输入密码，密码长度应该大于 6 个字符',
+    GUIDE_REG_PSW_VERIFY_PLACEHOLDER : '再次输入密码',
+    GUIDE_REG_PSW_VERIFY_WARN : '两次输入的密码不一致',
+    GUIDE_REG_NICKNAME : '昵称',
+    GUIDE_REG_NICKNAME_WARN : '昵称不能少于一个字符',
+    GUIDE_REG_CAPTCHA : '验证码',
+    GUIDE_REG_PRAVICY : '同意 <a target="_default" href="#">最终用户条款</a>',
+    GUIDE_REG_LOGIN_WITH_ACCOUNT : '已有账号登陆',
+    GUIDE_REG_LOGIN_WITH_SNS : '合作账号登陆',
+    GUIDE_REG_LOGIN_AND_BACKUP : '登陆后开启云备份',
+    GUIDE_XIBAIBAI_START : '马上开洗'
+
 });

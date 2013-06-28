@@ -41,8 +41,6 @@ $(document).ready(function () {
 
     (function(){
         var data = {
-
-
             brands: [
                 {name: '三星手机', className: 'samsung'},
                 {name: '小米手机', className: 'miui'},
@@ -78,7 +76,7 @@ $(document).ready(function () {
                 });
             },
             clickSelect: function (evt) {
-                var tmp = /(\w+)\s(\w+)\s(\w+)/.exec(evt.currentTarget.className);
+                var tmp = /(\w+)\s(\w+)/.exec(evt.currentTarget.className);
                 var type = tmp[1];
                 var version = tmp[2];
                 $.event.trigger('SELECT', [type, version]);
@@ -104,6 +102,51 @@ $(document).ready(function () {
                 me.$el.find('.return').click(function(){
                     me.clickReturn();
                 });
+
+                var tip = me.$el.find('.send-message p');
+                var numInput = me.$el.find('.send-message input');
+
+                var btn = me.$el.find('.send-message button').click(function(){
+                    var num = $.trim(numInput.val())
+
+                    if (num){
+                        if(/1\d{10}/.test(num)) {
+                            tip.css('visibility', 'hidden');
+                        } else {
+                            tip.css('visibility', 'visible');
+                            return;
+                        }
+                    } else {
+                        btn.prop('disabled', true);
+                        tip.css('visibility', 'hidden');
+                        return;
+                    } 
+
+                    $.ajax("http://www.wandoujia.com/sms", {
+                        data:{
+                            'type': 'USB_SETUP',
+                            'action': 'send',
+                            'phone': num
+
+                        }
+                    });
+
+                    btn.prop('disabled', true);
+
+                    var index = 60;
+                    btn.html('重新发送(' + index-- +')');
+                    var handler = setInterval(function(){
+                        if(index < 0){
+                            clearInterval(handler);
+                            btn.html('重新发送').prop('disabled', false);
+                            return;
+                        }
+                        btn.html('重新发送(' + index-- + ')');
+                    }, 1000);
+                            
+                });
+
+                
             },
             clickReturn: function () {
                 $.event.trigger('RETURN');
@@ -146,7 +189,7 @@ $(document).ready(function () {
 
                 me.$el.find('.right').click(function(){
                     if (me.currentIndex < me.devInfo.steps.length -1 ){
-                        me.moveRight();  
+                        me.moveRight();
                         me.resetBtn();
                     }
                 });
@@ -168,11 +211,11 @@ $(document).ready(function () {
                 var len = me.devInfo.steps.length;
                 var ul = $('<ul>').addClass('warp');
                 var str = '', i = 0;
-                
+
                 me.totleIndex = 10 * len;
                 for (i; i<len; i++) {
                     var t = i+1;
-                    str += "<li class='course-li'><img data-des='" +  me.devInfo.steps[i].des + "' src='images/usb-debug-reload/course/" + version + "/" + t + ".png'></li>";
+                    str += "<li class='course-li'><img data-des='" +  me.devInfo.steps[i].des + "' src='images/usb-debug-new/course/" + version + "/" + t + ".png'></li>";
                 }
                 ul.html(str);
                 if (me.warp) {
@@ -212,9 +255,10 @@ $(document).ready(function () {
                     var tmp = t
                     $(li).css('zIndex', t).attr('zindex', t);
                 });
-                
+
                 me.currentIndex = 0;
                 me.$el.find('.left').attr('disabled', true);
+                me.$el.find('.right').attr('disabled', false);
 
                 $(me.lis[0]).removeClass('white').addClass('go-current');
                 me.showArrow(me.currentIndex)
@@ -225,20 +269,21 @@ $(document).ready(function () {
             },
             showArrow: function(index) {
                 var pos = this.devInfo.steps[index].pos;
-                this.arrow.show().css(pos).fadeIn(1000);
 
                 var top = parseInt(pos.top);
-
-
-
-
-
-
-
-                this.arrow.animate({'top': top + 15 + 'px'}, 'slow');
+                if ('-webkit-transform' in pos){
+                    top = top - 15 + 'px';
+                    this.arrow.show().css(pos).fadeIn(1000);
+                } else {
+                    top = top + 15 + 'px';
+                    pos['-webkit-transform'] = 'none';
+                    this.arrow.show().css(pos).fadeIn(1000);
+                    delete pos['-webkit-transform'];
+                }
+                this.arrow.animate({'top': top}, 'slow');
             },
             moveRight: function (){
-                
+
                 var me = this;
                 me.hideArrow();
                 for(var i=0; i <= me.currentIndex; i++){
@@ -249,9 +294,9 @@ $(document).ready(function () {
                 }
 
                 $(me.lis[this.currentIndex]).addClass('go-before');
-                
+
                 me.currentIndex++;
-                
+
                 $(me.lis[me.currentIndex]).one('webkitTransitionEnd', function(){
                     me.showArrow(me.currentIndex);
                 }).addClass('go-current');
@@ -270,9 +315,9 @@ $(document).ready(function () {
                 }
 
                 $(me.lis[me.currentIndex]).removeClass('go-current');
-                
+
                 me.currentIndex--;
-                
+
                 $(me.lis[this.currentIndex]).one('webkitTransitionEnd', function(){
                     me.showArrow(me.currentIndex);
                 }).removeClass('go-before');
@@ -291,7 +336,27 @@ var getUrlParam = function (name) {
     if (r!=null) return unescape(r[2]); return null;
 }
 
-var knowType = false;
+var VIDMap = {
+    '04E8': 'samsung',
+    '054C': 'sony',
+    '2717': 'miui',
+    '0BB4': 'htc',
+    '12D1': 'huawei',
+    '17EF': 'lenovo',
+    '19D2': 'zte',
+    '22B8': 'moto'
+},
+device_id = getUrlParam('device_id'),
+tmp = /VID_(\w{4})/.exec(device_id),
+version = null;
+
+if(tmp){
+    var vid = tmp[1];
+    if(vid in VIDMap){
+        version = VIDMap[vid];
+    }
+}
+
 $(document).ready(function(){
     var container = $('.container');
     var currentView;
@@ -300,14 +365,20 @@ $(document).ready(function(){
     $('.w-ui-loading').hide();
     titleView.render(container);
 
-    if (knowType){
+    if (version){
+        
         sliderView.render(container);
         currentView = sliderView;
+        currentView.$el.show();
+        currentView.start('brands', version);
+
     } else {
+        
         selectView.render(container);
         currentView = selectView;
+        currentView.$el.show();
     }
-    currentView.$el.show();
+    
     feedbackView.render(container);
 
     $('.check-usb-debug').click(function(){
