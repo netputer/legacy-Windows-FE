@@ -4,12 +4,10 @@
 </script>
 
 <script type="text/x-ui-template" id="welcome-item">
-    <li class="root welcome">
-        <div class='title hbox'>
-            <div class="icon category" data-title="welcome"></div>
-            {{= i18n.misc.NAV_WELCOME_TO_WDJ }}
-        </div>
-    </li>
+    <div class='title hbox'>
+        <div class="icon category welcome" data-title="welcome"></div>
+        {{= i18n.misc.NAV_WELCOME_TO_WDJ }}
+    </div>
 </script>
 
 <script type="text/x-ui-template" id="menu-item">
