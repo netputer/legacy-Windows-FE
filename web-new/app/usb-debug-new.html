@@ -50,7 +50,8 @@
                             <div class="send-message">
                                 <input type="text"></input>
                                 <button>发送短信</button>
-                                <p>您输入的好像不是一个手机号</p>
+                                <p class="not-a-number">您输入的好像不是一个手机号</p>
+                                <p class="connect-error">貌似网络不给力，请稍后再试～</p>
                             </div>
                         </div>
                     </div>
@@ -105,7 +106,25 @@
                     <div class="describe"></div>
                     <div class="more">更多手机教程</div>
                 </div>
-                <div class="container">
+                <div class="container connect-error">
+                    <div class="w-ui-loading" >
+                        <div class="anima">
+                            <div class="rotor rotor1"></div>
+                            <div class="rotor rotor2"></div>
+                            <div class="rotor rotor3"></div>
+                            <div class="rotor rotor4"></div>
+                            <div class="rotor rotor5"></div>
+                            <div class="rotor rotor6"></div>
+                            <div class="rotor rotor7"></div>
+                            <div class="rotor rotor8"></div>
+                        </div>
+                    </div>
+                    <div class="vbox">
+                        <div class="error-des">貌似网络不给力，请稍后再试～</div>
+                        <button class="reload primary">重试</button>
+                    </div>
+                </div>
+                <div class="container slider-container">
                     <div class="ul-container">
                         <div class="pointer"></div>
                     </div>

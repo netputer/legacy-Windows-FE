@@ -282,6 +282,7 @@ body,
 
             .send-message {
                 margin: 12px 0px 0px 15px;
+                height: 45px;
 
                 input {
                     height: 24px;
@@ -293,7 +294,7 @@ body,
                     line-height: 12px;
                     color: #e44;
                     font-size: 12px;
-                    visibility: hidden;
+                    display: none;
                 }
             }
 
@@ -339,6 +340,32 @@ body,
         -webkit-box-shadow: 0px 1px 10px #999999;
         padding: 15px;
         height: 390px;
+
+        .connect-error {
+
+            .w-ui-loading {
+                top: 30%;
+            }
+
+            .vbox {
+                text-align: center;
+                display: none;
+                position: absolute;
+                left: 39%;
+            }
+
+            .error-des{
+                margin-top: 130px;
+            }
+
+            .reload {
+                margin-top: 10px;
+            }
+        }
+
+        .slider-container {
+            display: none;
+        }
 
         .describe {
             font-size: 16px;
