@@ -4,16 +4,17 @@ var feedbackView;
 var sliderView;
 var log;
 
+
 $(document).ready(function () {
 
-    (function(){
+    (function () {
         var Log = function (data) {
             data = data || {};
 
-            var url ="wdj://window/log.json",
+            var url = "wdj://window/log.json",
                 datas = [],
                 d;
-                
+
             for (d in data) {
                 if (data.hasOwnProperty(d)) {
                     datas.push(d + '=' + window.encodeURIComponent(data[d]));
@@ -28,31 +29,31 @@ $(document).ready(function () {
                 }
             });
         };
-        
+
         log = Log;
     }(this));
 
-    (function(){
+    (function () {
 
-        var TitleView = function (){};
+        var TitleView = function () {};
         TitleView.prototype = {
             className: 'usb-debug-title-view',
             template: $('#titleView').html(),
             $el: null,
-            render: function (container){
+            render: function (container) {
                 var me = this;
-                me.$el= $('<div>').addClass(me.className);
+                me.$el = $('<div>').addClass(me.className);
                 me.$el.html(_.template(me.template, {}));
                 container.append(me.$el);
 
-                $('.feedback').click(function(){
+                $('.feedback').click(function () {
                     me.clickFeedBack();
                 });
 
             },
-            clickFeedBack: function(){
+            clickFeedBack: function () {
                 var feed = $('.feedback');
-                if(!feed.hasClass('active')){
+                if (!feed.hasClass('active')) {
                     feed.addClass('active');
                     $.event.trigger('FEEDBACK');
                 }
@@ -66,7 +67,7 @@ $(document).ready(function () {
         titleView = new TitleView();
     }(this));
 
-    (function(){
+    (function () {
         var data = {
             brands: [
                 {name: '三星手机', className: 'samsung'},
@@ -89,7 +90,7 @@ $(document).ready(function () {
             ]
         };
 
-        var SelectView = function(){};
+        var SelectView = function () {};
         SelectView.prototype = {
             className: 'usb-debug-select-view',
             template: $('#selectView').html(),
@@ -100,7 +101,7 @@ $(document).ready(function () {
                 me.$el.html(_.template(me.template, data));
                 container.append(me.$el);
 
-                me.$el.find('li').click(function(evt){
+                me.$el.find('li').click(function (evt) {
                     me.clickSelect(evt);
                 });
             },
@@ -125,8 +126,8 @@ $(document).ready(function () {
         selectView = new SelectView();
     }(this));
 
-    (function(){
-        var FeedbackView = function(){};
+    (function () {
+        var FeedbackView = function () {};
         FeedbackView.prototype = {
             className: 'usb-debug-feedback-view',
             template: $('#feedBackView').html(),
@@ -138,7 +139,7 @@ $(document).ready(function () {
                 me.$el.html(_.template(me.template, {}));
                 container.append(me.$el);
 
-                me.$el.find('.return').click(function(){
+                me.$el.find('.return').click(function () {
                     me.clickReturn();
                 });
 
@@ -146,12 +147,12 @@ $(document).ready(function () {
                 var connectTip = me.$el.find('.send-message .connect-error');
                 var numInput = me.$el.find('.send-message input');
 
-                var btn = me.$el.find('.send-message button').click(function(){
+                var btn = me.$el.find('.send-message button').click(function () {
 
-                    var num = $.trim(numInput.val())
+                    var num = $.trim(numInput.val());
 
-                    if (num){
-                        if(/1\d{10}/.test(num)) {
+                    if (num) {
+                        if (/1\d{10}/.test(num)) {
                             numTip.hide();
                         } else {
                             numTip.show();
@@ -159,9 +160,9 @@ $(document).ready(function () {
                         }
                     } else {
                         btn.prop('disabled', true);
-                        tip.css('visibility', 'hidden');
+                        numTip.css('visibility', 'hidden');
                         return;
-                    } 
+                    }
 
                     connectTip.hide();
 
@@ -174,12 +175,11 @@ $(document).ready(function () {
                             'type': 'USB_SETUP',
                             'action': 'send',
                             'phone': num
-
-                        },
-                        error: function(){
+                        }, 
+                        error: function () {
                             connectTip.show();
-                        },success: function(){
-                            
+                        }, 
+                        success: function () {
                             log({
                                 'event': 'ui.click.new_usb_debug.send_message.success'
                             });
@@ -189,9 +189,9 @@ $(document).ready(function () {
                     btn.prop('disabled', true);
 
                     var index = 60;
-                    btn.html('重新发送(' + index-- +')');
-                    var handler = setInterval(function(){
-                        if(index < 0){
+                    btn.html('重新发送(' + index-- + ')');
+                    var handler = setInterval(function () {
+                        if (index < 0) {
                             clearInterval(handler);
                             btn.html('重新发送').prop('disabled', false);
                             return;
@@ -201,13 +201,13 @@ $(document).ready(function () {
                             
                 });
 
-                me.$el.find('.usb-help').on('click', function(){
+                me.$el.find('.usb-help').on('click', function () {
                     log({
                         'event': 'ui.click.new_usb_debug.feed_back.usb_help'
                     });
                 });
 
-                me.$el.find('.usb-bbs').on('click', function(){
+                me.$el.find('.usb-bbs').on('click', function () {
                     log({
                         'event': 'ui.click.new_usb_debug.feed_back.usb_bbs'
                     });
@@ -222,14 +222,14 @@ $(document).ready(function () {
         feedbackView = new FeedbackView();
     }(this));
 
-    (function(){
+    (function () {
 
-        var SilderView = function(){};
+        var SilderView = function () {};
         SilderView.prototype = {
             className: 'usb-debug-slider-view',
             template: $('#sliderView').html(),
             $el: null,
-            render:function(container){
+            render:function (container) {
                 var me = this;
                 me.$el = $('<div>').addClass(me.className);
                 me.$el.html(_.template(me.template, {}));
@@ -242,7 +242,7 @@ $(document).ready(function () {
                 me.describe = this.$el.find('.steps-describe');
                 me.page = this.$el.find('.page')
 
-                me.$el.find('.more').click(function(){
+                me.$el.find('.more').click(function () {
                     $.event.trigger('MORE');
 
                     log({
@@ -250,8 +250,8 @@ $(document).ready(function () {
                     });
                 });
 
-                me.$el.find('.left').click(function(){
-                    if (me.currentIndex > 0){
+                me.$el.find('.left').click(function () {
+                    if (me.currentIndex > 0) {
                         me.moveLeft();
                         me.resetBtn();
                     }
@@ -261,8 +261,8 @@ $(document).ready(function () {
                     });
                 });
 
-                me.$el.find('.right').click(function(){
-                    if (me.currentIndex < me.devInfo.steps.length -1 ){
+                me.$el.find('.right').click(function () {
+                    if (me.currentIndex < me.devInfo.steps.length -1 ) {
                         me.moveRight();
                         me.resetBtn();
                     }
@@ -272,7 +272,7 @@ $(document).ready(function () {
                     });
                 });
 
-                me.$el.find('.reload').click(function(){
+                me.$el.find('.reload').click(function () {
                     me.$el.find('.connect-error .vbox').hide();
                     me.$el.find('.w-ui-loading').show();
                     me.start(me.type, me.version);
@@ -287,37 +287,37 @@ $(document).ready(function () {
                 var loadResult = [false, false],
                     index = 0;
 
-                var timeOutHandler = setTimeout(function(){
+                var timeOutHandler = setTimeout(function () {
                     loadResult[0] && loadResult[1] ? success() : fail();
                     clearTimeout(timeOutHandler);
                     clearInterval(intervalHandler);
                         
                 }, 15000);
 
-                var intervalHandler = setInterval(function(){
-                    if(loadResult[0] && loadResult[1]) {
+                var intervalHandler = setInterval(function () {
+                    if (loadResult[0] && loadResult[1]) {
                         clearTimeout(timeOutHandler);
                         clearInterval(intervalHandler);
                         success();
                     }
                 }, 500);
 
-                for(index; index < 2; index++) {
+                for (index; index < 2; index++) {
                     var img = new Image(),
                         i = index + 1;
-                    $(img).one('load', function(){
+                    $(img).one('load', function () {
                         loadResult[--i] = true;
-                    }).one('error', function(){
+                    }).one('error', function () {
                         clearTimeout(timeOutHandler);
                         clearInterval(intervalHandler);
                         fail();
                     }).attr('src', 'images/usb-debug-new/course/' + version + '/' + i + '.png');
                 }
             },
-            start: function(type, version){
+            start: function (type, version) {
                 var me = this;
                 var data = brandInfo;
-                if(type === 'system'){
+                if (type === 'system') {
                     data = systemInfo;
                 }
 
@@ -329,7 +329,7 @@ $(document).ready(function () {
                 me.$el.find('.connect-error').show();
                 me.$el.find('.slider-container').hide();
 
-                this.preload(version, function(){
+                this.preload(version, function () {
 
                     me.$el.find('.connect-error').hide();
                     me.$el.find('.slider-container').show();
@@ -339,9 +339,10 @@ $(document).ready(function () {
                     var str = '', i = 0;
 
                     me.totleIndex = 10 * len;
-                    for (i; i<len; i++) {
-                        var t = i+1;
-                       str += "<li class='course-li'><img data-des='" +  me.devInfo.steps[i].des + "' src='images/usb-debug-new/course/" + version + "/" + t + ".png'></li>";
+
+                    for (i; i < len; i++) {
+                        var t = i + 1;
+                        str += "<li class='course-li'><img data-des='" +  me.devInfo.steps[i].des + "' src='images/usb-debug-new/course/" + version + "/" + t + ".png'></li>";
                     }
                     
                     ul.html(str);
@@ -353,37 +354,37 @@ $(document).ready(function () {
                     me.lis = ul.find('li');
                     me.initCss();
                     
-                }, function (){
+                }, function () {
                     me.$el.find('.connect-error .vbox').show();
                     me.$el.find('.w-ui-loading').hide();
                 });
             },
 
-            setNav: function (index){
+            setNav: function (index) {
                 this.number.html(index + 1);
                 this.describe.html(this.devInfo.steps[index].des);
                 var p = index + 1 + '/' + this.devInfo.steps.length;
                 this.page.html('(' + p + ')');
             },
-            resetBtn: function(){
-                if(this.currentIndex === 0){
+            resetBtn: function () {
+                if (this.currentIndex === 0) {
                     this.leftButton.attr('disabled', true);
-                }else{
+                } else {
                     this.leftButton.removeAttr('disabled');
                 }
 
-                if(this.currentIndex === this.devInfo.steps.length -1){
+                if (this.currentIndex === this.devInfo.steps.length -1) {
                     this.rightButton.attr('disabled', true);
-                }else{
+                } else {
                     this.rightButton.removeAttr('disabled');
                 }
             },
-            initCss: function(){
+            initCss: function () {
                 var me = this;
                 var t = me.totleIndex;
 
                 me.lis.addClass('init white');
-                $.each(me.lis, function(index, li){
+                $.each(me.lis, function (index, li) {
                     t -= 1;
                     var tmp = t
                     $(li).css('zIndex', t).attr('zindex', t);
@@ -397,14 +398,14 @@ $(document).ready(function () {
                 me.showArrow(me.currentIndex)
                 me.setNav(0);
             },
-            hideArrow: function() {
+            hideArrow: function () {
                 this.arrow.hide().stop();
             },
-            showArrow: function(index) {
+            showArrow: function (index) {
                 var pos = this.devInfo.steps[index].pos;
 
                 var top = parseInt(pos.top);
-                if ('-webkit-transform' in pos){
+                if ('-webkit-transform' in pos) {
                     top = top - 15 + 'px';
                     this.arrow.show().css(pos).fadeIn(1000);
                 } else {
@@ -415,11 +416,12 @@ $(document).ready(function () {
                 }
                 this.arrow.animate({'top': top}, 'slow');
             },
-            moveRight: function (){
+            moveRight: function () {
 
-                var me = this;
+                var me = this,
+                    i = 0;
                 me.hideArrow();
-                for(var i=0; i <= me.currentIndex; i++){
+                for (i = 0; i <= me.currentIndex; i++) {
                     var li = $(me.lis[i]);
                     var zIndex = parseInt(li.attr('zindex'));
                     zIndex -= 2;
@@ -430,7 +432,7 @@ $(document).ready(function () {
 
                 me.currentIndex++;
 
-                $(me.lis[me.currentIndex]).one('webkitTransitionEnd', function(){
+                $(me.lis[me.currentIndex]).one('webkitTransitionEnd', function () {
                     me.showArrow(me.currentIndex);
                 }).addClass('go-current');
 
@@ -438,9 +440,11 @@ $(document).ready(function () {
             },
             moveLeft : function () {
 
-                var me = this;
+                var me = this,
+                    i = 0;
+
                 me.hideArrow();
-                for(var i=0; i < me.currentIndex; i++){
+                for (i = 0; i < me.currentIndex; i++) {
                     var li = $(me.lis[i]);
                     var zIndex = parseInt(li.attr('zindex'));
                     zIndex += 2;
@@ -451,7 +455,7 @@ $(document).ready(function () {
 
                 me.currentIndex--;
 
-                $(me.lis[this.currentIndex]).one('webkitTransitionEnd', function(){
+                $(me.lis[this.currentIndex]).one('webkitTransitionEnd', function () {
                     me.showArrow(me.currentIndex);
                 }).removeClass('go-before');
 
@@ -464,10 +468,15 @@ $(document).ready(function () {
 });
 
 var getUrlParam = function (name) {
-    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    if (r!=null) return unescape(r[2]); return null;
-}
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"),
+        r = window.location.search.substr(1).match(reg);
+    
+    if (r != null) {
+        return unescape(r[2]); 
+    }
+
+    return null;
+};
 
 var VIDMap = {
     '04E8': 'samsung',
@@ -479,18 +488,18 @@ var VIDMap = {
     '19D2': 'zte',
     '22B8': 'moto'
 },
-device_id = getUrlParam('device_id'),
-tmp = /VID_(\w{4})/.exec(device_id),
-version = null;
+    device_id = getUrlParam('device_id'),
+    tmp = /VID_(\w{4})/.exec(device_id),
+    version = null;
 
-if(tmp){
+if (tmp) {
     var vid = tmp[1];
-    if(vid in VIDMap){
+    if (vid in VIDMap) {
         version = VIDMap[vid];
     }
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
     var container = $('.container');
     var currentView;
     var lastView;
@@ -498,15 +507,12 @@ $(document).ready(function(){
     $('.w-ui-loading').hide();
     titleView.render(container);
 
-    if (version){
-        
+    if (version) {
         sliderView.render(container);
         currentView = sliderView;
         currentView.$el.show();
         currentView.start('brands', version);
-
     } else {
-        
         selectView.render(container);
         currentView = selectView;
         currentView.$el.show();
@@ -514,18 +520,18 @@ $(document).ready(function(){
     
     feedbackView.render(container);
 
-    $('.check-usb-debug').click(function(){
+    $('.check-usb-debug').click(function () {
         window.externalCall('', 'connection.detect_device', window.location.search);
     });
 
-    $(document).bind('FEEDBACK', function(){
+    $(document).bind('FEEDBACK', function () {
         currentView.$el.hide();
         lastView = currentView;
         currentView = feedbackView;
         feedbackView.$el.show();
     });
 
-    $(document).bind('RETURN', function(){
+    $(document).bind('RETURN', function () {
         currentView.$el.hide();
         lastView.$el.show();
         currentView = lastView;
@@ -533,24 +539,24 @@ $(document).ready(function(){
         titleView.reset();
     });
 
-    $(document).bind('SELECT', function(evt, type, version){
+    $(document).bind('SELECT', function (evt, type, version) {
         currentView.$el.hide();
         lastView = selectView;
         currentView = sliderView;
 
-        if(!sliderView.$el){
+        if (!sliderView.$el) {
             sliderView.render(container);
         }
         sliderView.$el.show();
         currentView.start(type, version);
     });
 
-    $(document).bind('MORE', function(){
+    $(document).bind('MORE', function () {
         currentView.$el.hide();
         lastView = selectView;
         currentView = selectView;
 
-        if(!selectView.$el){
+        if (!selectView.$el) {
             selectView.render(container);
         }
         selectView.$el.show();
