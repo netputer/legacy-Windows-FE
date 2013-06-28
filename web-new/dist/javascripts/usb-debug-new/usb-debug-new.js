@@ -49,7 +49,9 @@ $(document).ready(function () {
                 {name: '华为手机', className: 'huawei'},
                 {name: '联想手机', className: 'lenovo'},
                 {name: '中兴手机', className: 'zte'},
-                {name: 'MOTO 手机', className: 'moto'}
+                {name: 'MOTO 手机', className: 'moto'},
+                {name: '', className: 'nobrands'},
+                {name: '', className: 'nobrands'}
             ],
             systems: [
                 {name: 'Android 1.6 - 3.2', className: 'gingerbread'},
@@ -77,6 +79,9 @@ $(document).ready(function () {
             },
             clickSelect: function (evt) {
                 var tmp = /(\w+)\s(\w+)/.exec(evt.currentTarget.className);
+                if (tmp[2] === 'nobrands') {
+                    return;
+                }
                 var type = tmp[1];
                 var version = tmp[2];
                 $.event.trigger('SELECT', [type, version]);
@@ -103,7 +108,8 @@ $(document).ready(function () {
                     me.clickReturn();
                 });
 
-                var tip = me.$el.find('.send-message p');
+                var numTip = me.$el.find('.send-message .not-a-number');
+                var connectTip = me.$el.find('.send-message .connect-error');
                 var numInput = me.$el.find('.send-message input');
 
                 var btn = me.$el.find('.send-message button').click(function(){
@@ -111,9 +117,9 @@ $(document).ready(function () {
 
                     if (num){
                         if(/1\d{10}/.test(num)) {
-                            tip.css('visibility', 'hidden');
+                            numTip.hide();
                         } else {
-                            tip.css('visibility', 'visible');
+                            numTip.show();
                             return;
                         }
                     } else {
@@ -122,12 +128,16 @@ $(document).ready(function () {
                         return;
                     } 
 
+                    connectTip.hide();
                     $.ajax("http://www.wandoujia.com/sms", {
-                        data:{
+                        data: {
                             'type': 'USB_SETUP',
                             'action': 'send',
                             'phone': num
 
+                        },
+                        error: function(){
+                            connectTip.show();
                         }
                     });
 
@@ -193,11 +203,49 @@ $(document).ready(function () {
                         me.resetBtn();
                     }
                 });
+
+                me.$el.find('.reload').click(function(){
+                    me.$el.find('.connect-error .vbox').hide();
+                    me.$el.find('.w-ui-loading').show();
+                    me.start(me.type, me.version);
+                });
             },
             currentIndex: 0,
             devInfo: {},
             totleIndex: 0,
             lis: [],
+            preload: function (version, success, fail) {
+
+                var loadResult = [false, false],
+                    index = 0;
+
+                var timeOutHandler = setTimeout(function(){
+                    loadResult[0] && loadResult[1] ? success() : fail();
+                    clearTimeout(timeOutHandler);
+                    clearInterval(intervalHandler);
+                        
+                }, 15000);
+
+                var intervalHandler = setInterval(function(){
+                    if(loadResult[0] && loadResult[1]) {
+                        clearTimeout(timeOutHandler);
+                        clearInterval(intervalHandler);
+                        success();
+                    }
+                }, 500);
+
+                for(index; index < 2; index++) {
+                    var img = new Image(),
+                        i = index + 1;
+                    $(img).one('load', function(){
+                        loadResult[--i] = true;
+                    }).one('error', function(){
+                        clearTimeout(timeOutHandler);
+                        clearInterval(intervalHandler);
+                        fail();
+                    }).attr('src', 'images/usb-debug-new/course/' + version + '/' + i + '.png');
+                }
+            },
             start: function(type, version){
                 var me = this;
                 var data = brandInfo;
@@ -205,27 +253,44 @@ $(document).ready(function () {
                     data = systemInfo;
                 }
 
+                me.type = type;
+                me.version = version;
                 me.devInfo = data[version];
                 me.$el.find('.describe').html(me.devInfo.name);
 
-                var len = me.devInfo.steps.length;
-                var ul = $('<ul>').addClass('warp');
-                var str = '', i = 0;
+                me.$el.find('.connect-error').show();
+                me.$el.find('.slider-container').hide();
 
-                me.totleIndex = 10 * len;
-                for (i; i<len; i++) {
-                    var t = i+1;
-                    str += "<li class='course-li'><img data-des='" +  me.devInfo.steps[i].des + "' src='images/usb-debug-new/course/" + version + "/" + t + ".png'></li>";
-                }
-                ul.html(str);
-                if (me.warp) {
-                    me.warp.remove();
-                }
-                me.$el.find('.ul-container').append(ul);
-                me.warp = ul;
-                me.lis = ul.find('li');
-                me.initCss();
+                this.preload(version, function(){
+
+                    me.$el.find('.connect-error').hide();
+                    me.$el.find('.slider-container').show();
+
+                    var len = me.devInfo.steps.length;
+                    var ul = $('<ul>').addClass('warp');
+                    var str = '', i = 0;
+
+                    me.totleIndex = 10 * len;
+                    for (i; i<len; i++) {
+                        var t = i+1;
+                       str += "<li class='course-li'><img data-des='" +  me.devInfo.steps[i].des + "' src='images/usb-debug-new/course/" + version + "/" + t + ".png'></li>";
+                    }
+                    
+                    ul.html(str);
+                    if (me.warp) {
+                        me.warp.remove();
+                    }
+                    me.$el.find('.ul-container').append(ul);
+                    me.warp = ul;
+                    me.lis = ul.find('li');
+                    me.initCss();
+                    
+                }, function (){
+                    me.$el.find('.connect-error .vbox').show();
+                    me.$el.find('.w-ui-loading').hide();
+                });
             },
+
             setNav: function (index){
                 this.number.html(index + 1);
                 this.describe.html(this.devInfo.steps[index].des);

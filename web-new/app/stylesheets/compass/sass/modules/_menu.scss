@@ -60,7 +60,7 @@
             }
         }
 
-        @each $icon in home, contact, sms, app, music, photo, video, optimize, gallery, wash {
+        @each $icon in contact, sms, app, music, photo, video, optimize, wash {
             .title {
                 .icon {
                     &.#{$icon} {
@@ -86,6 +86,14 @@
                             @include sprite-sprite(nav-#{$icon}-active);
                         }
                     }
+                }
+            }
+        }
+
+        .title {
+            .icon {
+                &.welcome{
+                    @include sprite-sprite(home);
                 }
             }
         }
@@ -125,12 +133,6 @@
                 color: #FFF;
                 display: block;
             }
-        }
-    }
-
-    .welcome {
-        .icon {
-            @include sprite-sprite(home);
         }
     }
 }

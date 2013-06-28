@@ -46,6 +46,8 @@
         var WelcomeItemView = {
             view : Backbone.View.extend({
                 template: doT.template(TemplateFactory.get('doraemon', 'welcome-item')),
+                tagName : 'li',
+                className : 'root',
                 initialize: function () {
                     Backbone.on('switchModule', function (data) {
                         if (data.module !== 'welcome') {
