@@ -1,3 +1,4 @@
+/*global define*/
 (function (window, undefined) {
     define([
         'underscore',
@@ -5,14 +6,12 @@
         'jquery',
         'Configuration',
         'Internationalization',
-        'ui/UIHelper',
         'ui/Panel',
         'ui/TemplateFactory',
-        'ui/behavior/ButtonSetMixin',
         'utilities/StringUtil',
         'utilities/FormatString',
         'music/iTunes/iTunesData'
-    ], function(
+    ], function (
         _,
         doT,
         $,
@@ -21,13 +20,11 @@
         UIHelper,
         Panel,
         TemplateFactory,
-        ButtonSetMixin,
         StringUtil,
-        FormatString,
+        formatString,
         iTunesData
     ) {
         var localeText = Internationalization.music;
-        var onePageAudioCount = 7;
         var grid;
         var needCapacity;
 
@@ -155,11 +152,11 @@
                 var selectedData = grid.getCheckedData();
                 var audiosCount = selectedData.length;
                 needCapacity = 0;
-                _.each(selectedData, function(item) {
+                _.each(selectedData, function (item) {
                     needCapacity += parseInt(item.size, 10);
                 });
 
-                var text = FormatString(Internationalization.music.SELECT_AUDIOS_COUNT_TEXT,
+                var text = formatString(Internationalization.music.SELECT_AUDIOS_COUNT_TEXT,
                                         audiosCount,
                                         StringUtil.readableSize(needCapacity)
                                         );
