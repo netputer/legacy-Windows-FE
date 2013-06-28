@@ -114,7 +114,7 @@ $(document).ready(function () {
                 var version = tmp[2];
 
                 log({
-                    'event': 'ui.click.new_usb_debug.select',
+                    'event': 'ui.click.new_usb_debug_select',
                     'type': type,
                     'version': version
                 });
@@ -167,7 +167,7 @@ $(document).ready(function () {
                     connectTip.hide();
 
                     log({
-                        'event': 'ui.click.new_usb_debug.send_message'
+                        'event': 'ui.click.new_usb_debug_send_message'
                     });
                     
                     $.ajax("http://www.wandoujia.com/sms", {
@@ -181,7 +181,7 @@ $(document).ready(function () {
                         }, 
                         success: function () {
                             log({
-                                'event': 'ui.click.new_usb_debug.send_message.success'
+                                'event': 'ui.click.new_usb_debug_send_message_success'
                             });
                         }
                     });
@@ -203,13 +203,13 @@ $(document).ready(function () {
 
                 me.$el.find('.usb-help').on('click', function () {
                     log({
-                        'event': 'ui.click.new_usb_debug.feed_back.usb_help'
+                        'event': 'ui.click.new_usb_debug_feed_back_usb_help'
                     });
                 });
 
                 me.$el.find('.usb-bbs').on('click', function () {
                     log({
-                        'event': 'ui.click.new_usb_debug.feed_back.usb_bbs'
+                        'event': 'ui.click.new_usb_debug_feed_back_usb_bbs'
                     });
                 });
                 
@@ -246,7 +246,7 @@ $(document).ready(function () {
                     $.event.trigger('MORE');
 
                     log({
-                        'event': 'ui.click.new_usb_debug.more'
+                        'event': 'ui.click.new_usb_debug_more'
                     });
                 });
 
@@ -257,7 +257,7 @@ $(document).ready(function () {
                     }
 
                     log({
-                        'event': 'ui.click.new_usb_debug.left'
+                        'event': 'ui.click.new_usb_debug_left'
                     });
                 });
 
@@ -268,7 +268,7 @@ $(document).ready(function () {
                     }
 
                     log({
-                        'event': 'ui.click.new_usb_debug.right'
+                        'event': 'ui.click.new_usb_debug_right'
                     });
                 });
 
