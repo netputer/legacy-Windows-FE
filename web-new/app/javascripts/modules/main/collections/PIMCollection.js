@@ -16,6 +16,15 @@
         console.log('PIMCollection - File loaded.');
 
         var menus = [{
+            label : i18n.misc.NAV_WELCOME_TO_WDJ,
+            module : 'welcome',
+            tab : 'all',
+            id : 0,
+            root : true,
+            count : -1,
+            order : 0,
+            icon : 'welcome'
+        }, {
             label : i18n.misc.NAV_CONTACT,
             module : 'contact',
             tab : 'all',
