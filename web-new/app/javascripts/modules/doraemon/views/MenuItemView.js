@@ -61,7 +61,7 @@
 
         var MenuItemView = Backbone.View.extend({
             tagName : 'li',
-            className : 'root',
+            className : 'title hbox',
             template : doT.template(TemplateFactory.get('doraemon', 'menu-item')),
             initialize : function () {
                 extensionsCollection = extensionsCollection || ExtensionsCollection.getInstance();
@@ -76,7 +76,7 @@
                 var $icon = $(new window.Image());
 
                 var loadHandler = function () {
-                    this.$('.title .icon img').attr('src', this.model.get('icon'));
+                    this.$('.icon img').attr('src', this.model.get('icon'));
                     $icon.remove();
                 }.bind(this);
 

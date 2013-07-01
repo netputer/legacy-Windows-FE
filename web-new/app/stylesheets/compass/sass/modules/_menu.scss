@@ -22,118 +22,96 @@
 }
 
 .w-sidebar-menu {
-    .root {
-        .title {
-            color : #ccc;
-            font-size: 12px;
-            height: 27px;
-            text-shadow: 0 1px 0 #000;
-            -webkit-box-align: center;
+    .title {
+        color : #ccc;
+        font-size: 12px;
+        height: 27px;
+        text-shadow: 0 1px 0 #000;
+        -webkit-box-align: center;
 
-            .label {
-                -webkit-box-flex: 1;
-            }
+        .label {
+            -webkit-box-flex: 1;
+        }
 
-            .icon {
-                height: 24px;
-                margin: 0 4px 0 12px;
-                width: 24px;
+        .icon {
+            height: 24px;
+            margin: 0 4px 0 12px;
+            width: 24px;
+        }
+
+        .count {
+            margin-right: 10px;
+            display: none;
+            text-shadow: none;
+            background-color: #aaa;
+            border-radius: 2px;
+            color: #fff;
+            font-size: 10px;
+            line-height: 14px;
+            min-width: 16px;
+            padding: 0 2px;
+            text-align: center;
+
+            &.highlight {
+                background-color: $standardColor;
+                color: #fff;
             }
+        }
+
+        &:not(.selected):hover {
+            color : $textWhite;
 
             .count {
-                margin-right: 10px;
-                display: none;
-                text-shadow: none;
-                background-color: #aaa;
-                border-radius: 2px;
-                color: #fff;
-                font-size: 10px;
-                line-height: 14px;
-                min-width: 16px;
-                padding: 0 2px;
-                text-align: center;
+                background-color: $standardColor;
+            }
+        }
 
-                &.highlight {
+        &.selected {
+            background-color: #1B1D20;
+            color: #fff;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+
+            .count {
+                background-color: transparent;
+                background-image: none;
+                color: #ccc;
+                display: block;
+
+                &.highlight{
                     background-color: $standardColor;
-                    color: #fff;
+                    color: #FFF;
+                    display: block;
                 }
             }
         }
 
         @each $icon in contact, sms, app, music, photo, video, optimize, wash {
-            .title {
-                .icon {
-                    &.#{$icon} {
-                        @include sprite-sprite(nav-#{$icon});
-                    }
-                }
+            .icon.#{$icon} {
+                @include sprite-sprite(nav-#{$icon});
             }
 
-            &:not(.selected) {
-                .title:hover {
-                    .icon {
-                        &.#{$icon} {
-                            @include sprite-sprite(nav-#{$icon}-hover);
-                        }
-                    }
+            &:not(.selected):hover {
+                .icon.#{$icon} {
+                    @include sprite-sprite(nav-#{$icon}-hover);
                 }
             }
 
             &.selected {
-                .title {
-                    .icon {
-                        &.#{$icon} {
-                            @include sprite-sprite(nav-#{$icon}-active);
-                        }
-                    }
+                .icon.#{$icon} {
+                    @include sprite-sprite(nav-#{$icon}-active);
                 }
             }
         }
 
-        .title {
-            .icon {
-                &.welcome{
-                    @include sprite-sprite(home);
-                }
+        .icon {
+            &.welcome{
+                @include sprite-sprite(home);
             }
         }
+    }
 
-
-        &:not(.selected) {
-            .title:hover {
-                color: $textWhite;
-            }
-        }
-
-        &.selected {
-            .title {
-                background-color: #1B1D20;
-                color: #fff;
-                text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
-            }
-        }
-
-        &:not(.selected):hover {
-            .title {
-                color : $textWhite;
-                .count {
-                    background-color: $standardColor;
-                }
-            }
-        }
-
-        &.selected .title .count {
-            background-color: transparent;
-            background-image: none;
-            color: #ccc;
-            display: block;
-
-            &.highlight{
-                background-color: $standardColor;
-                color: #FFF;
-                display: block;
-            }
-        }
+    &.w-menu-welcome {
+        margin-top: 10px;
     }
 }
 

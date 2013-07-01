@@ -13,17 +13,15 @@
 </script>
 
 <script type="text/x-ui-template" id="menu-item">
-    <div class="title hbox">
-        <div class="icon {{= it.icon }}"></div>
-        <div class="label">{{= it.label }}</div>
-        {{? it.count !== -1 }}
-            {{? it.id === 3 }}
-                <div class="count" data-title="{{= StringUtil.format(i18n.app.UPDATE_DES, it.count) }}">{{= it.count }}</div>
-            {{??}}
-                <div class="count">{{= it.count }}</div>
-            {{?}}
+    <div class="icon {{= it.icon }}"></div>
+    <div class="label">{{= it.label }}</div>
+    {{? it.count !== -1 }}
+        {{? it.id === 3 }}
+            <div class="count" data-title="{{= StringUtil.format(i18n.app.UPDATE_DES, it.count) }}">{{= it.count }}</div>
+        {{??}}
+            <div class="count">{{= it.count }}</div>
         {{?}}
-    </div>
+    {{?}}
 </script>
 
 <script type="text/x-ui-template" id="menu-child-item">

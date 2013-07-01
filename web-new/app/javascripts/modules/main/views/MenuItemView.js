@@ -31,7 +31,7 @@
 
         var MenuItemView = Backbone.View.extend({
             tagName : 'li',
-            className : 'root',
+            className : 'title hbox',
             template : doT.template(TemplateFactory.get('misc', 'menu-item')),
             initialize : function () {
                 var children = [];
@@ -82,9 +82,9 @@
                 }, this);
 
                 this.model.on('change:count', function (model, count) {
-                    this.$('.title .count').html(count);
+                    this.$('.count').html(count);
 
-                    var $count = this.$('.title .count');
+                    var $count = this.$('.count');
                     // Hack for display count of updatable apps
                     if (this.model.id === 3) {
                         $count.toggle(count > 0);
@@ -101,7 +101,7 @@
 
                 // Hack for display count of updatable apps
                 if (this.model.id === 3) {
-                    var $count = this.$('.title .count');
+                    var $count = this.$('.count');
                     $count.addClass('highlight');
                     if (this.model.get('count') > 0) {
                         $count.show();
@@ -117,7 +117,7 @@
 
                 return this;
             },
-            clickRootItem : function () {
+            clickItem : function () {
                 if (!this.model.get('selected')) {
                     this.model.set({
                         selected : true
@@ -152,8 +152,8 @@
                 }
             },
             events : {
-                'click .title' : 'clickRootItem',
-                'click .title .count' : 'clickTitleCount'
+                'click' : 'clickItem',
+                'click .count' : 'clickTitleCount'
             }
         });
 

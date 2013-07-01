@@ -1,29 +1,23 @@
 <templates>
 <script type="text/x-ui-template" id="menu-item">
     {{? it.inWhiteList }}
-    <div class="title hbox">
-        <div class="icon category dor-{{= it.id }}">
-        </div>
-        {{= it.name }}
+    <div class="icon category dor-{{= it.id }}">
     </div>
+    {{= it.name }}
     {{??}}
-    <div class="title hbox">
-        <div class="icon category">
-            <img class="img" src="{{= CONFIG.enums.DORAENON_DEFAULT }}"/>
-        </div>
-        {{= it.name }}
+    <div class="icon category">
+        <img class="img" src="{{= CONFIG.enums.DORAENON_DEFAULT }}"/>
     </div>
+    {{= it.name }}
     {{?}}
 </script>
 
 <script type="text/x-ui-template" id="gallery-switch">
-    <div class="title hbox gallery">
-        <div class="icon category"></div>
-        {{= it.name }}
-        <div class="button-ctn">
-            <div class="button-management" data-title="{{= i18n.misc.MANGEMENT }}"></div>
-            <div class="button-management white" data-title="{{= i18n.misc.MANGEMENT }}"></div>
-        </div>
+    <div class="icon category"></div>
+    {{= it.name }}
+    <div class="button-ctn">
+        <div class="button-management" data-title="{{= i18n.misc.MANGEMENT }}"></div>
+        <div class="button-management white" data-title="{{= i18n.misc.MANGEMENT }}"></div>
     </div>
 </script>
 

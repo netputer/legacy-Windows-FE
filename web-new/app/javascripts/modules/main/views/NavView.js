@@ -74,7 +74,7 @@
         };
 
         var WelcomeItemView = Backbone.View.extend({
-            className : 'w-menu-doraemon w-sidebar-menu',
+            className : 'w-menu-doraemon w-sidebar-menu w-menu-welcome',
             tagName : 'menu',
             render : function () {
                 this.$el.html(MenuItemView.getInstance({
