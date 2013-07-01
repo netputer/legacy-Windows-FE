@@ -10,6 +10,7 @@
         <!-- build:js javascripts/SnapPeaLoader.js -->
         <script type="text/javascript">
         if (window.OneRingRequest === undefined) {
+            window.externalCall = function () {};
             window.OneRingRequest = function () {};
             window.OneRingStreaming = function () {};
         }

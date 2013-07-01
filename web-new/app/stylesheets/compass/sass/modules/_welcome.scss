@@ -216,19 +216,13 @@
     margin: 40px 20px;
     position: relative;
     -webkit-box-flex: 1;
-    .ctn {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
 
-        iframe {
-            height: 100%;
-            position: absolute;
-            width: 100%;
-            -webkit-transition: opacity .2s;
-        }
+    iframe {
+        display: block;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        -webkit-box-flex: 1;
     }
 }
 
@@ -321,6 +315,7 @@
     height: 495px;
     padding-top: 20px;
     width: 465px;
+    -webkit-transform: translate3d(100%, 0, 0);
 }
 
 @-webkit-keyframes fade-in-device {

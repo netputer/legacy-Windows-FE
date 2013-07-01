@@ -6,6 +6,7 @@
         'doT',
         'Configuration',
         'ui/TemplateFactory',
+        'IO',
         'guide/views/BindView',
         'guide/views/CloudBackupView',
         'guide/views/XibaibaiView'
@@ -15,6 +16,7 @@
         doT,
         CONFIG,
         TemplateFactory,
+        IO,
         BindView,
         CloudBackupView,
         XibaibaiView
@@ -43,7 +45,10 @@
                     .then(function () {
                         return this.regCardAsync(XibaibaiView.getInstance());
                     }.bind(this))
-                    .then(this.run.bind(this));
+                    .then(function () {
+                        IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY);
+                        this.run();
+                    }.bind(this));
 
                 return this;
             },
@@ -76,6 +81,8 @@
                                 setTimeout(this.showNextCard.bind(this));
                             }.bind(this));
                     }, this);
+                } else {
+                    IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH);
                 }
             },
             run : function () {

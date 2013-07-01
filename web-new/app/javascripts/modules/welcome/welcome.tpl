@@ -27,10 +27,8 @@
 </script>
 
 <script type="x-ui-template" id="billboard">
-    <div class="ctn">
-        <iframe id="wdj-iframe-billboard" class="w-layout-hidden" src="{{= it.url }}"></iframe>
-        {{= TemplateFactory.get('ui', 'loading') }}
-    </div>
+    <iframe id="wdj-iframe-billboard" src="{{= it.url }}"></iframe>
+    {{= TemplateFactory.get('ui', 'loading') }}
 </script>
 
 <script type="x-ui-template" id="device-tools">
