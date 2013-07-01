@@ -2,18 +2,12 @@
 (function (window, undefined) {
     define([
         'backbone',
-        'doT',
-        'jquery',
-        'underscore',
         'message/views/ImportAutoBackupView',
         'message/views/ImportSelectFileView',
         'message/views/ImportProgressView',
         'Internationalization'
     ], function (
         Backbone,
-        doT,
-        $,
-        _,
         ImportAutoBackupView,
         ImportSelectFileView,
         ImportProgressView,

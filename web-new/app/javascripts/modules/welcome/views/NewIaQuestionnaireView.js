@@ -5,8 +5,6 @@
         'backbone',
         'doT',
         'ui/TemplateFactory',
-        'Configuration',
-        'IO',
         'Internationalization',
         'Log',
         'Settings'
@@ -15,8 +13,6 @@
         Backbone,
         doT,
         TemplateFactory,
-        CONFIG,
-        IO,
         i18n,
         log,
         Settings

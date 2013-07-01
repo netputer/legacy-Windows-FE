@@ -10,7 +10,6 @@
         'ui/TemplateFactory',
         'ui/Panel',
         'ui/behavior/ButtonSetMixin',
-        'ui/MenuButton',
         'ui/SmartList',
         'ui/BaseListItem',
         'message/views/ContactSuggestionView',
@@ -29,7 +28,6 @@
         TemplateFactory,
         Panel,
         ButtonSetMixin,
-        MenuButton,
         SmartList,
         BaseListItem,
         ContactSuggestionView,
@@ -203,9 +201,6 @@
                 };
 
                 var removeItem = function (ids) {
-                    var i = 0;
-                    var length = ids.length;
-
                     _.each(ids, function (id) {
                         _.find(viewList, function (view, index) {
                             if (view.model.id === id) {
@@ -216,7 +211,7 @@
                     });
                 };
 
-                this.listenTo(this.contactList, 'select:change', function (selected) {
+                this.listenTo(this.contactList, 'select:change', function () {
                     var existed = _.map(viewList, function (item) {
                         return item.model.id;
                     });
@@ -304,7 +299,7 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function () {
                 return new BatchContactsSelectorView({
                     buttonSet : ButtonSetMixin.BUTTON_SET.YES_NO

@@ -15,16 +15,14 @@
         _,
         doT,
         $,
-        Configuration,
-        Internationalization,
-        UIHelper,
+        CONFIG,
+        i18n,
         Panel,
         TemplateFactory,
         StringUtil,
         formatString,
         iTunesData
     ) {
-        var localeText = Internationalization.music;
         var grid;
         var needCapacity;
 
@@ -34,17 +32,17 @@
                 AudioListView.__super__.initialize.call(this);
 
                 var buttons = [{
-                    $button : $('<button/>').html(Internationalization.common.PRE_STEP),
+                    $button : $('<button/>').html(i18n.common.PRE_STEP),
                     eventName : 'PRE_STEP'
                 }, {
-                    $button : $('<button/>').addClass('primary next-step').html(Internationalization.common.NEXT_STEP),
+                    $button : $('<button/>').addClass('primary next-step').html(i18n.common.NEXT_STEP),
                     eventName : 'NEXT_STEP'
                 }, {
-                    $button : $('<button/>').html(Internationalization.common.CANCEL),
+                    $button : $('<button/>').html(i18n.common.CANCEL),
                     eventName : 'CANCEL'
                 }];
 
-                this.title  = localeText.ITUNES_IMPORT;
+                this.title  = i18n.music.ITUNES_IMPORT;
                 this.width  = 600;
                 this.height = 410;
                 this.draggable = true;
@@ -64,7 +62,7 @@
                 this.on('NEXT_STEP', function () {
                     var data = {
                         iTunesIds  : _.pluck(grid.getCheckedData(), 'id'),
-                        sourceType : Configuration.enums.ITUNES_IMPORT_AUDIOS,
+                        sourceType : CONFIG.enums.ITUNES_IMPORT_AUDIOS,
                         capacity : needCapacity
                     };
 
@@ -94,7 +92,7 @@
 
                 grid = new wonder.ui.Grid({
                     colModel : [{
-                        colLabel : localeText.SING_NAME_TEXT,
+                        colLabel : i18n.music.SING_NAME_TEXT,
                         index : 'title',
                         name : 'title',
                         width : 160,
@@ -102,7 +100,7 @@
                         sortable : true,
                         sorttype : 'text'
                     }, {
-                        colLabel : localeText.ARTIST_TEXT,
+                        colLabel : i18n.music.ARTIST_TEXT,
                         index : 'artist',
                         name : 'artist',
                         width : 140,
@@ -110,13 +108,13 @@
                         sortable : true,
                         sorttype : 'text'
                     }, {
-                        colLabel : localeText.ALBUM_TEXT,
+                        colLabel : i18n.music.ALBUM_TEXT,
                         index : 'album',
                         name : 'album',
                         width : 150,
                         resizable : true
                     }, {
-                        colLabel : localeText.SING_SIZE_TEXT,
+                        colLabel : i18n.music.SING_SIZE_TEXT,
                         index : 'size',
                         name : 'size',
                         width : 70,
@@ -156,7 +154,7 @@
                     needCapacity += parseInt(item.size, 10);
                 });
 
-                var text = formatString(Internationalization.music.SELECT_AUDIOS_COUNT_TEXT,
+                var text = formatString(i18n.music.SELECT_AUDIOS_COUNT_TEXT,
                                         audiosCount,
                                         StringUtil.readableSize(needCapacity)
                                         );

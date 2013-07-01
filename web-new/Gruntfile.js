@@ -132,17 +132,19 @@ module.exports = function (grunt) {
                 sloppy : true,
                 vars : true,
                 nomen : true,
-                devel : true
-                // browser: true,
+                devel : true,
+                browser : true,
+                indent : 4,
                 // unparam: true,
-                // todo: true,
-                // predef: [ // array of pre-defined globals
-                //   'jQuery'
-                // ]
+                plusplus : true,
+                todo: true,
+                predef: [ // array of pre-defined globals
+                  'define'
+                ]
             },
             options : {
                 // junit : 'out/junit.xml', // write the output to a JUnit XML
-                // log : 'out/lint.log',
+                log : 'lint.log',
                 // jslintXml : 'out/jslint_xml.xml',
                 // errorsOnly : true, // only display errors
                 // failOnError : false, // defaults to true

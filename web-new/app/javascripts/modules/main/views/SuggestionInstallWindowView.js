@@ -6,13 +6,9 @@
         'ui/Panel',
         'ui/EventsMapping',
         'Environment',
-        'Settings',
-        'Configuration',
-        'IO',
         'Log',
         'Device',
         'Internationalization',
-        'utilities/QueryString',
         'app/collections/AppsCollection'
     ], function (
         $,
@@ -20,13 +16,9 @@
         Panel,
         EventsMapping,
         Environment,
-        Settings,
-        CONFIG,
-        IO,
         log,
         Device,
         i18n,
-        QueryString,
         AppsCollection
     ) {
         console.log('SuggestionInstallWindowView - File loaded. ');

@@ -1,13 +1,10 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window, undefined) {
     define([
         'backbone',
         'underscore',
-        'doT',
         'jquery',
         'utilities/QueryString',
-        'ui/TemplateFactory',
-        'Log',
         'Internationalization',
         'Environment',
         'Configuration',
@@ -20,11 +17,8 @@
     ], function (
         Backbone,
         _,
-        doT,
         $,
         QueryString,
-        TemplateFactory,
-        Log,
         i18n,
         Environment,
         CONFIG,
@@ -37,7 +31,6 @@
     ) {
         console.log('NavView - File loaded.');
 
-        var setInterval = window.setInterval;
         var setTimeout = window.setTimeout;
 
         var pimMenuView;
@@ -198,4 +191,4 @@
 
         return factory;
     });
-}(this, this.document));
+}(this));

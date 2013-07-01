@@ -97,6 +97,4 @@ require.config({
 
 require([
     'guide/views/GuideView'
-], function (
-    GuideView
-) {});
+]);

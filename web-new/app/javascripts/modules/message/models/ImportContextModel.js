@@ -1,15 +1,9 @@
-/*global console, define*/
+/*global define*/
 (function (window, undefined) {
     define([
-        'backbone',
-        'doT',
-        'jquery',
-        'underscore'
+        'backbone'
     ], function (
-        Backbone,
-        doT,
-        $,
-        _
+        Backbone
     ) {
 
         console.log('Message ImportContextModel - File Loaded');
@@ -21,6 +15,7 @@
         });
 
         var importContextModel = new ImportContextModel();
+
         return importContextModel;
     });
 }(this));

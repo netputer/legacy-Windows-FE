@@ -3,7 +3,7 @@
     define([
         'IO',
         'jquery',
-        'Configurarion'
+        'Configuration'
     ], function (
         IO,
         $,
