@@ -115,7 +115,6 @@
 
         var MainView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('misc', 'main')),
-            className : 'w-main',
             initialize : function () {
                 var modules = {};
                 var currentModule;
@@ -166,9 +165,11 @@
                 IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.WEB_FORCE_NAVIGATE
                 }, navigateHandler, this);
+
+                this.$el = $('body');
             },
             render : function () {
-                this.$el.html(this.template({}));
+                $('body').append(this.template({}));
 
                 var fragment = document.createDocumentFragment();
                 fragment.appendChild(NavView.getInstance().render().$el[0]);
