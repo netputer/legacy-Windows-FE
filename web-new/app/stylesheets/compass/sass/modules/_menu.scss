@@ -87,25 +87,25 @@
 
         @each $icon in contact, sms, app, music, photo, video, optimize, wash {
             .icon.#{$icon} {
-                @include sprite-sprite(nav-#{$icon});
+                @include nav-sprite(nav-#{$icon});
             }
 
             &:not(.selected):hover {
                 .icon.#{$icon} {
-                    @include sprite-sprite(nav-#{$icon}-hover);
+                    @include nav-sprite(nav-#{$icon}-hover);
                 }
             }
 
             &.selected {
                 .icon.#{$icon} {
-                    @include sprite-sprite(nav-#{$icon}-active);
+                    @include nav-sprite(nav-#{$icon}-active);
                 }
             }
         }
 
         .icon {
             &.welcome{
-                @include sprite-sprite(home);
+                @include nav-sprite(nav-home);
             }
         }
     }

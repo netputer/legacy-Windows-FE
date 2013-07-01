@@ -14,7 +14,7 @@
 
         @each $icon in dor-18, dor-223, dor-235, dor-258, dor-255 , dor-256, dor-254 {
             & .#{$icon} {
-                @include sprite-sprite(#{$icon});
+                @include nav-sprite(#{$icon});
             }
         }
 
@@ -23,13 +23,13 @@
             position: relative;
 
             .button-management {
-                @include sprite-sprite(manage);
+                @include nav-sprite(manage);
                     height: 16px;
                     opacity: .5;
                     width: 16px;
 
                 &.white {
-                    @include sprite-sprite(manage-white);
+                    @include nav-sprite(manage-white);
                     display: none;
                 }
 
@@ -59,7 +59,6 @@
             width: 30px;
 
             .img {
-                @include sprite-sprite(dor-default);
                 border-radius: 3px;
                 height: 30px;
                 width: 30px;
@@ -68,7 +67,7 @@
 
         &.gallery {
             .icon {
-                @include sprite-sprite(gallery);
+                @include nav-sprite(nav-gallery);
             }
         }
     }

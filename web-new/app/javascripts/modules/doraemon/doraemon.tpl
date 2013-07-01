@@ -1,15 +1,13 @@
 <templates>
 <script type="text/x-ui-template" id="menu-item">
     {{? it.inWhiteList }}
-    <div class="icon category dor-{{= it.id }}">
-    </div>
-    {{= it.name }}
+    <div class="icon category dor-{{= it.id }}"></div>
     {{??}}
     <div class="icon category">
         <img class="img" src="{{= CONFIG.enums.DORAENON_DEFAULT }}"/>
     </div>
-    {{= it.name }}
     {{?}}
+    {{= it.name }}
 </script>
 
 <script type="text/x-ui-template" id="gallery-switch">

@@ -73,20 +73,22 @@
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
 
-                var $icon = $(new window.Image());
+                if (!this.model.get('inWhiteList')) {
+                    var $icon = $(new window.Image());
 
-                var loadHandler = function () {
-                    this.$('.icon img').attr('src', this.model.get('icon'));
-                    $icon.remove();
-                }.bind(this);
+                    var loadHandler = function () {
+                        this.$('.icon img').attr('src', this.model.get('icon'));
+                        $icon.remove();
+                    }.bind(this);
 
-                var errorHandler = function () {
-                    $icon.remove();
-                };
+                    var errorHandler = function () {
+                        $icon.remove();
+                    };
 
-                $icon.one('load', loadHandler)
-                    .one('error', errorHandler)
-                    .attr('src', this.model.get('icon'));
+                    $icon.one('load', loadHandler)
+                        .one('error', errorHandler)
+                        .attr('src', this.model.get('icon'));
+                }
 
                 return this;
             },

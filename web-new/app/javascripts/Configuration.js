@@ -527,7 +527,7 @@
                 IMAGE_SPACER : 'images/spacer-20X20.png',
 
                 /* Doraemon icon */
-                DORAENON_DEFAULT : 'images/default.png',
+                DORAENON_DEFAULT : 'images/dor-default-30X30.png',
 
                 /* Model type */
                 MODEL_TYPE_APPLICATION : 'app',
