@@ -4,12 +4,15 @@
         'backbone',
         'underscore',
         'jquery',
+        'doT',
+        'ui/TemplateFactory',
         'utilities/QueryString',
         'Internationalization',
         'Environment',
         'Configuration',
         'WindowController',
         'main/views/PIMMenuView',
+        'main/views/MenuItemView',
         'main/collections/PIMCollection',
         'doraemon/views/DoraemonMenuView',
         'doraemon/collections/ExtensionsCollection',
@@ -18,12 +21,15 @@
         Backbone,
         _,
         $,
+        doT,
+        TemplateFactory,
         QueryString,
         i18n,
         Environment,
         CONFIG,
         WindowController,
         PIMMenuView,
+        MenuItemView,
         PIMCollection,
         DoraemonMenuView,
         ExtensionsCollection,
@@ -67,6 +73,17 @@
             }.bind(this), 0);
         };
 
+        var WelcomeItemView = Backbone.View.extend({
+            className : 'w-menu-doraemon w-sidebar-menu',
+            tagName : 'menu',
+            render : function () {
+                this.$el.html(MenuItemView.getInstance({
+                    model : pimCollection.get(0)
+                }).render().$el);
+                return this;
+            }
+        });
+
         var NavView = Backbone.View.extend({
             className : 'w-menu',
             initialize : function () {
@@ -85,11 +102,6 @@
                     WindowController.navigationState();
                 }, this);
 
-                doraemonMenuView.on('welcomeItemSelected', function () {
-                    extensionsCollection.deselectAll();
-                    pimCollection.deselectAll();
-                });
-
                 pimCollection.on('itemSelected', function () {
                     extensionsCollection.deselectAll();
                 });
@@ -103,9 +115,11 @@
                 this.$el.on('scroll', _.throttle(toggleShadow.bind(this), 50));
             },
             render : function () {
+                this.$el.append(new WelcomeItemView({
 
-                this.$el.prepend(pimMenuView.render().$el);
-                this.$el.prepend(doraemonMenuView.render().$el);
+                }).render().$el);
+                this.$el.append(doraemonMenuView.render().$el);
+                this.$el.append(pimMenuView.render().$el);
 
                 setTimeout(function () {
                     var jumpToDefaultExtension = function (id) {
@@ -152,14 +166,18 @@
 
                     if (!redirectExtId) {
                         if (Environment.get('deviceId') === 'Default') {
-                            doraemonMenuView.selectWelcome();
+                            pimCollection.get(0).set({
+                                selected : true
+                            });
                         } else {
                             if (defaultModule !== undefined && pimCollection.get(defaultModule)) {
                                 pimCollection.get(defaultModule).set({
                                     selected : true
                                 });
                             } else {
-                                doraemonMenuView.selectWelcome();
+                                pimCollection.get(0).set({
+                                    selected : true
+                                });
                             }
                         }
                     } else {
@@ -174,7 +192,6 @@
             deselectAll : function () {
                 pimCollection.deselectAll();
                 extensionsCollection.deselectAll();
-                doraemonMenuView.deselectWelcome();
             }
         });
 

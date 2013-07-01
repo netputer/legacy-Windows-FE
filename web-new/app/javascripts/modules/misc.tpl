@@ -12,10 +12,6 @@
     <div class="module-ctn"></div>
 </script>
 
-<script type="text/x-ui-template" id="pim-menu">
-    <menu class="w-sidebar-menu"></menu>
-</script>
-
 <script type="text/x-ui-template" id="menu-item">
     <div class="title hbox">
         <div class="icon {{= it.icon }}"></div>

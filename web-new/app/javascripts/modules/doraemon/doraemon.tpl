@@ -1,15 +1,4 @@
 <templates>
-<script type="text/x-ui-template" id="menu">
-    <menu class="w-sidebar-menu"></menu>
-</script>
-
-<script type="text/x-ui-template" id="welcome-item">
-    <div class='title hbox'>
-        <div class="icon category welcome" data-title="welcome"></div>
-        {{= i18n.misc.NAV_WELCOME_TO_WDJ }}
-    </div>
-</script>
-
 <script type="text/x-ui-template" id="menu-item">
     {{? it.inWhiteList }}
     <div class="title hbox">

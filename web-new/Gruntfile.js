@@ -16,15 +16,15 @@ module.exports = function (grunt) {
         yeoman : yeomanConfig,
         watch : {
             compass : {
-                files : ['<%= yeoman.app %>/stylesheets/compass/{,*/}*.{scss,sass,png}'],
+                files : ['<%= yeoman.app %>/stylesheets/compass/{,*/}*/{,*/}*.{scss,sass,png}'],
                 tasks : ['compass']
             },
             livereload: {
                 files: [
                     '<%= yeoman.app %>/*.html',
-                    '<%= yeoman.app %>/stylesheets/{,*/}*.css',
-                    '<%= yeoman.app %>/javascripts/{,*/}*.js',
-                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
+                    '<%= yeoman.app %>/stylesheets/{,*/}*/{,*/}*.css',
+                    '<%= yeoman.app %>/javascripts/{,*/}*/{,*/}*.js',
+                    '<%= yeoman.app %>/images/{,*/}*/{,*/}*.{png,jpg,jpeg,gif,webp}'
                 ],
                 options : {
                     livereload : LIVERELOAD_PORT
