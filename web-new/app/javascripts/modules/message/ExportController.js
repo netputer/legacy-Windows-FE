@@ -2,17 +2,11 @@
 (function (window, undefined) {
     define([
         'backbone',
-        'doT',
-        'jquery',
-        'underscore',
         'message/views/ExportSelectView',
         'message/views/ExportProgressView',
         'Internationalization'
     ], function (
         Backbone,
-        doT,
-        $,
-        _,
         ExportSelectView,
         ExportProgressView,
         i18n

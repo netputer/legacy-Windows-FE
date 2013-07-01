@@ -15,10 +15,8 @@
         'Device',
         'Environment',
         'main/views/NavView',
-        'main/collections/PIMCollection',
         'task/views/TaskMonitorView',
         'backuprestore/BackupController',
-        'doraemon/views/GallerySwitchView',
         'main/views/FastUSBNotificationView'
     ], function (
         Backbone,
@@ -33,10 +31,8 @@
         Device,
         Environment,
         NavView,
-        PIMCollection,
         TaskMonitorView,
         BackupController,
-        GallerySwitchView,
         FastUSBNotificationView
     ) {
         console.log('Wandoujia 2.0 launched.');

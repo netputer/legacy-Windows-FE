@@ -18,7 +18,6 @@
         var setImmediate = function (callback) {
             return setTimeout(callback, 0);
         };
-        var clearImmediate = clearTimeout;
 
         /* BackendSocket provides an API similar to WebSocket API */
         /* IO.Backend has an instance of `BackendSocket('wdjs://window/events')` */

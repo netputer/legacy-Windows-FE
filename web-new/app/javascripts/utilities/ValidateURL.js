@@ -2,7 +2,7 @@
 /**
  * @author wangye.zhao@wandoujia.com
  */
-(function (window, undefined) {
+(function (window) {
     define([], function () {
         var URL_PATTREN = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 

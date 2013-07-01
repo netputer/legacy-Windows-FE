@@ -39,7 +39,7 @@
                 });
 
                 // Events binding
-                this.on('remove', function (model) {
+                this.on('remove', function () {
                     if (this.length === 0) {
                         this.trigger('empty');
                     }
@@ -47,7 +47,7 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function (args) {
                 return new MessageCollection(args);
             }

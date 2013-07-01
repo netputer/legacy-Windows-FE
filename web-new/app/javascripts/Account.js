@@ -6,13 +6,11 @@
 (function (window, undefined) {
     define([
         'backbone',
-        'underscore',
         'jquery',
         'IOBackendDevice',
         'Configuration'
     ], function (
         Backbone,
-        _,
         $,
         IO,
         CONFIG
@@ -101,7 +99,7 @@
 
                 return deferred.promise();
             },
-            shareAsync : function (shareData, successCallback, errorCallback) {
+            shareAsync : function (shareData) {
                 var deferred = $.Deferred();
 
                 IO.requestAsync({
@@ -109,10 +107,8 @@
                     data : shareData,
                     success : function (resp) {
                         if (resp.state_code === 200) {
-                            successCallback && successCallback.call(this, resp.body);
                             deferred.resolve(resp);
                         } else {
-                            errorCallback && errorCallback.call(this, resp.body);
                             deferred.reject(resp);
                         }
                     }

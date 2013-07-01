@@ -14,7 +14,6 @@
         'ui/PopupTip',
         'Device',
         'Environment',
-        'FunctionSwitch',
         'Internationalization',
         'IframeMessageWorker',
         'IOBackendDevice',
@@ -31,7 +30,6 @@
         PopupTip,
         Device,
         Environment,
-        FunctionSwitch,
         i18n,
         IframeMessageWorker,
         IO,
@@ -397,10 +395,10 @@
             clickButtonClose : function () {
                 this.close();
             },
-            clickButtonPlay : function (evt) {
+            clickButtonPlay : function () {
                 this.play();
             },
-            clickButtonPause : function (evt) {
+            clickButtonPause : function () {
                 this.stopPlaying();
             },
             clickButtonPrevious : function () {
@@ -478,7 +476,6 @@
                 }.bind(this));
             },
             clickButtonShare : function () {
-                var isPlaying = playing;
                 this.stopPlaying();
 
                 this.sharePic(CONFIG.enums.SOCIAL_PHOTO);

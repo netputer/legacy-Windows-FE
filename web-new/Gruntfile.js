@@ -123,6 +123,34 @@ module.exports = function (grunt) {
                     urls: ['http://192.168.100.31:8090/web-new/test/index.html']
                 }
             }
+        },
+        jslint : {
+            files : [
+                'app/javascripts/**/*.js'
+            ],
+            directives : {
+                sloppy : true,
+                vars : true,
+                nomen : true,
+                devel : true,
+                browser : true,
+                indent : 4,
+                // unparam: true,
+                plusplus : true,
+                todo: true,
+                predef: [ // array of pre-defined globals
+                  'define'
+                ]
+            },
+            options : {
+                // junit : 'out/junit.xml', // write the output to a JUnit XML
+                log : 'lint.log',
+                // jslintXml : 'out/jslint_xml.xml',
+                // errorsOnly : true, // only display errors
+                // failOnError : false, // defaults to true
+                // shebang : true, // ignore shebang lines
+                // checkstyle : 'out/checkstyle.xml' // write a checkstyle-XML
+            }
         }
     });
 

@@ -27,7 +27,7 @@
         var WindowState = _.extend({}, Backbone.Events);
 
         // A global delegate host window state
-        $window.on('resize', _.throttle(function (evt) {
+        $window.on('resize', _.throttle(function () {
             width = $window.width();
             height = $window.height();
             scrollLeft = $window.scrollLeft();

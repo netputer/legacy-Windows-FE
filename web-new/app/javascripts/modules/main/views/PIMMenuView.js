@@ -1,16 +1,13 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window, undefined) {
     define([
         'backbone',
         'underscore',
         'doT',
-        'jquery',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'ui/PopupTip',
         'Log',
-        'IO',
-        'Configuration',
         'FunctionSwitch',
         'Internationalization',
         'main/collections/PIMCollection',
@@ -19,21 +16,16 @@
         Backbone,
         _,
         doT,
-        $,
         TemplateFactory,
         StringUtil,
         PopupTip,
         log,
-        IO,
-        CONFIG,
         FunctionSwitch,
         i18n,
         PIMCollection,
         AppsCollection
     ) {
         console.log('PIMMenuView - File loaded.');
-
-        var setTimeout = window.setTimeout;
 
         var pimCollection = PIMCollection.getInstance();
 
@@ -122,9 +114,10 @@
                     $host : this.$('[data-title]')
                 });
 
+
                 return this;
             },
-            clickRootItem : function (evt) {
+            clickRootItem : function () {
                 if (!this.model.get('selected')) {
                     this.model.set({
                         selected : true
@@ -195,6 +188,6 @@
         });
 
         return factory;
-        
+
     });
-}(this, this.document));
+}(this));

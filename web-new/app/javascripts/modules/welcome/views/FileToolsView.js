@@ -72,7 +72,7 @@
 
                 IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.AUTO_BACKUP_START
-                }, function (message) {
+                }, function () {
                     // ignore the message if it's not an offline device
                     // the "Device.isAutoBackup" is not trustable at this time
                     Device.isDeviceAutoBackupAsync().done(function (resp) {
@@ -87,7 +87,7 @@
 
                 IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.AUTO_BACKUP_COMPLETE
-                }, function (message) {
+                }, function () {
                     Device.isDeviceAutoBackupAsync().done(function (resp) {
                         console.log('FileToolsView - Auto-backup finish. ');
                         var is_auto_backup = JSON.parse(resp.body.value);

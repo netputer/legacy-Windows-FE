@@ -1,10 +1,19 @@
-(function(window, undefined) {
-    define(['IO'], function(IO) {
+/*global define*/
+(function (window, undefined) {
+    define([
+        'IO',
+        'jquery',
+        'Configuration'
+    ], function (
+        IO,
+        $,
+        CONFIG
+    ) {
         console.log('OptimizeService - File loaded.');
 
         var OptimizeService = {};
 
-        OptimizeService.scanAsync = function(session) {
+        OptimizeService.scanAsync = function (session) {
             var deferred = $.Deferred();
 
             IO.requestAsync({
@@ -12,25 +21,25 @@
                 data : {
                     session : session || ''
                 },
-                success : function(resp) {
-                    if(resp.state_code === 200) {
+                success : function (resp) {
+                    if (resp.state_code === 200) {
                         deferred.resolve(resp);
                     } else {
                         deferred.reject(resp);
                     }
                 }
             });
-            
+
             return deferred.promise();
         };
 
-        OptimizeService.checkAsync = function() {
+        OptimizeService.checkAsync = function () {
             var deferred = $.Deferred();
 
             IO.requestAsync({
                 url : CONFIG.actions.OPTIMIZE_CHECK,
-                success : function(resp) {
-                    if(resp.state_code === 200) {
+                success : function (resp) {
+                    if (resp.state_code === 200) {
                         deferred.resolve(resp);
                     } else {
                         deferred.reject(resp);
@@ -41,13 +50,13 @@
             return deferred.promise();
         };
 
-        OptimizeService.installAsync = function() {
+        OptimizeService.installAsync = function () {
             var deferred = $.Deferred();
 
             IO.requestAsync({
                 url : CONFIG.actions.OPTIMIZE_INSTALL,
-                success : function(resp) {
-                    if(resp.state_code === 200) {
+                success : function (resp) {
+                    if (resp.state_code === 200) {
                         deferred.resolve(resp);
                     } else {
                         deferred.reject(resp);
@@ -58,13 +67,13 @@
             return deferred.promise();
         };
 
-        OptimizeService.optimizeCacheAsync = function() {
+        OptimizeService.optimizeCacheAsync = function () {
             var deferred = $.Deferred();
 
             IO.requestAsync({
                 url : CONFIG.actions.OPTIMIZE_CACHE,
-                success : function(resp) {
-                    if(resp.state_code === 200) {
+                success : function (resp) {
+                    if (resp.state_code === 200) {
                         deferred.resolve(resp);
                     } else {
                         deferred.reject(resp);
@@ -75,7 +84,7 @@
             return deferred.promise();
         };
 
-        OptimizeService.optimizeRamAsync = function(packageNames) {
+        OptimizeService.optimizeRamAsync = function (packageNames) {
             var deferred = $.Deferred();
 
             IO.requestAsync({
@@ -83,8 +92,8 @@
                 data : {
                     tasks : packageNames.join(',')
                 },
-                success : function(resp) {
-                    if(resp.state_code === 200) {
+                success : function (resp) {
+                    if (resp.state_code === 200) {
                         deferred.resolve(resp);
                     } else {
                         deferred.reject(resp);
@@ -95,13 +104,13 @@
             return deferred.promise();
         };
 
-        OptimizeService.cancelAsync = function() {
+        OptimizeService.cancelAsync = function () {
             var deferred = $.Deferred();
 
             IO.requestAsync({
                 url : CONFIG.actions.OPTIMIZE_CANCEL,
-                success : function(resp) {
-                    if(resp.state_code === 200) {
+                success : function (resp) {
+                    if (resp.state_code === 200) {
                         deferred.resolve(resp);
                     } else {
                         deferred.reject(resp);
@@ -124,4 +133,4 @@
 
         return OptimizeService;
     });
-})(this);
+}(this));
