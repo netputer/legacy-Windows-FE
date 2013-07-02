@@ -43,7 +43,7 @@
 
         var BillboardView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('welcome', 'billboard')),
-            className : 'w-welcome-billboard',
+            className : 'w-welcome-billboard hbox',
             initialize : function () {
                 var loading = false;
                 Object.defineProperties(this, {

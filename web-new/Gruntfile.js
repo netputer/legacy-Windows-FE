@@ -45,7 +45,23 @@ module.exports = function (grunt) {
                     useStrict : false,
                     wrap : true
                 }
+            },
+            source : {
+                options : {
+                    appDir : '<%= yeoman.app %>/javascripts',
+                    dir :　'<%= yeoman.dist %>/javascripts',
+                    optimize : 'uglify',
+                    uglify : {
+                        toplevel : true,
+                        ascii_only : false,
+                        beautify : false
+                    },
+                    preserveLicenseComments : true,
+                    useStrict : false,
+                    wrap : true
+                }
             }
+
         },
         compass : {
             options : {
@@ -112,7 +128,13 @@ module.exports = function (grunt) {
                     src : [
                         'images/{,*/}*.{webp,gif,png,jpg,jpeg}',
                         'stylesheets/{,*/}*.{css,ttf}',
-                        'javascripts/{,*/}*/{,*/}*.{js,coffee}'
+                        'javascripts/{,*/}*/{,*/}*.{js,coffee}',
+                        'bower_components/requirejs-text/text.js',
+                        'bower_components/jquery/jquery.js',
+                        'bower_components/dot/doT.js',
+                        'bower_components/underscore/underscore.js',
+                        'bower_components/backbone/backbone.js',
+                        'bower_components/requirejs-i18n/i18n.js'
                     ]
                 }]
             }
@@ -164,13 +186,14 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'compass:dist',
+        'requirejs:source',
         'useminPrepare',
         'imagemin',
         'copy',
         'htmlmin',
         'concat',
         'uglify',
-        'requirejs',
+        'requirejs:dist',
         'usemin'
     ]);
 

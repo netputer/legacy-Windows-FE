@@ -8,7 +8,41 @@
  * Menus
  ********************************************************************************/
 .w-sidebar-menu.w-menu-doraemon {
-    .root {
+    .title {
+        font-size: 13px;
+        height: 40px;
+
+        @each $icon in dor-18, dor-223, dor-235, dor-258, dor-255 , dor-256, dor-254 {
+            & .#{$icon} {
+                @include nav-sprite(#{$icon});
+            }
+        }
+
+        .button-ctn {
+            left: 53px;
+            position: relative;
+
+            .button-management {
+                @include nav-sprite(manage);
+                    height: 16px;
+                    opacity: .5;
+                    width: 16px;
+
+                &.white {
+                    @include nav-sprite(manage-white);
+                    display: none;
+                }
+
+                &:hover {
+                    opacity: .7;
+                }
+
+                &:active {
+                    opacity: .85;
+                }
+            }
+        }
+
         &.highlight-anima {
             background-color: #f1de93;
             color: $textHighlight;
@@ -25,52 +59,15 @@
             width: 30px;
 
             .img {
-                @include sprite-sprite(dor-default);
                 border-radius: 3px;
                 height: 30px;
                 width: 30px;
             }
         }
 
-        .title {
-            font-size: 13px;
-            height: 40px;
-
-            @each $icon in dor-18, dor-223, dor-235, dor-258, dor-255 , dor-256, dor-254 {
-                & .#{$icon} {
-                    @include sprite-sprite(#{$icon});
-                }
-            }
-
-            .button-ctn {
-                left: 53px;
-                position: relative;
-
-                .button-management {
-                    @include sprite-sprite(manage);
-                        height: 16px;
-                        opacity: .5;
-                        width: 16px;
-
-                    &.white {
-                        @include sprite-sprite(manage-white);
-                        display: none;
-                    }
-
-                    &:hover {
-                        opacity: .7;
-                    }
-
-                    &:active {
-                        opacity: .85;
-                    }
-                }
-            }
-        }
-
-        .gallery {
+        &.gallery {
             .icon {
-                @include sprite-sprite(gallery);
+                @include nav-sprite(nav-gallery);
             }
         }
     }

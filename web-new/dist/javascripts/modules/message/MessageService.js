@@ -1,9 +1,11 @@
-/*global define, $, _, Backbone*/
+/*global define*/
 (function (window, undefined) {
     define([
+        'jquery',
+        'underscore',
+        'backbone',
         'IOBackendDevice',
         'Configuration',
-        'Environment',
         'Internationalization',
         'utilities/StringUtil',
         'ui/AlertWindow',
@@ -12,9 +14,11 @@
         'message/collections/ThreadsCollection',
         'message/collections/Threads4ContactCollection'
     ], function (
+        $,
+        _,
+        Backbone,
         IO,
         CONFIG,
-        Environment,
         i18n,
         StringUtil,
         AlertWindow,
@@ -29,7 +33,7 @@
 
         var conversationsCollection;
 
-        var MessageService = _.extend(function () {}, Backbone.Events);
+        var MessageService = _.extend({}, Backbone.Events);
 
         MessageService.getServiceCenterAsync = function () {
             var deferred = $.Deferred();

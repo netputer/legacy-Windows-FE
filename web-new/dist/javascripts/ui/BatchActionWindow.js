@@ -2,12 +2,9 @@
 (function (window, undefined) {
     define([
         'doT',
-        'underscore',
         'jquery',
         'ui/UIHelper',
         'ui/AlertWindow',
-        'ui/behavior/ButtonSetMixin',
-        'ui/behavior/AutoCloseMixin',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'Internationalization',
@@ -15,12 +12,9 @@
         'WindowController'
     ], function (
         doT,
-        _,
         $,
         UIHelper,
         AlertWindow,
-        ButtonSetMixin,
-        AutoCloseMixin,
         TemplateFactory,
         StringUtil,
         i18n,

@@ -400,6 +400,8 @@
                 DOWNLOAD_PHOTO_COMPLETE : 'sync.photo.updated',
 
                 CUSTOM_WELCOME_BILLBOARD_NAVIGATE : 'billborad.navigate',
+                CUSTOM_WELCOME_USER_GUIDE_READY : 'welcome.guide.ready',
+                CUSTOM_WELCOME_USER_GUIDE_FINISH : 'welcome.guide.finish',
                 CUSTOM_GALLERY_STAR : 'gallery.star',
                 CUSTOM_GALLERY_UNSTAR : 'gallery.unstar',
                 CUSTOM_IFRAME_ALERT : 'iframe.alert',
@@ -525,7 +527,7 @@
                 IMAGE_SPACER : 'images/spacer-20X20.png',
 
                 /* Doraemon icon */
-                DORAENON_DEFAULT : 'images/default.png',
+                DORAENON_DEFAULT : 'images/dor-default-30X30.png',
 
                 /* Model type */
                 MODEL_TYPE_APPLICATION : 'app',

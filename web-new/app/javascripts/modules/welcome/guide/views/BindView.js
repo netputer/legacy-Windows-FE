@@ -39,31 +39,20 @@
                 var deferred = $.Deferred();
 
                 var check = function (Device) {
-                    if (Device.get('isConnected')) {
-                        IO.requestAsync(CONFIG.actions.WINDOW_DEVICE_NEED_BIND).done(function (resp) {
-                            if (resp.body.value) {
-                                deferred.resolve(resp);
-                            } else {
-                                deferred.reject(resp);
-                            }
-                        }.bind(this)).fail(deferred.reject);
-                    }
-                };
-
-                var checkAndOff = function () {
-                    Device.off('change', check);
-                    check.call(this, Device);
+                    IO.requestAsync(CONFIG.actions.WINDOW_DEVICE_NEED_BIND).done(function (resp) {
+                        if (resp.body.value) {
+                            deferred.resolve(resp);
+                        } else {
+                            deferred.reject(resp);
+                        }
+                    }.bind(this)).fail(deferred.reject);
                 };
 
                 if (Device.get('isConnected')) {
                     check.call(this, Device);
                 } else {
-                    Device.on('change:isConnected', checkAndOff, this);
+                    this.listenToOnce(Device, 'change:isConnected', check);
                 }
-
-                setTimeout(function () {
-                    deferred.resolve();
-                });
 
                 return deferred.promise();
             },

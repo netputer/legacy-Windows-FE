@@ -147,7 +147,8 @@
 
         var mainView = MainView.getInstance();
         mainView.regModule('welcome', WelcomeModuleView);
-        $('body').append(mainView.render().$el);
+
+        mainView.render();
 
         mainView.regModule('doraemon', DoraemonModuleView);
         mainView.regModule('browser', BrowserModuleView);

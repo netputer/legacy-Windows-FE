@@ -1,18 +1,18 @@
-/*global define, _, $*/
+/*global define*/
 (function (window, undefined) {
     define([
+        'underscore',
         'ui/Menu',
         'ui/behavior/ClickToHideMixin',
-        'ui/AlertWindow',
         'Internationalization',
         'Device',
         'Log',
         'music/collections/MusicsCollection',
         'music/MusicService'
     ], function (
+        _,
         Menu,
         ClickToHideMixin,
-        AlertWindow,
         i18n,
         Device,
         log,
@@ -21,14 +21,12 @@
     ) {
         console.log('MusicContextMenu - File loaded. ');
 
-        var musicsCollection;
+
 
         var MusicContextMenu = Menu.extend({
             initialize : function () {
                 MusicContextMenu.__super__.initialize.apply(this, arguments);
                 ClickToHideMixin.mixin(this);
-
-                musicsCollection = MusicsCollection.getInstance();
 
                 this.addItems();
 

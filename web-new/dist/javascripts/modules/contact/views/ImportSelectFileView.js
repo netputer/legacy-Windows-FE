@@ -1,4 +1,4 @@
-/*global define, console*/
+/*global define*/
 (function (window, undefined) {
     define([
         'backbone',

@@ -27,7 +27,7 @@
 
         var GallerySwitchView = Backbone.View.extend({
             tagName : 'li',
-            className : 'root',
+            className : 'title hbox gallery',
             template : doT.template(TemplateFactory.get('doraemon', 'gallery-switch')),
             initialize : function () {
                 Backbone.on('switchModule', function (data) {

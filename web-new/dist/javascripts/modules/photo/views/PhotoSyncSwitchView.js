@@ -10,11 +10,8 @@
         'Internationalization',
         'Configuration',
         'Log',
-        'Device',
         'IframeMessageWorker',
-        'ui/Panel',
         'ui/TemplateFactory',
-        'utilities/StringUtil',
         'sync/SyncService',
         'backuprestore/BackupRestoreService'
     ], function (
@@ -27,11 +24,8 @@
         i18n,
         CONFIG,
         log,
-        Device,
         IframeMessageWorker,
-        Panel,
         TemplateFactory,
-        StringUtil,
         SyncService,
         BackupRestoreService
     ) {
@@ -113,7 +107,7 @@
             },
             closePhotoSync : function () {
                 BackupRestoreService.stopRemoteSyncAsync();
-                SyncService.setPhotoSyncSwitchAsync(false).done(function (resp) {
+                SyncService.setPhotoSyncSwitchAsync(false).done(function () {
                     this.switchState('off');
                 }.bind(this));
 
@@ -167,7 +161,7 @@
             listenSyncPhoto : function () {
                 var handler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.SYNC_PHOTO_COMPLETE
-                }, function (message) {
+                }, function () {
                     SyncService.getIsPhotoSyncOnAsync().done(function (resp) {
                         if (resp.body.value) {
                             this.switchState('done');
