@@ -11,6 +11,7 @@
         'Internationalization',
         'Log',
         'main/collections/PIMCollection',
+        'main/MainRouter',
         'app/collections/AppsCollection'
     ], function (
         doT,
@@ -23,6 +24,7 @@
         i18n,
         log,
         PIMCollection,
+        MainRouter,
         AppsCollection
     ) {
         console.log('MenuItemView - File loaded. ');
@@ -74,6 +76,8 @@
                             module : model.get('module'),
                             tab : tab
                         });
+
+                        MainRouter.navigate('main/' + model.get('module') + '/' + tab);
                     }
                 }, this);
 

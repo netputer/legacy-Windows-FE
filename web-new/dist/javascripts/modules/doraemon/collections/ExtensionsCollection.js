@@ -171,14 +171,6 @@
                     }
                     this.trigger('itemUpdate');
                 }, this);
-
-                this.on('add', function (extension) {
-                    extension.on('change:cateid', extension.setCategory, extension);
-
-                    extension.once('remove', function () {
-                        this.off();
-                    }, extension);
-                });
             },
             getNormalPlugins : function () {
                 return this.filter(function (extension) {
