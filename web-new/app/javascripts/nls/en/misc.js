@@ -152,14 +152,5 @@ define({
     REVIEW_FOR_UNINSTALL_OTHER : 'It just doesn\'t work',
 
     NOTIFY_SETTING : 'Desktop notifcations',
-    DONT_SHOW_AGAIN : 'Don\'t show again',
-
-    EXT_CATE_APP : 'App',
-    EXT_CATE_GAME : 'Game',
-    EXT_CATE_MUSIC : 'Music',
-    EXT_CATE_VIDEO : 'Video',
-    EXT_CATE_BOOK : 'E-book',
-    EXT_CATE_WALLPAPER : 'Wallpaper',
-    EXT_CATE_FUN : 'Fun',
-    EXT_CATE_DEV : 'Local plugin'
+    DONT_SHOW_AGAIN : 'Don\'t show again'
 });

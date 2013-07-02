@@ -60,7 +60,6 @@
                 preview : false,
                 developer : '',
                 category : '',
-                displayCategory : '',
                 fav : '',
                 star : 0,
                 inWhiteList : false
@@ -79,17 +78,7 @@
                     });
                 }
 
-                if (this.get('cateid')) {
-                    this.set({
-                        displayCategory : i18n.misc['EXT_CATE_' + this.get('cateid').toUpperCase()]
-                    });
-                }
                 this.set('inWhiteList', _.contains(whiteList, this.id));
-            },
-            setCategory : function (extension, cateid) {
-                this.set({
-                    displayCategory : i18n.misc['EXT_CATE_' + this.get('category').toUpperCase()]
-                });
             },
             zipAsync : function () {
                 var deferred = $.Deferred();

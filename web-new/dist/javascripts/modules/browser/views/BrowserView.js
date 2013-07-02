@@ -17,7 +17,8 @@
         'browser/views/BrowserToolbarView',
         'browser/views/InfoPanelView',
         'browser/views/AppDependencyView',
-        'doraemon/collections/ExtensionsCollection'
+        'doraemon/collections/ExtensionsCollection',
+        'main/MainRouter'
     ], function (
         Backbone,
         _,
@@ -33,7 +34,8 @@
         BrowserToolbarView,
         InfoPanelView,
         AppDependencyView,
-        ExtensionsCollection
+        ExtensionsCollection,
+        MainRouter
     ) {
         console.log('BrowserView - File loaded. ');
 
@@ -45,6 +47,7 @@
 
         var readystatechangeHandler = function (evt) {
             var state = evt.originalEvent.srcElement.readyState;
+            var iframe = this.$('iframe')[0];
             switch (state) {
             case 'complete':
                 if (this.model.get('extension')) {
@@ -53,7 +56,9 @@
                     this.progress = 80;
                 }
 
-                if (this.$('iframe')[0].src === 'http://apps.wandoujia.com/') {
+                MainRouter.navigate('browser/' + this.model.id + '/' + encodeURIComponent(iframe.contentWindow.location.href));
+
+                if (iframe.src === 'http://apps.wandoujia.com/') {
                     var endTime = new Date().getTime();
 
                     log({
@@ -71,7 +76,7 @@
             case 'start':
                 this.progress = 20;
 
-                if (this.$('iframe')[0].src === 'http://apps.wandoujia.com/') {
+                if (iframe.src === 'http://apps.wandoujia.com/') {
                     startTime = new Date().getTime();
                 }
                 break;

@@ -37,8 +37,7 @@
             render : function () {
                 this.$el.html(this.template({
                     name : i18n.misc.NAV_SHOW_GALLERY,
-                    cateid : 'gallery',
-                    displayCategory : 'gallery'
+                    cateid : 'gallery'
                 }));
 
                 return this;

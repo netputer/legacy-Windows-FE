@@ -153,14 +153,5 @@ define({
     REVIEW_FOR_UNINSTALL_OTHER : '不给力',
 
     NOTIFY_SETTING : '桌面提醒设置',
-    DONT_SHOW_AGAIN : '不再提示',
-
-    EXT_CATE_APP : '应用',
-    EXT_CATE_GAME : '游戏',
-    EXT_CATE_MUSIC : '音乐',
-    EXT_CATE_VIDEO : '视频',
-    EXT_CATE_EBOOK : '电子书',
-    EXT_CATE_WALLPAPER : '壁纸',
-    EXT_CATE_FUN : '有趣儿',
-    EXT_CATE_DEV : '本地插件'
+    DONT_SHOW_AGAIN : '不再提示'
 });

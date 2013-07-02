@@ -14,10 +14,11 @@ var brandInfo = {
                 top : '290px'
             }
         }, {
-            'des' : '选择USB调试',
+            'des' : '打开「开发者选项」',
             'pos' : {
-                left : '250px',
-                top : '160px'
+                left : '390px',
+                top : '150px',
+                '-webkit-transform': 'rotate(180deg)'
             }
         }, {
             'des' : '点击确定',
@@ -109,7 +110,7 @@ var brandInfo = {
             }
         }]
     },
-    'sony ': {
+    'sony' : {
         name : 'Sony 手机',
         steps : [{
             'des' : '点击设定进入系统设置',

@@ -11,7 +11,8 @@
         'ui/TemplateFactory',
         'FunctionSwitch',
         'doraemon/collections/ExtensionsCollection',
-        'browser/views/BrowserModuleView'
+        'browser/views/BrowserModuleView',
+        'main/MainRouter'
     ], function (
         Backbone,
         _,
@@ -23,7 +24,8 @@
         TemplateFactory,
         FunctionSwitch,
         ExtensionsCollection,
-        BrowserModuleView
+        BrowserModuleView,
+        MainRouter
     ) {
         console.log('MenuItemView - File loaded.');
 

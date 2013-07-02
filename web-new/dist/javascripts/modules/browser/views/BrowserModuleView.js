@@ -41,14 +41,17 @@
                         }
                     }
                 });
+
+                Backbone.on('switchModule:browser', function (id, url) {
+                    this.navigateToThirdParty(id, '', url);
+                }, this);
             },
             render : function () {
                 this.rendered = true;
                 return this;
             },
             goto : function (extensionModel, gotoURL) {
-
-                if (typeof gotoURL === 'undefined') {
+                if (gotoURL === undefined) {
                     gotoURL = true;
                 }
 
