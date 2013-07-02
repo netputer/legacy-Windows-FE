@@ -1,15 +1,9 @@
 /*global console, define*/
 (function (window, undefined) {
     define([
-        'backbone',
-        'doT',
-        'jquery',
-        'underscore'
+        'backbone'
     ], function (
-        Backbone,
-        doT,
-        $,
-        _
+        Backbone
     ) {
 
         console.log('Message ExportContextModel - File Loaded');
@@ -21,6 +15,7 @@
         });
 
         var exportContextModel = new ExportContextModel();
+
         return exportContextModel;
     });
 }(this));

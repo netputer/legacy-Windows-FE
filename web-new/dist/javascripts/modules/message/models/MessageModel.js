@@ -2,20 +2,16 @@
 (function (window, undefined) {
     define([
         'backbone',
-        'underscore',
         'jquery',
         'IO',
         'Configuration',
-        'utilities/StringUtil',
-        'message/collections/ConversationsCollection'
+        'utilities/StringUtil'
     ], function (
         Backbone,
-        _,
         $,
         IO,
         CONFIG,
-        StringUtil,
-        ConversationsCollection
+        StringUtil
     ) {
         console.log('MessageModel - File loaded.');
 

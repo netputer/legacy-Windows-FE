@@ -1,26 +1,34 @@
-(function(window, undefined) {
+/*global define*/
+(function (window, undefined) {
     define([
-            'backbone',
-            'underscore',
-            'doT',
-            'jquery',
-            'IO',
-            'Configuration',
-            'Log',
-            'ui/Panel',
-            'welcome/WelcomeService',
-            'backuprestore/BackupRestoreService'
-    ], function(
+        'backbone',
+        'underscore',
+        'doT',
+        'jquery',
+        'IO',
+        'Configuration',
+        'Log',
+        'Internationalization',
+        'ui/Panel',
+        'ui/TemplateFactory',
+        'StringUtil',
+        'welcome/WelcomeService',
+        'backuprestore/BackupRestoreService'
+    ], function (
         Backbone,
         _,
         doT,
         $,
         IO,
-        Config,
+        CONFIG,
         log,
+        i18n,
         Panel,
+        TemplateFactory,
+        StringUtil,
         WelcomeService,
-        BackupRestoreService) {
+        BackupRestoreService
+    ) {
 
         console.log('DownloadPhotoNotifyView - File loaded.');
 
@@ -96,11 +104,11 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
-            getInstance : function(args) {
+        var factory = _.extend({
+            getInstance : function (args) {
                 return new DownloadPhotoNotifyView(args);
             }
         });
         return factory;
     });
-})(this);
+}(this));

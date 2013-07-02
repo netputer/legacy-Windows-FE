@@ -26,7 +26,7 @@
             YES_NO : doT.template(TemplateFactory.get('ui', 'button-set-yes-no')),
             YES_CANCEL : doT.template(TemplateFactory.get('ui', 'button-set-yes-cancel')),
             RETRY_CANCEL : doT.template(TemplateFactory.get('ui', 'button-set-retry-cancel')),
-            YES_NO_CANCEL : doT.template(TemplateFactory.get('ui', 'button-set-yes-no-cancel')),
+            YES_NO_CANCEL : doT.template(TemplateFactory.get('ui', 'button-set-yes-no-cancel'))
         });
 
         ButtonSetMixin.init = function () {

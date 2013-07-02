@@ -60,8 +60,8 @@
                         <div class="vbox">
                             <div class="describe">访问豌豆荚帮助中心，获取更多帮助：</div>
                             <div class="href-container">
-                               <a class="href" href="http://help.wandoujia.com/entries/21550377-usb" target="_default"><div class="img"/>查看打开「USB 调试」的帮助</a>
-                               <a class="href" href="http://help.wandoujia.com/anonymous_requests/new?guid=null&clientVersion=null" target="_default"><div class="img"/>发帖求助，让专业的豌豆们帮您解答</a>
+                               <a class="href usb-help" href="http://help.wandoujia.com/entries/21550377-usb" target="_default"><div class="img"/>查看打开「USB 调试」的帮助</a>
+                               <a class="href usb-bbs" href="http://help.wandoujia.com/anonymous_requests/new?guid=null&clientVersion=null" target="_default"><div class="img"/>发帖求助，让专业的豌豆们帮您解答</a>
                             </div>
                         </div>
                     </div>
@@ -73,16 +73,13 @@
                 <p class="describe">请按照您的手机品牌选择对应的打开「USB 调试」开关的教程：</p>
                 <ul class="select brands">
                 <% _.each(brands, function(brand){ %><li class="brand <%= brand.className %>">
-
-                    
+                    <div class="logo <%= brand.className %>"/>
+                    <p><%= brand.name %></p>
                     <% if(brand.className !== 'nobrands'){ %>
-                    <div class="top">
+                    <div class="top"/>
                     <% } else {%>
-                    <div>
+                    <div/>
                     <%}%>    
-                        <div class="logo <%= brand.className %>"/>
-                        <p><%= brand.name %></p>
-                    </div>
                     <% if(brand.className !== 'nobrands'){ %>
                     <div class="check-course"><div class="play"/>查看教程</div>
                     <% }%>
@@ -91,10 +88,9 @@
                 <p class="describe">按&nbsp;Android&nbsp;系统版选择教程</p>
                 <ul class="select systems">
                 <% _.each(systems, function(system){ %><li class="system <%= system.className %>">
-                        <div class="top">
-                            <div class="system-logo <%= system.className %>"/>
-                            <p><%= system.name %></p>
-                        </div>
+                        <div class="system-logo <%= system.className %>"/>
+                        <p><%= system.name %></p>
+                        <div class="top"/>
                         <div class="check-course"><div class="play"/>查看教程</div>
                 </li><% }); %>
                 </ul>

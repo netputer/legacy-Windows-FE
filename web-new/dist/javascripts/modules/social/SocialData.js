@@ -1,17 +1,23 @@
-(function(window, undefined) {
+/*global define*/
+(function (window, undefined) {
     define([
+        'jquery',
         'IO',
         'Configuration'
-    ], function(IO, Configuration) {
-        var SocialData = function() {
+    ], function (
+        $,
+        IO,
+        Configuration
+    ) {
+        var SocialData = function () {
 
             return {
-                getUserAuthAsync : function(authSuccess, authFail, error) {
+                getUserAuthAsync : function (authSuccess, authFail, error) {
                     var deferred = $.Deferred();
 
                     IO.requestAsync({
                         url : Configuration.actions.USER_SHOW,
-                        success : function(resp){
+                        success : function (resp) {
                             if (resp.state_code === 200) {
                                 authSuccess && authSuccess.call(this, resp.body);
                                 deferred.resolve(resp);
@@ -28,13 +34,13 @@
                     return deferred.promise();
                 },
 
-                authAsync : function(authData, authSuccess, authFail) {
+                authAsync : function (authData, authSuccess, authFail) {
                     var deferred = $.Deferred();
 
                     IO.requestAsync({
                         url : Configuration.actions.AUTH,
                         data : authData,
-                        success : function(resp) {
+                        success : function (resp) {
                             if (resp.state_code === 200) {
                                 authSuccess && authSuccess.call(this, resp.body);
                                 deferred.resolve(resp);
@@ -45,16 +51,16 @@
                         }
                     });
 
-                     return deferred.promise();
+                    return deferred.promise();
                 },
 
-                shareAsync : function(shareData, shareSuccess, authFail, error) {
+                shareAsync : function (shareData, shareSuccess, authFail, error) {
                     var deferred = $.Deferred();
 
                     IO.requestAsync({
                         url : Configuration.actions.STATUS_UPLOAD,
                         data : shareData,
-                        success : function(resp) {
+                        success : function (resp) {
                             if (resp.state_code === 200) {
                                 shareSuccess && shareSuccess.call(this, resp.body);
                                 deferred.resolve(resp);
@@ -72,12 +78,12 @@
                     return deferred.promise();
                 },
 
-                exitAuthAsync : function(success, error){
+                exitAuthAsync : function (success, error){
                     var deferred = $.Deferred();
 
                     IO.requestAsync({
                         url : Configuration.actions.USER_LOGOUT,
-                        success: function(resp){
+                        success : function (resp){
                             if (resp.state_code === 200) {
                                 success && success.call(this, resp);
                                 deferred.resolve(resp);
@@ -111,13 +117,13 @@
                     return deferred.promise();
                 },
 
-                authInfoAsync : function(data, success, error){
+                authInfoAsync : function (data, success, error) {
                     var deferred = $.Deferred();
 
                     IO.requestAsync({
                         url : Configuration.actions.AUTH_INFO,
                         data : data,
-                        success : function(resp){
+                        success : function (resp) {
                             if (resp.state_code === 200) {
                                 success && success.call(this, resp);
                                 deferred.resolve(resp);
@@ -131,12 +137,12 @@
                     return deferred.promise();
                 },
 
-                getTokenAsync : function(success, error){
+                getTokenAsync : function (success, error) {
                     var deferred = $.Deferred();
 
                     IO.requestAsync({
                         url : Configuration.actions.GET_TOKEN,
-                        success : function(resp){
+                        success : function (resp) {
                             if (resp.state_code === 200) {
                                 success && success.call(this, resp);
                                 deferred.resolve(resp);
@@ -148,12 +154,12 @@
                     });
 
                     return deferred.promise();
-                }  
-            }   
-        }
+                }
+            };
+        };
 
         var socialData = new SocialData();
 
         return socialData;
     });
-})(this);
+}(this));

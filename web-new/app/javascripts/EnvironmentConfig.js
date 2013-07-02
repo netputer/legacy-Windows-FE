@@ -3,7 +3,6 @@
     'use strict';
 
     require.config({
-        baseUrl : 'javascripts/',
         paths : {
             jquery : '../bower_components/jquery/jquery',
             doT : '../bower_components/dot/doT',
@@ -26,7 +25,8 @@
             video : 'modules/video',
             backuprestore : 'modules/backuprestore',
             social : 'modules/social',
-            sync : 'modules/sync'
+            sync : 'modules/sync',
+            guide : 'modules/welcome/guide'
         },
         shim: {
             doT : {

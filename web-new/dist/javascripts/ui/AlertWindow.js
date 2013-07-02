@@ -112,6 +112,9 @@
 
         window.confirm = confirm;
 
+        AlertWindow.alert = alert;
+        AlertWindow.confirm = confirm;
+
         return AlertWindow;
     });
 }(this));

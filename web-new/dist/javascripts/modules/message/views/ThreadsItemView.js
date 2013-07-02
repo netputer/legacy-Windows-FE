@@ -4,33 +4,19 @@
         'backbone',
         'underscore',
         'doT',
-        'jquery',
-        'Configuration',
-        'Device',
-        'Log',
         'ui/TemplateFactory',
         'utilities/StringUtil',
-        'IO',
-        'message/collections/ConversationsCollection',
         'message/collections/MessageCollection',
         'message/views/ThreadsMessageItemView',
-        'contact/collections/ContactsCollection',
         'Internationalization'
     ], function (
         Backbone,
         _,
         doT,
-        $,
-        CONFIG,
-        Device,
-        log,
         TemplateFactory,
         StringUtil,
-        IO,
-        ConversationsCollection,
         MessageCollection,
         ThreadsMessageItemView,
-        ContactsCollection,
         i18n
     ) {
         console.log('ThreadsItemView - File loaded.');

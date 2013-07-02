@@ -474,12 +474,15 @@
                             break;
                         case CONFIG.enums.SOCIAL_SET_RINGTONE:
                             if (this.extraData && this.extraData.ringtone_id && this.extraData.ringtone_title && this.extraData.ringtone_artist) {
-                                var self = this;
                                 MusicService.loadMusicAsync(this.extraData.ringtone_id).done(function (path) {
                                     shareParameter.content = path;
-                                    self.disableShareBtn(true);
-                                    Account.shareAsync(shareParameter, self.shareSuccess.bind(self), self.shareFailed.bind(self));
-                                });
+                                    this.disableShareBtn(true);
+                                    Account.shareAsync(shareParameter).done(function (resp) {
+                                        this.shareSuccess(resp.body);
+                                    }.bind(this)).fail(function (resp) {
+                                        this.shareFailed(resp.body);
+                                    }.bind(this));
+                                }.bind(this));
                             } else {
                                 this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
                                 return;
@@ -525,7 +528,11 @@
                         }
 
                         this.disableShareBtn(true);
-                        Account.shareAsync(shareParameter, this.shareSuccess.bind(this), this.shareFailed.bind(this));
+                        Account.shareAsync(shareParameter).done(function (resp) {
+                            this.shareSuccess(resp.body);
+                        }.bind(this)).fail(function (resp) {
+                            this.shareFailed(resp.body);
+                        });
                     }).on('button_no', function () {
                         log({
                             'event' : 'social.share_' + this.type + '.cancel',

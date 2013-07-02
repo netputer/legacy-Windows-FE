@@ -6,7 +6,6 @@
         'IO',
         'Internationalization',
         'Device',
-        'ui/TemplateFactory',
         'ui/UIHelper',
         'ui/AlertWindow',
         'message/MessageService'
@@ -16,7 +15,6 @@
         IO,
         i18n,
         Device,
-        TemplateFactory,
         UIHelper,
         AlertWindow,
         MessageService

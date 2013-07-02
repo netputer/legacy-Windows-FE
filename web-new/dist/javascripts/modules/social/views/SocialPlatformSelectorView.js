@@ -7,6 +7,7 @@
         'jquery',
         'Account',
         'Configuration',
+        'Internationalization',
         'ui/TemplateFactory'
     ], function (
         _,
@@ -15,6 +16,7 @@
         $,
         Account,
         CONFIG,
+        i18n,
         TemplateFactory
     ) {
         console.log('SocialPlatformSelectorView - File loaded. ');
