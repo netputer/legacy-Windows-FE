@@ -82,6 +82,8 @@
 
     require([
         'jquery',
+        'backbone',
+        'main/MainRouter',
         'main/views/MainView',
         'main/views/SuggestionInstallWindowView',
         'main/views/BindingDeviceWindowView',
@@ -113,6 +115,8 @@
         'PerformanceTracker'
     ], function (
         $,
+        Backbone,
+        MainRouter,
         MainView,
         SuggestionInstallWindowView,
         BindingDeviceWindowView,
@@ -144,6 +148,10 @@
         PerformanceTracker
     ) {
         window.SnapPea = window.SnapPea || {};
+
+        Backbone.history.start({
+            pushState : false
+        });
 
         var mainView = MainView.getInstance();
         mainView.regModule('welcome', WelcomeModuleView);
