@@ -5,41 +5,23 @@
     define([
         'backbone',
         'underscore',
-        'doT',
         'Log',
         'Internationalization',
-        'Account',
         'FunctionSwitch',
         'Configuration',
-        'IOBackendDevice',
-        'Distributor',
-        'ui/TemplateFactory',
-        'ui/PopupTip',
         'doraemon/collections/ExtensionsCollection',
-        'doraemon/models/ExtensionModel',
         'doraemon/views/MenuItemView',
-        'doraemon/views/DoraemonModuleView',
-        'doraemon/views/GallerySwitchView',
-        'social/SocialService'
+        'doraemon/views/GallerySwitchView'
     ], function (
         Backbone,
         _,
-        doT,
         log,
         i18n,
-        Account,
         FunctionSwitch,
         CONFIG,
-        IO,
-        Distributor,
-        TemplateFactory,
-        PopupTip,
         ExtensionsCollection,
-        ExtensionModel,
         MenuItemView,
-        DoraemonModuleView,
-        GallerySwitchView,
-        SocialService
+        GallerySwitchView
     ) {
         console.log('DoraemonMenuView - File loaded.');
 
