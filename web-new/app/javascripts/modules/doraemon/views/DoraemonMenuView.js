@@ -49,6 +49,8 @@
                     GallerySwitchView.getInstance().$el.detach();
                 }
 
+                var $menuCtn = this.$('.w-sidebar-menu').empty();
+
                 var fragment = document.createDocumentFragment();
                 extensionsCollection.each(function (extension) {
                     var menuItemView = MenuItemView.getInstance({
