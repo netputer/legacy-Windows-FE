@@ -49,8 +49,6 @@
                     GallerySwitchView.getInstance().$el.detach();
                 }
 
-                var $menuCtn = this.$('.w-sidebar-menu').empty();
-
                 var fragment = document.createDocumentFragment();
                 extensionsCollection.each(function (extension) {
                     var menuItemView = MenuItemView.getInstance({
@@ -64,7 +62,7 @@
                     fragment.appendChild(GallerySwitchView.getInstance().render().$el[0]);
                 }
 
-                this.$el.append(fragment);
+                this.$el.empty().append(fragment);
             },
             render : function () {
                 if (FunctionSwitch.ENABLE_DORAEMON) {

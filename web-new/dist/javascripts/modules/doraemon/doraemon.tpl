@@ -163,14 +163,12 @@
 <script type="text/x-ui-template" id="browser-menu">
     {{? it.extension }}
         <li class="root-item selected" data="{{= it.extension.app.launch.web_url }}">
-            <div class="title">
-                {{= it.extension.app.label ? it.extension.app.label : i18n.misc.HOME_PAGE }}
-            </div>
+            {{= it.extension.app.label ? it.extension.app.label : i18n.misc.HOME_PAGE }}
         </li>
         {{~ it.extension.app.navigation : item }}
-            <li class="root-item" data="{{= item.web_url }}">
-                <div class="title">{{= item.label }}</div>
-            </li>
+        <li class="root-item" data="{{= item.web_url }}">
+            {{= item.label }}
+        </li>
         {{~}}
     {{?}}
 </script>
