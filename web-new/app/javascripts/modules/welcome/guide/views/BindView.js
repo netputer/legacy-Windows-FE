@@ -28,7 +28,7 @@
         CardView
     ) {
         var BindView = CardView.getClass().extend({
-            className : CardView.getClass().prototype.className + ' w-guide-bind vbox',
+            className : CardView.getClass().prototype.className + ' w-guide-bind',
             template : doT.template(TemplateFactory.get('guide', 'bind')),
             initialize : function () {
                 this.listenTo(Device, 'change:deviceName', function (Device, deviceName) {

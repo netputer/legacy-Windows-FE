@@ -22,7 +22,7 @@
         CardView
     ) {
         var XibaibaiView = CardView.getClass().extend({
-            className : CardView.getClass().prototype.className + ' w-guide-xibaibai vbox',
+            className : CardView.getClass().prototype.className + ' w-guide-xibaibai',
             template : doT.template(TemplateFactory.get('guide', 'xibaibai')),
             checkAsync : function () {
                 var deferred = $.Deferred();

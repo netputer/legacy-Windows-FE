@@ -11,6 +11,7 @@
 @import "typography";
 @import "form";
 @import "anima";
+@import "ui";
 
 .w-guide-ctn {
     bottom: 0;
@@ -31,14 +32,6 @@
         .w-guide-card {
             overflow: hidden;
             -webkit-box-flex: 1;
-
-            h1 {
-                margin-bottom: 10px;
-            }
-
-            p {
-                line-height: 1.5em;
-            }
 
             .stage {
                 background-image: url('../images/welcome_bg_100X100.png');
@@ -221,6 +214,10 @@
     .stage {
         position: relative;
 
+        .title {
+            margin-top: 40px;
+        }
+
         .bg {
             @include guide-sprite(bg-xibaibai);
             bottom: 0;
@@ -228,6 +225,73 @@
             left: 0;
             position: absolute;
             width: guide-sprite-width(bg-xibaibai);
+        }
+    }
+}
+
+.w-guide-starter {
+    .app-ctn {
+        margin-top: 15px;
+        overflow: hidden;
+
+        .app {
+            float: left;
+            height: 108px;
+            margin-bottom: 10px;
+            text-align: center;
+            width: 98px;
+
+            .icon {
+                height: 56px;
+                width: 56px;
+            }
+
+            .title {
+                line-height: 20px;
+            }
+        }
+    }
+}
+
+.w-guide-tips {
+    .tip-ctn {
+        margin-top: 15px;
+
+        .tip {
+            height: 34px;
+            -webkit-box-align: center;
+
+            .icon {
+                display: block;
+                height: 16px;
+                margin-right: 10px;
+                width: 16px;
+            }
+
+            .desc {
+                -webkit-box-flex: 1;
+            }
+
+            + .tip {
+                border-top: 1px $borderColor solid;
+                box-shadow: 0 1px 0 #fff inset;
+            }
+        }
+    }
+}
+
+.w-guide-suggestion {
+    .stage {
+        overflow: auto;
+
+        .item-ctn {
+            margin-top: 15px;
+
+            .item {
+                cursor: pointer;
+                height: 90px;
+                width: 385px;
+            }
         }
     }
 }

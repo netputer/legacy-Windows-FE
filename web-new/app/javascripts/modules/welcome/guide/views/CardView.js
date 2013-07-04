@@ -2,13 +2,24 @@
 (function (window) {
     define([
         'backbone',
-        'underscore'
+        'underscore',
+        'jquery'
     ], function (
         Backbone,
-        _
+        _,
+        $
     ) {
-        var GuideView = Backbone.View.extend({
-            className : 'w-guide-card',
+        var CardView = Backbone.View.extend({
+            className : 'w-guide-card vbox',
+            checkAsync : function () {
+                var deferred = $.Deferred();
+
+                setTimeout(function () {
+                    deferred.resolve();
+                });
+
+                return deferred.promise();
+            },
             render : function () {
                 this.$el.html(this.template({
                     action : this.options.action
@@ -19,21 +30,18 @@
             clickButtonSkip : function () {
                 this.trigger('next');
             },
-            clickButtonAction : function () {
-                this.trigger('action');
-            },
             events : {
                 'click .button-skip' : 'clickButtonSkip',
-                'click .button-action' : 'clickButtonAction'
+                'click .button-action' : 'clickButtonSkip'
             }
         });
 
         var factory = _.extend({
             getInstance : function () {
-                return new GuideView();
+                return new CardView();
             },
             getClass : function () {
-                return GuideView;
+                return CardView;
             }
         });
 

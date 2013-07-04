@@ -5,7 +5,7 @@
 </script>
 
 <script type="text/x-ui-template" id="bind">
-    <div class="stage vbox">
+    <div class="stage">
         <div class="bg"></div>
         <h1 class="text-secondary">{{= i18n.welcome.GUIDE_BIND }}</h1>
         <p class="text-secondary desc">{{= i18n.welcome.GUIDE_BIND_DESC }}</p>
@@ -101,16 +101,71 @@
 </script>
 
 <script type="text/x-ui-template" id="xibaibai">
-    <div class="stage vbox">
-        <h1 class="text-primary title">{{= i18n.app.APP_WASH }}</h1>
-        <p class="text-secondary">{{= i18n.app.SCAN_TIP1 }}</p>
-        <p class="text-secondary">{{= i18n.app.SCAN_TIP2 }}</p>
-        <p class="text-secondary">{{= i18n.app.SCAN_TIP3 }}</p>
+    <div class="stage text-secondary">
+        <h1 class="title">{{= i18n.app.APP_WASH }}</h1>
+        <p>{{= i18n.app.SCAN_TIP1 }}</p>
+        <p>{{= i18n.welcome.GUIDE_XIBAIBAI_TIP2 }}</p>
+        <p>{{= i18n.welcome.GUIDE_XIBAIBAI_TIP3 }}</p>
         <div class="bg"></div>
     </div>
     <nav class="control hbox">
         <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
+</script>
+
+<script type="text/x-ui-template" id="starter">
+    <div class="stage">
+        <h1 class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_TITLE }}</h1>
+        <p class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_TIP }}</p>
+        <ul class="app-ctn">
+        {{~ it.apps : app }}
+        {{whosYourDaddy();console.log(app);}}
+        <li class="app cf" data-title="{{= StringUtil.format(i18n.welcome.GUIDE_STARTER_APP_TIP, StringUtil.shortenQuantity(app.downloadCount), app.likesRate, app.tagline)}}">
+            <img class="icon" alt="{{! app.title }}" src="{{= app.icons.px68 }}" />
+            <div class="title wc">{{! app.title }}</div>
+            <button data-url="{{= window.encodeURIComponent(app.apks[0].downloadUrl.url) }}" class="button-install min" data-name="{{! app.title }}" data-icon="{{= app.icons.px68 }}">{{= i18n.app.INSTALL }}</button>
+        </li>
+        {{~}}
+        </ul>
+    </div>
+    <nav class="control hbox">
+        <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
+        <button class="primary button-action">{{= it.action }}</button>
+    </nav>
+</script>
+
+<script type="text/x-ui-template" id="tips">
+    <div class="stage text-secondary">
+        <h1>{{= i18n.welcome.GUIDE_TIPS }}</h1>
+        <p>{{= i18n.welcome.GUIDE_TIPS_TIP }}</p>
+        <ul class="tip-ctn">
+        {{~ it.tips : tip}}
+        <li class="tip hbox">
+            <img class="icon" alt="{{! tip.desc }}" src="{{= tip.icon }}" />
+            <div class="desc">{{! tip.desc }}</div>
+            <a class="link button-open" target="_default" href="{{= it.url }}">{{= i18n.welcome.GUIDE_TIPS_OPEN }}</a>
+        </li>
+        {{~}}
+        </ul>
+    </div>
+    <nav class="control hbox">
+        <button class="primary button-action">{{= it.action }}</button>
+    </nav>
+</script>
+
+<script type="text/x-ui-template" id="suggestion">
+    <div class="stage text-secondary vbox">
+        <h1>{{= i18n.welcome.GUIDE_SUGGESTION }}</h1>
+        <p>{{= i18n.welcome.GUIDE_SUGGESTION_TIP }}</p>
+        <ul class="item-ctn">
+        {{~ it.items : item}}
+        <li class="item button-open" data-id="{{= item.id }}">
+            <img src="{{= item.banner }}" />
+        </li>
+        {{~}}
+        </ul>
+        <button class="button-action">{{= it.action }}</button>
+    </div>
 </script>
 </templates>

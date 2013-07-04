@@ -81,6 +81,18 @@ define({
     GUIDE_REG_LOGIN_WITH_ACCOUNT : '已有账号登陆',
     GUIDE_REG_LOGIN_WITH_SNS : '合作账号登陆',
     GUIDE_REG_LOGIN_AND_BACKUP : '登陆后开启云备份',
-    GUIDE_XIBAIBAI_START : '马上开洗'
-
+    GUIDE_XIBAIBAI_START : '马上开洗',
+    GUIDE_XIBAIBAI_TIP2 :　'豌豆洗白白会帮您找出这些应用，并替换成官方版或没有广告的版本。',
+    GUIDE_XIBAIBAI_TIP3 : '立即使用豌豆洗白白享受放心应用的乐趣吧！',
+    GUIDE_STARTER_INSTALL_ALL : '一键安装',
+    GUIDE_STARTER_TITLE : '必备应用',
+    GUIDE_STARTER_TIP : '您的手机应用有点少，给您的设备安装优质必备应用吧。',
+    GUIDE_STARTER_APP_TIP : '{1}人安装·{2}% 好评率<br />{3}',
+    GUIDE_TIPS : '小技巧',
+    GUIDE_TIPS_TIP : '更多关于豌豆荚的小技巧，一般人我不告诉他！',
+    GUIDE_TIPS_READ_ALL : '都知道了',
+    GUIDE_TIPS_OPEN : '查看',
+    GUIDE_SUGGESTION : '更多精彩',
+    GUIDE_SUGGESTION_TIP : '丰富多彩的内容站期待您的发现。',
+    GUIDE_SUGGESTION_READ_ALL : '我看完了'
 });
