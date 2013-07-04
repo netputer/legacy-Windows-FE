@@ -310,6 +310,7 @@
                 APP_WASH_FEEDBACK : 'http://apps.wandoujia.com/api/v1/xibaibai/feedback',
                 APP_WASH_GET_TEXT : 'http://apps.wandoujia.com/api/v1/xibaibai/feedback',
                 APP_WASH_SCAN : 'http://apps.wandoujia.com/api/v1/xibaibai/scanner',
+                APP_STARTER : 'http://apps.wandoujia.com/api/v1/apps?app_type=starter',
 
                 ACCOUNT_REG : 'https://account.wandoujia.com/v1/wandoujia/register.json'
             },

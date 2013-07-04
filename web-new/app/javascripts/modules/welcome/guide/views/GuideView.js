@@ -9,7 +9,10 @@
         'IO',
         'guide/views/BindView',
         'guide/views/CloudBackupView',
-        'guide/views/XibaibaiView'
+        'guide/views/XibaibaiView',
+        'guide/views/StarterView',
+        'guide/views/TipsView',
+        'guide/views/DoraSuggestionView'
     ], function (
         Backbone,
         $,
@@ -19,7 +22,10 @@
         IO,
         BindView,
         CloudBackupView,
-        XibaibaiView
+        XibaibaiView,
+        StarterView,
+        TipsView,
+        DoraSuggestionView
     ) {
         var GuideView = Backbone.View.extend({
             className : 'w-guide-ctn vbox',
@@ -39,11 +45,20 @@
                 this.$el.html(this.template({}));
 
                 this.regCardAsync(BindView.getInstance())
-                    .then(function () {
-                        return this.regCardAsync(CloudBackupView.getInstance());
-                    }.bind(this))
+                    // .then(function () {
+                    //     return this.regCardAsync(CloudBackupView.getInstance());
+                    // }.bind(this))
                     .then(function () {
                         return this.regCardAsync(XibaibaiView.getInstance());
+                    }.bind(this))
+                    .then(function () {
+                        return this.regCardAsync(StarterView.getInstance());
+                    }.bind(this))
+                    .then(function () {
+                        return this.regCardAsync(DoraSuggestionView.getInstance());
+                    }.bind(this))
+                    .then(function () {
+                        return this.regCardAsync(TipsView.getInstance());
                     }.bind(this))
                     .then(function () {
                         IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY);

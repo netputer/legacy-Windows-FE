@@ -53,7 +53,7 @@
         });
 
         var CloudBackupView = CardView.getClass().extend({
-            className : CardView.getClass().prototype.className + ' w-guide-cloud-backup vbox',
+            className : CardView.getClass().prototype.className + ' w-guide-cloud-backup',
             template : doT.template(TemplateFactory.get('guide', 'cloud-backup')),
             userModel : new UserModel(),
             render : function () {
@@ -71,6 +71,8 @@
                         deferred.reject(resp);
                     }
                 });
+
+                setTimeout(deferred.resolve);
 
                 return deferred.promise();
             },
