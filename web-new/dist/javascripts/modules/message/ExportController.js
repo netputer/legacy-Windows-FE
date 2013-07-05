@@ -4,11 +4,13 @@
         'backbone',
         'message/views/ExportSelectView',
         'message/views/ExportProgressView',
+        'message/models/ExportContextModel',
         'Internationalization'
     ], function (
         Backbone,
         ExportSelectView,
         ExportProgressView,
+        ExportContextModel,
         i18n
     ) {
 
@@ -17,13 +19,24 @@
         var exportController;
         var exportSelectView;
         var exportProgressView;
+
+        var len;
+        var select;
+        var all;
+
         var ExportController = Backbone.View.extend({
-            start : function (selectedConversationCount, selectSmsCount, allSms) {
+            start : function () {
+
+                len  = ExportContextModel.get('ids').length;
+                select = ExportContextModel.get('selectSmsCount');
+                all =  ExportContextModel.get('allSms');
+
                 exportSelectView = ExportSelectView.getInstance();
                 exportProgressView = ExportProgressView.getInstance();
 
                 exportSelectView.show();
-                exportSelectView.update(selectedConversationCount, selectSmsCount, allSms);
+                exportSelectView.update(len, select, all);
+
                 exportProgressView.initState();
                 this.buildEvents();
             },
@@ -38,6 +51,7 @@
 
                 exportProgressView.on('_EXPORT_SMS_CANCEL', function () {
                     this.showNextAndRemoveCurrent(exportProgressView, exportSelectView);
+                    exportSelectView.update(len, select, all);
                 }, this);
             },
             showNextAndRemoveCurrent : function (currentView, targetView) {

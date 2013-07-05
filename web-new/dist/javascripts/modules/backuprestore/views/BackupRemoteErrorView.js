@@ -46,7 +46,7 @@
                 var code = BackupContextModel.get('remoteErrorCode');
 
                 var msg = BackupRestoreService.getErrorMessage(code);
-                this.$('.content').text(msg);
+                this.$('.content').html(msg);
 
                 // show details
                 var i;

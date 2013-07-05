@@ -167,9 +167,7 @@
             },
             uninstallAsync: function () {
                 var deferred = $.Deferred();
-
                 var baseInfo = this.get('base_info');
-
                 this.set('running', true);
 
                 IO.requestAsync({
@@ -181,18 +179,18 @@
                         if (resp.state_code === 200) {
                             console.log('AppModel - "' + baseInfo.name + '" uninstall success.');
 
-                            if (this.collection) {
+                            if (this.collection && !resp.body.failed.length) {
                                 var collection = this.collection;
                                 collection.remove(this);
                                 collection.trigger('refresh', collection);
+                            } else {
+                                this.set('running', false);
                             }
 
                             deferred.resolve(resp);
                         } else {
                             this.set('running', false);
-
                             console.error('AppModel - "' + baseInfo.name + '" uninstall failed. Error info: ' + resp.state_line);
-
                             deferred.reject(resp);
                         }
                     }.bind(this)
