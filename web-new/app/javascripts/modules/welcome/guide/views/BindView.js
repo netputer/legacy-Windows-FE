@@ -42,6 +42,10 @@
                     IO.requestAsync(CONFIG.actions.WINDOW_DEVICE_NEED_BIND).done(function (resp) {
                         if (resp.body.value) {
                             deferred.resolve(resp);
+
+                            log({
+                                'event' : 'debug.guide_bind_show'
+                            });
                         } else {
                             deferred.reject(resp);
                         }
@@ -55,6 +59,12 @@
                 }
 
                 return deferred.promise();
+            },
+            clickButtonSkip : function () {
+                BindView.__super__.clickButtonSkip.call(this);
+                log({
+                    'event' : 'ui.click.guide_bind_skip'
+                });
             },
             clickButtonAction : function () {
                 IO.requestAsync(CONFIG.actions.WINDOW_DEVICE_BIND);
