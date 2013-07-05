@@ -10,7 +10,9 @@
 
         var ExportContextModel = Backbone.Model.extend({
             defaults : {
-                ids : []
+                ids : [],
+                selectSmsCount: 0,
+                allSms: 0
             }
         });
 

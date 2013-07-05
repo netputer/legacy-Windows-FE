@@ -99,12 +99,22 @@
                     }
                 });
 
+
+                var selectSmsCount = coversationTotalCount - coversationMmsCount;
+                var allSms = conversationsCollection.totalCount;
+
+                ExportContextModel.set('selectSmsCount', selectSmsCount);
+                ExportContextModel.set('allSms', allSms);
+
+                var handler = function () {
+                    ExportController.start();
+                };
                 if (coversationMmsCount > 0) {
                     alert(i18n.message.ALERT_TIP_EXPORT_MMS, function () {
-                        ExportController.start(ids.length, coversationTotalCount - coversationMmsCount, conversationsCollection.totalCount);
+                        handler();
                     });
                 } else {
-                    ExportController.start(ids.length, coversationTotalCount - coversationMmsCount, conversationsCollection.totalCount);
+                    handler();
                 }
 
                 log({

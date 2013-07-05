@@ -14,8 +14,7 @@
         'ui/AlertWindow',
         'ui/TemplateFactory',
         'ui/UIHelper',
-        'message/collections/ConversationsCollection',
-        'message/models/ExportContextModel'
+        'message/collections/ConversationsCollection'
     ], function (
         Backbone,
         doT,
@@ -30,8 +29,7 @@
         AlertWindow,
         TemplateFactory,
         UIHelper,
-        ConversationsCollection,
-        ExportContextModel
+        ConversationsCollection
     ) {
 
         console.log('ExportProgressView - file loader');
@@ -110,7 +108,7 @@
                 this.delegateEvents();
                 ExportProgressView.__super__.render.apply(this, arguments);
             },
-            exportConversations : function (type) {
+            exportConversations : function (type, ids) {
 
                 var sessionId = _.uniqueId('Export_sms');
                 this.lastSessionId = sessionId;
@@ -151,7 +149,7 @@
                 if (type === 2) {
                     conversationsCollection.exportConversationAsync(_.pluck(conversationsCollection.models, 'id'), sessionId).always(callback);
                 } else {
-                    conversationsCollection.exportConversationAsync(ExportContextModel.get('ids'), sessionId).always(callback);
+                    conversationsCollection.exportConversationAsync(ids, sessionId).always(callback);
                 }
             },
             clickFinishBtn : function () {

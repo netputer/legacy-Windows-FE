@@ -203,7 +203,7 @@
                     },
                     success : function (resp) {
                         if (packageNames.length === 1) {
-                            var target = this.get(packageNames[1]);
+                            var target = this.get(packageNames[0]);
                             if (target !== undefined) {
                                 target.set('running', false);
                             }
