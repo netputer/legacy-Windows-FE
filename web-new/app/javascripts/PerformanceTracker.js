@@ -24,8 +24,13 @@
                     log(msg);
                 });
 
+                var i = 1;
+
                 var logMemory = function () {
-                    var msg = {'event' : 'debug.fe.memory'};
+                    var msg = {
+                        'event' : 'debug.fe.memory',
+                        'count' : i
+                    };
                     var k;
                     for (k in window.performance.memory) {
                         if (window.performance.memory.hasOwnProperty(k)) {
@@ -33,6 +38,7 @@
                         }
                     }
                     log(msg);
+                    i++;
                 };
 
                 logMemory.call(this);

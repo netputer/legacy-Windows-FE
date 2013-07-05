@@ -71,7 +71,12 @@
             checkAsync : function () {
                 var deferred = $.Deferred();
 
-                $.when(this.loadAppsAsync(), this.checkAppsAsync()).done(deferred.resolve).fail(deferred.reject);
+                $.when(this.loadAppsAsync(), this.checkAppsAsync()).done(function () {
+                    log({
+                        'event' : 'debug.guide_starter_show'
+                    });
+                    deferred.resolve();
+                }).fail(deferred.reject);
 
                 return deferred.promise();
             },
@@ -99,6 +104,16 @@
                 });
 
                 TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
+
+                log({
+                    'event' : 'ui.click.guide_starter_install'
+                });
+            },
+            clickButtonSkip : function () {
+                StarterView.__super__.clickButtonSkip.call(this);
+                log({
+                    'event' : 'ui.click.guide_starter_skip'
+                });
             },
             clickButtonAction : function () {
                 var apps = _.map(this.apps, function (app) {
@@ -116,9 +131,12 @@
                 TaskService.batchDownloadAsync(apps, 'starter-one-key-install');
 
                 this.trigger('next');
+
+                log({
+                    'event' : 'ui.click.guide_starter_install_all'
+                });
             },
             events : {
-                'click .button-skip' : 'clickButtonSkip',
                 'click .button-install' : 'clickButtonInstall'
             }
         });

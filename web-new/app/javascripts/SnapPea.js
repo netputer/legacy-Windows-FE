@@ -83,7 +83,7 @@
     require([
         'jquery',
         'backbone',
-        'main/MainRouter',
+        // 'main/MainRouter',
         'main/views/MainView',
         'main/views/SuggestionInstallWindowView',
         'main/views/BindingDeviceWindowView',
@@ -116,7 +116,7 @@
     ], function (
         $,
         Backbone,
-        MainRouter,
+        // MainRouter,
         MainView,
         SuggestionInstallWindowView,
         BindingDeviceWindowView,
@@ -149,9 +149,9 @@
     ) {
         window.SnapPea = window.SnapPea || {};
 
-        Backbone.history.start({
-            pushState : false
-        });
+        // Backbone.history.start({
+        //     pushState : false
+        // });
 
         var mainView = MainView.getInstance();
         mainView.regModule('welcome', WelcomeModuleView);
