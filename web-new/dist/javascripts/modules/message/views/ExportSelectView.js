@@ -62,6 +62,18 @@
 
                 ExportSelectView.__super__.initialize.call(this, arguments);
 
+                var exportType = 1;
+                Object.defineProperties(this, {
+                    exportType : {
+                        get : function () {
+                            return exportType;
+                        },
+                        set : function (value) {
+                            exportType = value;
+                        }
+                    }
+                });
+
                 this.on(UIHelper.EventsMapping.SHOW, function () {
                     var bodyView = new ExportSelectViewBody();
 
@@ -96,23 +108,26 @@
                 coversation : 0,
                 all : 0
             },
-            ExportTypes : {
+            exportTypes: {
                 CONVERSATION : 1,
                 ALL : 2
             },
             switchTypeState : function () {
                 var type = this.$('input[name="sms_export"]:checked').val();
-                if (parseInt(type, 10) === this.ExportTypes.CONVERSATION) {
+                type = parseInt(type, 10);
+                if (type === this.exportTypes.CONVERSATION) {
                     this.setNextBtnDisable(this.typeCount.coversation <= 0);
-                } else if (parseInt(type, 10) === this.ExportTypes.ALL) {
+                } else if (type === this.exportTypes.ALL) {
                     this.setNextBtnDisable(this.typeCount.all <= 0);
                 }
+
+                this.exportType = type;
             },
             setNextBtnDisable : function (disable) {
                 this.$('.button-next').prop('disabled', disable);
             },
             clickNextBtn : function () {
-                this.trigger('_NEXT_BTN', this.ExportTypes);
+                this.trigger('_NEXT_BTN', this.exportType);
             },
             clickCancelBtn : function () {
                 this.remove();
