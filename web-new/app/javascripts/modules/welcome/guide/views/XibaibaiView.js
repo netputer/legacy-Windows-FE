@@ -51,6 +51,8 @@
                     }
                 });
 
+                this.trigger('next');
+
                 log({
                     'event' : 'ui.click.guide_xibaibai_action'
                 });

@@ -9,6 +9,7 @@
         'FunctionSwitch',
         'IOBackendDevice',
         'Configuration',
+        'Settings',
         'welcome/views/DeviceView',
         'welcome/views/CapacityView',
         'welcome/views/FileToolsView',
@@ -23,6 +24,7 @@
         FunctionSwitch,
         IO,
         CONFIG,
+        Settings,
         DeviceView,
         CapacityView,
         FileToolsView,
@@ -46,7 +48,7 @@
                 guideView = GuideView.getInstance();
                 this.$('.content').append(billboardView.render().$el);
 
-                if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                if (FunctionSwitch.ENABLE_USER_GUIDE && !Settings.get('user_guide_shown')) {
                     var handler = IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
                     }, function () {
@@ -63,6 +65,7 @@
 
                     this.$('.content').append(guideView.render().$el.hide());
 
+                    Settings.set('user_guide_shown', true);
                 }
                 this.$('footer').append(CapacityView.getInstance().render().$el)
                                   .append(FileToolsView.getInstance().render().$el);

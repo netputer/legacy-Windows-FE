@@ -64,6 +64,7 @@
                 }
 
                 .button-skip {
+                    display: block;
                     margin-right: 15px;
                 }
             }
@@ -301,6 +302,10 @@
                 cursor: pointer;
                 height: 90px;
                 width: 385px;
+
+                &:hover {
+                    opacity: .8;
+                }
             }
         }
     }
