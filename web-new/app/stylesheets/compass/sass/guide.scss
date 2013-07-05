@@ -238,8 +238,18 @@
             float: left;
             height: 108px;
             margin-bottom: 10px;
+            position: relative;
             text-align: center;
             width: 98px;
+
+            .ad {
+                @include guide-sprite(promoted);
+                height: 36px;
+                left: 21px;
+                position: absolute;
+                top: 0;
+                width: 36px;
+            }
 
             .icon {
                 height: 56px;

@@ -1,5 +1,5 @@
 /*global define*/
-(function (window) {
+(function (window, undefined) {
     define([
         'jquery',
         'backbone',
@@ -42,7 +42,7 @@
                 IO.requestAsync({
                     url : CONFIG.actions.APP_STARTER,
                     success : function (resp) {
-                        this.apps = resp[0].apps.splice(0, 8).concat(resp[1].apps.splice(0, 4));
+                        this.queryResults = resp;
                         deferred.resolve();
                     }.bind(this),
                     error : deferred.reject
@@ -50,6 +50,7 @@
 
                 return deferred.promise();
             },
+            apps : [],
             checkAppsAsync : function () {
                 var deferred = $.Deferred();
 
@@ -74,11 +75,39 @@
                 var deferred = $.Deferred();
 
                 $.when(this.loadAppsAsync(), this.checkAppsAsync()).done(function () {
+                    var appsCollection = AppsCollection.getInstance();
+
+                    var i;
+                    var length = this.queryResults[0].apps.length;
+                    var app;
+                    for (i = 0; i < length; i++) {
+                        app = this.queryResults[0].apps[i];
+                        if (appsCollection.get(app.packageName) === undefined) {
+                            this.apps.push(app);
+                        }
+                        if (this.apps.length === 8) {
+                            break;
+                        }
+                    }
+
+                    length = this.queryResults[1].apps.length;
+
+                    for (i = 0; i < length; i++) {
+                        app = this.queryResults[1].apps[i];
+                        if (appsCollection.get(app.packageName) === undefined) {
+                            this.apps.push(app);
+                        }
+                        if (this.apps.length === 12) {
+                            break;
+                        }
+                    }
+
                     log({
                         'event' : 'debug.guide_starter_show'
                     });
+
                     deferred.resolve();
-                }).fail(deferred.reject);
+                }.bind(this)).fail(deferred.reject);
 
                 return deferred.promise();
             },
