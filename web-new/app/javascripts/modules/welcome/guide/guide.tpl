@@ -122,6 +122,9 @@
         {{~ it.apps : app }}
         <li class="app cf" data-title="{{= StringUtil.format(i18n.welcome.GUIDE_STARTER_APP_TIP, StringUtil.shortenQuantity(app.downloadCount), app.likesRate, app.tagline)}}">
             <img class="icon" alt="{{! app.title }}" src="{{= app.icons.px68 }}" />
+            {{? app.ad }}
+            <div class="ad"></div>
+            {{?}}
             <div class="title wc">{{! app.title }}</div>
             <button data-url="{{= window.encodeURIComponent(app.apks[0].downloadUrl.url) }}" class="button-install min" data-name="{{! app.title }}" data-icon="{{= app.icons.px68 }}">{{= i18n.app.INSTALL }}</button>
         </li>
