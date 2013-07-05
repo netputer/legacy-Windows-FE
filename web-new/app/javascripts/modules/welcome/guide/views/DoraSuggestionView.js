@@ -25,21 +25,21 @@
             className : CardView.getClass().prototype.className + ' w-guide-suggestion',
             template : doT.template(TemplateFactory.get('guide', 'suggestion')),
             items : [{
+                banner : '../../../../images/guide/banner3.png',
+                extensionId : 18
+            },{
+                banner : '../../../../images/guide/banner4.png',
+                extensionId : 223
+            },{
+                banner : '../../../../images/guide/banner5.png',
+                extensionId : 258
+            },{
                 banner : '../../../../images/guide/banner1.png',
-                extensionId : 0
+                extensionId : 255
             }, {
                 banner : '../../../../images/guide/banner2.png',
-                extensionId : 0
-            }, {
-                banner : '../../../../images/guide/banner3.png',
-                extensionId : 0
-            }, {
-                banner : '../../../../images/guide/banner4.png',
-                extensionId : 0
-            }, {
-                banner : '../../../../images/guide/banner5.png',
-                extensionId : 0
-            }],
+                extensionId : 256
+            }, ],
             render : function () {
                 _.extend(this.events, DoraSuggestionView.__super__.events);
                 this.delegateEvents();
@@ -69,6 +69,7 @@
                 $target.remove();
             },
             events : {
+                'click .button-skip' : 'clickButtonSkip',
                 'click .button-open' : 'clickButtonOpen'
             }
         });
