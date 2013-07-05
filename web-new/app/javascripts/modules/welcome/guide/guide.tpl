@@ -164,7 +164,9 @@
         </li>
         {{~}}
         </ul>
-        <button class="button-action">{{= it.action }}</button>
     </div>
+    <nav class="control hbox">
+        <button class="primary button-action">{{= it.action }}</button>
+    </nav>
 </script>
 </templates>
