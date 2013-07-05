@@ -144,7 +144,7 @@
         <li class="tip hbox">
             <img class="icon" alt="{{! tip.desc }}" src="{{= tip.icon }}" />
             <div class="desc">{{! tip.desc }}</div>
-            <a class="link button-open" target="_default" href="{{= it.url }}">{{= i18n.welcome.GUIDE_TIPS_OPEN }}</a>
+            <a class="link button-open" target="_default" href="{{= tip.url }}">{{= i18n.welcome.GUIDE_TIPS_OPEN }}</a>
         </li>
         {{~}}
         </ul>
@@ -160,7 +160,7 @@
         <p>{{= i18n.welcome.GUIDE_SUGGESTION_TIP }}</p>
         <ul class="item-ctn">
         {{~ it.items : item}}
-        <li class="item button-open" data-id="{{= item.id }}">
+        <li class="item button-open" data-id="{{= item.extensionId }}">
             <img src="{{= item.banner }}" />
         </li>
         {{~}}
