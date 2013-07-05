@@ -83,7 +83,7 @@
                 log({
                     'event' : 'ui.click.guide_tips_action'
                 });
-            }
+            },
             events : {
                 'click .button-open' : 'clickButtonOpen'
             }
