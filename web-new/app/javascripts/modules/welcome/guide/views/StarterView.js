@@ -57,14 +57,16 @@
                 var refreshHandler = function (appsCollection) {
                     if (!appsCollection.syncing && !appsCollection.loading && Device.get('isConnected')) {
                         this.stopListening(appsCollection, 'refresh', refreshHandler);
-                        if (appsCollection.getNormalApps().length <= 20) {
-                            deferred.resolve();
-                        }
+                        deferred.resolve();
                     }
                 };
 
-                this.listenTo(appsCollection, 'refresh', refreshHandler);
-                appsCollection.trigger('update');
+                if (!appsCollection.syncing && !appsCollection.loading && Device.get('isConnected')) {
+                    setTimeout(deferred.resolve);
+                } else {
+                    this.listenTo(appsCollection, 'refresh', refreshHandler);
+                    appsCollection.trigger('update');
+                }
 
                 return deferred.promise();
             },
@@ -81,6 +83,9 @@
                 return deferred.promise();
             },
             render : function () {
+                _.extend(this.events, StarterView.__super__.events);
+                this.delegateEvents();
+
                 this.$el.html(this.template({
                     action : this.options.action,
                     apps : this.apps

@@ -120,7 +120,6 @@
         <p class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_TIP }}</p>
         <ul class="app-ctn">
         {{~ it.apps : app }}
-        {{whosYourDaddy();console.log(app);}}
         <li class="app cf" data-title="{{= StringUtil.format(i18n.welcome.GUIDE_STARTER_APP_TIP, StringUtil.shortenQuantity(app.downloadCount), app.likesRate, app.tagline)}}">
             <img class="icon" alt="{{! app.title }}" src="{{= app.icons.px68 }}" />
             <div class="title wc">{{! app.title }}</div>
@@ -165,7 +164,9 @@
         </li>
         {{~}}
         </ul>
-        <button class="button-action">{{= it.action }}</button>
     </div>
+    <nav class="control hbox">
+        <button class="primary button-action">{{= it.action }}</button>
+    </nav>
 </script>
 </templates>
