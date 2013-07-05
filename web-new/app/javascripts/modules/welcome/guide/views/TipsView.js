@@ -72,6 +72,17 @@
             },
             clickButtonOpen : function (evt) {
                 $(evt.currentTarget).parent().addClass('text-thirdly');
+
+                log({
+                    'event' : 'ui.click.guide_tips_item'
+                });
+            },
+            clickButtonAction : function () {
+                TipsView.__super__.clickButtonAction.call(this);
+
+                log({
+                    'event' : 'ui.click.guide_tips_action'
+                });
             },
             events : {
                 'click .button-open' : 'clickButtonOpen'

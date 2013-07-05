@@ -99,7 +99,7 @@
             this.model.downloadAsync().done(function () {
                 if (!$iframe.attr('src')) {
                     $iframe.attr({
-                        src : this.model.get('web_url') || this.model.get('extension').app.launch.web_url,
+                        src : this.model.get('targetURL') || this.model.get('web_url') || this.model.get('extension').app.launch.web_url,
                         extension : this.model.id
                     });
                 }
@@ -127,7 +127,7 @@
         var changeHandler = function (model) {
             if (!this.$('iframe').attr('src')) {
                 this.$('iframe').attr({
-                    src : model.get('web_url') || model.get('extension').app.launch.web_url,
+                    src : model.get('targetURL') || model.get('web_url') || model.get('extension').app.launch.web_url,
                     extension : model.id
                 });
             }

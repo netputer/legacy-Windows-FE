@@ -120,7 +120,6 @@
         <p class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_TIP }}</p>
         <ul class="app-ctn">
         {{~ it.apps : app }}
-        {{whosYourDaddy();console.log(app);}}
         <li class="app cf" data-title="{{= StringUtil.format(i18n.welcome.GUIDE_STARTER_APP_TIP, StringUtil.shortenQuantity(app.downloadCount), app.likesRate, app.tagline)}}">
             <img class="icon" alt="{{! app.title }}" src="{{= app.icons.px68 }}" />
             <div class="title wc">{{! app.title }}</div>
@@ -144,7 +143,7 @@
         <li class="tip hbox">
             <img class="icon" alt="{{! tip.desc }}" src="{{= tip.icon }}" />
             <div class="desc">{{! tip.desc }}</div>
-            <a class="link button-open" target="_default" href="{{= it.url }}">{{= i18n.welcome.GUIDE_TIPS_OPEN }}</a>
+            <a class="link button-open" target="_default" href="{{= tip.url }}">{{= i18n.welcome.GUIDE_TIPS_OPEN }}</a>
         </li>
         {{~}}
         </ul>
@@ -160,12 +159,14 @@
         <p>{{= i18n.welcome.GUIDE_SUGGESTION_TIP }}</p>
         <ul class="item-ctn">
         {{~ it.items : item}}
-        <li class="item button-open" data-id="{{= item.id }}">
+        <li class="item button-open" data-id="{{= item.extensionId }}">
             <img src="{{= item.banner }}" />
         </li>
         {{~}}
         </ul>
-        <button class="button-action">{{= it.action }}</button>
     </div>
+    <nav class="control hbox">
+        <button class="primary button-action">{{= it.action }}</button>
+    </nav>
 </script>
 </templates>

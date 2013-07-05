@@ -195,7 +195,7 @@
             },
             ENABLE_USER_GUIDE : {
                 get : function () {
-                    return false;
+                    return true;
                 }
             }
         });

@@ -33,6 +33,13 @@
 
                 return deferred.promise();
             },
+            clickButtonSkip : function () {
+                XibaibaiView.__super__.clickButtonSkip.call(this);
+
+                log({
+                    'event' : 'ui.click.guide_xibaibai_skip'
+                });
+            },
             clickButtonAction : function () {
                 IO.requestAsync({
                     url : CONFIG.actions.PUBLISH_EVENT,
@@ -42,6 +49,10 @@
                             type : CONFIG.enums.NAVIGATE_TYPE_APP_WASH
                         })
                     }
+                });
+
+                log({
+                    'event' : 'ui.click.guide_xibaibai_action'
                 });
             }
         });
