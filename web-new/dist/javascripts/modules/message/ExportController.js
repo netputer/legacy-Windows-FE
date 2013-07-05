@@ -23,11 +23,13 @@
         var len;
         var select;
         var all;
+        var ids;
 
         var ExportController = Backbone.View.extend({
             start : function () {
 
-                len  = ExportContextModel.get('ids').length;
+                ids = ExportContextModel.get('ids');
+                len = ids.length;
                 select = ExportContextModel.get('selectSmsCount');
                 all =  ExportContextModel.get('allSms');
 
@@ -38,6 +40,7 @@
                 exportSelectView.update(len, select, all);
 
                 exportProgressView.initState();
+                exportSelectView.initState();
                 this.buildEvents();
             },
             buildEvents : function () {
@@ -46,7 +49,7 @@
 
                 exportSelectView.on('_NEXT_BTN', function (type) {
                     this.showNextAndRemoveCurrent(exportSelectView, exportProgressView);
-                    exportProgressView.exportConversations(type);
+                    exportProgressView.exportConversations(type, ids);
                 }, this);
 
                 exportProgressView.on('_EXPORT_SMS_CANCEL', function () {

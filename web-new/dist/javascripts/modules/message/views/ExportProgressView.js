@@ -139,7 +139,7 @@
                         case 500:
                             alert(i18n.misc.CONNECTION_LOSE);
                             break;
-                        default:
+                            default:
                             alert(i18n.message.EXPORT_FAILED);
                         }
                     }

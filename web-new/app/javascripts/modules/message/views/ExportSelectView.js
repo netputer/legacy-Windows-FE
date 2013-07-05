@@ -62,7 +62,7 @@
 
                 ExportSelectView.__super__.initialize.call(this, arguments);
 
-                var exportType = 1;
+                var exportType;
                 Object.defineProperties(this, {
                     exportType : {
                         get : function () {
@@ -122,6 +122,9 @@
                 }
 
                 this.exportType = type;
+            },
+            initState : function () {
+                this.exportType = 1;
             },
             setNextBtnDisable : function (disable) {
                 this.$('.button-next').prop('disabled', disable);
