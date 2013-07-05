@@ -118,7 +118,8 @@
                 this.trigger('next');
             },
             events : {
-                'click button-install' : 'clickButtonInstall'
+                'click .button-skip' : 'clickButtonSkip',
+                'click .button-install' : 'clickButtonInstall'
             }
         });
 
