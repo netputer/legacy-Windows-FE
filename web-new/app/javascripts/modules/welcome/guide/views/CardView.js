@@ -30,9 +30,12 @@
             clickButtonSkip : function () {
                 this.trigger('next');
             },
+            clickButtonAction : function () {
+                this.trigger('next');
+            },
             events : {
                 'click .button-skip' : 'clickButtonSkip',
-                'click .button-action' : 'clickButtonSkip'
+                'click .button-action' : 'clickButtonAction'
             }
         });
 

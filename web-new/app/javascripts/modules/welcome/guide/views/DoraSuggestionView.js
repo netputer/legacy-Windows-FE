@@ -75,6 +75,10 @@
 
                 $target.remove();
 
+                if (this.$el.find('.item').length === 0) {
+                    this.trigger('next');
+                }
+
                 log({
                     'event' : 'ui.click.guide_dora_open'
                 });
