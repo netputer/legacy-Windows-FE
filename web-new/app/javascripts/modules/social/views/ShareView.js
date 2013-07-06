@@ -217,29 +217,6 @@
                         contentType = i18n.common.SHARE_CONTENT_TYPE_APP;
                     }
                     break;
-                case CONFIG.enums.SOCIAL_DORAEMON_EXTENSION:
-                    if (this.extraData && this.extraData.extension_title) {
-                        contentType = '「' + this.extraData.extension_title + '」';
-                    } else {
-                        contentType = i18n.common.SHARE_CONTENT_TYPE_DORAEMON_EXTENSION;
-                    }
-                    break;
-                case CONFIG.enums.SOCIAL_DORAEMON_CONTENT:
-                    if (this.extraData && this.extraData.title) {
-                        contentType = '「' + this.extraData.title + '」';
-                    }
-                    break;
-                case CONFIG.enums.SOCIAL_WANDOUJIA_THEME:
-                    if (this.extraData && this.extraData.theme_name) {
-                        contentType = '「' + this.extraData.theme_name + '」';
-                    }
-                    break;
-                case CONFIG.enums.SOCIAL_SET_RINGTONE:
-                case CONFIG.enums.SOCIAL_SET_MUSIC_AS_RINGTONE:
-                    if (this.extraData && this.extraData.ringtone_title) {
-                        contentType = '「' + this.extraData.ringtone_title + '」';
-                    }
-                    break;
                 case CONFIG.enums.SOCIAL_UNINSTALL_APP:
                     if (this.extraData && this.extraData.app_title) {
                         contentType = StringUtil.format(i18n.common.SHARE_WIDGET_TITLE_2, '「' + this.extraData.app_title + '」');
@@ -247,8 +224,6 @@
                         contentType = i18n.common.SHARE_WIDGET_TITLE_2;
                     }
                     return contentType;
-                case CONFIG.enums.SOCIAL_ONE_KEY_UPDATE:
-                    return i18n.common.SHARE_WIDGET_TITLE_ONE_KEY_UPDATE;
                 }
                 return StringUtil.format(i18n.common.SHARE_WIDGET_TITLE, contentType);
             },
@@ -431,69 +406,6 @@
                         case CONFIG.enums.SOCIAL_APP:
                             if (this.extraData && this.extraData.app_package_name && this.extraData.app_title) {
                                 shareParameter.content = this.extraData.app_package_name;
-                            } else {
-                                this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
-                                return;
-                            }
-                            break;
-                        case CONFIG.enums.SOCIAL_DORAEMON_EXTENSION:
-                            if (this.extraData && this.extraData.extension_id && this.extraData.extension_title) {
-                                shareParameter.content = this.extraData.extension_id;
-                            } else {
-                                this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
-                                return;
-                            }
-                            break;
-                        case CONFIG.enums.SOCIAL_ONE_KEY_UPDATE:
-                            if (this.extraData && this.extraData.apps) {
-                                shareParameter.content = this.extraData.apps.join();
-                            } else {
-                                this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
-                                return;
-                            }
-                            break;
-                        case CONFIG.enums.SOCIAL_DORAEMON_CONTENT:
-                            if (this.extraData && this.extraData.extension_id) {
-                                shareParameter.content = JSON.stringify({
-                                    id : this.extraData.extension_id,
-                                    title : this.extraData.title,
-                                    image : this.extraData.image
-                                });
-                            } else {
-                                this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
-                                return;
-                            }
-                            break;
-                        case CONFIG.enums.SOCIAL_WANDOUJIA_THEME:
-                            if (this.extraData && this.extraData.theme_id) {
-                                shareParameter.content = this.extraData.theme_id;
-                            } else {
-                                this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
-                                return;
-                            }
-                            break;
-                        case CONFIG.enums.SOCIAL_SET_RINGTONE:
-                            if (this.extraData && this.extraData.ringtone_id && this.extraData.ringtone_title && this.extraData.ringtone_artist) {
-                                MusicService.loadMusicAsync(this.extraData.ringtone_id).done(function (path) {
-                                    shareParameter.content = path;
-                                    this.disableShareBtn(true);
-                                    Account.shareAsync(shareParameter).done(function (resp) {
-                                        this.shareSuccess(resp.body);
-                                    }.bind(this)).fail(function (resp) {
-                                        this.shareFailed(resp.body);
-                                    }.bind(this));
-                                }.bind(this));
-                            } else {
-                                this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
-                                return;
-                            }
-                            break;
-                        case CONFIG.enums.SOCIAL_SET_MUSIC_AS_RINGTONE:
-                            if (this.extraData && this.extraData.ringtone_title && this.extraData.ringtone_artist) {
-                                shareParameter.content = JSON.stringify({
-                                    ringtone_title : this.extraData.ringtone_title,
-                                    ringtone_artist : this.extraData.ringtone_artist
-                                });
                             } else {
                                 this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
                                 return;

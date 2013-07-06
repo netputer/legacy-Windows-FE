@@ -150,53 +150,6 @@
             SocialService.show();
         }, this);
 
-        IO.Backend.Device.onmessage({
-            'data.channel' : 'social.doraemon_share'
-        }, function (data) {
-            var previewContentSize = SocialService.getPreviewContentSize();
-
-            var previewEnabled = false;
-            var previewImg;
-            if (data.image) {
-                previewEnabled = true;
-                previewImg = $('<img/>')
-                    .attr('src', data.image)
-                    .css({'max-width' : previewContentSize.width});
-            }
-
-            var shareParameters = {
-                text : data.content,
-                hasPreview : previewEnabled,
-                previewContent : previewImg,
-                extraData : data,
-                type : CONFIG.enums.SOCIAL_DORAEMON_CONTENT
-            };
-
-            SocialService.setContent(shareParameters);
-            SocialService.show();
-        }, this);
-
-        IO.Backend.Device.onmessage({
-            'data.channel' : 'social.share_wandoujia_theme'
-        }, function (data) {
-            var previewContentSize = SocialService.getPreviewContentSize();
-
-            var previewImg = $('<img/>')
-                .attr('src', StringUtil.format(CONFIG.enums.SOCIAL_IMAGE_PREVIEW_URL, CONFIG.enums.SOCIAL_WANDOUJIA_THEME, data.theme_id))
-                .css({'max-width' : previewContentSize.width});
-
-            var shareParameters = {
-                textUrl : StringUtil.format(CONFIG.enums.SOCIAL_TEXT_PREVIEW_URL, CONFIG.enums.SOCIAL_WANDOUJIA_THEME, data.theme_id),
-                hasPreview : true,
-                previewContent : previewImg,
-                extraData : data,
-                type : CONFIG.enums.SOCIAL_WANDOUJIA_THEME
-            };
-
-            SocialService.setContent(shareParameters);
-            SocialService.show();
-        }, this);
-
         window.socialService = SocialService;
 
         return SocialService;

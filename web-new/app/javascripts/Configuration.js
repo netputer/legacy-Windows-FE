@@ -594,17 +594,10 @@
                 SOCIAL_IMAGE_PREVIEW_URL : 'http://social-services.wandoujia.com/preview/image?content_type={1}&content={2}',
 
                 // Social Share Type
-                SOCIAL_SCREENSHOT : 'screenshot',
                 SOCIAL_PHOTO : 'photo',
                 SOCIAL_APP : 'app',
-                SOCIAL_DORAEMON_EXTENSION : 'doraemon_extension',
                 SOCIAL_WELCOME : 'welcome',
-                SOCIAL_ONE_KEY_UPDATE : 'one_key_update',
-                SOCIAL_DORAEMON_CONTENT : 'doraemon_content',
-                SOCIAL_WANDOUJIA_THEME : 'wandoujia_theme',
                 SOCIAL_SET_WALLPAPER : 'set_wallpaper',
-                SOCIAL_SET_RINGTONE : 'set_ringtone',
-                SOCIAL_SET_MUSIC_AS_RINGTONE : 'set_music_as_ringtone',
                 SOCIAL_UNINSTALL_APP : 'uninstall_app',
                 SOCIAL_WASH : 'wandoujia_wash',
 
