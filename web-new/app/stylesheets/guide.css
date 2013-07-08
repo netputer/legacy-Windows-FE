@@ -1,1 +1,1850 @@
-.sprite-sprite,input[type="checkbox"]:enabled:checked,input[type="checkbox"]:enabled:checked:hover,input[type="checkbox"].dark,input[type="checkbox"].dark:enabled:checked,input[type="checkbox"].dark:enabled:checked:hover,input[type="radio"],input[type="radio"]:enabled:hover,input[type="radio"]:enabled:checked,input[type="radio"]:enabled:checked:hover,.w-guide-ctn .content .w-guide-card .stage .icon-pass{background:url('../images/sprite-s30f841a6dd.png') no-repeat}.guide-sprite,.w-guide-bind .bg,.w-guide-cloud-backup .bg,.w-guide-cloud-backup .section .login-ctn .sns-login .button-qq,.w-guide-cloud-backup .section .login-ctn .sns-login .button-renren,.w-guide-cloud-backup .section .login-ctn .sns-login .button-weibo,.w-guide-xibaibai .stage .bg,.w-guide-starter .app-ctn .app .ad{background:url('../images/guide-s4eb8f6e8c1.png') no-repeat}.button-sprite,button.w-icon-btn .icon.add-grey,button.w-icon-btn .icon.pause,button.w-icon-btn .icon.start,button.w-icon-btn .icon.delete,button.w-icon-btn .icon.open-folder,button.w-icon-btn .icon.add,button.w-icon-btn .icon.mark-as-read,button.w-icon-btn .icon.refresh,button.w-icon-btn .icon.import,button.w-icon-btn .icon.export,button.w-icon-btn .icon.update,button.w-icon-btn .icon.up,button.w-icon-btn .icon.down,button.w-icon-btn .icon.star,button.w-icon-btn .icon.sd,button.w-icon-btn .icon.device,button.w-icon-btn .icon.play-black,button.w-icon-btn .icon.pause-black,button.w-icon-btn .icon.refresh-black,button.w-icon-btn .icon.fullscreen-black,button.w-icon-btn .icon.share-black,button.w-icon-btn .icon.merge,button.w-icon-btn .icon.ring,button.w-icon-btn .icon.itunes,button.w-icon-btn .icon.open-folder-black,button.w-icon-btn .icon.comment,button.w-icon-btn .icon.share,button.w-icon-btn .icon.like,button.w-icon-btn .icon.dislike,button.w-icon-btn .icon.reload,button.w-icon-btn .icon.fullscreen,button.w-icon-btn .icon.move-down,button.w-icon-btn .icon.reset{background:url('../images/button-sd83178dcba.png') no-repeat}html,body,div,button,textarea,input,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{border:0;font-size:100%;font-style:normal;margin:0;outline:0;padding:0;vertical-align:baseline}article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary{display:block}nav,ul,ol,menu{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}a{background:transparent;border:0;cursor:pointer;font-size:100%;margin:0;padding:0;vertical-align:baseline}ins{background-color:#ff9;color:#000;text-decoration:none}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted #000;cursor:help}table{border-collapse:collapse;border-spacing:0}hr{border:0;border-top:1px solid #d6d6d6;display:block;height:1px;margin:1em 0;padding:0}input,select{vertical-align:middle}:focus{outline:none}html,body{cursor:default;overflow:hidden;-webkit-user-select:none}.cf{display:block}.cf:after{content:'.';clear:both;display:block;height:0;visibility:hidden}.hbox,.vbox{display:-webkit-box;-webkit-box-align:stretch;-webkit-box-direction:normal;-webkit-box-orient:horizontal;-webkit-box-pack:start}.hbox{-webkit-box-orient:horizontal}.vbox{-webkit-box-orient:vertical}.box-reverse{-webkit-box-direction:reverse}html,body,.w-main{height:100%;overflow:hidden}.w-main{position:relative}.w-main .sidebar{background-color:#43484d;border-left:1px solid #717375;height:100%;position:absolute;width:189px}.w-main .module-ctn{border-color:#e5e5e5;border-style:solid;border-width:1px 1px 0;bottom:0;left:190px;overflow:hidden;position:absolute;right:0;top:0}.w-main .module-ctn .module-main{height:100%;position:absolute;width:100%}.w-layout-hide{opacity:0;pointer-events:none}.w-layout-hide .w-layout-hide{display:none}.w-layout-hidden{visibility:hidden}@font-face{font-family:"Roboto-Light";src:url("Roboto-Light.ttf")}body,button,input,textarea{color:#000;font:12px/1.5em Arial, Helvetica, Microsoft Yahei, sans-serif;-webkit-font-smoothing:antialiased}a{color:#3c7800;text-decoration:none}a:hover{text-decoration:underline}a:active{color:#2c5300}a[disabled],a[disabled]:hover,a[disabled]:active{cursor:default;text-decoration:none;opacity:.4;pointer-events:none}h1{font-size:16px}h2{font-size:14px}h3{font-size:12px;font-weight:bold}::selection{background-color:#cfe4ff;color:#333;text-shadow:none}.link{color:#3c7800;cursor:pointer}.link:hover{text-decoration:underline}.link:active{color:#2c5300}.link[disabled],.link[disabled]:hover,.link[disabled]:active{cursor:default;text-decoration:none;opacity:.4;pointer-events:none}.help{cursor:help}.text-primary{color:#3c7800}.text-secondary{color:#555}.text-thirdly{color:#999}.text-warning{color:#b53d01}.text-bold{font-weight:bold}.wc{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;word-wrap:break-word}.enable-select{cursor:text;-webkit-user-select:text}input[type="submit"],button{background-image:-webkit-linear-gradient(-90deg, #f3f3f3 0%, #e9e9e9 100%);border:1px #999 solid;border-radius:3px;box-shadow:inset 0 1px 0 0 #fff;color:rgba(0,0,0,0.9);height:26px;min-width:60px;padding:3px 10px;text-shadow:0 1px 0 #fff;vertical-align:middle}input[type="submit"].min,button.min{height:24px;padding:2px 10px}input[type="submit"].max,button.max{font-size:14px;height:32px;line-height:18px;padding:6px 15px}input[type="submit"].grand,button.grand{font-size:14px;height:38px;line-height:18px;padding:9px 15px;min-width:80px}input[type="submit"]:enabled:hover:not(.active):not(:active),input[type="submit"]:enabled:focus,button:enabled:hover:not(.active):not(:active),button:enabled:focus{background-image:-webkit-linear-gradient(-90deg, #f8f8f8 0%, #f0f0f0 100%);color:#000}input[type="submit"]:enabled:active,input[type="submit"].active,button:enabled:active,button.active{background-image:-webkit-linear-gradient(-90deg, #dadada 0%, #ebebeb 100%);box-shadow:none;color:#000}input[type="submit"]:disabled,button:disabled{opacity:0.4}input[type="submit"].primary,button.primary{background-image:-webkit-linear-gradient(-90deg, #63c100 0%, #46a100 100%);border-color:#2c8e00;box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.2);color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.2)}input[type="submit"].primary:enabled:hover:not(.active):not(:active),input[type="submit"].primary:enabled:focus,button.primary:enabled:hover:not(.active):not(:active),button.primary:enabled:focus{background-image:-webkit-linear-gradient(-90deg, #6bc420 0%, #52ab07 100%);color:#fff}input[type="submit"].primary:enabled:active,input[type="submit"].primary.active,button.primary:enabled:active,button.primary.active{background-image:-webkit-linear-gradient(-90deg, #419400 0%, #5baf00 100%);border-color:#298300;color:#fff}input[type="submit"].secondary,button.secondary{background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0, #e32119), color-stop(1, #c90400));border-color:#720403;box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.2);color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.2)}input[type="submit"].secondary:enabled:hover:not(.active):not(:active),input[type="submit"].secondary:enabled:focus,button.secondary:enabled:hover:not(.active):not(:active),button.secondary:enabled:focus{background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0, #f51d11), color-stop(1, #dc0000));color:#fff}input[type="submit"].secondary:enabled:active,input[type="submit"].secondary.active,button.secondary:enabled:active,button.secondary.active{background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0, #b10500), color-stop(1, #cb211b));color:#fff}input[type="submit"]+button,input[type="submit"]+.w-ui-buttongroup,button+button,button+.w-ui-buttongroup{margin-left:4px}input[type="submit"].transparent,button.transparent{background:transparent;border-color:transparent;border-radius:0;box-shadow:none;color:#555}input[type="submit"].transparent:enabled:hover:not(.active):not(:active),input[type="submit"].transparent:enabled:focus,button.transparent:enabled:hover:not(.active):not(:active),button.transparent:enabled:focus{background:transparent;color:#3c7800}input[type="submit"].transparent:enabled:active,input[type="submit"].transparent.active,button.transparent:enabled:active,button.transparent.active{background:transparent;box-shadow:none;color:#2c5300}input[type="submit"].transparent.min,button.transparent.min{min-width:0;padding:2px 5px}button.w-icon-btn .icon{display:inline-block;height:16px;margin:-2px 3px 0 0;vertical-align:middle;width:16px}button.w-icon-btn .icon.add-grey{background-position:0 -48px}button.w-icon-btn .icon.pause{background-position:0 -1136px}button.w-icon-btn .icon.start{background-position:0 -768px}button.w-icon-btn .icon.delete{background-position:0 -1104px}button.w-icon-btn .icon.open-folder{background-position:0 -976px}button.w-icon-btn .icon.add{background-position:0 -320px}button.w-icon-btn .icon.mark-as-read{background-position:0 -256px}button.w-icon-btn .icon.refresh{background-position:0 -240px}button.w-icon-btn .icon.import{background-position:0 -544px}button.w-icon-btn .icon.export{background-position:0 -448px}button.w-icon-btn .icon.update{background-position:0 -32px}button.w-icon-btn .icon.up{background-position:0 -832px}button.w-icon-btn .icon.down{background-position:0 -1248px}button.w-icon-btn .icon.star{background-position:0 -512px}button.w-icon-btn .icon.sd{background-position:0 -1008px}button.w-icon-btn .icon.device{background-position:0 -960px}button.w-icon-btn .icon.play-black{background-position:0 -896px}button.w-icon-btn .icon.pause-black{background-position:0 -1184px}button.w-icon-btn .icon.refresh-black{background-position:0 -272px}button.w-icon-btn .icon.fullscreen-black{background-position:0 -368px}button.w-icon-btn .icon.share-black{background-position:0 -576px}button.w-icon-btn .icon.merge{background-position:0 -640px}button.w-icon-btn .icon.ring{background-position:0 -784px}button.w-icon-btn .icon.itunes{background-position:0 -480px}button.w-icon-btn .icon.open-folder-black{background-position:0 -1120px}button.w-icon-btn .icon.comment{background-position:0 -912px}button.w-icon-btn .icon.share{background-position:0 -432px}button.w-icon-btn .icon.like{background-position:0 -304px}button.w-icon-btn .icon.dislike{background-position:0 -96px}button.w-icon-btn .icon.reload{background-position:0 -160px}button.w-icon-btn .icon.fullscreen{background-position:0 -224px}button.w-icon-btn .icon.move-down{background-position:0 -736px}button.w-icon-btn .icon.reset{background-position:0 -1216px}button.w-icon-btn.img{padding-left:6px;padding-right:6px;min-width:25px}button.w-icon-btn.img .icon{margin-right:0;opacity:.8}button.w-icon-btn.img:hover .icon,button.w-icon-btn.img:enabled:active .icon,button.w-icon-btn.img.active .icon{opacity:1}button.w-icon-btn:disabled .icon{pointer-events:none}.w-ui-button.w-ui-menubutton .label{text-align:left;-webkit-box-flex:1}.w-ui-button.w-ui-menubutton .label+.arrow-ctn{margin-left:5px}.w-ui-button.w-ui-menubutton .arrow-ctn{-webkit-box-align:center}.w-ui-button.w-ui-menubutton .arrow-ctn .arrow{border-color:#000 transparent transparent transparent;border-style:solid;border-width:4px 4px 0;opacity:.7}.w-ui-button.w-ui-menubutton:enabled:hover .arrow-ctn .arrow{opacity:1}.w-ui-button.w-ui-menubutton:enabled:active .arrow-ctn .arrow,.w-ui-button.w-ui-menubutton.active .arrow-ctn .arrow,.w-ui-button.w-ui-menubutton.active:hover .arrow-ctn .arrow{opacity:1}.w-ui-button.w-ui-menubutton.primary .arrow-ctn .arrow,.w-ui-button.w-ui-menubutton.secondary .arrow-ctn .arrow{border-top-color:#fff}.w-ui-button.w-ui-menubutton.primary:enabled:hover .arrow-ctn .arrow,.w-ui-button.w-ui-menubutton.secondary:enabled:hover .arrow-ctn .arrow{border-top-color:#fff}.w-ui-button.w-ui-menubutton.primary:enabled:active .arrow-ctn .arrow,.w-ui-button.w-ui-menubutton.primary.active .arrow-ctn .arrow,.w-ui-button.w-ui-menubutton.primary.active:hover .arrow-ctn .arrow,.w-ui-button.w-ui-menubutton.secondary:enabled:active .arrow-ctn .arrow,.w-ui-button.w-ui-menubutton.secondary.active .arrow-ctn .arrow,.w-ui-button.w-ui-menubutton.secondary.active:hover .arrow-ctn .arrow{border-top-color:#fff}.w-ui-button.w-ui-menubutton.primary .arrow-ctn,.w-ui-button.w-ui-menubutton.secondary .arrow-ctn{border-color:#fff}.w-ui-button.w-ui-menubutton.toggle{min-width:22px;padding-left:8px;padding-right:8px}.w-ui-button.w-ui-menubutton.toggle .label{display:none}.w-ui-button.w-ui-menubutton.toggle .label+.arrow-ctn{margin-left:0px}.w-ui-buttongroup{display:inline-block}.w-ui-buttongroup button{border-radius:0;margin-left:0;min-width:50px}.w-ui-buttongroup button:first-child{border-bottom-left-radius:3px;border-right-width:0;border-top-left-radius:3px}.w-ui-buttongroup button:first-child+button{border-left-width:1px}.w-ui-buttongroup button:last-child{border-bottom-right-radius:3px;border-left-width:0;border-top-right-radius:3px}.w-ui-buttongroup+button,.w-ui-buttongroup+.w-ui-buttongroup{margin-left:4px}input[type="text"],input[type="email"],input[type="password"],textarea{border:1px #cacaca solid;box-shadow:0 1px 0 #fff,0 1px 3px rgba(0,0,0,0.05) inset;height:30px;resize:none;-webkit-transition:border linear .2s, box-shadow linear .2s, height .2s linear, min-height .2s linear}input[type="text"]:hover:not(:disabled),input[type="email"]:hover:not(:disabled),input[type="password"]:hover:not(:disabled),textarea:hover:not(:disabled){border-color:rgba(109,184,0,0.5)}input[type="text"]:focus,input[type="text"]:focus:hover,input[type="email"]:focus,input[type="email"]:focus:hover,input[type="password"]:focus,input[type="password"]:focus:hover,textarea:focus,textarea:focus:hover{border-color:#6db800;box-shadow:0 1px 0 #fff,0 0 3px rgba(109,184,0,0.6),0 1px 3px rgba(0,0,0,0.05) inset}input[type="text"]:disabled,input[type="email"]:disabled,input[type="password"]:disabled,textarea:disabled{background-color:#f9f9f9;border-color:#cacaca}input:invalid,input:focus:invalid,textarea:invalid,textarea:focus:invalid,input.invalid{border-color:#b53d01}input[type="text"],input[type="email"],input[type="password"]{padding:0 5px}textarea{padding:2px 5px}input[type="checkbox"]{background-color:#fff;border:1px #cacaca solid;border-radius:2px;box-sizing:border-box;height:14px;margin-top:-3px;width:14px;-webkit-appearance:none}input[type="checkbox"]:enabled:hover{border-color:#6db800}input[type="checkbox"]:enabled:checked,input[type="checkbox"]:enabled:checked:hover{background-position:0 -3564px;background-color:#fff;border-color:#6db800}input[type="checkbox"]:disabled{opacity:0.4}input[type="checkbox"].dark{background-position:0 -4352px}input[type="checkbox"].dark:enabled:checked,input[type="checkbox"].dark:enabled:checked:hover{background-position:0 -4340px}input[type="radio"]{background-position:0 -3275px;border:none;height:16px;margin-top:-2px;width:16px;vertical-align:middle;-webkit-appearance:none}input[type="radio"]:enabled:hover{background-position:0 -3031px}input[type="radio"]:enabled:checked,input[type="radio"]:enabled:checked:hover{background-position:0 -2941px}input[type="radio"]:disabled{opacity:0.4}progress{display:block;height:32px;-webkit-appearance:none}progress::-webkit-progress-bar{background-color:#6a6a6a;box-shadow:inset 1px 0 5px 0 rgba(0,0,0,0.2);display:block;height:32px}progress::-webkit-progress-value{background-image:-webkit-gradient(linear, left top, left bottom, from(#7fc124), to(#60ac1e));display:block;height:32px;min-width:10px}progress.running::-webkit-progress-value{background:url("../images/progress_bg_18X6.png");background-color:#6db800;-webkit-animation-duration:.5s;-webkit-animation-iteration-count:infinite;-webkit-animation-name:runningProgress;-webkit-animation-timing-function:linear}progress.min,progress.tiny{background-image:none;border:1px #bbb solid;padding:1px}progress.min::-webkit-progress-bar,progress.tiny::-webkit-progress-bar{background-color:#fff;background-image:none;border-radius:6px;box-shadow:none}progress.min::-webkit-progress-value,progress.tiny::-webkit-progress-value{border-radius:6px}progress.min{border-radius:6px;height:14px}progress.min::-webkit-progress-bar{height:10px}progress.min::-webkit-progress-value{height:10px}progress.tiny{border-radius:6px;height:10px}progress.tiny::-webkit-progress-bar{height:6px}progress.tiny::-webkit-progress-value{height:6px}progress.disabled::-webkit-progress-value{background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(0.05, #f9f9f9), color-stop(1, #ededed))}@-webkit-keyframes runningProgress{0%{background-position-x:0}50%{background-position-x:9px}100%{background-position-x:18px}}.w-ui-switch-button{background-color:#b4b4b4;border:1px #9e9e9e solid;border-radius:3px;box-shadow:0 0 10px rgba(0,0,0,0.1) inset;display:block;height:14px;padding:1px;width:36px;-webkit-transition:all .2s}.w-ui-switch-button .switcher{background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(0.05, #f9f9f9), color-stop(1, #ededed));border-radius:3px;display:inline-block;height:14px;width:18px;-webkit-transition:margin .2s}.w-ui-switch-button.on{background-color:#87c746;border-color:#4f9513}.w-ui-switch-button.on .switcher{margin-left:18px}.w-anima-fade-in-fast{-webkit-animation:anima-fadeIn .2s}.w-anima-fade-in{-webkit-animation:anima-fadeIn .4s}.w-anima-pop-in{-webkit-animation:anima-pop-in .4s}@-webkit-keyframes anima-fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes anima-fadeOut{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes anima-breath{0%{opacity:0.3}40%{opacity:1}60%{opacity:1}100%{opacity:0.3}}@-webkit-keyframes anima-pop-in{0%{-webkit-transform:scale(0)}50%{-webkit-transform:scale(1.1)}100%{-webkit-transform:scale(1)}}.w-anima-slide-in-right{-webkit-animation-direction:reverse;-webkit-animation-duration:.4s;-webkit-animation-iteration-count:1;-webkit-animation-name:anima-slide-right;-webkit-animation-timing-function:ease-out}.w-anima-slide-out-right{-webkit-animation-duration:.4s;-webkit-animation-iteration-count:1;-webkit-animation-name:anima-slide-right;-webkit-animation-timing-function:ease-out}.w-anima-fade-slide-in-right{-webkit-animation-direction:reverse;-webkit-animation-duration:.4s;-webkit-animation-iteration-count:1;-webkit-animation-name:anima-slide-right, anima-fadeOut;-webkit-animation-timing-function:ease-out}.w-anima-fade-slide-out-right{-webkit-animation-duration:.4s;-webkit-animation-iteration-count:1;-webkit-animation-name:anima-slide-right, anima-fadeOut;-webkit-animation-timing-function:ease-out}.w-anima-slide-up{-webkit-animation-duration:.4s;-webkit-animation-iteration-count:1;-webkit-animation-name:anima-slide-up;-webkit-animation-timing-function:ease-out}@-webkit-keyframes anima-slide-right{0%{-webkit-transform:translate3d(0, 0, 0)}100%{-webkit-transform:translate3d(100%, 0, 0)}}@-webkit-keyframes anima-slide-up{0%{-webkit-transform:translate3d(0, 0, 0)}100%{-webkit-transform:translate3d(0, -100%, 0)}}.w-ui-helper{height:100%;left:0;position:fixed;top:0;width:100%}.w-ui-popup-panel,.w-ui-popup-tip{border-radius:3px;box-shadow:0 2px 10px rgba(0,0,0,0.3);position:absolute;-webkit-transition:opacity .2s linear}.w-ui-popup-panel .arrow,.w-ui-popup-tip .arrow{border-color:rgba(0,0,0,0.8) transparent transparent transparent;border-style:solid;border-width:5px;height:0;position:absolute;top:-10px;width:0;-webkit-transform:rotate(180deg);-webkit-transition:opacity .2s linear}.w-ui-popup-panel .arrow.bottom,.w-ui-popup-tip .arrow.bottom{top:auto;bottom:-10px;-webkit-transform:rotate(0)}.w-ui-popup-tip{background-color:rgba(0,0,0,0.8);color:#fff;padding:3px 8px}.w-ui-popup-tip .arrow{border-color:rgba(0,0,0,0.8) transparent transparent transparent;border-style:solid;border-width:5px;height:0;position:absolute;top:-10px;width:0;-webkit-transform:rotate(180deg);-webkit-transition:opacity .2s linear}.w-ui-popup-tip .arrow.bottom{top:auto;bottom:-10px;-webkit-transform:rotate(0)}.w-ui-popup-panel{background-color:#fff;border:1px #bababa solid;color:#555;max-width:260px;padding:10px 15px}.w-ui-popup-panel .arrow{background-color:#fff;border-color:#bababa #bababa transparent transparent;border-style:solid;border-width:1px;height:8px;position:absolute;top:-5px;width:8px;-webkit-transform:rotate(-45deg);-webkit-transition:opacity .2s linear}.w-ui-popup-panel .arrow.bottom{top:auto;bottom:-5px;-webkit-transform:rotate(135deg)}.w-ui-loading-small{border-radius:5px;display:none;height:25px;width:25px}.w-ui-loading-small.white{background-color:transparent}.w-ui-loading-small.white .anima .rotor{background-color:#fff;-webkit-animation-name:f_fadeG_black}.w-ui-loading-small .anima{height:24px;width:24px;-webkit-transform:scale(0.6)}.w-ui-loading-small .anima .rotor{background-color:#fff;border-radius:4px;position:absolute;width:4.5px;height:4.5px;-webkit-animation-duration:.88s;-webkit-animation-iteration-count:infinite;-webkit-animation-name:f_fadeG}.w-ui-loading-small .anima .rotor1{left:0;top:10px;-webkit-animation-delay:.33s}.w-ui-loading-small .anima .rotor2{left:3px;top:3px;-webkit-animation-delay:.44s}.w-ui-loading-small .anima .rotor3{left:10px;top:0;-webkit-animation-delay:.55s}.w-ui-loading-small .anima .rotor4{right:3px;top:3px;-webkit-animation-delay:.66s}.w-ui-loading-small .anima .rotor5{right:0;top:10px;-webkit-animation-delay:.77s}.w-ui-loading-small .anima .rotor6{bottom:3px;right:3px;-webkit-animation-delay:.88s}.w-ui-loading-small .anima .rotor7{bottom:0;left:10px;-webkit-animation-delay:.99s}.w-ui-loading-small .anima .rotor8{bottom:3px;left:3px;-webkit-animation-delay:1.1s}.w-ui-loading{background-color:rgba(255,255,255,0.7);border-radius:5px;display:none;height:50px;left:50%;margin:-25px 0 0 -25px;position:absolute;top:50%;width:50px}.w-ui-loading.white{background-color:transparent}.w-ui-loading.white .anima .rotor{background-color:#fff;-webkit-animation-name:f_fadeG_black}.w-ui-loading .anima{height:48px;margin:-24px 0 0 -24px;left:50%;position:absolute;top:50%;width:48px;-webkit-transform:scale(0.6)}.w-ui-loading .anima .rotor{background-color:#fff;border-radius:4px;position:absolute;width:9px;height:9px;-webkit-animation-duration:.88s;-webkit-animation-iteration-count:infinite;-webkit-animation-name:f_fadeG}.w-ui-loading .anima .rotor1{left:0;top:20px;-webkit-animation-delay:.33s}.w-ui-loading .anima .rotor2{left:6px;top:6px;-webkit-animation-delay:.44s}.w-ui-loading .anima .rotor3{left:20px;top:0;-webkit-animation-delay:.55s}.w-ui-loading .anima .rotor4{right:6px;top:6px;-webkit-animation-delay:.66s}.w-ui-loading .anima .rotor5{right:0;top:20px;-webkit-animation-delay:.77s}.w-ui-loading .anima .rotor6{bottom:6px;right:6px;-webkit-animation-delay:.88s}.w-ui-loading .anima .rotor7{bottom:0;left:20px;-webkit-animation-delay:.99s}.w-ui-loading .anima .rotor8{bottom:6px;left:6px;-webkit-animation-delay:1.1s}@-webkit-keyframes f_fadeG{0%{background-color:#3c7800}100%{background-color:#fff}}@-webkit-keyframes f_fadeG_black{0%{background-color:#000}100%{background-color:#fff}}.w-ui-loading-horizental-ctn{background-color:rgba(255,255,255,0.8);height:100%;left:0;position:absolute;top:0;width:100%}.w-ui-loading-horizental-ctn.transparent{background-color:transparent}.w-ui-loading-horizental-ctn .w-ui-loading-horizental{height:6px;left:50%;margin:-3px 0 0 -33.5px;position:absolute;top:50%;width:77px}.w-ui-loading-horizental-ctn .w-ui-loading-horizental .ball{background-color:#6db800;border-radius:3px;height:6px;left:0;position:absolute;top:0;width:6px;-webkit-animation-duration:1.3s;-webkit-animation-iteration-count:infinite;-webkit-animation-name:bounce_followingBallsG;-webkit-transform:translate3d(0, 0, 0)}.w-ui-loading-horizental-ctn .w-ui-loading-horizental .ball.ball1{-webkit-animation-delay:0}.w-ui-loading-horizental-ctn .w-ui-loading-horizental .ball.ball2{-webkit-animation-delay:0.13s}.w-ui-loading-horizental-ctn .w-ui-loading-horizental .ball.ball3{-webkit-animation-delay:0.26s}.w-ui-loading-horizental-ctn .w-ui-loading-horizental .ball.ball4{-webkit-animation-delay:0.39s}@-webkit-keyframes bounce_followingBallsG{0%{opacity:1;-webkit-transform:translate3d(0, 0, 0)}50%{opacity:0;-webkit-transform:translate3d(71px, 0, 0)}100%{opacity:1;-webkit-transform:translate3d(0, 0, 0)}}.w-ui-toast-box{background-color:rgba(0,0,0,0.8);border-radius:3px;bottom:10px;color:#fff;padding:10px 15px;position:absolute;-webkit-transition:opacity .2s linear}.w-guide-ctn{bottom:0;left:0;overflow:hidden;position:absolute;right:0;top:0}.w-guide-ctn .content{background-color:#fff;border:1px #cacaca solid;border-radius:5px;padding:5px;-webkit-box-flex:1;-webkit-transform:translate3d(100%, 0, 0)}.w-guide-ctn .content .w-guide-card{overflow:hidden;-webkit-box-flex:1}.w-guide-ctn .content .w-guide-card .stage{background-image:url("../images/welcome_bg_100X100.png");padding:15px 30px;-webkit-box-flex:1}.w-guide-ctn .content .w-guide-card .stage h1{margin-bottom:10px}.w-guide-ctn .content .w-guide-card .stage p{line-height:1.5em}.w-guide-ctn .content .w-guide-card .stage .icon-pass{background-position:0 -4248px;display:inline-block;height:16px;margin-right:5px;vertical-align:middle;width:16px}.w-guide-ctn .content .w-guide-card .control{margin-top:5px;-webkit-box-align:center;-webkit-box-pack:end}.w-guide-ctn .content .w-guide-card .control .button-skip{display:block;margin-right:15px}.w-guide-ctn .step-counter-ctn{height:30px;-webkit-box-align:center;-webkit-box-pack:center}.w-guide-ctn .step-counter-ctn .step-pointer{background-color:#cacaca;border:3px solid transparent;border-radius:5px;-webkit-transition:all .2s linear}.w-guide-ctn .step-counter-ctn .step-pointer+.step-pointer{margin-left:10px}.w-guide-ctn .step-counter-ctn .step-pointer.current{border-color:#6db800;-webkit-transform:scale(1.5)}.w-guide-bind .bg{background-position:0 -178px;height:207px;margin:40px 0 40px;width:382px}.w-guide-bind .success{display:none}.w-guide-cloud-backup .bg{background-position:0 -385px;height:252px;margin-top:40px;width:368px}.w-guide-cloud-backup .section{height:453px;overflow:auto;-webkit-transform:translate3d(0, 0, 0);-webkit-transition:-webkit-transform .4s ease-out}.w-guide-cloud-backup .section form{margin-top:25px}.w-guide-cloud-backup .section form label{display:block;margin-bottom:12px}.w-guide-cloud-backup .section form label .label{display:inline-block;font-size:14px;text-align:right;vertical-align:middle;width:65px}.w-guide-cloud-backup .section form label .text-warning{display:none;margin:5px 0 0 80px}.w-guide-cloud-backup .section form input:not([type="checkbox"]){margin-left:15px;width:280px}.w-guide-cloud-backup .section form input.password-verify{margin-left:80px}.w-guide-cloud-backup .section form input.pravicy{margin:-2px 5px 0 80px}.w-guide-cloud-backup .section form input.captcha{width:174px}.w-guide-cloud-backup .section form .captcha-image{cursor:pointer;display:inline-block;height:32px;margin-left:10px;vertical-align:middle}.w-guide-cloud-backup .section hr{box-shadow:0 1px 0 #fff;height:0}.w-guide-cloud-backup .section .login-ctn{-webkit-box-align:center;-webkit-box-pack:center}.w-guide-cloud-backup .section .login-ctn .button-login{margin-right:15px}.w-guide-cloud-backup .section .login-ctn .sns-login{height:21px;margin-left:10px}.w-guide-cloud-backup .section .login-ctn .sns-login li{cursor:pointer;height:21px;width:21px}.w-guide-cloud-backup .section .login-ctn .sns-login li+li{margin-left:5px}.w-guide-cloud-backup .section .login-ctn .sns-login .button-qq{background-position:0 -715px;display:inline-block}.w-guide-cloud-backup .section .login-ctn .sns-login .button-renren{background-position:0 -694px;display:inline-block}.w-guide-cloud-backup .section .login-ctn .sns-login .button-weibo{background-position:0 -673px;display:inline-block}.w-guide-xibaibai{text-align:center}.w-guide-xibaibai .stage{position:relative}.w-guide-xibaibai .stage .title{margin-top:40px}.w-guide-xibaibai .stage .bg{background-position:0 0;bottom:0;height:178px;left:0;position:absolute;width:460px}.w-guide-starter .app-ctn{margin-top:15px;overflow:hidden}.w-guide-starter .app-ctn .app{float:left;height:108px;margin-bottom:10px;position:relative;text-align:center;width:98px}.w-guide-starter .app-ctn .app .ad{background-position:0 -637px;height:36px;left:21px;position:absolute;top:0;width:36px}.w-guide-starter .app-ctn .app .icon{height:56px;width:56px}.w-guide-starter .app-ctn .app .title{line-height:20px}.w-guide-tips .tip-ctn{margin-top:15px}.w-guide-tips .tip-ctn .tip{height:34px;-webkit-box-align:center}.w-guide-tips .tip-ctn .tip .icon{display:block;height:16px;margin-right:10px;width:16px}.w-guide-tips .tip-ctn .tip .desc{-webkit-box-flex:1}.w-guide-tips .tip-ctn .tip+.tip{border-top:1px #e5e5e5 solid;box-shadow:0 1px 0 #fff inset}.w-guide-suggestion .stage{overflow-y:auto}.w-guide-suggestion .stage .item-ctn{margin-top:15px}.w-guide-suggestion .stage .item-ctn .item{cursor:pointer;height:90px;width:385px}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/sprite\/\*\.png}line{font-family:\000031218}}
+.sprite-sprite, input[type="checkbox"]:enabled:checked, input[type="checkbox"]:enabled:checked:hover, input[type="checkbox"].dark, input[type="checkbox"].dark:enabled:checked, input[type="checkbox"].dark:enabled:checked:hover, input[type="radio"], input[type="radio"]:enabled:hover, input[type="radio"]:enabled:checked, input[type="radio"]:enabled:checked:hover, .w-guide-ctn .content .w-guide-card .stage .icon-pass {
+  background: url('../images/sprite-s30f841a6dd.png') no-repeat;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/guide\/\*\.png}line{font-family:\0000390}}
+.guide-sprite, .w-guide-bind .bg, .w-guide-cloud-backup .bg, .w-guide-cloud-backup .section .login-ctn .sns-login .button-qq, .w-guide-cloud-backup .section .login-ctn .sns-login .button-renren, .w-guide-cloud-backup .section .login-ctn .sns-login .button-weibo, .w-guide-xibaibai .stage .bg, .w-guide-starter .app-ctn .app .ad {
+  background: url('../images/guide-s4eb8f6e8c1.png') no-repeat;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/button\/\*\.png}line{font-family:\00003714}}
+.button-sprite, button.w-icon-btn .icon.add-grey, button.w-icon-btn .icon.pause, button.w-icon-btn .icon.start, button.w-icon-btn .icon.delete, button.w-icon-btn .icon.open-folder, button.w-icon-btn .icon.add, button.w-icon-btn .icon.mark-as-read, button.w-icon-btn .icon.refresh, button.w-icon-btn .icon.import, button.w-icon-btn .icon.export, button.w-icon-btn .icon.update, button.w-icon-btn .icon.up, button.w-icon-btn .icon.down, button.w-icon-btn .icon.star, button.w-icon-btn .icon.sd, button.w-icon-btn .icon.device, button.w-icon-btn .icon.play-black, button.w-icon-btn .icon.pause-black, button.w-icon-btn .icon.refresh-black, button.w-icon-btn .icon.fullscreen-black, button.w-icon-btn .icon.share-black, button.w-icon-btn .icon.merge, button.w-icon-btn .icon.ring, button.w-icon-btn .icon.itunes, button.w-icon-btn .icon.open-folder-black, button.w-icon-btn .icon.comment, button.w-icon-btn .icon.share, button.w-icon-btn .icon.like, button.w-icon-btn .icon.dislike, button.w-icon-btn .icon.reload, button.w-icon-btn .icon.fullscreen, button.w-icon-btn .icon.move-down, button.w-icon-btn .icon.reset {
+  background: url('../images/button-sd83178dcba.png') no-repeat;
+}
+
+/**
+ * Base declaration
+ */
+/********************************************************************************
+ * This is the CSS declaration of CSS reset, include HTML5 tags reset
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+/********************************************************************************
+ * HTML5 CSS Reset
+ ********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000318}}
+html, body, div, button, textarea, input,
+span, object, iframe, h1, h2, h3, h4, h5,
+h6, p, blockquote, pre, abbr, address, cite,
+code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt,
+dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  border: 0;
+  font-size: 100%;
+  font-style: normal;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000329}}
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000333}}
+nav, ul, ol, menu {
+  list-style: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000337}}
+blockquote, q {
+  quotes: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000341}}
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000346}}
+a {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000356}}
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000362}}
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000369}}
+del {
+  text-decoration: line-through;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000373}}
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted #000;
+  cursor: help;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000378}}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000383}}
+hr {
+  border: 0;
+  border-top: 1px solid #d6d6d6;
+  display: block;
+  height: 1px;
+  margin: 1em 0;
+  padding: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000392}}
+input, select {
+  vertical-align: middle;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\0000396}}
+:focus {
+  outline: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_reset\.scss}line{font-family:\00003101}}
+html,
+body {
+  cursor: default;
+  overflow: hidden;
+  -webkit-user-select: none;
+}
+
+/********************************************************************************
+ * This is the CSS declaration of layout
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+/********************************************************************************
+ * Layout
+ ********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000310}}
+.cf {
+  display: block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000313}}
+.cf:after {
+  content: '.';
+  clear: both;
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000323}}
+.hbox,
+.vbox {
+  display: -webkit-box;
+  -webkit-box-align: stretch;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: start;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000333}}
+.hbox {
+  -webkit-box-orient: horizontal;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000337}}
+.vbox {
+  -webkit-box-orient: vertical;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000341}}
+.box-reverse {
+  -webkit-box-direction: reverse;
+}
+
+/********************************************************************************
+ * Main Layout
+ ********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000348}}
+html, body, .w-main {
+  height: 100%;
+  overflow: hidden;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000353}}
+.w-main {
+  position: relative;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000356}}
+.w-main .sidebar {
+  background-color: #43484d;
+  border-left: 1px solid #717375;
+  height: 100%;
+  position: absolute;
+  width: 189px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000364}}
+.w-main .module-ctn {
+  border-color: #e5e5e5;
+  border-style: solid;
+  border-width: 1px 1px 0;
+  bottom: 0;
+  left: 190px;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000377}}
+.w-main .module-ctn .module-main {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000385}}
+.w-layout-hide {
+  opacity: 0;
+  pointer-events: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000389}}
+.w-layout-hide .w-layout-hide {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_layout\.scss}line{font-family:\0000394}}
+.w-layout-hidden {
+  visibility: hidden;
+}
+
+/********************************************************************************
+ * This is the CSS declaration of typography
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+/********************************************************************************
+ * Typography
+ ********************************************************************************/
+@font-face {
+  font-family: "Roboto-Light";
+  src: url("Roboto-Light.ttf");
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000318}}
+body,
+button,
+input,
+textarea {
+  color: #000;
+  font: 12px/1.5em Arial, Helvetica, Microsoft Yahei, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000324}}
+a {
+  color: #3c7800;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000328}}
+a:hover {
+  text-decoration: underline;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000332}}
+a:active {
+  color: #2c5300;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000338}}
+a[disabled], a[disabled]:hover, a[disabled]:active {
+  cursor: default;
+  text-decoration: none;
+  opacity: .4;
+  pointer-events: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000346}}
+h1 {
+  font-size: 16px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000350}}
+h2 {
+  font-size: 14px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000354}}
+h3 {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000359}}
+::selection {
+  background-color: #cfe4ff;
+  color: #333;
+  text-shadow: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000365}}
+.link {
+  color: #3c7800;
+  cursor: pointer;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000369}}
+.link:hover {
+  text-decoration: underline;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000373}}
+.link:active {
+  color: #2c5300;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000379}}
+.link[disabled], .link[disabled]:hover, .link[disabled]:active {
+  cursor: default;
+  text-decoration: none;
+  opacity: .4;
+  pointer-events: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000387}}
+.help {
+  cursor: help;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000391}}
+.text-primary {
+  color: #3c7800;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000395}}
+.text-secondary {
+  color: #555555;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\0000399}}
+.text-thirdly {
+  color: #999999;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\00003103}}
+.text-warning {
+  color: #b53d01;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\00003107}}
+.text-bold {
+  font-weight: bold;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\00003111}}
+.wc {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_typography\.scss}line{font-family:\00003119}}
+.enable-select {
+  cursor: text;
+  -webkit-user-select: text;
+}
+
+/********************************************************************************
+ * This is the CSS declaration of form elements
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+/********************************************************************************
+ * Button
+ ********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000311}}
+input[type="submit"],
+button {
+  background-image: -webkit-linear-gradient(-90deg, #f3f3f3 0%, #e9e9e9 100%);
+  border: 1px #999999 solid;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 0 white;
+  color: rgba(0, 0, 0, 0.9);
+  height: 26px;
+  min-width: 60px;
+  padding: 3px 10px;
+  text-shadow: 0 1px 0 white;
+  vertical-align: middle;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000323}}
+input[type="submit"].min,
+button.min {
+  height: 24px;
+  padding: 2px 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000328}}
+input[type="submit"].max,
+button.max {
+  font-size: 14px;
+  height: 32px;
+  line-height: 18px;
+  padding: 6px 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000335}}
+input[type="submit"].grand,
+button.grand {
+  font-size: 14px;
+  height: 38px;
+  line-height: 18px;
+  padding: 9px 15px;
+  min-width: 80px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000344}}
+input[type="submit"]:enabled:hover:not(.active):not(:active), input[type="submit"]:enabled:focus,
+button:enabled:hover:not(.active):not(:active),
+button:enabled:focus {
+  background-image: -webkit-linear-gradient(-90deg, #f8f8f8 0%, #f0f0f0 100%);
+  color: #000;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000350}}
+input[type="submit"]:enabled:active, input[type="submit"].active,
+button:enabled:active,
+button.active {
+  background-image: -webkit-linear-gradient(-90deg, #dadada 0%, #ebebeb 100%);
+  box-shadow: none;
+  color: #000;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000356}}
+input[type="submit"]:disabled,
+button:disabled {
+  opacity: 0.4;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000360}}
+input[type="submit"].primary,
+button.primary {
+  background-image: -webkit-linear-gradient(-90deg, #63c100 0%, #46a100 100%);
+  border-color: #2c8e00;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000368}}
+input[type="submit"].primary:enabled:hover:not(.active):not(:active), input[type="submit"].primary:enabled:focus,
+button.primary:enabled:hover:not(.active):not(:active),
+button.primary:enabled:focus {
+  background-image: -webkit-linear-gradient(-90deg, #6bc420 0%, #52ab07 100%);
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000374}}
+input[type="submit"].primary:enabled:active, input[type="submit"].primary.active,
+button.primary:enabled:active,
+button.primary.active {
+  background-image: -webkit-linear-gradient(-90deg, #419400 0%, #5baf00 100%);
+  border-color: #298300;
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000381}}
+input[type="submit"].secondary,
+button.secondary {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0, #e32119), color-stop(1, #c90400));
+  border-color: #720403;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000389}}
+input[type="submit"].secondary:enabled:hover:not(.active):not(:active), input[type="submit"].secondary:enabled:focus,
+button.secondary:enabled:hover:not(.active):not(:active),
+button.secondary:enabled:focus {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0, #f51d11), color-stop(1, #dc0000));
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\0000395}}
+input[type="submit"].secondary:enabled:active, input[type="submit"].secondary.active,
+button.secondary:enabled:active,
+button.secondary.active {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0, #b10500), color-stop(1, #cb211b));
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003103}}
+input[type="submit"] + button,
+input[type="submit"] + .w-ui-buttongroup,
+button + button,
+button + .w-ui-buttongroup {
+  margin-left: 4px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003107}}
+input[type="submit"].transparent,
+button.transparent {
+  background: transparent;
+  border-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  color: #555555;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003115}}
+input[type="submit"].transparent:enabled:hover:not(.active):not(:active), input[type="submit"].transparent:enabled:focus,
+button.transparent:enabled:hover:not(.active):not(:active),
+button.transparent:enabled:focus {
+  background: transparent;
+  color: #3c7800;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003121}}
+input[type="submit"].transparent:enabled:active, input[type="submit"].transparent.active,
+button.transparent:enabled:active,
+button.transparent.active {
+  background: transparent;
+  box-shadow: none;
+  color: #2c5300;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003127}}
+input[type="submit"].transparent.min,
+button.transparent.min {
+  min-width: 0;
+  padding: 2px 5px;
+}
+
+/********************************************************************************
+ * Image Button
+ ********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003138}}
+button.w-icon-btn .icon {
+  display: inline-block;
+  height: 16px;
+  margin: -2px 3px 0 0;
+  vertical-align: middle;
+  width: 16px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.add-grey {
+  background-position: 0 -48px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.pause {
+  background-position: 0 -1136px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.start {
+  background-position: 0 -768px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.delete {
+  background-position: 0 -1104px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.open-folder {
+  background-position: 0 -976px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.add {
+  background-position: 0 -320px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.mark-as-read {
+  background-position: 0 -256px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.refresh {
+  background-position: 0 -240px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.import {
+  background-position: 0 -544px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.export {
+  background-position: 0 -448px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.update {
+  background-position: 0 -32px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.up {
+  background-position: 0 -832px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.down {
+  background-position: 0 -1248px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.star {
+  background-position: 0 -512px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.sd {
+  background-position: 0 -1008px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.device {
+  background-position: 0 -960px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.play-black {
+  background-position: 0 -896px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.pause-black {
+  background-position: 0 -1184px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.refresh-black {
+  background-position: 0 -272px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.fullscreen-black {
+  background-position: 0 -368px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.share-black {
+  background-position: 0 -576px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.merge {
+  background-position: 0 -640px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.ring {
+  background-position: 0 -784px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.itunes {
+  background-position: 0 -480px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.open-folder-black {
+  background-position: 0 -1120px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.comment {
+  background-position: 0 -912px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.share {
+  background-position: 0 -432px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.like {
+  background-position: 0 -304px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.dislike {
+  background-position: 0 -96px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.reload {
+  background-position: 0 -160px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.fullscreen {
+  background-position: 0 -224px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.move-down {
+  background-position: 0 -736px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003151}}
+button.w-icon-btn .icon.reset {
+  background-position: 0 -1216px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003157}}
+button.w-icon-btn.img {
+  padding-left: 6px;
+  padding-right: 6px;
+  min-width: 25px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003162}}
+button.w-icon-btn.img .icon {
+  margin-right: 0;
+  opacity: .8;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003170}}
+button.w-icon-btn.img:hover .icon, button.w-icon-btn.img:enabled:active .icon, button.w-icon-btn.img.active .icon {
+  opacity: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003176}}
+button.w-icon-btn:disabled .icon {
+  pointer-events: none;
+}
+
+/********************************************************************************
+ * Menu Button
+ ********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003185}}
+.w-ui-button.w-ui-menubutton .label {
+  text-align: left;
+  -webkit-box-flex: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003189}}
+.w-ui-button.w-ui-menubutton .label + .arrow-ctn {
+  margin-left: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003194}}
+.w-ui-button.w-ui-menubutton .arrow-ctn {
+  -webkit-box-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003197}}
+.w-ui-button.w-ui-menubutton .arrow-ctn .arrow {
+  border-color: #000 transparent transparent transparent;
+  border-style: solid;
+  border-width: 4px 4px 0;
+  opacity: .7;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003209}}
+.w-ui-button.w-ui-menubutton:enabled:hover .arrow-ctn .arrow {
+  opacity: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003219}}
+.w-ui-button.w-ui-menubutton:enabled:active .arrow-ctn .arrow, .w-ui-button.w-ui-menubutton.active .arrow-ctn .arrow, .w-ui-button.w-ui-menubutton.active:hover .arrow-ctn .arrow {
+  opacity: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003227}}
+.w-ui-button.w-ui-menubutton.primary .arrow-ctn .arrow, .w-ui-button.w-ui-menubutton.secondary .arrow-ctn .arrow {
+  border-top-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003233}}
+.w-ui-button.w-ui-menubutton.primary:enabled:hover .arrow-ctn .arrow, .w-ui-button.w-ui-menubutton.secondary:enabled:hover .arrow-ctn .arrow {
+  border-top-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003243}}
+.w-ui-button.w-ui-menubutton.primary:enabled:active .arrow-ctn .arrow, .w-ui-button.w-ui-menubutton.primary.active .arrow-ctn .arrow, .w-ui-button.w-ui-menubutton.primary.active:hover .arrow-ctn .arrow, .w-ui-button.w-ui-menubutton.secondary:enabled:active .arrow-ctn .arrow, .w-ui-button.w-ui-menubutton.secondary.active .arrow-ctn .arrow, .w-ui-button.w-ui-menubutton.secondary.active:hover .arrow-ctn .arrow {
+  border-top-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003252}}
+.w-ui-button.w-ui-menubutton.primary .arrow-ctn, .w-ui-button.w-ui-menubutton.secondary .arrow-ctn {
+  border-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003257}}
+.w-ui-button.w-ui-menubutton.toggle {
+  min-width: 22px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003262}}
+.w-ui-button.w-ui-menubutton.toggle .label {
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003265}}
+.w-ui-button.w-ui-menubutton.toggle .label + .arrow-ctn {
+  margin-left: 0px;
+}
+
+/********************************************************************************
+ * Button Group
+ ********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003275}}
+.w-ui-buttongroup {
+  display: inline-block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003278}}
+.w-ui-buttongroup button {
+  border-radius: 0;
+  margin-left: 0;
+  min-width: 50px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003284}}
+.w-ui-buttongroup button:first-child {
+  border-bottom-left-radius: 3px;
+  border-right-width: 0;
+  border-top-left-radius: 3px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003291}}
+.w-ui-buttongroup button:first-child + button {
+  border-left-width: 1px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003296}}
+.w-ui-buttongroup button:last-child {
+  border-bottom-right-radius: 3px;
+  border-left-width: 0;
+  border-top-right-radius: 3px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003305}}
+.w-ui-buttongroup + button,
+.w-ui-buttongroup + .w-ui-buttongroup {
+  margin-left: 4px;
+}
+
+/********************************************************************************
+ * Text Input and Textarea
+ ********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003316}}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  border: 1px #cacaca solid;
+  box-shadow: 0 1px 0 white, 0 1px 3px rgba(0, 0, 0, 0.05) inset;
+  height: 30px;
+  resize: none;
+  -webkit-transition: border linear .2s, box-shadow linear .2s, height .2s linear, min-height .2s linear;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003323}}
+input[type="text"]:hover:not(:disabled),
+input[type="email"]:hover:not(:disabled),
+input[type="password"]:hover:not(:disabled),
+textarea:hover:not(:disabled) {
+  border-color: rgba(109, 184, 0, 0.5);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003328}}
+input[type="text"]:focus, input[type="text"]:focus:hover,
+input[type="email"]:focus,
+input[type="email"]:focus:hover,
+input[type="password"]:focus,
+input[type="password"]:focus:hover,
+textarea:focus,
+textarea:focus:hover {
+  border-color: #6db800;
+  box-shadow: 0 1px 0 white, 0 0 3px rgba(109, 184, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.05) inset;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003333}}
+input[type="text"]:disabled,
+input[type="email"]:disabled,
+input[type="password"]:disabled,
+textarea:disabled {
+  background-color: #f9f9f9;
+  border-color: #cacaca;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003343}}
+input:invalid,
+input:focus:invalid,
+textarea:invalid,
+textarea:focus:invalid,
+input.invalid {
+  border-color: #b53d01;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003349}}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 0 5px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003353}}
+textarea {
+  padding: 2px 5px;
+}
+
+/********************************************************************************
+ * Checkbox and Radio
+ ********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003360}}
+input[type="checkbox"] {
+  background-color: #fff;
+  border: 1px #cacaca solid;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: 14px;
+  margin-top: -3px;
+  width: 14px;
+  -webkit-appearance: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003370}}
+input[type="checkbox"]:enabled:hover {
+  border-color: #6db800;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003375}}
+input[type="checkbox"]:enabled:checked, input[type="checkbox"]:enabled:checked:hover {
+  background-position: 0 -3564px;
+  background-color: #fff;
+  border-color: #6db800;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003381}}
+input[type="checkbox"]:disabled {
+  opacity: 0.4;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003385}}
+input[type="checkbox"].dark {
+  background-position: 0 -4352px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003389}}
+input[type="checkbox"].dark:enabled:checked, input[type="checkbox"].dark:enabled:checked:hover {
+  background-position: 0 -4340px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003396}}
+input[type="radio"] {
+  background-position: 0 -3275px;
+  border: none;
+  height: 16px;
+  margin-top: -2px;
+  width: 16px;
+  vertical-align: middle;
+  -webkit-appearance: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003405}}
+input[type="radio"]:enabled:hover {
+  background-position: 0 -3031px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003410}}
+input[type="radio"]:enabled:checked, input[type="radio"]:enabled:checked:hover {
+  background-position: 0 -2941px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003414}}
+input[type="radio"]:disabled {
+  opacity: 0.4;
+}
+
+/********************************************************************************
+ * Progress Bar
+ ********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003422}}
+progress {
+  display: block;
+  height: 32px;
+  -webkit-appearance: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003427}}
+progress::-webkit-progress-bar {
+  background-color: #6a6a6a;
+  box-shadow: inset 1px 0 5px 0 rgba(0, 0, 0, 0.2);
+  display: block;
+  height: 32px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003434}}
+progress::-webkit-progress-value {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#7fc124), to(#60ac1e));
+  display: block;
+  height: 32px;
+  min-width: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003442}}
+progress.running::-webkit-progress-value {
+  background: url("../images/progress_bg_18X6.png");
+  background-color: #6db800;
+  -webkit-animation-duration: .5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: runningProgress;
+  -webkit-animation-timing-function: linear;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003455}}
+progress.min, progress.tiny {
+  background-image: none;
+  border: 1px #bbb solid;
+  padding: 1px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003460}}
+progress.min::-webkit-progress-bar, progress.tiny::-webkit-progress-bar {
+  background-color: #fff;
+  background-image: none;
+  border-radius: 6px;
+  box-shadow: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003467}}
+progress.min::-webkit-progress-value, progress.tiny::-webkit-progress-value {
+  border-radius: 6px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003472}}
+progress.min {
+  border-radius: 6px;
+  height: 14px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003476}}
+progress.min::-webkit-progress-bar {
+  height: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003480}}
+progress.min::-webkit-progress-value {
+  height: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003485}}
+progress.tiny {
+  border-radius: 6px;
+  height: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003489}}
+progress.tiny::-webkit-progress-bar {
+  height: 6px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003493}}
+progress.tiny::-webkit-progress-value {
+  height: 6px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003499}}
+progress.disabled::-webkit-progress-value {
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, white), color-stop(0.05, #f9f9f9), color-stop(1, #ededed));
+}
+
+@-webkit-keyframes runningProgress {
+  /* line 506, compass/sass/_form.scss */
+  0% {
+    background-position-x: 0;
+  }
+
+  /* line 509, compass/sass/_form.scss */
+  50% {
+    background-position-x: 9px;
+  }
+
+  /* line 512, compass/sass/_form.scss */
+  100% {
+    background-position-x: 18px;
+  }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003517}}
+.w-ui-switch-button {
+  background-color: #b4b4b4;
+  border: 1px #9e9e9e solid;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) inset;
+  display: block;
+  height: 14px;
+  padding: 1px;
+  width: 36px;
+  -webkit-transition: all .2s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003528}}
+.w-ui-switch-button .switcher {
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, white), color-stop(0.05, #f9f9f9), color-stop(1, #ededed));
+  border-radius: 3px;
+  display: inline-block;
+  height: 14px;
+  width: 18px;
+  -webkit-transition: margin .2s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003537}}
+.w-ui-switch-button.on {
+  background-color: #87c746;
+  border-color: #4f9513;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_form\.scss}line{font-family:\00003541}}
+.w-ui-switch-button.on .switcher {
+  margin-left: 18px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_anima\.scss}line{font-family:\000031}}
+.w-anima-fade-in-fast {
+  -webkit-animation: anima-fadeIn .2s;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_anima\.scss}line{font-family:\000035}}
+.w-anima-fade-in {
+  -webkit-animation: anima-fadeIn .4s;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_anima\.scss}line{font-family:\000039}}
+.w-anima-pop-in {
+  -webkit-animation: anima-pop-in .4s;
+}
+
+@-webkit-keyframes anima-fadeIn {
+  /* line 14, compass/sass/_anima.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 17, compass/sass/_anima.scss */
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes anima-fadeOut {
+  /* line 23, compass/sass/_anima.scss */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 26, compass/sass/_anima.scss */
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes anima-breath {
+  /* line 32, compass/sass/_anima.scss */
+  0% {
+    opacity: 0.3;
+  }
+
+  /* line 35, compass/sass/_anima.scss */
+  40% {
+    opacity: 1;
+  }
+
+  /* line 38, compass/sass/_anima.scss */
+  60% {
+    opacity: 1;
+  }
+
+  /* line 41, compass/sass/_anima.scss */
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@-webkit-keyframes anima-pop-in {
+  /* line 47, compass/sass/_anima.scss */
+  0% {
+    -webkit-transform: scale(0);
+  }
+
+  /* line 50, compass/sass/_anima.scss */
+  50% {
+    -webkit-transform: scale(1.1);
+  }
+
+  /* line 53, compass/sass/_anima.scss */
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_anima\.scss}line{font-family:\0000358}}
+.w-anima-slide-in-right {
+  -webkit-animation-direction: reverse;
+  -webkit-animation-duration: .4s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: anima-slide-right;
+  -webkit-animation-timing-function: ease-out;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_anima\.scss}line{font-family:\0000368}}
+.w-anima-slide-out-right {
+  -webkit-animation-duration: .4s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: anima-slide-right;
+  -webkit-animation-timing-function: ease-out;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_anima\.scss}line{font-family:\0000377}}
+.w-anima-fade-slide-in-right {
+  -webkit-animation-direction: reverse;
+  -webkit-animation-duration: .4s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: anima-slide-right, anima-fadeOut;
+  -webkit-animation-timing-function: ease-out;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_anima\.scss}line{font-family:\0000387}}
+.w-anima-fade-slide-out-right {
+  -webkit-animation-duration: .4s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: anima-slide-right, anima-fadeOut;
+  -webkit-animation-timing-function: ease-out;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_anima\.scss}line{font-family:\0000396}}
+.w-anima-slide-up {
+  -webkit-animation-duration: .4s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: anima-slide-up;
+  -webkit-animation-timing-function: ease-out;
+}
+
+@-webkit-keyframes anima-slide-right {
+  /* line 106, compass/sass/_anima.scss */
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+
+  /* line 109, compass/sass/_anima.scss */
+  100% {
+    -webkit-transform: translate3d(100%, 0, 0);
+  }
+}
+
+@-webkit-keyframes anima-slide-up {
+  /* line 115, compass/sass/_anima.scss */
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+
+  /* line 118, compass/sass/_anima.scss */
+  100% {
+    -webkit-transform: translate3d(0, -100%, 0);
+  }
+}
+
+/********************************************************************************
+* This is the CSS declaration of UI components
+*
+* @author wangye.zhao@wandoujia.com
+********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\000038}}
+.w-ui-helper {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/********************************************************************************
+ * Popup Tip Panel
+ ********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\0000320}}
+.w-ui-popup-panel,
+.w-ui-popup-tip {
+  border-radius: 3px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  -webkit-transition: opacity .2s linear;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\0000326}}
+.w-ui-popup-panel .arrow,
+.w-ui-popup-tip .arrow {
+  border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+  border-style: solid;
+  border-width: 5px;
+  height: 0;
+  position: absolute;
+  top: -10px;
+  width: 0;
+  -webkit-transform: rotate(180deg);
+  -webkit-transition: opacity .2s linear;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\0000339}}
+.w-ui-popup-panel .arrow.bottom,
+.w-ui-popup-tip .arrow.bottom {
+  top: auto;
+  bottom: -10px;
+  -webkit-transform: rotate(0);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\0000347}}
+.w-ui-popup-tip {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 3px 8px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\0000352}}
+.w-ui-popup-tip .arrow {
+  border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+  border-style: solid;
+  border-width: 5px;
+  height: 0;
+  position: absolute;
+  top: -10px;
+  width: 0;
+  -webkit-transform: rotate(180deg);
+  -webkit-transition: opacity .2s linear;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\0000365}}
+.w-ui-popup-tip .arrow.bottom {
+  top: auto;
+  bottom: -10px;
+  -webkit-transform: rotate(0);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\0000373}}
+.w-ui-popup-panel {
+  background-color: #fff;
+  border: 1px #bababa solid;
+  color: #555;
+  max-width: 260px;
+  padding: 10px 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\0000380}}
+.w-ui-popup-panel .arrow {
+  background-color: #fff;
+  border-color: #bababa #bababa transparent transparent;
+  border-style: solid;
+  border-width: 1px;
+  height: 8px;
+  position: absolute;
+  top: -5px;
+  width: 8px;
+  -webkit-transform: rotate(-45deg);
+  -webkit-transition: opacity .2s linear;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\0000394}}
+.w-ui-popup-panel .arrow.bottom {
+  top: auto;
+  bottom: -5px;
+  -webkit-transform: rotate(135deg);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003102}}
+.w-ui-loading-small {
+  border-radius: 5px;
+  display: none;
+  height: 25px;
+  width: 25px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003108}}
+.w-ui-loading-small.white {
+  background-color: transparent;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003112}}
+.w-ui-loading-small.white .anima .rotor {
+  background-color: #fff;
+  -webkit-animation-name: f_fadeG_black;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003119}}
+.w-ui-loading-small .anima {
+  height: 24px;
+  width: 24px;
+  -webkit-transform: scale(0.6);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003124}}
+.w-ui-loading-small .anima .rotor {
+  background-color: #fff;
+  border-radius: 4px;
+  position: absolute;
+  width: 4.5px;
+  height: 4.5px;
+  -webkit-animation-duration: .88s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: f_fadeG;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003137}}
+.w-ui-loading-small .anima .rotor1 {
+  left: 0;
+  top: 10px;
+  -webkit-animation-delay: .33s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003143}}
+.w-ui-loading-small .anima .rotor2 {
+  left: 3px;
+  top: 3px;
+  -webkit-animation-delay: .44s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003149}}
+.w-ui-loading-small .anima .rotor3 {
+  left: 10px;
+  top: 0;
+  -webkit-animation-delay: .55s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003155}}
+.w-ui-loading-small .anima .rotor4 {
+  right: 3px;
+  top: 3px;
+  -webkit-animation-delay: .66s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003161}}
+.w-ui-loading-small .anima .rotor5 {
+  right: 0;
+  top: 10px;
+  -webkit-animation-delay: .77s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003167}}
+.w-ui-loading-small .anima .rotor6 {
+  bottom: 3px;
+  right: 3px;
+  -webkit-animation-delay: .88s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003173}}
+.w-ui-loading-small .anima .rotor7 {
+  bottom: 0;
+  left: 10px;
+  -webkit-animation-delay: .99s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003179}}
+.w-ui-loading-small .anima .rotor8 {
+  bottom: 3px;
+  left: 3px;
+  -webkit-animation-delay: 1.1s;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003187}}
+.w-ui-loading {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  display: none;
+  height: 50px;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  position: absolute;
+  top: 50%;
+  width: 50px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003198}}
+.w-ui-loading.white {
+  background-color: transparent;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003202}}
+.w-ui-loading.white .anima .rotor {
+  background-color: #fff;
+  -webkit-animation-name: f_fadeG_black;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003209}}
+.w-ui-loading .anima {
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  width: 48px;
+  -webkit-transform: scale(0.6);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003218}}
+.w-ui-loading .anima .rotor {
+  background-color: #fff;
+  border-radius: 4px;
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  -webkit-animation-duration: .88s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: f_fadeG;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003231}}
+.w-ui-loading .anima .rotor1 {
+  left: 0;
+  top: 20px;
+  -webkit-animation-delay: .33s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003237}}
+.w-ui-loading .anima .rotor2 {
+  left: 6px;
+  top: 6px;
+  -webkit-animation-delay: .44s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003243}}
+.w-ui-loading .anima .rotor3 {
+  left: 20px;
+  top: 0;
+  -webkit-animation-delay: .55s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003249}}
+.w-ui-loading .anima .rotor4 {
+  right: 6px;
+  top: 6px;
+  -webkit-animation-delay: .66s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003255}}
+.w-ui-loading .anima .rotor5 {
+  right: 0;
+  top: 20px;
+  -webkit-animation-delay: .77s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003261}}
+.w-ui-loading .anima .rotor6 {
+  bottom: 6px;
+  right: 6px;
+  -webkit-animation-delay: .88s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003267}}
+.w-ui-loading .anima .rotor7 {
+  bottom: 0;
+  left: 20px;
+  -webkit-animation-delay: .99s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003273}}
+.w-ui-loading .anima .rotor8 {
+  bottom: 6px;
+  left: 6px;
+  -webkit-animation-delay: 1.1s;
+}
+
+@-webkit-keyframes f_fadeG {
+  /* line 282, compass/sass/_ui.scss */
+  0% {
+    background-color: #3c7800;
+  }
+
+  /* line 285, compass/sass/_ui.scss */
+  100% {
+    background-color: #fff;
+  }
+}
+
+@-webkit-keyframes f_fadeG_black {
+  /* line 291, compass/sass/_ui.scss */
+  0% {
+    background-color: #000;
+  }
+
+  /* line 294, compass/sass/_ui.scss */
+  100% {
+    background-color: #fff;
+  }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003299}}
+.w-ui-loading-horizental-ctn {
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003307}}
+.w-ui-loading-horizental-ctn.transparent {
+  background-color: transparent;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003311}}
+.w-ui-loading-horizental-ctn .w-ui-loading-horizental {
+  height: 6px;
+  left: 50%;
+  margin: -3px 0 0 -33.5px;
+  position: absolute;
+  top: 50%;
+  width: 77px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003319}}
+.w-ui-loading-horizental-ctn .w-ui-loading-horizental .ball {
+  background-color: #6db800;
+  border-radius: 3px;
+  height: 6px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 6px;
+  -webkit-animation-duration: 1.3s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: bounce_followingBallsG;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003334}}
+.w-ui-loading-horizental-ctn .w-ui-loading-horizental .ball.ball1 {
+  -webkit-animation-delay: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003338}}
+.w-ui-loading-horizental-ctn .w-ui-loading-horizental .ball.ball2 {
+  -webkit-animation-delay: 0.13s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003342}}
+.w-ui-loading-horizental-ctn .w-ui-loading-horizental .ball.ball3 {
+  -webkit-animation-delay: 0.26s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003346}}
+.w-ui-loading-horizental-ctn .w-ui-loading-horizental .ball.ball4 {
+  -webkit-animation-delay: 0.39s;
+}
+
+@-webkit-keyframes bounce_followingBallsG {
+  /* line 354, compass/sass/_ui.scss */
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+
+  /* line 358, compass/sass/_ui.scss */
+  50% {
+    opacity: 0;
+    -webkit-transform: translate3d(71px, 0, 0);
+  }
+
+  /* line 362, compass/sass/_ui.scss */
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/_ui\.scss}line{font-family:\00003368}}
+.w-ui-toast-box {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+  bottom: 10px;
+  color: #fff;
+  padding: 10px 15px;
+  position: absolute;
+  -webkit-transition: opacity .2s linear;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000317}}
+.w-guide-ctn {
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000325}}
+.w-guide-ctn .content {
+  background-color: #fff;
+  border: 1px #cacaca solid;
+  border-radius: 5px;
+  padding: 5px;
+  -webkit-box-flex: 1;
+  -webkit-transform: translate3d(100%, 0, 0);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000333}}
+.w-guide-ctn .content .w-guide-card {
+  overflow: hidden;
+  -webkit-box-flex: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000337}}
+.w-guide-ctn .content .w-guide-card .stage {
+  background-image: url("../images/welcome_bg_100X100.png");
+  padding: 15px 30px;
+  -webkit-box-flex: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000342}}
+.w-guide-ctn .content .w-guide-card .stage h1 {
+  margin-bottom: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000346}}
+.w-guide-ctn .content .w-guide-card .stage p {
+  line-height: 1.5em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000350}}
+.w-guide-ctn .content .w-guide-card .stage .icon-pass {
+  background-position: 0 -4248px;
+  display: inline-block;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+  width: 16px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000360}}
+.w-guide-ctn .content .w-guide-card .control {
+  margin-top: 5px;
+  -webkit-box-align: center;
+  -webkit-box-pack: end;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000367}}
+.w-guide-ctn .content .w-guide-card .control .button-skip {
+  display: block;
+  margin-right: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000375}}
+.w-guide-ctn .step-counter-ctn {
+  height: 30px;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000382}}
+.w-guide-ctn .step-counter-ctn .step-pointer {
+  background-color: #cacaca;
+  border: 3px solid transparent;
+  border-radius: 5px;
+  -webkit-transition: all .2s linear;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000388}}
+.w-guide-ctn .step-counter-ctn .step-pointer + .step-pointer {
+  margin-left: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\0000392}}
+.w-guide-ctn .step-counter-ctn .step-pointer.current {
+  border-color: #6db800;
+  -webkit-transform: scale(1.5);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003101}}
+.w-guide-bind .bg {
+  background-position: 0 -178px;
+  height: 207px;
+  margin: 40px 0 40px;
+  width: 382px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003108}}
+.w-guide-bind .success {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003114}}
+.w-guide-cloud-backup .bg {
+  background-position: 0 -385px;
+  height: 252px;
+  margin-top: 40px;
+  width: 368px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003121}}
+.w-guide-cloud-backup .section {
+  height: 453px;
+  overflow: auto;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform .4s ease-out;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003127}}
+.w-guide-cloud-backup .section form {
+  margin-top: 25px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003130}}
+.w-guide-cloud-backup .section form label {
+  display: block;
+  margin-bottom: 12px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003134}}
+.w-guide-cloud-backup .section form label .label {
+  display: inline-block;
+  font-size: 14px;
+  text-align: right;
+  vertical-align: middle;
+  width: 65px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003142}}
+.w-guide-cloud-backup .section form label .text-warning {
+  display: none;
+  margin: 5px 0 0 80px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003149}}
+.w-guide-cloud-backup .section form input:not([type="checkbox"]) {
+  margin-left: 15px;
+  width: 280px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003154}}
+.w-guide-cloud-backup .section form input.password-verify {
+  margin-left: 80px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003158}}
+.w-guide-cloud-backup .section form input.pravicy {
+  margin: -2px 5px 0 80px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003162}}
+.w-guide-cloud-backup .section form input.captcha {
+  width: 174px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003167}}
+.w-guide-cloud-backup .section form .captcha-image {
+  cursor: pointer;
+  display: inline-block;
+  height: 32px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003176}}
+.w-guide-cloud-backup .section hr {
+  box-shadow: 0 1px 0 #fff;
+  height: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003180}}
+.w-guide-cloud-backup .section .login-ctn {
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003184}}
+.w-guide-cloud-backup .section .login-ctn .button-login {
+  margin-right: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003188}}
+.w-guide-cloud-backup .section .login-ctn .sns-login {
+  height: 21px;
+  margin-left: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003192}}
+.w-guide-cloud-backup .section .login-ctn .sns-login li {
+  cursor: pointer;
+  height: 21px;
+  width: 21px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003197}}
+.w-guide-cloud-backup .section .login-ctn .sns-login li + li {
+  margin-left: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003203}}
+.w-guide-cloud-backup .section .login-ctn .sns-login .button-qq {
+  background-position: 0 -715px;
+  display: inline-block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003203}}
+.w-guide-cloud-backup .section .login-ctn .sns-login .button-renren {
+  background-position: 0 -694px;
+  display: inline-block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003203}}
+.w-guide-cloud-backup .section .login-ctn .sns-login .button-weibo {
+  background-position: 0 -673px;
+  display: inline-block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003213}}
+.w-guide-xibaibai {
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003216}}
+.w-guide-xibaibai .stage {
+  position: relative;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003219}}
+.w-guide-xibaibai .stage .title {
+  margin-top: 40px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003223}}
+.w-guide-xibaibai .stage .bg {
+  background-position: 0 0;
+  bottom: 0;
+  height: 178px;
+  left: 0;
+  position: absolute;
+  width: 460px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003235}}
+.w-guide-starter .app-ctn {
+  margin-top: 15px;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003239}}
+.w-guide-starter .app-ctn .app {
+  float: left;
+  height: 108px;
+  margin-bottom: 10px;
+  position: relative;
+  text-align: center;
+  width: 98px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003247}}
+.w-guide-starter .app-ctn .app .ad {
+  background-position: 0 -637px;
+  height: 36px;
+  left: 21px;
+  position: absolute;
+  top: 0;
+  width: 36px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003256}}
+.w-guide-starter .app-ctn .app .icon {
+  height: 56px;
+  width: 56px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003261}}
+.w-guide-starter .app-ctn .app .title {
+  line-height: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003269}}
+.w-guide-tips .tip-ctn {
+  margin-top: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003272}}
+.w-guide-tips .tip-ctn .tip {
+  height: 34px;
+  -webkit-box-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003276}}
+.w-guide-tips .tip-ctn .tip .icon {
+  display: block;
+  height: 16px;
+  margin-right: 10px;
+  width: 16px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003283}}
+.w-guide-tips .tip-ctn .tip .desc {
+  -webkit-box-flex: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003287}}
+.w-guide-tips .tip-ctn .tip + .tip {
+  border-top: 1px #e5e5e5 solid;
+  box-shadow: 0 1px 0 #fff inset;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003296}}
+.w-guide-suggestion .stage {
+  overflow-y: auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003299}}
+.w-guide-suggestion .stage .item-ctn {
+  margin-top: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/zeke\/Documents\/WandouLabsProjects\/Windows-FE\/web-new\/app\/stylesheets\/compass\/sass\/guide\.scss}line{font-family:\00003302}}
+.w-guide-suggestion .stage .item-ctn .item {
+  cursor: pointer;
+  height: 90px;
+  width: 385px;
+}
