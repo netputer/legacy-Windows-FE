@@ -294,7 +294,7 @@
 
 .w-guide-suggestion {
     .stage {
-        overflow: auto;
+        overflow-y: auto;
 
         .item-ctn {
             margin-top: 15px;
@@ -303,10 +303,6 @@
                 cursor: pointer;
                 height: 90px;
                 width: 385px;
-
-                &:hover {
-                    opacity: .8;
-                }
             }
         }
     }
