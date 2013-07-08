@@ -64,8 +64,6 @@
                     }, this);
 
                     this.$('.content').append(guideView.render().$el.hide());
-
-                    Settings.set('user_guide_shown', true);
                 }
                 this.$('footer').append(CapacityView.getInstance().render().$el)
                                   .append(FileToolsView.getInstance().render().$el);

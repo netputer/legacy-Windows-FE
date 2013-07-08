@@ -101,7 +101,11 @@
                 }
             },
             run : function () {
-                this.showNextCard();
+                if (this.cardQueue.length === 0) {
+                    IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY);
+                } else {
+                    this.showNextCard();
+                }
             }
         });
 
