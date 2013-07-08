@@ -9,6 +9,7 @@
         'ui/TemplateFactory',
         'IO',
         'Configuration',
+        'Settings',
         'guide/views/CardView'
     ], function (
         $,
@@ -19,6 +20,7 @@
         TemplateFactory,
         IO,
         CONFIG,
+        Settings,
         CardView
     ) {
         var XibaibaiView = CardView.getClass().extend({
@@ -27,11 +29,17 @@
             checkAsync : function () {
                 var deferred = $.Deferred();
 
-                setTimeout(function () {
-                    deferred.resolve();
-                });
+                if (Settings.get('user_guide_shown_xibaibai')) {
+                    setTimeout(deferred.reject);
+                } else {
+                    setTimeout(deferred.resolve);
+                }
 
                 return deferred.promise();
+            },
+            render : function () {
+                Settings.set('user_guide_shown_xibaibai', true);
+                return XibaibaiView.__super__.render.call(this);
             },
             clickButtonSkip : function () {
                 XibaibaiView.__super__.clickButtonSkip.call(this);

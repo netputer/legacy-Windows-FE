@@ -9,6 +9,7 @@
         'ui/TemplateFactory',
         'IO',
         'Configuration',
+        'Settings',
         'guide/views/CardView'
     ], function (
         $,
@@ -19,6 +20,7 @@
         TemplateFactory,
         IO,
         CONFIG,
+        Settings,
         CardView
     ) {
         var DoraSuggestionView = CardView.getClass().extend({
@@ -40,6 +42,17 @@
                 banner : '../../../../images/guide/banner2.png',
                 extensionId : 256
             }],
+            checkAsync : function () {
+                var deferred = $.Deferred();
+
+                if (Settings.get('user_guide_shown_suggestion')) {
+                    setTimeout(deferred.reject);
+                } else {
+                    setTimeout(deferred.resolve);
+                }
+
+                return deferred.promise();
+            },
             render : function () {
                 _.extend(this.events, DoraSuggestionView.__super__.events);
                 this.delegateEvents();
@@ -48,6 +61,8 @@
                     action : this.options.action,
                     items : this.items
                 }));
+
+                Settings.set('user_guide_shown_suggestion', true);
 
                 return this;
             },

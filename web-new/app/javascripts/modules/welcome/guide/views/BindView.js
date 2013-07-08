@@ -10,6 +10,7 @@
         'IO',
         'Device',
         'Log',
+        'Settings',
         'utilities/StringUtil',
         'ui/TemplateFactory',
         'guide/views/CardView'
@@ -23,6 +24,7 @@
         IO,
         Device,
         log,
+        Settings,
         StringUtil,
         TemplateFactory,
         CardView
@@ -52,13 +54,21 @@
                     }.bind(this)).fail(deferred.reject);
                 };
 
-                if (Device.get('isConnected')) {
-                    check.call(this, Device);
+                if (Settings.get('user_guide_shown_bind')) {
+                    setTimeout(deferred.reject);
                 } else {
-                    this.listenToOnce(Device, 'change:isConnected', check);
+                    if (Device.get('isConnected')) {
+                        check.call(this, Device);
+                    } else {
+                        this.listenToOnce(Device, 'change:isConnected', check);
+                    }
                 }
 
                 return deferred.promise();
+            },
+            render : function () {
+                Settings.set('user_guide_shown_bind', true);
+                return BindView.__super__.render.call(this);
             },
             clickButtonSkip : function () {
                 BindView.__super__.clickButtonSkip.call(this);

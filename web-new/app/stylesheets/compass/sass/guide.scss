@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import "sprite/*.png";
 @import "guide/*.png";
+@import "button/*.png";
 @import "skins/default/default";
 
 /**
@@ -293,7 +294,7 @@
 
 .w-guide-suggestion {
     .stage {
-        overflow: auto;
+        overflow-y: auto;
 
         .item-ctn {
             margin-top: 15px;
@@ -302,10 +303,6 @@
                 cursor: pointer;
                 height: 90px;
                 width: 385px;
-
-                &:hover {
-                    opacity: .8;
-                }
             }
         }
     }

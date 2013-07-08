@@ -431,14 +431,16 @@
                 if (this.onScreenItems.length !== 0) {
                     if (screenDimension !== modelCount) {
                         if (models[0] === this.onScreenItems[0].model) {
-                            this.onScreenItems[0].$el[0].scrollIntoView();
+                            // this.onScreenItems[0].$el[0].scrollIntoView();
+                            $itemCtn[0].scrollTop = 0;
                         } else if (models[modelCount - 1] === this.onScreenItems[screenDimension - 1].model) {
                             this.onScreenItems[screenDimension - 1].$el[0].scrollIntoView();
                             scrollCtn.scrollTop = scrollCtn.scrollHeight;
                         }
                     } else {
                         if (scrollCtn.scrollTop === 0) {
-                            this.onScreenItems[0].$el[0].scrollIntoView();
+                            // this.onScreenItems[0].$el[0].scrollIntoView();
+                            $itemCtn[0].scrollTop = 0;
                         } else {
                             this.onScreenItems[screenDimension - 1].$el[0].scrollIntoView();
                         }

@@ -357,7 +357,7 @@
         }
 
         .button-delete {
-            @include sprite-sprite(delete);
+            @include button-sprite(delete);
             cursor: default;
             display: inline-block;
             height: 16px;
@@ -366,11 +366,11 @@
             width: 16px;
 
             &:hover {
-                @include sprite-sprite(delete-hover);
+                @include button-sprite(delete-hover);
             }
 
             &:active {
-                @include sprite-sprite(delete-active);
+                @include button-sprite(delete-active);
             }
         }
     }
@@ -455,25 +455,25 @@
         -webkit-box-align: center;
 
         .star-img {
-            @include sprite-sprite(star);
+            @include button-sprite(star);
             height: 15px;
             width: 15px;
 
             &:hover {
-                @include sprite-sprite(star-hover);
+                @include button-sprite(star-hover);
             }
         }
 
         &.starred {
             .star-img {
-                @include sprite-sprite(starred);
+                @include button-sprite(starred);
 
                 &:hover {
-                    @include sprite-sprite(starred-hover);
+                    @include button-sprite(starred-hover);
                 }
 
                 &:active {
-                    @include sprite-sprite(starred-active);
+                    @include button-sprite(starred-active);
                 }
             }
         }

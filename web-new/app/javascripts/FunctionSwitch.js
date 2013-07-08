@@ -143,19 +143,7 @@
                             Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
                 }
             },
-            ENABLE_SHARE_SET_RINGTONE : {
-                get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
-                }
-            },
             ENABLE_CLOUD_BACKUP_RESTORE : {
-                get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
-                }
-            },
-            ENABLE_SHARE_ONE_KEY_UPDATE : {
                 get : function () {
                     return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
                             Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;

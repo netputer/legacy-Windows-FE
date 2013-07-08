@@ -10,8 +10,7 @@
         'Account',
         'Configuration',
         'Internationalization',
-        'doraemon/collections/ExtensionsCollection',
-        'social/SocialService'
+        'doraemon/collections/ExtensionsCollection'
     ], function (
         Backbone,
         _,
@@ -22,8 +21,7 @@
         Account,
         CONFIG,
         i18n,
-        ExtensionsCollection,
-        SocialService
+        ExtensionsCollection
     ) {
         console.log('InfoPanelView - File loaded. ');
 
@@ -60,23 +58,6 @@
                 } else {
                     this.model.starAsync().done(function () {
                         extensionsCollection.add(this.model).trigger('star', this.model);
-
-                        var shareParameter = {
-                            textUrl : StringUtil.format(CONFIG.enums.SOCIAL_TEXT_PREVIEW_URL, CONFIG.enums.SOCIAL_DORAEMON_EXTENSION, this.model.id),
-                            hasPreview : false,
-                            shareData : {
-                                need_shell : 0,
-                                rotation : 0
-                            },
-                            extraData : {
-                                extension_id : this.model.id,
-                                extension_title : this.model.get('name')
-                            },
-                            type : CONFIG.enums.SOCIAL_DORAEMON_EXTENSION
-                        };
-
-                        SocialService.setContent(shareParameter);
-                        SocialService.show();
 
                         this.$el.slideUp('fast', this.remove.bind(this));
                     }.bind(this));

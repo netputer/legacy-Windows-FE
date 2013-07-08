@@ -51,14 +51,14 @@
              move-down, reset {
             &:enabled:not(.active):not(:active):hover .icon {
                 &.#{$icon} {
-                    @include sprite-sprite(#{$icon}-hover);
+                    @include button-sprite(#{$icon}-hover);
                 }
             }
 
             &:enabled:active .icon,
             &.active .icon {
                 &.#{$icon} {
-                    @include sprite-sprite(#{$icon}-active);
+                    @include button-sprite(#{$icon}-active);
                 }
             }
         }

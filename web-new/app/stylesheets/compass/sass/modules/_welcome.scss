@@ -245,11 +245,11 @@
     }
 
     .phone-capacity .icon {
-        @include sprite-sprite(device);
+        @include button-sprite(device);
     }
 
     .external-capacity .icon {
-        @include sprite-sprite(sd);
+        @include button-sprite(sd);
     }
 
     .progress {

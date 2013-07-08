@@ -13,7 +13,6 @@
         'Device',
         'Configuration',
         'music/MusicService',
-        'social/SocialService',
         'FunctionSwitch'
     ], function (
         _,
@@ -28,7 +27,6 @@
         Device,
         CONFIG,
         MusicService,
-        SocialService,
         FunctionSwitch
     ) {
         console.log('MusicItemView - File loaded. ');
@@ -126,52 +124,8 @@
                     }
 
                     actionCall.call(context, type).done(function () {
-                        if (actionCall === this.model.setRingAsync && FunctionSwitch.ENABLE_SHARE_SET_RINGTONE) {
-                            var panel = new Panel({
-                                disposableName : 'social.set_ringtone.not_hint',
-                                disposableChecked : false,
-                                $bodyContent : i18n.music.SHARE_SET_RINGTONE,
-                                title : i18n.common.DIALOG_TIP,
-                                buttonSet : 'yes_cancel',
-                                height : 160
-                            });
-
-                            var size = parseInt(this.model.get('size'), 10);
-                            var contentType = size >= 2 * 1024 * 1024 ? CONFIG.enums.SOCIAL_SET_MUSIC_AS_RINGTONE : CONFIG.enums.SOCIAL_SET_RINGTONE;
-                            var data = {
-                                textUrl : StringUtil.format(CONFIG.enums.SOCIAL_TEXT_PREVIEW_POST_URL, contentType),
-                                textData : {
-                                    content : JSON.stringify({
-                                        title : this.model.get('title'),
-                                        artist : this.model.get('artist')
-                                    })
-                                },
-                                hasPreview : false,
-                                shareData : {
-                                    need_shell : 0,
-                                    rotation : 0
-                                },
-                                extraData : {
-                                    ringtone_id : this.model.id,
-                                    ringtone_title : this.model.get('title'),
-                                    ringtone_artist : this.model.get('artist')
-                                },
-                                type : contentType
-                            };
-
-                            panel.on('button_yes', function () {
-                                SocialService.setContent(data);
-                                SocialService.show();
-                            }).on('button_cancel', function () {
-                                panel.saveSetting();
-                            });
-
-                            if (!panel.getSetting()) {
-                                panel.show();
-                            }
-                        }
                         collection.trigger('refresh', collection);
-                    }.bind(this));
+                    });
                 }, this);
 
                 settingButton.$el.prop({

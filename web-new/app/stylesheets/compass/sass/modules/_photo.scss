@@ -134,7 +134,7 @@
         width: 100%;
 
         .button-retry {
-            @include sprite-sprite(refresh);
+            @include button-sprite(refresh);
             display: inline-block;
             height: 16px;
             margin: -2px 0 0 5px;
@@ -143,11 +143,11 @@
             width: 16px;
 
             &:hover {
-                @include sprite-sprite(refresh-hover);
+                @include button-sprite(refresh-hover);
             }
 
             &:active {
-                @include sprite-sprite(refresh-active);
+                @include button-sprite(refresh-active);
             }
         }
     }

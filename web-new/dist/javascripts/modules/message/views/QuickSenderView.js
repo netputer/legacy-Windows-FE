@@ -22,6 +22,7 @@
         console.log('QuickSenderView - File loaded. ');
 
         var confirm = window.confirm;
+        var alert = window.alert;
 
         var KeyMapping = UIHelper.KeyMapping;
 
@@ -68,12 +69,14 @@
                             this.disabled();
                             MessageService.sendMessageAsync(this.addresses, content).done(function () {
                                 this.trigger('sendSuccess');
-                            }.bind(this)).always(function () {
-                                this.disabled(false);
 
                                 $content.prop({
-                                    placeholder : ''
+                                    placeholder : i18n.message.SENDER_PLACEHOLDER
                                 }).val('');
+                            }.bind(this)).fail(function () {
+                                alert(i18n.message.SEND_FAILED_ALERT);
+                            }).always(function () {
+                                this.disabled(false);
                             }.bind(this));
                         };
                         if (this.enableTip) {

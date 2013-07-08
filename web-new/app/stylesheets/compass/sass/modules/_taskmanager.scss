@@ -115,7 +115,7 @@
             display: block;
 
             .icon {
-                @include sprite-sprite(down);
+                @include button-sprite(down);
             }
         }
 

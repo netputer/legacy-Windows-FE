@@ -14,9 +14,7 @@
             checkAsync : function () {
                 var deferred = $.Deferred();
 
-                setTimeout(function () {
-                    deferred.resolve();
-                });
+                setTimeout(deferred.resolve);
 
                 return deferred.promise();
             },

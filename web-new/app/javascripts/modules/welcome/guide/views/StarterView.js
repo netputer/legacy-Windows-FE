@@ -12,6 +12,7 @@
         'IO',
         'Device',
         'Configuration',
+        'Settings',
         'utilities/StringUtil',
         'guide/views/CardView',
         'app/collections/AppsCollection',
@@ -28,6 +29,7 @@
         IO,
         Device,
         CONFIG,
+        Settings,
         StringUtil,
         CardView,
         AppsCollection,
@@ -74,40 +76,44 @@
             checkAsync : function () {
                 var deferred = $.Deferred();
 
-                $.when(this.loadAppsAsync(), this.checkAppsAsync()).done(function () {
-                    var appsCollection = AppsCollection.getInstance();
+                if (Settings.get('user_guide_shown_starter')) {
+                    setTimeout(deferred.reject);
+                } else {
+                    $.when(this.loadAppsAsync(), this.checkAppsAsync()).done(function () {
+                        var appsCollection = AppsCollection.getInstance();
 
-                    var i;
-                    var length = this.queryResults[0].apps.length;
-                    var app;
-                    for (i = 0; i < length; i++) {
-                        app = this.queryResults[0].apps[i];
-                        if (appsCollection.get(app.packageName) === undefined) {
-                            this.apps.push(app);
+                        var i;
+                        var length = this.queryResults[0].apps.length;
+                        var app;
+                        for (i = 0; i < length; i++) {
+                            app = this.queryResults[0].apps[i];
+                            if (appsCollection.get(app.packageName) === undefined) {
+                                this.apps.push(app);
+                            }
+                            if (this.apps.length === 8) {
+                                break;
+                            }
                         }
-                        if (this.apps.length === 8) {
-                            break;
+
+                        length = this.queryResults[1].apps.length;
+
+                        for (i = 0; i < length; i++) {
+                            app = this.queryResults[1].apps[i];
+                            if (appsCollection.get(app.packageName) === undefined) {
+                                this.apps.push(app);
+                            }
+                            if (this.apps.length === 12) {
+                                break;
+                            }
                         }
-                    }
 
-                    length = this.queryResults[1].apps.length;
+                        log({
+                            'event' : 'debug.guide_starter_show'
+                        });
 
-                    for (i = 0; i < length; i++) {
-                        app = this.queryResults[1].apps[i];
-                        if (appsCollection.get(app.packageName) === undefined) {
-                            this.apps.push(app);
-                        }
-                        if (this.apps.length === 12) {
-                            break;
-                        }
-                    }
-
-                    log({
-                        'event' : 'debug.guide_starter_show'
-                    });
-
-                    deferred.resolve();
-                }.bind(this)).fail(deferred.reject);
+                        deferred.resolve();
+                    }.bind(this)).fail(deferred.reject);
+                }
 
                 return deferred.promise();
             },
@@ -125,6 +131,8 @@
                         $host : $(this)
                     });
                 });
+
+                Settings.set('user_guide_shown_starter', true);
 
                 return this;
             },

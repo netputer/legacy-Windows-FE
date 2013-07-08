@@ -86,16 +86,13 @@
 
         var checkDate = function (originDate) {
             originDate = originDate.split('-');
-            originDate.shift();
+            if (originDate.length === 3) {
+                originDate.shift();
+            }
 
-            var birthday = originDate;
+            var currentDate = StringUtil.formatDate('MM-dd').split('-');
 
-            var currentDate = StringUtil.formatDate('yyyy-MM-dd').split('-');
-            currentDate.shift();
-
-            var today = currentDate;
-
-            return _.isEqual(birthday, today);
+            return _.isEqual(originDate, currentDate);
         };
 
         var parseAddresses = function (contact, defaultNumber) {

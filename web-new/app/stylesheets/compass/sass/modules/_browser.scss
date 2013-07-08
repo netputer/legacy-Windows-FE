@@ -186,7 +186,7 @@
 
             &.star {
                 &.starred {
-                    @include sprite-sprite(starred);
+                    @include button-sprite(starred);
                 }
             }
         }
@@ -194,7 +194,7 @@
         &:enabled:hover .icon {
             &.star {
                 &.starred {
-                    @include sprite-sprite(starred-hover);
+                    @include button-sprite(starred-hover);
                 }
             }
         }
@@ -202,7 +202,7 @@
         &:enabled:active .icon {
             &.star {
                 &.starred {
-                    @include sprite-sprite(starred-active);
+                    @include button-sprite(starred-active);
                 }
             }
         }

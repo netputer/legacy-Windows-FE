@@ -25,6 +25,7 @@ define({
     EXPEND : '展开',
     SENDING : '发送中...',
     SEND_FAILED : '发送失败，',
+    SEND_FAILED_ALERT : '短信发送失败。',
     RESEND : '重发',
     DELETE : '删除',
     FORWARD : '转发',

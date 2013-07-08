@@ -8,6 +8,7 @@
         'Log',
         'ui/TemplateFactory',
         'IO',
+        'Settings',
         'guide/views/CardView'
     ], function (
         $,
@@ -17,6 +18,7 @@
         log,
         TemplateFactory,
         IO,
+        Settings,
         CardView
     ) {
         var TipsView = CardView.getClass().extend({
@@ -59,6 +61,17 @@
                 desc : '通讯录、短信相关问题汇总',
                 url : 'http://help.wandoujia.com/entries/23424031'
             }],
+            checkAsync : function () {
+                var deferred = $.Deferred();
+
+                if (Settings.get('user_guide_shown_tips')) {
+                    setTimeout(deferred.reject);
+                } else {
+                    setTimeout(deferred.resolve);
+                }
+
+                return deferred.promise();
+            },
             render : function () {
                 _.extend(this.events, TipsView.__super__.events);
                 this.delegateEvents();
@@ -68,6 +81,9 @@
                     tips : this.tips
                 }));
 
+                Settings.set('user_guide_shown_tips', true);
+
+                Settings.set('user_guide_shown', true);
                 return this;
             },
             clickButtonOpen : function (evt) {

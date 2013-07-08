@@ -19,7 +19,6 @@
         'app/collections/AppsCollection',
         'app/views/AppItemView',
         'task/TaskService',
-        'social/SocialService',
         'Account',
         'Settings'
     ], function (
@@ -39,7 +38,6 @@
         AppsCollection,
         AppItemView,
         TaskService,
-        SocialService,
         Account,
         Settings
     ) {
@@ -120,20 +118,6 @@
 
                 this.on(EventsMapping.BUTTON_YES, this.updateAllApps, this);
             },
-            render : function () {
-                _.extend(this.events, OneKeyUpdateWindowView.__super__.events);
-
-                this.delegateEvents();
-
-                OneKeyUpdateWindowView.__super__.render.call(this);
-
-                if (FunctionSwitch.ENABLE_SHARE_ONE_KEY_UPDATE) {
-                    this.$('.w-ui-window-footer-monitor').prepend('<label><input class="check-share" type="checkbox"/>' + i18n.common.SHARE_ONE_KEY_UPDATE_SYNC + '</label>');
-                    if (Account.get('isLogin')) {
-                        this.$('.check-share').prop('checked', Settings.get('social.share_one_key_update.sync') === 'on');
-                    }
-                }
-            },
             updateAllApps : function () {
                 var updateApps = [];
 
@@ -160,42 +144,6 @@
                 }, this);
 
                 TaskService.batchDownloadAsync(apps, 'one-key-update');
-
-                if (updateApps.length > 0 && this.$('.check-share').prop('checked')) {
-                    var data = {
-                        textUrl : StringUtil.format(CONFIG.enums.SOCIAL_TEXT_PREVIEW_POST_URL, CONFIG.enums.SOCIAL_ONE_KEY_UPDATE),
-                        textData : {
-                            content : updateApps.join()
-                        },
-                        hasPreview : false,
-                        shareData : {
-                            need_shell : 0,
-                            rotation : 0
-                        },
-                        extraData : {
-                            apps : updateApps
-                        },
-                        type : CONFIG.enums.SOCIAL_ONE_KEY_UPDATE
-                    };
-
-                    SocialService.setContent(data);
-                    SocialService.show();
-                }
-            },
-            clickCheckShare : function (evt) {
-                if (Account.get('isLogin')) {
-                    if ($(evt.target).prop('checked')) {
-                        Settings.set('social.share_one_key_update.sync', 'on');
-                    } else {
-                        Settings.set('social.share_one_key_update.sync', 'off');
-                    }
-                } else {
-                    evt.preventDefault();
-                    Account.loginAsync();
-                }
-            },
-            events : {
-                'click .check-share' : 'clickCheckShare'
             }
         });
 
