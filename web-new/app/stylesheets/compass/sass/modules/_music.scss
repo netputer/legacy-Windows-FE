@@ -194,14 +194,14 @@
 
             &:enabled:not(.active):not(:active):hover .icon {
                 &.ring {
-                    @include sprite-sprite(ring-hover);
+                    @include button-sprite(ring-hover);
                 }
             }
 
             &:enabled:active .icon,
             &.active .icon {
                 &.ring {
-                    @include sprite-sprite(ring-active);
+                    @include button-sprite(ring-active);
                 }
             }
 

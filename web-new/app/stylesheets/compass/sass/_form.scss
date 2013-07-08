@@ -149,7 +149,7 @@ button.w-icon-btn {
              open-folder-black, comment, share, like, dislike, reload, fullscreen,
              move-down, reset {
             &.#{$icon} {
-                @include sprite-sprite(#{$icon});
+                @include button-sprite(#{$icon});
             }
         }
     }

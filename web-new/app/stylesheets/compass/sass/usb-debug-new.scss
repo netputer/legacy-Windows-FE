@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import "skins/default/default";
+@import "button/*.png";
 @import "sprite/*.png";
 @import "misc/*.png";
 @import "usb-debug-new/*.png";
@@ -7,7 +8,6 @@
 @import "reset";
 @import "layout";
 @import "misc";
-/*@import "typography";*/
 @import "form";
 
 html,
@@ -37,22 +37,22 @@ body,
     color: #EBEBEB;
     height: 46px;
     line-height: 46px;
-    
+
     .title {
-       
+
         background: url('../images/usb-debug-new/icon_USB.png') no-repeat 24px 9px;
         padding-left: 60px;
         -webkit-box-flex : 1;
     }
 
     .feedback {
-        
+
         border-bottom: 3px solid #484848;
         cursor: pointer;
         font-size: 12px;
         height: 43px;
         padding: 0px 15px 0px 20px;
-        
+
         &:active,
         &.active {
             background: black;
@@ -106,9 +106,9 @@ body,
         float: left;
         list-style: none;
         margin: 0px 58px 0px 58px;
-                
+
         -webkit-box-shadow: 0px 1px 10px #999;
-        
+
         &.brands {
             margin-right: 62px;
         }
@@ -147,13 +147,13 @@ body,
         }
 
         .logo {
-            
+
             height: 50px;
             left: 5px;
             position: relative;
             top: 20px;
             width: 110px;
-            
+
             @each $logo in htc, huawei, lenovo, meizu, miui, moto, nexus, samsung, sony, zte {
                 &.#{$logo} {
                     @include usb-debug-new-sprite(#{$logo});
@@ -171,7 +171,7 @@ body,
             -webkit-transition: all .2s linear;
 
             .play {
-                
+
                 display: inline-block;
                 height: 16px;
                 margin: 0px 10px 0px 20px;
@@ -179,7 +179,7 @@ body,
                 top: 4px;
                 width: 16px;
                 @include usb-debug-new-sprite(play);
-            
+
             }
         }
 
@@ -190,7 +190,7 @@ body,
             position: relative;
             top: 9px;
             width: 110px;
-            
+
             @each $logo in gingerbread, ics, jeallybean, miuios, meizu{
                 &.#{$logo} {
                     @include usb-debug-new-sprite(#{$logo});
@@ -199,12 +199,12 @@ body,
         }
 
         .system {
-            
+
             font-size: 12px;
             height: 110px;
             overflow: hidden;
             width: 120px;
-            
+
             &.gingerbread, &.ics, &.jeallybean, &.meizu{
                 background-image: -webkit-radial-gradient(85% 15%, #F9FBFC 7%, #F3F3F3 100%);
             }
@@ -224,12 +224,12 @@ body,
         }
 
         .brand{
-            
+
             height: 120px;
             overflow: hidden;
             width: 120px;
             color: #FFF;
-            
+
             &.nobrands{
                 background-image: -webkit-radial-gradient(85% 15%, #F8F8F8 7%, #DFDFDF 100%);
                 cursor: default;
@@ -237,10 +237,10 @@ body,
 
             &.samsung{
                 background-image: -webkit-radial-gradient(85% 15%, #4BA1FE 0%, #375DBF 100%);
-            } 
+            }
 
             &.lenovo{
-                background-image: -webkit-radial-gradient(85% 15%, #6C6C6C 19%, #4A4A4A 100%);  
+                background-image: -webkit-radial-gradient(85% 15%, #6C6C6C 19%, #4A4A4A 100%);
             }
 
             &.huawei{
@@ -301,7 +301,7 @@ body,
             .send-message {
                 height: 45px;
                 margin: 12px 0px 0px 15px;
-                
+
                 input {
                     height: 24px;
                     width: 180px;
@@ -358,7 +358,7 @@ body,
         margin: 22px 58px 22px 58px;
         padding: 15px;
         -webkit-box-shadow: 0px 1px 10px #999;
-        
+
         .connect-error {
 
             .w-ui-loading {
@@ -411,8 +411,8 @@ body,
             &.init {
                 background: #FFF;
                 left: 330px;
-                -webkit-transform: scale(.8); 
-                
+                -webkit-transform: scale(.8);
+
                 img {
                     opacity: .6;
                 }
@@ -420,21 +420,21 @@ body,
 
             &.go-current{
                 -webkit-transform: translate3d(-145px, 0, 0);
-                
+
                 img {
                     opacity: 1;
                 }
             }
-            
+
             &.go-before{
                 background: #FFF;
                 -webkit-transform: translate3d(-305px, 0, 0) scale(.8);
-                
+
 
                 img {
                     opacity: .6;
                 }
-            }    
+            }
         }
 
         .ul-container {
@@ -451,7 +451,7 @@ body,
         }
 
         .navigation {
-            
+
             margin-top: 10px;
             position: relative;
 
@@ -479,7 +479,7 @@ body,
                 top: -340px;
                 width: 185px;
                 z-index: 10000;
-                
+
                 &.left {
 
                     &:hover {
@@ -507,7 +507,7 @@ body,
                         position: absolute;
                         top: 139px;
                         width: 24px;
-                        
+
                         -webkit-transform: rotate(180deg);
                         @include usb-debug-new-sprite(switch_default);
                     }
@@ -541,7 +541,7 @@ body,
                         right: 12px;
                         top: 139px;
                         width: 24px;
-                        
+
 
                         @include usb-debug-new-sprite(switch_default);
                     }

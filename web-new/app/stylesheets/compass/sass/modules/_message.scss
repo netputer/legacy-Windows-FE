@@ -605,14 +605,14 @@
 
                 @each $icon in delete, reply, copy {
                     &.button-#{$icon} {
-                        @include sprite-sprite(#{$icon});
+                        @include button-sprite(#{$icon});
 
                         &:enabled:hover {
-                            @include sprite-sprite(#{$icon}-hover);
+                            @include button-sprite(#{$icon}-hover);
                         }
 
                         &:enabled:active {
-                            @include sprite-sprite(#{$icon}-active);
+                            @include button-sprite(#{$icon}-active);
                         }
                     }
                 }

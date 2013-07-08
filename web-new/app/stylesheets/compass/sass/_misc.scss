@@ -106,7 +106,7 @@
         -webkit-box-pack: center;
 
         .icon {
-            @include sprite-sprite(device);
+            @include button-sprite(device);
             height: 16px;
             margin-right: 5px;
             width: 16px;
