@@ -1,6 +1,8 @@
-/*global define, Backbone, _*/
+/*global define*/
 (function (window, undefined) {
     define([
+        'underscore',
+        'backbone',
         'Log',
         'IOBackendDevice',
         'Settings',
@@ -8,6 +10,8 @@
         'Configuration',
         'Device'
     ], function (
+        _,
+        Backbone,
         log,
         IO,
         Settings,
@@ -34,7 +38,7 @@
                     return /^OFFLINE--/.test(task.source);
                 });
 
-                if (offlineTasks.length > 0) {
+                if (offlineTasks.length > 0 && !Device.get('isFastADB')) {
                     messageNormalList.push({
                         id : _.uniqueId('task-event-'),
                         message : 'OFFLINE_TASK',
