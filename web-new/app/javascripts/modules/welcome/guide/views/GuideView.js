@@ -44,15 +44,15 @@
             render : function () {
                 this.$el.html(this.template({}));
 
-                this.regCardAsync(BindView.getInstance())
+                this.regCardAsync(StarterView.getInstance())
                     // .then(function () {
                     //     return this.regCardAsync(CloudBackupView.getInstance());
                     // }.bind(this))
                     .then(function () {
-                        return this.regCardAsync(XibaibaiView.getInstance());
+                        return this.regCardAsync(BindView.getInstance());
                     }.bind(this))
                     .then(function () {
-                        return this.regCardAsync(StarterView.getInstance());
+                        return this.regCardAsync(XibaibaiView.getInstance());
                     }.bind(this))
                     .then(function () {
                         return this.regCardAsync(DoraSuggestionView.getInstance());

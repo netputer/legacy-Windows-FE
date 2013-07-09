@@ -26,6 +26,11 @@
         var XibaibaiView = CardView.getClass().extend({
             className : CardView.getClass().prototype.className + ' w-guide-xibaibai',
             template : doT.template(TemplateFactory.get('guide', 'xibaibai')),
+            initialize : function () {
+                this.on('next', function () {
+                    Settings.set('user_guide_shown_xibaibai', true, true);
+                });
+            },
             checkAsync : function () {
                 var deferred = $.Deferred();
 
@@ -36,10 +41,6 @@
                 }
 
                 return deferred.promise();
-            },
-            render : function () {
-                Settings.set('user_guide_shown_xibaibai', true);
-                return XibaibaiView.__super__.render.call(this);
             },
             clickButtonSkip : function () {
                 XibaibaiView.__super__.clickButtonSkip.call(this);
