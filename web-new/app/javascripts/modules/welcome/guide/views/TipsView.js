@@ -61,6 +61,12 @@
                 desc : '通讯录、短信相关问题汇总',
                 url : 'http://help.wandoujia.com/entries/23424031'
             }],
+            initialize : function () {
+                this.on('next', function () {
+                    Settings.set('user_guide_shown_tips', true, true);
+                    Settings.set('user_guide_shown', true, true);
+                });
+            },
             checkAsync : function () {
                 var deferred = $.Deferred();
 
@@ -80,10 +86,6 @@
                     action : this.options.action,
                     tips : this.tips
                 }));
-
-                Settings.set('user_guide_shown_tips', true);
-
-                Settings.set('user_guide_shown', true);
                 return this;
             },
             clickButtonOpen : function (evt) {

@@ -36,6 +36,10 @@
                 this.listenTo(Device, 'change:deviceName', function (Device, deviceName) {
                     this.$('.stage .success p').html(StringUtil.format(i18n.welcome.GUIDE_BIND_DESC, Device.get('deviceName')));
                 });
+
+                this.on('next', function () {
+                    Settings.set('user_guide_shown_bind', true, true);
+                });
             },
             checkAsync : function () {
                 var deferred = $.Deferred();
@@ -65,10 +69,6 @@
                 }
 
                 return deferred.promise();
-            },
-            render : function () {
-                Settings.set('user_guide_shown_bind', true);
-                return BindView.__super__.render.call(this);
             },
             clickButtonSkip : function () {
                 BindView.__super__.clickButtonSkip.call(this);

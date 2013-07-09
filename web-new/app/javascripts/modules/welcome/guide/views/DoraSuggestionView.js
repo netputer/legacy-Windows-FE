@@ -42,6 +42,11 @@
                 banner : '../../../../images/guide/banner2.png',
                 extensionId : 256
             }],
+            initialize : function () {
+                this.on('next', function () {
+                    Settings.set('user_guide_shown_suggestion', true, true);
+                });
+            },
             checkAsync : function () {
                 var deferred = $.Deferred();
 
@@ -61,8 +66,6 @@
                     action : this.options.action,
                     items : this.items
                 }));
-
-                Settings.set('user_guide_shown_suggestion', true);
 
                 return this;
             },

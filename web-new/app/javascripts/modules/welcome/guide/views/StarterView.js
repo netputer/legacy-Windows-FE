@@ -38,6 +38,11 @@
         var StarterView = CardView.getClass().extend({
             className : CardView.getClass().prototype.className + ' w-guide-starter',
             template : doT.template(TemplateFactory.get('guide', 'starter')),
+            initialize : function () {
+                this.on('next', function () {
+                    Settings.set('user_guide_shown_starter', true, true);
+                });
+            },
             loadAppsAsync : function () {
                 var deferred = $.Deferred();
 
@@ -57,9 +62,10 @@
                 var deferred = $.Deferred();
 
                 var appsCollection = AppsCollection.getInstance();
-                var refreshHandler = function (appsCollection) {
+                var refreshHandler = function () {
                     if (!appsCollection.syncing && !appsCollection.loading && Device.get('isConnected')) {
                         this.stopListening(appsCollection, 'refresh', refreshHandler);
+                        this.stopListening(Device, 'change:isConnected', refreshHandler);
                         deferred.resolve();
                     }
                 };
@@ -68,6 +74,7 @@
                     setTimeout(deferred.resolve);
                 } else {
                     this.listenTo(appsCollection, 'refresh', refreshHandler);
+                    this.listenTo(Device, 'change:isConnected', refreshHandler);
                     appsCollection.trigger('update');
                 }
 
@@ -131,8 +138,6 @@
                         $host : $(this)
                     });
                 });
-
-                Settings.set('user_guide_shown_starter', true);
 
                 return this;
             },
