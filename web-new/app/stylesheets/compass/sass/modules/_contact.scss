@@ -574,6 +574,89 @@
     }
 }
 
+/*******************************************************************************
+ * Add Group Panel
+********************************************************************************/
+
+.w-contact-group-mangaer-body-ctn {
+    .tip {
+        margin-left: 10px;
+        color: #F76200;
+    }
+}
+
+/*******************************************************************************
+ * Group Mangager Panel
+********************************************************************************/
+
+.w-contact-group-mangaer-body-ctn {
+    -webkit-box-flex: 1;
+
+    .w-group-manager-header {
+        margin-bottom: 15px;
+
+        .w-contact-account-selector {
+            width: 120px;
+        }
+
+        .w-contact-group-add {
+            float: right;
+        }
+    }
+
+    .w-group-manager-body {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        height: 200px;
+        width: 420px;
+
+        .w-group-manager-list-header {
+            .group-name {
+                -webkit-box-flex: 1;
+                padding-left: 12px;
+            }
+
+            .group-action {
+                width: 210px;
+                padding-left: 12px;
+            }
+        }
+
+        .group-manager-item {
+            display: -webkit-box;
+            -webkit-box-orient: horizontal;
+            height : 26px;
+
+            .column {
+                display: -webkit-box;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                -webkit-box-align: center;
+            }
+
+            .title {
+                padding-left: 12px;
+                width: 200px;
+            }
+
+            .delete {
+                width: 98px;
+            }
+
+            .rename {
+                width: 110px;
+            }
+
+            .new-name {
+                height: 23px;
+                width: 90px;
+                display:none;
+            }
+        }
+    }
+}
+
 /********************************************************************************
  * Detail Edit Panel
  ********************************************************************************/
@@ -620,39 +703,6 @@
     position: absolute;
     left: -40px;
     top: 8px;
-}
-
-.w-group-manager-header {
-    margin-bottom: 15px;
-}
-
-.w-group-manager-body {
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    height: 200px;
-    width: 420px;
-}
-
-.w-group-manager-body input[type="text"] {
-    height: 23px;
-    width: 85px;
-}
-
-.w-contact-group-add {
-    float: right;
-}
-
-.w-group-manager-body .w-grid-header-row .w-grid-column:first-child,
-.w-group-manager-body .w-grid-row .w-grid-column:first-child {
-    padding-left: 12px;
-}
-
-.w-contact .w-progress {
-    right: 210px;
-}
-
-.w-menu-group-manager-item {
-    padding: 5px 0 2px 12px;
 }
 
 /********************************************************************************
@@ -713,19 +763,6 @@
 .w-ui-menu-container .addor-item{
     padding-left: 32px;
 }
-.w-group-addor{
-    width: 360px;
-
-    input {
-      margin-left: 10px;
-    }
-}
-.w-group-addor .tip{
-    margin-left: 10px;
-    color: #F76200;
-}
-
-
 
 /*import and export style*/
 .w-import-export-wifi-tip{

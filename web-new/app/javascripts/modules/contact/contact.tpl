@@ -362,6 +362,7 @@
 
 <script type="text/x-ui-template" id="add-group-body">
     <label>{{= i18n.contact.GROUP_NAME }}<input class="input-group-name" type="text" autofocus="true" placeholder="{{= i18n.contact.GROUP_NAME_PLACEHOLDER }}" /></label>
+    <span class="tip"></span>
 </script>
 
 <script type="text/x-ui-template" id="import-backup">
@@ -616,4 +617,38 @@
     </div>
 </script>
 
+<script type="text/template" id="group-manager-body">
+    <div class="w-group-manager-header">
+        <label>{{= i18n.contact.CURRENT_ACCOUNT_LABEL }}</label>
+        <a class="w-contact-group-add">{{= i18n.contact.GROUP_ADD_LABEL}}</a>
+    </div>
+</script>
+
+<script type="text/template" id="group-manager-list">
+    <header class="w-smart-list-header w-group-manager-list-header text-secondary hbox">
+        <div class="group-name">{{= i18n.contact.GROUP_NAME_LABEL }}</div>
+        <div class="group-action">{{= i18n.contact.GROUP_CD_LABEL }}</div>
+    </header>
+</script>
+
+<script type="text/template" id="group-manager-item">
+    <div class="group-manager-item">
+        <div class="column title"><label>{{= it.title}}</label></div>
+        {{? it.system_id}}
+        <div class="column">
+        {{= i18n.contact.UNEDITABLE_GROUP_TEXT}}
+        </div>
+        {{?? it.read_only}}
+        <div class="column">
+        {{= i18n.contact.READ_ONLY_ACCOUNT_GROUP_TEXT}}
+        </div>
+        {{??}}
+        <div class="column delete"><a>{{= i18n.contact.DELETE}}</a></div>
+        <div class="column rename">
+            <a>{{= i18n.contact.GROUP_UPDATE_LABEL}}</a>
+            <input type="text" class="new-name">
+        </div>
+        {{?}}
+    </div>
+</script>
 </templates>

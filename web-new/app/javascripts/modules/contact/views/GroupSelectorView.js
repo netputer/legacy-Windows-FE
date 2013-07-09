@@ -4,18 +4,21 @@
         'underscore',
         'ui/MenuButton',
         'Internationalization',
-        'contact/collections/AccountCollection'
+        'contact/collections/AccountCollection',
+        'contact/views/GroupManagerView'
     ], function (
         _,
         MenuButton,
         i18n,
-        AccountCollection
+        AccountCollection,
+        GroupManagerView
     ) {
         console.log('GroupSelectorView - File loaded.');
 
         var UNGROUP_REG = new RegExp(/ungroup\[\w+\]/);
 
         var accountCollection;
+        var groupManagerView;
 
         var parseGroupName = function (groupId) {
             var groupName;
@@ -214,8 +217,9 @@
                         type : 'link',
                         label : i18n.contact.MANAGE_GROUP,
                         action : function () {
-                            wonder.contact.groupManager.setCurAccountId(this.accountId);
-                            wonder.contact.groupManager.show();
+                            groupManagerView = GroupManagerView.getInstance();
+                            groupManagerView.setCurAccountId(this.accountId);
+                            groupManagerView.show();
                         }.bind(this)
                     });
                 }

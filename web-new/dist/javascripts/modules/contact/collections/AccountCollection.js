@@ -82,6 +82,65 @@
                     return !account.get('read_only');
                 });
             },
+            deleteGroupAsync : function (ids) {
+                var deferred = $.Deferred();
+
+                var deleteDeferred = function (id) {
+                    var def = $.Deferred();
+
+                    IO.requestAsync({
+                        url : CONFIG.actions.CONTACT_GROUPS_DELETE,
+                        data : {
+                            group : id
+                        },
+                        success : function (resp) {
+                            if (resp.state_code === 200) {
+                                def.resolve(resp);
+                            } else {
+                                def.reject(resp);
+                            }
+                        }
+                    });
+
+                    return def;
+                };
+                if (ids instanceof Array) {
+                    var defs = _.map(ids, function (id) {
+                        return deleteDeferred(id);
+                    });
+
+                    $.when.apply(this, defs).always(function () {
+                        this.once('refresh', function () {
+                            deferred.resolve();
+                        });
+                        this.trigger('update');
+                    }.bind(this));
+                } else {
+                    IO.requestAsync({
+                        url : CONFIG.actions.CONTACT_GROUPS_DELETE,
+                        data : {
+                            group : ids
+                        },
+                        success : function (resp) {
+                            if (resp.state_code === 200) {
+                                console.log('AccountCollection - Delete new group success. ');
+
+                                this.once('refresh', function () {
+                                    deferred.resolve(resp);
+                                }, this);
+
+                                this.trigger('update');
+                            } else {
+                                console.error('AccountCollection - Delete new group failed. Error info: ' + resp.state_line);
+
+                                deferred.reject(resp);
+                            }
+                        }.bind(this)
+                    });
+                }
+
+                return deferred.promise();
+            },
             addNewGroupAsync : function (targetAccount, groupName) {
                 var deferred = $.Deferred();
 
@@ -97,7 +156,9 @@
                         if (resp.state_code === 200) {
                             console.log('AccountCollection - Add new group success. ');
 
-                            this.once('refresh', deferred.resolve, this);
+                            this.once('refresh', function () {
+                                deferred.resolve(resp);
+                            }, this);
 
                             this.trigger('update');
                         } else {
@@ -109,6 +170,70 @@
                 });
 
                 return deferred.promise();
+            },
+            updateGroupAsync : function (groups) {
+
+                var deferred = $.Deferred();
+
+                var deleteDeferred = function (group) {
+                    var def = $.Deferred();
+
+                    IO.requestAsync({
+                        url : CONFIG.actions.CONTACT_GROUPS_UPDATE,
+                        data : group,
+                        success : function (resp) {
+                            if (resp.state_code === 200) {
+                                def.resolve(resp);
+                            } else {
+                                def.reject(resp);
+                            }
+                        }
+                    });
+
+                    return def;
+                };
+                if (groups instanceof Object) {
+                    var defs = _.map(groups, function (value, key) {
+                        return deleteDeferred({
+                            group : key,
+                            name : value
+                        });
+                    });
+
+                    $.when.apply(this, defs).always(function () {
+                        this.once('refresh', function () {
+                            deferred.resolve();
+                        });
+                        this.trigger('update');
+                    }.bind(this));
+                } else {
+                    IO.requestAsync({
+                        url : CONFIG.actions.CONTACT_GROUPS_UPDATE,
+                        data : groups,
+                        success : function (resp) {
+                            if (resp.state_code === 200) {
+                                console.log('AccountCollection - Update new group success. ');
+
+                                this.once('refresh', function () {
+                                    deferred.resolve(resp);
+                                }, this);
+
+                                this.trigger('update');
+                            } else {
+                                console.error('AccountCollection - Update new group failed. Error info: ' + resp.state_line);
+
+                                deferred.reject(resp);
+                            }
+                        }.bind(this)
+                    });
+                }
+
+                return deferred.promise();
+            },
+            getAccountById : function (id) {
+                return this.find(function (account) {
+                    return account.get('id') === id;
+                });
             },
             getGroupsByAccount : function (id) {
                 return new GroupsCollection(this.get(id).get('group'));

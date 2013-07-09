@@ -97,6 +97,8 @@
 
                     this.label = data.value === 'all' ?
                                     i18n.contact.ACCOUNT_ALL : accountCollection.get(data.value).get('displayName');
+
+                    this.trigger('selectAccount', account);
                 }, this);
             },
             render : function () {
