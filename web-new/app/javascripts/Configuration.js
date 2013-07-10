@@ -325,6 +325,9 @@
                 SETTING_PRIVACY : 'setting.privacy',
                 THEME_CHANGED : 'themes.folder_changed',
                 SETTING_APP_CHANGE : 'app.setting.changed',
+                NAVIGATE_BACK : 'navigation.goBack',
+                NAVIGATE_FORWARD : 'navigation.goForward',
+                NAVIGATE_REFRESH : 'navigation.reload',
 
                 // Backend events - Task manager module
                 TASK_START : 'jobs.start',

@@ -28,6 +28,7 @@
         'app/views/IgnoredAppsWindowView',
         'app/views/SortMenu',
         'main/collections/PIMCollection',
+        'main/MainRouter',
         'browser/views/BrowserModuleView'
     ], function (
         Backbone,
@@ -56,6 +57,7 @@
         IgnoredAppsWindowView,
         SortMenu,
         PIMCollection,
+        MainRouter,
         BrowserModuleView
     ) {
         console.log('AppListView - File loaded.');
@@ -476,15 +478,13 @@
                 }
             },
             clickTab : function (evt) {
-                Backbone.trigger('switchModule', {
-                    module : 'app',
-                    tab : $(evt.currentTarget).data('tab')
+                MainRouter.navigate('main/app/' + $(evt.currentTarget).data('tab'), {
+                    trigger : true
                 });
             },
             clickButtonFlash : function () {
-                Backbone.trigger('switchModule', {
-                    module : 'app',
-                    tab : 'web'
+                MainRouter.navigate('main/app/web', {
+                    trigger : true
                 });
 
                 this.$('.flash').slideUp('fast', function () {

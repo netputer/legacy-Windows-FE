@@ -11,7 +11,8 @@
         'app/views/AppListView',
         'app/views/AppPanelView',
         'app/collections/AppsCollection',
-        'main/collections/PIMCollection'
+        'main/collections/PIMCollection',
+        'main/MainRouter'
     ], function (
         Backbone,
         _,
@@ -23,7 +24,8 @@
         AppListView,
         AppPanelView,
         AppsCollection,
-        PIMCollection
+        PIMCollection,
+        MainRouter
     ) {
         console.log('AppModuleMainView - File loaded.');
 
@@ -76,11 +78,10 @@
 
                     if (tab !== undefined && tab !== 'normal') {
                         setTimeout(function () {
-                            Backbone.trigger('switchModule', {
-                                module : 'app',
-                                tab : tab
+                            MainRouter.navigate('main/app/' + tab, {
+                                trigger : true
                             });
-                        }, 0);
+                        });
                     }
                 }
 
@@ -95,9 +96,8 @@
                 });
 
                 setTimeout(function () {
-                    Backbone.trigger('switchModule', {
-                        module : 'app',
-                        tab : 'web'
+                    MainRouter.navigate('main/app/web', {
+                        trigger : true
                     });
                 }, 0);
             },
@@ -111,23 +111,19 @@
                 var highlightSearch = function () {
                     var highlight = function () {
                         var target = appsCollection.get(msg.id);
-                        var newEvt;
+                        var tab;
                         if (target.isSystem) {
-                            newEvt = {
-                                module : 'app',
-                                tab : 'sys'
-                            };
+                            tab = 'sys';
                         } else {
-                            newEvt = {
-                                module : 'app',
-                                tab : 'normal'
-                            };
+                            tab = 'normal';
                         }
 
                         setTimeout(function () {
-                            Backbone.trigger('switchModule', newEvt);
+                            MainRouter.navigate('main/app/' + tab, {
+                                trigger : true
+                            });
                             appListView.highlight(target);
-                        }, 0);
+                        });
                     };
                     if (!appsCollection.loading && !appsCollection.syncing) {
                         highlight();

@@ -103,8 +103,6 @@
                 BrowserToolbarView.__super__.remove.call(this);
             },
             setButtonState : function () {
-                WindowController.navigationState(this.frameId);
-
                 var $buttonStar = this.$('.button-star');
 
                 if (FunctionSwitch.ENABLE_DORAEMON) {
