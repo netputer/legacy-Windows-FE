@@ -1,1 +1,0 @@
-(function(e,t){define(["underscore","WorkerPoll","Configuration"],function(e,t,n){console.log("ParserFactory - File loaded.");var r=10,i=n.BASE_PATH+"workers/jsonparser.js"})})(this);
