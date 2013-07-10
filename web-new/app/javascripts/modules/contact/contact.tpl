@@ -618,8 +618,10 @@
 </script>
 
 <script type="text/template" id="group-manager-body">
-    <div class="w-group-manager-header">
-        <label>{{= i18n.contact.CURRENT_ACCOUNT_LABEL }}</label>
+    <div class="w-group-manager-header hbox">
+        <div class="selector-ctn">
+            <label>{{= i18n.contact.CURRENT_ACCOUNT_LABEL }}</label>
+        </div>
         <a class="w-contact-group-add">{{= i18n.contact.GROUP_ADD_LABEL}}</a>
     </div>
 </script>
@@ -632,19 +634,19 @@
 </script>
 
 <script type="text/template" id="group-manager-item">
-    <div class="group-manager-item">
-        <div class="wc title"><label>{{! it.title }}</label></div>
-        {{? it.system_id }}
-        <div class="wc">
-        {{= i18n.contact.UNEDITABLE_GROUP_TEXT }}
-        </div>
-        {{??}}
-        <div class="wc delete"><a>{{= i18n.contact.DELETE }}</a></div>
-        <div class="wc rename">
-            <a>{{= i18n.contact.GROUP_UPDATE_LABEL }}</a>
-            <input type="text" class="new-name">
-        </div>
-        {{?}}
+    <div class="wc title">{{! it.title }}</div>
+    {{? it.system_id }}
+    <div class="wc">
+    {{= i18n.contact.UNEDITABLE_GROUP_TEXT }}
     </div>
+    {{??}}
+    <div class="wc delete">
+        <span class="link button-delete">{{= i18n.contact.DELETE }}</span>
+    </div>
+    <div class="wc rename">
+        <span class="link button-rename">{{= i18n.contact.GROUP_UPDATE_LABEL }}</span>
+        <input type="text" class="new-name">
+    </div>
+    {{?}}
 </script>
 </templates>

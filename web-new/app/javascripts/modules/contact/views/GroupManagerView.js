@@ -116,7 +116,7 @@
             },
             render : function () {
                 this.$el.html(this.template({}));
-                this.$el.find('.w-group-manager-header').append(this.accountSelectorView.render().$el);
+                this.$('.w-group-manager-header label').append(this.accountSelectorView.render().$el);
                 this.$el.append(this.listView.render().$el);
                 return this;
             },

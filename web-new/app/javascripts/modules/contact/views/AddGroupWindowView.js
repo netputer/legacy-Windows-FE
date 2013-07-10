@@ -59,8 +59,8 @@
                 }
             },
             clickButtonSave : function () {
-                var $input = this.$el.find('.input-group-name');
-                var $tip = this.$el.find('.tip');
+                var $input = this.$('.input-group-name');
+                var $tip = this.$('.tip');
                 var groupName = $input.val().trim();
 
                 $tip.html('');

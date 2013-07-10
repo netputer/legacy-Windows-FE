@@ -93,7 +93,7 @@
 
                 $target.remove();
 
-                if (this.$el.find('.item').length === 0) {
+                if (this.$('.item').length === 0) {
                     this.trigger('next');
                 }
 
