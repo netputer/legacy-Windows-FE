@@ -580,8 +580,8 @@
 
 .w-contact-group-mangaer-body-ctn {
     .tip {
-        margin-left: 10px;
         color: #F76200;
+        margin-left: 10px;
     }
 }
 
@@ -612,46 +612,43 @@
 
         .w-group-manager-list-header {
             .group-name {
-                -webkit-box-flex: 1;
                 padding-left: 12px;
+                -webkit-box-flex: 1;
             }
 
             .group-action {
-                width: 210px;
                 padding-left: 12px;
+                width: 210px;
             }
         }
 
         .group-manager-item {
             display: -webkit-box;
-            -webkit-box-orient: horizontal;
             height : 26px;
+            -webkit-box-orient: horizontal;
 
             .column {
                 display: -webkit-box;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
                 -webkit-box-align: center;
-            }
-
-            .title {
-                padding-left: 12px;
-                width: 200px;
             }
 
             .delete {
                 width: 98px;
             }
 
-            .rename {
-                width: 110px;
-            }
-
             .new-name {
                 height: 23px;
                 width: 90px;
                 display:none;
+            }
+
+            .rename {
+                width: 110px;
+            }
+
+            .title {
+                padding-left: 12px;
+                width: 200px;
             }
         }
     }

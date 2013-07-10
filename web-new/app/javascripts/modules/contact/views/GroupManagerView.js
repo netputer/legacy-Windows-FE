@@ -34,7 +34,7 @@
 
         console.log('GroupManager - File loaded.');
 
-        var accountCollection = AccountCollection.getInstance();
+        var accountCollection;
         var GroupListView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('contact', 'group-manager-list')),
             className : "w-group-manager-body vbox",
@@ -55,16 +55,15 @@
             },
             render : function () {
 
-                var me = this;
-                me.$el.html(this.template({}));
+                this.$el.html(this.template({}));
 
-                me.groupList = new SmartList({
+                this.groupList = new SmartList({
                     itemView : GroupManagerItemView.getClass(),
                     dataSet : [{
                         name : 'default',
                         getter : function () {
-                            return accountCollection.getGroupsByAccount(me.accountId).models;
-                        }
+                            return accountCollection.getGroupsByAccount(this.accountId).models;
+                        }.bind(this)
                     }],
                     enableContextMenu : false,
                     keepSelect : false,
@@ -73,19 +72,24 @@
                     loading : accountCollection.loading || accountCollection.syncing
                 });
 
-                me.groupList.listenTo(accountCollection, 'refresh', function () {
-                    me.groupList.switchSet('default', function () {
-                        return accountCollection.getGroupsByAccount(me.accountId).models;
-                    });
-                });
-                this.$('.w-smart-list-header').after(me.groupList.render().$el);
+                this.groupList.listenTo(accountCollection, 'refresh', function () {
+                    this.groupList.switchSet('default', function () {
+                        return accountCollection.getGroupsByAccount(this.accountId).models;
+                    }.bind(this));
+                }.bind(this));
+
+                this.$('.w-smart-list-header').after(this.groupList.render().$el);
                 return this;
             },
             refresh : function () {
-                var me = this;
-                me.groupList.switchSet('default', function () {
-                    return accountCollection.getGroupsByAccount(me.accountId).models;
-                });
+                this.groupList.switchSet('default', function () {
+                    return accountCollection.getGroupsByAccount(this.accountId).models;
+                }.bind(this));
+            },
+            remove : function () {
+
+                this.groupList.remove();
+                GroupListView.__super__.remove.apply(this, arguments);
             }
         });
 
@@ -93,23 +97,21 @@
             template : doT.template(TemplateFactory.get('contact', 'group-manager-body')),
             className : 'w-contact-group-mangaer-body-ctn vbox',
             initialize : function () {
-                var me = this;
 
                 GroupManagerBody.__super__.initialize.apply(this, arguments);
 
-                me.accountSelectorView = AccountSelectorView.getInstance({
+                this.accountSelectorView = AccountSelectorView.getInstance({
                     disableAllLabel : true,
                     displayReadOnly : false
                 });
 
-                me.listView = new GroupListView();
-                me.listView.accountId = me.accountSelectorView.accountId;
+                this.listView = new GroupListView();
+                this.listView.accountId = this.accountSelectorView.accountId;
 
-                me.addGroupWindowView = AddGroupWindowView.getInstance();
-
-                me.accountSelectorView.on('selectAccount', function (account) {
-                    me.listView.accountId = account.get('id');
-                    me.listView.refresh();
+                this.addGroupWindowView = AddGroupWindowView.getInstance();
+                this.accountSelectorView.on('selectAccount', function (account) {
+                    this.listView.accountId = account.get('id');
+                    this.listView.refresh();
                 });
             },
             render : function () {
@@ -125,6 +127,7 @@
             remove : function () {
                 this.accountSelectorView.remove();
                 this.addGroupWindowView.remove();
+                this.listView.remove();
 
                 GroupManagerBody.__super__.remove.apply(this, arguments);
             },
@@ -150,12 +153,17 @@
                 });
 
                 this.on(UIHelper.EventsMapping.SHOW, function () {
-                    this.bodyView = new GroupManagerBody();
 
+                    accountCollection = AccountCollection.getInstance();
+
+                    this.bodyView = new GroupManagerBody();
                     this.$bodyContent = this.bodyView.render().$el;
                     this.center();
 
-                    this.once('remove', this.bodyView.remove, this.bodyView);
+                    this.once('remove', function () {
+                        this.bodyView.remove();
+                        accountCollection = undefined;
+                    });
 
                     this.once('button_cancel', function () {
                         GroupManagerContextModel.set('del', []);
@@ -183,7 +191,7 @@
                     accountCollection.updateGroupAsync(rename);
 
                     this.trigger('button_cancel');
-                });
+                }.bind(this));
 
                 this.hide();
             },
@@ -196,18 +204,13 @@
             }
         });
 
-        var groupManagerView;
         var factory = _.extend({
             getInstance : function (args) {
-                if (!groupManagerView) {
-                    groupManagerView = new GroupManagerView({
-                        title   : i18n.contact.GROUP_MANAGER_TITLE,
-                        height  : '340px',
-                        width   : '450px'
-                    });
-                }
-
-                return groupManagerView;
+                return new GroupManagerView({
+                    title   : i18n.contact.GROUP_MANAGER_TITLE,
+                    height  : '340px',
+                    width   : '450px'
+                });
             }
         });
 

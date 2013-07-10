@@ -8,6 +8,7 @@
         'ui/TemplateFactory',
         'ui/BaseListItem',
         'ui/AlertWindow',
+        'ui/UIHelper',
         'Internationalization',
         'contact/collections/AccountCollection',
         'contact/models/GroupManagerContextModel'
@@ -19,6 +20,7 @@
         TemplateFactory,
         BaseListItem,
         AlertWindow,
+        UIHelper,
         i18n,
         AccountCollection,
         GroupManagerContextModel
@@ -26,9 +28,8 @@
 
         console.log('GroupManagerItemView - File loaded.');
 
+        var accountCollection;
         var alert = window.alert;
-        var accountCollection = AccountCollection.getInstance();
-
         var GroupManagerItemView = BaseListItem.extend({
             template : doT.template(TemplateFactory.get('contact', 'group-manager-item')),
             initialize : function () {
@@ -54,31 +55,28 @@
                         }
                     }
                 });
-            },
-            render : function () {
 
-                var data = this.model.toJSON();
+                accountCollection = AccountCollection.getInstance();
                 var name = this.model.get('account_name');
                 var type = this.model.get('account_type');
                 this.account = accountCollection.getAccountByNameAndType(name, type);
+            },
+            remove : function () {
+                accountCollection = undefined;
+                GroupManagerItemView.__super__.remove.call(this);
+            },
+            render : function () {
+                this.$el.html(this.template(this.model.toJSON()));
 
-                if (this.account.get('id') && this.account.get('read_only')) {
-                    data['read_only'] = 1;
-                    this.$el.find('.delete').html(i18n.contact.READ_ONLY_ACCOUNT_GROUP_TEXT);
-                }
-
-                this.$el.html(this.template(data));
-
-                this.title = this.$el.find('.title');
-                this.del = this.$el.find('.delete');
-                this.rename = this.$el.find('.rename');
-                this.renameA = this.$el.find('.rename > a');
-                this.input = this.$el.find('.new-name');
+                this.title = this.$('.title');
+                this.del = this.$('.delete');
+                this.rename = this.$('.rename');
+                this.renameA = this.$('.rename > a');
+                this.input = this.$('.new-name');
 
                 if (this.isDelete) {
                     this.setDelete();
                 }
-
 
                 if (this.newTitle) {
                     this.title.html(this.newTitle);
@@ -151,7 +149,7 @@
             },
             events : {
                 'click .delete > a' : 'clickDelete',
-                'click .rename > a'	: 'clickRename',
+                'click .rename > a' : 'clickRename',
                 'keyup .new-name' : 'keyupInput',
                 'blur input' : 'blurInput'
 

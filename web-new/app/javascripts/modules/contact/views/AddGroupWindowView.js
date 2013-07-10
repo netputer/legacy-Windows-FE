@@ -4,6 +4,7 @@
         'underscore',
         'jquery',
         'doT',
+        'ui/UIHelper',
         'ui/Panel',
         'ui/AlertWindow',
         'ui/TemplateFactory',
@@ -13,6 +14,7 @@
         _,
         $,
         doT,
+        UIHelper,
         Panel,
         AlertWindow,
         TemplateFactory,
@@ -23,7 +25,7 @@
 
         var alert = window.alert;
         var targetAccount;
-        var accountCollection = AccountCollection.getInstance();
+        var accountCollection;
 
         var AddGroupWindowView = Panel.extend({
             initialize : function () {
@@ -38,6 +40,13 @@
                     $button : $('<button>').html(i18n.contact.CANCEL),
                     eventName : 'button_cancel'
                 }];
+
+                this.on(UIHelper.EventsMapping.SHOW, function () {
+                    accountCollection = AccountCollection.getInstance();
+                    this.once('remove', function () {
+                        accountCollection = undefined;
+                    });
+                });
 
                 this.$bodyContent = $('<div>').addClass('w-contact-group-mangaer-body-ctn').html(doT.template(TemplateFactory.get('contact', 'add-group-body')));
             },
@@ -67,7 +76,7 @@
                     return;
                 }
 
-                AccountCollection.getInstance().addNewGroupAsync(targetAccount, groupName).done(function (resp) {
+                accountCollection.addNewGroupAsync(targetAccount, groupName).done(function (resp) {
                     this.trigger('addNewGroup', resp.body.id);
                 }.bind(this)).fail(function () {
                     alert(i18n.contact.ADD_GROUP_FAIL);
