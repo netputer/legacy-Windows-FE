@@ -17,7 +17,8 @@
         'main/views/NavView',
         'task/views/TaskMonitorView',
         'backuprestore/BackupController',
-        'main/views/FastUSBNotificationView'
+        'main/views/FastUSBNotificationView',
+        'main/MainRouter'
     ], function (
         Backbone,
         doT,
@@ -33,7 +34,8 @@
         NavView,
         TaskMonitorView,
         BackupController,
-        FastUSBNotificationView
+        FastUSBNotificationView,
+        MainRouter
     ) {
         console.log('Wandoujia 2.0 launched.');
 
@@ -66,8 +68,8 @@
                 this.getModule('app').showWebAppView();
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_PHOTO_CLOUD:
-                Backbone.trigger('switchModule', {
-                    module : 'photo'
+                MainRouter.navigate('main/photo/all', {
+                    trigger : true
                 });
 
                 var handler = IO.Backend.Device.onmessage({

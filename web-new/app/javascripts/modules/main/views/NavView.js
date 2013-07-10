@@ -98,8 +98,6 @@
                     } else if (data.module === 'gallery') {
                         this.deselectAll();
                     }
-
-                    WindowController.navigationState();
                 }, this);
 
                 pimCollection.on('itemSelected', function () {
@@ -180,9 +178,24 @@
                                 });
                             }
                         }
+
+                        var target = pimCollection.find(function (item) {
+                            return item.get('selected');
+                        });
+
+                        Backbone.trigger('switchModule', {
+                            module : target.get('module'),
+                            tab : target.get('tab')
+                        });
+
+                        window.location.hash = '#main/' + target.get('module') + '/' + target.get('tab');
                     } else {
                         jumpToDefaultExtension(redirectExtId);
                     }
+
+                    Backbone.history.start({
+                        pushState : false
+                    });
 
                     toggleShadow.call(this);
                 }.bind(this), 0);

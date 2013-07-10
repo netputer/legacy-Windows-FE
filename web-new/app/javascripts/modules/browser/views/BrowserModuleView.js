@@ -68,9 +68,6 @@
                     }).render().$el;
                     this.$el.prepend($browser);
                 }
-
-                var iframe = $browser.find('iframe');
-                WindowController.navigationState(iframe.attr('id'));
             },
             navigate : function (extensionModel, url) {
                 this.goto(extensionModel, false);
@@ -79,8 +76,6 @@
                 iframe.attr({
                     src : url
                 });
-
-                WindowController.navigationState(iframe.attr('id'));
             },
             navigateToThirdParty : function (extentionId, extentionName, url, isPreview) {
                 var extension = ExtensionsCollection.getInstance().get(extentionId);

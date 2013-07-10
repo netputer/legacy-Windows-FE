@@ -56,14 +56,18 @@
                     this.progress = 80;
                 }
 
-                MainRouter.navigate('browser/' + this.model.id + '/' + encodeURIComponent(iframe.contentWindow.location.href));
-
                 if (iframe.src === 'http://apps.wandoujia.com/') {
                     var endTime = new Date().getTime();
 
                     log({
                         'event' : 'debug.browser.wandoujia.loading.time',
                         'time' : endTime - startTime
+                    });
+                }
+                console.log(iframe.contentWindow.location.href);
+                if (iframe.contentWindow.location.href !== 'about:blank') {
+                    MainRouter.navigate('browser/' + this.model.id + '/' + encodeURIComponent(iframe.contentWindow.location.href), {
+                        trigger : true
                     });
                 }
                 break;
