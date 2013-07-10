@@ -217,7 +217,7 @@ define({
     BACKUP_APP_DATA_ERROR_CONNECT_ERROR :　'文件传输失败。',
     USER_CANCELED :　'备份应用数据操作被取消。',
     CUSTOM_AUTH_FAILED_ERROR :　'登录信息过期，请退出后重新登录。',
-    CUSTOM_SERVER_UNAVALABEL_ERROR :　'很抱歉，辛勤的豌豆荚服务器太累了，请稍后再试。 <a target="_default" href="http://wandoujia.zendesk.com/entries/22986628-cai">帮助</a>',
+    CUSTOM_SERVER_UNAVALABEL_ERROR :　'很抱歉，辛勤的豌豆荚服务器太累了，请稍后再试。 <a target="_default" href="http://wandoujia.zendesk.com/entries/22604406#QuestionA">帮助</a>',
     RESTORE_APP_DATA_ERROR : '应用数据恢复失败。',
     CUSTOM_UNZIP_BACKUP_FILE_ERROR : '很抱歉，解压缩失败，部分应用未能恢复。',
 
