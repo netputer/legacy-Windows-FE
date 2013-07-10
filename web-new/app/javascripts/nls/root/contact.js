@@ -156,7 +156,7 @@ define({
     NO_EMAIL_CLIENT_TIP : '<p>非常抱歉, 不能向联系人发送邮件。</p><p>没有找到邮件客户端, 请先安装并绑定邮件服务软件。</p>',
 
     GROUP_MANAGER_TITLE : '管理账号与分组',
-    CURRENT_ACCOUNT_LABEL : '当前账号: ',
+    CURRENT_ACCOUNT_LABEL : '当前账号：',
     GROUP_NAME_LABEL : '分组名称',
     GROUP_GRID_TIP_TEXT : '该账号还没有分组。',
     GROUP_CD_LABEL : '操作',

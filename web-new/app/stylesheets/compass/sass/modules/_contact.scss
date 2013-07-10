@@ -580,7 +580,7 @@
 
 .w-contact-group-mangaer-body-ctn {
     .tip {
-        color: #F76200;
+        color: #f76200;
         margin-left: 10px;
     }
 }
@@ -593,14 +593,15 @@
     -webkit-box-flex: 1;
 
     .w-group-manager-header {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
+        -webkit-box-align: center;
 
-        .w-contact-account-selector {
-            width: 120px;
-        }
+        .selector-ctn {
+            -webkit-box-flex: 1;
 
-        .w-contact-group-add {
-            float: right;
+            .w-contact-account-selector {
+                width: 220px;
+            }
         }
     }
 
@@ -618,19 +619,13 @@
 
             .group-action {
                 padding-left: 12px;
-                width: 210px;
+                width: 208px;
             }
         }
 
         .group-manager-item {
-            display: -webkit-box;
             height : 26px;
-            -webkit-box-orient: horizontal;
-
-            .column {
-                display: -webkit-box;
-                -webkit-box-align: center;
-            }
+            -webkit-box-align: center;
 
             .delete {
                 width: 98px;
@@ -667,155 +662,6 @@
             -webkit-box-flex: 1;
         }
     }
-}
-
-.w-contact-groups group {
-    background-color: #ececec;
-    border-radius: 2px;
-    display: block;
-    float: left;
-    height: 22px;
-    line-height: 22px;
-    margin-right: 5px;
-    padding: 0 5px;
-}
-
-.w-contact-account-group {
-    position: absolute;
-    right: 0;
-    top: 1px;
-}
-.w-contact-account-group .w-contact-account text,
-.w-contact-account-group .w-contact-group text{
-    display: inline-block;
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-wrap: break-word;
-}
-
-.w-contact-account-group label {
-    color: #646464;
-    position: absolute;
-    left: -40px;
-    top: 8px;
-}
-
-/********************************************************************************
- * Group tag
- ********************************************************************************/
-.w-grid-group-menu{
-    background: #fff;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    display: none;
-    padding: 5px;
-    border: 1px solid #6DB800;
-    line-height: 24px;
-}
-.w-grid-group-menu > ul{
-    padding-top: 10px;
-}
-.w-grid-group-menu > ul > li > span{
-    display: inline-block;
-    margin-right: 8px;
-}
-.w-contact-groups-tag,
-.w-grid-group-menu > div {
-    background: #fff;
-    position: relative;
-    display: -webkit-box;
-    -webkit-box-orient: horizontal;
-    margin-right: 13px;
-}
-.w-contact-groups-tag > span,
-.w-grid-group-menu > div span,
-.w-grid-group-menu > ul span {
-    display: block;
-    height:8px;
-    width: 8px;
-    margin-left: 1px;
-}
-
-.w-contact-account-menu text{
-    display: inline-block;
-    max-width: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-wrap: break-word;
-}
-
-.w-contact-readOnly{
-    color: #646464;
-}
-.w-grid-row.highlight .w-contact-readyOnly{
-    color: #3C7800;
-}
-.w-contact-readyOnly img{
-    opacity: .5;
-}
-.w-ui-menu-container .addor-item{
-    padding-left: 32px;
-}
-
-/*import and export style*/
-.w-import-export-wifi-tip{
-    width:320px;
-    line-height: 20px;
-}
-
-.w-contact-import,
-.w-contact-export{
-    width: 400px;
-    height: 160px;
-}
-.w-contact-import h6,
-.w-contact-export h6,
-.w-contact-import-account h6{
-    margin-bottom: 10px;
-}
-.w-contact-import .duplicate-ctn {
-    margin-top: 5px;
-}
-.w-contact-export li {
-    height: 30px;
-    line-height: 30px;
-}
-.w-contact-import .invalid{
-    line-height: 30px;
-    color:#F76200;
-}
-.w-contact-import-account{
-    width: 300px;
-}
-.w-contact-import-account .w-contact-account-group{
-    position: relative;
-    margin-left: 35px;
-}
-.w-contact-import-account label{
-    top: 3px;
-}
-.w-contact-import.step1 .browser{
-    float: right;
-}
-
-
-.w-contact-import.step1 input{
-    height: 25px;
-    width: 320px;
-}
-
-
-.failed-list{
-    border: 1px solid #dedede;
-    height: 131px;
-}
-
-.w-contact-import .progress {
-    float: right;
 }
 
 /* style for header photo*/
@@ -929,13 +775,13 @@
     }
 }
 
-.w-contact-import-select-account-body-ctn{
+.w-contact-import-select-account-body-ctn {
     .title{
         margin-bottom: 5px;
     }
 }
 
-.w-contact-import-process-body{
+.w-contact-import-process-body {
     min-height: 56px;
 
     .title {

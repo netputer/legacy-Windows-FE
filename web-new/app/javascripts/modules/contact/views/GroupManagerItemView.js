@@ -30,8 +30,11 @@
 
         var accountCollection;
         var alert = window.alert;
+
         var GroupManagerItemView = BaseListItem.extend({
             template : doT.template(TemplateFactory.get('contact', 'group-manager-item')),
+            tagName : 'li',
+            className : 'group-manager-item hbox',
             initialize : function () {
                 GroupManagerItemView.__super__.initialize.apply(this, arguments);
 
@@ -71,7 +74,7 @@
                 this.title = this.$('.title');
                 this.del = this.$('.delete');
                 this.rename = this.$('.rename');
-                this.renameA = this.$('.rename > a');
+                this.renameA = this.$('.rename .button-rename');
                 this.input = this.$('.new-name');
 
                 if (this.isDelete) {
@@ -96,11 +99,11 @@
                 this.del.html(i18n.contact.GROUP_DELETED_TEXT);
                 this.rename.remove();
             },
-            clickDelete : function () {
+            clickButtonDelete : function () {
                 this.setDelete();
                 this.isDelete = true;
             },
-            clickRename: function () {
+            clickButtonRename: function () {
                 this.showInput();
             },
             keyupInput : function () {
@@ -148,8 +151,8 @@
                 this.isRenaming = false;
             },
             events : {
-                'click .delete > a' : 'clickDelete',
-                'click .rename > a' : 'clickRename',
+                'click .button-delete' : 'clickButtonDelete',
+                'click .button-rename' : 'clickButtonRename',
                 'keyup .new-name' : 'keyupInput',
                 'blur input' : 'blurInput'
 

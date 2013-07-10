@@ -42,7 +42,6 @@
 			<path path="../src/ui/selectDelegate.js" />
 			<path path="../src/ui/clipImage.js" />
 
-			<path path="../src/module/contact/group.js" />
 			<path path="../src/module/contact/contactpanel/avatarEditor.js" />
 
 			<path path="../src/module/pageManager.js" />
