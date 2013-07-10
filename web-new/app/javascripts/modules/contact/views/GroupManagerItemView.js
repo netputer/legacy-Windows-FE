@@ -113,6 +113,10 @@
             showInput : function () {
                 this.renameA.hide();
                 this.input.show();
+
+                setTimeout(function () {
+                    this.input.focus();
+                }.bind(this), 10);
             },
             hideInput : function () {
                 this.renameA.show();
