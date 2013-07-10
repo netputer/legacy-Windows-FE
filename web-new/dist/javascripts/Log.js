@@ -1,1 +1,0 @@
-(function(e,t){define(["Configuration"],function(t){console.log("Log - File loaded.");var n=function(n){var r=!0;if(r){n=n||{};var i=t.actions.SEND_LOG,s=[],o;for(o in n)n.hasOwnProperty(o)&&s.push(o+"="+e.encodeURIComponent(n[o]));i+="?"+s.join("&"),e.OneRingRequest("get",i,"",function(e){e=JSON.parse(e),e.state_code===200&&console.log("Log: ",i)})}};return e.log=n,n})})(this);
