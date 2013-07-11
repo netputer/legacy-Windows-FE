@@ -1,4 +1,4 @@
-/*global define, console*/
+/*global define*/
 (function (window) {
     define([
         'backbone',
@@ -12,6 +12,9 @@
         'ui/Panel',
         'ui/UIHelper',
         'ui/TemplateFactory',
+        'ui/AlertWindow',
+        'utilities/StringUtil',
+        'IO',
         'contact/collections/ContactsCollection',
         'message/collections/ConversationsCollection',
         'backuprestore/BackupRestoreService',
@@ -28,12 +31,17 @@
         Panel,
         UIHelper,
         TemplateFactory,
+        AlertWindow,
+        StringUtil,
+        IO,
         ContactsCollection,
         ConversationsCollection,
         BackupRestoreService,
         RestoreContextModel
     ) {
         console.log('RestoreProgressView - File loaded. ');
+
+        var alert = window.alert;
 
         var RestoreProgressBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('restore', 'resotre-progress')),
@@ -66,7 +74,7 @@
             initialize : function () {
                 RestoreProgressView.__super__.initialize.apply(this, arguments);
 
-                this.on(UIHelper.EventsMapping.SHOW, function() {
+                this.on(UIHelper.EventsMapping.SHOW, function () {
                     bodyView = new RestoreProgressBodyView();
                     this.$bodyContent = bodyView.render().$el;
                     this.setViewTitle();
@@ -88,7 +96,7 @@
                     eventName : 'button_cancel'
                 }];
             },
-            render : function() {
+            render : function () {
                 _.extend(this.events, RestoreProgressView.__super__.events);
                 this.delegateEvents();
                 RestoreProgressView.__super__.render.apply(this, arguments);
@@ -104,11 +112,11 @@
             setViewTitle : function () {
                 this.title = RestoreContextModel.IsLocal ? i18n.backup_restore.RESTORE_TITLE_LOCAL : i18n.backup_restore.RESTORE_TITLE_REMOTE;
             },
-            setButtnState : function(in_progress) {
+            setButtnState : function (in_progress) {
                 this.$('.button-next').toggle(!in_progress);
                 this.$('.button-cancel').toggle(in_progress);
             },
-            startDownloadFilesRemote : function() {
+            startDownloadFilesRemote : function () {
                 this.$('.title').text(i18n.backup_restore.RESTORE_DOWNLOAD_PROGRESSING);
 
                 var sessionID = _.uniqueId('restore.download_file_');
@@ -128,14 +136,14 @@
 
                     log({ 'event' : 'debug.restore.remote.download.success' });
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, true);
-                }.bind(this)).fail(function(resp) {
+                }.bind(this)).fail(function (resp) {
                     this.remove();
                     log({ 'event' : 'debug.restore.remote.download.failed' });
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 0);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
                 }.bind(this));
             },
-            startRestoreSmsAndContact : function() {
+            startRestoreSmsAndContact : function () {
                 if (!RestoreContextModel.IsNoneAppSelected) {
                     // only apps selected, skip sms & contacts
                     this.startRestoreApps();
@@ -153,7 +161,7 @@
 
                 BackupRestoreService.restoreStartNonAppsAsync(filePath, restoreSessionID, accountType, accountName, brSpec).done(function (resp) {
                     RestoreContextModel.set('appPath', resp.body.value);
-                }.bind(this)).fail(function(resp) {
+                }.bind(this)).fail(function (resp) {
                     this.remove();
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 1);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
@@ -161,50 +169,50 @@
 
                 restoreHandler = IO.Backend.Device.onmessage({
                     'data.channel' : restoreSessionID
-                }, function(data) {
+                }, function (data) {
                     this.handleProgress(data);
                 }, this);
             },
             handleProgress : function (progress) {
                 switch (progress.status) {
-                    case BackupRestoreService.CONSTS.BR_STATUS.RUNNING:
-                    case BackupRestoreService.CONSTS.BR_STATUS.PAUSED:
-                        this.updateNonAppItems(progress.item);
-                        break;
-                    case BackupRestoreService.CONSTS.BR_STATUS.FINISHED:
-                        this.updateNonAppItems(progress.item);
+                case BackupRestoreService.CONSTS.BR_STATUS.RUNNING:
+                case BackupRestoreService.CONSTS.BR_STATUS.PAUSED:
+                    this.updateNonAppItems(progress.item);
+                    break;
+                case BackupRestoreService.CONSTS.BR_STATUS.FINISHED:
+                    this.updateNonAppItems(progress.item);
 
-                        IO.Backend.Device.offmessage(restoreHandler);
+                    IO.Backend.Device.offmessage(restoreHandler);
 
-                        // continue to restore apps
-                        this.startRestoreApps();
-                        this.restoreAllFinish();
+                    // continue to restore apps
+                    this.startRestoreApps();
+                    this.restoreAllFinish();
 
-                        // sync again to fetch new data
-                        ContactsCollection.getInstance().syncAsync();
-                        ConversationsCollection.getInstance().trigger('update');
+                    // sync again to fetch new data
+                    ContactsCollection.getInstance().syncAsync();
+                    ConversationsCollection.getInstance().trigger('update');
 
-                        if (!RestoreContextModel.IsNoneAppSelected) {
-                            this.trigger('_NEXT_STEP');
-                        }
-                        break;
-                    case BackupRestoreService.CONSTS.BR_STATUS.ERROR:
-                        this.updateNonAppItems(progress.item);
-                        this.showErrorItem(progress);
-                        break;
-                    case BackupRestoreService.CONSTS.BR_STATUS.READY:
-                    case BackupRestoreService.CONSTS.BR_STATUS.STOPPED:
-                        break;
-                    case BackupRestoreService.CONSTS.BR_STATUS.ABORT:
-                        this.remove();
-                        alert(i18n.backup_restore.RESTORE_ABORT_TIP);
-                        BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
-                        break;
-                    default:
-                        this.remove();
-                        alert(i18n.backup_restore.RESTORE_FAILED_TIP + progress.status);
-                        BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
-                        break;
+                    if (!RestoreContextModel.IsNoneAppSelected) {
+                        this.trigger('_NEXT_STEP');
+                    }
+                    break;
+                case BackupRestoreService.CONSTS.BR_STATUS.ERROR:
+                    this.updateNonAppItems(progress.item);
+                    this.showErrorItem(progress);
+                    break;
+                case BackupRestoreService.CONSTS.BR_STATUS.READY:
+                case BackupRestoreService.CONSTS.BR_STATUS.STOPPED:
+                    break;
+                case BackupRestoreService.CONSTS.BR_STATUS.ABORT:
+                    this.remove();
+                    alert(i18n.backup_restore.RESTORE_ABORT_TIP);
+                    BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
+                    break;
+                default:
+                    this.remove();
+                    alert(i18n.backup_restore.RESTORE_FAILED_TIP + progress.status);
+                    BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
+                    break;
                 }
             },
             showErrorItem : function (progress) {
@@ -242,7 +250,7 @@
                     } else {
                         this.handleProgress(progress);
                     }
-                }.bind(this)).fail(function(resp) {
+                }.bind(this)).fail(function (resp) {
                     console.log(resp);
 
                     this.remove();
@@ -253,7 +261,7 @@
             resumeRestore : function () {
                 BackupRestoreService.restoreResumeAsync(restoreSessionID).done(function (resp) {
                     // do nothing, the progress will continue
-                }.bind(this)).fail(function(resp) {
+                }.bind(this)).fail(function (resp) {
                     console.log(resp);
 
                     this.remove();
@@ -261,12 +269,15 @@
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
                 }.bind(this));
             },
-            updateNonAppItems : function(items) {
+            updateNonAppItems : function (items) {
                 var i;
+                var item;
                 for (i in items) {
-                    item = items[i];
-                    if (i === 0 || item.status !== BackupRestoreService.CONSTS.BR_PI_STATUS.READY) {
-                        this.updateItem(item.type, item.status, item.finished_count, item.all_count);
+                    if (items.hasOwnProperty(i)) {
+                        item = items[i];
+                        if (i === 0 || item.status !== BackupRestoreService.CONSTS.BR_PI_STATUS.READY) {
+                            this.updateItem(item.type, item.status, item.finished_count, item.all_count);
+                        }
                     }
                 }
             },
@@ -289,24 +300,24 @@
                 }
                 return $item;
             },
-            updateItem : function(type, status, currentValue, maxValue) {
+            updateItem : function (type, status, currentValue, maxValue) {
                 var $item = this.findOrCreateProgressItem(type);
 
                 var pattern;
                 switch (status) {
-                    case BackupRestoreService.CONSTS.BR_PI_STATUS.WAITING:
-                        pattern = i18n.backup_restore.RESTORE_WAITING;
-                        break;
-                    case BackupRestoreService.CONSTS.BR_PI_STATUS.FINISHED:
-                        pattern = i18n.backup_restore.RESTORE_FINISH;
-                        break;
-                    case BackupRestoreService.CONSTS.BR_PI_STATUS.ERROR:
-                        $item.addClass('error');
-                        pattern = i18n.backup_restore.RESTORE_FAILED;
-                        break;
-                    default:
-                        pattern = i18n.backup_restore.RESTORE_PROCESS;
-                        break;
+                case BackupRestoreService.CONSTS.BR_PI_STATUS.WAITING:
+                    pattern = i18n.backup_restore.RESTORE_WAITING;
+                    break;
+                case BackupRestoreService.CONSTS.BR_PI_STATUS.FINISHED:
+                    pattern = i18n.backup_restore.RESTORE_FINISH;
+                    break;
+                case BackupRestoreService.CONSTS.BR_PI_STATUS.ERROR:
+                    $item.addClass('error');
+                    pattern = i18n.backup_restore.RESTORE_FAILED;
+                    break;
+                default:
+                    pattern = i18n.backup_restore.RESTORE_PROCESS;
+                    break;
                 }
                 var desc = StringUtil.format(pattern, i18n.backup_restore.BR_TYPE_WORD_ENUM[type]);
                 $item.find('.progress-desc').text(desc);
@@ -318,19 +329,19 @@
                     value : currentValue
                 });
             },
-            startRestoreApps : function() {
+            startRestoreApps : function () {
                 if (!RestoreContextModel.IsAppSelected && !RestoreContextModel.IsAppDataSelected) {
                     return;
                 }
 
                 // apps will be installed in task manager, so we don't care the progress here
                 var filePath = RestoreContextModel.get('fileName');
-                BackupRestoreService.restoreStartAppsAsync(filePath, RestoreContextModel.IsAppDataSelected).fail(function(resp) {
+                BackupRestoreService.restoreStartAppsAsync(filePath, RestoreContextModel.IsAppDataSelected).fail(function (resp) {
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 7);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
                 });
             },
-            restoreAllFinish : function() {
+            restoreAllFinish : function () {
                 var filePath = RestoreContextModel.get('fileName');
 
                 BackupRestoreService.restoreFinishAsync(RestoreContextModel.get('fileName')).done(function (resp) {
@@ -338,7 +349,7 @@
                     this.setButtnState(false);
 
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, true);
-                }.bind(this)).fail(function(resp) {
+                }.bind(this)).fail(function (resp) {
                     console.log(resp);
 
                     this.remove();
@@ -349,7 +360,7 @@
             clickButtonNext : function () {
                 this.trigger('_NEXT_STEP');
             },
-            clickButtonCancel : function() {
+            clickButtonCancel : function () {
                 if (restoreHandler) {
                     IO.Backend.Device.offmessage(restoreHandler);
                 }

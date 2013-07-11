@@ -1,4 +1,4 @@
-/*global console, define*/
+/*global define*/
 (function (window) {
     define(['underscore'], function (_) {
         console.log('DataSetMixin - File loaded.');
@@ -48,7 +48,9 @@
                 var dataSet = [];
                 var currentSet = {
                     name : '',
-                    getter : function () {}
+                    getter : function () {
+                        return [];
+                    }
                 };
 
                 Object.defineProperties(that, {
