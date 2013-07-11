@@ -164,7 +164,7 @@ module.exports = function (grunt) {
                 // junit : 'out/junit.xml', // write the output to a JUnit XML
                 log : 'lint.log',
                 // jslintXml : 'out/jslint_xml.xml',
-                // errorsOnly : true, // only display errors
+                errorsOnly : true, // only display errors
                 // failOnError : false, // defaults to true
                 // shebang : true, // ignore shebang lines
                 // checkstyle : 'out/checkstyle.xml' // write a checkstyle-XML
