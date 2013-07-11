@@ -140,11 +140,7 @@ module.exports = function (grunt) {
             }
         },
         qunit: {
-            all : {
-                options: {
-                    urls: ['http://192.168.100.31:8090/web-new/test/index.html']
-                }
-            }
+            files : ['test/index.html']
         },
         jslint : {
             files : [
@@ -198,7 +194,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('test', function () {
-        grunt.option('force', true);
-        grunt.task.run('qunit');
+        // grunt.option('force', true);
+        grunt.task.run('jslint');
+        grunt.task.run('build');
     });
 };
