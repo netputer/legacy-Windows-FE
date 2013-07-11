@@ -1,5 +1,5 @@
 /*global define, _, $*/
-(function (window, undefined) {
+(function (window) {
     define([
         'ui/Menu',
         'ui/behavior/ClickToHideMixin',

@@ -1,5 +1,5 @@
 /*global console, Backbone, _, define, doT, $*/
-(function (window, undefined) {
+(function (window) {
     define([
         'backbone',
         'doT',

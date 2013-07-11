@@ -1,5 +1,5 @@
 /*global define, $, _, Backbone, console*/
-(function (window, undefined) {
+(function (window) {
     define([
         'ui/BatchActionWindow',
         'ui/AlertWindow',

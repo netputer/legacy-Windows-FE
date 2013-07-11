@@ -1,4 +1,4 @@
-(function (window, undefined) {
+(function (window) {
     define([
         'video/views/ImportVideoView',
         'video/VideoService',

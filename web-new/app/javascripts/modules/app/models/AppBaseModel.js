@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, undefined) {
+(function (window) {
     'use strict';
 
     define(['backbone'], function (Backbone) {

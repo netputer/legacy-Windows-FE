@@ -1,7 +1,7 @@
 /**
  * @author wangye.zhao@wandoujia.com
  */
-(function (window, undefined) {
+(function (window) {
     define([], function () {
         var MD5 = function (string) {
             function RotateLeft (lValue, iShiftBits) {

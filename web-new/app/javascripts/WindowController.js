@@ -3,7 +3,7 @@
  * @author lixiaopeng@wandoujia.com
  **/
 
-(function (window, undefined) {
+(function (window) {
     define([
         'backbone',
         'underscore',

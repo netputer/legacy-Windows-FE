@@ -1,5 +1,5 @@
 /*global define, console*/
-(function (window, undefined) {
+(function (window) {
     define(['Environment'], function (Environment) {
         console.log('Distributor - File loaded. ');
 

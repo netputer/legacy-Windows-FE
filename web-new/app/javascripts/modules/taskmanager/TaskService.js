@@ -1,5 +1,5 @@
 /*global define, $, Backbone, _*/
-(function (window, undefined) {
+(function (window) {
     define([
         'IOBackendDevice',
         'Configuration',
