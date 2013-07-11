@@ -1,6 +1,6 @@
 /*global console, define*/
 /*jslint bitwise: true*/
-(function (window, undefined) {
+(function (window) {
     define([
         'backbone',
         'underscore',

@@ -2,7 +2,7 @@
 /**
  * @author wangye.zhao@wandoujia.com
  */
-(function (window, undefined) {
+(function (window) {
     define([], function () {
 
         var FormatString = function (input) {

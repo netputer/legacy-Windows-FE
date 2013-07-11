@@ -153,7 +153,7 @@ module.exports = function (grunt) {
                 devel : true,
                 browser : true,
                 indent : 4,
-                // unparam: true,
+                unparam: true,
                 plusplus : true,
                 todo: true,
                 predef: [ // array of pre-defined globals

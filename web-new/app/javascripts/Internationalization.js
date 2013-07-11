@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, undefined) {
+(function (window) {
     define([
         'i18n!nls/ui',
         'i18n!nls/misc',

@@ -1,21 +1,15 @@
 /*global define*/
-(function (window, undefined) {
+(function (window) {
     define([
         'underscore',
         'jquery',
-        'ui/TipPanel',
-        'ui/UIHelper'
+        'ui/TipPanel'
     ], function (
         _,
         $,
-        TipPanel,
-        UIHelper
+        TipPanel
     ) {
         console.log('PopupPanel - File loaded.');
-
-        var setTimeout = window.setTimeout;
-
-        var EventsMapping = UIHelper.EventsMapping;
 
         var PopupPanel = TipPanel.extend({
             className : 'w-ui-popup-panel w-layout-hide',

@@ -1,5 +1,5 @@
 /*global define*/
-(function (window) {
+(function (window, require) {
     'use strict';
 
     require.config({
@@ -44,4 +44,4 @@
             }
         }
     });
-}(this));
+}(this, this.require));

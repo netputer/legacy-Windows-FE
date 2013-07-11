@@ -1,5 +1,5 @@
 /*global define, console*/
-(function (window, undefined) {
+(function (window) {
     define([
         'backbone',
         'underscore',
@@ -213,7 +213,7 @@
                     var $buttonLast = $('<button>').html(i18n.ui.PREV).addClass('button-last');
                     this.$('.w-ui-window-footer-monitor').append($buttonLast);
                 }
-                
+
                 this.$('.button-next').prop({
                     disabled : true
                 });

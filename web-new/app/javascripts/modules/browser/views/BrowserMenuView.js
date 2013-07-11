@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, undefined) {
+(function (window) {
     define([
         'underscore',
         'backbone',
@@ -42,7 +42,7 @@
                     var $targetItem = this.$('li.root-item[data="' + contentDocument.location.href + '"]');
                     if ($targetItem.length > 0) {
                         this.$('.root-item.selected').removeClass('selected');
-                        $targetItem.addClass('selected'); 
+                        $targetItem.addClass('selected');
                     }
                 }
                 this.relocatePointer();
@@ -86,7 +86,7 @@
                 }
                 var data = $target.attr('data');
                 this.relocatePointer();
-            
+
                 this.trigger('select', data);
 
                 log({
