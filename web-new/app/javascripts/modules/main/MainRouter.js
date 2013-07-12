@@ -4,17 +4,22 @@
         'backbone',
         'IOBackendDevice',
         'Configuration',
+        'jquery',
         'main/collections/PIMCollection'
     ], function (
         Backbone,
         IO,
         CONFIG,
+        $,
         PIMCollection
     ) {
         console.log('MainRouter - File loaded. ');
 
         var history = window.history;
+
         var pimCollection = PIMCollection.getInstance();
+
+        var historyStack = [];
 
         var MainRouter = Backbone.Router.extend({
             routes : {
@@ -40,11 +45,12 @@
                 }
 
                 target.set('selected', true);
+                var fragment = 'main/' + module + '/' + (tab || '');
+                if (historyStack[historyStack.length - 1] !== fragment) {
+                    historyStack.push(fragment);
+                }
             },
             switchExtension : function (id, url) {
-                console.log(id);
-                console.log(url);
-                console.log(history.backCount());
                 Backbone.trigger('switchModule:browser', {
                     id : id,
                     url : decodeURIComponent(url)
@@ -63,13 +69,33 @@
         IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.NAVIGATE_BACK
         }, function (data) {
-            history.back();
+            if (window.SnapPea.CurrentModule === 'browser') {
+                var $iframe = $('iframe[extension="' + window.SnapPea.CurrentTab + '"]');
+                console.log();
+                if (history.backCount($iframe.attr('id'), $iframe.attr('branch')) !== 0) {
+                    history.back2($iframe.attr('id'), $iframe.attr('branch'));
+                } else {
+                    // history.back();
+                }
+            } else {
+                console.log(history.length);
+                history.back();
+            }
         });
 
         IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.NAVIGATE_FORWARD
         }, function (data) {
-            history.forward();
+            if (window.SnapPea.CurrentModule === 'browser') {
+                var $iframe = $('iframe[extension="' + window.SnapPea.CurrentTab + '"]');
+                if (history.forwardCount($iframe.attr('id'), $iframe.attr('branch')) !== 0) {
+                    history.forward2($iframe.attr('id'), $iframe.attr('branch'));
+                } else {
+                    // history.forward();
+                }
+            } else {
+                // history.forward();
+            }
         });
 
         IO.Backend.Device.onmessage({
@@ -77,14 +103,14 @@
         }, function (data) {
         });
 
-        whosYourDaddy();
-        window.onhashchange = function (e) {
-            console.log(e);
-        };
 
-        window.popstate = function (e) {
-            console.log(e);
-        };
+        // window.onhashchange = function (e) {
+        //     console.log(e);
+        // };
+
+        // window.popstate = function (e) {
+        //     console.log(e);
+        // };
 
         return mainRouter;
     });
