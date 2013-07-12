@@ -472,7 +472,7 @@
 <script type="text/x-ui-template" id="mount-sd">
     <div class="w-misc-sd-mount-ctn">
         <h1>{{= i18n.misc.PLEASE_UNMOUNT_SD_CARD }}</h1>
-        <p>{{= i18n.misc.APPS_USB_TEXT }}</p>
+        <p>{{= i18n.app.APPS_USB_TEXT }}</p>
         <div class="mount-sd-tip"></div>
     </div>
 </script>
