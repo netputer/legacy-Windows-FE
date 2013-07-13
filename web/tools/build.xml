@@ -37,8 +37,6 @@
 			<path path="../src/ui/dialog.js" />
 			<path path="../src/ui/progressMonitor.js" />
 			<path path="../src/ui/status.js" />
-			<path path="../src/ui/wizard.js" />
-			<path path="../src/ui/notification.js" />
 			<path path="../src/ui/selectDelegate.js" />
 			<path path="../src/ui/clipImage.js" />
 

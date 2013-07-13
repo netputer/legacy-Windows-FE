@@ -17,9 +17,6 @@ define({
     MOVE : 'Move',
     CATEGORY : 'Category: ',
     VERSION_HISTORY : 'Version history',
-
-
-    /*NOT in SnapPea*/
     IGNORED_APPS : '已有 {1} 个应用忽略升级',
     IGNORED_TITLE : '忽略升级的应用',
     ENABLE_APP_UPGRADE_TIP : '您已经禁用了「自动检测可升级应用」功能，<span class="link button-open-update">点击重新开启</span>',
@@ -36,33 +33,13 @@ define({
     QUERYING_TIP : '查找可替换应用',
     PIRATE_TIP : '山寨应用可替换为官方版',
     ADS_TIP : '广告应用可替换为无广告版',
-    REPLACE_ALL : '一键洗白',
     PIRATE : '山寨',
     ADS : '广告',
     REPLACE : '替换为正版',
-    REPLACE_ADS : '替换为无广告版',
-    BEFORE_REPLACE : '替换前：',
-    AFTER_REPLACE : '替换后：',
-    UNKNOWN_VIRUS : '安全未知',
-    NONE_VIRUS : '无病毒木马',
-    HAS_VIRUS : '有病毒木马',
-    MAY_VIRUS : '有可疑代码',
-    NONE_ADS : '无广告',
-    EMBEDED_ADS : '内嵌广告',
-    POP_ADS : '通知栏广告',
-    NON_POP_ADS : '无通知栏广告',
-    BOTH_ADS : '多种广告',
-    UNKNOWN_ADS : '广告状态未知',
-    NONE_PRAVICE_VERIFIED : '无隐私风险',
-    PRAVICE_VERIFIED : '隐私风险',
-    UNKNOWN_VERIFIED : '隐私风险未知',
-    NONE_OFFICIAL_VERIFIED : '非官方发布',
-    OFFICIAL_VERIFIED : '官方发布',
     RESULT_EMPTY : '本来就好白！',
     RESULT_EMPTY_TIP : '太棒了！没有发现山寨应用和广告应用！',
     RESULT_FINISH : '洗后变好白',
     RESULT_FINISH_TIP : '没有山寨和广告应用的困扰，世界清静多了。',
-    POP_ADS_TIP : '通知栏广告应用',
     RESULT_SUMMARY_POP_ADS : '洗好了！',
     RESULT_SUMMARY_POP_ADS_TIP : '还有 {1} 个有通知栏广告的应用暂时没有替换方案，您可以看看是否需要卸载。',
     UNINSTALL_ALL : '全部卸载',
@@ -75,7 +52,6 @@ define({
     WASH_RETRY : '再放一缸水',
     WASH_SURVEY : '有豌豆没发现的脏应用？',
     TELL_US : '告诉豌豆们吧！',
-        /* END. (NOT in SnapPea)*/
 
     EMPTY_TIP_WEB_APP_NOT_LOGIN : 'Do you want to view previously installed apps？Go <span class="button-login link">login to SnapPea</span> and you can get back your apps!',
 
@@ -94,20 +70,14 @@ define({
     ONE_KEY_TRANSFER : 'One-click move ({1})',
     ONE_KEY_TRANSFER_DES : 'Move files to your SD card to make space on your device\'s internal storage',
     ONE_KEY_UPDATE_TITLE : 'One-click update',
-    INSTALL_ALL :　'Install all',
 
     WEB_APPS : 'Downloaded apps ({1})',
-    WEB_APPS_DES : 'Find the {1} apps you\'ve downloaded',
-    WEB_APPS_DES_EMPTY : 'View downloaded apps',
     WEB_APPS_EMPTY : 'Downloaded apps',
-    WEB_APPS_DES_LOGIN : 'Login to view downloaded apps',
-    WEB_APPS_TITLE : 'Downloaded apps',
-    WEB_APPS_NUMBER : 'You\'ve downloaded {1} apps(s)',
-    WEB_APPS_PERCENT : 'Greater than {1}% of SnapPea users',
     WEB_APPS_EMPTY_TIP_PRE : 'You haven\'t downloaded any apps yet',
     WEB_APPS_EMPTY_TIP_LINK : 'Find great apps',
     WEB_APPS_EMPTY_TIP_POST : 'Go download',
     APP_SEARCH : 'App search',
+    UNINSTALL_AFTER_HIDE : '已从下载历史中删除「{1}」，要在手机上卸载这个应用吗？',
     WEB_APPS_HIDE_TEXT : 'Hide',
     WEB_APPS_HIDING_TEXT : 'Hiding',
     WEB_APPS_HIDE_FAILED_TEXT : 'Failed to hide',
@@ -115,18 +85,10 @@ define({
     APP_WASH : 'App scan',
     APP_WASH_DES : 'Scan your apps and remove any fakes or apps with ads!',
 
-    DO_U_LIKE_THIS_APP : 'Do you like this app?',
-    DO_U_LIKE_THIS_APP2 : 'Do you like this app?',
     LIKE : 'Like',
     UNLIKE : 'Dislike',
     COMMENTARY_PLACEHOLDER : 'My review...',
-    SHARE : 'Share',
     COMMENTARY : 'Comment',
-    COMMENTARY_APP : 'Review app',
-    COMMENTARY_APP_SUCCESS : 'Review sent!',
-    COMMENTARY_APP_FAILED : 'Review failed!',
-    LOGIN : 'Login',
-    SYNC : 'Sync: ',
     MODIFY : 'Change',
     SEND_SUCCESS : 'Comment added',
     SEND_FAILED : 'Comment failed',
@@ -145,56 +107,39 @@ define({
     COL_RATE_LABEL : 'Feedback rate',
     COL_VERSION_LABEL : 'Version',
     COL_INSTALL_TIME : 'Install date',
-    COL_PERMISSION_LABEL : 'Permissions',
     COL_INSTALL_POSITION : 'Location',
     INSTALL_POSITION_LABEL : 'Location: ',
-
-    RATE_COUNT : '{1} reviews',
-    LIKE_COUNT : '{1} likes',
 
     BUTTON_ADD_APP_LABEL : 'Install apps',
     BUTTON_UNINSTALL_LABEL : 'Uninstall',
     BUTTON_UPGRADE_LABEL : 'Update',
-    UPGRADEING_TEXT : 'Updating...',
     BUTTON_EXPORT_LABEL : 'Export',
-    BUTTON_REFRESH_LABEL : 'Refresh',
-    BUTTON_REFRESH_LIST_LABEL : 'Refresh list',
 
     BUTTON_INSTALL_LABEL : 'Install',
-    BUTTON_CANCEL_LABEL : 'Cancel',
     ALREAD_INSTALLED : 'Already Installed',
-    INSTALL_STATUS : 'Install status',
 
     BUTTON_MOVE_TO_DEVICE_LABEL : 'Move to internal storage',
 
     APK_SELECTOR_DISCRIPTION_TEXT : 'Select an APK file or folder',
 
-    DIALOG_TIP : 'Notification',
     UNINSTALL_TIP : 'Uninstall the {1} selected apps?',
     MOVE_TO_SD_CARD : 'Move {1} app(s) to SD card?',
     MOVE_TO_DEVICE : 'Move {1} apps to internal storage?',
     UPGRADE_TIP_TEXT : 'Update {1} app(s)?',
 
-    NON_CHECKED_TEXT : 'You haven\'t selected any apps',
     NON_USER_APPS_TEXT : 'You haven\'t installed the app',
     NON_SYSTEM_APPS_TEXT : 'Your device doesn\'t have any system apps installed',
     NON_UPGRADE_APPS_TEXT : 'All your apps are up-to-date. Yay! ',
-    NON_IGNORE_APPS_TEXT : 'You\'re the update boss, you don\'t miss any updates',
     UPGRADE_TIP : 'We currently can\'t update apps for your device, but we\'re working on it...',
 
-    UNKNOWN_PERMISSION : 'Unknown permissions',
     IGNORED : 'Ignored',
 
     DELETE_APK_WHEN_FINISH : 'Delete local APK files after installing',
 
-    ONE_KEY_TRANSFER_LABEL : 'One-click move ({1})',
     ONE_KEY_TRANSFER_TITLE : 'One-click move',
-    ONE_KEY_UNINSTALL : 'One-click organize',
-    ONE_KEY_UNINSTALL_DES : '{1} app(s) ready to organize',
     INSTALL : 'Install',
     INSTALLING : 'Installing',
     UNINSTALL : 'Uninstall',
-    APP_DETAIL : 'App details',
     VERSION : 'Version: ',
     LATEST_VERSION : 'Latest version: ',
     SIZE : 'Size: ',
@@ -214,7 +159,6 @@ define({
     CONFIRM_UNINSTALL_SYSTEM_APP : 'You\'ve selected a system app, are you sure you want to uninstall? <br/> Deleting Android system apps can damage or "brick" your device.',
 
     APP_DELETE_PROGRESS : 'Deleting, please wait...',
-    APP_DELETE_FAILED : 'Failed to uninstall {1} app(s)',
     APP_DELETE_SUCCESS : 'Uninstalled {1} app(s)',
 
     APP_EXPORT_PROGRESS : 'Exporting, please wait...',
@@ -222,8 +166,6 @@ define({
 
     APPS_INSTALL_FAILED : 'Sorry, the following app file is corrupted and couldn\'t be installed:',
 
-    APPS_NONE_TRANSFER_TEXT : 'App cannot be moved',
-    APPS_NONE_UPGRADABLE_TEXT : 'Apps not yet updated',
     APPS_TRANSFER_TIP_TEXT : 'This app may not run properly if you move it to your SD card. Continue?',
     APPS_TRANSFER_PROCESSING_TEXT : 'Moving...',
     APPS_TRANSFER_SUCCESS_TEXT : 'Moving completed',
@@ -241,9 +183,6 @@ define({
 
     XIAOMI_SD_DISABLE : 'Sorry, SnapPea can\'t install apps to your SD card. <br/> Xiaomi\'s default ROM settings prohibit this feature.',
 
-    GET_PERMISSION_TEXT : 'Complete authorization on your device',
-
-    UNKNOWN_APP : 'Unknown app',
     MOVE_FAILED : 'Failed to move apps',
 
     EXPORT_ERROR : 'Export failed',
