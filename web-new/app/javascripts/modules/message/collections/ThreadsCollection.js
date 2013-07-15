@@ -148,10 +148,11 @@
                 return resp.body.thread || [];
             },
             getThreadWithMessage : function (id) {
+
                 return this.filter(function (thread) {
                     var ids = _.pluck(thread.get('sms'), 'id');
                     return ids.indexOf(id) >= 0;
-                })[0];
+                })[0] || new this.model();
             },
             getFailedMessage : function () {
                 var messageFailed = [];
@@ -193,6 +194,7 @@
                     threadsCollection = new ThreadsCollection(args);
                     threadsCollection.trigger('update');
                 }
+                
                 return threadsCollection;
             },
             getClass : function () {

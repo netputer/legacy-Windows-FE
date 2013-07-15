@@ -44,11 +44,20 @@
             case CONFIG.enums.NAVIGATE_TYPE_MARKET:
                 this.getModule('browser').navigate(msg.id);
                 break;
+            case CONFIG.enums.NAVIGATE_TYPE_GROUP_APP:
+                this.getModule('app').navigateGroup(msg);
+                break;
             case CONFIG.enums.NAVIGATE_TYPE_APP:
                 this.getModule('app').navigate(msg);
                 break;
+            case CONFIG.enums.NAVIGATE_TYPE_GROUP_CONTACT:
+                this.getModule('contact').navigateGroup(msg);
+                break;
             case CONFIG.enums.NAVIGATE_TYPE_CONTACT:
                 this.getModule('contact').navigate(msg);
+                break;
+            case CONFIG.enums.NAVIGATE_TYPE_GROUP_SMS:
+                this.getModule('message').navigateGroup(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_SMS:
                 this.getModule('message').navigate(msg);

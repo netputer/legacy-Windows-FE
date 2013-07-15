@@ -76,6 +76,8 @@
                 var unreadCount = 0;
                 var loading = false;
                 var syncing = false;
+                var keyword = "";
+                var modelsByKeyword = [];
                 Object.defineProperties(this, {
                     totalCount : {
                         set : function (value) {
@@ -107,6 +109,22 @@
                         },
                         get : function () {
                             return syncing;
+                        }
+                    },
+                    keyword : {
+                        set : function (value) {
+                            keyword = value;
+                        },
+                        get : function () {
+                            return keyword;
+                        }
+                    },
+                    modelsByKeyword : {
+                        set : function (value) {
+                            modelsByKeyword = value;
+                        },
+                        get : function () {
+                            return modelsByKeyword;
                         }
                     }
                 });
@@ -309,8 +327,44 @@
 
                 return deferred.promise();
             },
+            searchConversationAsync : function () {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.SMS_SEARCH_CONVERSATION,
+                    data : {
+                        query : this.keyword
+                    },
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('ConversationsCollection - Search success.');
+
+                            this.modelsByKeyword = [];
+                            var ids = resp.body.value.split(',');   
+                            _.each(ids, function (id) {
+                                var target = this.get(id);
+                                if (target !== undefined) {
+                                   this.modelsByKeyword.push(target);
+                                }
+                            }, this);
+                            
+                            deferred.resolve(resp);
+
+                        } else {
+                            console.error('ConversationsCollection - Search failed. Error info: ' + resp.state_code);
+                            this.modelsByKeyword = [];
+                            deferred.reject(resp);
+                        }
+                    }.bind(this)
+                });
+
+                return deferred.promise();
+            },
             getAll : function () {
                 return this.models;
+            },
+            getByKeyword : function () {
+                return this.modelsByKeyword;
             }
         });
 
