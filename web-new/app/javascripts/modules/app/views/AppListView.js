@@ -110,6 +110,11 @@
                 pimCollection = PIMCollection.getInstance();
 
                 this.listenTo(webAppsCollection, 'refresh', function (webAppsCollection) {
+
+                    if (appList && appList.currentSet.name === 'search') {
+                        this.switchListDataSet('search');
+                    }
+
                     if (appList && appList.currentSet.name === 'web') {
                         appList.switchSet('web', webAppsCollection.getAll);
                     }
@@ -268,8 +273,28 @@
                 case 'web':
                     appList.switchSet('web', webAppsCollection.getAll);
                     break;
+                case 'search':
+                    appList.switchSet('search', appsCollection.getByKeyword);
                 }
             },
+            resetHeader : function () {
+
+                this.$('.button-return, .search-tip').hide();
+                this.$('menu, .sort, .pointer').show();
+            },
+            showAppsByKeyword : function () {
+                this.switchListDataSet('search');
+                var apps = appsCollection.modelsByKeyword;
+                if (apps.length > 0) {
+                    appList.scrollTo(apps[0]);
+                }
+
+                this.$('menu, .sort, .pointer').hide();
+               
+                this.$('.button-return').show();
+                var tip = StringUtil.format(i18n.app.SEARCH_TIP_PART, apps.length, appsCollection.keyword);
+                this.$('.search-tip').html(tip).css('display', '-webkit-box');
+            }, 
             showContextMenu : function (selected) {
                 var appContextMenu = AppContextMenu.getInstance({
                     selected : selected
@@ -511,6 +536,12 @@
             clickButtonOpenUpdate : function () {
                 IO.requestAsync(CONFIG.actions.WINDOW_OPEN_PRIVACY_SETTING);
             },
+            clickButtonReturn : function () {
+                this.resetHeader();
+                var tab = this.$('.tab .selected').data('tab');
+                this.switchListDataSet(tab);
+                this.selectTab(tab);
+            },
             events : {
                 'click .button-close-sd' : 'clickButtonCloseSD',
                 'click .button-close-flash' : 'clickButtonCloseFlash',
@@ -519,7 +550,8 @@
                 'click .button-open-ignore' : 'clickButtonOpenIgnore',
                 'click .button-login' : 'clickButtonLogin',
                 'click .button-find-app' : 'clickButtonFindApp',
-                'click .button-open-update' : 'clickButtonOpenUpdate'
+                'click .button-open-update' : 'clickButtonOpenUpdate',
+                'click .button-return' : 'clickButtonReturn'
             }
         });
 

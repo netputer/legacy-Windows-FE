@@ -84,6 +84,13 @@
                 if (datas.length > 0) {
                     url = url + '?' + datas.join('&');
                 }
+                /*if (originalURL === 'wdj://sms/threads.json') {
+                    console.log("======================");
+                    debugger;
+                    console.log(url);
+                    console.log(options);
+                    console.log("======================");
+                }*/
 
                 window.OneRingRequest(options.type, url, null, done);
                 break;
