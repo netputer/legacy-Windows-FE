@@ -35,7 +35,7 @@
         var contactsCollection;
         var contactModuleToolbarView;
         var contactPanelView;
-
+        
         var ContactModuleView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('contact', 'contact-main')),
             className : 'w-contact-module-main module-main vbox',
@@ -84,54 +84,62 @@
                 ContactsCollection.getInstance();
                 AccountCollection.getInstance();
             },
-            navigate : function (msg) {
+            navigateGroup : function (msg) {
                 PIMCollection.getInstance().get(1).set({
                     selected : true
                 });
 
-                var highlightSearch = function () {
-                    var highlight = function () {
-                        contactModuleToolbarView.restoreFilter();
-                        contactsListView.highlight(msg);
-                    };
+                var search = function () {
+                    contactsCollection.keyword = msg.keyword;
+                    contactsListView.showContactsByKeyword();
+                    contactModuleToolbarView.hideSelectorWrap();
 
-                    if (!contactsCollection.loading && !contactsCollection.syncing) {
-                        highlight();
-                    } else {
-                        contactsCollection.on('refresh', function (contactsCollection) {
-                            highlight();
-                            contactsCollection.off('refresh', arguments.callee);
-                        });
-                    }
-                };
-
-                if (contactsListView) {
-                    highlightSearch();
+                    contactsListView.once('__RETURN_DEFAULT', function () {
+                        contactModuleToolbarView.showSelectorWrap();
+                    });
+                }; 
+                if (!contactsCollection.loading &&  !contactsCollection.syncing) {
+                    search();
                 } else {
-                    var delegate = setInterval(function () {
-                        if (contactsListView) {
-                            clearInterval(delegate);
-                            highlightSearch();
-                        }
-                    }, 10);
+                    contactsCollection.on('refresh', function (){
+                        search();
+                        contactsCollection.off('refresh', arguments.callee);
+                    });
+                }   
+            },
+            navigate : function (msg) {
+                
+                PIMCollection.getInstance().get(1).set({
+                    selected : true
+                });
+                var highlight = function () {
+                    contactModuleToolbarView.restoreFilter();
+                    contactsListView.highlight(msg);
+                    contactModuleToolbarView.showSelectorWrap();
+                };
+                
+                if (!contactsCollection.loading &&  !contactsCollection.syncing) {
+                    highlight();
+                } else {
+                    contactsCollection.on('refresh', function (){
+                        highlight();
+                        contactsCollection.off('refresh', arguments.callee);
+                    });
                 }
             },
             createNew : function (model) {
-                model = new ContactModel(model);
                 PIMCollection.getInstance().get(1).set({
                     selected : true
                 });
 
-                if (contactModuleView) {
+                model = new ContactModel(model);
+
+                var createNew = function (model) {
                     contactPanelView.createNew(model);
-                } else {
-                    var delegate = setInterval(function () {
-                        if (contactsListView) {
-                            clearInterval(delegate);
-                            contactPanelView.createNew(model);
-                        }
-                    }, 10);
-                }
+                    contactModuleToolbarView.showSelectorWrap();
+                };
+
+                createNew(model);
             }
         });
 

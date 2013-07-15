@@ -102,77 +102,79 @@
                 tab = tab || currentTab;
                 currentGroupId = groupId || currentGroupId;
                 currentAccountId = accountId || currentAccountId;
-
+                
                 var getter;
                 switch (tab) {
-                case 'all':
-                    if (currentGroupId === 'all') {
-                        if (currentAccountId === 'all') {
-                            getter = contactsCollection.getAll;
+                    case 'all':
+                        if (currentGroupId === 'all') {
+                            if (currentAccountId === 'all') {
+                                getter = contactsCollection.getAll;
+                            } else {
+                                getter = function () {
+                                    return contactsCollection.getContactsByAccountName(accountCollection.get(currentAccountId).get('name'));
+                                };
+                            }
                         } else {
-                            getter = function () {
-                                return contactsCollection.getContactsByAccountName(accountCollection.get(currentAccountId).get('name'));
-                            };
+                            if (currentAccountId === 'all') {
+                                getter = function () {
+                                    return contactsCollection.getContactsByGroupId(currentGroupId);
+                                };                                
+                            } else {
+                                getter = function () {
+                                    return contactsCollection.getContactsByGroupIdAndAccountName(currentGroupId, accountCollection.get(currentAccountId).get('name'));
+                                };
+                            }
                         }
-                    } else {
-                        if (currentAccountId === 'all') {
-                            getter = function () {
-                                return contactsCollection.getContactsByGroupId(currentGroupId);
-                            };
-                        } else {
-                            getter = function () {
-                                return contactsCollection.getContactsByGroupIdAndAccountName(currentGroupId, accountCollection.get(currentAccountId).get('name'));
-                            };
-                        }
-                    }
                     contactsList.switchSet('default', getter);
                     break;
-                case 'starred':
-                    if (currentGroupId === 'all') {
-                        if (currentAccountId === 'all') {
-                            getter = contactsCollection.getContactsStarred;
+                    case 'starred':
+                        if (currentGroupId === 'all') {
+                            if (currentAccountId === 'all') {
+                                getter = contactsCollection.getContactsStarred;
+                            } else {
+                                getter = function () {
+                                    return contactsCollection.getContactsStarredByAccountName(accountCollection.get(currentAccountId).get('name'));
+                                };
+                            }
                         } else {
-                            getter = function () {
-                                return contactsCollection.getContactsStarredByAccountName(accountCollection.get(currentAccountId).get('name'));
-                            };
-                        }
-                    } else {
-                        if (currentAccountId === 'all') {
-                            getter = function () {
-                                return contactsCollection.getContactsStarredByGroupdId(currentGroupId);
-                            };
-                        } else {
-                            getter = function () {
-                                return contactsCollection.getContactsStarredByGroupdIdAndAccountName(currentGroupId, accountCollection.get(currentAccountId).get('name'));
+                            if (currentAccountId === 'all') {
+                                getter = function () {
+                                    return contactsCollection.getContactsStarredByGroupdId(currentGroupId);
+                                };                                
+                            } else {
+                                getter = function () {
+                                    return contactsCollection.getContactsStarredByGroupdIdAndAccountName(currentGroupId, accountCollection.get(currentAccountId).get('name'));
                             };
                         }
                     }
                     contactsList.switchSet('starred', getter);
                     break;
-                case 'hasnumber':
-                    if (currentGroupId === 'all') {
-                        if (currentAccountId === 'all') {
-                            getter = contactsCollection.getContactsHasPhoneNumber;
+                    case 'hasnumber':
+                        if (currentGroupId === 'all') {
+                            if (currentAccountId === 'all') {
+                                getter = contactsCollection.getContactsHasPhoneNumber;
+                            } else {
+                                getter = function () {
+                                    return contactsCollection.getContactsHasPhoneNumberByAccountName(accountCollection.get(currentAccountId).get('name'));
+                                };
+                            }
                         } else {
-                            getter = function () {
-                                return contactsCollection.getContactsHasPhoneNumberByAccountName(accountCollection.get(currentAccountId).get('name'));
-                            };
+                            if (currentAccountId === 'all') {
+                                getter = function () {
+                                    return contactsCollection.getContactsHasPhoneNumberByGroupdId(currentGroupId);
+                                };
+                            } else {
+                                getter = function () {
+                                    return contactsCollection.getContactsHasPhoneNumberByGroupdIdAndAccountName(currentGroupId, accountCollection.get(currentAccountId).get('name'));
+                                };
+                            }
                         }
-                    } else {
-                        if (currentAccountId === 'all') {
-                            getter = function () {
-                                return contactsCollection.getContactsHasPhoneNumberByGroupdId(currentGroupId);
-                            };
-                        } else {
-                            getter = function () {
-                                return contactsCollection.getContactsHasPhoneNumberByGroupdIdAndAccountName(currentGroupId, accountCollection.get(currentAccountId).get('name'));
-                            };
-                        }
-                    }
-                    contactsList.switchSet('hasnumber', getter);
+                        contactsList.switchSet('hasnumber', getter);
                     break;
+                    case 'search' : 
+                        getter = contactsCollection.getByKeyWord;
+                        contactsList.switchSet('search', getter);
                 }
-
                 this.updateHeader();
             },
             bindContactsCollectionEvents : function () {
@@ -183,9 +185,10 @@
                 });
 
                 contactsCollection.on('refresh', function () {
+                    if (contactsList.currentSetName === 'search') {
+                        this.refresh('search');    
+                    }
                     this.updateHeader();
-
-                    this.refresh();
                 }, this);
             },
             toggleEmptyTip : function () {
@@ -261,6 +264,7 @@
                     }
                 }, this);
             },
+            
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -278,6 +282,17 @@
                 var headerText = '';
                 var length = contactsList.currentModels.length;
 
+                if(this.list.currentSetName === 'search') {
+                    this.$('.button-return').show();
+
+                    headerText = StringUtil.format(i18n.contact.CONTACT_TIP_PART, contactsCollection.modelsByKeyword.length, contactsCollection.keyword);
+                    this.$('.count-tip').html(headerText);
+
+                    return;
+                } else {
+                    this.$('.button-return').hide();
+                }
+
                 if (currentGroupId !== 'all') {
                     headerText = StringUtil.format(i18n.contact.CONTACT_GROUP_TEXT, length);
                 } else {
@@ -291,6 +306,7 @@
                 }
 
                 this.$('.count-tip').html(headerText);
+
             },
             highlight : function (msg) {
                 if (_.pluck(contactsList.currentModels, 'id').indexOf(msg.id) < 0) {
@@ -305,6 +321,17 @@
                     contactsList.addSelect(contact.id);
                     contactsList.scrollTo(contact);
                 }
+            },
+
+            clickButtonReturn : function () {
+                this.refresh('all');
+                this.trigger('__RETURN_DEFAULT');
+            },
+            showContactsByKeyword : function () {
+                this.refresh('search');
+            },
+            events: {
+               'click .button-return' : 'clickButtonReturn'
             }
         });
 

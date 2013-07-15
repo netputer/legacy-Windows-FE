@@ -81,6 +81,7 @@
             initialize : function () {
                 var loading = false;
                 var syncing = false;
+                var keyword = "";
                 Object.defineProperties(this, {
                     loading : {
                         set : function (value) {
@@ -97,6 +98,15 @@
                         get : function () {
                             return syncing;
                         }
+                    },
+                    keyword : {
+                        set : function (value) {
+                            keyword = value;
+                           
+                        },
+                        get : function () {
+                            return keyword;
+                        }
                     }
                 });
 
@@ -108,6 +118,7 @@
                             success : function (collection) {
                                 console.log('ContactsCollection - Collection fetched.');
                                 loading = false;
+
                                 collection.trigger('refresh', collection);
                             }
                         });
@@ -568,6 +579,17 @@
             },
             getAll : function () {
                 return this.models;
+            },
+            getByKeyWord: function () {
+                var reg = new RegExp(this.keyword, 'i');
+                var models = [];
+                models = this.filter(function (model) {
+                    var prefix = model.get('name').prefix;
+                    var name = model.get('displayName');
+                    return reg.test(name) || reg.test(prefix);
+                });
+
+                return models;
             }
         });
 
