@@ -635,7 +635,7 @@
                 url : CONFIG.actions.APP_GET_MD5,
                 data : {
                     package_list : packageNames.join(','),
-                    session : session
+                    session : session || ''
                 },
                 success : function (resp) {
                     if (resp.state_code === 200) {
