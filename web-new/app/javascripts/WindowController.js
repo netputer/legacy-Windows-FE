@@ -71,7 +71,8 @@
                 window.externalCall('', 'navigation', JSON.stringify({
                     id : '',
                     canGoBack : false,
-                    canGoForward : false
+                    canGoForward : false,
+                    canReload : false
                 }));
             } else {
                 $iframe = $(id);

@@ -20,6 +20,7 @@ define({
     DELETE_SUCCESS_TEXT : 'Deleted {1} picture(s)',
     EMPTY_PHONE_LIST : 'Import a picture here!',
     EMPTY_LIBRARY_LIST : 'Import a picture here!',
+    EMPTY_CLOUD_LIST : '您的云相册中还没有图片呢',
     EXPORT_FAILED_TEXT : 'Export failed',
     LOADING_BIGPICTURE_TEXT : 'Loading picture...',
     SLIDES_STOP_TEXT : 'Pause',
@@ -49,5 +50,6 @@ define({
     PHOTO_SYNC_OPENED : 'Turned on photo sync | ',
     TIP_CLOSE_PHOTO_SYNC : 'Are you sure you want to turn off photo sync?',
     CLOSE_PHOTO_SYNC : 'Turn off photo sync',
-    SHARE_WALLPAPER : 'Wallpaper set! Share out your new wallpaper?'
+    SHARE_WALLPAPER : 'Wallpaper set! Share out your new wallpaper?',
+    EMPTY_TIP_PHOTO_CLOUD_NOT_LOGIN : '<span class="button-login link">登录豌豆荚</span> 来查看您的私人云相册'
 });
