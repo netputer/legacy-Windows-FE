@@ -189,11 +189,8 @@
             restoreFilter : function () {
                 accountSelectorView.selectByAccountId('all');
             },
-            showSelectorWrap : function () {
-                this.$('.selector-wrap').show();
-            },
-            hideSelectorWrap : function () {
-                this.$('.selector-wrap').hide();
+            toggleSelectorWrap : function () {
+                this.$('.selector-wrap').toggle();
             },
             render : function () {
                 this.$el.html(this.template({}));

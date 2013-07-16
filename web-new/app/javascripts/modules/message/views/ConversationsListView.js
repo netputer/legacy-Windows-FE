@@ -137,7 +137,7 @@
                                 conversationList.deselectAll({
                                     silent : true
                                 });
-                                
+
                                 ThreadsPanelView.getInstance().once('rendered', function (){
                                     this.update(conversation.get('id'), msg);
                                 });
@@ -177,7 +177,7 @@
                     case 'default' :
                         getter = conversationsCollection.getAll;
                     break;
-                    case 'search' : 
+                    case 'search' :
                         getter = conversationsCollection.getByKeyword;
                     break;
                 }
@@ -237,7 +237,7 @@
                 if (conversationList.currentSetName === 'search') {
                     this.$('.button-return').show();
                     this.$('.count-tip').html(StringUtil.format(i18n.message.SEARCH_TIP,
-                                                                conversationsCollection.modelsByKeyword.length,
+                                                                conversationsCollection.modelsByKeywordIds.length,
                                                                 conversationsCollection.keyword));
                     return;
                 }
@@ -271,46 +271,14 @@
 
                 return deferred.promise();
             },
-            /*highlightSmsAsync : function (selected) {
-                var deferred = $.Deferred();
-                IO.requestAsync({
-                    url : CONFIG.actions.SMS_SEARCH_SMS,
-                    data : {
-                        query : conversationsCollection.keyword,
-                        conversation_id : selected
-                    },
-                    success : function (resp) {
-                        if (resp.state_code === 200) {
-                            var ids = resp.body.value.splite(',');
-                            ThreadsPanelView.getInstance().update(selected, {
-                                type : 'sms',
-                                id : ids,
-                                keyword : conversationsCollection.keyword
-                            });
-                            deferred.resolve(resp);
-                        } else {
-                            deferred.reject(resp);
-                        }
-                    }
-                });
-                return deferred.promise();
-            },*/
             showByKeyword : function () {
                 conversationsCollection.searchConversationAsync().done(function (resp){
                     this.switchListDataSet('search');
                     conversationList.deselectAll({
                         silent : true
                     });
-                    
-                    /*if (models.length > 0) {
 
-                        this.listenTo(conversationList, 'select:change', this.highlightSmsAsync);
-
-                        var conversation = models[0];
-                        conversationList.addSelect(conversation.id);
-                    }*/
-                    
-                    var models = conversationsCollection.modelsByKeyword;
+                    var models = conversationsCollection.getByKeyword();
                     if (models.length > 0 ){
                         var conversation = models[0];
                         conversationList.addSelect(conversation.id);
@@ -320,7 +288,6 @@
             },
             clickButtonReturn : function () {
                 this.switchListDataSet();
-                //this.stopLinstening(conversationList, 'select:change', this.highlightSmsAsync);
             },
             events : {
                 'click .button-return' : 'clickButtonReturn'
@@ -341,3 +308,4 @@
         return factory;
     });
 }(this, this.document));
+

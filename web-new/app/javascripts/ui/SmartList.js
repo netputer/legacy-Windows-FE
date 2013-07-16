@@ -610,8 +610,8 @@
             scrollTo : function (model) {
                 var index = this.currentModels.indexOf(model);
                 this.$(CLASS_MAPPING.SCROLL_CTN)[0].scrollTop = index * this.itemHeight;
-                
-                if(this.onScreenItems[0]){
+
+                if (this.onScreenItems[0]){
                     this.onScreenItems[0].$el[0].scrollIntoView();
                 }
             },
