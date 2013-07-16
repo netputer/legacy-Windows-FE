@@ -137,10 +137,12 @@
                                 conversationList.deselectAll({
                                     silent : true
                                 });
+                                
+                                ThreadsPanelView.getInstance().once('rendered', function (){
+                                    this.update(conversation.get('id'), msg);
+                                });
                                 conversationList.addSelect(conversation.id);
                                 conversationList.scrollTo(conversation);
-
-                                ThreadsPanelView.getInstance().update(conversation.get('id'), msg);
 
                                 deferred.resolve(resp);
                             } else {
@@ -166,6 +168,22 @@
                     return;
                 }
                 conversationList.toggleEmptyTip(conversationList.currentModels.length === 0);
+            },
+            switchListDataSet : function (tab) {
+                var tab = tab || 'default';
+                var getter;
+
+                switch (tab) {
+                    case 'default' :
+                        getter = conversationsCollection.getAll;
+                    break;
+                    case 'search' : 
+                        getter = conversationsCollection.getByKeyword;
+                    break;
+                }
+
+                conversationList.switchSet(tab, getter);
+                this.updateHeader();
             },
             renderConversationList : function () {
                 conversationList = new SmartList({
@@ -216,6 +234,15 @@
                 return this;
             },
             updateHeader : function () {
+                if (conversationList.currentSetName === 'search') {
+                    this.$('.button-return').show();
+                    this.$('.count-tip').html(StringUtil.format(i18n.message.SEARCH_TIP,
+                                                                conversationsCollection.modelsByKeyword.length,
+                                                                conversationsCollection.keyword));
+                    return;
+                }
+
+                this.$('.button-return').hide();
                 this.$('.count-tip').html(StringUtil.format(i18n.message.SMS_SUMMARY,
                                                                 conversationsCollection.totalCount,
                                                                 conversationsCollection.unreadCount));
@@ -243,6 +270,60 @@
                 }.bind(this));
 
                 return deferred.promise();
+            },
+            /*highlightSmsAsync : function (selected) {
+                var deferred = $.Deferred();
+                IO.requestAsync({
+                    url : CONFIG.actions.SMS_SEARCH_SMS,
+                    data : {
+                        query : conversationsCollection.keyword,
+                        conversation_id : selected
+                    },
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            var ids = resp.body.value.splite(',');
+                            ThreadsPanelView.getInstance().update(selected, {
+                                type : 'sms',
+                                id : ids,
+                                keyword : conversationsCollection.keyword
+                            });
+                            deferred.resolve(resp);
+                        } else {
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+                return deferred.promise();
+            },*/
+            showByKeyword : function () {
+                conversationsCollection.searchConversationAsync().done(function (resp){
+                    this.switchListDataSet('search');
+                    conversationList.deselectAll({
+                        silent : true
+                    });
+                    
+                    /*if (models.length > 0) {
+
+                        this.listenTo(conversationList, 'select:change', this.highlightSmsAsync);
+
+                        var conversation = models[0];
+                        conversationList.addSelect(conversation.id);
+                    }*/
+                    
+                    var models = conversationsCollection.modelsByKeyword;
+                    if (models.length > 0 ){
+                        var conversation = models[0];
+                        conversationList.addSelect(conversation.id);
+                    }
+
+                }.bind(this));
+            },
+            clickButtonReturn : function () {
+                this.switchListDataSet();
+                //this.stopLinstening(conversationList, 'select:change', this.highlightSmsAsync);
+            },
+            events : {
+                'click .button-return' : 'clickButtonReturn'
             }
         });
 

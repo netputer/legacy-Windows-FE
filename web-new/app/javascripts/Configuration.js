@@ -151,6 +151,8 @@
                 SMS_HAS_BACKUP : 'wdj://sms/has_backup.json',
                 SMS_LOAD_BACKUP : 'wdj://sms/load_backup.json',
                 SMS_COPY : 'wdj://window/copy_clipboard.json',
+                SMS_SEARCH_CONVERSATION : 'wdj://sms/conversation_id.json',
+                SMS_SEARCH_SMS : 'wdj://sms/sms_id.json',
 
                 // Task Manager Module
                 TASK_SHOW_PROGRESS : 'wdj://jobs/show.json',
@@ -432,9 +434,12 @@
 
                 /* Web navigate types */
                 NAVIGATE_TYPE_MARKET : 'market',
+                NAVIGATE_TYPE_GROUP_APP : 'group_app',
                 NAVIGATE_TYPE_APP : 'app',
+                NAVIGATE_TYPE_GROUP_CONTACT : 'group_contacts',
                 NAVIGATE_TYPE_CONTACT : 'contact',
                 NAVIGATE_TYPE_CONTACT_CREATE : 'contact_create',
+                NAVIGATE_TYPE_GROUP_SMS : 'group_sms',
                 NAVIGATE_TYPE_SMS : 'sms',
                 NAVIGATE_TYPE_SEND_SMS : 'send_sms',
                 NAVIGATE_TYPE_PAGE : 'page',

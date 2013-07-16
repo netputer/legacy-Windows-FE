@@ -101,6 +101,28 @@
                     });
                 }, 0);
             },
+            navigateGroup : function (msg) {
+                
+                PIMCollection.getInstance().get(3).set({
+                    selected: true
+                });
+                
+                var filterSearch = function () {
+                    AppsCollection.getInstance().keyword = msg.keyword;
+                    appListView.showAppsByKeyword();
+                };
+
+                if (appListView) {
+                    filterSearch();
+                } else {
+                    var delegate = setInterval(function () {
+                        if (appListView) {
+                            clearInterval(delegate);
+                            filterSearch();
+                        }
+                    }, 10);
+                }
+            },
             navigate : function (msg) {
                 PIMCollection.getInstance().get(3).set({
                     selected : true

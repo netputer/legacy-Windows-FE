@@ -251,7 +251,6 @@
                     fragment = document.createDocumentFragment();
 
                     var targetThread = this.collection.getThreadWithMessage(this.searchMsg.id);
-
                     var targetThreadItemView = ThreadsItemView.getInstance({
                         model : targetThread
                     });

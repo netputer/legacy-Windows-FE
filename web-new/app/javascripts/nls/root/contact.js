@@ -223,6 +223,8 @@ define({
     IMPORT_FROM_FILE : '从指定文件导入',
     IMPORT_FROM_BACKUP : '从自动备份导入',
 
-    EXPORT_USING_VCARD: '使用 vCard 导出'
-
+    EXPORT_USING_VCARD: '使用 vCard 导出',
+    
+    RETURN_ALL: '全部联系人',
+    CONTACT_TIP_PART : '{1} 个与「{2}」有关的联系人',
 });

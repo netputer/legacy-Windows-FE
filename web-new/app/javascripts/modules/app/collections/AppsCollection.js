@@ -83,6 +83,7 @@
                 var loading = false;
                 var loadingUpdateInfo = false;
                 var syncing = false;
+                var keyword = "";
                 Object.defineProperties(this, {
                     loading : {
                         set : function (value) {
@@ -107,6 +108,14 @@
                         get : function () {
                             return syncing;
                         }
+                    },
+                    keyword : {
+                        set : function (value) {
+                            keyword = value;
+                        },
+                        get : function () {
+                            return keyword;
+                        }
                     }
                 });
 
@@ -117,6 +126,7 @@
                             success : function (collection) {
                                 console.log('AppsCollection - Collection fetched. ');
                                 loading = false;
+
                                 collection.trigger('refresh', collection);
                             }
                         });
@@ -185,6 +195,14 @@
                 return this.where({
                     is_blocked : true
                 });
+            },
+            getByKeyword : function () {
+                var model = [];
+                var reg = new RegExp(keyword, 'i');
+                model = this.filter(function (model) {
+                    return reg.test(model.get('base_info').name);
+                });
+                return;
             },
             uninstallAppsAsync : function (ids, session) {
                 var deferred = $.Deferred();

@@ -464,6 +464,9 @@
 </script>
 
 <script type="text/x-ui-template" id="list-ctn">
+    <button class="w-icon-btn transparent button-return">
+        <span class="icon return"></span>{{= i18n.contact.RETURN_ALL }}
+    </button>
     <header class="count-tip text-secondary"></header>
 </script>
 

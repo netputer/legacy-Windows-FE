@@ -120,5 +120,8 @@ define({
     IMPORT_FROM_FILE : '从指定文件导入',
     IMPORT_FROM_BACKUP : '从自动备份导入',
 
-    COPY_SMS : '短信已成功复制到剪切板'
+    COPY_SMS : '短信已成功复制到剪切板',
+
+    RETURN_ALL : '全部短消息',
+    SEARCH_TIP : '{1} 个包含「{2}」的短消息',
 });
