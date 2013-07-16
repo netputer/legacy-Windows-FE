@@ -111,10 +111,6 @@
 
                 this.listenTo(webAppsCollection, 'refresh', function (webAppsCollection) {
 
-                    if (appList && appList.currentSet.name === 'search') {
-                        this.switchListDataSet('search');
-                    }
-
                     if (appList && appList.currentSet.name === 'web') {
                         appList.switchSet('web', webAppsCollection.getAll);
                     }
@@ -275,6 +271,7 @@
                     break;
                 case 'search':
                     appList.switchSet('search', appsCollection.getByKeyword);
+                    break;
                 }
             },
             resetHeader : function () {
@@ -284,17 +281,17 @@
             },
             showAppsByKeyword : function () {
                 this.switchListDataSet('search');
-                var apps = appsCollection.modelsByKeyword;
+                var apps = appsCollection.getByKeyword();
                 if (apps.length > 0) {
                     appList.scrollTo(apps[0]);
                 }
 
                 this.$('menu, .sort, .pointer').hide();
-               
+
                 this.$('.button-return').show();
                 var tip = StringUtil.format(i18n.app.SEARCH_TIP_PART, apps.length, appsCollection.keyword);
                 this.$('.search-tip').html(tip).css('display', '-webkit-box');
-            }, 
+            },
             showContextMenu : function (selected) {
                 var appContextMenu = AppContextMenu.getInstance({
                     selected : selected
@@ -569,3 +566,4 @@
         return factory;
     });
 }(this, this.document));
+

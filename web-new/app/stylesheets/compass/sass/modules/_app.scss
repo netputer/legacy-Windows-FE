@@ -324,8 +324,9 @@
     right: 219px;
 
     .button-return {
-        position: absolute;
+
         display: none;
+        position: absolute;
 
         &:hover {
             .return{

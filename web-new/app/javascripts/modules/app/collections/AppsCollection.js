@@ -85,6 +85,14 @@
                 var syncing = false;
                 var keyword = "";
                 Object.defineProperties(this, {
+                    keyword : {
+                        set : function (value) {
+                            keyword = value;
+                        },
+                        get : function () {
+                            return keyword;
+                        }
+                    },
                     loading : {
                         set : function (value) {
                             loading = value;
@@ -107,14 +115,6 @@
                         },
                         get : function () {
                             return syncing;
-                        }
-                    },
-                    keyword : {
-                        set : function (value) {
-                            keyword = value;
-                        },
-                        get : function () {
-                            return keyword;
                         }
                     }
                 });
@@ -197,12 +197,10 @@
                 });
             },
             getByKeyword : function () {
-                var model = [];
-                var reg = new RegExp(keyword, 'i');
-                model = this.filter(function (model) {
+                var reg = new RegExp(this.keyword, 'i');
+                return this.filter(function (model) {
                     return reg.test(model.get('base_info').name);
                 });
-                return;
             },
             uninstallAppsAsync : function (ids, session) {
                 var deferred = $.Deferred();
@@ -401,3 +399,4 @@
         return factory;
     });
 }(this));
+
