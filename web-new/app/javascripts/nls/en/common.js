@@ -40,7 +40,6 @@ define({
     SHARE_TO_FACEBOOK : 'Share to Facebook',
     SHARE_WIDGET_TITLE : 'Share to {1}',
     SHARE_WIDGET_TITLE_2 : 'Share {1}',
-    SHARE_WIDGET_TITLE_ONE_KEY_UPDATE : 'All apps up-to-date. Woohoo!',
     SHARE_WIDGET_INPUT_COUNT_TEXT : '{1}/120 characters',
     SHARE_WIDGET_INPUT_OVER_COUNT_TEXT : 'More than {1} characters, message will be shortened.',
     SHARE_WIDGET_CONTENT_TIP_TEXT : 'Image will be attached to your post',
@@ -63,7 +62,6 @@ define({
     SHARE_DORAEMON_CATEGORY_OTHER : 'Other',
     SHARE_DORAEMON_CATEGORY_INTEREST : 'Interesting',
     SHARE_DORAEMON_CATEGORY_DEFAULT : 'Interesting stuff',
-    SHARE_ONE_KEY_UPDATE_SYNC : 'Tell your friends that you\'re the champion of app updates',
 
     SELECTOR_DESCRIPTION_TEXT : '{1} of {2} selected',
 
