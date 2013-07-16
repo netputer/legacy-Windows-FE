@@ -35,6 +35,7 @@ define({
     SAVE : 'Save',
     DONTSAVE : 'Don\'t save',
     CANCEL : 'Cancel',
+    FINISH : '完成',
     SAVE_SUCCESS : 'Saved',
     SAVE_FAILED : 'Failed to save',
 
@@ -183,6 +184,7 @@ define({
 
     /* Import and export */
     IMPORT_TITLE_TEXT : 'Import Contacts',
+    DUPLICATE : '已为您忽略了 {1} 条重复联系人。',
     EXPORT_TITLE_TEXT : 'Export Contacts',
     EXPORT_PROGRESS_DESC1 : 'Exporting contacts, please don\'t disconnect your phone',
     EXPORT_PROGRESS_DESC2 : 'Exporting contacts, please wait...',

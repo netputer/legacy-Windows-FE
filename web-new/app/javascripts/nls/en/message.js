@@ -11,6 +11,7 @@ define({
 
     CONTENT_COUNT : '{1} characters, ',
     CONTENT_COUNT2 : '{1}',
+    MESSAGE_COUNT : '可能被拆分为 {1} 条短信发送，',
     CONTACTS_COUNT : 'will send to {1} contact(s)',
     BIRTHDAY_TIP : 'Today\'s his/her birthday, send your congrats! ',
 
@@ -24,6 +25,7 @@ define({
     EXPEND : 'Expand',
     SENDING : '(Sending...)',
     SEND_FAILED : 'Send failed ',
+    SEND_FAILED_ALERT : '短信发送失败。',
     RESEND : ' Retry',
     DELETE : 'Delete',
     FORWARD : 'Forward',

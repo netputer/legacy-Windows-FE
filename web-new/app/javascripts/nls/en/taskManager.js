@@ -40,6 +40,11 @@ define({
     DEVICE_DISCONNECT : 'Device disconnected',
     DEVICE_DISCONNECT_TIP : 'Device disconnected. Downloads will automatically transfer the next time you connect.',
     OFFLINE_TASK_TIP : '{1} zero-data mode download task(s) initiated from your phone',
+    OUT_OF_SPACE_WARN : '硬盘空间预警',
+    OUT_OF_SPACE_TIP : '豌豆荚检测到您的硬盘空间已不足 500M。<br />建议您重新设置下载位置。',
+    MODIFY_STORAGE_DISK : '修改下载位置',
+    NOT_ENOUGH_SPACE_WARN : '硬盘空间不足',
+    NOT_ENOUGH_SPACE_TIP : '豌豆荚检测到您的硬盘空间已满，请重新设置下载位置。',
 
     STOPPED : 'Paused',
     RETRY : 'Retry',
@@ -147,6 +152,8 @@ define({
     INSTALL_FAILED_MALICIOUS_APK : 'Scan detected a security threat, we advise you not to install this app',
     FILE_OPERATION_IO_ERROR : 'Failed to transfer document',
     FILE_OPERATION_SDCARD_IO_ERROR : 'Failed to transfer document',
+    DOWNLOAD_APK_VERIFY_FAILED : '文件下载错误，<a href="http://wandoujia.zendesk.com/entries/23613118--%E5%AE%98%E6%96%B9%E5%B8%AE%E5%8A%A9-%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E9%94%99%E8%AF%AF%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B-" target="_default">查看帮助</a>',
+    NOT_SUPPORT : '格式不支持',
 
     SCANNING : 'Security scan in progress...',
     SCAN_PASS : 'Safe! Passed security scan.',
