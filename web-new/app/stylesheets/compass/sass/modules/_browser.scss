@@ -312,7 +312,7 @@
     background-color: $bgColor;
     margin: 70px auto;
     padding: 30px 50px;
-    width: 450px;
+    max-width: 450px;
 
     .failed {
         @include sprite-sprite(failed);
