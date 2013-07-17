@@ -2,7 +2,7 @@
 /**
  * @author wangye.zhao@wandoujia.com
  */
-(function (window, undefined) {
+(function (window) {
     define([], function () {
 
         var EMAIL_PATTREN = /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$/;

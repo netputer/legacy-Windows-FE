@@ -3,7 +3,7 @@
  * @author wangye.zhao@wandoujia.com
  * @doc https://github.com/wandoulabs/engineering-documents/wiki/%5BClient%5D-ui-WindowState.js
  */
-(function (window, undefined) {
+(function (window) {
     'use strict';
 
     define([

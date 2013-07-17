@@ -72,9 +72,12 @@
                             tab = model.get('tab');
                         }
 
-                        MainRouter.navigate('main/' + model.get('module') + '/' + tab, {
-                            trigger : true
+                        Backbone.trigger('switchModule', {
+                            module : model.get('module'),
+                            tab : tab
                         });
+
+                        MainRouter.navigate('main/' + model.get('module') + '/' + tab);
                     }
                 }, this);
 
@@ -132,8 +135,9 @@
                         });
                     }
                 } else {
-                    MainRouter.navigate('main/' + this.model.get('module') + '/' + this.model.get('tab'), {
-                        trigger : true
+                    Backbone.trigger('switchModule', {
+                        module : this.model.get('module'),
+                        tab : this.model.get('tab')
                     });
                 }
             },
@@ -145,8 +149,9 @@
                         selected : true
                     });
 
-                    MainRouter.navigate('main/app/update', {
-                        trigger : true
+                    Backbone.trigger('switchModule', {
+                        module : 'app',
+                        tab : 'update'
                     });
                 }
             },

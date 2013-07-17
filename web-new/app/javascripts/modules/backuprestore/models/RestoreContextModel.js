@@ -1,5 +1,5 @@
 /*global console _ Backbone define*/
-(function (window, undefined) {
+(function (window) {
     define([
         'Environment',
         'Configuration',
@@ -49,7 +49,7 @@
                             var noneApp = _.filter(this.get('dataIDList'), function (item) {
                                 return item !== CONFIG.enums.BR_TYPE_APP && item !== CONFIG.enums.BR_TYPE_APP_DATA;
                             });
-                            
+
                             return {
                                 item : _.map(noneApp, function(id) {
                                     return {
@@ -155,7 +155,7 @@
 
                 this.set('appPath', '');
                 this.set('errorItemList', []);
-                
+
                 this.set('remoteVersion', '');
                 this.set('udid', '');
                 this.set('snapshotList', []);

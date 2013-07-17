@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, undefined) {
+(function (window) {
     define([], function () {
         console.log('FilterFunction - File loaded.');
         var FilterFunction = {};
@@ -77,7 +77,7 @@
                     }
                 } else {
                     var operatorFound = false;
-                    
+
                     Object.keys(tests).forEach(function (subSelector) {
                         if (subSelector.indexOf('$') === 0) {
                             /* it's an operator starts with $ sign */

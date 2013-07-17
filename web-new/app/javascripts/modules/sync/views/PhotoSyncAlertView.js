@@ -1,4 +1,4 @@
-(function (window, undefined) {
+(function (window) {
     define([
         'underscore',
         'jquery',

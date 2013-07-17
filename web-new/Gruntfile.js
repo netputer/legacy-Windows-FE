@@ -140,11 +140,7 @@ module.exports = function (grunt) {
             }
         },
         qunit: {
-            all : {
-                options: {
-                    urls: ['http://192.168.100.31:8090/web-new/test/index.html']
-                }
-            }
+            files : ['test/index.html']
         },
         jslint : {
             files : [
@@ -157,7 +153,7 @@ module.exports = function (grunt) {
                 devel : true,
                 browser : true,
                 indent : 4,
-                // unparam: true,
+                unparam: true,
                 plusplus : true,
                 todo: true,
                 predef: [ // array of pre-defined globals
@@ -168,7 +164,7 @@ module.exports = function (grunt) {
                 // junit : 'out/junit.xml', // write the output to a JUnit XML
                 log : 'lint.log',
                 // jslintXml : 'out/jslint_xml.xml',
-                // errorsOnly : true, // only display errors
+                errorsOnly : true, // only display errors
                 // failOnError : false, // defaults to true
                 // shebang : true, // ignore shebang lines
                 // checkstyle : 'out/checkstyle.xml' // write a checkstyle-XML
@@ -198,7 +194,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('test', function () {
-        grunt.option('force', true);
-        grunt.task.run('qunit');
+        // grunt.option('force', true);
+        grunt.task.run('jslint');
+        grunt.task.run('build');
     });
 };

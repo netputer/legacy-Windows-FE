@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window, document) {
     define(['underscore', 'ui/EventsMapping'], function (_, EventsMapping) {
         console.log('ClickToHideMixin - File loaded');
 

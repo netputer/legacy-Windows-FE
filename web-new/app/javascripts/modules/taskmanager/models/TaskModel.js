@@ -1,5 +1,5 @@
 /*global define, Backbone, $*/
-(function (window, undefined) {
+(function (window) {
     define([
         'IO',
         'Internationalization',

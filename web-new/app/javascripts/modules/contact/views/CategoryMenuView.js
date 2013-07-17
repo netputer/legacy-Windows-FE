@@ -1,5 +1,5 @@
 /*global define, _, console*/
-(function (window, undefined) {
+(function (window) {
     define([
         'ui/MenuButton',
         'Internationalization',

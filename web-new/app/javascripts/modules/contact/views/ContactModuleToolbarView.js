@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, undefined) {
+(function (window) {
     define([
         'doT',
         'jquery',
@@ -22,7 +22,6 @@
         'contact/views/ContactPanelView',
         'contact/ContactService',
         'main/collections/PIMCollection',
-        'main/MainRouter',
         'contact/ImportController'
     ], function (
         doT,
@@ -46,7 +45,6 @@
         ContactPanelView,
         ContactService,
         PIMCollection,
-        MainRouter,
         ImportController
     ) {
         console.log('ContactModuleToolbarView - File loaded.');
@@ -109,8 +107,9 @@
                 this.on('select', function (data) {
                     this.label = LABEL_MAPPING[data.value];
 
-                    MainRouter.navigate('main/contact/' + data.value, {
-                        trigger : true
+                    Backbone.trigger('switchModule', {
+                        module : 'contact',
+                        tab : data.value
                     });
                 }, this);
 

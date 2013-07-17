@@ -3,7 +3,7 @@
  * @author wangye.zhao@wandoujia.com
  * @doc http://
  */
-(function (window, undefined) {
+(function (window) {
     define([
         'underscore',
         'backbone',

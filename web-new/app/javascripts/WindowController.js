@@ -3,7 +3,7 @@
  * @author lixiaopeng@wandoujia.com
  **/
 
-(function (window, undefined) {
+(function (window) {
     define([
         'backbone',
         'underscore',
@@ -63,26 +63,26 @@
             return deferred.promise();
         };
 
-        // WindowController.navigationState = function (id) {
-        //     var $iframe;
-        //     var branch;
+        WindowController.navigationState = function (id) {
+            var $iframe;
+            var branch;
 
-        //     if (!id) {
-        //         window.externalCall('', 'navigation', JSON.stringify({
-        //             id : '',
-        //             canGoBack : false,
-        //             canGoForward : false
-        //         }));
-        //     } else {
-        //         $iframe = $(id);
-        //         branch = $iframe.attr('branch');
-        //         window.externalCall('', 'navigation', JSON.stringify({
-        //             id : id,
-        //             canGoBack : history.backCount(id, branch) ? true : false,
-        //             canGoForward : history.forwardCount(id, branch) ? true : false
-        //         }));
-        //     }
-        // };
+            if (!id) {
+                window.externalCall('', 'navigation', JSON.stringify({
+                    id : '',
+                    canGoBack : false,
+                    canGoForward : false
+                }));
+            } else {
+                $iframe = $(id);
+                branch = $iframe.attr('branch');
+                window.externalCall('', 'navigation', JSON.stringify({
+                    id : id,
+                    canGoBack : history.backCount(id, branch) ? true : false,
+                    canGoForward : history.forwardCount(id, branch) ? true : false
+                }));
+            }
+        };
 
         return WindowController;
     });
