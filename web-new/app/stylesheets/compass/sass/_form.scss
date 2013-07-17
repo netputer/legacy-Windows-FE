@@ -179,7 +179,7 @@ button.w-icon-btn {
         @each $icon in add-grey, pause, start, delete, open-folder,
              add, mark-as-read, refresh, import, export,
              update, up, down, star, sd, device, merge, ring, itunes,
-             open-folder-black, comment, share, like, dislike, reload, fullscreen,
+             comment, share, like, dislike, reload, fullscreen,
              move-down, reset, return {
             &.#{$icon} {
                 @include button-sprite(#{$icon});

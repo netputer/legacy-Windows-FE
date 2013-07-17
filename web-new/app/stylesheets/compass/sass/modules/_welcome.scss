@@ -55,13 +55,6 @@
     -webkit-transition: width 1s;
     -webkit-transform: translate3d(0, 0, 0);
 
-    .shadow {
-        left: 15px;
-        position: absolute;
-        top: 15px;
-        -webkit-transition: all .7s ease-out;
-    }
-
     .stage-ctn {
         position: relative;
 
@@ -77,6 +70,7 @@
                 pointer-events: all;
                 position: relative;
                 width: misc-sprite-width(device-default);
+                -webkit-filter: drop-shadow(15px 15px 30px rgba(0, 0, 0, .8));
 
                 .screen {
                     background-color: #000;
@@ -140,13 +134,6 @@
             -webkit-transition-timing-function: ease-in;
         }
 
-        .shadow {
-            left: 110px;
-            top: 20px;
-            -webkit-transform: rotate(-90deg);
-            -webkit-transition-timing-function: ease-in;
-        }
-
         .w-welcome-screen-control-ctn {
             -webkit-transform: translate3d(-50%, -55px, 0);
         }
@@ -160,13 +147,6 @@
             -webkit-transition-timing-function: ease-in;
         }
 
-        .shadow {
-            left: 110px;
-            top: 20px;
-            -webkit-transform: rotate(90deg);
-            -webkit-transition-timing-function: ease-in;
-        }
-
         .w-welcome-screen-control-ctn {
             -webkit-transform: translate3d(-50%, -55px, 0);
         }
@@ -174,10 +154,6 @@
 
     &.turn-down {
         .screen-wrap {
-            -webkit-transform: rotate(180deg);
-        }
-
-        .shadow {
             -webkit-transform: rotate(180deg);
         }
     }
@@ -239,6 +215,11 @@
         height: 2000px;
         position: relative;
     }
+
+    .w-ui-loading-horizental-ctn {
+        height: 32px;
+        position: relative;
+    }
 }
 
 .w-welcome-feed-card {
@@ -246,12 +227,175 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     height: 170px;
-    padding: 15px;
+    padding: 15px 15px 10px;
+    position: absolute;
     width: 350px;
     -webkit-transition: -webkit-transform .3s ease-out;
     -webkit-transform: translate3d(0, 0, 0);
 
+    &.hide {
+        display: none;
+    }
+
+    .icon-ctn {
+        margin-right: 15px;
+        width: 100px;
+    }
+
+    .info-ctn {
+        -webkit-box-flex: 1;
+    }
+
+    &.single {
+        padding-bottom: 0;
+
+        .icon {
+            cursor: pointer;
+            margin-right: 15px;
+            width: 100px;
+        }
+
+        .info-ctn {
+            -webkit-box-flex: 1;
+
+            .info-top {
+                margin-top: 5px;
+                -webkit-box-align: center;
+
+                .title {
+                    margin-bottom: 2px;
+                    cursor: pointer;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                .info {
+                    margin-right: 5px;
+                    -webkit-box-flex: 1;
+                }
+            }
+
+            .comment {
+                margin: 10px 0;
+                overflow: hidden;
+                -webkit-box-flex: 1;
+            }
+
+            .footer {
+                border-top: 1px $borderColor solid;
+                line-height: 35px;
+            }
+        }
+    }
+
+    &.list {
+        padding: 35px 15px;
+
+        &.app {
+            background-color: #42bdcf;
+        }
+
+        &.game {
+            background-color: #f16e60;
+        }
+
+        &.video {
+            background-color: #5fb463;
+        }
+
+        @each $icon in app, game, video {
+            &.#{$icon} {
+                .icon-ctn {
+                    @include sprite-sprite(promote-#{$icon});
+                    height: 100px;
+                    width: 100px;
+                }
+            }
+        }
+
+        .title {
+            color: #fff;
+        }
+
+        .list-ctn {
+            color: #fff;
+            margin-top: 10px;
+
+            .item {
+                background-color: rgba(255, 255, 255, .1);
+                display: inline-block;
+                border: 1px rgba(255, 255, 255, .2) solid;
+                border-radius: 3px;
+                margin: 0 5px 5px 0;
+                padding: 0 5px;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, .2);
+                    border-color: rgba(255, 255, 255, .3);
+                }
+            }
+        }
+    }
+
+    &.item-list {
+        padding: 20px 15px;
+
+        @each $icon in exclusive, special, games, videos, guess, preorder {
+            &.#{$icon} {
+                .icon-ctn {
+                    @include sprite-sprite(list-#{$icon});
+                    height: 100px;
+                    width: 100px;
+                }
+            }
+        }
+
+        .icon-ctn {
+            .title {
+                display: inline-block;
+                margin-top: 100px;
+                text-align: center;
+                width: 100px;
+            }
+        }
+
+        .info-ctn {
+            .item {
+                height: 36px;
+                margin-bottom: 10px;
+
+                .icon {
+                    cursor: pointer;
+                    height: 36px;
+                    margin-right: 10px;
+                    width: 36px;
+                }
+
+                .info {
+                    margin-right: 5px;
+                    -webkit-box-flex: 1;
+
+                    .title {
+                        cursor: pointer;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     &.app-set {
+        &.sibaibai {
+            .count-ctn {
+                color: #e55b53;
+            }
+        }
+
         .count-ctn {
             margin-right: 15px;
             text-align: center;
@@ -305,6 +449,42 @@
             .count-ctn {
                 color: #3baa24;
             }
+        }
+    }
+
+    &.cloud-photo,
+    &.backup {
+        -webkit-box-align: center;
+
+        .icon-ctn {
+            height: 100px;
+        }
+
+        .info-ctn {
+            .title {
+                color: #fff;
+            }
+
+            .desc {
+                color: rgba(255, 255, 255, .7);
+                margin: 5px 0;
+            }
+        }
+    }
+
+    &.cloud-photo {
+        background-color: #00bcce;
+
+        .icon-ctn {
+            @include sprite-sprite(local-photosync);
+        }
+    }
+
+    &.backup {
+        background-color: #5fb462;
+
+        .icon-ctn {
+            @include sprite-sprite(local-backup);
         }
     }
 }
@@ -526,6 +706,7 @@
     &.fixed {
         background-image: url('../images/welcome_bg_100X100.png');
         border-bottom: 1px rgba(0, 0, 0, .1) solid;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
         left: 190px;
         padding-left: 15px;
         position: fixed;
@@ -571,6 +752,14 @@
             &.active {
                 color: $textActive;
                 text-shadow: 0 1px 0 #fff;
+            }
+        }
+
+        .w-ui-button.w-ui-menubutton {
+            .arrow-ctn {
+                .arrow {
+                    border-color: #808182 transparent transparent transparent;
+                }
             }
         }
     }

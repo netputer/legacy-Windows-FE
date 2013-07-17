@@ -218,8 +218,9 @@
         -webkit-transform: scale(.6);
 
         .rotor {
-            background-color: #fff;
+            background-color: $textPrimary;
             border-radius: 4px;
+            opacity: 0;
             position: absolute;
             width: 9px;
             height: 9px;
@@ -282,19 +283,19 @@
 
 @-webkit-keyframes f_fadeG {
     0% {
-        background-color: $textPrimary;
+        opacity: 1;
     }
     100% {
-        background-color: #fff;
+        opacity: 0;
     }
 }
 
 @-webkit-keyframes f_fadeG_black {
     0% {
-        background-color: #000;
+        opacity: 0;
     }
     100% {
-        background-color: #fff;
+        opacity: 1;
     }
 }
 
