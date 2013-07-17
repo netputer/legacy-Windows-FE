@@ -48,6 +48,9 @@
 
                 IO.requestAsync({
                     url : CONFIG.actions.APP_STARTER,
+                    data : {
+                        f : 'windows'
+                    },
                     success : function (resp) {
                         this.queryResults = resp;
                         deferred.resolve();
