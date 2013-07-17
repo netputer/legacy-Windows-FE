@@ -8,6 +8,7 @@
         'IOBackendDevice',
         'ui/Panel',
         'ui/AlertWindow',
+        'ui/UIHelper',
         'Environment',
         'WindowController',
         'Device',
@@ -16,7 +17,7 @@
         'ui/TemplateFactory',
         'ui/behavior/ButtonSetMixin',
         'utilities/StringUtil',
-        'music/iTunes/iTunesData'
+        'music/iTunes/collections/iTunesCollection'
     ], function (
         _,
         doT,
@@ -25,6 +26,7 @@
         IO,
         Panel,
         AlertWindow,
+        UIHelper,
         Environment,
         WindowController,
         Device,
@@ -33,7 +35,7 @@
         TemplateFactory,
         ButtonSetMixin,
         StringUtil,
-        iTunesData
+        iTunesCollection
     ) {
 
         console.log('iTunes ImportView - File Loaded');
@@ -45,25 +47,28 @@
         var createPlaylistCls = 'create-playlist-progress';
         var currentSesstion;
         var currentHandler;
+        var itunesCollection;
         var ImportView = Panel.extend({
             className : Panel.prototype.className + ' w-iTunes-import-panel',
 
             initialize : function () {
                 ImportView.__super__.initialize.call(this);
 
-                var buttons = [
+                this.buttons = [
                     {
                         $button : $('<button/>').addClass('import cancel').html(Internationalization.common.CANCEL),
                         eventName : 'import'
                     }
                 ];
 
-                this.title  = localeText.ITUNES_IMPORT;
-                this.width  = 430;
-                this.height = 270;
-                this.draggable = true;
-                this.disableX  = true;
-                this.buttons   = buttons;
+                this.on(UIHelper.EventsMapping.SHOW, function () {
+                    itunesCollection = iTunesCollection.getInstance();
+
+                    this.once('remove', function () {
+                        itunesCollection = undefined;
+                    });
+                });
+
                 this.$bodyContent = (doT.template(TemplateFactory.get('iTunes', 'iTunes-import')))({
                     title : localeText.IMPORTING_TITLE
                 });
@@ -87,7 +92,7 @@
                 this.importAudiosData = {};
                 this.createPlaylistData = {};
 
-                switch (parseInt(data.sourceType, 10)) {
+                switch (data.sourceType) {
                 case Configuration.enums.ITUNES_IMPORT_ALL:
                     this.isCreatePlaylist = true;
                     this.importAudiosData = {};
@@ -176,7 +181,7 @@
 
                 this.importAudiosData.session = session;
                 WindowController.blockWindowAsync();
-                iTunesData.importAudios(this.importAudiosData).done(this.importAudiosSuccess.bind(this)).fail(this.importAudiosFail.bind(this));
+                itunesCollection.importAudiosAsync(this.importAudiosData).done(this.importAudiosSuccess.bind(this)).fail(this.importAudiosFail.bind(this));
             },
 
             startCreatePlayList : function () {
@@ -219,7 +224,7 @@
                 currentHandler = handler;
 
                 this.createPlaylistData.session = session;
-                iTunesData.createPlaylist(this.createPlaylistData).done(this.createPlaylistSuccess.bind(this)).fail(this.createPlaylistFail.bind(this));
+                itunesCollection.createPlaylistAsync(this.createPlaylistData).done(this.createPlaylistSuccess.bind(this)).fail(this.createPlaylistFail.bind(this));
             },
 
             importAudiosSuccess : function (data) {
@@ -335,7 +340,7 @@
                     tipPanelView.off('CANCEL');
 
                     tipPanelView.on('RETRY', function () {
-                        iTunesData.createPlaylist(this.createPlaylistData).done(this.createPlaylistSuccess.bind(this)).fail(this.createPlaylistFail.bind(this));
+                        itunesCollection.createPlaylistAsync(this.createPlaylistData).done(this.createPlaylistSuccess.bind(this)).fail(this.createPlaylistFail.bind(this));
                         tipPanelView.close();
                         this.updatePanelTitleAndBtn(false);
                     }, this);
@@ -369,14 +374,14 @@
             clickCancelImport : function () {
                 var data = {session: currentSesstion};
                 IO.Backend.Device.offmessage(currentHandler);
-                iTunesData.cancel(data);
-                iTunesData.finish().always(this.closePanel.bind(this));
+                itunesCollection.cancelAsync(data);
+                itunesCollection.finishAsync().always(this.closePanel.bind(this));
 
                 WindowController.releaseWindowAsync();
             },
 
             clickCompleteImport: function () {
-                iTunesData.finish().always(this.closePanel.bind(this));
+                itunesCollection.finishAsync().always(this.closePanel.bind(this));
             },
 
             closePanel : function () {
@@ -394,7 +399,13 @@
         var factory = _.extend({
             getInstance : function () {
                 if (!importView) {
-                    importView = new ImportView();
+                    importView = new ImportView({
+                        title : localeText.ITUNES_IMPORT,
+                        width : 430,
+                        height : 270,
+                        draggable : true,
+                        disableX : true
+                    });
                 }
                 return importView;
             }

@@ -1,9 +1,11 @@
 /*global define, Backbone, _, $*/
 (function (window, undefined) {
     define([
+        'backbone',
         'IOBackendDevice',
         'Configuration'
     ], function (
+        Backbone,
         IO,
         CONFIG
     ) {

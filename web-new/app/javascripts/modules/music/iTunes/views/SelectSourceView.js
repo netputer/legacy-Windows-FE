@@ -10,7 +10,7 @@
         'Internationalization',
         'ui/TemplateFactory',
         'utilities/StringUtil',
-        'music/iTunes/iTunesData'
+        'music/iTunes/collections/iTunesCollection'
     ], function (
         _,
         doT,
@@ -21,7 +21,7 @@
         i18n,
         TemplateFactory,
         StringUtil,
-        iTunesData
+        iTunesCollection
     ) {
         console.log('SelectSourceView - File loaded. ');
 
@@ -30,12 +30,21 @@
         var songs = 0;
         var capacitySize;
 
+        var itunesCollection;
         var SelectSourceView = Panel.extend({
             className  : Panel.prototype.className + ' w-iTunes-select-source-panel',
             initialize : function () {
                 SelectSourceView.__super__.initialize.call(this);
 
-                var buttons = [{
+                this.on(UIHelper.EventsMapping.SHOW, function () {
+                    itunesCollection = iTunesCollection.getInstance();
+
+                    this.once('remove', function () {
+                        itunesCollection = undefined;
+                    });
+                });
+
+                this.buttons = [{
                     $button : $('<button/>').addClass('primary next-step').html(i18n.common.NEXT_STEP),
                     eventName : 'NEXT_STEP'
                 }, {
@@ -44,7 +53,6 @@
                 }];
 
                 this.sourceType = 0;
-                this.buttons   = buttons;
 
                 this.off('NEXT_STEP');
                 this.off('CANCEL');
@@ -82,7 +90,7 @@
                         path : (this.iTunesXMLdata instanceof Array) ? this.iTunesXMLdata[0].path : this.iTunesXMLdata.path
                     };
 
-                    iTunesData.parseSource(path).done(this.parseSourceSuccess.bind(this)).fail(this.parseSourceFail.bind(this));
+                    itunesCollection.parseSourceAsync(path).done(this.parseSourceSuccess.bind(this)).fail(this.parseSourceFail.bind(this));
                 }
             },
             recovery : function () {

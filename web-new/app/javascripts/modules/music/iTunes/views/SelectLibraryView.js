@@ -7,8 +7,7 @@
         'ui/Panel',
         'ui/TemplateFactory',
         'utilities/FormatDate',
-        'Internationalization',
-        'music/iTunes/iTunesData'
+        'Internationalization'
     ], function (
         _,
         doT,
@@ -16,8 +15,7 @@
         Panel,
         TemplateFactory,
         FormatDate,
-        Internationalization,
-        iTunesData
+        Internationalization
     ) {
         console.log('selectLibraryView file loaded');
 

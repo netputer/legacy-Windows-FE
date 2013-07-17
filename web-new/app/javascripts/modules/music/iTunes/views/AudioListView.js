@@ -7,10 +7,14 @@
         'Configuration',
         'Internationalization',
         'ui/Panel',
+        'ui/UIHelper',
         'ui/TemplateFactory',
+        'ui/SmartList',
         'utilities/StringUtil',
-        'utilities/FormatString',
-        'music/iTunes/iTunesData'
+        'music/iTunes/collections/iTunesCollection',
+        'music/iTunes/collections/iTunesListCollection',
+        'music/iTunes/views/AudioListItemView',
+        'music/iTunes/views/PlayListItemView'
     ], function (
         _,
         doT,
@@ -18,166 +22,280 @@
         CONFIG,
         i18n,
         Panel,
+        UIHelper,
         TemplateFactory,
+        SmartList,
         StringUtil,
-        formatString,
-        iTunesData
+        iTunesCollection,
+        iTunesListCollection,
+        AudioListItemView,
+        PlayListItemView
     ) {
-        var grid;
-        var needCapacity;
+
+        console.log('PlayListView - File loaded');
+        var itunesCollection;
+        var itunesListCollection;
+        var type = '';
+
+        var ListView = Backbone.View.extend ({
+            template : doT.template(TemplateFactory.get('iTunes', 'itunes-audio-list')),
+            className : "audio-list-content vbox",
+            initialize : function () {
+                ListView.__super__.initialize.apply(this, arguments);
+
+                if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
+                    this.template = doT.template(TemplateFactory.get('iTunes', 'itunes-play-list'));
+                }
+            },
+            render : function () {
+                this.$el.html(this.template({}));
+                var itemView = AudioListItemView.getClass();
+                var collection = itunesCollection;
+
+                if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
+                    collection = itunesListCollection;
+                    itemView = PlayListItemView.getClass();
+                }
+
+                this.audioList = new SmartList({
+                    itemView : itemView,
+                    dataSet : [{
+                        name : 'default',
+                        getter : collection.getAll
+                    }],
+                    $observer : this.$('.check-select-all'),
+                    enableContextMenu : false,
+                    $header : this.$('.w-smart-list-header'),
+                    keepSelect : false,
+                    itemHeight : 30,
+                    listenToCollection : collection,
+                    loading : collection.loading || collection.syncing
+                });
+
+                this.audioList.listenTo(collection, 'refresh', function () {
+                    this.switchSet('default', collection.getAll);
+                });
+
+                var changeHandler;
+                if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
+                    changeHandler = function (ids) {
+                        var tracks_count = 0;
+                        var size = 0;
+                        var models = [];
+
+                        _.each(ids, function (id) {
+                            var model = collection.get(id);
+
+                            models.push(model);
+                            size += parseInt(model.get('size'), 10);
+                            tracks_count += parseInt(model.get('tracks_count'), 10);
+                        });
+
+                        this.trigger('__SELECT_CHANGE', {
+                            ids : ids,
+                            lists : ids.length,
+                            models : models,
+                            size : size,
+                            tracks_count : tracks_count,
+                            text : StringUtil.readableSize(size)
+                        });
+
+                    }.bind(this);
+                } else {
+                    changeHandler = function (ids) {
+                        var tracks_count = ids.length;
+                        var size = 0;
+
+                        _.each(ids, function (id) {
+                            size += collection.get(id).get('size');
+                        });
+
+                        this.trigger('__SELECT_CHANGE', {
+                            ids : ids,
+                            size : size,
+                            tracks_count : ids.length,
+                            text : StringUtil.readableSize(size)
+                        });
+                    }.bind(this);
+                }
+                this.audioList.on('select:change', changeHandler);
+                this.$('.w-smart-list-header').after(this.audioList.render().$el);
+
+                collection.trigger('update');
+                return this;
+            },
+            remove : function () {
+                this.audioList.remove();
+                ListView.__super__.remove.apply(this, arguments);
+            }
+        });
+
+        var AudioListBodyView = Backbone.View.extend({
+            template : doT.template(TemplateFactory.get('iTunes', 'audio-list')),
+            initialize : function () {
+                AudioListBodyView.__super__.initialize.call(this, arguments);
+
+                if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
+                    this.template = doT.template(TemplateFactory.get('iTunes', 'play-list'));
+                }
+
+                this.listView = new ListView();
+                this.listenTo(this.listView, '__SELECT_CHANGE', function (data) {
+                    var html;
+                    if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
+                        html = StringUtil.format(
+                            i18n.music.SELECT_PLAYLIST_COUNT_TEXT,
+                            data.lists,
+                            data.tracks_count,
+                            data.text
+                        );
+                    } else {
+                        html = StringUtil.format(
+                            i18n.music.SELECT_AUDIOS_COUNT_TEXT,
+                            data.tracks_count,
+                            data.text
+                        );
+                    }
+                    this.$('.select-count-wrap').html(html);
+
+                    this.trigger('__SELECT_CHANGE', data);
+
+                }.bind(this));
+            },
+            render : function () {
+                this.$el.html(this.template({}));
+                this.$el.append(this.listView.render().$el);
+
+                var warp = $('<div>').addClass('select-count-wrap');
+                this.$el.append(warp);
+
+                return this;
+            },
+            remove : function () {
+                AudioListBodyView.__super__.remove.call(this, arguments);
+                this.stopListening(this.listView, '__SELECT_CHANGE');
+                this.listView.remove();
+            }
+        });
 
         var AudioListView = Panel.extend({
             className : Panel.prototype.className + ' w-iTunes-audio-list-panel',
             initialize : function () {
-                AudioListView.__super__.initialize.call(this);
+                AudioListView.__super__.initialize.call(this, arguments);
 
-                var buttons = [{
-                    $button : $('<button/>').html(i18n.common.PRE_STEP),
-                    eventName : 'PRE_STEP'
+                var ids = [];
+                var needCapacity = 0;
+                var models = [];
+                Object.defineProperties(this, {
+                    ids : {
+                        set : function (value) {
+                            ids = value;
+                        },
+                        get : function () {
+                            return ids;
+                        }
+                    },
+                    models : {
+                        set : function (value) {
+                            models = value;
+                        },
+                        get : function () {
+                            return models;
+                        }
+                    },
+                    needCapacity : {
+                        set : function (value) {
+                            needCapacity = value;
+                        },
+                        get : function () {
+                            return needCapacity;
+                        }
+                    }
+                });
+
+                this.on(UIHelper.EventsMapping.SHOW, function () {
+
+                    if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
+                        itunesListCollection = iTunesListCollection.getInstance();
+                    } else {
+                        itunesCollection = iTunesCollection.getInstance();
+                    }
+
+                    this.bodyView = new AudioListBodyView();
+                    this.$bodyContent = this.bodyView.render().$el;
+
+                    this.listenTo (this.bodyView, '__SELECT_CHANGE', function (data) {
+
+                        if (CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
+                            this.models = data.models;
+                        }
+
+                        this.ids = data.ids;
+                        this.needCapacity = data.size;
+
+                        this.disableNextStep(!data.tracks_count);
+                    }.bind(this));
+
+                    this.once('remove', function () {
+
+                        this.stopListening(this.bodyView, '__SELECT_CHANGE');
+                        this.bodyView.remove();
+                        itunesListCollection = undefined;
+                        itunesCollection = undefined;
+                    });
+                });
+
+                this.buttons = [{
+                    $button : $('<button/>').html(i18n.common.PRE_STEP).addClass('button-pre')
                 }, {
-                    $button : $('<button/>').addClass('primary next-step').html(i18n.common.NEXT_STEP),
-                    eventName : 'NEXT_STEP'
+                    $button : $('<button/>').addClass('primary next-step button-next').html(i18n.common.NEXT_STEP)
                 }, {
-                    $button : $('<button/>').html(i18n.common.CANCEL),
-                    eventName : 'CANCEL'
+                    $button : $('<button/>').html(i18n.common.CANCEL).addClass('button-cancel')
                 }];
-
-                this.title  = i18n.music.ITUNES_IMPORT;
-                this.width  = 600;
-                this.height = 410;
-                this.draggable = true;
-                this.disableX  = true;
-                this.buttons   = buttons;
-                this.$bodyContent = (doT.template(TemplateFactory.get('iTunes', 'audio-list')))({});
-
-                this.off('NEXT_STEP');
-                this.off('PRE_STEP');
-                this.off('CANCEL');
-
-                this.on('PRE_STEP', function () {
-                    this.trigger('_PRE_STEP');
-                    this.close();
-                }, this);
-
-                this.on('NEXT_STEP', function () {
-                    var data = {
-                        iTunesIds  : _.pluck(grid.getCheckedData(), 'id'),
-                        sourceType : CONFIG.enums.ITUNES_IMPORT_AUDIOS,
-                        capacity : needCapacity
-                    };
-
-                    this.trigger('_NEXT_STEP', data);
-                    this.close();
-                }, this);
-
-                this.on('CANCEL', function () {
-                    this.trigger('_CANCEL');
-                    this.close();
-                }, this);
             },
-
-            show : function (data) {
-                AudioListView.__super__.show.call(this);
-
-                this.initAudioList();
-                iTunesData.queryAudios().done(this.queryAudiosSuccess.bind(this)).fail(this.queryAudiosFail.bind(this));
+            setType : function (t) {
+                type = t;
             },
-
-            initAudioList : function () {
-                this.disableNextStep(false);
-
-                var contentWrap = this.$('.audio-list-content');
-                contentWrap.addClass('loading');
-                contentWrap.html('');
-
-                grid = new wonder.ui.Grid({
-                    colModel : [{
-                        colLabel : i18n.music.SING_NAME_TEXT,
-                        index : 'title',
-                        name : 'title',
-                        width : 160,
-                        resizable : true,
-                        sortable : true,
-                        sorttype : 'text'
-                    }, {
-                        colLabel : i18n.music.ARTIST_TEXT,
-                        index : 'artist',
-                        name : 'artist',
-                        width : 140,
-                        resizable : true,
-                        sortable : true,
-                        sorttype : 'text'
-                    }, {
-                        colLabel : i18n.music.ALBUM_TEXT,
-                        index : 'album',
-                        name : 'album',
-                        width : 150,
-                        resizable : true
-                    }, {
-                        colLabel : i18n.music.SING_SIZE_TEXT,
-                        index : 'size',
-                        name : 'size',
-                        width : 70,
-                        resizable : false,
-                        sortable : true,
-                        sorttype : 'number',
-                        dataType : 'size'
-                    }],
-
-                    rowHeight : 30,
-                    multiSelectable : true,
-                    checkboxColWidth : 25,
-                    isContentMultiSelected : true
-                });
-
-                grid.render(contentWrap);
-
-                grid.bind(wonder.ui.Grid.Events.SELECT, this.showSelectCountText, this);
-                grid.bind(wonder.ui.Grid.Events.UNSELECT, this.showSelectCountText, this);
-                grid.bind(wonder.ui.Grid.Events.SELECT_ALL, this.showSelectCountText, this);
-                grid.bind(wonder.ui.Grid.Events.UNSELECT_ALL, this.showSelectCountText, this);
-
-                this.showSelectCountText();
-            },
-
-            showSelectCountText : function () {
-                var selectCountWrap = $('.select-count-wrap', this.$el);
-                if (!selectCountWrap.length) {
-                    selectCountWrap = $('<div/>').addClass('select-count-wrap');
-                    selectCountWrap.appendTo(this.$('.w-ui-window-body'));
-                }
-
-                var selectedData = grid.getCheckedData();
-                var audiosCount = selectedData.length;
-                needCapacity = 0;
-                _.each(selectedData, function (item) {
-                    needCapacity += parseInt(item.size, 10);
-                });
-
-                var text = formatString(i18n.music.SELECT_AUDIOS_COUNT_TEXT,
-                                        audiosCount,
-                                        StringUtil.readableSize(needCapacity)
-                                        );
-                selectCountWrap.html(text);
-
-                if (selectedData.length) {
-                    this.disableNextStep(false);
-                } else {
-                    this.disableNextStep(true);
-                }
-            },
-
-            queryAudiosSuccess : function (data) {
-                this.$('.audio-list-content').removeClass('loading');
-                grid.setData(data.audio);
-            },
-
-            queryAudiosFail : function () {
-                this.$('.audio-list-content').removeClass('loading');
-            },
-
             disableNextStep : function (isDisable) {
                 $('.next-step', this.$el).prop('disabled', !!isDisable);
+            },
+            clickButtonPre : function () {
+                this.trigger('_PRE_STEP');
+                this.close();
+            },
+            clickButtonNext : function () {
+
+                if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
+                    var selectedPlaylistIds = [];
+
+                    var data = {
+                        iTunesIds   : [],
+                        playlistIds : this.ids,
+                        sourceType  : CONFIG.enums.ITUNES_IMPORT_PLAYLIST,
+                        capacity : this.needCapacity
+                    };
+                    _.each(this.models, function (model) {
+                        data.iTunesIds = data.iTunesIds.concat(model.get('tracks_id'));
+                    });
+                } else {
+                    var data = {
+                        iTunesIds  : this.ids,
+                        sourceType : CONFIG.enums.ITUNES_IMPORT_AUDIOS,
+                        capacity : this.needCapacity
+                    };
+                }
+
+                this.trigger('_NEXT_STEP', data);
+                this.close();
+            },
+            clickButtonCancel : function () {
+                this.trigger('_CANCEL');
+                this.close();
+            },
+            events : {
+                'click .button-pre' : 'clickButtonPre',
+                'click .button-next' : 'clickButtonNext',
+                'click .button-cancel' : 'clickButtonCancel'
             }
         });
 
@@ -185,7 +303,13 @@
         var factory = _.extend({
             getInstance : function () {
                 if (!audioListView) {
-                    audioListView = new AudioListView();
+                    audioListView = new AudioListView({
+                        title : i18n.music.ITUNES_IMPORT,
+                        width : 600,
+                        height : 410,
+                        draggable : true,
+                        disableX : true
+                    });
                 }
                 return audioListView;
             }

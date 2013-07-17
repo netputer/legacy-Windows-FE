@@ -10,10 +10,9 @@
         'utilities/StringUtil',
         'utilities/FormatDate',
         'ui/AlertWindow',
-        'music/iTunes/iTunesData',
+        'music/iTunes/collections/iTunesCollection',
         'music/iTunes/views/SelectLibraryView',
         'music/iTunes/views/SelectSourceView',
-        'music/iTunes/views/PlayListView',
         'music/iTunes/views/AudioListView',
         'music/iTunes/views/ImportView'
     ], function (
@@ -26,21 +25,20 @@
         StringUtil,
         FormatDate,
         AlertWindow,
-        iTunesData,
+        iTunesCollection,
         SelectLibraryView,
         SelectSourceView,
-        PlayListView,
         AudioListView,
         ImportView
     ) {
         console.log('iTunes file loaded');
 
         var alert = AlertWindow.alert;
+        var itunesCollection;
 
         function ITunesController() {
             var selectLibraryView;
             var selectSourceView;
-            var playlistView;
             var audioListView;
             var importView;
 
@@ -94,7 +92,7 @@
                     }, this);
 
                     tipPanelView.on('CANCEL', function () {
-                        iTunesData.finish();
+                        itunesCollection.finishAsync();
                         tipPanelView.close();
                     }, this);
 
@@ -110,10 +108,6 @@
                 selectSourceView.off('_NEXT_STEP');
                 selectSourceView.off('_CANCEL');
 
-                playlistView.off('_PRE_STEP');
-                playlistView.off('_NEXT_STEP');
-                playlistView.off('_CANCEL');
-
                 audioListView.off('_PRE_STEP');
                 audioListView.off('_CANCEL');
                 audioListView.off('_NEXT_STEP');
@@ -123,7 +117,7 @@
                 }, this);
 
                 selectLibraryView.on('_CANCEL', function () {
-                    iTunesData.finish();
+                    itunesCollection.finishAsync();
                 }, this);
 
                 selectSourceView.on('_NEXT_STEP', function (data) {
@@ -132,33 +126,14 @@
                         showConfirmImport(data, importView.show, importView);
                         selectSourceView.close();
                         break;
-
-                    case CONFIG.enums.ITUNES_IMPORT_PLAYLIST:
-                        playlistView.show(data);
-                        break;
-
-                    case CONFIG.enums.ITUNES_IMPORT_AUDIOS:
-                        audioListView.show(data);
-                        break;
+                    default:
+                        audioListView.setType(data.sourceType);
+                        audioListView.show();
                     }
                 }, this);
 
                 selectSourceView.on('_CANCEL', function () {
-                    iTunesData.finish();
-                }, this);
-
-                playlistView.on('_PRE_STEP', function () {
-                    selectSourceView.show();
-                }, this);
-
-                playlistView.on('_NEXT_STEP', function (data) {
-                    showConfirmImport(data, importView.show, importView);
-                    selectSourceView.close();
-                }, this);
-
-                playlistView.on('_CANCEL', function () {
-                    iTunesData.finish();
-                    selectSourceView.close();
+                    itunesCollection.finishAsync();
                 }, this);
 
                 audioListView.on('_PRE_STEP', function () {
@@ -171,16 +146,14 @@
                 }, this);
 
                 audioListView.on('_CANCEL', function () {
-                    iTunesData.finish();
+                    itunesCollection.finishAsync();
                     selectSourceView.close();
                 }, this);
-
             }
 
-            function showStartPanel(data) {
+            function showStartPanel (data) {
                 selectLibraryView = SelectLibraryView.getInstance();
                 selectSourceView  = SelectSourceView.getInstance();
-                playlistView      = PlayListView.getInstance();
                 audioListView     = AudioListView.getInstance();
                 importView        = ImportView.getInstance();
 
@@ -196,11 +169,12 @@
                 bindEvents();
             }
 
-
-
             return {
                 start : function () {
-                    iTunesData.begin().done(showStartPanel.bind(this)).fail(this.startImportiTunesFail.bind(this));
+                    if (!itunesCollection) {
+                        itunesCollection = iTunesCollection.getInstance();
+                    }
+                    itunesCollection.beginAsync().done(showStartPanel.bind(this)).fail(this.startImportiTunesFail.bind(this));
                 },
 
                 startImportiTunesFail : function (data) {
@@ -223,11 +197,11 @@
                         break;
                     }
                     alert(text);
-                    iTunesData.finish();
+                    itunesCollection.finishAsync();
                 },
 
                 finish : function () {
-                    iTunesData.finish();
+                    itunesCollection.finishAsync();
                 }
             };
         }
