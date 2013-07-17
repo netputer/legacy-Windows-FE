@@ -36,6 +36,9 @@
 
                 if (Settings.get('user_guide_shown_xibaibai')) {
                     setTimeout(deferred.reject);
+                    log({
+                        'event' : 'debug.guide_xibaibai_show'
+                    });
                 } else {
                     setTimeout(deferred.resolve);
                 }

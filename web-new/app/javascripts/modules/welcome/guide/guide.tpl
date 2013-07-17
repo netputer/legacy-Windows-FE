@@ -169,7 +169,7 @@
         </ul>
     </div>
     <nav class="control hbox">
-        <button class="primary button-action">{{= it.action }}</button>
+        <button class="primary button-skip">{{= it.action }}</button>
     </nav>
 </script>
 </templates>
