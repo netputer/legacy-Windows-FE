@@ -44,10 +44,17 @@
             render : function () {
                 this.$el.html(this.template({}));
 
-                this.regCardAsync(StarterView.getInstance())
+                this.regCardAsync(StarterView.getInstance({
+                    type : 0
+                }))
                     // .then(function () {
                     //     return this.regCardAsync(CloudBackupView.getInstance());
                     // }.bind(this))
+                    .then(function () {
+                        return this.regCardAsync(StarterView.getInstance({
+                            type : 1
+                        }));
+                    }.bind(this))
                     .then(function () {
                         return this.regCardAsync(BindView.getInstance());
                     }.bind(this))
