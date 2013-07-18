@@ -52,6 +52,9 @@
 
                 if (Settings.get('user_guide_shown_suggestion')) {
                     setTimeout(deferred.reject);
+                    log({
+                        'event' : 'debug.guide_suggestion_show'
+                    });
                 } else {
                     setTimeout(deferred.resolve);
                 }
