@@ -112,7 +112,7 @@
                 this.accountSelectorView.on('selectAccount', function (account) {
                     this.listView.accountId = account.get('id');
                     this.listView.refresh();
-                });
+                }.bind(this));
             },
             render : function () {
                 this.$el.html(this.template({}));
