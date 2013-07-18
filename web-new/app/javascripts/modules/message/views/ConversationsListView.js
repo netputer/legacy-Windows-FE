@@ -134,6 +134,8 @@
 
                                 var conversation = conversationsCollection.get(resp.body.conversation[0].conversation_id);
 
+                                this.switchListDataSet();
+
                                 conversationList.deselectAll({
                                     silent : true
                                 });
@@ -150,9 +152,9 @@
 
                                 deferred.reject(resp);
                             }
-                        }
+                        }.bind(this)
                     });
-                };
+                }.bind(this);
 
                 if (conversationsCollection.loading) {
                     conversationsCollection.once('refresh', doSeach);
