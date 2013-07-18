@@ -20,8 +20,8 @@
         BrowserModuleView
     ) {
         var classMap = {
-            10 : 'game',
-            11 : 'app',
+            10 : 'app',
+            11 : 'game',
             12 : 'video'
         };
 

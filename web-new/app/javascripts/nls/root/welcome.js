@@ -101,6 +101,7 @@ define({
     CARD_CLOUD_PHOTO_OPEN : '开启',
     CARD_BACKUP_TITLE : '已经 10 天没有备份了',
     CARD_BACKUP_DESC : '经常备份手机，再也不用担心数据丢失。您也可以尝试 自动备份 功能。',
-    CARD_BACKUP_ACTION : '备份'
+    CARD_BACKUP_ACTION : '备份',
+    NO_MORE : '没有更多了'
 
 });

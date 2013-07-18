@@ -9,7 +9,11 @@
     ) {
         var FeedCardView = Backbone.View.extend({
             className : 'w-welcome-feed-card hbox',
-            tagName : 'li'
+            tagName : 'li',
+            remove : function () {
+                FeedCardView.__super__.remove.call(this);
+                this.options.parentView.initLayout();
+            }
         });
 
         var factory = _.extend({

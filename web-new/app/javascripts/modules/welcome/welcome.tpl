@@ -9,7 +9,7 @@
 
 <script type="text/x-ui-template" id="card-app-set">
     <div class="count-ctn">
-        <div class="count">{{= it.items.length }}</div>
+        <div class="count">{{= it.length }}</div>
         <div class="title">{{= it.title }}</div>
     </div>
     <div class="apps-ctn">
@@ -19,7 +19,10 @@
             {{~}}
         </ul>
         <div class="text-secondary desc">{{= it.desc }}</div>
-        <button class="button-action">{{= it.action }}</button>
+        <div class="btn-ctn hbox">
+            <button class="button-action">{{= it.action }}</button>
+            <span class="button-ignore text-secondary">{{= i18n.ui.IGNORE }}</span>
+        </div>
     </div>
 </script>
 
@@ -28,7 +31,7 @@
     <div class="info-ctn vbox">
         <div class="info-top hbox">
             <div class="info">
-                <h1 class="title button-navigate wc" title="{{! it.title }}">{{! it.title }}</h1>
+                <h1 class="title link button-navigate wc" title="{{! it.title }}">{{! it.title }}</h1>
                 <span class="cate text-thirdly">
                     {{= StringUtil.format(i18n.welcome.CARD_APP_TAG_LINE, it.categories[0].name, it.installedCountStr) }}
                 </span>
@@ -43,16 +46,9 @@
 </script>
 
 <script type="text/x-ui-template" id="list-card">
-    {{
-        var titles = {
-            10 : '热门游戏分类',
-            11 : '热门应用分类',
-            12 : '更多视频分类'
-        };
-    }}
     <div class="icon-ctn"></div>
     <div class="info-ctn">
-        <h1 class="title">{{= titles[it.type] }}</h1>
+        <h1 class="title">{{= it.title }}</h1>
         <ul class="list-ctn">
             {{~ it.items : item }}
             <li class="item button-navigate" data-url="{{= item.url }}">{{! item.name }}</li>
@@ -66,7 +62,10 @@
     <div class="info-ctn">
         <h1 class="title">{{= i18n.welcome.CARD_CLOUD_PHOTO_TITLE }}</h1>
         <p class="desc">{{= i18n.welcome.CARD_CLOUD_PHOTO_DESC }}</p>
-        <button class="button-action">{{= i18n.welcome.CARD_CLOUD_PHOTO_OPEN }}</button>
+        <div class="btn-ctn hbox">
+            <button class="button-action">{{= i18n.welcome.CARD_CLOUD_PHOTO_OPEN }}</button>
+            <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
+        </div>
     </div>
 </script>
 
@@ -75,7 +74,10 @@
     <div class="info-ctn">
         <h1 class="title">{{= i18n.welcome.CARD_BACKUP_TITLE }}</h1>
         <p class="desc">{{= i18n.welcome.CARD_BACKUP_DESC }}</p>
-        <button class="button-action">{{= i18n.welcome.CARD_BACKUP_ACTION }}</button>
+        <div class="btn-ctn hbox">
+            <button class="button-action">{{= i18n.welcome.CARD_BACKUP_ACTION }}</button>
+            <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
+        </div>
     </div>
 </script>
 
@@ -88,8 +90,8 @@
         <li class="item hbox">
             <img class="icon button-navigate" src="{{= item.icons.px48 }}" alt="{{! item.title }}" data-key="{{= item.key }}" />
             <div class="info">
-                <div class="wc title button-navigate" data-key="{{= item.key }}">{{! item.title }}</div>
-                <div class="text-secondary wc">{{! item.tagline }}</div>
+                <div class="wc title link button-navigate" data-key="{{= item.key }}">{{! item.title }}</div>
+                <div class="text-thirdly wc">{{! item.tagline }}</div>
             </div>
             <button class="button-action" data-key="{{= item.key }}">{{= i18n.app.INSTALL }}</button>
         </li>

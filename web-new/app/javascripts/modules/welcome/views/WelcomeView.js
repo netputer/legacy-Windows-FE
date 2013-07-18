@@ -9,6 +9,7 @@
         'FunctionSwitch',
         'IOBackendDevice',
         'Configuration',
+        'Internationalization',
         'welcome/views/ClockView',
         'welcome/views/DeviceView',
         'welcome/views/ToolbarView',
@@ -23,6 +24,7 @@
         FunctionSwitch,
         IO,
         CONFIG,
+        i18n,
         ClockView,
         DeviceView,
         ToolbarView,
@@ -94,8 +96,8 @@
                         '-webkit-transform' : 'translate3d(0, 0, 0)'
                     });
                 }
-                toolbarView.$el.toggleClass('light', progress2 >= 0.65);
-                toolbarView.$el.toggleClass('fixed', progress2 === 1);
+                toolbarView.$el.toggleClass('light', progress2 >= 0.65)
+                    .toggleClass('fixed', progress2 === 1);
 
                 deviceView.$el.css({
                     'opacity' : 1 - (0.2 * progress2),
@@ -121,15 +123,27 @@
                 this.$el.append(toolbarView.render().$el)
                     .on('scroll', this.scrollHandler);
 
-                this.initBackground();
-
                 var feedsCollection = FeedsCollection.getInstance();
                 this.loading = feedsCollection.loading;
                 this.listenTo(feedsCollection, 'update refresh', function () {
                     this.loading = feedsCollection.loading;
+                    if (feedsCollection.finish) {
+                        this.$('.w-ui-loading-horizental-ctn').show().html(i18n.welcome.NO_MORE);
+                    }
                 });
 
+                this.showBackground();
+
                 return this;
+            },
+            deviceViewAnimationAsync : function () {
+                var deferred = $.Deferred();
+
+                deviceView.$el.one('webkitAnimationEnd', function () {
+                    deferred.resolve();
+                });
+
+                return deferred.promise();
             },
             loadBackgroundAsync : function () {
                 var deferred = $.Deferred();
@@ -138,7 +152,14 @@
 
                 return deferred.promise();
             },
-            initBackground : function () {
+            showBackground : function () {
+                $.when(this.initBackgroundAsync(), this.deviceViewAnimationAsync()).done(function () {
+                    this.$('.content').css('opacity', 1);
+                }.bind(this));
+            },
+            initBackgroundAsync : function () {
+                var deferred = $.Deferred();
+
                 this.loadBackgroundAsync().done(function (resp) {
                     var bg = resp[0];
                     if (bg.type === 0) {
@@ -148,9 +169,11 @@
                     }
 
                     this.$('.content').one('load', function () {
-                        $(this).css('opacity', 1);
+                        deferred.resolve();
                     });
-                }.bind(this));
+                }.bind(this)).fail(deferred.reject);
+
+                return deferred.promise();
             }
         });
 

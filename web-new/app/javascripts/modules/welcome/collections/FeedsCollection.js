@@ -21,23 +21,42 @@
                 max : 30,
                 udid : ''
             },
-            finish : false,
             parse : function (resp) {
                 this.data.totalFeedCursor = resp.totalFeedCursor;
                 this.data.singleFeedCursor = resp.singleFeedCursor;
 
                 this.finish = resp.feeds.length === 0;
+
+                _.each(resp.feeds, function (feed) {
+                    var list = [20, 21, 22, 23, 24, 25];
+                    if (list.indexOf(feed.type) >= 0) {
+                        _.each(feed.items, function (item) {
+                            if (item.tagline === 'null') {
+                                item.tagline = '';
+                            }
+                        });
+                    }
+                });
                 return resp.feeds;
             },
             initialize : function () {
                 var loading = false;
+                var finish = false;
                 Object.defineProperties(this, {
                     loading : {
                         set : function (value) {
-                            loading = value;
+                            loading = Boolean(value);
                         },
                         get : function () {
                             return loading;
+                        }
+                    },
+                    finish : {
+                        set : function (value) {
+                            finish = Boolean(value);
+                        },
+                        get : function () {
+                            return finish;
                         }
                     }
                 });

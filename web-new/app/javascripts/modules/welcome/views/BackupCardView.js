@@ -6,17 +6,27 @@
         'doT',
         'Configuration',
         'Internationalization',
+        'Device',
+        'FunctionSwitch',
         'ui/TemplateFactory',
-        'welcome/views/FeedCardView'
+        'ui/AlertWindow',
+        'welcome/views/FeedCardView',
+        'backuprestore/BackupController'
     ], function (
         Backbone,
         _,
         doT,
         CONFIG,
         i18n,
+        Device,
+        FunctionSwitch,
         TemplateFactory,
-        FeedCardView
+        AlertWindow,
+        FeedCardView,
+        BackupController
     ) {
+        var alert = window.alert;
+
         var BackupCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'backup')),
             className : FeedCardView.getClass().prototype.className + ' backup',
@@ -25,8 +35,16 @@
                 return this;
             },
             clickButtonAction : function () {
+                if (!FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE && !Device.get('isUSB')) {
+                    alert(i18n.backup_restore.TIP_IN_WIFI);
+                    return;
+                }
+
+                BackupController.start();
+                this.remove();
             },
             clickButtonIgnore : function () {
+                this.remove();
             },
             events : {
                 'click .button-action' : 'clickButtonAction',

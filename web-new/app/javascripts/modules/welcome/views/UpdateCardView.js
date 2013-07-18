@@ -5,23 +5,25 @@
         'underscore',
         'doT',
         'Internationalization',
+        'Settings',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'welcome/views/FeedCardView',
         'main/collections/PIMCollection',
         'app/collections/AppsCollection',
-        'task/TaskService'
+        'app/views/OneKeyUpdateWindowView'
     ], function (
         Backbone,
         _,
         doT,
         i18n,
+        Settings,
         TemplateFactory,
         StringUtil,
         FeedCardView,
         PIMCollection,
         AppsCollection,
-        TaskService
+        OneKeyUpdateWindowView
     ) {
         var appsCollection;
 
@@ -38,53 +40,47 @@
             },
             render : function () {
                 var apps = appsCollection.getUpdatableApps();
-                this.$el.toggleClass('hide', apps.length === 0);
-                if (apps.length !== 0) {
+                var lastShownTimestamp = Settings.get('welcome-card-update-show') || 1;
+                var show = apps.length !== 0 && (StringUtil.formatDate('YY/MM/DD') !== StringUtil.formatDate('YY/MM/DD', lastShownTimestamp));
+                this.$el.toggleClass('hide', !show);
+                if (show) {
                     this.$el.html(this.template({
                         items : _.map(apps.concat().splice(0, 5), function (app) {
                             return app.toJSON();
                         }),
                         title : i18n.welcome.CARD_UPDATE_TITLE,
                         desc : StringUtil.format(i18n.welcome.CARD_UPDATE_DESC, apps[0].get('base_info').name, apps.length),
-                        action : i18n.welcome.CARD_UPDATE_ACTION
+                        action : i18n.welcome.CARD_UPDATE_ACTION,
+                        length : apps.length
                     }));
 
                     this.$('.count').toggleClass('min', apps.length > 99);
+
+                    Settings.set('welcome-card-update-show', new Date().getTime(), true);
                 }
 
                 return this;
             },
             clickButtonDetail : function () {
-                // Backbone.trigger('switchModule', {
-                //     module : 'app',
-                //     tab : 'update'
-                // });
+                PIMCollection.getInstance().get(3).set('selected', true);
+                Backbone.trigger('switchModule', {
+                    module : 'app',
+                    tab : 'update'
+                });
 
                 PIMCollection.getInstance().get(14).set('selected', true);
             },
             clickButtonAction : function () {
-                var apps = _.map(appsCollection.getUpdatableApps(), function (app) {
-                    app.set({
-                        isUpdating : true
-                    }).unignoreUpdateAsync();
-
-                    var updateModel = app.updateInfo.clone();
-                    return {
-                        downloadUrl : updateModel.get('downloadUrl'),
-                        title : updateModel.get('title'),
-                        iconSrc : updateModel.get('iconPath'),
-                        versionName : updateModel.get('versionName'),
-                        versionCode : updateModel.get('versionCode'),
-                        size : updateModel.get('size'),
-                        packageName : updateModel.get('packageName')
-                    };
-                }, this);
-
-                TaskService.batchDownloadAsync(apps, 'one-key-update');
+                OneKeyUpdateWindowView.getInstance().show();
+                this.remove();
+            },
+            clickButtonIgnore : function () {
+                this.remove();
             },
             events : {
                 'click .button-action' : 'clickButtonAction',
-                'click .button-detail' : 'clickButtonDetail'
+                'click .button-detail' : 'clickButtonDetail',
+                'click .button-ignore' : 'clickButtonIgnore'
             }
         });
 
