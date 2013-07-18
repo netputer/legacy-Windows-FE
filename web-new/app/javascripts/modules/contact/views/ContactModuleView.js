@@ -84,57 +84,64 @@
                 ContactsCollection.getInstance();
                 AccountCollection.getInstance();
             },
-            navigate : function (msg) {
+            navigateGroup : function (msg) {
                 PIMCollection.getInstance().get(1).set({
                     selected : true
                 });
 
-                var highlightSearch = function () {
-                    var highlight = function () {
-                        contactModuleToolbarView.restoreFilter();
-                        contactsListView.highlight(msg);
-                    };
+                var search = function () {
+                    contactsCollection.keyword = msg.keyword;
+                    contactsListView.showContactsByKeyword();
+                    contactModuleToolbarView.toggleSelectorWrap();
 
-                    if (!contactsCollection.loading && !contactsCollection.syncing) {
-                        highlight();
-                    } else {
-                        contactsCollection.on('refresh', function (contactsCollection) {
-                            highlight();
-                            contactsCollection.off('refresh', arguments.callee);
-                        });
-                    }
+                    contactsListView.once('__RETURN_DEFAULT', function () {
+                        contactModuleToolbarView.toggleSelectorWrap();
+                    });
+                };
+                if (!contactsCollection.loading && !contactsCollection.syncing) {
+                    search();
+                } else {
+                    contactsCollection.once('refresh', function (){
+                        search();
+                    });
+                }
+            },
+            navigate : function (msg) {
+
+                PIMCollection.getInstance().get(1).set({
+                    selected : true
+                });
+                var highlight = function () {
+                    contactModuleToolbarView.restoreFilter();
+                    contactsListView.highlight(msg);
+                    contactModuleToolbarView.toggleSelectorWrap();
                 };
 
-                if (contactsListView) {
-                    highlightSearch();
+                if (!contactsCollection.loading && !contactsCollection.syncing) {
+                    highlight();
                 } else {
-                    var delegate = setInterval(function () {
-                        if (contactsListView) {
-                            clearInterval(delegate);
-                            highlightSearch();
-                        }
-                    }, 10);
+                    contactsCollection.on('refresh', function (){
+                        highlight();
+                    });
                 }
             },
             createNew : function (model) {
-                model = new ContactModel(model);
                 PIMCollection.getInstance().get(1).set({
                     selected : true
                 });
 
-                if (contactModuleView) {
+                model = new ContactModel(model);
+
+                var createNew = function (model) {
                     contactPanelView.createNew(model);
-                } else {
-                    var delegate = setInterval(function () {
-                        if (contactsListView) {
-                            clearInterval(delegate);
-                            contactPanelView.createNew(model);
-                        }
-                    }, 10);
-                }
+                    contactModuleToolbarView.toggleSelectorWrap();
+                };
+
+                createNew(model);
             }
         });
 
         return factory;
     });
 }(this));
+

@@ -83,7 +83,16 @@
                 var loading = false;
                 var loadingUpdateInfo = false;
                 var syncing = false;
+                var keyword = "";
                 Object.defineProperties(this, {
+                    keyword : {
+                        set : function (value) {
+                            keyword = value;
+                        },
+                        get : function () {
+                            return keyword;
+                        }
+                    },
                     loading : {
                         set : function (value) {
                             loading = value;
@@ -117,6 +126,7 @@
                             success : function (collection) {
                                 console.log('AppsCollection - Collection fetched. ');
                                 loading = false;
+
                                 collection.trigger('refresh', collection);
                             }
                         });
@@ -184,6 +194,12 @@
             getIgnoredApps : function () {
                 return this.where({
                     is_blocked : true
+                });
+            },
+            getByKeyword : function () {
+                var reg = new RegExp(this.keyword, 'i');
+                return this.filter(function (model) {
+                    return reg.test(model.get('base_info').name);
                 });
             },
             uninstallAppsAsync : function (ids, session) {
@@ -383,3 +399,4 @@
         return factory;
     });
 }(this));
+

@@ -125,8 +125,8 @@
                             };
                         }
                     }
-                    contactsList.switchSet('default', getter);
-                    break;
+                contactsList.switchSet('default', getter);
+                break;
                 case 'starred':
                     if (currentGroupId === 'all') {
                         if (currentAccountId === 'all') {
@@ -144,11 +144,11 @@
                         } else {
                             getter = function () {
                                 return contactsCollection.getContactsStarredByGroupdIdAndAccountName(currentGroupId, accountCollection.get(currentAccountId).get('name'));
-                            };
-                        }
+                        };
                     }
-                    contactsList.switchSet('starred', getter);
-                    break;
+                }
+                contactsList.switchSet('starred', getter);
+                break;
                 case 'hasnumber':
                     if (currentGroupId === 'all') {
                         if (currentAccountId === 'all') {
@@ -170,9 +170,11 @@
                         }
                     }
                     contactsList.switchSet('hasnumber', getter);
-                    break;
+                break;
+                case 'search' :
+                    getter = contactsCollection.getByKeyWord;
+                    contactsList.switchSet('search', getter);
                 }
-
                 this.updateHeader();
             },
             bindContactsCollectionEvents : function () {
@@ -183,9 +185,10 @@
                 });
 
                 contactsCollection.on('refresh', function () {
+                    if (contactsList.currentSetName === 'search') {
+                        this.refresh('search');
+                    }
                     this.updateHeader();
-
-                    this.refresh();
                 }, this);
             },
             toggleEmptyTip : function () {
@@ -261,6 +264,7 @@
                     }
                 }, this);
             },
+
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -278,6 +282,17 @@
                 var headerText = '';
                 var length = contactsList.currentModels.length;
 
+                if(this.list.currentSetName === 'search') {
+                    this.$('.button-return').show();
+
+                    headerText = StringUtil.format(i18n.contact.CONTACT_TIP_PART, contactsCollection.getByKeyWord().length, contactsCollection.keyword);
+                    this.$('.count-tip').html(headerText);
+
+                    return;
+                } else {
+                    this.$('.button-return').hide();
+                }
+
                 if (currentGroupId !== 'all') {
                     headerText = StringUtil.format(i18n.contact.CONTACT_GROUP_TEXT, length);
                 } else {
@@ -291,6 +306,7 @@
                 }
 
                 this.$('.count-tip').html(headerText);
+
             },
             highlight : function (msg) {
                 if (_.pluck(contactsList.currentModels, 'id').indexOf(msg.id) < 0) {
@@ -305,6 +321,17 @@
                     contactsList.addSelect(contact.id);
                     contactsList.scrollTo(contact);
                 }
+            },
+
+            clickButtonReturn : function () {
+                this.refresh('all');
+                this.trigger('__RETURN_DEFAULT');
+            },
+            showContactsByKeyword : function () {
+                this.refresh('search');
+            },
+            events: {
+               'click .button-return' : 'clickButtonReturn'
             }
         });
 

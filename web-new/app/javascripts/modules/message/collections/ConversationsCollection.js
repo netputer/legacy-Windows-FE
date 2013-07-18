@@ -76,6 +76,8 @@
                 var unreadCount = 0;
                 var loading = false;
                 var syncing = false;
+                var keyword = "";
+                var modelsByKeywordIds = [];
                 Object.defineProperties(this, {
                     totalCount : {
                         set : function (value) {
@@ -107,6 +109,23 @@
                         },
                         get : function () {
                             return syncing;
+                        }
+                    },
+                    keyword : {
+                        set : function (value) {
+                            keyword = value;
+                            this.modelsByKeywordIds = [];
+                        },
+                        get : function () {
+                            return keyword;
+                        }
+                    },
+                    modelsByKeywordIds : {
+                        set : function (value) {
+                            modelsByKeywordIds = value;
+                        },
+                        get : function () {
+                            return modelsByKeywordIds;
                         }
                     }
                 });
@@ -309,8 +328,37 @@
 
                 return deferred.promise();
             },
+            searchConversationAsync : function () {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.SMS_SEARCH_CONVERSATION,
+                    data : {
+                        query : this.keyword
+                    },
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('ConversationsCollection - Search success.');
+                            this.modelsByKeywordIds = resp.body.value.split(',');
+                            deferred.resolve(resp);
+
+                        } else {
+                            console.error('ConversationsCollection - Search failed. Error info: ' + resp.state_code);
+                            this.modelsByKeywordIds = [];
+                            deferred.reject(resp);
+                        }
+                    }.bind(this)
+                });
+
+                return deferred.promise();
+            },
             getAll : function () {
                 return this.models;
+            },
+            getByKeyword : function () {
+                return _.map(this.modelsByKeywordIds, function (id) {
+                    return this.get(id);
+                }, this);
             }
         });
 

@@ -26,6 +26,23 @@
     position: absolute;
     right: 0;
 
+    .button-return {
+        position: absolute;
+        display: none;
+
+        &:hover {
+            .return{
+                @include button-sprite(return-hover);
+            }
+        }
+
+        &:active {
+            .return {
+                @include button-sprite(return-active);
+            }
+        }
+    }
+
     .count-tip {
         background-color: $bgColor;
         border-bottom: 1px $borderColor solid;

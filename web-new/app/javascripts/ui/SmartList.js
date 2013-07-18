@@ -610,7 +610,10 @@
             scrollTo : function (model) {
                 var index = this.currentModels.indexOf(model);
                 this.$(CLASS_MAPPING.SCROLL_CTN)[0].scrollTop = index * this.itemHeight;
-                this.onScreenItems[0].$el[0].scrollIntoView();
+
+                if (this.onScreenItems[0]){
+                    this.onScreenItems[0].$el[0].scrollIntoView();
+                }
             },
             dragoverBody : function (evt) {
                 evt.stopPropagation();

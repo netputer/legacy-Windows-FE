@@ -192,6 +192,9 @@ define({
     RECOMMEND_LIST_EMPTY : '好累啊，明天再玩吧！',
     GET_RECOMMEND_ERROR : '抱歉，猜不着啦',
 
+    RETURN_ALL : '全部应用',
+    SEARCH_TIP_PART : '{1} 个与「{2}」有关的应用',
+
     /* Permission info */
     "android.permission-group.ACCOUNTS" : "访问您的账号",
     "android.permission-group.COST_MONEY" : "需要您付费的服务",

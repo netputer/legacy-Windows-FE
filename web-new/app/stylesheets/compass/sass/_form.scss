@@ -147,7 +147,7 @@ button.w-icon-btn {
              update, up, down, star, sd, device, play-black, pause-black,
              refresh-black, fullscreen-black, share-black, merge, ring, itunes,
              open-folder-black, comment, share, like, dislike, reload, fullscreen,
-             move-down, reset {
+             move-down, reset, return {
             &.#{$icon} {
                 @include button-sprite(#{$icon});
             }
