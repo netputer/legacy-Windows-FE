@@ -8,6 +8,7 @@
         'Configuration',
         'Internationalization',
         'ui/TemplateFactory',
+        'utilities/StringUtil',
         'welcome/views/FeedCardView',
         'task/TaskService',
         'browser/views/BrowserModuleView'
@@ -19,6 +20,7 @@
         CONFIG,
         i18n,
         TemplateFactory,
+        StringUtil,
         FeedCardView,
         TaskService,
         BrowserModuleView
@@ -61,7 +63,9 @@
                     return item.key === $(evt.currentTarget).data('key');
                 });
 
-                BrowserModuleView.navigateToThirdParty(item.extId, '', item.imprUrl);
+                var basePath = 'http://apps.wandoujia.com/apps/{1}?pos=w/start_page_list';
+
+                BrowserModuleView.navigateToThirdParty(item.extId, '', StringUtil.format(basePath, item.key));
             },
             events : {
                 'click .button-action' : 'clickButtonAction',

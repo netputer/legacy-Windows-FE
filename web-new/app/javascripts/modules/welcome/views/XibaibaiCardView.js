@@ -4,6 +4,8 @@
         'backbone',
         'underscore',
         'doT',
+        'IO',
+        'Configuration',
         'Internationalization',
         'ui/TemplateFactory',
         'utilities/StringUtil',
@@ -16,6 +18,8 @@
         Backbone,
         _,
         doT,
+        IO,
+        CONFIG,
         i18n,
         TemplateFactory,
         StringUtil,
@@ -54,13 +58,19 @@
 
                 return this;
             },
-            clickButtonDetail : function () {
-            },
             clickButtonAction : function () {
+                IO.requestAsync({
+                    url : CONFIG.actions.PUBLISH_EVENT,
+                    data : {
+                        channel : CONFIG.events.WEB_NAVIGATE,
+                        value : JSON.stringify({
+                            type : CONFIG.enums.NAVIGATE_TYPE_APP_WASH
+                        })
+                    }
+                });
             },
             events : {
-                'click .button-action' : 'clickButtonAction',
-                'click .button-detail' : 'clickButtonDetail'
+                'click .button-action' : 'clickButtonAction'
             }
         });
 

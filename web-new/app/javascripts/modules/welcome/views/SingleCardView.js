@@ -8,6 +8,7 @@
         'Internationalization',
         'ui/TemplateFactory',
         'ui/ImageLoader',
+        'utilities/StringUtil',
         'welcome/views/FeedCardView',
         'task/TaskService',
         'browser/views/BrowserModuleView'
@@ -19,6 +20,7 @@
         i18n,
         TemplateFactory,
         imageLoader,
+        StringUtil,
         FeedCardView,
         TaskService,
         BrowserModuleView
@@ -45,7 +47,8 @@
                 TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
             },
             clickButtonNavigate : function () {
-                BrowserModuleView.navigateToThirdParty(this.model.get('extId'), '', this.model.get('imprUrl'));
+                var basePath = 'http://apps.wandoujia.com/apps/{1}?pos=w/start_page_single';
+                BrowserModuleView.navigateToThirdParty(this.model.get('extId'), '', StringUtil.format(basePath, this.model.get('key')));
             },
             events : {
                 'click .button-action' : 'clickButtonAction',
