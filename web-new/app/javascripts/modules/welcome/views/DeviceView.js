@@ -11,8 +11,7 @@
         'IO',
         'Configuration',
         'Log',
-        'welcome/views/DeviceToolsView',
-        'music/views/SetRingWindowView'
+        'welcome/views/ScreenControlView'
     ], function (
         Backbone,
         _,
@@ -24,14 +23,15 @@
         IO,
         CONFIG,
         log,
-        DeviceToolsView,
-        SetRingWindowView
+        ScreenControlView
     ) {
         console.log('DeviceView - File loaded.');
 
         var setTimeout = window.setTimeout;
         var setInterval = window.setInterval;
         var clearInterval = window.clearInterval;
+
+        var screenControlView;
 
         var SCREENSHOT_DEFAULTS = {
             top : 60,
@@ -48,10 +48,8 @@
 
         var checkMousePosition = function () {
             return this.$('.screen')[0].contains(MouseState.currentElement) ||
-                    this.$('.button-set-ring')[0].contains(MouseState.currentElement);
+                    deviceView.$el[0].contains(MouseState.currentElement);
         };
-
-        var deviceToolsView;
 
         var DeviceView = Backbone.View.extend({
             className : 'w-welcome-device-ctn',
@@ -101,23 +99,21 @@
             render : function () {
                 this.$el.html(this.template({}));
 
-                deviceToolsView = DeviceToolsView.getInstance({
-                    deviceView : this
-                });
-
                 this.renderShell(Device, Device.get('shell'));
                 this.renderScreenshot(Device, Device.get('screenshot'));
 
                 Device.getScreenshotAsync();
                 Device.getShellInfoAsync();
 
+                screenControlView = ScreenControlView.getInstance({
+                    deviceView : this
+                });
+
+                this.$el.append(screenControlView.render().$el);
+
                 return this;
             },
             renderScreenshot : function (Device, screenshot) {
-                if (this.$(deviceToolsView.$el).length === 0) {
-                    this.$('.stage-ctn').append(deviceToolsView.render().$el);
-                }
-
                 var $screen = this.$('.screen');
                 var $screenImg = $screen.find('img');
                 $screenImg.toggle(!!screenshot.path);
@@ -201,18 +197,25 @@
 
                 return deferred.promise();
             },
+            refreshScreen : function () {
+                this.showScreenshotAsync().always(function () {
+                    if (slideShowSwitch) {
+                        this.refreshScreen();
+                    }
+                }.bind(this));
+            },
             mouseoverScreen : function () {
-                if (Device.get('isConnected') && !slideShowSwitch && !this.loading) {
+                if (Device.get('isConnected') && !this.loading) {
                     setTimeout(function () {
                         if (checkMousePosition.call(this)) {
-                            this.$('.button-set-ring').fadeIn();
+                            screenControlView.$el.fadeIn();
                             this.$('.screen img').css({
                                 opacity : '.3'
                             });
 
                             var delegate = setInterval(function () {
                                 if (!checkMousePosition.call(this)) {
-                                    this.$('.button-set-ring').fadeOut();
+                                    screenControlView.$el.fadeOut();
                                     this.$('.screen img').css({
                                         opacity : 1
                                     });
@@ -224,22 +227,12 @@
                     }.bind(this), 1000);
                 }
             },
-            refreshScreen : function () {
-                this.showScreenshotAsync().always(function () {
-                    if (slideShowSwitch) {
-                        this.refreshScreen();
-                    }
-                }.bind(this));
-            },
             play : function () {
                 slideShowSwitch = true;
                 this.refreshScreen();
             },
             stop : function () {
                 slideShowSwitch = false;
-            },
-            clickButtonSetRing : function () {
-                SetRingWindowView.getInstance().show();
             },
             dbclickScreen : function () {
                 if (Device.get('isConnected') && Device.get('isUSB')) {
@@ -252,7 +245,6 @@
             },
             events : {
                 'mouseover .screen' : 'mouseoverScreen',
-                'click .button-set-ring' : 'clickButtonSetRing',
                 'dblclick .screen img' : 'dbclickScreen'
             }
         });

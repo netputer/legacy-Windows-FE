@@ -1,5 +1,9 @@
 /*global define*/
 define({
+    CLOCK_DATE_FORMAT : 'MM 月 dd 日',
+
+    WELCOME_PAGE_SHOT : '分享您的手机和壁纸到新浪微博',
+    WELCOME_PAGE_SHOT_FOR_FACEBOOK : '分享您的手机和壁纸到 Facebook',
     SCREEN_SHOT_CLIPBOARD_SUCCESS : '已将截图复制到剪贴板',
     SCREEN_SHOT_FAILD : '抱歉，截屏操作失败',
     SCREEN_SHOT_CANCELD : '截屏操作已取消',
@@ -82,5 +86,21 @@ define({
     GUIDE_SUGGESTION : '更多精彩',
     GUIDE_SUGGESTION_TIP : '丰富多彩的内容站期待您的发现。',
     GUIDE_SUGGESTION_READ_ALL : '我看完了',
-    GUIDE_TEXT_COUNTER : '{1} / {2}'
+    GUIDE_TEXT_COUNTER : '{1} / {2}',
+
+    CARD_UPDATE_TITLE : '软件升级',
+    CARD_UPDATE_ACTION : '全部升级',
+    CARD_UPDATE_DESC : '{1} 等 {2} 个软件有升级。<span class="button-detail link">详情»</span>',
+    CARD_APP_TAG_LINE : '{1} · {2}人安装',
+    CARD_APP_FOOTER : '{1} · {2}',
+    CARD_XIBAIBAI_TITLE : '山寨软件',
+    CARD_XIBAIBAI_DESC : '山寨应用有风险！豌豆洗白白可以把他们更换成官方版或没有广告的版本。',
+    CARD_XIBAIBAI_ACTION : '洗一下',
+    CARD_CLOUD_PHOTO_TITLE : '要自动同步云相册吗？',
+    CARD_CLOUD_PHOTO_DESC : '开启云相册同步后，豌豆荚将自动把您云相册的图片同步到电脑，查看更方便。',
+    CARD_CLOUD_PHOTO_OPEN : '开启',
+    CARD_BACKUP_TITLE : '已经 10 天没有备份了',
+    CARD_BACKUP_DESC : '经常备份手机，再也不用担心数据丢失。您也可以尝试 自动备份 功能。',
+    CARD_BACKUP_ACTION : '备份'
+
 });

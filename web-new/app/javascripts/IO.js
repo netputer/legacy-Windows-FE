@@ -159,9 +159,10 @@
                     contentType : 'application/json',
                     data : model.data || {},
                     dataType : 'json',
-                    processData : false,
+                    processData : true,
                     success : options.success,
-                    error : options.error
+                    error : options.error,
+                    xhrFields: model.xhrFields || {}
                 };
 
                 IO.requestAsync(url, params);

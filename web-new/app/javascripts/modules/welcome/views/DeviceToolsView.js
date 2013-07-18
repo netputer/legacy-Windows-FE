@@ -6,7 +6,6 @@
         'doT',
         'jquery',
         'ui/TemplateFactory',
-        'ui/MenuButton',
         'ui/PopupTip',
         'ui/Panel',
         'Configuration',
@@ -22,7 +21,6 @@
         doT,
         $,
         TemplateFactory,
-        MenuButton,
         PopupTip,
         Panel,
         CONFIG,
@@ -37,8 +35,6 @@
 
         var setTimeout = window.setTimeout;
 
-        var settingMenu;
-
         var destination = Settings.get('screenShot-destination') !== undefined ? Settings.get('screenShot-destination') : CONFIG.enums.SCREEN_SHOT_DESTINATION_FILE;
         var wrapWithShell = Settings.get('screenShot-wrapWithShell') !== undefined ? Settings.get('screenShot-wrapWithShell') : 1;
 
@@ -46,71 +42,6 @@
             template : doT.template(TemplateFactory.get('welcome', 'device-tools')),
             className : 'w-welcome-device-tools-ctn w-anima-fade-in',
             initialize : function () {
-                settingMenu = new MenuButton({
-                    items : [{
-                        label : i18n.welcome.SCREEN_SHOT_SAVE_TO_FILE,
-                        type : 'radio',
-                        name : 'screenshotDes',
-                        value : 'file',
-                        checked : destination === CONFIG.enums.SCREEN_SHOT_DESTINATION_FILE
-                    }, {
-                        label : i18n.welcome.SCREEN_SHOT_SAVE_TO_CLIPBOARD,
-                        type : 'radio',
-                        name : 'screenshotDes',
-                        value : 'clipbord',
-                        checked : destination !== CONFIG.enums.SCREEN_SHOT_DESTINATION_FILE
-                    }, {
-                        type : 'hr'
-                    }, {
-                        label : i18n.welcome.SCEEN_SHOT_WITHOUT_WRAP,
-                        type : 'radio',
-                        name : 'screenshotType',
-                        value : false,
-                        checked : wrapWithShell !== 1
-                    }, {
-                        label : i18n.welcome.SCREEN_SHOT_WITH_WRAP,
-                        type : 'radio',
-                        name : 'screenshotType',
-                        value : true,
-                        checked : wrapWithShell === 1
-                    }, {
-                        type : 'hr'
-                    }, {
-                        label : i18n.welcome.SAVE_PATH_FOR_SCREENSHOT,
-                        type : 'normal',
-                        name : 'savePath',
-                        value : 'savePath'
-                    }]
-                });
-
-                settingMenu.on('select', function (data) {
-                    switch (data.name) {
-                    case 'screenshotDes':
-                        if (data.value === 'file') {
-                            destination = CONFIG.enums.SCREEN_SHOT_DESTINATION_FILE;
-                        } else {
-                            destination = CONFIG.enums.SCREEN_SHOT_DESTINATION_CLIPBOARD;
-                        }
-                        Settings.set('screenShot-destination', destination, true);
-                        break;
-                    case 'screenshotType':
-                        if (data.value === 'true') {
-                            wrapWithShell = 1;
-                        } else {
-                            wrapWithShell = 0;
-                        }
-                        Settings.set('screenShot-wrapWithShell', wrapWithShell, true);
-                        break;
-                    case 'savePath':
-                        IO.requestAsync(CONFIG.actions.SAVE_SCREENSHOT);
-
-                        log({
-                            'event' : 'ui.click.welcome.save_screenshot_dir'
-                        });
-                        break;
-                    }
-                }, this);
-
                 this.listenTo(Device, 'change', this.toggleView);
             },
             toggleView : function (Device) {
@@ -141,15 +72,6 @@
             },
             render : function () {
                 this.$el.html(this.template({}));
-
-                this.$('.screen-shot-setting').append(settingMenu.render().$el.addClass('min toggle'));
-
-                _.each(this.$('button[data-title]'), function (ele) {
-                    var popup = new PopupTip({
-                        $host : $(ele)
-                    });
-                    popup.zero();
-                });
 
                 this.toggleView(Device);
 
