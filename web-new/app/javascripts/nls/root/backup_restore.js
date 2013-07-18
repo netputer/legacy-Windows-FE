@@ -138,7 +138,7 @@ define({
 
     CHOOSE_BACKUP_DATA_TIP : '请选择要备份的数据',
     CHOOSE_RESTORE_DATA_TIP : '请选择要恢复的数据',
-    LOGIN_FAILED_TIP : '很抱歉，登陆失败。请检查您的网络后重试登陆，或选择本地备份',
+    LOGIN_FAILED_TIP : '很抱歉，登录失败。请检查您的网络后重试登录，或选择本地备份',
     PERMISSION_TIP : '读取手机数据失败。<br />可能是手机上的安全软件阻止了豌豆荚读取联系人或信息的权限，请在手机上「权限管理」中授权。<a target="_default" href="http://help.wandoujia.com/entries/22017678?utm_campaign=tips&utm_medium=client&utm_source=sms">帮助</a>',
 
     SET_FILE_NAME : '请命名备份文件',
