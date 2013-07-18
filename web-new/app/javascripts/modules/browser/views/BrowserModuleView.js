@@ -41,10 +41,6 @@
                         }
                     }
                 });
-
-                Backbone.on('switchModule:browser', function (id, url) {
-                    this.navigateToThirdParty(id, '', url);
-                }, this);
             },
             render : function () {
                 this.rendered = true;
