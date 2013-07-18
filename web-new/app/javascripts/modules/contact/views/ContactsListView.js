@@ -185,9 +185,7 @@
                 });
 
                 contactsCollection.on('refresh', function () {
-                    if (contactsList.currentSetName === 'search') {
-                        this.refresh('search');
-                    }
+                    this.refresh();
                     this.updateHeader();
                 }, this);
             },
