@@ -17,9 +17,9 @@
     ) {
         console.log('iTunesService - File loaded. ');
 
-        var iTunesService = _.extend(function () {}, Backbone.Events);
+        var ITunesService = _.extend(function () {}, Backbone.Events);
 
-        iTunesService.checkiTunesAsync = function () {
+        ITunesService.checkiTunesAsync = function () {
             var deferred = $.Deferred();
 
             IO.requestAsync({
@@ -36,6 +36,6 @@
             return deferred.promise();
         };
 
-        return iTunesService;
+        return ITunesService;
     });
 }(this));

@@ -647,6 +647,10 @@
 
             .delete {
                 width: 98px;
+
+                .button-delete {
+                    text-decoration: none;
+                }
             }
 
             .new-name {
@@ -657,6 +661,10 @@
 
             .rename {
                 width: 110px;
+
+                .button-rename {
+                    text-decoration: none;
+                }
             }
 
             .title {
