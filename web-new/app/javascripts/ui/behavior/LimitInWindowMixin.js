@@ -17,26 +17,39 @@
                 'width' : 'auto'
             });
 
-            var hostOffsetHeight = this.$host[0].offsetHeight;
-            var hostOffsetWidth = this.$host[0].offsetWidth;
-            var thisOffsetHeight = this.$el[0].offsetHeight;
-            var thisOffsetWidth = this.$el[0].offsetWidth;
+            var hostOffsetHeight = this.$host[0].offsetHeight; // 按钮的高度
+            var hostOffsetWidth = this.$host[0].offsetWidth; // 按钮的宽度
+            var thisOffsetHeight = this.$el[0].offsetHeight; // 菜单的高度
+            var thisOffsetWidth = this.$el[0].offsetWidth; // 菜单的宽度
 
-            var calculatedTop = hostOffset.top - thisOffsetHeight;
+            var calculatedTop = hostOffset.top - thisOffsetHeight; // 向下显示时，菜单顶端到窗口顶端的距离
+            var calculatedBottom = WindowState.height - (hostOffset.top + hostOffsetHeight + thisOffsetHeight); // 向下显示时，菜单底端到窗口底端的距离
 
             if (this.directionDown) {
-                if (hostOffset.top + hostOffsetHeight + thisOffsetHeight > WindowState.height) {
+                if (calculatedBottom < 0) {
+                    // 向下溢出时
                     if (calculatedTop >= 0) {
+                        // 向下溢出，但向上不溢出，则向上显示
                         topOffset = calculatedTop;
                     } else {
-                        topOffset = hostOffset.top + hostOffsetHeight;
+                        // 向下溢出，向上也溢出，需要判断
                         this.$el.width(this.$el.width() + 16);
                         thisOffsetWidth = this.$el[0].offsetWidth;
-                        this.$el.css('max-height', WindowState.height - topOffset - (thisOffsetHeight - this.$el.height()) - 80);
+
+                        if (calculatedTop < calculatedBottom) {
+                            // 向上溢出比向下溢出多，则向下限高显示
+                            topOffset = hostOffset.top + hostOffsetHeight;
+                            this.$el.css('max-height', WindowState.height - topOffset - 100);
+                        } else {
+                            // 向下溢出比向上溢出得多，则向上限高显示
+                            topOffset = 200;
+                            this.$el.css('max-height', hostOffset.top - (thisOffsetHeight - this.$el.height()) - 200);
+                        }
                     }
                 } else {
-                    topOffset = hostOffset.top + hostOffsetHeight;
-                }
+                    // 向下不溢出，则向下显示
+                   topOffset = hostOffset.top + hostOffsetHeight;
+               }
             } else {
                 if (calculatedTop > 0) {
                     topOffset = calculatedTop;
