@@ -35,32 +35,53 @@
         AppsCollection,
         TaskService
     ) {
+        var queryResponse;
+
         var StarterView = CardView.getClass().extend({
             className : CardView.getClass().prototype.className + ' w-guide-starter',
             template : doT.template(TemplateFactory.get('guide', 'starter')),
             initialize : function () {
-                this.on('next', function () {
-                    Settings.set('user_guide_shown_starter', true, true);
+                var apps = [];
+                Object.defineProperties(this, {
+                    apps : {
+                        set : function (value) {
+                            apps = value;
+                        },
+                        get : function () {
+                            return apps;
+                        }
+                    }
                 });
+
+                this.on('next', function () {
+                    Settings.set('user_guide_shown_starter' + this.options.type, true, true);
+                }, this);
             },
             loadAppsAsync : function () {
                 var deferred = $.Deferred();
 
-                IO.requestAsync({
-                    url : CONFIG.actions.APP_STARTER,
-                    data : {
-                        f : 'windows'
-                    },
-                    success : function (resp) {
-                        this.queryResults = resp;
-                        deferred.resolve();
-                    }.bind(this),
-                    error : deferred.reject
-                });
+                if (!queryResponse) {
+                    IO.requestAsync({
+                        url : CONFIG.actions.APP_STARTER,
+                        data : {
+                            f : 'windows'
+                        },
+                        success : function (resp) {
+                            this.queryResults = resp;
+                            queryResponse = resp;
+                            deferred.resolve();
+                        }.bind(this),
+                        error : deferred.reject
+                    });
+                } else {
+                    setTimeout(function () {
+                        this.queryResults = queryResponse;
+                        deferred.resolve()
+                    }.bind(this));
+                }
 
                 return deferred.promise();
             },
-            apps : [],
             checkAppsAsync : function () {
                 var deferred = $.Deferred();
 
@@ -86,29 +107,18 @@
             checkAsync : function () {
                 var deferred = $.Deferred();
 
-                if (Settings.get('user_guide_shown_starter')) {
+                if (Settings.get('user_guide_shown_starter' + this.options.type)) {
                     setTimeout(deferred.reject);
                 } else {
                     $.when(this.loadAppsAsync(), this.checkAppsAsync()).done(function () {
                         var appsCollection = AppsCollection.getInstance();
 
                         var i;
-                        var length = this.queryResults[0].apps.length;
+                        var apps = this.queryResults[this.options.type].apps;
+                        var length = apps.length;
                         var app;
                         for (i = 0; i < length; i++) {
-                            app = this.queryResults[0].apps[i];
-                            if (appsCollection.get(app.packageName) === undefined) {
-                                this.apps.push(app);
-                            }
-                            if (this.apps.length === 8) {
-                                break;
-                            }
-                        }
-
-                        length = this.queryResults[1].apps.length;
-
-                        for (i = 0; i < length; i++) {
-                            app = this.queryResults[1].apps[i];
+                            app = apps[i];
                             if (appsCollection.get(app.packageName) === undefined) {
                                 this.apps.push(app);
                             }
@@ -118,7 +128,8 @@
                         }
 
                         log({
-                            'event' : 'debug.guide_starter_show'
+                            'event' : 'debug.guide_starter_show',
+                            'type' : this.options.type
                         });
 
                         deferred.resolve();
@@ -133,7 +144,8 @@
 
                 this.$el.html(this.template({
                     action : this.options.action,
-                    apps : this.apps
+                    apps : this.apps,
+                    type : this.options.type
                 }));
 
                 this.$('[data-title]').each(function () {
@@ -156,13 +168,15 @@
                 TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
 
                 log({
-                    'event' : 'ui.click.guide_starter_install'
+                    'event' : 'ui.click.guide_starter_install',
+                    'type' : this.options.type
                 });
             },
             clickButtonSkip : function () {
                 StarterView.__super__.clickButtonSkip.call(this);
                 log({
-                    'event' : 'ui.click.guide_starter_skip'
+                    'event' : 'ui.click.guide_starter_skip',
+                    'type' : this.options.type
                 });
             },
             clickButtonAction : function () {
@@ -183,7 +197,8 @@
                 this.trigger('next');
 
                 log({
-                    'event' : 'ui.click.guide_starter_install_all'
+                    'event' : 'ui.click.guide_starter_install_all',
+                    'type' : this.options.type
                 });
             },
             events : {
@@ -192,10 +207,10 @@
         });
 
         var factory = _.extend({
-            getInstance : function () {
-                return new StarterView({
+            getInstance : function (args) {
+                return new StarterView(_.extend({
                     action : i18n.welcome.GUIDE_STARTER_INSTALL_ALL
-                });
+                }, args));
             }
         });
 

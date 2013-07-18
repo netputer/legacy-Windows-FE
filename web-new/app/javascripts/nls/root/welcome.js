@@ -88,6 +88,8 @@ define({
     GUIDE_STARTER_TITLE : '必备应用',
     GUIDE_STARTER_TIP : '您的手机应用有点少，给您的设备安装优质必备应用吧。',
     GUIDE_STARTER_APP_TIP : '{1}人安装 · {2}% 好评率<br />{3}',
+    GUIDE_STARTER_GAME_TITLE : '必备游戏',
+    GUIDE_STARTER_GAME_TIP : '大家都在玩的热门游戏，您也装几个试试吧。',
     GUIDE_TIPS : '小技巧',
     GUIDE_TIPS_TIP : '更多关于豌豆荚的小技巧，一般人我不告诉他！',
     GUIDE_TIPS_READ_ALL : '都知道了',
