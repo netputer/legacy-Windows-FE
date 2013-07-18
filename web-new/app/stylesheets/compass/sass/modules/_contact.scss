@@ -37,6 +37,24 @@
     right: 378px;
     top: 0;
 
+    .button-return {
+        display: none;
+        margin-top: -2px;
+        position: absolute;
+
+        &:hover {
+            .return{
+                @include button-sprite(return-hover);
+            }
+        }
+
+        &:active {
+            .return {
+                @include button-sprite(return-active);
+            }
+        }
+    }
+
     .count-tip {
         background-color: $bgColor;
         border-bottom: 1px $borderColor solid;
@@ -629,6 +647,10 @@
 
             .delete {
                 width: 98px;
+
+                .button-delete {
+                    text-decoration: none;
+                }
             }
 
             .new-name {
@@ -639,6 +661,10 @@
 
             .rename {
                 width: 110px;
+
+                .button-rename {
+                    text-decoration: none;
+                }
             }
 
             .title {

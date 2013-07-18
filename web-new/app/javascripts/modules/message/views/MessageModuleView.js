@@ -176,6 +176,27 @@
                 ConversationsCollection.getInstance();
                 ThreadsCollection.getInstance();
             },
+            navigateGroup : function (msg) {
+                PIMCollection.getInstance().get(2).set({
+                    selected : true
+                });
+
+                var search = function () {
+                    ConversationsCollection.getInstance().keyword = msg.keyword;
+                    conversationsListView.showByKeyword();
+                };
+
+                if (conversationsListView) {
+                    search();
+                } else {
+                    var delegate = setInterval(function () {
+                        if (conversationsListView) {
+                            clearInterval(delegate);
+                            search();
+                        }
+                    }, 10);
+                }
+            },
             navigate : function (msg) {
                 PIMCollection.getInstance().get(2).set({
                     selected : true

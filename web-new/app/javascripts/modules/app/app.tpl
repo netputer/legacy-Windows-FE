@@ -424,6 +424,10 @@
 
 <script type="text/x-ui-template" id="app-list">
     <header class="w-list-tab-header">
+        <button class="w-icon-btn transparent button-return">
+            <span class="icon return"></span>{{= i18n.app.RETURN_ALL }}
+        </button>
+        <span class="search-tip hbox"></span>
         <menu class="tab hbox">
             <li class="hbox" data-tab="normal">
                 <div>{{= i18n.misc.NAV_APP_INSTALLED }}</div>

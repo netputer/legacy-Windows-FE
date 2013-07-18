@@ -223,6 +223,8 @@ define({
     IMPORT_FROM_FILE : 'Import from file',
     IMPORT_FROM_BACKUP : 'Import from backup',
 
-    EXPORT_USING_VCARD: 'Export in vCard format'
+    EXPORT_USING_VCARD: 'Export in vCard format',
 
+    RETURN_ALL: 'All contacts',
+    CONTACT_TIP_PART: '{1} contacts related to "{2}"',
 });

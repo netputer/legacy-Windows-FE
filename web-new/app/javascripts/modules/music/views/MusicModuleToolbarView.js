@@ -11,11 +11,11 @@
         'Device',
         'Log',
         'music/collections/MusicsCollection',
-        'music/iTunes/iTunesService',
+        'music/iTunes/ITunesService',
         'music/views/MusicsListView',
         'music/views/ImportMusicView',
         'music/MusicService',
-        'music/iTunes/iTunesController'
+        'music/iTunes/ITunesController'
     ], function (
         _,
         doT,
@@ -27,11 +27,11 @@
         Device,
         log,
         MusicsCollection,
-        iTunesService,
+        ITunesService,
         MusicsListView,
         ImportMusicView,
         MusicService,
-        iTunesController
+        ITunesController
     ) {
         console.log('MusicModuleToolbarView - File loaded. ');
 
@@ -80,7 +80,7 @@
             render : function () {
                 this.$el.html(this.template({}));
 
-                iTunesService.checkiTunesAsync().done(function (resp) {
+                ITunesService.checkiTunesAsync().done(function (resp) {
                     if (resp.body.value) {
                         this.$('.button-itunes').show();
                     }
@@ -123,7 +123,7 @@
                 });
             },
             clickButtonITunes : function () {
-                iTunesController.start();
+                ITunesController.start();
             },
             events : {
                 'click .button-add-music' : 'clickButtonAddMusic',

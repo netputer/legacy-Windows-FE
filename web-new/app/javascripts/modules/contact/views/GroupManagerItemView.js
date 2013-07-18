@@ -116,7 +116,7 @@
 
                 setTimeout(function () {
                     this.input.focus();
-                }.bind(this), 10);
+                }.bind(this), 0);
             },
             hideInput : function () {
                 this.renameA.show();
