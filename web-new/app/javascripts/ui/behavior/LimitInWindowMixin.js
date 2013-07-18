@@ -48,8 +48,8 @@
                     }
                 } else {
                     // 向下不溢出，则向下显示
-                   topOffset = hostOffset.top + hostOffsetHeight;
-               }
+                    topOffset = hostOffset.top + hostOffsetHeight;
+                }
             } else {
                 if (calculatedTop > 0) {
                     topOffset = calculatedTop;
