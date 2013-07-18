@@ -71,7 +71,8 @@
                 window.externalCall('', 'navigation', JSON.stringify({
                     id : '',
                     canGoBack : false,
-                    canGoForward : false
+                    canGoForward : false,
+                    canReload : false
                 }));
             } else {
                 $iframe = $(id);
@@ -79,7 +80,8 @@
                 window.externalCall('', 'navigation', JSON.stringify({
                     id : id,
                     canGoBack : history.backCount(id, branch) ? true : false,
-                    canGoForward : history.forwardCount(id, branch) ? true : false
+                    canGoForward : history.forwardCount(id, branch) ? true : false,
+                    canReload : true
                 }));
             }
         };

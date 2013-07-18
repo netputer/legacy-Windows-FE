@@ -63,20 +63,10 @@
                             var left = value.left !== undefined ? value.left : position.left;
                             var top = value.top !== undefined ? value.top : position.top;
 
-                            var matrix = [0, 0, 0];
-                            this.$el[0].style.webkitTransform.replace(/[\w\W]*?\(([\w\W]*?)\)/, function (origin, arg1) {
-                                var temp = arg1.split(',');
-                                _.each(matrix, function (element, index) {
-                                    matrix[index] = Number(temp[index].replace('px', ''));
-                                });
-                            });
-
                             position.left = Math.max(Math.min(left, WindowState.width - this.$el[0].offsetWidth), 0);
                             position.top = Math.max(Math.min(top, WindowState.height - this.$el[0].offsetHeight), 0);
 
-                            this.$el.css({
-                                '-webkit-transform' : 'translate3d(' + Math.floor(position.left) + 'px, '  + Math.floor(position.top) + 'px, 0)'
-                            });
+                            this.$el.offset(position);
                         },
                         get : function () {
                             return _.clone(position);
@@ -189,6 +179,8 @@
                 $('body').append(this.$el.html(this.template({})));
 
                 this.title = this.title;
+
+                this.position = this.$el.offset();
 
                 this.$bodyContent = this.$bodyContent;
 

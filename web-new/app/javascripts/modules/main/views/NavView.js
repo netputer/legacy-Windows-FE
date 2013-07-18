@@ -175,9 +175,7 @@
                                     selected : true
                                 });
                             } else {
-                                pimCollection.get(0).set({
-                                    selected : true
-                                });
+                                jumpToDefaultExtension();
                             }
                         }
                     } else {
