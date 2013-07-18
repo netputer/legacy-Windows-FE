@@ -7,7 +7,7 @@
         'IO',
         'Configuration',
         'Log',
-        'music/iTunes/models/iTunesListModel',
+        'music/iTunes/models/ITunesListModel',
         'music/iTunes/models/ListContextModel',
         'utilities/StringUtil'
     ], function (
@@ -17,15 +17,15 @@
         IO,
         CONFIG,
         log,
-        iTunesListModel,
+        ITunesListModel,
         ListContextModel,
         StringUtil
     ) {
 
         console.log('ItunesListCollection - File loaded');
 
-        var iTunesListCollection = Backbone.Collection.extend({
-            model : iTunesListModel,
+        var ITunesListCollection = Backbone.Collection.extend({
+            model : ITunesListModel,
             initialize : function () {
                 var loading = false;
                 var syncing = false;
@@ -68,7 +68,7 @@
         var factory = _.extend({
             getInstance : function () {
                 if (!itunesListCollection) {
-                    itunesListCollection = new iTunesListCollection();
+                    itunesListCollection = new ITunesListCollection();
                 }
 
                 return itunesListCollection;

@@ -7,8 +7,8 @@
     ) {
         console.log('iTunesModel - File loaded');
 
-        var iTunesListModel = Backbone.Model.extend({
-            default : {
+        var ITunesListModel = Backbone.Model.extend({
+            defaults : {
                 name : '',
                 size : '',
                 tracks_count : '',
@@ -17,6 +17,6 @@
             }
         });
 
-        return iTunesListModel;
+        return ITunesListModel;
     });
 }(this));

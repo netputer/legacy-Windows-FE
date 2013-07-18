@@ -17,7 +17,7 @@
         'ui/TemplateFactory',
         'ui/behavior/ButtonSetMixin',
         'utilities/StringUtil',
-        'music/iTunes/collections/iTunesCollection'
+        'music/iTunes/collections/ITunesCollection'
     ], function (
         _,
         doT,
@@ -35,7 +35,7 @@
         TemplateFactory,
         ButtonSetMixin,
         StringUtil,
-        iTunesCollection
+        ITunesCollection
     ) {
 
         console.log('iTunes ImportView - File Loaded');
@@ -62,7 +62,7 @@
                 ];
 
                 this.on(UIHelper.EventsMapping.SHOW, function () {
-                    itunesCollection = iTunesCollection.getInstance();
+                    itunesCollection = ITunesCollection.getInstance();
 
                     this.once('remove', function () {
                         itunesCollection = undefined;

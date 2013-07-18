@@ -10,7 +10,7 @@
         'ui/AlertWindow',
         'ui/UIHelper',
         'Internationalization',
-        'music/iTunes/collections/iTunesListCollection'
+        'music/iTunes/collections/ITunesListCollection'
     ], function (
         Backbone,
         _,
@@ -21,7 +21,7 @@
         AlertWindow,
         UIHelper,
         i18n,
-        iTunesListCollection
+        ITunesListCollection
     ) {
 
         console.log('PlayListItem - File loaded');
@@ -34,7 +34,7 @@
             className : 'itunes-play-list-item hbox',
             initialize : function () {
                 PlayListItemView.__super__.initialize.apply(this, arguments);
-                itunesListCollection = iTunesListCollection.getInstance();
+                itunesListCollection = ITunesListCollection.getInstance();
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));

@@ -7,7 +7,7 @@
         'IO',
         'Configuration',
         'Log',
-        'music/iTunes/models/iTunesModel',
+        'music/iTunes/models/ITunesModel',
         'music/iTunes/models/ListContextModel',
         'utilities/StringUtil'
     ], function (
@@ -17,15 +17,15 @@
         IO,
         CONFIG,
         log,
-        iTunesModel,
+        ITunesModel,
         ListContextModel,
         StringUtil
     ) {
 
         console.log('ItunesCollection - File loaded');
 
-        var iTunesCollection = Backbone.Collection.extend({
-            model : iTunesModel,
+        var ITunesCollection = Backbone.Collection.extend({
+            model : ITunesModel,
             url : CONFIG.actions.ITUNES_IMPORT_QUERY,
             initialize : function () {
                 var loading = false;
@@ -83,11 +83,12 @@
                         } else {
                             deferred.reject(resp.body || {});
                         }
-                    }.bind(this)
-                });
 
-                log({
-                    'event' : 'debug.itunes.import.begin'
+                        log({
+                            'event' : 'debug.itunes.import.begin'
+                        });
+
+                    }
                 });
 
                 return deferred.promise();
@@ -218,7 +219,7 @@
         var factory = _.extend({
             getInstance : function () {
                 if (!itunesCollection) {
-                    itunesCollection = new iTunesCollection();
+                    itunesCollection = new ITunesCollection();
                 }
 
                 return itunesCollection;

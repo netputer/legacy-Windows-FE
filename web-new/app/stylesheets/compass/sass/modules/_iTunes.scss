@@ -62,10 +62,6 @@
 .w-iTunes-audio-list-panel {
     & .audio-list-content {
         @include list-base;
-
-        &.loading {
-            background: url(../images/loading_16X16.gif) center no-repeat;
-        }
     }
 
     & .select-count-wrap {

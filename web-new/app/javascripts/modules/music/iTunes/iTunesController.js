@@ -10,7 +10,7 @@
         'utilities/StringUtil',
         'utilities/FormatDate',
         'ui/AlertWindow',
-        'music/iTunes/collections/iTunesCollection',
+        'music/iTunes/collections/ITunesCollection',
         'music/iTunes/views/SelectLibraryView',
         'music/iTunes/views/SelectSourceView',
         'music/iTunes/views/AudioListView',
@@ -25,7 +25,7 @@
         StringUtil,
         FormatDate,
         AlertWindow,
-        iTunesCollection,
+        ITunesCollection,
         SelectLibraryView,
         SelectSourceView,
         AudioListView,
@@ -112,13 +112,9 @@
                 audioListView.off('_CANCEL');
                 audioListView.off('_NEXT_STEP');
 
-                selectLibraryView.on('_NEXT_STEP', function (data) {
-                    selectSourceView.show(data);
-                }, this);
+                selectLibraryView.on('_NEXT_STEP', selectSourceView.show, selectSourceView);
 
-                selectLibraryView.on('_CANCEL', function () {
-                    itunesCollection.finishAsync();
-                }, this);
+                selectLibraryView.on('_CANCEL', itunesCollection.finishAsync, itunesCollection);
 
                 selectSourceView.on('_NEXT_STEP', function (data) {
                     switch (parseInt(data.sourceType, 10)) {
@@ -130,15 +126,11 @@
                         audioListView.setType(data.sourceType);
                         audioListView.show();
                     }
-                }, this);
+                });
 
-                selectSourceView.on('_CANCEL', function () {
-                    itunesCollection.finishAsync();
-                }, this);
+                selectSourceView.on('_CANCEL', itunesCollection.finishAsync, itunesCollection);
 
-                audioListView.on('_PRE_STEP', function () {
-                    selectSourceView.show();
-                }, this);
+                audioListView.on('_PRE_STEP', selectSourceView.show, selectSourceView);
 
                 audioListView.on('_NEXT_STEP', function (data) {
                     showConfirmImport(data, importView.show, importView);
@@ -172,7 +164,7 @@
             return {
                 start : function () {
                     if (!itunesCollection) {
-                        itunesCollection = iTunesCollection.getInstance();
+                        itunesCollection = ITunesCollection.getInstance();
                     }
                     itunesCollection.beginAsync().done(showStartPanel.bind(this)).fail(this.startImportiTunesFail.bind(this));
                 },

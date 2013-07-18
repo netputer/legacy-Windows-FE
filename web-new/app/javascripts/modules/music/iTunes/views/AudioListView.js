@@ -11,8 +11,8 @@
         'ui/TemplateFactory',
         'ui/SmartList',
         'utilities/StringUtil',
-        'music/iTunes/collections/iTunesCollection',
-        'music/iTunes/collections/iTunesListCollection',
+        'music/iTunes/collections/ITunesCollection',
+        'music/iTunes/collections/ITunesListCollection',
         'music/iTunes/views/AudioListItemView',
         'music/iTunes/views/PlayListItemView'
     ], function (
@@ -26,8 +26,8 @@
         TemplateFactory,
         SmartList,
         StringUtil,
-        iTunesCollection,
-        iTunesListCollection,
+        ITunesCollection,
+        ITunesListCollection,
         AudioListItemView,
         PlayListItemView
     ) {
@@ -173,7 +173,6 @@
             },
             remove : function () {
                 AudioListBodyView.__super__.remove.call(this, arguments);
-                this.stopListening(this.listView, '__SELECT_CHANGE');
                 this.listView.remove();
             }
         });
@@ -216,9 +215,9 @@
                 this.on(UIHelper.EventsMapping.SHOW, function () {
 
                     if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
-                        itunesListCollection = iTunesListCollection.getInstance();
+                        itunesListCollection = ITunesListCollection.getInstance();
                     } else {
-                        itunesCollection = iTunesCollection.getInstance();
+                        itunesCollection = ITunesCollection.getInstance();
                     }
 
                     this.bodyView = new AudioListBodyView();
@@ -238,7 +237,6 @@
 
                     this.once('remove', function () {
 
-                        this.stopListening(this.bodyView, '__SELECT_CHANGE');
                         this.bodyView.remove();
                         itunesListCollection = undefined;
                         itunesCollection = undefined;

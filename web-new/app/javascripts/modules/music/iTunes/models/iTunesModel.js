@@ -5,10 +5,10 @@
     ], function (
         Backbone
     ) {
-        console.log('iTunesModel - File loaded');
+        console.log('ITunesModel - File loaded');
 
-        var iTunesModel = Backbone.Model.extend({
-            default : {
+        var ITunesModel = Backbone.Model.extend({
+            defaults : {
                 duration : '',
                 format : '',
                 id: '',
@@ -21,6 +21,6 @@
             }
         });
 
-        return iTunesModel;
+        return ITunesModel;
     });
 }(this));

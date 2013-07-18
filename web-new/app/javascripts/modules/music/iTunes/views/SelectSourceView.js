@@ -10,7 +10,7 @@
         'Internationalization',
         'ui/TemplateFactory',
         'utilities/StringUtil',
-        'music/iTunes/collections/iTunesCollection'
+        'music/iTunes/collections/ITunesCollection'
     ], function (
         _,
         doT,
@@ -21,7 +21,7 @@
         i18n,
         TemplateFactory,
         StringUtil,
-        iTunesCollection
+        ITunesCollection
     ) {
         console.log('SelectSourceView - File loaded. ');
 
@@ -37,7 +37,7 @@
                 SelectSourceView.__super__.initialize.call(this);
 
                 this.on(UIHelper.EventsMapping.SHOW, function () {
-                    itunesCollection = iTunesCollection.getInstance();
+                    itunesCollection = ITunesCollection.getInstance();
 
                     this.once('remove', function () {
                         itunesCollection = undefined;
