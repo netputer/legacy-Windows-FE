@@ -254,6 +254,10 @@
                     appList.sortModels(true);
                 }
 
+                if (setName !== 'search') {
+                    this.resetHeader();
+                }
+
                 switch (setName) {
                 case 'normal':
                 case 'default':
