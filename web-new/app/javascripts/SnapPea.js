@@ -110,7 +110,8 @@
         'Configuration',
         'Log',
         'IframeMessageListener',
-        'PerformanceTracker'
+        'PerformanceTracker',
+        'main/views/BindingDeviceWindowView'
     ], function (
         $,
         Backbone,
@@ -141,7 +142,8 @@
         CONFIG,
         log,
         IframeMessageListener,
-        PerformanceTracker
+        PerformanceTracker,
+        BindingDeviceWindowView
     ) {
         window.SnapPea = window.SnapPea || {};
 
@@ -165,6 +167,17 @@
         mainView.regModule('optimize', OptimizeModuleView);
         mainView.regModule('app-wash', AppWashModuleView);
         mainView.regModule('gallery', GalleryView);
+
+        var init = function () {
+            BindingDeviceWindowView.getInstance().checkAsync();
+        };
+
+        // Binding device
+        if (Environment.get('deviceId') !== 'Default') {
+            init.call(this);
+        } else {
+            Environment.once('change:deviceId', init, this);
+        }
 
         window.externalCall('', 'page_ready', '');
         PerformanceTracker.launch();

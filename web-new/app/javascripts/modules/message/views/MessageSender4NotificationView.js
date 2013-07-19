@@ -7,6 +7,7 @@
         'IOBackendDevice',
         'Environment',
         'Device',
+        'Log',
         'ui/TemplateFactory',
         'message/views/QuickSenderView',
         'message/models/MessageModel',
@@ -20,6 +21,7 @@
         IO,
         Environment,
         Device,
+        log,
         TemplateFactory,
         QuickSenderView,
         MessageModel,
@@ -68,6 +70,10 @@
                 }, this);
 
                 this.on('sendSuccess', function () {
+                    log({
+                        'event' : 'debug.message_receive_window_send'
+                    });
+
                     if (this.nextList.length === 0 && this.prevList.length === 0) {
                         IO.requestAsync({
                             url : CONFIG.actions.PUBLISH_EVENT,
@@ -153,14 +159,26 @@
             },
             clickButtonDelete : function () {
                 this.deleteMessage();
+
+                log({
+                    'event' : 'ui.click.message_receive_window_delete'
+                });
             },
             clickButtonNext : function () {
                 this.markAsRead();
                 this.nextMessage();
+
+                log({
+                    'event' : 'ui.click.message_receive_window_next'
+                });
             },
             clickButtonPrev : function () {
                 this.markAsRead();
                 this.prevMessage();
+
+                log({
+                    'event' : 'ui.click.message_receive_window_prev'
+                });
             },
             events : {
                 'click .button-delete' : 'clickButtonDelete',
