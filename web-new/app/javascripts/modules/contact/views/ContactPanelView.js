@@ -42,7 +42,7 @@
             className : 'w-contact-panel',
             initialize : function () {
                 contactsListView = ContactsListView.getInstance();
-                contactsListView.on('select:change', this.handelSwitch, this);
+                contactsListView.on('refresh select:change', this.handelSwitch, this);
 
                 Backbone.on('contactContextMenuMerge', this.mergeContacts, this);
             },
