@@ -127,25 +127,25 @@
                 var order;
 
                 switch (current.get('state')) {
-                case 5: // TASK_STATE_FAILD
+                case CONFIG.enums.TASK_STATE_FAILD:
                     order = 0;
                     break;
 
-                case 3: // TASK_STATE_PROCESSING
+                case CONFIG.enums.TASK_STATE_PROCESSING:
                     order = 1;
                     break;
 
-                case 1: // TASK_STATE_WAITING
+                case CONFIG.enums.TASK_STATE_WAITING:
                     order = 2;
                     break;
 
-                case 0: // TASK_STATE_ADDED
-                case 2: // TASK_STATE_PAUSE
-                case 6: // TASK_STATE_STOPPED
+                case CONFIG.enums.TASK_STATE_ADDED:
+                case CONFIG.enums.TASK_STATE_PAUSE:
+                case CONFIG.enums.TASK_STATE_STOPPED:
                     order = 3;
                     break;
 
-                case 4: // TASK_STATE_SUCCESS
+                case CONFIG.enums.TASK_STATE_SUCCESS:
                     order = 4;
                     break;
                 }
