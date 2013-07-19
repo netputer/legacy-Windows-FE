@@ -246,6 +246,7 @@
 
                         popupPanel.show();
                         this.stopListening(tasksCollection, 'refresh', notEnoughSpaceHandler);
+                        this.stopListening(EventProcessor, 'message', outOfSpaceHandler);
 
                         log({
                             'event' : 'debug.taskManager.not_enough_space_notifi_show'
