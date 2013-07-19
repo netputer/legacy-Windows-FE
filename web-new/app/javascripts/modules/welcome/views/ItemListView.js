@@ -25,10 +25,11 @@
         TaskService,
         BrowserModuleView
     ) {
+
         var classMap = {
             20 : 'exclusive',
             21 : 'special',
-            22 : '',
+            22 : 'games',
             23 : 'videos',
             24 : 'guess',
             25 : 'preorder'
