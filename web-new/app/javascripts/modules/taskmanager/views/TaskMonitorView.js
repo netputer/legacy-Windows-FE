@@ -82,6 +82,8 @@
             }
         });
 
+        var notEnoughSpaceFlag = false;
+
         var TaskMonitorView = Backbone.View.extend({
             className : 'w-task-manager-ctn vbox',
             template : doT.template(TemplateFactory.get('taskManager', 'task-ctn')),
@@ -92,7 +94,7 @@
                 tasksCollection.on('refresh', this.showMessage, this);
 
                 var outOfSpaceHandler = function (message) {
-                    if (message.message === 'NEW_TASK') {
+                    if (message.message === 'NEW_TASK' && !notEnoughSpaceFlag) {
                         IO.requestAsync(CONFIG.actions.WINDOW_DISK_FREE_SPACE).done(function (resp) {
                             if (Number(resp.body.value) < 1024 * 1024 * 500) {
                                 var popupPanel = TaskNotifierPanelView.getInstance({
@@ -244,9 +246,15 @@
                             popIn : true
                         });
 
+                        notEnoughSpaceFlag = true;
+
                         popupPanel.show();
+
+                        popupPanel.on('remove', function() {
+                            notEnoughSpaceFlag = false;
+                        });
+
                         this.stopListening(tasksCollection, 'refresh', notEnoughSpaceHandler);
-                        this.stopListening(EventProcessor, 'message', outOfSpaceHandler);
 
                         log({
                             'event' : 'debug.taskManager.not_enough_space_notifi_show'
