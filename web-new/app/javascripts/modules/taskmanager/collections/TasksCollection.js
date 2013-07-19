@@ -123,14 +123,37 @@
 
                 return resp.body.status;
             },
-            comparator : function (a, b) {
-                if ((a.get('state') === CONFIG.enums.TASK_STATE_SUCCESS) === (b.get('state') === CONFIG.enums.TASK_STATE_SUCCESS)) {
-                    return b.get('added_time').localeCompare(a.get('added_time'));
+            comparator : function (current) {
+                var order;
+
+                switch (current.get('state')) {
+                case CONFIG.enums.TASK_STATE_FAILD:
+                    order = 0;
+                    break;
+
+                case CONFIG.enums.TASK_STATE_PROCESSING:
+                    order = 1;
+                    break;
+
+                case CONFIG.enums.TASK_STATE_WAITING:
+                    order = 2;
+                    break;
+
+                case CONFIG.enums.TASK_STATE_ADDED:
+                case CONFIG.enums.TASK_STATE_PAUSE:
+                case CONFIG.enums.TASK_STATE_STOPPED:
+                    order = 3;
+                    break;
+
+                case CONFIG.enums.TASK_STATE_SUCCESS:
+                    order = 4;
+                    break;
                 }
 
-                return Number(a.get('state') === CONFIG.enums.TASK_STATE_SUCCESS) - Number(b.get('state') === CONFIG.enums.TASK_STATE_SUCCESS);
+                return order + '-' + current.get('added_time');
             },
             initialize : function () {
+                console.clear();
                 var loading = false;
                 var activeCount = 0;
                 var errorCount = 0;
