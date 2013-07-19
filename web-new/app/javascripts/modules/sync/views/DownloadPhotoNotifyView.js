@@ -11,7 +11,7 @@
         'Internationalization',
         'ui/Panel',
         'ui/TemplateFactory',
-        'StringUtil',
+        'utilities/StringUtil',
         'welcome/WelcomeService',
         'backuprestore/BackupRestoreService'
     ], function (
