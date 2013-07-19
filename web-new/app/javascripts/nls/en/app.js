@@ -17,11 +17,11 @@ define({
     MOVE : 'Move',
     CATEGORY : 'Category: ',
     VERSION_HISTORY : 'Version history',
-    IGNORED_APPS : '已有 {1} 个应用忽略升级',
-    IGNORED_TITLE : '忽略升级的应用',
-    ENABLE_APP_UPGRADE_TIP : '您已经禁用了「自动检测可升级应用」功能，<span class="link button-open-update">点击重新开启</span>',
-    CHANGE_LOG_EMPRY : '暂时没有此应用的升级信息',
-    SUGGESTION_REF : '根据 <span class="button-navigate-to-ref-page">{1}</span> 推荐',
+    IGNORED_APPS : '{1} app update ignored',
+    IGNORED_TITLE : 'Ignore update',
+    ENABLE_APP_UPGRADE_TIP : 'You\'ve turned off the "Automatic Updates" feature，<span class="link button-open-update">Turn it on</span>',
+    CHANGE_LOG_EMPRY : 'No update information',
+    SUGGESTION_REF : 'Recommendation based on <span class="button-navigate-to-ref-page">{1}</span>',
 
     START_SCAN : '开洗',
     SCAN_TIP1 : '山寨应用有风险，广告应用很烦人！',
@@ -77,7 +77,7 @@ define({
     WEB_APPS_EMPTY_TIP_LINK : 'Find great apps',
     WEB_APPS_EMPTY_TIP_POST : 'Go download',
     APP_SEARCH : 'App search',
-    UNINSTALL_AFTER_HIDE : '已从下载历史中删除「{1}」，要在手机上卸载这个应用吗？',
+    UNINSTALL_AFTER_HIDE : '"{1}" was deleted from your download history. Delete this app on your phone?',
     WEB_APPS_HIDE_TEXT : 'Hide',
     WEB_APPS_HIDING_TEXT : 'Hiding',
     WEB_APPS_HIDE_FAILED_TEXT : 'Failed to hide',
@@ -191,9 +191,6 @@ define({
     GETTING_RECOMMEND : 'Getting recommendations...',
     RECOMMEND_LIST_EMPTY : 'Oh snap, no recs today',
     GET_RECOMMEND_ERROR : 'Oh no, no recs',
-
-    RETURN_ALL : 'All apps',
-    SEARCH_TIP_PART : '{1} apps related to "{2}"',
 
     /* Permission info */
     "android.permission-group.ACCOUNTS" : "访问您的帐户",
