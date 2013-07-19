@@ -1,12 +1,13 @@
+/*NOT in SnapPea*/
 /*global define*/
 define({
-    ACCOUNT_GUIDE : '登陆向导',
+    ACCOUNT_GUIDE : 'Sign in guide',
 
-    CLOUD_BACKUP : '云备份',
-    CLOUD_PHOTO : '云相册',
-    SOCIAL_PLATFORM : '社交平台',
+    CLOUD_BACKUP : 'Cloud backup',
+    CLOUD_PHOTO : 'Cloud photos',
+    SOCIAL_PLATFORM : 'Social networks',
 
-    CLOUD_BACKUP_TITLE : '自动云备份，轻松备份，随时恢复',
+    CLOUD_BACKUP_TITLE : 'Auto-backup to the cloud, easy to backup, easy to restore.',
     CLOUD_BACKUP_DESC : '自动将您的 <em>联系人、短信、应用</em> 备份到云端，不需要再手动备份。开启后同时也会在手机上生效。',
     CLOUD_BACKUP_OPTION : '开启自动云备份',
 

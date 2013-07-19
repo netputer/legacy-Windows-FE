@@ -116,8 +116,13 @@
 
 <script type="text/x-ui-template" id="starter">
     <div class="stage">
+        {{? it.type === 0 }}
         <h1 class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_TITLE }}</h1>
         <p class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_TIP }}</p>
+        {{??}}
+        <h1 class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_GAME_TITLE }}</h1>
+        <p class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_GAME_TIP }}</p>
+        {{?}}
         <ul class="app-ctn">
         {{~ it.apps : app }}
         <li class="app cf" data-title="{{= StringUtil.format(i18n.welcome.GUIDE_STARTER_APP_TIP, StringUtil.shortenQuantity(app.downloadCount), app.likesRate, app.tagline)}}">

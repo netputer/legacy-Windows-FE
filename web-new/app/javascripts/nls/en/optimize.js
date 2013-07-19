@@ -1,3 +1,4 @@
+/*NOT in SnapPea*/
 /*global define*/
 define({
     WELCOME : '手机体检，快速优化您的手机',

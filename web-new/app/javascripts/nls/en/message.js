@@ -1,7 +1,7 @@
 /*global define*/
 define({
     SENDER_PLACEHOLDER : 'Write your message...',
-    SEND_A_SMS : 'Send a message a friend...',
+    SEND_A_SMS : 'Message your friend...',
     SEND_TO : 'Send to {1}：',
     LOAD_MORE : 'View more messages',
     SEND_MESSAGE : 'Send Message',
@@ -11,7 +11,7 @@ define({
 
     CONTENT_COUNT : '{1} characters, ',
     CONTENT_COUNT2 : '{1}',
-    MESSAGE_COUNT : '可能被拆分为 {1} 条短信发送，',
+    MESSAGE_COUNT : 'May be sent as {1} separate messages，',
     CONTACTS_COUNT : 'will send to {1} contact(s)',
     BIRTHDAY_TIP : 'Today\'s his/her birthday, send your congrats! ',
 
@@ -25,7 +25,7 @@ define({
     EXPEND : 'Expand',
     SENDING : '(Sending...)',
     SEND_FAILED : 'Send failed ',
-    SEND_FAILED_ALERT : '短信发送失败。',
+    SEND_FAILED_ALERT : 'Failed to send message',
     RESEND : ' Retry',
     DELETE : 'Delete',
     FORWARD : 'Forward',
@@ -57,7 +57,7 @@ define({
 
     BATCH_SEND : 'Mass',
     BATCH_SEND_TIP : '... And so on {1}.',
-    NAMEPLATE_BATCH_SEND_TIP : '...等 <span class="link list-switch">{1} 人</span>',
+    NAMEPLATE_BATCH_SEND_TIP : '...and <span class="link list-switch">{1} others</span>',
     SEND_FAILED_TIP : '{1} failed to send',
     RESEND_ALL : 'Re-send all',
 
@@ -120,9 +120,5 @@ define({
     IMPORT_FROM_FILE : 'Import from file',
     IMPORT_FROM_BACKUP : 'Import from backup',
 
-    COPY_SMS : 'Message successfully copied to the Clipboard',
-
-    RETURN_ALL : 'All messages',
-    SEARCH_TIP : '{1} messages related "{2}"',
-
+    COPY_SMS : 'Message successfully copied to the Clipboard'
 });
