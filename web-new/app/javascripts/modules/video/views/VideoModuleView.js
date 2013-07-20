@@ -3,11 +3,17 @@
     define([
         'underscore',
         'backbone',
-        'video/views/ImportVideoView'
+        'video/views/VideoModuleToolbarView',
+        'video/views/ImportVideoView',
+        'video/views/VideoListView',
+        'video/collections/VideosCollection'
     ], function (
         _,
         Backbone,
-        ImportVideoView
+        VideoModuleToolbarView,
+        ImportVideoView,
+        VideoListView,
+        VideosCollection
     ) {
         console.log('VideoModuleView - File loaded. ');
 
@@ -27,8 +33,10 @@
                 });
             },
             render : function () {
-                window.wonder.PM.getPage('video_page').render();
-                this.$el.append(window.wonder.PM.getPage('video_page')._element);
+                this.$el.append(VideoModuleToolbarView.getInstance().render().$el)
+                    .append(VideoListView.getInstance({
+                        collection : VideosCollection.getInstance()
+                    }).render().$el);
 
                 this.rendered = true;
                 return this;

@@ -12,10 +12,7 @@
         'ui/WindowState',
         'ui/MouseState',
         'Device',
-        'photo/views/PhotoThreadView',
-        'browser/views/BrowserModuleView',
-        'IO',
-        'Log'
+        'video/views/VideoThreadView'
     ], function (
         _,
         Backbone,
@@ -28,22 +25,19 @@
         WindowState,
         MouseState,
         Device,
-        PhotoThreadView,
-        BrowserModuleView,
-        IO,
-        log
+        VideoThreadView
     ) {
-        console.log('PhotoListView -File loaded. ');
+        console.log('VideoListView -File loaded. ');
 
-        var PhotoListView = Backbone.View.extend({
+        var VideoListView = Backbone.View.extend({
             className : 'w-media-gallery',
-            template : doT.template(TemplateFactory.get('photo', 'photo-list')),
+            template : doT.template(TemplateFactory.get('video', 'video-list')),
             initialize : function () {
                 var subView = [];
                 var threads = [];
                 var scrollHandler = _.throttle(function (evt) {
                     this.renderThread();
-                    Backbone.trigger('photo:list:scroll', evt);
+                    Backbone.trigger('video:list:scroll', evt);
                 }.bind(this), 20);
                 var loading = false;
                 Object.defineProperties(this, {
@@ -99,10 +93,6 @@
                     }
                 }));
 
-                if (this.options.template) {
-                    this.template = this.options.template;
-                }
-
                 this.listenTo(Device, 'change:hasSDCard change:hasEmulatedSD', _.debounce(function () {
                     if (!Device.get('hasSDCard') && !Device.get('hasEmulatedSD')) {
                         this.collection.set([]);
@@ -118,37 +108,21 @@
                         return;
                     }
                 });
-
-                this.listenTo(Account, 'change:isLogin', function (account, isLogin) {
-                    if (this.collection.data.photo_type === CONFIG.enums.PHOTO_CLOUD_TYPE && isLogin) {
-                        this.$('.empty-tip').html(i18n.photo.EMPTY_TIP_PHOTO_CLOUD_NOT_LOGIN).show();
-                        return;
-                    }
-                });
             },
             toggleEmptyTip : function (toggle) {
                 if (typeof toggle !== 'boolean') {
                     return;
                 }
 
+                var $emptyTip = this.$('.empty-tip');
                 if (toggle) {
-
-                    switch (this.collection.data.photo_type) {
-                    case CONFIG.enums.PHOTO_LIBRARY_TYPE:
-                    case CONFIG.enums.PHOTO_PHONE_TYPE:
-                        this.$('.empty-tip').addClass('center fix-text');
-                        break;
-                    default:
-                        this.$('.empty-tip').removeClass('center fix-text');
-                    }
-
                     if (Device.get('isConnected') && !Device.get('hasSDCard') && !Device.get('hasEmulatedSD')) {
-                        this.$('.empty-tip').html(i18n.misc.NO_SD_CARD_TIP_TEXT);
+                        $emptyTip.html(i18n.common.NO_SD_CARD_TIP_TEXT);
                     } else {
-                        this.$('.empty-tip').html(this.getEmptyTip(this.collection.data.photo_type));
+                        $emptyTip.html(i18n.video.NO_VIDEOS_TEXT);
                     }
                 }
-                this.$('.empty-tip').toggle(toggle);
+                $emptyTip.toggle(toggle);
             },
             remove : function () {
                 _.each(this.subView, function (view) {
@@ -156,7 +130,7 @@
                 });
                 this.subView.length = 0;
                 this.$el.off('scroll', this.scrollHandler);
-                PhotoListView.__super__.remove.call(this);
+                VideoListView.__super__.remove.call(this);
             },
             buildList : function (collection) {
                 if (!collection) {
@@ -164,16 +138,7 @@
                 }
 
                 this.threads = _.sortBy(collection.groupBy('key'), function (item, key) {
-                    var result = -Number(key);
-
-                    if (_.isNaN(result)) {
-                        if (key.indexOf('wandoujia/image') >= 0) {
-                            result = -1;
-                        } else {
-                            result = 0;
-                        }
-                    }
-                    return result;
+                    return -Number(key);
                 });
 
                 if (!collection.loading && !collection.syncing) {
@@ -187,21 +152,18 @@
             },
             renderThread : function () {
                 if (this.spyIsSawn()) {
+                    var i = 0;
                     var date;
-                    var thread;
-                    var photoThreadView;
                     for (date in this.threads) {
                         if (this.threads.hasOwnProperty(date)) {
-                            thread = this.threads[date];
-                            photoThreadView = new PhotoThreadView.getInstance({
+                            var thread = this.threads[date];
+                            var videoThreadView = new VideoThreadView.getInstance({
                                 models : thread,
-                                $ctn : this.$el,
-                                template : this.options.threadTemplate,
-                                itemTemplate : this.options.itemTemplate
+                                $ctn : this.$el
                             });
-                            this.$('.spy').before(photoThreadView.render().$el);
-                            photoThreadView.getThumbsAsync();
-                            this.subView.push(photoThreadView);
+                            this.$('.spy').before(videoThreadView.render().$el);
+                            videoThreadView.getThumbsAsync();
+                            this.subView.push(videoThreadView);
                             delete this.threads[date];
 
                             if (!this.spyIsSawn()) {
@@ -214,30 +176,6 @@
             spyIsSawn : function () {
                 return this.$('.spy')[0].offsetTop <= Math.max(this.$el.height() + this.$el[0].scrollTop + 140, 0);
             },
-            getEmptyTip : function (type) {
-                switch (type) {
-                case CONFIG.enums.PHOTO_PHONE_TYPE:
-
-                    log({
-                        'event' : 'ui.show.wanxiaodou',
-                        'type' : 'phone_photo'
-                    });
-
-                    return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.EMPTY_PHONE_LIST;
-                case CONFIG.enums.PHOTO_LIBRARY_TYPE:
-
-                    log({
-                        'event' : 'ui.show.wanxiaodou',
-                        'type' : 'library_photo'
-                    });
-
-                    return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.EMPTY_LIBRARY_LIST;
-                case CONFIG.enums.PHOTO_CLOUD_TYPE:
-                    return i18n.photo.EMPTY_CLOUD_LIST;
-                default:
-                    return i18n.photo.EMPTY_PHONE_LIST;
-                }
-            },
             render : function () {
                 this.$el.html(this.template({}));
                 if (!this.collection.loading && !this.collection.syncing) {
@@ -249,7 +187,6 @@
 
                 this.loading = this.collection.loading || this.collection.syncing;
                 this.listenTo(WindowState, 'resize', this.renderThread);
-
                 return this;
             },
             startDraw : function () {
@@ -294,7 +231,7 @@
 
                     MouseState.on('mousemove', moveHandler);
                     $(document).one('mouseup', function () {
-                        Backbone.trigger('photo.item.select', this.collection.data.photo_type, {
+                        Backbone.trigger('video.item.select', {
                             top : $mask[0].offsetTop,
                             left : $mask[0].offsetLeft,
                             height : $mask[0].offsetHeight,
@@ -309,28 +246,14 @@
                 }
 
             },
-            clickButtonLogin :  function () {
-                Account.loginAsync('', 'cloud-photo');
-            },
-            clickButtonDownload : function () {
-
-                log({
-                    'event' : 'ui.click.wanxiaodou_download',
-                    'type' : 'library_photo'
-                });
-
-                IO.sendCustomEventsAsync(CONFIG.events.WEB_NAVIGATE, {type: CONFIG.enums.NAVIGATE_TYPE_GALLERY, id: 256});
-            },
             events : {
-                'click .button-login' : 'clickButtonLogin',
-                'click .button-download-pic' : 'clickButtonDownload',
                 'mousedown' : 'startDraw'
             }
         });
 
         var factory = _.extend({
             getInstance : function (args) {
-                return new PhotoListView(args);
+                return new VideoListView(args);
             }
         });
 
