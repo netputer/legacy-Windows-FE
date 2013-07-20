@@ -382,13 +382,13 @@
         <ul class="type">
             <li>
                 <label>
-                    <input class="w-ui-radio" type="radio" name="sms_export" value="1" checked/>
+                    <input type="radio" name="sms_export" value="1" checked/>
                         {{= i18n.message.COUNT_TIP }}
                 </label>
             </li>
             <li>
                 <label>
-                    <input class="w-ui-radio" type="radio" name="sms_export" value="2"/>
+                    <input type="radio" name="sms_export" value="2"/>
                     {{= i18n.misc.NAV_SMS_ALL }}<span class="count"></span>
                 </label>
             </li>

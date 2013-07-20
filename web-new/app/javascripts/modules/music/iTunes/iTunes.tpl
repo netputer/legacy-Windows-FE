@@ -7,7 +7,7 @@
         }}
                 <li class="library-item">
                     <label>
-                        <input type="radio" name="libraryItem" value="{{= index }}" class="w-ui-radio" {{? index === 0 }}checked="true"{{?}}>
+                        <input type="radio" name="libraryItem" value="{{= index }}" {{? index === 0 }}checked="true"{{?}}>
                         <span class="library-name">{{! item.name }}</span>
                         <span class="library-time">({{= i18n.music.CREATE_TIME }}{{= item.time }})</span>
                     </label>
@@ -22,11 +22,11 @@
     <h3>{{= i18n.music.SELECT_SOURCE_TITLE }}</h3>
     <ul>
         {{
-            _.each(it, function(item, index){
+            _.each(it, function(item, index) {
         }}
                 <li>
                     <label>
-                        <input type="radio" name="sourceType" value = "{{= index }}" class="w-ui-radio" {{? index === 0 }}checked="true"{{?}}>
+                        <input type="radio" name="sourceType" value = "{{= index }}" {{? index === 0 }}checked="true"{{?}}>
                         <span>{{= item.label }}</span>
                     </label>
                     {{? index === 0 }}

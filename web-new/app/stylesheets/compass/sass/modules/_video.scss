@@ -5,6 +5,14 @@
  ********************************************************************************/
 @import "../skins/default/default";
 
+.w-video-module-main {
+    background-image: url(../images/texture-grey-bg-80X80.png);
+}
+
+.w-video-item {
+    @extend .w-media-item;
+}
+
 /********************************************************************************
  * Video List and Item
  ********************************************************************************/
@@ -32,7 +40,7 @@
     -webkit-box-align: center;
 
     .item-checker-wrap {
-        padding: 0 15px;        
+        padding: 0 15px;
     }
 
     .title {
