@@ -60,6 +60,7 @@
             },
             clickButtonClose : function () {
                 this.destory();
+                this.trigger('remove');
             },
             clickButtonChangeDisk : function () {
                 IO.requestAsync(CONFIG.actions.SAVE_SCREENSHOT);
