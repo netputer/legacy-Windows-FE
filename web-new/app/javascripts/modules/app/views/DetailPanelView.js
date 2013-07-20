@@ -216,6 +216,7 @@
                     if (this.model) {
                         this.model.off('change:isUpdating', this.updatingHandler);
                         this.model.off('change:base_info', this.render);
+                        this.model.off('change:isWeb', this.render, this);
                     }
 
                     this.model = appsCollection.get(id) || webAppsCollection.get(id);
@@ -233,6 +234,7 @@
 
                     this.model.on('change:isUpdating', this.updatingHandler, this);
                     this.model.on('change:base_info', this.render, this);
+                    this.model.on('change:isWeb', this.render, this);
                 }
             },
             clickButtonTogglePermisson : function () {
