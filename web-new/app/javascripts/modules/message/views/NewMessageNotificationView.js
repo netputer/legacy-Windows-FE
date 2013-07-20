@@ -7,6 +7,7 @@
         'IO',
         'Configuration',
         'Environment',
+        'Log',
         'Internationalization',
         'utilities/QueryString',
         'utilities/StringUtil',
@@ -19,6 +20,7 @@
         IO,
         CONFIG,
         Environment,
+        log,
         i18n,
         QueryString,
         StringUtil,
@@ -72,6 +74,10 @@
                 this.$el.html(this.template(this.model.toJSON()));
 
                 this.$el.append(senderView.render().$el);
+
+                log({
+                    'event' : 'debug.message_receive_window_show'
+                });
                 return this;
             }
         });
