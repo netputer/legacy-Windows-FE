@@ -35,7 +35,7 @@ define({
     SAVE : 'Save',
     DONTSAVE : 'Don\'t save',
     CANCEL : 'Cancel',
-    FINISH : '完成',
+    FINISH : 'Finish',
     SAVE_SUCCESS : 'Saved',
     SAVE_FAILED : 'Failed to save',
 
@@ -184,7 +184,7 @@ define({
 
     /* Import and export */
     IMPORT_TITLE_TEXT : 'Import Contacts',
-    DUPLICATE : '已为您忽略了 {1} 条重复联系人。',
+    DUPLICATE : '{1} duplicate contact(s) ignored',
     EXPORT_TITLE_TEXT : 'Export Contacts',
     EXPORT_PROGRESS_DESC1 : 'Exporting contacts, please don\'t disconnect your phone',
     EXPORT_PROGRESS_DESC2 : 'Exporting contacts, please wait...',
@@ -223,8 +223,6 @@ define({
     IMPORT_FROM_FILE : 'Import from file',
     IMPORT_FROM_BACKUP : 'Import from backup',
 
-    EXPORT_USING_VCARD: 'Export in vCard format',
+    EXPORT_USING_VCARD : 'Export in vCard format'
 
-    RETURN_ALL: 'All contacts',
-    CONTACT_TIP_PART: '{1} contacts related to "{2}"',
 });
