@@ -85,6 +85,26 @@
                     }
                 }, this);
 
+                IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.APP_INSTALL_SUCCESS
+                }, function (data) {
+                    var target = this.find(function (app) {
+                        return app.packageName === data.packageName;
+                    });
+
+                    if (target !== undefined) {
+                        var refreshHandler = function (appsCollection) {
+                            if (appsCollection.get(target.packageName) !== undefined) {
+                                appsCollection.off('refresh', refreshHandler);
+
+                                target.set(this.convertAppToWebApp(target).toJSON());
+                            }
+                        };
+                        appsCollection.on('refresh', refreshHandler, this);
+                    }
+
+                }, this);
+
                 this.listenTo(Account, 'change:isLogin', function (Account, isLogin) {
                     if (isLogin) {
                         this.trigger('update');
