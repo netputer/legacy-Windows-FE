@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> SnapPea 2.0</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="stylesheets/usb-debug-en.css" />
+        <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="wrap vbox">
+            <div class="title-ctn hbox">
+                <h1 class="title text-primary">Please turn on USB debugging</h1>
+                <a class="tip text-pramary" target="_default" href="https://snappea.zendesk.com/entries/21475246--Official-How-do-I-enable-USB-Debugging-">Problems with USB debugging?</a>
+            </div>
+            <p>SnapPea will connect after you turn on USB debugging.</p>
+            <div class="vbox">
+                <div class="cate-tip">Please select the version of your operation system for the corresponding setting guide.</div>
+                <ul class="cate-selector cf">
+                    <li class="cate selected text-primary" data-cate="guide">3.2 and below</li>
+                    <li class="cate text-primary" data-cate="guide-41">4.0 and above</li>
+                    <li class="cate text-primary" data-cate="guide-42">4.2</li>
+                </ul>
+            </div>
+            <div class="content"><div class="img-wrap guide"></div></div>
+            <div class="btn-wrap"><button class="max primary button-next">I've turned it on</button></div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.cate').click(function () {
+                    $('.cate').removeClass('selected');
+                    $(this).addClass('selected');
+
+                    $('.img-wrap').removeClass('guide guide-42 guide-41').addClass($(this).data('cate'));
+                });
+
+                $('.button-next').click(function () {
+                    window.externalCall('', 'connection.detect_device', window.location.search);
+                });
+            });
+        </script>
+    </body>
+</html>
