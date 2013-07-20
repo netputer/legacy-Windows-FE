@@ -56,11 +56,11 @@
             }, function (data) {
                 var originalLength = messageNormalList.length;
 
-                if (data > 0) {
+                if (data.status.length > 0) {
                     messageNormalList.push({
                         id : _.uniqueId('task-event-'),
                         message : 'NEW_TASK',
-                        data : data
+                        data : data.status.length
                     });
 
                     if (originalLength === 0 && messageNormalList.length === 1) {
@@ -73,11 +73,11 @@
                 'data.channel' : CONFIG.events.TASK_STOP
             }, function (data) {
                 var originalLength = messageNormalList.length;
-                if (data > 0) {
+                if (data.status.length > 0) {
                     messageNormalList.push({
                         id : _.uniqueId('task-event-'),
                         message : 'TASK_FINISH',
-                        data : data
+                        data : data.status.length
                     });
 
                     if (originalLength === 0 && messageNormalList.length === 1) {

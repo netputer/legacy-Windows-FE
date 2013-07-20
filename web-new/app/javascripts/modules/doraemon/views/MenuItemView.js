@@ -58,6 +58,8 @@
                     module : 'browser',
                     tab : model.id
                 });
+
+                BrowserModuleView.navigateToThirdParty(model.id);
             }
         };
 

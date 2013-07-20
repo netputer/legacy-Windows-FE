@@ -32,7 +32,6 @@
 			<path path="../src/ui/button.js" />
 			<path path="../src/ui/toolbar.js" />
 			<path path="../src/ui/menu.js" />
-			<path path="../src/ui/grid.js" />
 			<path path="../src/ui/window.js" />
 			<path path="../src/ui/dialog.js" />
 			<path path="../src/ui/progressMonitor.js" />
@@ -62,7 +61,6 @@
 
 			<path path="../style/uicss/button.css" />
 			<path path="../style/uicss/window.css" />
-			<path path="../style/uicss/grid.css" />
 			<path path="../style/uicss/misc.css" />
 			<path path="../style/uicss/clipImage.css" />
 
