@@ -149,7 +149,7 @@
                     this.$el.append(this.commentaryView.render().$el);
                 }
 
-                var $updateButton = this.$('.button-update');
+                var $updateButton = this.model.get('isWeb') ? this.$('.app-info .button-install') : this.$('.app-info .button-update');
                 if (((Device.get('isWifi') || Device.get('isInternet')) && !this.model.isUpdatable) ||
                         !FunctionSwitch.ENABLE_APP_UPGRADE) {
                     $updateButton.hide();
