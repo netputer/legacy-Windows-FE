@@ -149,7 +149,7 @@
                     this.$el.append(this.commentaryView.render().$el);
                 }
 
-                var $updateButton = this.$('.button-update');
+                var $updateButton = this.model.get('isWeb') ? this.$('.app-info .button-install') : this.$('.app-info .button-update');
                 if (((Device.get('isWifi') || Device.get('isInternet')) && !this.model.isUpdatable) ||
                         !FunctionSwitch.ENABLE_APP_UPGRADE) {
                     $updateButton.hide();
@@ -216,6 +216,7 @@
                     if (this.model) {
                         this.model.off('change:isUpdating', this.updatingHandler);
                         this.model.off('change:base_info', this.render);
+                        this.model.off('change:isWeb', this.render, this);
                     }
 
                     this.model = appsCollection.get(id) || webAppsCollection.get(id);
@@ -233,6 +234,7 @@
 
                     this.model.on('change:isUpdating', this.updatingHandler, this);
                     this.model.on('change:base_info', this.render, this);
+                    this.model.on('change:isWeb', this.render, this);
                 }
             },
             clickButtonTogglePermisson : function () {
