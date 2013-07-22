@@ -153,7 +153,6 @@
                 return order + '-' + current.get('added_time');
             },
             initialize : function () {
-                console.clear();
                 var loading = false;
                 var activeCount = 0;
                 var errorCount = 0;
