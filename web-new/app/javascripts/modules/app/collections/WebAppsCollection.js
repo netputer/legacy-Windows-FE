@@ -89,12 +89,12 @@
                     'data.channel' : CONFIG.events.APP_INSTALL_SUCCESS
                 }, function (data) {
                     var target = this.find(function (app) {
-                        return app.get('packageName') === data.packageName;
+                        return app.id === data.packageName;
                     });
 
                     if (target !== undefined) {
                         var refreshHandler = function (appsCollection) {
-                            if (appsCollection.get(target.get('packageName')) !== undefined) {
+                            if (appsCollection.get(target.id) !== undefined) {
                                 appsCollection.off('refresh', refreshHandler);
 
                                 target.set(this.convertAppToWebApp(target).toJSON());
