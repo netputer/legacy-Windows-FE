@@ -75,7 +75,7 @@
                     canReload : false
                 }));
             } else {
-                $iframe = $(id);
+                $iframe = $('#' + id);
                 branch = $iframe.attr('branch');
                 window.externalCall('', 'navigation', JSON.stringify({
                     id : id,
