@@ -165,14 +165,11 @@
                 });
 
                 resetAlert.once('button_yes', function () {
-
                     extensionListView.loading = true;
+
                     extensionsCollection.unstarredAsync(ids).done(function () {
                         extensionsCollection.reloadAsync().done(function () {
-                            extensionsCollection.once('refresh', function() {
-                                extensionListView.loading = false;
-                            });
-                            extensionsCollection.trigger('update');
+                            extensionListView.loading = false;
                         });
                     });
                 });
