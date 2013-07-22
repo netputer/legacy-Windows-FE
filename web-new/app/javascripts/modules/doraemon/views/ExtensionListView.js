@@ -35,6 +35,11 @@
                         get : function () {
                             return (extensionList && extensionList.selected) || [];
                         }
+                    },
+                    loading : {
+                        set : function (value) {
+                            extensionList.loading = value;
+                        }
                     }
                 });
 
