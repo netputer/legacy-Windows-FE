@@ -150,7 +150,7 @@
                     break;
                 }
 
-                return order + '-' + current.get('added_time');
+                return order + '-' + (Number(Date.now() + '0000') - Number(current.get('added_time')));
             },
             initialize : function () {
                 var loading = false;
