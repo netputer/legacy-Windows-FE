@@ -7,7 +7,8 @@
         'Device',
         'IO',
         'Configuration',
-        'message/models/ConversationModel'
+        'message/models/ConversationModel',
+        'main/collections/PIMCollection'
     ], function (
         Backbone,
         _,
@@ -15,7 +16,8 @@
         Device,
         IO,
         CONFIG,
-        ConversationModel
+        ConversationModel,
+        PIMCollection
     ) {
         console.log('ConversationsCollection - File loaded.');
 
@@ -369,6 +371,20 @@
                 if (!conversationsCollection) {
                     conversationsCollection = new ConversationsCollection();
                     conversationsCollection.trigger('update');
+
+                    var pimCollection = PIMCollection.getInstance();
+
+                    conversationsCollection.on('refresh', function (appsCollection) {
+                        var conversations = conversationsCollection.getConversationWithUnreadMessage();
+                        var count = 0;
+                        _.each(conversations, function (conversation) {
+                            count += conversation.get('unread_number');
+                        })
+
+                        pimCollection.get(2).set({
+                            count : count
+                        });
+                    });
                 }
                 return conversationsCollection;
             }
