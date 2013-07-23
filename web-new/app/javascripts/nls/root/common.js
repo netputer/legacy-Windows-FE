@@ -1,4 +1,5 @@
 /*global define*/
+/*
 define({
     // INSTALL_TEXT : '安装',
     // UNLIKE_TEXT : '换一个',
@@ -106,3 +107,4 @@ define({
     LOADING : '加载中...',
     LOAD_FAILD : '加载失败'
 });
+*/

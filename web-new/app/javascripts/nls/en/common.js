@@ -1,4 +1,5 @@
 /*global define*/
+/*
 define({
     // INSTALL_TEXT : 'Install',
     // UNLIKE_TEXT : 'Next',
@@ -106,3 +107,4 @@ define({
     LOADING : 'Loading...',
     LOAD_FAILD : 'Failed to load'
 });
+*/
