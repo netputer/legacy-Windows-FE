@@ -157,7 +157,7 @@ module.exports = function (grunt) {
                 plusplus : true,
                 todo: true,
                 predef: [ // array of pre-defined globals
-                  'define'
+                  'define', 'require'
                 ]
             },
             options : {

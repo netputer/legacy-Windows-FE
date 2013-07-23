@@ -1,4 +1,4 @@
-/*global define, console*/
+/*global define*/
 (function (window) {
     define([
         'backbone',
@@ -10,7 +10,10 @@
         'ui/Panel',
         'ui/PopupPanel',
         'ui/UIHelper',
+        'ui/AlertWindow',
         'ui/TemplateFactory',
+        'utilities/StringUtil',
+        'FunctionSwitch',
         'backuprestore/BackupRestoreService',
         'backuprestore/models/RestoreContextModel'
     ], function (
@@ -23,11 +26,16 @@
         Panel,
         PopupPanel,
         UIHelper,
+        AlertWindow,
         TemplateFactory,
+        StringUtil,
+        FunctionSwitch,
         BackupRestoreService,
         RestoreContextModel
     ) {
         console.log('RestoreChooseFileView - File loaded. ');
+
+        var alert = window.alert;
 
         var RestoreChooseFileBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('restore', 'choose-restore-file')),
@@ -75,12 +83,14 @@
             readRestoreFileInfo : function () {
                 var i;
                 for (i in RestoreContextModel.FileList) {
-                    var file_name = RestoreContextModel.FileList[i].file_name;
-                    var info = RestoreContextModel.get('backupFileInfoDict')[file_name];
-                    if (info === undefined) {
-                        this.readSinlgeFileInfo(file_name, i);
-                    } else {
-                        this.fillItemInfo(info, i);
+                    if (RestoreContextModel.FileList.hasOwnProperty(i)) {
+                        var file_name = RestoreContextModel.FileList[i].file_name;
+                        var info = RestoreContextModel.get('backupFileInfoDict')[file_name];
+                        if (info === undefined) {
+                            this.readSinlgeFileInfo(file_name, i);
+                        } else {
+                            this.fillItemInfo(info, i);
+                        }
                     }
                 }
             },
@@ -99,7 +109,7 @@
             initialize : function () {
                 RestoreChooseFileView.__super__.initialize.apply(this, arguments);
 
-                this.on(UIHelper.EventsMapping.SHOW, function() {
+                this.on(UIHelper.EventsMapping.SHOW, function () {
                     bodyView = new RestoreChooseFileBodyView();
                     this.$bodyContent = bodyView.render().$el;
                     bodyView.readRestoreFileInfo();
@@ -120,7 +130,7 @@
                 RestoreChooseFileView.__super__.render.apply(this, arguments);
 
                 if (FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE) {
-                    $buttonLast = $('<button>').html(i18n.ui.PREV).addClass('button-last');
+                    var $buttonLast = $('<button>').html(i18n.ui.PREV).addClass('button-last');
                     this.$('.w-ui-window-footer-monitor').append($buttonLast);
                 }
 
@@ -148,7 +158,7 @@
 
                     RestoreContextModel.set('fileName', resp.body.value);
                     this.trigger('_SELECT_FILE');
-                }.bind(this)).fail(function() {
+                }.bind(this)).fail(function () {
                     alert(i18n.backup_restore.SET_RESTORE_FILE_FAILED);
                 });
             },

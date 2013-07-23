@@ -123,5 +123,5 @@ define({
     COPY_SMS : '短信已成功复制到剪切板',
 
     RETURN_ALL : '全部短消息',
-    SEARCH_TIP : '{1} 个包含「{2}」的短消息',
+    SEARCH_TIP : '{1} 个包含「{2}」的短消息'
 });

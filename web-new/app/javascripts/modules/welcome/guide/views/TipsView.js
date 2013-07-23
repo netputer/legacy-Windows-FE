@@ -72,11 +72,12 @@
 
                 if (Settings.get('user_guide_shown_tips')) {
                     setTimeout(deferred.reject);
+                } else {
+                    setTimeout(deferred.resolve);
+
                     log({
                         'event' : 'debug.guide_tips_show'
                     });
-                } else {
-                    setTimeout(deferred.resolve);
                 }
 
                 return deferred.promise();

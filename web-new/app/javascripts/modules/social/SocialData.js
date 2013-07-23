@@ -19,13 +19,19 @@
                         url : Configuration.actions.USER_SHOW,
                         success : function (resp) {
                             if (resp.state_code === 200) {
-                                authSuccess && authSuccess.call(this, resp.body);
+                                if (authSuccess) {
+                                    authSuccess.call(this, resp.body);
+                                }
                                 deferred.resolve(resp);
                             } else if (resp.state_code === 401) {
-                                authFail && authFail.call(this, resp.body);
+                                if (authFail) {
+                                    authFail.call(this, resp.body);
+                                }
                                 deferred.reject(resp);
                             } else {
-                                error && error.call(this, resp.body);
+                                if (error) {
+                                    error.call(this, resp.body);
+                                }
                                 deferred.reject(resp);
                             }
                         }
@@ -42,10 +48,14 @@
                         data : authData,
                         success : function (resp) {
                             if (resp.state_code === 200) {
-                                authSuccess && authSuccess.call(this, resp.body);
+                                if (authSuccess) {
+                                    authSuccess.call(this, resp.body);
+                                }
                                 deferred.resolve(resp);
                             } else {
-                                authFail && authFail.call(this, resp.body);
+                                if (authFail) {
+                                    authFail.call(this, resp.body);
+                                }
                                 deferred.reject(resp);
                             }
                         }
@@ -62,13 +72,19 @@
                         data : shareData,
                         success : function (resp) {
                             if (resp.state_code === 200) {
-                                shareSuccess && shareSuccess.call(this, resp.body);
+                                if (shareSuccess) {
+                                    shareSuccess.call(this, resp.body);
+                                }
                                 deferred.resolve(resp);
                             } else if (resp.state_code === 401) {
-                                authFail && authFail.call(this, resp.body);
+                                if (authFail) {
+                                    authFail.call(this, resp.body);
+                                }
                                 deferred.reject(resp);
                             } else {
-                                error && error.call(this, resp.body);
+                                if (error) {
+                                    error.call(this, resp.body);
+                                }
                                 deferred.reject(resp);
                             }
                         }
@@ -78,17 +94,21 @@
                     return deferred.promise();
                 },
 
-                exitAuthAsync : function (success, error){
+                exitAuthAsync : function (success, error) {
                     var deferred = $.Deferred();
 
                     IO.requestAsync({
                         url : Configuration.actions.USER_LOGOUT,
-                        success : function (resp){
+                        success : function (resp) {
                             if (resp.state_code === 200) {
-                                success && success.call(this, resp);
+                                if (success) {
+                                    success.call(this, resp);
+                                }
                                 deferred.resolve(resp);
                             } else {
-                                error && error.call(this, resp);
+                                if (error) {
+                                    error.call(this, resp);
+                                }
                                 deferred.reject(resp);
                             }
                         }
@@ -97,18 +117,22 @@
                     return deferred.promise();
                 },
 
-                viewOriginPicFromPicAsync : function(data, success, error){
+                viewOriginPicFromPicAsync : function (data, success, error) {
                     var deferred = $.Deferred();
 
                     IO.requestAsync({
                         url  : Configuration.actions.OPEN_FILE,
                         data : data,
-                        success: function(resp){
+                        success: function (resp) {
                             if (resp.state_code === 200) {
-                                success && success.call(this, resp);
+                                if (success) {
+                                    success.call(this, resp);
+                                }
                                 deferred.resolve(resp);
                             } else {
-                                error && error.call(this, resp);
+                                if (error) {
+                                    error.call(this, resp);
+                                }
                                 deferred.reject(resp);
                             }
                         }
@@ -125,10 +149,14 @@
                         data : data,
                         success : function (resp) {
                             if (resp.state_code === 200) {
-                                success && success.call(this, resp);
+                                if (success) {
+                                    success.call(this, resp);
+                                }
                                 deferred.resolve(resp);
                             } else {
-                                error && error.call(this, resp);
+                                if (error) {
+                                    error.call(this, resp);
+                                }
                                 deferred.reject(resp);
                             }
                         }
@@ -144,10 +172,14 @@
                         url : Configuration.actions.GET_TOKEN,
                         success : function (resp) {
                             if (resp.state_code === 200) {
-                                success && success.call(this, resp);
+                                if (success) {
+                                    success.call(this, resp);
+                                }
                                 deferred.resolve(resp);
                             } else {
-                                error && error.call(this, resp);
+                                if (error) {
+                                    error.call(this, resp);
+                                }
                                 deferred.reject(resp);
                             }
                         }
