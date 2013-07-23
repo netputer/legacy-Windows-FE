@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window, document) {
     define([
         'backbone',
         'underscore',
@@ -140,7 +140,7 @@
                                     silent : true
                                 });
 
-                                ThreadsPanelView.getInstance().once('rendered', function (){
+                                ThreadsPanelView.getInstance().once('rendered', function () {
                                     this.update(conversation.get('id'), msg);
                                 });
                                 conversationList.addSelect(conversation.id);
@@ -172,15 +172,15 @@
                 conversationList.toggleEmptyTip(conversationList.currentModels.length === 0);
             },
             switchListDataSet : function (tab) {
-                var tab = tab || 'default';
+                tab = tab || 'default';
                 var getter;
 
                 switch (tab) {
-                    case 'default' :
-                        getter = conversationsCollection.getAll;
+                case 'default':
+                    getter = conversationsCollection.getAll;
                     break;
-                    case 'search' :
-                        getter = conversationsCollection.getByKeyword;
+                case 'search':
+                    getter = conversationsCollection.getByKeyword;
                     break;
                 }
 
@@ -274,14 +274,14 @@
                 return deferred.promise();
             },
             showByKeyword : function () {
-                conversationsCollection.searchConversationAsync().done(function (resp){
+                conversationsCollection.searchConversationAsync().done(function (resp) {
                     this.switchListDataSet('search');
                     conversationList.deselectAll({
                         silent : true
                     });
 
                     var models = conversationsCollection.getByKeyword();
-                    if (models.length > 0 ){
+                    if (models.length > 0) {
                         var conversation = models[0];
                         conversationList.addSelect(conversation.id);
                     }
