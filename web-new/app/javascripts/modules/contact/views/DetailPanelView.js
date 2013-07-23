@@ -776,7 +776,7 @@
                         if (resp.state_code === 405) {
                             alert(i18n.contact.NO_EMAIL_CLIENT_TIP);
                         } else if (resp.state_code !== 200) {
-                            alert(i18n.common.SEND_MAIL_FAILD);
+                            alert(i18n.misc.SEND_MAIL_FAILD);
                         }
                     }
                 });

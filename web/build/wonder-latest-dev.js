@@ -748,7 +748,7 @@ wonder.addModule('uibase', function(W) {
     UIBase.prototype._disabled = false;
     UIBase.prototype._uid = '';
     UIBase.prototype.propagation= true;
-    
+
     /**
      * Call this method before ui render.
      * @param {Object} propagation
@@ -777,7 +777,7 @@ wonder.addModule('uibase', function(W) {
     UIBase.prototype.getUid = function() {
         this._uid = this._uid || W.getUid();
         return this._uid;
-    }; 
+    };
     UIBase.prototype.setDisabled = function() {
         //TO-DO
     };
@@ -793,7 +793,7 @@ wonder.addModule('uibase', function(W) {
     UIBase.prototype.active = function(){
         //Implement this in subclass;
     };
-    
+
     /**
      * @param {String} className , add class to this ui root element.
      */
@@ -824,15 +824,15 @@ wonder.addModule('uibase', function(W) {
         this._isVisible = true;
         return this;
     };
-    
+
     UIBase.prototype.dispose = function() {
         this._disposeInternal();
     };
-    
+
     UIBase.prototype._disposeInternal = function() {
         //Implement this in subclass.
     };
-    
+
     /**
      * @opt_parent {Node}, component container
      * @override
@@ -1967,10 +1967,10 @@ wonder.addModule('ui/status', function(W) {
     function Progress(opt) {
         this.model = new W.ui.status.Progressbar();
         this.view = new W.ui.status.ProgressbarView(this.model);
-        this.cancelBtn = new W.ui.Button(i18n.common.CANCEL)
-        this.completeBtn = new W.ui.Button(i18n.common.COMPLETE_TEXT);
+        this.cancelBtn = new W.ui.Button(i18n.misc.CANCEL)
+        this.completeBtn = new W.ui.Button(i18n.misc.COMPLETE_TEXT);
         this.interval = null;
-        W.ui.Window.call(this, i18n.common.DIALOG_TIP, '', opt);
+        W.ui.Window.call(this, i18n.misc.DIALOG_TIP, '', opt);
         this.session = null;
         this.setDraggable(false);
         this.setSupportEsc(false);
@@ -2005,7 +2005,7 @@ wonder.addModule('ui/status', function(W) {
             this.model.setMax(val);
         },
         setCompleteBtnDelay : function(delay) {
-            this.completeBtn.setTitle(i18n.common.COMPLETE_TEXT + '(' + delay + ')');
+            this.completeBtn.setTitle(i18n.misc.COMPLETE_TEXT + '(' + delay + ')');
         },
         setProgress : function(val, max) {
             this.model.setProgress(val);
@@ -2065,7 +2065,7 @@ wonder.addModule('ui/status', function(W) {
                     this.setText(window.StringUtil.format(successText, data.total));
                 }
             }
-            
+
             this.handlerId = IO.Backend.Device.onmessage({
                 'data.channel' : bindId
             }, this.hander, this);
@@ -2203,9 +2203,9 @@ wonder.addModule('SelectDelegate', function(W) {
                 }
 
             } else if($.isArray(item)){
-                
+
                     if(!self.selectedItems.length){
-                        self.setSelectedItems(item); 
+                        self.setSelectedItems(item);
                     }else{
                         _.each(item, function(newItem){
                             if(self.selectedItems.indexOf(newItem) === -1){
@@ -2213,7 +2213,7 @@ wonder.addModule('SelectDelegate', function(W) {
                             }
                         });
                     }
-            
+
                 this.trigger('add', item);
                 return;
             } else {
@@ -2317,13 +2317,13 @@ wonder.addModule('SelectDelegate', function(W) {
 });
 wonder.useModule('SelectDelegate');
 ﻿/**
- * @fileoverview 
+ * @fileoverview
  * @author lixiaomeng@wandoujia.com
  */
 
 wonder.addModule('ui/clipImage', function(W){
     wonder.namespace('wonder.ui');
-    
+
     function ClipImage(opt){
         //W.ui.UIBase.call(this);
         W.mix(this, opt, true);
@@ -2372,7 +2372,7 @@ wonder.addModule('ui/clipImage', function(W){
                 createResizeEl(self.imageClipContainer, self);
             }
             if(self.clipingBoxConf.resizable){
-                createResizeEl(self.clipingBox, self);                      
+                createResizeEl(self.clipingBox, self);
             }
              self.render();
 
@@ -2410,17 +2410,17 @@ wonder.addModule('ui/clipImage', function(W){
                 case 270:
                     el.addClass(this.ROTATE_CLASS.R270);
                 break;
-            } 
+            }
         },
         ROTATE_CLASS : {
-            R90: 'w-rotate-90', 
-            R180: 'w-rotate-180', 
+            R90: 'w-rotate-90',
+            R180: 'w-rotate-180',
             R270: 'w-rotate-270'
         },
         render: function(){
-            var old_bottom, old_right, old_top, old_left, old_margin_top, old_margin_left, old_width, old_height,                        
+            var old_bottom, old_right, old_top, old_left, old_margin_top, old_margin_left, old_width, old_height,
                 self = this,
-                eClientX_old, 
+                eClientX_old,
                 eClientY_old,
                 mouseMoveFlag        = false,
                 clipingBoxResizeFlag = false,
@@ -2439,29 +2439,29 @@ wonder.addModule('ui/clipImage', function(W){
                 var clipingBoxBorderLeft = parseInt(self.clipingBox.css('border-left-width'), 10);
                 var clipingBoxBorderBottom = parseInt(self.clipingBox.css('border-bottom-width'), 10);
                 var clipingBoxBorderRight = parseInt(self.clipingBox.css('border-right-width'), 10);
-                
+
                 self.constBorderData = clipingBoxBorderTop + clipingBoxBorderBottom;
                 self.constHeightData =  pT + self.constBorderData;
                 self.constWidthData = PL + self.constBorderData;
             }
 
-            var calculateOldPosition = function(){                                            
+            var calculateOldPosition = function(){
                 old_width = parseInt(self.clipingBox.width(), 10);
                 old_height = parseInt(self.clipingBox.height(), 10);
 
                 old_top  = self.clipingBox.position().top;
-                old_left = self.clipingBox.position().left;    
+                old_left = self.clipingBox.position().left;
                 old_bottom = containerHeight - old_top - old_height;
                 old_right = containerWidth - old_left - old_width;
 
                 old_margin_top = parseInt(self.clipingBoxImg.css('margin-top'), 10);
-                old_margin_left = parseInt(self.clipingBoxImg.css('margin-left'), 10);                            
+                old_margin_left = parseInt(self.clipingBoxImg.css('margin-left'), 10);
             };
 
             var calculateResizeData = function(tmpHeight, tmpWidth, oldData1, oldData2){
                 var imgNowWidth = self.originImage.width(),
                     imgNowHeight = self.originImage.height();
-                
+
                 switch(self.imageConf.orientation) {
                     case 0:
                     case 180:
@@ -2488,8 +2488,8 @@ wonder.addModule('ui/clipImage', function(W){
                 }
 
                 return {
-                        width   : widthVal, 
-                        height  : heightVal, 
+                        width   : widthVal,
+                        height  : heightVal,
                         extralL : extralL,
                         extralT : extralT
                        };
@@ -2497,18 +2497,18 @@ wonder.addModule('ui/clipImage', function(W){
 
             this.imageClipContainer.bind('mousedown', function(e){
                 var target = $(e.target);
-                
+
                 if(target.hasClass('w-imageClip-box-surface')){
                     mouseMoveFlag = true;
                 }
                 if(target.hasClass('w-imageClip-resize-el') || target.parent().hasClass('w-imageClip-resize-el')){
                     if(!!target.parent(self.clipingBoxConf.className)){
                         clipingBoxResizeFlag = true;
-                        
+
                         if(target.hasClass(self.TLresizeCls) || target.parent().hasClass(self.TLresizeCls)){
                             resizeDirection = 'TL';
                         }else if(target.hasClass(self.TRresizeCls) || target.parent().hasClass(self.TRresizeCls)){
-                            resizeDirection = 'TR';                                     
+                            resizeDirection = 'TR';
                         }else if(target.hasClass(self.BLresizeCls) || target.parent().hasClass(self.BLresizeCls)){
                             resizeDirection = 'BL';
                         }else if(target.hasClass(self.BRresizeCls) || target.parent().hasClass(self.BRresizeCls)){
@@ -2530,10 +2530,10 @@ wonder.addModule('ui/clipImage', function(W){
                     eClientY = e.clientY,
                     clientXDiff = eClientX_old - eClientX,
                     clientYDiff = eClientY_old - eClientY;
-                if(mouseMoveFlag){ 
+                if(mouseMoveFlag){
                     var boundaryH, boundaryW;
                     switch(self.imageConf.orientation) {
-                        case 0 :                                    
+                        case 0 :
                         case 180:
                             boundaryH = self.originImage.height();
                             boundaryW = self.originImage.width();
@@ -2558,7 +2558,7 @@ wonder.addModule('ui/clipImage', function(W){
                             }
 
                         break;
-                    }       
+                    }
 
                     var topNow = self.clipingBox.position().top,
                         leftNow = self.clipingBox.position().left,
@@ -2592,22 +2592,22 @@ wonder.addModule('ui/clipImage', function(W){
                         tmpWidth = w - clientXDiff,
                         tmpHeight = h - clientYDiff,
                         constData = self.constHeightData,
-                        marginTop, 
+                        marginTop,
                         marginLeft;
 
                     switch(resizeDirection){
-                        case 'TL' : 
+                        case 'TL' :
                             clientYDiff = eClientY - eClientY_old;
                             clientXDiff = eClientX_old - eClientX;
                             tmpHeight = h - clientYDiff;
                             tmpWidth = w + clientXDiff;
-                        
+
                             var data = calculateResizeData(tmpHeight, tmpWidth, old_right, old_bottom);
-                            
+
                             if(imgNowWidth >= containerHeight){
                                 constData = self.constBorderData;
-                            }                            
-                            
+                            }
+
                             switch(self.imageConf.orientation) {
                                 case 0:
                                 case 180:
@@ -2623,7 +2623,7 @@ wonder.addModule('ui/clipImage', function(W){
                                     }
                                     marginTop = old_margin_top + data.height - old_height + constData;
                                     marginLeft = old_margin_left + data.width - old_width + constData;
-                                
+
                                 break;
                             }
                             self.clipingBox.css({
@@ -2637,14 +2637,14 @@ wonder.addModule('ui/clipImage', function(W){
                             self.clipingBoxImg.css({
                                 'margin-left' : marginLeft + 'px',
                                 'margin-top' :  marginTop + 'px'
-                            });                            
+                            });
                         break;
-                        case 'TR' : 
+                        case 'TR' :
                             clientYDiff = eClientY - eClientY_old;
                             tmpHeight = h - clientYDiff;
-                        
+
                             var data = calculateResizeData(tmpHeight, tmpWidth, left, old_bottom);
-                         
+
                             switch(self.imageConf.orientation) {
                                 case 0:
                                 case 180:
@@ -2667,11 +2667,11 @@ wonder.addModule('ui/clipImage', function(W){
                                 'margin-top' :  marginTop + 'px'
                             });
                         break;
-                        case 'BL' : 
+                        case 'BL' :
                                clientXDiff = eClientX_old - eClientX;
                             tmpWidth = w + clientXDiff;
 
-                            var data = calculateResizeData(tmpHeight, tmpWidth, old_right, top);                            
+                            var data = calculateResizeData(tmpHeight, tmpWidth, old_right, top);
 
                             switch(self.imageConf.orientation) {
                                 case 0:
@@ -2698,7 +2698,7 @@ wonder.addModule('ui/clipImage', function(W){
                                 'margin-left' : marginLeft + 'px'
                             });
                         break;
-                        case 'BR' : 
+                        case 'BR' :
                             var data = calculateResizeData(tmpHeight, tmpWidth, left, top);
 
                             self.clipingBox.css({
@@ -2751,7 +2751,7 @@ wonder.addModule('ui/clipImage', function(W){
                     width : self.clipingBoxConf.defaultWidth,
                     height: self.clipingBoxConf.defaultHeight,
                     top : h,
-                    left: w                  
+                    left: w
                 });
                 self.clipingBoxImg.attr('src', path);
                 self.clipingBoxImg.css({
@@ -2835,9 +2835,9 @@ wonder.addModule('contact/avatarEditor', function (W) {
         _data : {},
         _addComponent : function () {
             var self = this;
-            self.okBtn = new W.ui.Button (i18n.common.SAVE_TEXT);
-            self.cancelBtn = new W.ui.Button (i18n.common.CANCEL);
-            self.returnBtn = new W.ui.Button (i18n.common.RESELECT_FILE_TEXT);
+            self.okBtn = new W.ui.Button (i18n.misc.SAVE_TEXT);
+            self.cancelBtn = new W.ui.Button (i18n.misc.CANCEL);
+            self.returnBtn = new W.ui.Button (i18n.misc.RESELECT_FILE_TEXT);
             self.picFormatTip = $('<span/>').text(i18n.contact.ALERT_PIC_FORMAT_TIP).addClass('w-contact-pic-format-tip');
 
             self.addFooterContent(self.okBtn);
@@ -3079,7 +3079,7 @@ wonder.addModule('contact/avatarEditor', function (W) {
             }
 
             if (Device.get('isMounted')) {
-                tip = i18n.common.SD_MOUNT_TIP_TEXT;
+                tip = i18n.misc.SD_MOUNT_TIP_TEXT;
             }
             this.tipEl.text(tip).show();
         },
@@ -4148,8 +4148,8 @@ wonder.addModule('photo/photoView', function(W) {
                                                 });
                     var rotation;
                     switch(self._data.orientation){
-                        case 0 : 
-                            rotation = 0;                       
+                        case 0 :
+                            rotation = 0;
                         break;
                         case 3 :
                         case 90:
@@ -4181,7 +4181,7 @@ wonder.addModule('photo/photoView', function(W) {
                             window.Sync.PhotoSyncView.getInstance().tryToShowPhotoSyncAlertView();
                         }
                     };
-                    
+
                     socialService.show(data);
                 });
 
@@ -4338,20 +4338,20 @@ wonder.addModule('photo/photoView', function(W) {
         setThumbnailWeiboButton : function() {
             var isConnected = Device.get('isConnected');
             var weiboButton = this._element.find('.w-photo-item-thumbnail-share');
-			
+
             if(isConnected) {
                 weiboButton.show();
             } else {
                 weiboButton.hide();
             }
             switch(Environment.locale) {
-                case CONFIG.enums.LOCALE_EN_US : 
-                    title = i18n.common.SHARE_TO_FACEBOOK;
+                case CONFIG.enums.LOCALE_EN_US :
+                    title = i18n.misc.SHARE_TO_FACEBOOK;
                     break;
-                case CONFIG.enums.LOCALE_ZH_CN : 
+                case CONFIG.enums.LOCALE_ZH_CN :
                 case CONFIG.enums.LOCALE_DEFAULT :
-                default: 
-                    title = i18n.common.WEIBO_SHARE_TEXT;
+                default:
+                    title = i18n.misc.WEIBO_SHARE_TEXT;
                     break;
             }
             weiboButton.attr('title', title);
@@ -4448,7 +4448,7 @@ wonder.useModule('photo');
  */
 wonder.addModule('video/dataCollection', function(W) {
     W.namespace('wonder.video');
-    var alert = new W.ui.Dialog(i18n.common.DIALOG_TIP);
+    var alert = new W.ui.Dialog(i18n.misc.DIALOG_TIP);
     alert.setButtonSet(W.ui.Dialog.ButtonSet.OK);
 
     function VideoCollection() {
@@ -4677,11 +4677,11 @@ wonder.addModule('video/content', function(W){
 
         showTip: function(text){
             this.clearContent();
-            text && this._element.html(text);               
+            text && this._element.html(text);
         },
 
         getThreadTitle: function(){
-            return this._element.find('.w-video-thread:visible .w-video-thread-title');  
+            return this._element.find('.w-video-thread:visible .w-video-thread-title');
         },
 
         setPosition2Thread: function(thread, setPosition2ThreadTimer){
@@ -4699,8 +4699,8 @@ wonder.addModule('video/content', function(W){
                 var tpl = W.Template.get('video', 'video_info');
                 this.infoTpl = $(tpl);
                 this.infoTpl.appendTo(this._element);
-            }            
-               
+            }
+
             this._element.find('.w-video-name').html(data.name);
             this._element.find('.w-video-size').html(data.size);
             this._element.find('.w-video-duration').html(data.duration);
@@ -4709,7 +4709,7 @@ wonder.addModule('video/content', function(W){
                 display : 'block',
                 left : position.left,
                 top  : position.top
-            });  
+            });
         },
 
         hideVideoInfo: function(){
@@ -4738,20 +4738,20 @@ wonder.addModule('video/content', function(W){
         },
 
         clearContent: function(){
-            this._element.empty();  
+            this._element.empty();
         },
 
         playVideo: function(video_id){
             var self = this;
             var parentEl = self._element.parent('.w-video-content-wrapper');
-            var sessionId 
+            var sessionId
                 = self.lastSessionId
                 = progressWin.start(0, 100, locale.PLAY_VIDEO_TEXT, locale.PLAY_VIDEO_SUCCESS,'','','', parentEl);
             progressWin.view.setDelimiter('%');
             progressWin.view.hideMax();
             W.video.videoCollection.play(video_id, sessionId, function(response){
                 progressWin.hide();
-                
+
                 if(response.state_code == 500){
                     alert(locale.PLAY_DISCONNECT);
                 }else if(response.state_code == 400){
@@ -4762,7 +4762,7 @@ wonder.addModule('video/content', function(W){
                         var video_type = video_arry[video_arry.length - 1];
                         text = window.StringUtil.format(locale.PLAY_NO_PLAYER, video_type.toUpperCase());
                     }else{
-                        text = locale.PLAY_CANNOT_READ;   
+                        text = locale.PLAY_CANNOT_READ;
                     }
                     alert(text);
                 }
@@ -4787,8 +4787,8 @@ wonder.addModule('video/content', function(W){
                     }
 
                 }).delegate('.w-video-item-mask', 'mouseover', function(e){
-                    
-                    var offset = $(this).offset();                 
+
+                    var offset = $(this).offset();
                     var position = {
                         left : offset.left - 150,
                         top  : offset.top + 40
@@ -4803,21 +4803,21 @@ wonder.addModule('video/content', function(W){
                     data.duration = W.timer().formatTimerFromMillisecond(video_data.duration);
 
                     self.showVideoInfo(data, position);
-                    
+
                 }).delegate('.w-video-item-mask', 'mouseout', function(e){
-                    self.hideVideoInfo(); 
+                    self.hideVideoInfo();
                 });
 
                 Device.on('change:hasSDCard', function(Device){
                     var tipText = '';
                     if(!Device.get('hasSDCard')){
-                        tipText =  i18n.common.NO_SD_CARD_TIP_TEXT;
+                        tipText =  i18n.misc.NO_SD_CARD_TIP_TEXT;
                         this.showTip(tipText);
                     }if(this._threads.length <= 0){
                         tipText = locale.NO_VIDEOS_TEXT;
                         this.showTip(tipText);
                     }
-                    
+
                 }, this);
 
                 $(document).bind('keydown', function(e){
@@ -4825,7 +4825,7 @@ wonder.addModule('video/content', function(W){
                         W.video.videoCollection.cancelPlay(self.lastSessionId, '', function(){
                             progressWin.hide();
                         }, self);
-                   } 
+                   }
                 });
                 this.rendered = true;
             }
@@ -4842,21 +4842,21 @@ wonder.useModule('video/content');
 wonder.addModule('video/thread', function(W){
     W.namespace('wonder.video');
     var locale = i18n.video;
-    
+
     function VideoThread(threadData, threadName){
         this.data = threadData;
         this.name = threadName;
         this.items = [];
-        W.ui.UIBase.call(this); 
+        W.ui.UIBase.call(this);
     }
 
     W.extend(VideoThread, W.ui.UIBase);
-    
+
     VideoThread.Events = {
         SELECT : 'videoThreadSelect',
-        UNSELECT : 'videoThreadUnselect'  
+        UNSELECT : 'videoThreadUnselect'
     };
-    
+
     W.mix(VideoThread.prototype, {
         _init : function () {
             var self = this;
@@ -4865,10 +4865,10 @@ wonder.addModule('video/thread', function(W){
 
             var videoItem;
             _.each(self.data, function(videoData) {
-                
+
                 W.mix(videoData, W.events);
                 videoItem = new W.video.VideoItem(videoData);
-                
+
                 videoItem.bind( W.video.VideoItem.Events.SELECT, function(id){
                     self.trigger( W.video.VideoItem.Events.SELECT, id);
                     self.resetCheckbox();
@@ -4920,7 +4920,7 @@ wonder.addModule('video/thread', function(W){
 
         setChecked : function(checked) {
             this._checkbox.prop('checked', checked);
-        }, 
+        },
 
         selectAll: function(){
             _.each(this.items, function(item){
@@ -4948,22 +4948,22 @@ wonder.addModule('video/thread', function(W){
                     var target = e.target;
                     if($(target).hasClass('w-video-thread-checkbox')){
                         if(target.checked){
-                            self.selectAll();                      
+                            self.selectAll();
                         }else{
                             self.unSelectAll();
                         }
                     }
-                    
+
                 });
                 this.rendered = true;
             }
-        } 
+        }
     });
     W.video.VideoThread = VideoThread;
 });
 wonder.useModule('video/thread');
 ﻿/**
- * @fileoverview 
+ * @fileoverview
  * @author lixiaomeng@wandoujia.com
  */
 wonder.addModule('video/item', function(W){
@@ -4994,7 +4994,7 @@ wonder.addModule('video/item', function(W){
                 isIgnore: false,
                 send: function(){
                     this.sending = true;
-                    
+
                     W.video.videoCollection.getVideoThumbnail(id, function(response){
                         if(response.state_code == 200){
                              this.request.isSuccessed = true;
@@ -5007,8 +5007,8 @@ wonder.addModule('video/item', function(W){
                     }, self)
                 }
             };
-            
-           
+
+
             W.video.videoRequestList.push(this.request);
         },
 
@@ -5021,7 +5021,7 @@ wonder.addModule('video/item', function(W){
             var checked = this._element.hasClass('checked');
             !checked ? this.select() : this.unSelect();
         },
-        
+
         select: function(){
             if(this._element.children('input:visible').length == 0){
                 return ;
@@ -5030,13 +5030,13 @@ wonder.addModule('video/item', function(W){
             this._element.addClass('checked');
             this.trigger(VideoItem.Events.SELECT, this.data.id);
         },
-        
+
         unSelect: function(){
             this._element.children('input').prop('checked', false);
             this._element.removeClass('checked');
             this.trigger(VideoItem.Events.UNSELECT, this.data.id);
         },
-        
+
         setVisibility: function(visibiliy){
             var el = this._element;
             visibiliy ? el.removeClass('wd-invisible') : el.addClass('wd-invisible');
@@ -5046,11 +5046,11 @@ wonder.addModule('video/item', function(W){
             var self = this;
             if(!this.rendered){
                 var tpl = W.Template.get('video', 'video_item');
-                
+
                 this._element = $(tpl);
                 this._element.appendTo(parent);
                 this._element.find('.w-video-item-mask').attr('data-id', self.data.id);
-                
+
                 this._element.click(function(e){
                     var target = e.target;
                     if(target.tagName.toLowerCase() == 'input'){
@@ -5089,7 +5089,7 @@ wonder.addModule('video', function (W) {
 
     var loadingProcess = new W.ui.status.Process ();
     var loadingView = new W.ui.status.ProcessView (loadingProcess);
-    var deleteTipDialog = new W.ui.Dialog (i18n.common.DIALOG_TIP);
+    var deleteTipDialog = new W.ui.Dialog (i18n.misc.DIALOG_TIP);
     var progressWin = new W.ui.Progress ();
     var allCheckbox = $('<input/>').attr('type', 'checkbox');
     var videoContent = W.video.videoContent = new W.video.VideoContent ();
@@ -5118,7 +5118,7 @@ wonder.addModule('video', function (W) {
     var contentWrapper;
     var setPosition2ThreadTimer;
     var checkboxDelegate;
-    var alert = new W.ui.Dialog (i18n.common.DIALOG_TIP);
+    var alert = new W.ui.Dialog (i18n.misc.DIALOG_TIP);
     alert.setButtonSet(W.ui.Dialog.ButtonSet.OK);
 
     /**
@@ -5138,9 +5138,9 @@ wonder.addModule('video', function (W) {
             this.addTopContent(toolbar);
 
             var mainBtn = new W.ui.ImageButton (locale.ADD_LOCAL_VIDEO_TEXT);
-            var delBtn = new W.ui.ImageButton (i18n.common.DELETE_TEXT);
-            var expBtn = new W.ui.ImageButton (i18n.common.EXPORT_TEXT);
-            var refreshBtn = new W.ui.ImageButton (i18n.common.REFRESH_TEXT);
+            var delBtn = new W.ui.ImageButton (i18n.misc.DELETE_TEXT);
+            var expBtn = new W.ui.ImageButton (i18n.misc.EXPORT_TEXT);
+            var refreshBtn = new W.ui.ImageButton (i18n.misc.REFRESH_TEXT);
             checkboxDelegate = new W.ui.SelectDelegate ();
 
             toolbar.addComponent('checkboxDelegateBtn', checkboxDelegate).addComponent('mainBtn', mainBtn).addComponent('deleteBtn', delBtn).addComponent('exportBtn', expBtn).addComponent('refreshBtn', refreshBtn);
@@ -5195,7 +5195,7 @@ wonder.addModule('video', function (W) {
             loadingProcess.start();
             videoCollection.sync(function (response) {
                 if (response.state_code !== 200 && response.state_code !== 402) {
-                    alert(i18n.common.REFRESH_ERROR);
+                    alert(i18n.misc.REFRESH_ERROR);
                 }
                 loadingProcess.finish();
                 window.Music.PIMCollection.getInstance().get(6).set({
@@ -5305,7 +5305,7 @@ wonder.addModule('video', function (W) {
                     }
                 });
             } else {
-                videoContent.showTip(i18n.common.NO_SD_CARD_TIP_TEXT);
+                videoContent.showTip(i18n.misc.NO_SD_CARD_TIP_TEXT);
                 loadingView.hide();
             }
         },

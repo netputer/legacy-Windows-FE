@@ -9,7 +9,7 @@ wonder.addModule('video', function (W) {
 
     var loadingProcess = new W.ui.status.Process ();
     var loadingView = new W.ui.status.ProcessView (loadingProcess);
-    var deleteTipDialog = new W.ui.Dialog (i18n.common.DIALOG_TIP);
+    var deleteTipDialog = new W.ui.Dialog (i18n.misc.DIALOG_TIP);
     var progressWin = new W.ui.Progress ();
     var allCheckbox = $('<input/>').attr('type', 'checkbox');
     var videoContent = W.video.videoContent = new W.video.VideoContent ();
@@ -38,7 +38,7 @@ wonder.addModule('video', function (W) {
     var contentWrapper;
     var setPosition2ThreadTimer;
     var checkboxDelegate;
-    var alert = new W.ui.Dialog (i18n.common.DIALOG_TIP);
+    var alert = new W.ui.Dialog (i18n.misc.DIALOG_TIP);
     alert.setButtonSet(W.ui.Dialog.ButtonSet.OK);
 
     /**
@@ -58,9 +58,9 @@ wonder.addModule('video', function (W) {
             this.addTopContent(toolbar);
 
             var mainBtn = new W.ui.ImageButton (locale.ADD_LOCAL_VIDEO_TEXT);
-            var delBtn = new W.ui.ImageButton (i18n.common.DELETE_TEXT);
-            var expBtn = new W.ui.ImageButton (i18n.common.EXPORT_TEXT);
-            var refreshBtn = new W.ui.ImageButton (i18n.common.REFRESH_TEXT);
+            var delBtn = new W.ui.ImageButton (i18n.misc.DELETE_TEXT);
+            var expBtn = new W.ui.ImageButton (i18n.misc.EXPORT_TEXT);
+            var refreshBtn = new W.ui.ImageButton (i18n.misc.REFRESH_TEXT);
             checkboxDelegate = new W.ui.SelectDelegate ();
 
             toolbar.addComponent('checkboxDelegateBtn', checkboxDelegate).addComponent('mainBtn', mainBtn).addComponent('deleteBtn', delBtn).addComponent('exportBtn', expBtn).addComponent('refreshBtn', refreshBtn);
@@ -115,7 +115,7 @@ wonder.addModule('video', function (W) {
             loadingProcess.start();
             videoCollection.sync(function (response) {
                 if (response.state_code !== 200 && response.state_code !== 402) {
-                    alert(i18n.common.REFRESH_ERROR);
+                    alert(i18n.misc.REFRESH_ERROR);
                 }
                 loadingProcess.finish();
                 window.Music.PIMCollection.getInstance().get(6).set({
@@ -225,7 +225,7 @@ wonder.addModule('video', function (W) {
                     }
                 });
             } else {
-                videoContent.showTip(i18n.common.NO_SD_CARD_TIP_TEXT);
+                videoContent.showTip(i18n.misc.NO_SD_CARD_TIP_TEXT);
                 loadingView.hide();
             }
         },

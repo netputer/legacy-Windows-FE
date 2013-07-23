@@ -57,25 +57,25 @@
                     }
 
                     if (capacity.indexOf('GB') !== -1) {
-                        time = StringUtil.format(i18n.common.HOUR, num);
+                        time = StringUtil.format(i18n.misc.HOUR, num);
                     } else if (capacity.indexOf('TB') !== -1) {
-                        time = StringUtil.format(i18n.common.HOUR, num * 1024);
+                        time = StringUtil.format(i18n.misc.HOUR, num * 1024);
                     }
 
                     var tip = StringUtil.format(i18n.music.CONFIRM_IMPORT, capacity, time);
                     var buttons = [
                         {
-                            $button : $('<button/>').addClass('primary').html(i18n.common.OK),
+                            $button : $('<button/>').addClass('primary').html(i18n.misc.OK),
                             eventName : 'OK'
                         },
                         {
-                            $button : $('<button/>').html(i18n.common.CANCEL),
+                            $button : $('<button/>').html(i18n.misc.CANCEL),
                             eventName : 'CANCEL'
                         }
                     ];
 
                     var tipPanelView = new Panel({
-                        title : i18n.common.DIALOG_TIP,
+                        title : i18n.misc.DIALOG_TIP,
                         width : 360,
                         disableX : true,
                         draggable : true,

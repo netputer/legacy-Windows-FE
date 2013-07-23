@@ -125,7 +125,7 @@
                     shareBtn.prop({
                         disabled : true
                     });
-                    this.$('.pic-size-tip').html(StringUtil.format(i18n.common.SHARE_WIDGET_PIC_LIMIT_SIZE_TIP, CONFIG.enums.SINA_SHARE_PIC_LIMIT_SIZE)).show();
+                    this.$('.pic-size-tip').html(StringUtil.format(i18n.misc.SHARE_WIDGET_PIC_LIMIT_SIZE_TIP, CONFIG.enums.SINA_SHARE_PIC_LIMIT_SIZE)).show();
                 } else {
                     shareBtn.prop({
                         disabled : !!isDisable
@@ -202,30 +202,30 @@
                 var contentType = '';
                 switch (this.type) {
                 case CONFIG.enums.SOCIAL_SCREENSHOT:
-                    contentType = i18n.common.SHARE_CONTENT_TYPE_SCREENSHOT;
+                    contentType = i18n.misc.SHARE_CONTENT_TYPE_SCREENSHOT;
                     break;
                 case CONFIG.enums.SOCIAL_PHOTO:
-                    contentType = i18n.common.SHARE_CONTENT_TYPE_PHOTO;
+                    contentType = i18n.misc.SHARE_CONTENT_TYPE_PHOTO;
                     break;
                 case CONFIG.enums.SOCIAL_WELCOME:
-                    contentType = i18n.common.SHARE_CONTENT_TYPE_WELCOME;
+                    contentType = i18n.misc.SHARE_CONTENT_TYPE_WELCOME;
                     break;
                 case CONFIG.enums.SOCIAL_APP:
                     if (this.extraData && this.extraData.app_title) {
                         contentType = '「' + this.extraData.app_title + '」';
                     } else {
-                        contentType = i18n.common.SHARE_CONTENT_TYPE_APP;
+                        contentType = i18n.misc.SHARE_CONTENT_TYPE_APP;
                     }
                     break;
                 case CONFIG.enums.SOCIAL_UNINSTALL_APP:
                     if (this.extraData && this.extraData.app_title) {
-                        contentType = StringUtil.format(i18n.common.SHARE_WIDGET_TITLE_2, '「' + this.extraData.app_title + '」');
+                        contentType = StringUtil.format(i18n.misc.SHARE_WIDGET_TITLE_2, '「' + this.extraData.app_title + '」');
                     } else {
-                        contentType = i18n.common.SHARE_WIDGET_TITLE_2;
+                        contentType = i18n.misc.SHARE_WIDGET_TITLE_2;
                     }
                     return contentType;
                 }
-                return StringUtil.format(i18n.common.SHARE_WIDGET_TITLE, contentType);
+                return StringUtil.format(i18n.misc.SHARE_WIDGET_TITLE, contentType);
             },
             recoveryContent : function () {
                 var config = {
@@ -267,7 +267,7 @@
                 });
 
                 if (this.automaticClosing) {
-                    this.showShareTip(i18n.common.SHARE_WIDGET_SENT_TEXT, 'success');
+                    this.showShareTip(i18n.misc.SHARE_WIDGET_SENT_TEXT, 'success');
                     var timer = setTimeout(function () {
                         if (this.shareCallback) {
                             this.shareCallback();
@@ -283,11 +283,11 @@
                     'sns' : 'weibo'
                 });
 
-                var errorMessage = i18n.common.SHARE_WIDGET_FAILED_TEXT;
+                var errorMessage = i18n.misc.SHARE_WIDGET_FAILED_TEXT;
                 if (data && data.value) {
                     switch (data.value) {
                     case CONFIG.enums.SOCIAL_SHARE_COOKIE_EXPIRED:
-                        errorMessage = i18n.common.SHARE_WIDGET_COOKIE_EXPIRED_TEXT;
+                        errorMessage = i18n.misc.SHARE_WIDGET_COOKIE_EXPIRED_TEXT;
                         break;
                     }
                 }
@@ -304,7 +304,7 @@
 
             },
             viewOriginPicFromPCFail : function () {
-                alert(i18n.common.SHARE_WIDGET_VIEW_FROM_PC_ERROR);
+                alert(i18n.misc.SHARE_WIDGET_VIEW_FROM_PC_ERROR);
             },
             countDown : function () {
                 var val = this.$('.input-content').val();
@@ -313,10 +313,10 @@
                 var diff = maxLen - len;
 
                 if (diff >= 0) {
-                    this.showShareTip(StringUtil.format(i18n.common.SHARE_WIDGET_INPUT_COUNT_TEXT, diff), 'count');
+                    this.showShareTip(StringUtil.format(i18n.misc.SHARE_WIDGET_INPUT_COUNT_TEXT, diff), 'count');
                     this.disableShareBtn(false);
                 } else {
-                    this.showShareTip(StringUtil.format(i18n.common.SHARE_WIDGET_INPUT_OVER_COUNT_TEXT, len - maxLen), 'error');
+                    this.showShareTip(StringUtil.format(i18n.misc.SHARE_WIDGET_INPUT_OVER_COUNT_TEXT, len - maxLen), 'error');
                     this.disableShareBtn(true);
                 }
             },
@@ -355,11 +355,11 @@
 
         var buttons = [
             {
-                $button : $('<button/>').html(i18n.common.SHARE).addClass('primary share-btn'),
+                $button : $('<button/>').html(i18n.misc.SHARE).addClass('primary share-btn'),
                 eventName : 'button_share'
             },
             {
-                $button : $('<button/>').html(i18n.common.CANCEL),
+                $button : $('<button/>').html(i18n.misc.CANCEL),
                 eventName : 'button_no'
             }
         ];
@@ -375,7 +375,7 @@
 
                     shareView.on('button_share', function () {
                         if (!this.socialPlatformSelectorView.hasPlatformSelected()) {
-                            this.showShareTip(i18n.common.SHARE_WIDGET_ERROR_NEED_SELECT_PLATFORM, 'error');
+                            this.showShareTip(i18n.misc.SHARE_WIDGET_ERROR_NEED_SELECT_PLATFORM, 'error');
                             return;
                         }
 
@@ -407,7 +407,7 @@
                             if (this.extraData && this.extraData.app_package_name && this.extraData.app_title) {
                                 shareParameter.content = this.extraData.app_package_name;
                             } else {
-                                this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
+                                this.showShareTip(i18n.misc.SHARE_WIDGET_FAILED_TEXT, 'error');
                                 return;
                             }
                             break;
@@ -419,7 +419,7 @@
                                     app_package_name : this.extraData.app_package_name
                                 });
                             } else {
-                                this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
+                                this.showShareTip(i18n.misc.SHARE_WIDGET_FAILED_TEXT, 'error');
                                 return;
                             }
                             break;
@@ -430,12 +430,12 @@
                                     adsNum : this.extraData.adsNum || 0
                                 });
                             } else {
-                                this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
+                                this.showShareTip(i18n.misc.SHARE_WIDGET_FAILED_TEXT, 'error');
                                 return;
                             }
                             break;
                         default:
-                            this.showShareTip(i18n.common.SHARE_WIDGET_FAILED_TEXT, 'error');
+                            this.showShareTip(i18n.misc.SHARE_WIDGET_FAILED_TEXT, 'error');
                             return;
                         }
 

@@ -128,7 +128,7 @@
                 }, this);
 
                 this.buttons = [{
-                    $button : $('<button>').html(i18n.common.NEXT_STEP).addClass('button-next primary'),
+                    $button : $('<button>').html(i18n.misc.NEXT_STEP).addClass('button-next primary'),
                     eventName : 'button-next'
                 }, {
                     $button : $('<button>').html(i18n.message.CANCEL),

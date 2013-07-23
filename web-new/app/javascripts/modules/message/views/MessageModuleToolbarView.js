@@ -141,7 +141,7 @@
             },
             clickButtonRefresh : function () {
                 conversationsCollection.syncAsync().fail(function () {
-                    alert(i18n.common.REFRESH_ERROR);
+                    alert(i18n.misc.REFRESH_ERROR);
                 });
             },
             events : {

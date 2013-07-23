@@ -90,7 +90,7 @@
                     this.render();
                     this.loading = false;
                 }.bind(this)).fail(function (resp) {
-                    this.$('.loading').text(i18n.common.LOAD_FAILD);
+                    this.$('.loading').text(i18n.misc.LOAD_FAILD);
                 }.bind(this));
             },
             fillItemListWithAppData : function () {
@@ -104,7 +104,7 @@
                     this.render();
                     this.loading = false;
                 }.bind(this)).fail(function (resp) {
-                    this.$('.loading').text(i18n.common.LOAD_FAILD);
+                    this.$('.loading').text(i18n.misc.LOAD_FAILD);
                 }.bind(this));
             }
         });

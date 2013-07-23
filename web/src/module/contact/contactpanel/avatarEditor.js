@@ -21,9 +21,9 @@ wonder.addModule('contact/avatarEditor', function (W) {
         _data : {},
         _addComponent : function () {
             var self = this;
-            self.okBtn = new W.ui.Button (i18n.common.SAVE_TEXT);
-            self.cancelBtn = new W.ui.Button (i18n.common.CANCEL);
-            self.returnBtn = new W.ui.Button (i18n.common.RESELECT_FILE_TEXT);
+            self.okBtn = new W.ui.Button (i18n.misc.SAVE_TEXT);
+            self.cancelBtn = new W.ui.Button (i18n.misc.CANCEL);
+            self.returnBtn = new W.ui.Button (i18n.misc.RESELECT_FILE_TEXT);
             self.picFormatTip = $('<span/>').text(i18n.contact.ALERT_PIC_FORMAT_TIP).addClass('w-contact-pic-format-tip');
 
             self.addFooterContent(self.okBtn);
@@ -265,7 +265,7 @@ wonder.addModule('contact/avatarEditor', function (W) {
             }
 
             if (Device.get('isMounted')) {
-                tip = i18n.common.SD_MOUNT_TIP_TEXT;
+                tip = i18n.misc.SD_MOUNT_TIP_TEXT;
             }
             this.tipEl.text(tip).show();
         },

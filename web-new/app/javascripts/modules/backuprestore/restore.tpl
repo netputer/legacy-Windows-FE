@@ -148,10 +148,10 @@
         </div>
     </div>
     <div class="list-ctn">
-        <div class="loading">{{= i18n.common.LOADING }}</div>
+        <div class="loading">{{= i18n.misc.LOADING }}</div>
         <ul class="list">
             <li class="load-more-ctn">
-                <span class="button-load-more link">{{= i18n.common.LOAD_MORE }}</span>
+                <span class="button-load-more link">{{= i18n.misc.LOAD_MORE }}</span>
             </li>
         </ul>
     </div>

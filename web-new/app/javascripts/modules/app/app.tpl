@@ -69,7 +69,7 @@
             <button class="w-icon-btn button-dislike min" data-title="{{= i18n.app.UNLIKE }}"><span class="icon dislike"></span></button>
         </span>
         <button class="w-icon-btn button-comment min"><span class="icon comment"></span>{{= i18n.app.COMMENTARY }}</button>
-        <button class="w-icon-btn button-share min"><span class="icon share"></span>{{= i18n.common.SHARE}}</button>
+        <button class="w-icon-btn button-share min"><span class="icon share"></span>{{= i18n.misc.SHARE}}</button>
     </div>
     <div class="input-ctn">
         <textarea placeholder="{{= StringUtil.format(i18n.app.COMMENTARY_PLACEHOLDER, it.base_info.name) }}" class="input-content"></textarea>
@@ -332,7 +332,7 @@
                 <button class="button-install min">{{= i18n.app.INSTALL }}</button>
             {{?}}
         {{?}}
-        <span class="button-hide link">{{= i18n.common.DELETE_TEXT }}</span>
+        <span class="button-hide link">{{= i18n.misc.DELETE_TEXT }}</span>
     </div>
     <div class="button-close" data-id="{{= it.id }}" title="{{= i18n.misc.DESELECT }}"></div>
 </script>
@@ -404,7 +404,7 @@
         <span class="icon update"></span>{{= i18n.app.BUTTON_UPGRADE_LABEL }}
     </button>
     <button class="w-icon-btn button-uninstall min">
-        <span class="icon delete"></span>{{= i18n.app.BUTTON_UNINSTALL_LABEL }}
+        <span class="icon delete"></span>{{= i18n.app.UNINSTALL }}
     </button>
     <button class="w-icon-btn button-export min">
         <span class="icon export"></span>{{= i18n.app.BUTTON_EXPORT_LABEL }}
@@ -418,7 +418,7 @@
     </button>
     <div class="split"></div>
     <button class="w-icon-btn button-refresh min">
-        <span class="icon refresh"></span>{{= i18n.common.REFRESH_TEXT }}
+        <span class="icon refresh"></span>{{= i18n.misc.REFRESH_TEXT }}
     </button>
 </script>
 

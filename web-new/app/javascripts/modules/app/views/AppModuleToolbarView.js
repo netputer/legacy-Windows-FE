@@ -235,7 +235,7 @@
                         var loginHandler = function (Account, isLogin) {
                             if (isLogin) {
                                 WebAppsCollection.getInstance().syncAsync().fail(function () {
-                                    alert(i18n.common.REFRESH_ERROR);
+                                    alert(i18n.misc.REFRESH_ERROR);
                                 });
                                 Account.off('change:isLogin', loginHandler);
                             }
@@ -246,7 +246,7 @@
                 }
                 var targetCollection = appListView.list.currentSet.name === 'web' ? WebAppsCollection.getInstance() : appsCollection;
                 targetCollection.syncAsync().fail(function () {
-                    alert(i18n.common.REFRESH_ERROR);
+                    alert(i18n.misc.REFRESH_ERROR);
                 });
 
                 log({

@@ -374,7 +374,7 @@
         <div class="contact-number" >{{= i18n.contact.BACKUP_MESSAGE_NUMBER }}</div>
     </div>
     <div class="list-ctn">
-        <div class="loading">{{= i18n.common.LOADING }}</div>
+        <div class="loading">{{= i18n.misc.LOADING }}</div>
         <ul class="list">
             {{~ it.list : item }}
             <li>

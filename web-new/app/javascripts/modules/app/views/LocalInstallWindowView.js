@@ -200,7 +200,7 @@
                 LocalInstallWindowView.__super__.initialize.apply(this, arguments);
 
                 this.buttons = [{
-                    $button : $('<button>').addClass('primary').html(i18n.app.BUTTON_INSTALL_LABEL),
+                    $button : $('<button>').addClass('primary').html(i18n.app.INSTALL),
                     eventName : 'button_install'
                 }, {
                     $button : $('<button>').html(i18n.ui.CANCEL),

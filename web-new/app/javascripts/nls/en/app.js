@@ -111,11 +111,11 @@ define({
     INSTALL_POSITION_LABEL : 'Location: ',
 
     BUTTON_ADD_APP_LABEL : 'Install apps',
-    BUTTON_UNINSTALL_LABEL : 'Uninstall',
+    // BUTTON_UNINSTALL_LABEL : 'Uninstall',
     // BUTTON_UPGRADE_LABEL : 'Update',
     BUTTON_EXPORT_LABEL : 'Export',
 
-    BUTTON_INSTALL_LABEL : 'Install',
+    // BUTTON_INSTALL_LABEL : 'Install',
     ALREAD_INSTALLED : 'Already Installed',
 
     BUTTON_MOVE_TO_DEVICE_LABEL : 'Move to internal storage',

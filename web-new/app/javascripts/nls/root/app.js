@@ -111,11 +111,11 @@ define({
     INSTALL_POSITION_LABEL : '安装位置：',
 
     BUTTON_ADD_APP_LABEL : '安装新应用',
-    BUTTON_UNINSTALL_LABEL : '卸载',
+    // BUTTON_UNINSTALL_LABEL : '卸载',
     // BUTTON_UPGRADE_LABEL : '升级',
     BUTTON_EXPORT_LABEL : '导出',
 
-    BUTTON_INSTALL_LABEL : '安装',
+    // BUTTON_INSTALL_LABEL : '安装',
     ALREAD_INSTALLED : '已安装',
 
     BUTTON_MOVE_TO_DEVICE_LABEL : '移动到手机内存',

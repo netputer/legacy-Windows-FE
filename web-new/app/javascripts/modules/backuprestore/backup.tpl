@@ -25,7 +25,7 @@
     </div>
     <div class="list-ctn">
         {{? it.loading }}
-            <div class="loading">{{= i18n.common.LOADING }}</div>
+            <div class="loading">{{= i18n.misc.LOADING }}</div>
         {{?}}
         <ul class="list">
             {{~ it.list : item }}
@@ -102,7 +102,7 @@
 <script type="text/template" id="error-item-list">
     <p class="title"></p>
     <div class="app-list-ctn">
-        <div class="loading">{{= i18n.common.LOADING }}</div>
+        <div class="loading">{{= i18n.misc.LOADING }}</div>
         <ul class="list">
             {{~ it.list : item }}
             <li class="hbox item-ctn">

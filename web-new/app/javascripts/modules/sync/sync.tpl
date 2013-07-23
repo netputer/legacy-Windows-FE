@@ -2,8 +2,8 @@
 <script type="text/x-ui-template" id="photo-sync">
     <span class="text-tip"></span>
     <div class="split"></div>
-    <span class="link button-open-url">{{= i18n.common.VIEW }}</span>
-    <span class="link button-open-photosync">{{= i18n.common.OPEN }}</span>
+    <span class="link button-open-url">{{= i18n.misc.VIEW }}</span>
+    <span class="link button-open-photosync">{{= i18n.misc.OPEN }}</span>
     <span class="link button-close-photosync">{{= i18n.photo.CLOSE_PHOTO_SYNC }}</span>
 </script>
 
