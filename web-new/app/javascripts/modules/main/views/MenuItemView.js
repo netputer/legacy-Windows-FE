@@ -94,6 +94,11 @@
                         $count.toggle(count > 0);
                         $count.data('title', StringUtil.format(i18n.app.UPDATE_DES, count));
                     }
+
+                    if (this.model.id === 2) {
+                        $count.toggle(count > 0);
+                        $count.data('title', StringUtil.format(i18n.message.UPDATE_DES, count));
+                    }
                 }, this);
             },
             render : function () {
@@ -103,8 +108,7 @@
                     this.$el.hide();
                 }
 
-                // Hack for display count of updatable apps
-                if (this.model.id === 3) {
+                if (this.model.id === 3 || this.model.id === 2) {
                     var $count = this.$('.count');
                     $count.addClass('highlight');
                     if (this.model.get('count') > 0) {
@@ -142,18 +146,27 @@
                 }
             },
             clickTitleCount : function (evt) {
+
+                var data = {};
+
+                evt.stopPropagation();
+
+                this.model.set({
+                    selected : true
+                });
+
                 if (this.model.id === 3) {
-                    evt.stopPropagation();
-
-                    this.model.set({
-                        selected : true
-                    });
-
-                    Backbone.trigger('switchModule', {
+                    data = {
                         module : 'app',
                         tab : 'update'
-                    });
+                    };
+                } else {
+                    data = {
+                        module : 'message'
+                    };
                 }
+
+                Backbone.trigger('switchModule', data);
             },
             events : {
                 'click' : 'clickItem',

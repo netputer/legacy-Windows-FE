@@ -124,4 +124,6 @@ define({
 
     RETURN_ALL : '全部短消息',
     SEARCH_TIP : '{1} 个包含「{2}」的短消息',
+
+    UNREAD_DES : '{1} 条未读短信',
 });
