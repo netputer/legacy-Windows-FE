@@ -1,7 +1,7 @@
 /*global define*/
 define({
-    WELCOME_PAGE_SHOT : '分享您的手机和壁纸到新浪微博',
-    WELCOME_PAGE_SHOT_FOR_FACEBOOK : '分享您的手机和壁纸到 Facebook',
+    // WELCOME_PAGE_SHOT : '分享您的手机和壁纸到新浪微博',
+    // WELCOME_PAGE_SHOT_FOR_FACEBOOK : '分享您的手机和壁纸到 Facebook',
     SCREEN_SHOT_CLIPBOARD_SUCCESS : '已将截图复制到剪贴板',
     SCREEN_SHOT_FAILD : '抱歉，截屏操作失败',
     SCREEN_SHOT_CANCELD : '截屏操作已取消',
@@ -17,7 +17,7 @@ define({
 
     PLAY_BTN_TEXT : '播放',
     PAUSE_BTN_TEXT : '暂停',
-    SEND_WEIBO_BTN_TEXT : '发微博',
+    // SEND_WEIBO_BTN_TEXT : '发微博',
     REFRESH_BTN_TEXT : '刷新',
     FULLSCREEN_BTN_TEXT : '全屏',
 
@@ -27,7 +27,7 @@ define({
 
     MANAGE_SD_UNCONNECT : '很抱歉，您的手机连接已断开，无法启动文件管理。',
     MANAGE_SD_ERROR : '很抱歉，无法启动文件管理。',
-    HAS_NO_SD_CARD : '很抱歉，您的手机没有 SD 卡。',
+    // HAS_NO_SD_CARD : '很抱歉，您的手机没有 SD 卡。',
     MANAGE_SD_INTERNET : '很抱歉，豌豆荚暂时不支持在 Internet 连接下的 SD 卡管理。',
 
     EDIT_RING : '更换铃声',
