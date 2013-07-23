@@ -45,10 +45,9 @@
 
         &.highlight-anima {
             background-color: #f1de93;
-            color: $textHighlight;
             -webkit-animation: {
                 name: highlight;
-                duration: 3s;
+                duration: 2s;
                 iteration-count: 1;
             }
         }
@@ -77,19 +76,7 @@
     0% {
         background-color: transparent;
     }
-    5% {
-        background-color: rgba(110, 184, 0, .40);
-    }
-    20% {
-        background-color: transparent;
-    }
-    35% {
-        background-color: rgba(110, 184, 0, .40);
-    }
-    50% {
-        background-color: transparent;
-    }
-    65% {
+    30% {
         background-color: rgba(110, 184, 0, .40);
     }
     100% {

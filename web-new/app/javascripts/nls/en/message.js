@@ -120,5 +120,7 @@ define({
     IMPORT_FROM_FILE : 'Import from file',
     IMPORT_FROM_BACKUP : 'Import from backup',
 
-    COPY_SMS : 'Message successfully copied to the Clipboard'
+    COPY_SMS : 'Message successfully copied to the Clipboard',
+
+    UNREAD_DES : '{1} 条未读短信',
 });

@@ -18,6 +18,8 @@
     {{? it.count !== -1 }}
         {{? it.id === 3 }}
             <div class="count" data-title="{{= StringUtil.format(i18n.app.UPDATE_DES, it.count) }}">{{= it.count }}</div>
+        {{?? it.id === 2 }}
+            <div class="count" data-title="{{= StringUtil.format(i18n.message.UNREAD_DES, it.count) }}">{{= it.count }}</div>
         {{??}}
             <div class="count">{{= it.count }}</div>
         {{?}}

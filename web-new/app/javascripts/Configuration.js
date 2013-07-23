@@ -395,6 +395,7 @@
                 SYNC_PHOTO_COMPLETE : 'sync.complete',
                 SYNC_CLOUD_SETTING_CHANGE : 'sync.cloud_setting_changed',
                 SYNC_PHOTO_NOTIFY_UPDATE : 'sync.photo.num',
+                SYNC_BACKUP_START : 'backup.guide.start',
 
                 // Auto Backup
                 AUTO_BACKUP_START : 'autobackup.progress.start',
