@@ -166,7 +166,7 @@
                     };
                 }
 
-                Backbone.trigger('switchModule',data);
+                Backbone.trigger('switchModule', data);
             },
             events : {
                 'click' : 'clickItem',

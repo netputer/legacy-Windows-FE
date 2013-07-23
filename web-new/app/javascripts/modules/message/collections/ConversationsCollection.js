@@ -374,15 +374,9 @@
 
                     var pimCollection = PIMCollection.getInstance();
 
-                    conversationsCollection.on('refresh', function (appsCollection) {
-                        var conversations = conversationsCollection.getConversationWithUnreadMessage();
-                        var count = 0;
-                        _.each(conversations, function (conversation) {
-                            count += conversation.get('unread_number');
-                        })
-
+                    conversationsCollection.on('refresh', function (conversationsCollection) {
                         pimCollection.get(2).set({
-                            count : count
+                            count : conversationsCollection.unreadCount
                         });
                     });
                 }
