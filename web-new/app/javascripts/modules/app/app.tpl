@@ -332,7 +332,7 @@
                 <button class="button-install min">{{= i18n.app.INSTALL }}</button>
             {{?}}
         {{?}}
-        <span class="button-hide link">{{= i18n.misc.DELETE_TEXT }}</span>
+        <span class="button-hide link">{{= i18n.misc.DELETE }}</span>
     </div>
     <div class="button-close" data-id="{{= it.id }}" title="{{= i18n.misc.DESELECT }}"></div>
 </script>

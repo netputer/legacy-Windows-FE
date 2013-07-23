@@ -69,7 +69,7 @@ define({
     UPDATE_DES : '{1} app(s) to update',
     ONE_KEY_TRANSFER : 'One-click move ({1})',
     ONE_KEY_TRANSFER_DES : 'Move files to your SD card to make space on your device\'s internal storage',
-    // ONE_KEY_UPDATE_TITLE : 'One-click update',
+    ONE_KEY_UPDATE_TITLE : 'One-click update',
 
     WEB_APPS : 'Downloaded apps ({1})',
     WEB_APPS_EMPTY : 'Downloaded apps',
@@ -79,7 +79,7 @@ define({
     APP_SEARCH : 'App search',
     UNINSTALL_AFTER_HIDE : '"{1}" was deleted from your download history. Delete this app on your phone?',
     WEB_APPS_HIDE_TEXT : 'Hide',
-    // WEB_APPS_HIDING_TEXT : 'Hiding',
+    WEB_APPS_HIDING_TEXT : 'Hiding',
     WEB_APPS_HIDE_FAILED_TEXT : 'Failed to hide',
 
     APP_WASH : 'App scan',
@@ -111,11 +111,11 @@ define({
     INSTALL_POSITION_LABEL : 'Location: ',
 
     BUTTON_ADD_APP_LABEL : 'Install apps',
-    // BUTTON_UNINSTALL_LABEL : 'Uninstall',
-    // BUTTON_UPGRADE_LABEL : 'Update',
+    BUTTON_UNINSTALL_LABEL : 'Uninstall',
+    BUTTON_UPGRADE_LABEL : 'Update',
     BUTTON_EXPORT_LABEL : 'Export',
 
-    // BUTTON_INSTALL_LABEL : 'Install',
+    BUTTON_INSTALL_LABEL : 'Install',
     ALREAD_INSTALLED : 'Already Installed',
 
     BUTTON_MOVE_TO_DEVICE_LABEL : 'Move to internal storage',
