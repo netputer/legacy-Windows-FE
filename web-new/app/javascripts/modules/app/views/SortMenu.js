@@ -61,7 +61,7 @@
                 if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
                         Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
                     buttons.push({
-                        label : i18n.app.BUTTON_UPGRADE_LABEL,
+                        label : i18n.app.UPDATE,
                         type : 'radio',
                         name : 'app-list-sort',
                         value : 'update',

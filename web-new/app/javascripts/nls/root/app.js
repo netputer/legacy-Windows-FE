@@ -69,7 +69,7 @@ define({
     UPDATE_DES : '{1} 个应用可升级',
     ONE_KEY_TRANSFER : '一键移动 ({1})',
     ONE_KEY_TRANSFER_DES : '帮您把手机内存的应用移动到 SD 卡上，彻底释放手机内存空间。',
-    ONE_KEY_UPDATE_TITLE : '一键升级',
+    // ONE_KEY_UPDATE_TITLE : '一键升级',
 
     WEB_APPS : '下载过的应用 ({1})',
     WEB_APPS_EMPTY : '下载过的',
@@ -79,7 +79,7 @@ define({
     APP_SEARCH : '应用搜索',
     UNINSTALL_AFTER_HIDE : '已从下载历史中删除「{1}」，要在手机上卸载这个应用吗？',
     WEB_APPS_HIDE_TEXT : '隐藏',
-    WEB_APPS_HIDING_TEXT : '正在隐藏',
+    // WEB_APPS_HIDING_TEXT : '正在隐藏',
     WEB_APPS_HIDE_FAILED_TEXT : '隐藏失败',
 
     APP_WASH : '豌豆洗白白',
@@ -112,7 +112,7 @@ define({
 
     BUTTON_ADD_APP_LABEL : '安装新应用',
     BUTTON_UNINSTALL_LABEL : '卸载',
-    BUTTON_UPGRADE_LABEL : '升级',
+    // BUTTON_UPGRADE_LABEL : '升级',
     BUTTON_EXPORT_LABEL : '导出',
 
     BUTTON_INSTALL_LABEL : '安装',

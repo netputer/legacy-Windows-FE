@@ -401,7 +401,7 @@
         <span class="icon add"></span>{{= i18n.app.BUTTON_ADD_APP_LABEL }}
     </button>
     <button class="w-icon-btn button-update min">
-        <span class="icon update"></span>{{= i18n.app.BUTTON_UPGRADE_LABEL }}
+        <span class="icon update"></span>{{= i18n.app.UPDATE }}
     </button>
     <button class="w-icon-btn button-uninstall min">
         <span class="icon delete"></span>{{= i18n.app.UNINSTALL }}
