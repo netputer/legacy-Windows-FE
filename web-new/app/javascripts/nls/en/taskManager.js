@@ -167,6 +167,7 @@ define({
     DEVICE_NOT_FOUND_TIP : 'Connect your device via USB or Wi-Fi, and SnapPea will finish these tasks',
 
     SET_AS_WALL_PAPER : 'Set as wallpaper',
+    SET_AS_RINGTONE : '设为来电铃声',
     START_UNZIPPING : 'Unzipping...',
     UNZIPING : 'Unzipping...',
     UNZIP_COMPLETE : 'Unzip completed',

@@ -167,6 +167,7 @@ define({
     DEVICE_NOT_FOUND_TIP : '请使用 USB 连接或 Wi-Fi 将手机连接到豌豆荚，未完成的任务将在手机连接后继续。',
 
     SET_AS_WALL_PAPER : '设为手机壁纸',
+    SET_AS_RINGTONE : '设为来电铃声',
     START_UNZIPPING : '开始解压',
     UNZIPING : '正在解压...',
     UNZIP_COMPLETE : '解压成功',
