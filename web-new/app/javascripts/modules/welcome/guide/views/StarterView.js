@@ -152,6 +152,7 @@
                     var tip = new PopupTip({
                         $host : $(this)
                     });
+                    tip.zero();
                 });
 
                 return this;

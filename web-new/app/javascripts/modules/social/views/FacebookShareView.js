@@ -10,7 +10,6 @@
         'Configuration',
         'ui/Panel',
         'ui/KeyMapping',
-        'Environment',
         'Internationalization',
         'utilities/StringUtil',
         'Device',
@@ -27,7 +26,6 @@
         CONIFG,
         Panel,
         KeyMapping,
-        Environment,
         i18n,
         StringUtil,
         Device,
@@ -54,8 +52,7 @@
                 this.disableShareBtn(false);
                 try {
                     data = JSON.parse(data.value);
-                } catch (e) {
-                }
+                } catch (ignore) {}
 
                 var screenName = data.screen_name || '';
                 if (!screenName) {
@@ -226,7 +223,9 @@
                 };
                 SocialData.viewOriginPicFromPicAsync(data, this.viewOriginPicFromPCSuccess.bind(this), this.viewOriginPicFromPCFail.bind(this));
             },
-            viewOriginPicFromPCSuccess : function () {},
+            viewOriginPicFromPCSuccess : function () {
+                return;
+            },
             viewOriginPicFromPCFail : function () {
                 alert(i18n.misc.SHARE_WIDGET_VIEW_FROM_PC_ERROR);
             },

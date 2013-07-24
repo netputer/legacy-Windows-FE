@@ -10,17 +10,13 @@
         'ui/Panel',
         'ui/KeyMapping',
         'ui/AlertWindow',
-        'Environment',
         'Internationalization',
         'utilities/StringUtil',
-        'Device',
         'FunctionSwitch',
         'social/SocialData',
         'Log',
         'Account',
-        'social/views/SocialPlatformSelectorView',
-        'IOBackendDevice',
-        'music/MusicService'
+        'social/views/SocialPlatformSelectorView'
     ], function (
         doT,
         $,
@@ -31,17 +27,13 @@
         Panel,
         KeyMapping,
         AlertWindow,
-        Environment,
         i18n,
         StringUtil,
-        Device,
         FunctionSwitch,
         SocialData,
         log,
         Account,
-        SocialPlatformSelectorView,
-        IO,
-        MusicService
+        SocialPlatformSelectorView
     ) {
         console.log('Share View loaded');
 
@@ -75,7 +67,7 @@
                 this.disableShareBtn(false);
                 try {
                     data = JSON.parse(data.value);
-                } catch (err) {}
+                } catch (ignore) {}
 
                 if (this.defaultText) {
                     this.$('textarea').val(this.defaultText);
@@ -148,7 +140,6 @@
                 var sharePreview = this.$('.share-preview');
                 var sharePreviewContent = this.$('.share-preview-content').html('');
                 var loading = this.$('.w-ui-loading').show();
-                var viewPicFromPCBtn = this.$('.view-from-pc');
 
                 var size = this.getPreviewContentSize();
                 var paddingVal = 20;
@@ -301,7 +292,7 @@
                 SocialData.viewOriginPicFromPicAsync(data, this.viewOriginPicFromPCSuccess.bind(this), this.viewOriginPicFromPCFail.bind(this));
             },
             viewOriginPicFromPCSuccess : function () {
-
+                return;
             },
             viewOriginPicFromPCFail : function () {
                 alert(i18n.misc.SHARE_WIDGET_VIEW_FROM_PC_ERROR);

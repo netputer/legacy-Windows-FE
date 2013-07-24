@@ -1,29 +1,19 @@
 /*global define*/
 (function (window) {
     define([
-        'backbone',
         'underscore',
         'doT',
-        'jquery',
         'ui/TemplateFactory',
         'ui/BaseListItem',
-        'ui/AlertWindow',
-        'ui/UIHelper',
         'Internationalization'
     ], function (
-        Backbone,
         _,
         doT,
-        $,
         TemplateFactory,
         BaseListItem,
-        AlertWindow,
-        UIHelper,
         i18n
     ) {
-
         console.log('PlayListItem - File loaded');
-
 
         var PlayListItemView = BaseListItem.extend({
             template : doT.template(TemplateFactory.get('iTunes', 'itunes-play-list-item')),

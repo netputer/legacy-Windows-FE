@@ -85,6 +85,7 @@
                     $host : this.$('.app-data-tip-ctn'),
                     delay : true
                 });
+                panel.zero();
 
                 // set data types in dataIdList as checked
                 this.$('ul li input').prop({

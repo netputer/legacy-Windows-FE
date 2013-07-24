@@ -7,7 +7,6 @@
         'Internationalization',
         'Log',
         'ui/TemplateFactory',
-        'IO',
         'Settings',
         'guide/views/CardView'
     ], function (
@@ -17,7 +16,6 @@
         i18n,
         log,
         TemplateFactory,
-        IO,
         Settings,
         CardView
     ) {

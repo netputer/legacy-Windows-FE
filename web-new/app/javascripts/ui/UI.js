@@ -1,8 +1,6 @@
 /*global define*/
 (function (window) {
     define([
-        'backbone',
-        'underscore',
         'ui/UIHelper',
         'ui/TemplateFactory',
         'ui/Panel',
@@ -14,8 +12,6 @@
         'ui/PopupTip',
         'ui/Menu'
     ], function (
-        Backbone,
-        _,
         UIHelper,
         TemplateFactory,
         Panel,

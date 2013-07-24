@@ -9,13 +9,11 @@
         'ui/Panel',
         'ui/AlertWindow',
         'ui/UIHelper',
-        'Environment',
         'WindowController',
         'Device',
         'Configuration',
         'Internationalization',
         'ui/TemplateFactory',
-        'ui/behavior/ButtonSetMixin',
         'utilities/StringUtil',
         'music/iTunes/collections/ITunesCollection'
     ], function (
@@ -27,13 +25,11 @@
         Panel,
         AlertWindow,
         UIHelper,
-        Environment,
         WindowController,
         Device,
         Configuration,
         i18n,
         TemplateFactory,
-        ButtonSetMixin,
         StringUtil,
         ITunesCollection
     ) {

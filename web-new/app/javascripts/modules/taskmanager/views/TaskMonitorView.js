@@ -13,13 +13,10 @@
         'IOBackendDevice',
         'utilities/StringUtil',
         'task/collections/TasksCollection',
-        'main/views/NavView',
         'task/views/TaskDashboardView',
         'task/views/TaskNotifierPanelView',
         'task/views/TaskModuleView',
-        'task/EventProcessor',
-        'task/TaskService',
-        'main/collections/PIMCollection'
+        'task/EventProcessor'
     ], function (
         Backbone,
         doT,
@@ -33,13 +30,10 @@
         IO,
         StringUtil,
         TasksCollection,
-        NavView,
         TaskDashboardView,
         TaskNotifierPanelView,
         TaskModuleView,
-        EventProcessor,
-        TaskService,
-        PIMCollection
+        EventProcessor
     ) {
         console.log('TaskMonitorView - File loaded. ');
 
@@ -250,7 +244,7 @@
 
                         popupPanel.show();
 
-                        popupPanel.on('remove', function() {
+                        popupPanel.on('remove', function () {
                             notEnoughSpaceFlag = false;
                         });
 

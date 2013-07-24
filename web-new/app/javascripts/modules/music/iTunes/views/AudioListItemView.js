@@ -1,24 +1,18 @@
 /*global define*/
 (function (window) {
     define([
-        'backbone',
         'underscore',
         'doT',
-        'jquery',
         'ui/TemplateFactory',
         'ui/BaseListItem',
         'ui/AlertWindow',
-        'ui/UIHelper',
         'Internationalization'
     ], function (
-        Backbone,
         _,
         doT,
-        $,
         TemplateFactory,
         BaseListItem,
         AlertWindow,
-        UIHelper,
         i18n
     ) {
 

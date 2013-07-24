@@ -11,8 +11,6 @@
         'Configuration',
         'Internationalization',
         'Log',
-        'IO',
-        'Settings',
         'social/SocialService'
     ], function (
         Backbone,
@@ -25,8 +23,6 @@
         CONFIG,
         i18n,
         log,
-        IO,
-        Settings,
         SocialService
     ) {
         console.log('QuickShareView - File loaded. ');

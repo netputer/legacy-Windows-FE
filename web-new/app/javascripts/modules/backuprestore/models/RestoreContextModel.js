@@ -3,13 +3,11 @@
     define([
         'underscore',
         'backbone',
-        'Environment',
         'Configuration',
         'Internationalization'
     ], function (
         _,
         Backbone,
-        Environment,
         CONFIG,
         i18n
     ) {

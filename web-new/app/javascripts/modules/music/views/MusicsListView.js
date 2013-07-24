@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, undefine) {
+(function (window) {
     define([
         'backbone',
         'underscore',

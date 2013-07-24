@@ -3,19 +3,13 @@
     define([
         'underscore',
         'backbone',
-        'Log',
         'IOBackendDevice',
-        'Settings',
-        'FunctionSwitch',
         'Configuration',
         'Device'
     ], function (
         _,
         Backbone,
-        log,
         IO,
-        Settings,
-        FunctionSwitch,
         CONFIG,
         Device
     ) {

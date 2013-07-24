@@ -3,13 +3,11 @@
     define([
         'underscore',
         'IO',
-        'MessageRouterMixin',
         'Environment',
         'utilities/FilterFunction'
     ], function (
         _,
         IO,
-        MessageRouterMixin,
         Environment,
         FilterFunction
     ) {

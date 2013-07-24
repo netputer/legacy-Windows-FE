@@ -3,7 +3,6 @@
     define([
         'underscore',
         'doT',
-        'jquery',
         'ui/Toolbar',
         'ui/TemplateFactory',
         'ui/AlertWindow',
@@ -19,7 +18,6 @@
     ], function (
         _,
         doT,
-        $,
         Toolbar,
         TemplateFactory,
         AlertWindow,

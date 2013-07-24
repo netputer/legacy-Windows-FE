@@ -2,7 +2,6 @@
 (function (window) {
     define([
         'backbone',
-        'underscore',
         'doT',
         'jquery',
         'ui/UIHelper',
@@ -13,7 +12,6 @@
         'ui/WindowState'
     ], function (
         Backbone,
-        _,
         doT,
         $,
         UIHelper,
@@ -122,6 +120,10 @@
             },
             remove : function () {
                 this.hide();
+            },
+            zero : function () {
+                // Just an empty function to avoid stupid JSLint error
+                return;
             }
         });
 

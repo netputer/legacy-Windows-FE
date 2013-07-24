@@ -550,6 +550,7 @@
                     var tip = new PopupTip({
                         $host : $(this)
                     });
+                    tip.zero();
                 });
 
                 if (!Device.get('isConnected')) {

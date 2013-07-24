@@ -148,6 +148,7 @@
                     var popup = new PopupTip({
                         $host : $(ele)
                     });
+                    popup.zero();
                 });
 
                 this.toggleView(Device);
