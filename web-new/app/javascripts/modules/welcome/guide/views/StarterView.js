@@ -76,7 +76,7 @@
                 } else {
                     setTimeout(function () {
                         this.queryResults = queryResponse;
-                        deferred.resolve()
+                        deferred.resolve();
                     }.bind(this));
                 }
 

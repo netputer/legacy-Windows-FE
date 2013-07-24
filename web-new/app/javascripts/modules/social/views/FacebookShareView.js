@@ -54,7 +54,7 @@
                 this.disableShareBtn(false);
                 try {
                     data = JSON.parse(data.value);
-                } catch (err) {
+                } catch (e) {
                 }
 
                 var screenName = data.screen_name || '';
@@ -102,7 +102,6 @@
 
                 var sharePreview = this.$('.share-preview');
                 var sharePreviewContent = this.$('.share-preview-content').html('');
-                var viewPicFromPCBtn = this.$('.view-from-pc');
                 sharePreviewContent.addClass('loading');
 
                 var size = this.getPreviewContentSize();
@@ -201,7 +200,6 @@
                     'sns' : 'weibo'
                 });
 
-                var error_code = data.value;
                 var errorMessage = i18n.common.SHARE_TO_FACEBOOK_FAILD;
                 this.showShareTip(errorMessage, 'error');
                 this.disableShareBtn(false);
@@ -228,9 +226,7 @@
                 };
                 SocialData.viewOriginPicFromPicAsync(data, this.viewOriginPicFromPCSuccess.bind(this), this.viewOriginPicFromPCFail.bind(this));
             },
-            viewOriginPicFromPCSuccess : function () {
-
-            },
+            viewOriginPicFromPCSuccess : function () {},
             viewOriginPicFromPCFail : function () {
                 alert(i18n.common.SHARE_WIDGET_VIEW_FROM_PC_ERROR);
             },

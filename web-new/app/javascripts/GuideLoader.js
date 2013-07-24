@@ -43,7 +43,7 @@ require.config({
 });
 
 (function (window, document) {
-    var QUERYSTRING_PATTERN_PREFIX = '[\?\&\#]';
+    var QUERYSTRING_PATTERN_PREFIX = '[\\?\\&\\#]';
     var QUERYSTRING_PATTERN_SUFFIX = '=([^&]*)';
 
     var QueryString = {};

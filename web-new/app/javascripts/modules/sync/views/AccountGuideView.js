@@ -101,7 +101,7 @@
             initialize : function () {
                 AccountGuideView.__super__.initialize.apply(this, arguments);
 
-                this.on(UIHelper.EventsMapping.SHOW, function() {
+                this.on(UIHelper.EventsMapping.SHOW, function () {
                     bodyView = new AccountGuideBodyView();
                     this.$bodyContent = bodyView.render().$el;
 
@@ -123,7 +123,7 @@
                 this.delegateEvents();
                 AccountGuideView.__super__.render.apply(this, arguments);
 
-                $buttonLast = $('<button>').html(i18n.ui.PREV).addClass('button-last');
+                var $buttonLast = $('<button>').html(i18n.ui.PREV).addClass('button-last');
                 this.$('.w-ui-window-footer-monitor').append($buttonLast);
 
                 return this;

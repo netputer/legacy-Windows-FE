@@ -11,7 +11,6 @@
         'Internationalization',
         'Log',
         'utilities/StringUtil',
-        'utilities/FormatDate',
         'ui/Notification',
         'ui/AlertWindow',
         'ui/BatchActionWindow'
@@ -26,7 +25,6 @@
         i18n,
         log,
         StringUtil,
-        FormatDate,
         Notification,
         AlertWindow,
         BatchActionWindow
@@ -35,7 +33,7 @@
 
         var alert = window.alert;
 
-        var BackupRestoreService = _.extend(function () {}, Backbone.Events);
+        var BackupRestoreService = _.extend(Backbone.Events);
 
         // ---------------------------- consts -------------------------------
 
@@ -861,9 +859,9 @@
                     dateStr = i18n.common.YESTODAY;
                 } else {
                     if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
-                        dateStr = FormatDate('MM / dd / yyyy', timestamp);
+                        dateStr = StringUtil.formatDate('MM / dd / yyyy', timestamp);
                     } else {
-                        dateStr = FormatDate('yyyy-MM-dd', timestamp);
+                        dateStr = StringUtil.formatDate('yyyy-MM-dd', timestamp);
                     }
                 }
 

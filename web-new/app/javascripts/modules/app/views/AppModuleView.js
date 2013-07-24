@@ -102,11 +102,10 @@
                 }, 0);
             },
             navigateGroup : function (msg) {
-                
                 PIMCollection.getInstance().get(3).set({
                     selected: true
                 });
-                
+
                 var filterSearch = function () {
                     AppsCollection.getInstance().keyword = msg.keyword;
                     appListView.showAppsByKeyword();
