@@ -27,9 +27,6 @@
     ) {
         console.log('ContactModuleView - File loaded. ');
 
-        var setInterval = window.setInterval;
-        var clearInterval = window.clearInterval;
-
         var contactsListView;
 
         var contactsCollection;
@@ -101,7 +98,7 @@
                 if (!contactsCollection.loading && !contactsCollection.syncing) {
                     search();
                 } else {
-                    contactsCollection.once('refresh', function (){
+                    contactsCollection.once('refresh', function () {
                         search();
                     });
                 }
@@ -120,7 +117,7 @@
                 if (!contactsCollection.loading && !contactsCollection.syncing) {
                     highlight();
                 } else {
-                    contactsCollection.on('refresh', function (){
+                    contactsCollection.on('refresh', function () {
                         highlight();
                     });
                 }

@@ -29,8 +29,6 @@
 
         var alert = window.alert;
 
-        var encodeURIComponent = window.encodeURIComponent;
-
         var ExtensionItemView = BaseListItem.extend({
             template : doT.template(TemplateFactory.get('doraemon', 'extension-item')),
             className : 'w-extension-list-item hbox',
