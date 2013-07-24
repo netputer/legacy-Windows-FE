@@ -20,8 +20,6 @@ define({
     ALERT_TIP_MERGE_CONTACTS : '<p> Merge {1} selected contacts? </p><p> {2} contacts will be deleted after merging</p>',
     ALERT_TIP_DEL_SINGLE_CONTACT : 'Delete selected contact?',
 
-    IMPORT : 'Import',
-    EXPORT : 'Export',
     GROUP_ALREADY_EXSIST : 'Duplicate name',
     PLEASE_INPUT_GROUP_NAME : 'Enter group name',
     CONTACT_INTRO : '<p>You can edit your phone\'s contacts in SnapPea for Windows. </p><p>Import, export, and send text messages from the comfort of your desktop. </p>',
@@ -32,8 +30,6 @@ define({
     ACCOUNT : 'Account',
     SAVE : 'Save',
     DONTSAVE : 'Don\'t save',
-    CANCEL : 'Cancel',
-    FINISH : 'Finish',
     SAVE_SUCCESS : 'Saved',
     SAVE_FAILED : 'Failed to save',
 
@@ -43,7 +39,6 @@ define({
     CONTACT_INFO : 'Contact info',
     CHANGE_AVATAR : 'Edit',
     NICKNAME : 'Nickname',
-    DELETE : 'Delete',
     SEND_MAIL : 'Send Email',
     REMARK : 'Notes',
     MERGE : 'Merge',
@@ -60,17 +55,14 @@ define({
     WINDOW_MAIN : 'Windows Mail CSV',
     SELECT_COUNTACTS_TO_EXPORT : 'Select contacts to export',
     CURRENT_SELECT : 'Contacts currently selected ',
-    ALL_CONTACT : 'All contacts ',
     CONTACT_HAS_NUMBER : 'Contacts with a phone number ',
     GROUP : 'Group ',
 
     MANAGE_GROUP : 'Manage group...',
     CONTACT_RECORD : 'Contact history',
     CUSTOME_CONTACT_INFO : 'Custom Entry',
-    LABEL : 'Label: ',
 
     HOME_NUMBER : 'Home number',
-    CELL_PHONE_NUMBER : 'Mobile',
     WORK_NUMBER : 'Work number',
     WORK_FAX : 'Work fax',
     HOME_FAX : 'Home fax',
@@ -118,7 +110,6 @@ define({
     WINDOW_IMPORT_TITLE : 'Import Contacts',
     WINDOW_EXPORT_TITLE : 'Export Contacts',
 
-    ALERT_TEXT : 'Notification',
     DELETE_TIP_TEXT : 'Delete {1} selected contact(s)?',
 
     NON_CONTACT_TEXT_PERMISSION : 'SnapPea is unable to show your contacts. It could be that a security app on your phone is blocking SnapPea, please enable this permission on your phone.',
@@ -170,7 +161,6 @@ define({
     CONTACT_BATCH_GROUP_PROGRESS : 'Adding to group, please wait...',
     CONTACT_BATCH_GROUP_SUCCESS : 'Added {1} contacts to group',
     GROUP_NAME : 'Group name: ',
-    GROUP_NAME_PLACEHOLDER : 'Enter group name',
     ADD_GROUP_FAIL : 'Failed to add to group',
     GROUP_TIP : ' (Only this format will retain group information)',
 
@@ -178,6 +168,7 @@ define({
     BACKUP_MESSAGE_NUMBER : 'Contacts',
     IMPORT_FROM_BACKUP : 'Import from backup',
 
-    EXPORT_USING_VCARD : 'Export in vCard format'
+    EXPORT_USING_VCARD : 'Export in vCard format',
 
+    CONTACT_TIP_PART : '{1} 个与「{2}」有关的联系人'
 });

@@ -168,7 +168,7 @@
                 WelcomeService.getAutoBackupDateAsync().done(function (resp) {
                     var ms = parseInt(resp.body.value, 10);
                     var date = StringUtil.formatDate("yyyy-MM-dd", ms);
-                    var tip = StringUtil.format(i18n.welcome.AUTO_BACKUP_TIP_COMPLETE, date);
+                    var tip = StringUtil.format(i18n.welcome.AUTO_BACKUP, date);
                     this.$('.button-auto-backup').data({
                         title : tip
                     });

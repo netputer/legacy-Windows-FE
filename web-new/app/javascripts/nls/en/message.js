@@ -78,7 +78,6 @@ define({
 
     SEND : 'Send',
     BATCH_CONVERSATION_TITLE : 'All messages from {1} selected',
-    CANCEL : 'Cancel',
     SEND_WITH_SIM1 : 'Send from default SIM',
     SEND_WITH_SIM2 : 'Send from second SIM',
 
@@ -94,7 +93,6 @@ define({
     IMPORT_SELECT_FILE : 'Select .csv files to import',
     INVALID_FILE : 'Invalid .csv file',
     SELECT_MESSAGE : 'Select messages to export',
-    ALL_MESSAGE : 'All messages ',
     NO_CONVERSATION : 'You haven\'t received any messages yet',
     PROBLEM_WITH_DUAL_SIM_PHONE : 'Dual-SIM phone error',
     PROBLEM_WITH_DUAL_SIM_PHONE_TIP : '<p>If you\'re using a dual-SIM card phone, you can set one SIM card as your default for sending messages. <p> SnapPea might not support every kind of dual-SIM phone. If your phone is not recognized or unable to send messages, contact us <span class="button-feedback link"></span>',

@@ -77,7 +77,7 @@
     </div>
     <div class="item hbox cloud-photo">
         <div class="icon icon-cloud-photo"></div>
-        <div class="title">{{= i18n.sync.CLOUD_PHOTO }}</div>
+        <div class="title">{{= i18n.misc.NAV_PIC_CLOUD }}</div>
     </div>
     <div class="item hbox social-platform">
         <div class="icon icon-social-platform"></div>

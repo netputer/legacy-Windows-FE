@@ -42,7 +42,7 @@
             <button class="w-icon-btn min img button-play" data-title="{{= i18n.welcome.PLAY_BTN_TEXT }}">
                 <span class="icon play-black"></span>
             </button>
-            <button class="w-icon-btn min img button-refresh" data-title="{{= i18n.welcome.REFRESH_BTN_TEXT }}">
+            <button class="w-icon-btn min img button-refresh" data-title="{{= i18n.misc.REFRESH }}">
                 <span class="icon refresh-black"></span>
             </button>
             <button class="w-icon-btn min img button-fullscreen" data-title="{{= i18n.welcome.FULLSCREEN_BTN_TEXT }}">

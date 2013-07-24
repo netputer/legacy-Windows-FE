@@ -56,7 +56,7 @@
 
                 this.buttons = [
                     {
-                        $button : $('<button/>').addClass('import cancel').html(i18n.misc.CANCEL),
+                        $button : $('<button/>').addClass('import cancel').html(i18n.ui.CANCEL),
                         eventName : 'import'
                     }
                 ];
@@ -132,10 +132,10 @@
             updatePanelTitleAndBtn : function (isImportFinish) {
                 if (isImportFinish) {
                     this.$('h3').html(localeText.IMPORT_COMPLETE);
-                    this.$('.import').removeClass('cancel').addClass('primary complete').html(i18n.misc.OK);
+                    this.$('.import').removeClass('cancel').addClass('primary complete').html(i18n.ui.OK);
                 } else {
                     this.$('h3').html(localeText.IMPORTING_TITLE);
-                    this.$('.import').removeClass('complete').addClass('cancel').removeClass('primary').html(i18n.misc.CANCEL);
+                    this.$('.import').removeClass('complete').addClass('cancel').removeClass('primary').html(i18n.ui.CANCEL);
                 }
             },
 
@@ -262,12 +262,12 @@
                     $button : $('<button/>').addClass('ignore').html(i18n.ui.IGNORE),
                     eventName : 'IGNORE'
                 }, {
-                    $button : $('<button/>').html(i18n.misc.CANCEL),
+                    $button : $('<button/>').html(i18n.ui.CANCEL),
                     eventName : 'CANCEL'
                 }];
 
                 var tipPanelView = new Panel({
-                    title : i18n.misc.DIALOG_TIP,
+                    title : i18n.ui.TIP,
                     width : 360,
                     disableX : true,
                     draggable : true,
@@ -322,13 +322,13 @@
                             eventName : 'RETRY'
                         },
                         {
-                            $button : $('<button/>').html(i18n.misc.CANCEL),
+                            $button : $('<button/>').html(i18n.ui.CANCEL),
                             eventName : 'CANCEL'
                         }
                     ];
 
                     var tipPanelView = new Panel({
-                        title : i18n.misc.DIALOG_TIP,
+                        title : i18n.ui.TIP,
                         width : 360,
                         disableX : true,
                         draggable : true,

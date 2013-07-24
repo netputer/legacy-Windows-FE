@@ -65,7 +65,7 @@
                     var tip = StringUtil.format(i18n.music.CONFIRM_IMPORT, capacity, time);
                     var buttons = [
                         {
-                            $button : $('<button/>').addClass('primary').html(i18n.misc.OK),
+                            $button : $('<button/>').addClass('primary').html(i18n.ui.OK),
                             eventName : 'OK'
                         },
                         {
@@ -75,7 +75,7 @@
                     ];
 
                     var tipPanelView = new Panel({
-                        title : i18n.misc.DIALOG_TIP,
+                        title : i18n.ui.TIP,
                         width : 360,
                         disableX : true,
                         draggable : true,

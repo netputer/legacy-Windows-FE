@@ -3,7 +3,6 @@ define({
     ACCOUNT_GUIDE : '登陆向导',
 
     CLOUD_BACKUP : '云备份',
-    CLOUD_PHOTO : '云相册',
     SOCIAL_PLATFORM : '社交平台',
 
     CLOUD_BACKUP_TITLE : '自动云备份，轻松备份，随时恢复',

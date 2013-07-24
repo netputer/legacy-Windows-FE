@@ -55,7 +55,6 @@ define({
     PARSING_VIDEO_URL_SUCCESS : 'Parsing mp4 video URLs completed',
     MERGE_VIDEO : 'Merging mp4 videos',
     MERGE_VIDEO_SUCCESS : 'Merging mp4 videos completed',
-    LOOK_OVER : 'View',
     UNKNOWN_NAME : 'Unknown name',
 
 

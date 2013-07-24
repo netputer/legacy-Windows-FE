@@ -52,7 +52,7 @@
                 }, this);
 
                 this.buttons = [{
-                    $button : $('<button>').html(i18n.misc.OK).addClass('button-next'),
+                    $button : $('<button>').html(i18n.ui.OK).addClass('button-next'),
                     eventName : 'button_next'
                 }];
             },

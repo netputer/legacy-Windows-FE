@@ -1970,7 +1970,7 @@ wonder.addModule('ui/status', function(W) {
         this.cancelBtn = new W.ui.Button(i18n.ui.CANCEL)
         this.completeBtn = new W.ui.Button(i18n.misc.COMPLETE_TEXT);
         this.interval = null;
-        W.ui.Window.call(this, i18n.misc.DIALOG_TIP, '', opt);
+        W.ui.Window.call(this, i18n.ui.TIP, '', opt);
         this.session = null;
         this.setDraggable(false);
         this.setSupportEsc(false);
@@ -4448,7 +4448,7 @@ wonder.useModule('photo');
  */
 wonder.addModule('video/dataCollection', function(W) {
     W.namespace('wonder.video');
-    var alert = new W.ui.Dialog(i18n.misc.DIALOG_TIP);
+    var alert = new W.ui.Dialog(i18n.ui.TIP);
     alert.setButtonSet(W.ui.Dialog.ButtonSet.OK);
 
     function VideoCollection() {
@@ -5089,7 +5089,7 @@ wonder.addModule('video', function (W) {
 
     var loadingProcess = new W.ui.status.Process ();
     var loadingView = new W.ui.status.ProcessView (loadingProcess);
-    var deleteTipDialog = new W.ui.Dialog (i18n.misc.DIALOG_TIP);
+    var deleteTipDialog = new W.ui.Dialog (i18n.ui.TIP);
     var progressWin = new W.ui.Progress ();
     var allCheckbox = $('<input/>').attr('type', 'checkbox');
     var videoContent = W.video.videoContent = new W.video.VideoContent ();
@@ -5118,7 +5118,7 @@ wonder.addModule('video', function (W) {
     var contentWrapper;
     var setPosition2ThreadTimer;
     var checkboxDelegate;
-    var alert = new W.ui.Dialog (i18n.misc.DIALOG_TIP);
+    var alert = new W.ui.Dialog (i18n.ui.TIP);
     alert.setButtonSet(W.ui.Dialog.ButtonSet.OK);
 
     /**
@@ -5138,9 +5138,9 @@ wonder.addModule('video', function (W) {
             this.addTopContent(toolbar);
 
             var mainBtn = new W.ui.ImageButton (locale.ADD_LOCAL_VIDEO_TEXT);
-            var delBtn = new W.ui.ImageButton (i18n.misc.DELETE_TEXT);
+            var delBtn = new W.ui.ImageButton (i18n.misc.DELETE);
             var expBtn = new W.ui.ImageButton (i18n.misc.EXPORT_TEXT);
-            var refreshBtn = new W.ui.ImageButton (i18n.misc.REFRESH_TEXT);
+            var refreshBtn = new W.ui.ImageButton (i18n.misc.REFRESH);
             checkboxDelegate = new W.ui.SelectDelegate ();
 
             toolbar.addComponent('checkboxDelegateBtn', checkboxDelegate).addComponent('mainBtn', mainBtn).addComponent('deleteBtn', delBtn).addComponent('exportBtn', expBtn).addComponent('refreshBtn', refreshBtn);

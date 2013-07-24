@@ -23,11 +23,9 @@ define({
     DESELECT : '取消选择',
     DISPLAY : '显示：',
     PAUSE : '暂停',
-    CONTINUE : '继续',
     DELETE : '删除',
     IMPORT : '导入',
     EXPORT : '导出',
-    RESUME : '继续',
     REFRESH : '刷新',
     HOME_PAGE : '首页',
     REPORT_PROBLEM : '提交错误报告',
@@ -66,7 +64,6 @@ define({
     CONNECTION_LOSE : '连接中断。',
     NOT_ENOUGH_ROOM_FOR_IMPORT : '手机 SD 卡和内存存储空间不足，导入失败。请删掉一些文件后重试。',
     EXPLORE : '浏览',
-    FINISH : '完成',
     OPEN_EXPORT_FILE : '查看导出文件',
 
     SCREEN_SHOT_UNDER_USB : '屏幕截图功能需要 USB 连接模式下才能使用',
@@ -141,17 +138,8 @@ define({
 
     /* From common */
 
-    DELETE_TEXT : '删除',
-    REFRESH_TEXT : '刷新',
-    OK : '确定',
-    CANCEL : '取消',
-    DIALOG_TIP : '提示',
     SHARE : '分享',
     VIEW_PIC : '查看大图',
-    YES : '是',
-    NO : '否',
-    NEXT_STEP : '下一步',
-    PRE_STEP : '上一步',
     REFRESH_ERROR : '刷新失败。',
     VIEW : '查看',
     RECOMMEND_YES : '是（推荐）',

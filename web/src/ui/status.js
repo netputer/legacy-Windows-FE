@@ -154,7 +154,7 @@ wonder.addModule('ui/status', function(W) {
         this.cancelBtn = new W.ui.Button(i18n.ui.CANCEL)
         this.completeBtn = new W.ui.Button(i18n.misc.COMPLETE_TEXT);
         this.interval = null;
-        W.ui.Window.call(this, i18n.misc.DIALOG_TIP, '', opt);
+        W.ui.Window.call(this, i18n.ui.TIP, '', opt);
         this.session = null;
         this.setDraggable(false);
         this.setSupportEsc(false);

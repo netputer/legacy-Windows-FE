@@ -295,7 +295,7 @@
                                 $button : $('<button>').html(i18n.contact.DONTSAVE),
                                 eventName : 'button_no'
                             }],
-                            title : i18n.contact.ALERT_TEXT,
+                            title : i18n.ui.TIP,
                             $bodyContent : i18n.contact.SAVE_TIP_TEXT
                         });
                         alertWindow.on('button_no', this.clickButtonCancel, this);

@@ -115,7 +115,7 @@
 </script>
 
 <script type="text/x-ui-template" id="photo-sync-switch">
-    <div class="tip">{{= i18n.sync.CLOUD_PHOTO }}</div>
+    <div class="tip">{{= i18n.misc.NAV_PIC_CLOUD }}</div>
     <div class="w-ui-switch-button button-sync">
         <div class="switcher"></div>
     </div>

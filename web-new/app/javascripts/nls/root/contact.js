@@ -20,8 +20,6 @@ define({
     ALERT_TIP_MERGE_CONTACTS : '<p>确定要合并选中的 {1} 个联系人吗？</p><p>合并成功后，原来的 {2} 个联系人都会被删除。</p>',
     ALERT_TIP_DEL_SINGLE_CONTACT : '确定要删除选定的 1 个联系人吗？',
 
-    IMPORT : '导入',
-    EXPORT : '导出',
     GROUP_ALREADY_EXSIST : '已存在这个分组',
     PLEASE_INPUT_GROUP_NAME : '请填写分组名称',
     CONTACT_INTRO : '<p>您可以通过豌豆荚快速查找和搜索联系人、管理分组、批量发送短信。</p><p>左侧列表默认显示的是您的全部联系人。如果您需要查看其他账号和分组下的联系人，请点击右上角菜单切换。</p>',
@@ -32,8 +30,6 @@ define({
     ACCOUNT : '账号',
     SAVE : '保存',
     DONTSAVE : '不保存',
-    CANCEL : '取消',
-    FINISH : '完成',
     SAVE_SUCCESS : '保存成功',
     SAVE_FAILED : '保存失败',
 
@@ -43,7 +39,6 @@ define({
     CONTACT_INFO : '联系信息',
     CHANGE_AVATAR : '更换头像',
     NICKNAME : '昵称',
-    DELETE : '删除',
     SEND_MAIL : '发邮件',
     REMARK : '备注',
     MERGE : '合并',
@@ -60,17 +55,14 @@ define({
     WINDOW_MAIN : 'Windows Mail 的 csv 格式',
     SELECT_COUNTACTS_TO_EXPORT : '请选择要导出的联系人',
     CURRENT_SELECT : '当前选中的联系人',
-    ALL_CONTACT : '全部联系人',
     CONTACT_HAS_NUMBER : '有电话号码的联系人',
     GROUP : '分组',
 
     MANAGE_GROUP : '管理分组...',
     CONTACT_RECORD : '联系记录',
     CUSTOME_CONTACT_INFO : '自定义联系信息',
-    LABEL : '名称：',
 
     HOME_NUMBER : '家庭电话',
-    CELL_PHONE_NUMBER : '移动电话',
     WORK_NUMBER : '工作电话',
     WORK_FAX : '工作传真',
     HOME_FAX : '家庭传真',
@@ -118,7 +110,6 @@ define({
     WINDOW_IMPORT_TITLE : '导入联系人',
     WINDOW_EXPORT_TITLE : '导出联系人',
 
-    ALERT_TEXT : '提示',
     DELETE_TIP_TEXT : '确定要删除选中的 {1} 个联系人？',
 
     NON_CONTACT_TEXT_PERMISSION : '豌豆荚无法显示您的联系人，可能是手机上的安全软件阻止了豌豆荚读取联系人的权限，请在手机上「权限管理」中授权。<a target="_default" href="http://help.wandoujia.com/entries/22017678?utm_campaign=tips&utm_medium=client&utm_source=contacts">帮助</a>',
@@ -170,7 +161,6 @@ define({
     CONTACT_BATCH_GROUP_PROGRESS : '正在分组，请稍候...',
     CONTACT_BATCH_GROUP_SUCCESS : '成功为 {1} 个联系人设置分组',
     GROUP_NAME : '分组名称：',
-    GROUP_NAME_PLACEHOLDER : '请填写分组名称',
     ADD_GROUP_FAIL : '添加分组出错',
     GROUP_TIP : '- 仅此格式会保留群组信息',
 
@@ -180,7 +170,6 @@ define({
 
     EXPORT_USING_VCARD: '使用 vCard 导出',
 
-    RETURN_ALL: '全部联系人',
     CONTACT_TIP_PART : '{1} 个与「{2}」有关的联系人'
 });
 

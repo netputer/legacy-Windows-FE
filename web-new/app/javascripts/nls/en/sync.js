@@ -4,7 +4,6 @@ define({
     ACCOUNT_GUIDE : 'Sign in guide',
 
     CLOUD_BACKUP : 'Cloud backup',
-    CLOUD_PHOTO : 'Cloud photos',
     SOCIAL_PLATFORM : 'Social networks',
 
     CLOUD_BACKUP_TITLE : 'Auto-backup to the cloud, easy to backup, easy to restore.',

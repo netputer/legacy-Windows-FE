@@ -78,7 +78,6 @@ define({
 
     SEND : '发送',
     BATCH_CONVERSATION_TITLE : '选择了 {1} 组短信',
-    CANCEL : '取消',
     SEND_WITH_SIM1 : '使用默认 SIM 卡发送',
     SEND_WITH_SIM2 : '使用第二张 SIM 卡发送',
 
@@ -94,7 +93,6 @@ define({
     IMPORT_SELECT_FILE : '选择包含短信的 .CSV 文件',
     INVALID_FILE : '无效的 .csv 文件',
     SELECT_MESSAGE : '请选择要导出的短信',
-    ALL_MESSAGE : '全部短信',
     NO_CONVERSATION : '豌豆荚无法显示您的短信，可能是手机上的安全软件阻止了豌豆荚读取信息的权限，请在手机上「权限管理」中授权。<a target="_default" href="http://help.wandoujia.com/entries/22017678?utm_campaign=tips&utm_medium=client&utm_source=sms">帮助</a>',
     PROBLEM_WITH_DUAL_SIM_PHONE : '双卡手机遇到问题',
     PROBLEM_WITH_DUAL_SIM_PHONE_TIP : '<p>如果您使用的是双卡手机，您可以指定使用其中某一张 SIM 卡发送短信。</p><p>由于市面上的双卡手机型号众多，豌豆荚可能不支持全部型号的双卡手机。如果您的双卡手机不能被识别或者是发送短信遇到问题，请 <a href="http://help.wandoujia.com/entries/21550442" target="_default">向我们反馈</a>。',

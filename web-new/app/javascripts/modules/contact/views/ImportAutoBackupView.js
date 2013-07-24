@@ -117,10 +117,10 @@
                 }, this);
 
                 this.buttons = [{
-                    $button : $('<button>').html(i18n.misc.NEXT_STEP).addClass('button-next primary'),
+                    $button : $('<button>').html(i18n.ui.NEXT).addClass('button-next primary'),
                     eventName : 'button-next'
                 }, {
-                    $button : $('<button>').html(i18n.contact.CANCEL),
+                    $button : $('<button>').html(i18n.ui.CANCEL),
                     eventName : UIHelper.EventsMapping.BUTTON_CANCEL
                 }];
             },

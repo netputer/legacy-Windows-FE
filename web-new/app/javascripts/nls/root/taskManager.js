@@ -55,7 +55,6 @@ define({
     PARSING_VIDEO_URL_SUCCESS : '解析 MP4 视频地址成功',
     MERGE_VIDEO : '正在合并 MP4 视频',
     MERGE_VIDEO_SUCCESS : '合并 MP4 视频成功',
-    LOOK_OVER : '查看',
     UNKNOWN_NAME : '未知名称',
 
 

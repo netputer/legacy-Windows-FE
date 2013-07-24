@@ -244,9 +244,9 @@
                 });
 
                 this.buttons = [{
-                    $button : $('<button/>').html(i18n.misc.PRE_STEP).addClass('button-pre')
+                    $button : $('<button/>').html(i18n.ui.PREV).addClass('button-pre')
                 }, {
-                    $button : $('<button/>').addClass('primary next-step button-next').html(i18n.misc.NEXT_STEP)
+                    $button : $('<button/>').addClass('primary next-step button-next').html(i18n.ui.NEXT)
                 }, {
                     $button : $('<button/>').html(i18n.ui.CANCEL).addClass('button-cancel')
                 }];

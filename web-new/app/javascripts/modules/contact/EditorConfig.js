@@ -60,7 +60,7 @@
                 name : i18n.contact.HOME_NUMBER,
                 value : 1
             }, {
-                name : i18n.contact.CELL_PHONE_NUMBER,
+                name : i18n.contact.CELL_PHONE,
                 value : 2
             }, {
                 name : i18n.contact.WORK_NUMBER,

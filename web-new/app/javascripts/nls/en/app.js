@@ -109,11 +109,7 @@ define({
     INSTALL_POSITION_LABEL : 'Location: ',
 
     BUTTON_ADD_APP_LABEL : 'Install apps',
-    BUTTON_UNINSTALL_LABEL : 'Uninstall',
-    BUTTON_EXPORT_LABEL : 'Export',
 
-    BUTTON_INSTALL_LABEL : 'Install',
-    ALREAD_INSTALLED : 'Already Installed',
 
     BUTTON_MOVE_TO_DEVICE_LABEL : 'Move to internal storage',
 
@@ -169,7 +165,6 @@ define({
     UNINSTALL_FAILED : 'Failed to uninstall app',
     UNINSTALL_FAILED_SYSTEM_APP : 'Please grant SnapPea root privileges and try again',
 
-    APPS_IGNORE_UPGRADE_TEXT : 'Ignore update',
     APPS_CANCEL_IGNORE_TEXT : 'Unignore',
 
     APPS_TRANSFER_FAILED_TEXT : 'Failed to move the following app(s): ',

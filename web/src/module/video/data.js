@@ -4,7 +4,7 @@
  */
 wonder.addModule('video/dataCollection', function(W) {
     W.namespace('wonder.video');
-    var alert = new W.ui.Dialog(i18n.misc.DIALOG_TIP);
+    var alert = new W.ui.Dialog(i18n.ui.TIP);
     alert.setButtonSet(W.ui.Dialog.ButtonSet.OK);
 
     function VideoCollection() {

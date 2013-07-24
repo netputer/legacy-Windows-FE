@@ -68,10 +68,10 @@
                 }.bind(this));
 
                 this.buttons = [{
-                    $button : $('<button>').html(i18n.contact.FINISH).addClass('button-finish primary').hide(),
+                    $button : $('<button>').html(i18n.ui.FINISH).addClass('button-finish primary').hide(),
                     eventName : 'button-finish'
                 }, {
-                    $button : $('<button>').html(i18n.contact.CANCEL).addClass('button-cancel'),
+                    $button : $('<button>').html(i18n.ui.CANCEL).addClass('button-cancel'),
                     eventName : 'button-cancel'
                 }];
             },

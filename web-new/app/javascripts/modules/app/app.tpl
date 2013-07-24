@@ -316,14 +316,14 @@
             {{??}}
                 <button class="button-update min">{{= i18n.app.UPDATE }}</button>
                 {{? !it.is_blocked }}
-                    <span class="button-ignore link">{{= i18n.app.APPS_IGNORE_UPGRADE_TEXT }}</span>
+                    <span class="button-ignore link">{{= i18n.ui.IGNORE }}</span>
                 {{?}}
             {{?}}
         {{?}}
     </div>
     <div class="web-update hbox">
         {{? it.installed }}
-            <span class="text-secondary" >{{= i18n.app.ALREAD_INSTALLED }}</span>
+            <span class="text-secondary" >{{= i18n.misc.NAV_APP_INSTALLED }}</span>
         {{??}}
             {{? it.isUpdating }}
                 <progress class="tiny" max="100" value="{{= it.progress }}"></progress>
@@ -407,7 +407,7 @@
         <span class="icon delete"></span>{{= i18n.app.UNINSTALL }}
     </button>
     <button class="w-icon-btn button-export min">
-        <span class="icon export"></span>{{= i18n.app.BUTTON_EXPORT_LABEL }}
+        <span class="icon export"></span>{{= i18n.misc.EXPORT }}
     </button>
     <div class="split"></div>
     <button class="w-icon-btn button-move-to-sd-card min">
@@ -418,7 +418,7 @@
     </button>
     <div class="split"></div>
     <button class="w-icon-btn button-refresh min">
-        <span class="icon refresh"></span>{{= i18n.misc.REFRESH_TEXT }}
+        <span class="icon refresh"></span>{{= i18n.misc.REFRESH }}
     </button>
 </script>
 

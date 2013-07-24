@@ -109,11 +109,7 @@ define({
     INSTALL_POSITION_LABEL : '安装位置：',
 
     BUTTON_ADD_APP_LABEL : '安装新应用',
-    BUTTON_UNINSTALL_LABEL : '卸载',
-    BUTTON_EXPORT_LABEL : '导出',
 
-    BUTTON_INSTALL_LABEL : '安装',
-    ALREAD_INSTALLED : '已安装',
 
     BUTTON_MOVE_TO_DEVICE_LABEL : '移动到手机内存',
 
@@ -169,7 +165,6 @@ define({
     UNINSTALL_FAILED : '非常抱歉，应用卸载失败。',
     UNINSTALL_FAILED_SYSTEM_APP : '请在豌豆荚上允许豌豆荚获取 root 权限后重试。',
 
-    APPS_IGNORE_UPGRADE_TEXT : '忽略',
     APPS_CANCEL_IGNORE_TEXT : '取消忽略',
 
     APPS_TRANSFER_FAILED_TEXT : '非常抱歉，以下应用转移失败：',

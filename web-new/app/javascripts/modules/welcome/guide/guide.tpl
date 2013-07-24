@@ -7,7 +7,7 @@
 <script type="text/x-ui-template" id="bind">
     <div class="stage">
         <div class="bg"></div>
-        <h1 class="text-secondary">{{= i18n.welcome.GUIDE_BIND }}</h1>
+        <h1 class="text-secondary">{{= i18n.misc.BINDING_DEVICE }}</h1>
         <p class="text-secondary desc">{{= i18n.welcome.GUIDE_BIND_DESC }}</p>
         <div class="hbox success">
             <div class="icon-pass"></div>
@@ -26,7 +26,7 @@
     <section class="section vbox">
         <div class="stage vbox">
             <h1 class="text-secondary">{{= i18n.welcome.GUIDE_CLOUD_BACKUP }}</h1>
-            <p class="text-secondary desc">{{= i18n.welcome.GUIDE_CLOUD_BACKUP_DESC }}</p>
+            <p class="text-secondary desc">{{= i18n.welcome.GUIDE_BIND_DESC }}</p>
             <div class="bg"></div>
         </div>
         <nav class="control hbox">
@@ -151,7 +151,7 @@
         <li class="tip hbox">
             <img class="icon" alt="{{! tip.desc }}" src="{{= tip.icon }}" />
             <div class="desc">{{! tip.desc }}</div>
-            <a class="link button-open" target="_default" href="{{= tip.url }}">{{= i18n.welcome.GUIDE_TIPS_OPEN }}</a>
+            <a class="link button-open" target="_default" href="{{= tip.url }}">{{= i18n.misc.VIEW }}</a>
         </li>
         {{~}}
         </ul>

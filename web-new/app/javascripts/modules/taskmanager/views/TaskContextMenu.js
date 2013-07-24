@@ -100,7 +100,7 @@
                     type : 'normal',
                     name : 'resume',
                     value : 'resume',
-                    label : i18n.misc.RESUME,
+                    label : i18n.ui.CONTINUE,
                     disabled : !hasStoped
                 }, {
                     type : 'normal',

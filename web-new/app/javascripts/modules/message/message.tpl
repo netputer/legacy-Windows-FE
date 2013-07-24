@@ -389,7 +389,7 @@
             <li>
                 <label>
                     <input class="w-ui-radio" type="radio" name="sms_export" value="2"/>
-                    {{= i18n.message.ALL_MESSAGE }}<span class="count"></span>
+                    {{= i18n.misc.NAV_SMS_ALL }}<span class="count"></span>
                 </label>
             </li>
         </ul>

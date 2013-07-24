@@ -15,7 +15,6 @@ define({
 
     PLAY_BTN_TEXT : 'Mirror',
     PAUSE_BTN_TEXT : 'Pause',
-    REFRESH_BTN_TEXT : 'Refresh',
     FULLSCREEN_BTN_TEXT : 'Full-screen',
 
     TOOL_BACKUP : 'Backup',
@@ -39,7 +38,6 @@ define({
     AUTO_BACKUP_PHOTO_COMPLETE : 'Pictures completed',
     AUTO_BACKUP_COMPLETE : 'Auto-backup complete',
     AUTO_BACKUP_TIP_IN_PROGRESS : 'Auto-backup in progress...',
-    AUTO_BACKUP_TIP_COMPLETE : 'Last auto-backup：{1}',
 
     CONNECT_UR_PHONE : 'Connect your device',
     CONNECTION_TIP : 'SnapPea lets you install apps, send messages, and manage your contacts, pictures, and music. Let\'s get started!',
@@ -51,13 +49,11 @@ define({
     NEW_IA_QUESTIONNAIRE : 'Hey, do you like the new SnapPea？<span class="link button-like" style="margin-left: 15px">Like</span><span class="link button-unlike"  style="margin-left: 15px">Don\'t Like</span><span class="link button-whatever"  style="margin-left: 15px">No opinion</span>',
     CLOSE_AUTO_START : 'To help you manage your phone, SnapPea will automatically open when you connect your phone. You can turn this off in <span class="link button-setup">Settings</span>',
 
-    GUIDE_BIND : 'Link phone',
     GUIDE_BIND_NOW : 'Link phone now',
     GUIDE_BIND_DESC : 'After linking, SnapPea will auto-backup your contacts, messages, and photos. It makes it easy to restore and easy to connect. If this isn\'t your computer, don\'t link!',
     GUIDE_BIND_SUCCESS : 'Congrats, {1} phone is linked. SnapPea will auto-backup your <strong>contacts, messages, and photos</strong>',
     GUIDE_CLOUD_BACKUP : 'Cloud backup',
     GUIDE_CLOUD_BACKUP_OPEN : 'Turn on cloud backup',
-    GUIDE_CLOUD_BACKUP_DESC : 'After linking, SnapPea will auto-backup your contacts, messages, and photos. If this isn\'t your computer, don\'t link!',
     GUIDE_CLOUD_BACKUP_SUCCESS : 'Congrats, you\'ve already registered and turned on cloud backups.',
     GUIDE_REG : 'Register for SnapPea',
     GUIDE_REG_DESC : 'To turn on cloud albums you first have to register an account',
@@ -87,7 +83,6 @@ define({
     GUIDE_TIPS : 'Tips',
     GUIDE_TIPS_TIP : 'More tips about SnapPea!',
     GUIDE_TIPS_READ_ALL : 'OK, got it!',
-    GUIDE_TIPS_OPEN : 'View',
     GUIDE_SUGGESTION : 'View more',
     GUIDE_SUGGESTION_TIP : 'There\'s more content for you to discover!',
     GUIDE_SUGGESTION_READ_ALL : 'I\'m done'
