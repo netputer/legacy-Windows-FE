@@ -359,7 +359,7 @@
                 eventName : 'button_share'
             },
             {
-                $button : $('<button/>').html(i18n.misc.CANCEL),
+                $button : $('<button/>').html(i18n.ui.CANCEL),
                 eventName : 'button_no'
             }
         ];

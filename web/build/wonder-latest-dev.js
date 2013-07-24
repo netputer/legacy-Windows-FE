@@ -1967,7 +1967,7 @@ wonder.addModule('ui/status', function(W) {
     function Progress(opt) {
         this.model = new W.ui.status.Progressbar();
         this.view = new W.ui.status.ProgressbarView(this.model);
-        this.cancelBtn = new W.ui.Button(i18n.misc.CANCEL)
+        this.cancelBtn = new W.ui.Button(i18n.ui.CANCEL)
         this.completeBtn = new W.ui.Button(i18n.misc.COMPLETE_TEXT);
         this.interval = null;
         W.ui.Window.call(this, i18n.misc.DIALOG_TIP, '', opt);
@@ -2836,7 +2836,7 @@ wonder.addModule('contact/avatarEditor', function (W) {
         _addComponent : function () {
             var self = this;
             self.okBtn = new W.ui.Button (i18n.misc.SAVE_TEXT);
-            self.cancelBtn = new W.ui.Button (i18n.misc.CANCEL);
+            self.cancelBtn = new W.ui.Button (i18n.ui.CANCEL);
             self.returnBtn = new W.ui.Button (i18n.misc.RESELECT_FILE_TEXT);
             self.picFormatTip = $('<span/>').text(i18n.contact.ALERT_PIC_FORMAT_TIP).addClass('w-contact-pic-format-tip');
 

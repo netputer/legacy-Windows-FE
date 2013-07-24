@@ -370,7 +370,7 @@
         <label class="select-file" >{{= i18n.contact.SELECT_BACKUP_FILE }}</label>
     </div>
     <div class="header hbox">
-        <div class="backup-record" >{{= i18n.contact.BACKUP_RECORD }}</div>
+        <div class="backup-record" >{{= i18n.misc.BACKUP_RECORD }}</div>
         <div class="contact-number" >{{= i18n.contact.BACKUP_MESSAGE_NUMBER }}</div>
     </div>
     <div class="list-ctn">

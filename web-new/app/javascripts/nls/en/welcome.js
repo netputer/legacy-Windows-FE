@@ -1,7 +1,5 @@
 /*global define*/
 define({
-    // WELCOME_PAGE_SHOT : 'Share welcome screen to Facebook',
-    // WELCOME_PAGE_SHOT_FOR_FACEBOOK : 'Share screenshot to Facebook',
     SCREEN_SHOT_CLIPBOARD_SUCCESS : 'Copied to clipboard',
     SCREEN_SHOT_FAILD : 'Failed to mirror device',
     SCREEN_SHOT_CANCELD : 'Cancel mirroring device',
@@ -17,7 +15,6 @@ define({
 
     PLAY_BTN_TEXT : 'Mirror',
     PAUSE_BTN_TEXT : 'Pause',
-    // SEND_WEIBO_BTN_TEXT : 'Share to Facebook',
     REFRESH_BTN_TEXT : 'Refresh',
     FULLSCREEN_BTN_TEXT : 'Full-screen',
 
@@ -27,7 +24,6 @@ define({
 
     MANAGE_SD_UNCONNECT : 'Your device is not connected, unable to manage files',
     MANAGE_SD_ERROR : 'Oh no, unable to manage files',
-    // HAS_NO_SD_CARD : 'No SD card detected in your device',
     MANAGE_SD_INTERNET : 'Unfortunately you can\'t manage your SD card over the Internet.',
 
     EDIT_RING : 'Sound Settings',

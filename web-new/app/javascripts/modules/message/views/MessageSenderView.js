@@ -387,7 +387,7 @@
                     $button : $sendBtn,
                     eventName : 'button_send'
                 }, {
-                    $button : $('<button>').html(i18n.message.CANCEL),
+                    $button : $('<button>').html(i18n.ui.CANCEL),
                     eventName : EventsMapping.BUTTON_CANCEL
                 }];
 

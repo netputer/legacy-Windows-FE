@@ -62,7 +62,7 @@
         <div class="text-thirdly hbox">
             <div class="summary wc">
                 {{? it.is_summary_mms }}
-                [{{= i18n.message.MMS }}] {{! it.summary || i18n.message.NONE_SUBJECT }}({{= StringUtil.format(i18n.message.CONTAIN_MULTIMEDIA, it.summary_media_count) }})
+                [{{= i18n.misc.MMS }}] {{! it.summary || i18n.message.NONE_SUBJECT }}({{= StringUtil.format(i18n.message.CONTAIN_MULTIMEDIA, it.summary_media_count) }})
                 {{??}}
                 {{! it.summary }}
                 {{?}}
@@ -181,7 +181,7 @@
         <span class="content enable-select">
         <div class="receiver">{{! StringUtil.format(i18n.message.SEND_TO, it.contact_name) }}</div>
         {{? it.id < 0 }}
-        [{{= i18n.message.MMS }}] {{! it.subject || i18n.message.NONE_SUBJECT }}（{{= StringUtil.format(i18n.message.CONTAIN_MULTIMEDIA, it.mms_media_count) }}，<span class="link button-open-on-device">{{= i18n.message.OPEN_ON_DEIVE }}</span>）<br />
+        [{{= i18n.misc.MMS }}] {{! it.subject || i18n.message.NONE_SUBJECT }}（{{= StringUtil.format(i18n.message.CONTAIN_MULTIMEDIA, it.mms_media_count) }}，<span class="link button-open-on-device">{{= i18n.message.OPEN_ON_DEIVE }}</span>）<br />
             <span class="mms-content{{ if(it.body.length > 140) { }} wc{{ } }}">{{= it.body }}</span>
             {{? it.body.length > 140 }}
             <span class="button-toggle link">{{= i18n.message.EXPEND }}</span>
@@ -197,9 +197,9 @@
             {{? it.type === CONFIG.enums.SMS_TYPE_RECEIVE }}
             <button class="button-reply" title="{{= i18n.message.FORWARD }}"></button>
             <button class="button-copy" title="{{= i18n.message.COPY }}"></button>
-            <button class="button-delete" title="{{= i18n.message.DELETE }}"></button>
+            <button class="button-delete" title="{{= i18n.misc.DELETE }}"></button>
             {{??}}
-            <button class="button-delete" title="{{= i18n.message.DELETE }}"></button>
+            <button class="button-delete" title="{{= i18n.misc.DELETE }}"></button>
             <button class="button-copy" title="{{= i18n.message.COPY }}"></button>
             <button class="button-reply" title="{{= i18n.message.FORWARD }}"></button>
             {{?}}
@@ -259,7 +259,7 @@
     <div class="hbox notification-sender">
         <button class="button-send primary">{{= i18n.message.REPLY_MESSAGE }}</button>
         <div class="navigate">
-            <span class="button-delete link">{{= i18n.message.DELETE }}</span>
+            <span class="button-delete link">{{= i18n.misc.DELETE }}</span>
             <span class="button-prev link">{{= i18n.message.PREV_MESSAGE }}</span>
             <span class="button-next link">{{= i18n.message.NEXT_MESSAGE }}</span>
         </div>
@@ -334,7 +334,7 @@
         <label class="select-file" >{{= i18n.message.SELECT_BACKUP_FILE }}</label>
     </div>
     <div class="header hbox">
-        <div class="backup-record" >{{= i18n.message.BACKUP_RECORD }}</div>
+        <div class="backup-record" >{{= i18n.misc.BACKUP_RECORD }}</div>
         <div class="message-number" >{{= i18n.message.BACKUP_MESSAGE_NUMBER }}</div>
     </div>
     <div class="list-ctn">

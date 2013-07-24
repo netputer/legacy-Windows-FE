@@ -114,7 +114,7 @@
                 name : i18n.contact.ASSISTANT,
                 value : 19
             }, {
-                name : i18n.contact.MMS,
+                name : i18n.misc.MMS,
                 value : 20
             }, {
                 name : i18n.contact.CUSTOME,

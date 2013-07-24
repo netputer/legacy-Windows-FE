@@ -248,7 +248,7 @@
                 }, {
                     $button : $('<button/>').addClass('primary next-step button-next').html(i18n.misc.NEXT_STEP)
                 }, {
-                    $button : $('<button/>').html(i18n.misc.CANCEL).addClass('button-cancel')
+                    $button : $('<button/>').html(i18n.ui.CANCEL).addClass('button-cancel')
                 }];
             },
             setType : function (t) {

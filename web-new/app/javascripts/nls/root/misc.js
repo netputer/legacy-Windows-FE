@@ -27,8 +27,6 @@ define({
     DELETE : '删除',
     IMPORT : '导入',
     EXPORT : '导出',
-    // FORWARD : '前进',
-    // BACK : '后退',
     RESUME : '继续',
     REFRESH : '刷新',
     HOME_PAGE : '首页',
@@ -50,18 +48,12 @@ define({
     PUBLISH : '发布',
     LOGIN_TO_MANAGE : '请登录后管理收藏',
     LOGIN_TO_STAR : '请登录后添加收藏',
-    // LOGIN_TO_SHARE : '请登录后分享',
     DEVICE_CAPACITY_REMAIN : '，手机剩余空间为：{1}',
     SD_CAPACITY_REMAIN : '，存储卡剩余空间为：{1}',
-    // SUGGESTION_INSTALL : '装机必备',
     STAR : '收藏',
     STARRED_COUNT : '共 {1} 人收藏',
-    // DOWNLOAD_COUNT : '下载次数：{1}',
-    // GALLERY_LOADING : '正在加载丰富的下载内容...',
     FLASH_NOTIFIER : '您需要安装 Adobe Flash Player 才可以试听铃声和观看视频。',
     DOWNLOAD_FLASH : '下载 Adobe Flash Player',
-    // GALLERY_TITLE : '下载内容',
-    // SUGGESTION_TIP : '没有找到感兴趣的内容吗？要不要看看这些：',
     APP_DEPENDENCY_TIP : '「{1}」提供的内容需要下载以下应用才能使用',
     SEND : '提交',
 
@@ -75,20 +67,14 @@ define({
     NOT_ENOUGH_ROOM_FOR_IMPORT : '手机 SD 卡和内存存储空间不足，导入失败。请删掉一些文件后重试。',
     EXPLORE : '浏览',
     FINISH : '完成',
-    // IMPORTING : '正在导入，请勿断开手机',
-    // IMPORT_FINISH : '导入完成',
     OPEN_EXPORT_FILE : '查看导出文件',
-    // SHORE_TO_WEIBO : '分享到新浪微博',
 
-    // SET_RINGTONE : '铃声更换',
     SCREEN_SHOT_UNDER_USB : '屏幕截图功能需要 USB 连接模式下才能使用',
 
     SELECTOR_DESCRIPTION_TEXT : '已选 {1} 个，共 {2} 个',
     ADD_FILE : '添加文件',
     ADD_FOLDER : '添加文件夹',
 
-    // TITLE_PIM : '管理',
-    // TITLE_DOWNLOAD : '下载',
     NAV_WELCOME_TO_WDJ : '欢迎使用豌豆荚',
     NAV_OPTIMIZE : '手机体检',
     NAV_CONTACT : '通讯录管理',
@@ -99,7 +85,6 @@ define({
     NAV_APP_INSTALLED : '已安装',
     NAV_APP_SYS : '系统',
     NAV_APP_UPDATABLE : '可升级',
-    // NAV_APP_IGNORED : '忽略升级',
     NAV_SMS : '短信收发',
     NAV_SMS_ALL : '全部短信',
     NAV_SMS_UNREAD : '未读短信',
@@ -123,7 +108,6 @@ define({
     POPULARITY : '收藏人气',
     GALLERY_EMPTY_LIST : '什么也没有收藏',
     REST_EXTENTION : '恢复默认收藏',
-    // CONFIRM_RESET_EXTENTION : '您确定要将收藏的资源恢复到豌豆荚的默认状态吗？',
 
     ILLEGAL_LOGOUT : '很抱歉，对于绑定的手机，只有在手机连接的时候才可以注销账号。',
     BIND : '绑定',
@@ -157,39 +141,21 @@ define({
 
     /* From common */
 
-    // INSTALL_TEXT : '安装',
-    // UNLIKE_TEXT : '换一个',
-    // SD_CARD_TEXT : 'SD 卡',
-    // PHONE_TEXT : '手机',
-    // NON_DESCRIPTION_TEXT : '没有描述',
     DELETE_TEXT : '删除',
-    // EXPORT_TEXT : '导出',
     REFRESH_TEXT : '刷新',
     OK : '确定',
     CANCEL : '取消',
     DIALOG_TIP : '提示',
-    // COMPLETE_TEXT : '完成',
     SHARE : '分享',
-    // LOGIN : '登录',
-    // RETRY_TEXT : '重试',
-    // SAVE_TEXT : '保存',
-    // RESELECT_FILE_TEXT : '重新选择文件',
     VIEW_PIC : '查看大图',
     YES : '是',
     NO : '否',
-    // IGNORE : '忽略',
     NEXT_STEP : '下一步',
     PRE_STEP : '上一步',
-    // AD : '推广',
     REFRESH_ERROR : '刷新失败。',
-    // CONFIRM : '确认无误，继续',
-    // CONTINUE : '继续',
-    // SKIP : '跳过',
-    // BACKUP : '备份',
     VIEW : '查看',
     RECOMMEND_YES : '是（推荐）',
     OPEN : '打开',
-    // CLOSE : '关闭',
     WANDOUJIA_TOPIC : ' #豌豆荚#',
 
     SHARE_TO : '分享到：',
@@ -209,16 +175,11 @@ define({
     SHARE_WIDGET_ERROR_NEED_SELECT_PLATFORM : '抱歉，您需要选择要分享到的社交网络',
     SHARE_WIDGET_SHARE_TIP : '说点什么吧？',
     SHARE_WIDGET_EXIT_TEXT : '退出登录',
-    // LOGIN_FAILED : '登录失败',
     SHARE_CONTENT_TYPE_SCREENSHOT : '截屏',
     SHARE_CONTENT_TYPE_PHOTO : '照片',
     SHARE_CONTENT_TYPE_WELCOME : '豌豆荚',
     SHARE_CONTENT_TYPE_APP : '应用',
-    // SHARE_CONTENT_TYPE_DORAEMON_EXTENSION : '百宝袋扩展',
     FACEBOOK_MESSAGE_FROM : ' 来自我的{1}。',
-    // SHARE_DORAEMON_CATEGORY_OTHER : '其他',
-    // SHARE_DORAEMON_CATEGORY_INTEREST : '有趣儿',
-    // SHARE_DORAEMON_CATEGORY_DEFAULT : '有趣儿的内容',
 
     SHARE_BINDED : '已绑定',
     SHARE_TO_SINA : '绑定新浪微博',
@@ -226,29 +187,17 @@ define({
     SHARE_TO_QZONE : '绑定Qzone',
     SHARE_TO_RENREN : '绑定人人网',
 
-    // SELECTOR_DESCRIPTION_TEXT : '已选 {1} 个，共 {2} 个',
 
     TODAY : '今天',
     YESTODAY : '昨天',
-    // THE_DAY_BEFORE_YESTODAY : '前天',
-    // MONTH : '月',
-    // DAY : '日',
-    // YEAR : '年',
 
     HOUR : '{1} 小时',
-    // MINUTE : '{1} 分钟',
-    // SECOND : '{1} 秒',
 
-    // SD_MOUNT_TIP_TEXT : '豌豆荚检测不到 SD 卡，请在手机上取消挂载 SD 卡。',
     NO_SD_CARD_TIP_TEXT : '豌豆荚检测到您的手机上没有 SD 卡',
-    // NO_SD_CARD_SIZE_TEXT : '暂时无法读取 SD 卡数据',
 
-    // IMPORT_LABEL : '导入',
-    // EXPORT_LABEL : '导出',
     CANCEL_IMPORT_TEXT : '导入操作已被取消',
     CANCEL_EXPORT_TEXT : '导出操作已被取消',
 
-    // CANCEL_IN_PROGRESS : '正在取消操作，请稍侯...',
 
     SD_CAPACITY_TIP : '您的 SD 卡快满了！',
     PHONE_CAPACITY_TIP : '手机空间不够了！',
@@ -256,10 +205,17 @@ define({
     PHONE_CAPACITY_ACTION : '一键移动应用到 SD 卡',
 
     SEND_MAIL_FAILD : '非常抱歉，发送邮件失败',
-    // ZIP_PACKAGE_ERROR : '抱歉，打包出错',
-    // ZIP_PACKAGE_SUCCESS : '打包成功，打包文件在您刚上传文件的同级目录',
 
     LOAD_MORE : '加载更多',
     LOADING : '加载中...',
-    LOAD_FAILD : '加载失败'
+    LOAD_FAILD : '加载失败',
+
+    /* New */
+
+    MMS : '彩信',
+    COLLAPSE : '收起',
+    DELETING : '正在删除，请稍候...',
+    EXPORTING : '正在导出，请勿断开手机',
+    BACKUP_RECORD : '自动备份记录',
+    IMPORT_FROM_FILE : '从指定文件导入'
 });

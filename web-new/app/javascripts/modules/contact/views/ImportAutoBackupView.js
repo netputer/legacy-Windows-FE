@@ -132,7 +132,7 @@
                 this.delegateEvents();
                 ImportAutoBackupView.__super__.render.apply(this, arguments);
 
-                var $buttonSwitch = $('<button>').html(i18n.contact.IMPORT_FROM_FILE).addClass('button-switch');
+                var $buttonSwitch = $('<button>').html(i18n.misc.IMPORT_FROM_FILE).addClass('button-switch');
                 this.$('.w-ui-window-footer-monitor').append($buttonSwitch);
 
                 return this;

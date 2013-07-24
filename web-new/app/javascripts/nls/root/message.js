@@ -17,20 +17,16 @@ define({
 
     ME : '我',
     UNNAMED_CONTACT : '未命名的联系人',
-    MMS : '彩信',
     NONE_SUBJECT : '无主题',
     CONTAIN_MULTIMEDIA : '包含 {1} 个多媒体附件',
     OPEN_ON_DEIVE : '在手机上查看',
-    FOLD : '收起',
     EXPEND : '展开',
     SENDING : '发送中...',
     SEND_FAILED : '发送失败，',
     SEND_FAILED_ALERT : '短信发送失败。',
     RESEND : '重发',
-    DELETE : '删除',
     FORWARD : '转发',
     COPY : '复制',
-    // MARK_AS_UNREAD : '标记为未读',
     ADD_TO_CONTACT : '添加到通讯录',
     BATCH_SEND_TITLE : '请在手机上点击发送按钮',
     BATCH_SEND_TOO_MANY_TIP : '豌豆荚已经把收信人和短信内容填入您手机的短信发送框，请在手机上发送短信。为确保短信可以成功发送，豌豆荚每小时可以为您发送 90 条短信，您现在已经超出了这个限制。',
@@ -69,26 +65,18 @@ define({
     COUNT_TIP : '当前选中的会话(<span class="cover-count"></span> 个会话，<span class="sms-count"></span> 条短信)',
 
     BATCH_CONVERSATION : '群发短信',
-    // TIP_UNREAD : '共 {1} 条，{2} 条未读',
-    // TIP_FAILED : '共 {1} 条，{2} 条发送失败',
 
     SMS_SUMMARY : '共 {1} 条，{2} 条未读',
-    // SMS_UNREAD_SUMMARY : '共 {2} 条未读短信',
 
     CONFIRM_DELETE_CONVERSATION : '确定要删除选中的 {1} 个会话中的 {2} 条短信吗？',
-    CONVERSATION_DELETE_PROGRESS : '正在删除，请稍候...',
     CONVERSATION_DELETE_SUCCESS : '成功删除 {1} 条短信。',
     CONFIRM_MARK_AS_READ : '确定要将选中的 {1} 个会话中的短信全部标记为已读吗？',
     CONVERSATION_MARK_AS_READ_PROGRESS : '正在标记已读中，请稍候...',
     CONVERSATION_MARK_AS_READ_SUCCESS : '成功将 {1} 条短信标记为已读。',
 
-    // ALERT_TIP_IMPORT_EXPORT_WIFI : '<p>很抱歉，为了确保您的数据不会丢失，豌豆荚暂时不支持在 Wi-Fi 连接手机时导入和导出数据。</p><p>请连接 USB 数据线后重试。</p>',
     ALERT_TIP_EXPORT_MMS : '您选择的会话中包含彩信，这些彩信不会被导出。',
 
-    // WORD_COUNT : '已输入 {1} 字，',
-    // ADDRESS_COUNT : '发送给 {1} 位联系人。',
     SEND : '发送',
-    EXPORT : '导出',
     BATCH_CONVERSATION_TITLE : '选择了 {1} 组短信',
     CANCEL : '取消',
     SEND_WITH_SIM1 : '使用默认 SIM 卡发送',
@@ -101,29 +89,23 @@ define({
     IMPORT_SMS_FINISH : '短信导入完成',
     EXPORT_MESSAGE : '导出短信',
     EXPORT_FAILED : '导出短信失败。',
-    EXPORTING : '正在导出，请勿断开手机',
     EXPORTING_SMS : '正在导出短信，请稍候...',
-    // EXPORT_FINISH : '导出完成',
     EXPORT_SMS_FINISH : '短信导出完成',
     IMPORT_SELECT_FILE : '选择包含短信的 .CSV 文件',
     INVALID_FILE : '无效的 .csv 文件',
     SELECT_MESSAGE : '请选择要导出的短信',
     ALL_MESSAGE : '全部短信',
     NO_CONVERSATION : '豌豆荚无法显示您的短信，可能是手机上的安全软件阻止了豌豆荚读取信息的权限，请在手机上「权限管理」中授权。<a target="_default" href="http://help.wandoujia.com/entries/22017678?utm_campaign=tips&utm_medium=client&utm_source=sms">帮助</a>',
-    // NO_UNREAD_CONVERSATION : '您没有任何短信未读哦',
     PROBLEM_WITH_DUAL_SIM_PHONE : '双卡手机遇到问题',
     PROBLEM_WITH_DUAL_SIM_PHONE_TIP : '<p>如果您使用的是双卡手机，您可以指定使用其中某一张 SIM 卡发送短信。</p><p>由于市面上的双卡手机型号众多，豌豆荚可能不支持全部型号的双卡手机。如果您的双卡手机不能被识别或者是发送短信遇到问题，请 <a href="http://help.wandoujia.com/entries/21550442" target="_default">向我们反馈</a>。',
 
     SELECT_BACKUP_FILE : '请选择自动备份的短信记录',
-    BACKUP_RECORD : '自动备份记录',
     BACKUP_MESSAGE_NUMBER : '短信（条）',
-    IMPORT_FROM_FILE : '从指定文件导入',
-    // IMPORT_FROM_BACKUP : '从自动备份导入',
 
     COPY_SMS : '短信已成功复制到剪切板',
 
     RETURN_ALL : '全部短消息',
     SEARCH_TIP : '{1} 个包含「{2}」的短消息',
 
-    UNREAD_DES : '{1} 条未读短信',
+    UNREAD_DES : '{1} 条未读短信'
 });

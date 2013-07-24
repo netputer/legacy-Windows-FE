@@ -151,7 +151,7 @@ wonder.addModule('ui/status', function(W) {
     function Progress(opt) {
         this.model = new W.ui.status.Progressbar();
         this.view = new W.ui.status.ProgressbarView(this.model);
-        this.cancelBtn = new W.ui.Button(i18n.misc.CANCEL)
+        this.cancelBtn = new W.ui.Button(i18n.ui.CANCEL)
         this.completeBtn = new W.ui.Button(i18n.misc.COMPLETE_TEXT);
         this.interval = null;
         W.ui.Window.call(this, i18n.misc.DIALOG_TIP, '', opt);

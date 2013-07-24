@@ -22,7 +22,7 @@ wonder.addModule('contact/avatarEditor', function (W) {
         _addComponent : function () {
             var self = this;
             self.okBtn = new W.ui.Button (i18n.misc.SAVE_TEXT);
-            self.cancelBtn = new W.ui.Button (i18n.misc.CANCEL);
+            self.cancelBtn = new W.ui.Button (i18n.ui.CANCEL);
             self.returnBtn = new W.ui.Button (i18n.misc.RESELECT_FILE_TEXT);
             self.picFormatTip = $('<span/>').text(i18n.contact.ALERT_PIC_FORMAT_TIP).addClass('w-contact-pic-format-tip');
 
