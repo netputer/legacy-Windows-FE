@@ -34,7 +34,7 @@
             <div class="artist smart-list-sortable" data-smart-list-sortby="artist" data-smart-list-sort-type="string">{{= i18n.music.ARTIST_TEXT }}</div>
             <div class="duration smart-list-sortable" data-smart-list-sortby="duration" data-smart-list-sort-type="number">{{= i18n.music.SING_TIME_TEXT }}</div>
             <div class="format smart-list-sortable" data-smart-list-sortby="format" data-smart-list-sort-type="string">{{= i18n.music.SING_FORMAT }}</div>
-            <div class="size smart-list-sortable" data-smart-list-sortby="size" data-smart-list-sort-type="number">{{= i18n.music.SING_SIZE_TEXT }}</div>
+            <div class="size smart-list-sortable" data-smart-list-sortby="size" data-smart-list-sort-type="number">{{= i18n.misc.SIZE }}</div>
         </header>
         <footer class="w-smart-list-footer text-secondary"></footer>
     </div>
@@ -45,14 +45,14 @@
     <div class="title wc" title="{{! it.title }}">{{! it.title }}</div>
     <div class="play">
         {{? it.playing }}
-        <div class="button-stop" title="{{= i18n.music.STOP_TEXT }}"></div>
+        <div class="button-stop" title="{{= i18n.misc.STOP }}"></div>
         <div class="playing"></div>
         {{?? it.loading }}
         <div class="loading"></div>
         {{?? it.error }}
         <div class="error" title="{{= i18n.music.MUSIC_CANNOT_PLAY_TEXT }}"></div>
         {{??}}
-        <div class="button-play" title="{{= i18n.music.PLAY_TEXT }}"></div>
+        <div class="button-play" title="{{= i18n.misc.PLAY }}"></div>
         {{?}}
     </div>
     <div class="artist text-secondary wc" title="{{! it.artist }}">{{! it.artist }}</div>
@@ -84,7 +84,7 @@
     <div class="album smart-list-sortable" data-smart-list-sortby="album" data-smart-list-sort-type="string">{{= i18n.music.ALBUM_TEXT }}</div>
     <div class="duration smart-list-sortable" data-smart-list-sortby="duration" data-smart-list-sort-type="number">{{= i18n.music.SING_TIME_TEXT }}</div>
     <div class="format smart-list-sortable" data-smart-list-sortby="format" data-smart-list-sort-type="string">{{= i18n.music.SING_FORMAT }}</div>
-    <div class="size smart-list-sortable" data-smart-list-sortby="size" data-smart-list-sort-type="number">{{= i18n.music.SING_SIZE_TEXT }}</div>
+    <div class="size smart-list-sortable" data-smart-list-sortby="size" data-smart-list-sort-type="number">{{= i18n.misc.SIZE }}</div>
     <div class="type"></div>
 </header>
 </script>

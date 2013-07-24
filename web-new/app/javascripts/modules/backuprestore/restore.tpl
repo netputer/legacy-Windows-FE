@@ -4,14 +4,14 @@
     <div class="content">
         <div class="button hbox button-local">
             <div class="icon local-icon"></div>
-            <h2 class="title">{{= i18n.backup_restore.RESTORE_TYPE_LOCAL_TITLE }}</h2>
+            <h2 class="title">{{= i18n.backup_restore.RESTORE_TITLE_LOCAL }}</h2>
         </div>
         <div class="text-secondary desc">{{= i18n.backup_restore.RESTORE_TYPE_LOCAL_CONTENT }}</div>
     </div>
     <div class="content">
         <div class="button hbox button-remote">
             <div class="icon remote-icon"></div>
-            <h2 class="title">{{= i18n.backup_restore.RESTORE_TYPE_REMOTE_TITLE }}</h2>
+            <h2 class="title">{{= i18n.backup_restore.RESTORE_TITLE_REMOTE }}</h2>
         </div>
         <div class="text-secondary desc">{{= i18n.backup_restore.RESTORE_TYPE_REMOTE_CONTENT }}</div>
     </div>
@@ -52,7 +52,7 @@
     </div>
     <div class="tip-link">
         {{= i18n.backup_restore.CHOOSE_RESTORE_FILE_TIP_BEFORE }}
-        <span class="link button-select-file">{{= i18n.backup_restore.CHOOSE_RESTORE_FILE_TIP_LINK }}</span>
+        <span class="link button-select-file">{{= i18n.backup_restore.SELECT_BACKUP_FILE }}</span>
         {{= i18n.backup_restore.CHOOSE_RESTORE_FILE_TIP_AFTER }}
         {{? FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE }}
         <div class="old-version-tip" title=""></div>

@@ -117,7 +117,7 @@
                     <input data-id="{{= it.contact.name ? it.contact.name.id : '' }}" class="input-name" type="text" value="{{! it.contact.displayName || '' }}" placeholder="{{= i18n.contact.NAME }}" />
                 </div>
                 <div class="nickname">
-                     <input data-id="{{= (it.contact.nickname && it.contact.nickname[0] && it.contact.nickname[0].id) || '' }}" class="input-nickname" type="text" value="{{! (it.contact.nickname && it.contact.nickname[0] && it.contact.nickname[0].name) || '' }}" placeholder="{{= i18n.contact.NICKNAME }}" />
+                     <input data-id="{{= (it.contact.nickname && it.contact.nickname[0] && it.contact.nickname[0].id) || '' }}" class="input-nickname" type="text" value="{{! (it.contact.nickname && it.contact.nickname[0] && it.contact.nickname[0].name) || '' }}" placeholder="{{= i18n.misc.NICKNAME }}" />
 
                 </div>
                 <div class="switch text-secondary"></div>
@@ -219,7 +219,7 @@
             </li>
             <li class="account-label">
                 <dl>
-                    <dt class="type text-secondary">{{= i18n.contact.ACCOUNT }}<dt>
+                    <dt class="type text-secondary">{{= i18n.misc.ACCOUNT }}<dt>
                     <dd class="account-ctn"></dd>
                 </dl>
             </li>
@@ -405,7 +405,7 @@
             <dd><input id="w-contact-quick-add-phone" name="phone" type="text" class="input-phone" /></dd>
             <dt><label for="w-contact-quick-add-email">{{= i18n.contact.EMAIL }}</label></dt>
             <dd><input id="w-contact-quick-add-email" name="email" type="email" class="input-email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" /></dd>
-            <dt><label for="w-contact-quick-add-account">{{= i18n.contact.ACCOUNT }}</label></dt>
+            <dt><label for="w-contact-quick-add-account">{{= i18n.misc.ACCOUNT }}</label></dt>
             <dd class="account-ctn"></dd>
         </dl>
     </form>

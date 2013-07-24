@@ -39,7 +39,7 @@
             </button>
         </span>
         <span class="w-ui-buttongroup">
-            <button class="w-icon-btn min img button-play" data-title="{{= i18n.welcome.PLAY_BTN_TEXT }}">
+            <button class="w-icon-btn min img button-play" data-title="{{= i18n.misc.PLAY }}">
                 <span class="icon play-black"></span>
             </button>
             <button class="w-icon-btn min img button-refresh" data-title="{{= i18n.misc.REFRESH }}">

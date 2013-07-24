@@ -3,7 +3,6 @@
 define({
     ACCOUNT_GUIDE : 'Sign in guide',
 
-    CLOUD_BACKUP : 'Cloud backup',
     SOCIAL_PLATFORM : 'Social networks',
 
     CLOUD_BACKUP_TITLE : 'Auto-backup to the cloud, easy to backup, easy to restore.',
@@ -12,7 +11,6 @@ define({
 
     CLOUD_PHOTO_TITLE : '云相册同步，即时上传，随时分享',
     CLOUD_PHOTO_DESC : '豌豆荚会将手机拍摄的 <em>照片</em> 自动上传到您的私人云相册，还可以自动下载到电脑。开启后同时也会在手机上生效。',
-    CLOUD_PHOTO_OPTION : '开启云相册同步',
 
     SOCIAL_PLATFORM_TITLE : '绑定社交平台，轻松分享，快乐评价',
     SOCIAL_PLATFORM_DESC : '点击后绑定您喜爱的社交平台，分享喜爱的应用和照片',

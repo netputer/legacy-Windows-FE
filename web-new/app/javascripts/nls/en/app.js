@@ -101,7 +101,6 @@ define({
     LOOK_FOR_DETAIL : 'Check app details',
 
     COL_NAME_LABEL : 'Name',
-    COL_SIZE_LABEL : 'Size',
     COL_RATE_LABEL : 'Feedback rate',
     COL_VERSION_LABEL : 'Version',
     COL_INSTALL_TIME : 'Install date',

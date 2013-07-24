@@ -343,7 +343,7 @@
     <div class="info smart-list-sortable desc" data-smart-list-sortby="base_info.name" data-smart-list-sort-type="string">{{= i18n.app.COL_NAME_LABEL }}</div>
     <div class="current-version">{{= i18n.app.APP_INSTALL_VERSION_LABEL }}</div>
     <div class="target-version">{{= i18n.app.APP_LATEST_VERSION_LABEL }}</div>
-    <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.app.COL_SIZE_LABEL }}</div>
+    <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.misc.SIZE }}</div>
 </header>
 <footer class="w-smart-list-footer text-secondary"></footer>
 </script>
@@ -359,7 +359,7 @@
     <label class="check-select-all-wrap"><input class="check-select-all" type="checkbox" /></label>
     <div class="info smart-list-sortable desc" data-smart-list-sortby="base_info.name" data-smart-list-sort-type="string">{{= i18n.app.COL_NAME_LABEL }}</div>
     <div class="current-version">{{= i18n.app.APP_INSTALL_VERSION_LABEL }}</div>
-    <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.app.COL_SIZE_LABEL }}</div>
+    <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.misc.SIZE }}</div>
 </header>
 <footer class="w-smart-list-footer text-secondary"></footer>
 </script>
@@ -384,7 +384,7 @@
             <label class="check-select-all-wrap"><input class="check-select-all" type="checkbox" /></label>
             <div class="info smart-list-sortable desc" data-smart-list-sortby="base_info.name" data-smart-list-sort-type="string">{{= i18n.app.COL_NAME_LABEL }}</div>
             <div class="current-version">{{= i18n.app.COL_VERSION_LABEL }}</div>
-            <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.app.COL_SIZE_LABEL }}</div>
+            <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.misc.SIZE }}</div>
         </header>
         <footer class="w-smart-list-footer text-secondary"></footer>
     </div>

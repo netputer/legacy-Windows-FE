@@ -205,5 +205,13 @@ define({
     DELETING : '正在删除，请稍候...',
     EXPORTING : '正在导出，请勿断开手机',
     BACKUP_RECORD : '自动备份记录',
-    IMPORT_FROM_FILE : '从指定文件导入'
+    IMPORT_FROM_FILE : '从指定文件导入',
+    SIZE : '大小',
+    PLAY : '播放',
+    STOP : '停止',
+    CLOUD_BACKUP : '云备份',
+    CLOUD_BACKUP_OPEN : '开启云备份',
+    ACCOUNT : '账号',
+    NICKNAME : '昵称',
+    CLOUD_PHOTO_OPEN : '开启云相册同步'
 });

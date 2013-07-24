@@ -8,7 +8,7 @@
 <script type="text/x-ui-template" id="task-list">
     <header class="w-smart-list-header text-secondary hbox">
         <div class="name">{{= i18n.taskManager.TASK_NAME }}</div>
-        <div class="size">{{= i18n.taskManager.SIZE }}</div>
+        <div class="size">{{= i18n.misc.SIZE }}</div>
         <div class="progress">{{= i18n.taskManager.PROGRESS }}</div>
         <div class="action"></div>
     </header>

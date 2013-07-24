@@ -14,7 +14,6 @@ define({
     INSTALL_TO_DEVICE : '安装到内存',
     MANAGE_SD : '管理 SD 卡',
     TASK_NAME : '任务名称',
-    SIZE : '大小',
     PROGRESS : '进度',
     RUNNING_COUNT : '{1} 项任务正在进行',
     FAILED_COUNT : '{1} 项任务失败',

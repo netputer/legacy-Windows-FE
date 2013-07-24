@@ -101,7 +101,6 @@ define({
     LOOK_FOR_DETAIL : '查看应用详情',
 
     COL_NAME_LABEL : '应用名称',
-    COL_SIZE_LABEL : '大小',
     COL_RATE_LABEL : '好评率',
     COL_VERSION_LABEL : '版本',
     COL_INSTALL_TIME : '安装时间',

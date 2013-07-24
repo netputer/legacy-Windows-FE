@@ -39,7 +39,7 @@
                     value : 'base_info.name',
                     checked : true
                 }, {
-                    label : i18n.app.COL_SIZE_LABEL,
+                    label : i18n.misc.SIZE,
                     type : 'radio',
                     name : 'app-list-sort',
                     value : 'base_info.apk_size',

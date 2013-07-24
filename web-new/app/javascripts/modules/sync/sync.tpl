@@ -47,7 +47,7 @@
         </div>
     </div>
     <div class="hbox footer-ctn">
-        <button class="primary button-open">{{= i18n.backup_restore.SYNC_PHOTO_OPEN }}</button>
+        <button class="primary button-open">{{= i18n.misc.CLOUD_PHOTO_OPEN }}</button>
     </div>
 </script>
 
@@ -73,7 +73,7 @@
 <script type="text/x-ui-template" id="account-guide-header">
     <div class="item hbox cloud-backup">
         <div class="icon icon-cloud-backup"></div>
-        <div class="title">{{= i18n.sync.CLOUD_BACKUP }}</div>
+        <div class="title">{{= i18n.misc.CLOUD_BACKUP }}</div>
     </div>
     <div class="item hbox cloud-photo">
         <div class="icon icon-cloud-photo"></div>
@@ -99,7 +99,7 @@
     <div class="content-ctn">
         <p class="title">{{= i18n.sync.CLOUD_PHOTO_TITLE }}</p>
         <p class="desc text-secondary">{{= i18n.sync.CLOUD_PHOTO_DESC }}</p>
-        <label class="guide-option"><input type="checkbox" checked="true" />{{= i18n.sync.CLOUD_PHOTO_OPTION }}</label>
+        <label class="guide-option"><input type="checkbox" checked="true" />{{= i18n.misc.CLOUD_PHOTO_OPEN }}</label>
     </div>
 </script>
 

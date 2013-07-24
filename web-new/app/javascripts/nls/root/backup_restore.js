@@ -99,9 +99,7 @@ define({
     APP_ERROR_LIST_TITLE : '以下 {1} 个应用备份失败。是否忽略并继续备份其他数据？',
     APP_DATA_ERROR_LIST_TITLE : '以下 {1} 个应用的应用数据备份失败。是否忽略？',
 
-    RESTORE_TYPE_LOCAL_TITLE : '从电脑恢复',
     RESTORE_TYPE_LOCAL_CONTENT : '从您电脑上的本地备份文件中进行恢复',
-    RESTORE_TYPE_REMOTE_TITLE : '从云端恢复',
     RESTORE_TYPE_REMOTE_CONTENT : '从云端的备份数据进行恢复，可以恢复到任意历史时间点',
     RESTORE_LIST_SNAPHOST_FAILED : '很抱歉，加载数据列表失败。',
 
@@ -110,7 +108,6 @@ define({
     RESTORE_DATE : '日期',
     RESTORE_DEVICE : '设备',
     CHOOSE_RESTORE_FILE_TIP_BEFORE : '您也可以 ',
-    CHOOSE_RESTORE_FILE_TIP_LINK : '指定备份文件',
     CHOOSE_RESTORE_FILE_TIP_AFTER : ' 进行恢复',
 
     RESOTRE_OLD_VERSION_TIP_BEFORE : '您可以自己指定备份文件进行恢复，如果您要恢复后缀为 .bak 的备份文件请使用 ',
@@ -135,7 +132,6 @@ define({
 
     AUTO_BACKUP_REMOTE_TIP_TITLE : '电脑数据容易丢，试试自动云备份吧！',
     AUTO_BACKUP_REMOTE_TIP_DESC : '自动将您的 <em>联系人/短信/应用</em> 备份到云端，不需要再手动备份。开启后同时也会在手机上生效。您是否要开启云备份？',
-    AUTO_BACKUP_REMOTE_YES : '开启云备份',
 
     BACKUP_APP_DATA_TIP : '豌豆荚可以帮助您备份应用的数据。<br />例如游戏进度、聊天记录、离线地图等。在恢复应用时就能恢复之前应用的使用状态。<br />此功能仅在 USB 连接下提供。',
     BACKUP_APP_DATA_TIP_TITLE : '请确认备份应用数据',
@@ -171,5 +167,4 @@ define({
 
     SYNC_PHOTO_PUSH_NOTIFY_TITLE : '您需要自动下载云相册图片到电脑吗？',
     SYNC_PHOTO_PUSH_NOTIFY_CONTENT : '您手机上的照片已同步到云端。在电脑上开启云相册同步后，豌豆荚将自动将您云相册的图片下载到电脑，查看图片更方便。',
-    SYNC_PHOTO_OPEN : '开启云相册同步'
 });

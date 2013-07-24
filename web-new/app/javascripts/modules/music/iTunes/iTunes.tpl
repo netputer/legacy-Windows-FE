@@ -88,7 +88,7 @@
         <div class="cell audio-name smart-list-sortable desc" data-smart-list-sortby="title" data-smart-list-sort-type="string">{{= i18n.music.SING_NAME_TEXT }}</div>
         <div class="cell audio-artist smart-list-sortable desc" data-smart-list-sortby="artist" data-smart-list-sort-type="string">{{= i18n.music.ARTIST_TEXT }}</div>
         <div class="cell audio-album">{{= i18n.music.ALBUM_TEXT }}</div>
-        <div class="cell audio-size smart-list-sortable desc" data-smart-list-sortby="sizeText" data-smart-list-sort-type="string" >{{= i18n.music.SING_SIZE_TEXT }}</div>
+        <div class="cell audio-size smart-list-sortable desc" data-smart-list-sortby="sizeText" data-smart-list-sort-type="string" >{{= i18n.misc.SIZE }}</div>
     </header>
 </script>
 

@@ -14,7 +14,6 @@ define({
     INSTALL_TO_DEVICE : 'Install to internal storage',
     MANAGE_SD : 'Manage SD card',
     TASK_NAME : 'Task',
-    SIZE : 'Size',
     PROGRESS : 'Status',
     RUNNING_COUNT : '{1} tasks...',
     FAILED_COUNT : '{1} task(s) failed',

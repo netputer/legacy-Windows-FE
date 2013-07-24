@@ -205,5 +205,13 @@ define({
     DELETING : 'Deleting, please wait...',
     EXPORTING : 'Exporting, please don\'t turn off your phone',
     BACKUP_RECORD : 'Auto backup files',
-    IMPORT_FROM_FILE : 'Import from file'
+    IMPORT_FROM_FILE : 'Import from file',
+    SIZE : 'Size',
+    PLAY : 'Play',
+    STOP : 'Stop',
+    CLOUD_BACKUP : 'Cloud backup',
+    CLOUD_BACKUP_OPEN : 'Turn on cloud backup',
+    ACCOUNT : 'Account',
+    NICKNAME : 'Nickname',
+    CLOUD_PHOTO_OPEN : '开启云相册同步'
 });

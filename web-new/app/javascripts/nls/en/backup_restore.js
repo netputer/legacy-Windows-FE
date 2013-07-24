@@ -109,7 +109,6 @@ define({
     RESTORE_DATE : 'Date',
     RESTORE_DEVICE : 'Device',
     CHOOSE_RESTORE_FILE_TIP_BEFORE : 'You can ',
-    CHOOSE_RESTORE_FILE_TIP_LINK : 'Select backup file',
     CHOOSE_RESTORE_FILE_TIP_AFTER : 'Start restore',
 
     RESOTRE_OLD_VERSION_TIP_BEFORE : 'You can select your own backup file to restore. If you need to use a .bak file, please use ',
@@ -134,7 +133,6 @@ define({
 
     AUTO_BACKUP_REMOTE_TIP_TITLE : 'Don\'t lose your data. Activate cloud-backup!',
     AUTO_BACKUP_REMOTE_TIP_DESC : 'Connect your device and we\'ll backup your <em>Contacts / Messages / Apps</em> to the cloud. Backup to the cloud?',
-    AUTO_BACKUP_REMOTE_YES : "Activate cloud backup!",
 
     BACKUP_APP_DATA_TIP : 'SnapPea can backup your app data.<br />For example, high scores in a game or chat records.<br />This feature is only supported over USB.',
     BACKUP_APP_DATA_TIP_TITLE : 'Backup app data',
@@ -171,5 +169,4 @@ define({
 
     SYNC_PHOTO_PUSH_NOTIFY_TITLE : '您需要自动下载云相册图片到电脑吗？',
     SYNC_PHOTO_PUSH_NOTIFY_CONTENT : '您手机上的照片已同步到云端。在电脑上开启云相册同步后，豌豆荚将自动将您云相册的图片下载到电脑，查看图片更方便。',
-    SYNC_PHOTO_OPEN : '开启云相册同步'
 });

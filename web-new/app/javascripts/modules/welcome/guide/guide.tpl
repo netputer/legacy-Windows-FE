@@ -25,7 +25,7 @@
 <script type="text/x-ui-template" id="cloud-backup">
     <section class="section vbox">
         <div class="stage vbox">
-            <h1 class="text-secondary">{{= i18n.welcome.GUIDE_CLOUD_BACKUP }}</h1>
+            <h1 class="text-secondary">{{= i18n.misc.CLOUD_BACKUP }}</h1>
             <p class="text-secondary desc">{{= i18n.welcome.GUIDE_BIND_DESC }}</p>
             <div class="bg"></div>
         </div>
@@ -40,7 +40,7 @@
             <p class="text-secondary desc">{{= i18n.welcome.GUIDE_REG_DESC }}</p>
             <form class="text-secondary">
                 <label>
-                    <div class="label">{{= i18n.welcome.GUIDE_REG_ACCOUNT }}</div>
+                    <div class="label">{{= i18n.misc.ACCOUNT }}</div>
                     <input type="text" class="username" placeholder="{{= i18n.welcome.GUIDE_REG_ACCOUNT_PLACEHOLDER }}" />
                     <div class="text-warning">{{= i18n.welcome.GUIDE_REG_ACCOUNT_WARN }}</div>
                 </label>
@@ -54,8 +54,8 @@
                     <div class="text-warning">{{= i18n.welcome.GUIDE_REG_PSW_VERIFY_WARN }}</div>
                 </label>
                 <label>
-                    <div class="label">{{= i18n.welcome.GUIDE_REG_NICKNAME }}</div>
-                    <input type="text" class="nickname" placeholder="{{= i18n.welcome.GUIDE_REG_NICKNAME }}" />
+                    <div class="label">{{= i18n.misc.NICKNAME }}</div>
+                    <input type="text" class="nickname" placeholder="{{= i18n.misc.NICKNAME }}" />
                     <div class="text-warning">{{= i18n.welcome.GUIDE_REG_NICKNAME_WARN }}</div>
                 </label>
                 <label>
