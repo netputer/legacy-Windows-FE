@@ -3,7 +3,7 @@
     'use strict';
 
     define([], function () {
-        var QUERYSTRING_PATTERN_PREFIX = '[\?\&\#]';
+        var QUERYSTRING_PATTERN_PREFIX = '[\\?\\&\\#]';
         var QUERYSTRING_PATTERN_SUFFIX = '=([^&]*)';
 
         var QueryString = {};

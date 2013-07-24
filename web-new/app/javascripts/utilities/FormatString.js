@@ -5,20 +5,22 @@
 (function (window) {
     define([], function () {
 
-        var FormatString = function (input) {
-            var input = arguments[0];
+        var FormatString = function (input, values) {
+            var result;
 
-            if (typeof arguments[1] === "object") {
-                var vars = arguments[1];
-                return input.replace(/\{(\w+)\}/g, function () {
-                    return vars[arguments[1]];
+            if (typeof values === "object") {
+                var vars = values;
+                result = input.replace(/\{(\w+)\}/g, function (origin, target) {
+                    return vars[target];
                 });
             } else {
                 var args = arguments;
-                return input.replace(/\{(\d+)\}/g, function () {
-                    return args[arguments[1]];
+                result = input.replace(/\{(\d+)\}/g, function (origin, target) {
+                    return args[target];
                 });
             }
+
+            return result;
         };
         return FormatString;
     });
