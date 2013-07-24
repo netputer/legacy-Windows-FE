@@ -30,8 +30,6 @@
         var BackupAppDataTipBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'backup-app-data-tip-view')),
             className : 'w-backup-app-data-tip',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -45,7 +43,7 @@
             initialize : function () {
                 BackupAppDataTipView.__super__.initialize.apply(this, arguments);
 
-                this.on(UIHelper.EventsMapping.SHOW, function() {
+                this.on(UIHelper.EventsMapping.SHOW, function () {
                     bodyView = new BackupAppDataTipBodyView();
                     this.$bodyContent = bodyView.render().$el;
                     this.center();

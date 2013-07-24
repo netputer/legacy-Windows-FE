@@ -143,7 +143,7 @@
                 }, this);
             }
 
-            function showStartPanel (data) {
+            function showStartPanel(data) {
                 selectLibraryView = SelectLibraryView.getInstance();
                 selectSourceView  = SelectSourceView.getInstance();
                 audioListView     = AudioListView.getInstance();

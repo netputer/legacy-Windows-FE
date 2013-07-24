@@ -25,8 +25,6 @@
     ) {
         console.log('TasksCollection - File loaded.');
 
-        var encodeURIComponent = window.encodeURIComponent;
-
         var appsCollection;
         var webAppsCollection;
 
@@ -386,7 +384,7 @@
 
         var tasksCollection;
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({}, {
             getInstance : function () {
                 if (!tasksCollection) {
                     tasksCollection = new TasksCollection();

@@ -34,8 +34,6 @@
         var BackupAutoTipBodyLocalView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'backup-local-auto-tip')),
             className : 'w-backup-auto-tip hbox',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -46,8 +44,6 @@
         var BackupAutoTipBodyRemoteView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'backup-remote-auto-tip')),
             className : 'w-backup-auto-tip hbox',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 

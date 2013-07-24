@@ -31,7 +31,7 @@
 
         var alert = window.alert;
 
-        var PhotoService = _.extend(function () {}, Backbone.Events);
+        var PhotoService = _.extend({}, Backbone.Events);
 
         var exportPath;
 

@@ -41,8 +41,8 @@
     ) {
         console.log('BackupRestoreChooseDataView - File loaded. ');
 
-        var prepareBackupTimer;
         var alert = window.alert;
+
         var BackupRestoreChooseDataBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'choose-backup-restore-data')),
             className : 'w-backup-restore-choose-data',
@@ -138,9 +138,7 @@
                     this.trigger('changed');
                 }.bind(this)).fail(function (resp) {
                     this.prepareBackupFailed();
-                }.bind(this)).always(function (resp) {
-                    clearTimeout(prepareBackupTimer);
-                });
+                }.bind(this));
             },
             prepareBackupFailed : function () {
                 this.trigger('remove');
@@ -415,13 +413,9 @@
                 bodyView.setData(this.options.isBackup ? BackupContextModel : RestoreContextModel);
                 this.trigger('_NEXT_STEP');
             },
-            clickButtonCancel : function () {
-                clearTimeout(prepareBackupTimer);
-            },
             events : {
                 'click .button-last' : 'clickButtonLast',
-                'click .button-next' : 'clickButtonNext',
-                'click .button-cancel' : 'clickButtonCancel'
+                'click .button-next' : 'clickButtonNext'
             }
         });
 

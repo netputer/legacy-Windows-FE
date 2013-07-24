@@ -33,7 +33,7 @@
 
         var alert = window.alert;
 
-        var BackupRestoreService = _.extend(Backbone.Events);
+        var BackupRestoreService = _.extend({}, Backbone.Events);
 
         // ---------------------------- consts -------------------------------
 

@@ -26,8 +26,6 @@
         var BodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('contact', 'avatar-editor')),
             className : 'w-contact-avatar-editor vbox',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 

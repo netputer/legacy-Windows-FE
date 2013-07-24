@@ -312,7 +312,6 @@
                     });
 
                     var nowWidth = previewDeviceWrap.width();
-                    var nowHeight = previewDeviceWrap.height();
                     var screenRate = nowWidth / Device.get('shell').width;
                     preivewDeviceImg.css({
                         'position' : 'absolute',

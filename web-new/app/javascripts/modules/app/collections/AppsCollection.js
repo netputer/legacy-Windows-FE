@@ -361,7 +361,7 @@
 
         var appsCollection;
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function () {
                 if (!appsCollection) {
                     appsCollection = new AppsCollection();

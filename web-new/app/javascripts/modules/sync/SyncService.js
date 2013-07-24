@@ -15,7 +15,7 @@
     ) {
         console.log('SyncService - File loaded.');
 
-        var SyncService = _.extend(function () {}, Backbone.Events);
+        var SyncService = _.extend({}, Backbone.Events);
 
         SyncService.getIsPhotoSyncOnAsync = function () {
             var deferred = $.Deferred();

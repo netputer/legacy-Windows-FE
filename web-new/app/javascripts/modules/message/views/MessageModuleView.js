@@ -1,5 +1,5 @@
 /*global define*/
-(function (window) {
+(function (window, document) {
     define([
         'backbone',
         'underscore',
@@ -46,11 +46,7 @@
         var setInterval = window.setInterval;
         var clearInterval = window.clearInterval;
 
-        var document = window.document;
-
         var conversationsListView;
-        var batchConversationsView;
-        var threadsPanelView;
 
         var messageSenderView;
 
@@ -228,4 +224,4 @@
 
         return factory;
     });
-}(this));
+}(this, this.document));

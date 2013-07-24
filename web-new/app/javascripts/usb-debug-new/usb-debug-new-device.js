@@ -274,26 +274,26 @@ var brandInfo = {
             'pos' : {
                 left : '323px',
                 top : '294px'
-            },
+            }
         }, {
             'des' : '点击「设置」',
             'pos' : {
                 left : '298px',
                 top : '157px'
-            },
+            }
         }, {
             'des' : '选择「开发人员选项」',
             'pos' : {
                 left : '281px',
                 top : '283px'
-            },
+            }
         }, {
             'des' : '点击「USB 调试」',
             'pos' : {
                 left : '415px',
                 top : '168px',
                 '-webkit-transform': 'rotate(180deg)'
-            },
+            }
         }, {
             'des' : '点击确定',
             'pos' : {
@@ -465,7 +465,7 @@ var systemInfo = {
             'pos' : {
                 left : '325px',
                 top : '295px'
-            },
+            }
         }, {
             'des' : '点击「设置」',
             'pos' : {
@@ -506,7 +506,7 @@ var systemInfo = {
             'pos' : {
                 left : '399px',
                 top : '215px'
-            },
+            }
         }, {
             'des' : '选择「辅助功能」',
             'pos' : {

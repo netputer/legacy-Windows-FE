@@ -120,7 +120,7 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function (args) {
                 return new SocialPlatformSelectorView({
                     templateID : args ? 'social-platform-selector-big' : 'social-platform-selector'

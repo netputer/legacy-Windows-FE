@@ -86,7 +86,7 @@
             render : function () {
                 var key;
                 var cur_photo_type = this.options.models[0].collection.data.photo_type;
-                if (cur_photo_type === CONFIG.enums.PHOTO_PHONE_TYPE || cur_photo_type == CONFIG.enums.PHOTO_CLOUD_TYPE) {
+                if (cur_photo_type === CONFIG.enums.PHOTO_PHONE_TYPE || cur_photo_type === CONFIG.enums.PHOTO_CLOUD_TYPE) {
                     if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
                             Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
                         key = StringUtil.formatDate('yyyy 年 MM 月', this.options.models[0].get('date'));

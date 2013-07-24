@@ -74,7 +74,9 @@
                     }
                 }
             },
-            beforeRender : function () {},
+            beforeRender : function () {
+                return;
+            },
             render : function () {
                 this.beforeRender();
                 this.$el.html(this.template({}));

@@ -38,7 +38,7 @@
         var alert = window.alert;
         var confirm = window.confirm;
 
-        var AppService = _.extend(Backbone.Events);
+        var AppService = _.extend({}, Backbone.Events);
 
         var exportPath;
 

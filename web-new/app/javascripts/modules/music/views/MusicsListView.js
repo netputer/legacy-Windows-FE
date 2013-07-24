@@ -32,7 +32,6 @@
             template : doT.template(TemplateFactory.get('music', 'music-list')),
             className : 'w-music-list vbox',
             initialize : function () {
-                var rendered = false;
                 Object.defineProperties(this, {
                     selected : {
                         get : function () {

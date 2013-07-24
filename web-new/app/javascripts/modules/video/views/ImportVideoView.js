@@ -138,7 +138,6 @@
             },
             parseVideos : function (resp) {
                 var newVideos = [];
-                var faildText = [];
 
                 _.each(resp.body.video, function (video) {
                     video.id = StringUtil.MD5(video.path);
@@ -208,9 +207,9 @@
                     this.$('.w-ui-window-footer-monitor').append(footerMonitorView.render().$el);
                 }, this);
 
-                this.on('button_yes', this.import, this);
+                this.on('button_yes', this.importVideo, this);
             },
-            import : function () {
+            importVideo : function () {
                 var paths = [];
                 _.each(videoList.selected, function (id) {
                     var video = bodyView.collection.get(id);

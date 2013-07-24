@@ -6,7 +6,7 @@
         'jquery',
         'ui/Panel',
         'ui/TemplateFactory',
-        'utilities/FormatDate',
+        'utilities/StringUtil',
         'Internationalization'
     ], function (
         _,
@@ -14,7 +14,7 @@
         $,
         Panel,
         TemplateFactory,
-        FormatDate,
+        StringUtil,
         i18n
     ) {
         console.log('selectLibraryView file loaded');
@@ -79,7 +79,7 @@
                 var tpl = doT.template(TemplateFactory.get('iTunes', 'select-library-content'));
 
                 _.each(data, function (item) {
-                    item.time = FormatDate('yyyy-MM-dd' ,item.create_time);
+                    item.time = StringUtil.formatDate('yyyy-MM-dd', item.create_time);
                 });
 
                 this.$bodyContent = tpl(data);
