@@ -125,8 +125,8 @@
                             };
                         }
                     }
-                contactsList.switchSet('default', getter);
-                break;
+                    contactsList.switchSet('default', getter);
+                    break;
                 case 'starred':
                     if (currentGroupId === 'all') {
                         if (currentAccountId === 'all') {
@@ -144,11 +144,11 @@
                         } else {
                             getter = function () {
                                 return contactsCollection.getContactsStarredByGroupdIdAndAccountName(currentGroupId, accountCollection.get(currentAccountId).get('name'));
-                        };
+                            };
+                        }
                     }
-                }
-                contactsList.switchSet('starred', getter);
-                break;
+                    contactsList.switchSet('starred', getter);
+                    break;
                 case 'hasnumber':
                     if (currentGroupId === 'all') {
                         if (currentAccountId === 'all') {
@@ -170,10 +170,11 @@
                         }
                     }
                     contactsList.switchSet('hasnumber', getter);
-                break;
-                case 'search' :
+                    break;
+                case 'search':
                     getter = contactsCollection.getByKeyWord;
                     contactsList.switchSet('search', getter);
+                    break;
                 }
                 this.updateHeader();
             },
@@ -280,31 +281,28 @@
                 var headerText = '';
                 var length = contactsList.currentModels.length;
 
-                if(this.list.currentSetName === 'search') {
+                if (this.list.currentSetName === 'search') {
                     this.$('.button-return').show();
 
                     headerText = StringUtil.format(i18n.contact.CONTACT_TIP_PART, contactsCollection.getByKeyWord().length, contactsCollection.keyword);
                     this.$('.count-tip').html(headerText);
-
-                    return;
                 } else {
                     this.$('.button-return').hide();
-                }
 
-                if (currentGroupId !== 'all') {
-                    headerText = StringUtil.format(i18n.contact.CONTACT_GROUP_TEXT, length);
-                } else {
-                    if (currentAccountId === 'all') {
-                        headerText = StringUtil.format(i18n.contact.CONTACT_ALL_TEXT, length);
-                    } else if (accountCollection.get(currentAccountId).isSimAccount) {
-                        headerText = i18n.contact.CONTACT_SIM_SELECT_TEXT_1;
+                    if (currentGroupId !== 'all') {
+                        headerText = StringUtil.format(i18n.contact.CONTACT_GROUP_TEXT, length);
                     } else {
-                        headerText = StringUtil.format(i18n.contact.CONTACT_ACCOUNT_TEXT, length);
+                        if (currentAccountId === 'all') {
+                            headerText = StringUtil.format(i18n.contact.CONTACT_ALL_TEXT, length);
+                        } else if (accountCollection.get(currentAccountId).isSimAccount) {
+                            headerText = i18n.contact.CONTACT_SIM_SELECT_TEXT_1;
+                        } else {
+                            headerText = StringUtil.format(i18n.contact.CONTACT_ACCOUNT_TEXT, length);
+                        }
                     }
+
+                    this.$('.count-tip').html(headerText);
                 }
-
-                this.$('.count-tip').html(headerText);
-
             },
             highlight : function (msg) {
                 if (_.pluck(contactsList.currentModels, 'id').indexOf(msg.id) < 0) {
@@ -329,7 +327,7 @@
                 this.refresh('search');
             },
             events: {
-               'click .button-return' : 'clickButtonReturn'
+                'click .button-return' : 'clickButtonReturn'
             }
         });
 

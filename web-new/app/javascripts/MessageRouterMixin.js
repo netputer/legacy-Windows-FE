@@ -31,9 +31,10 @@
             var filter = FilterFunction.generate({ id : id });
             var i;
             var length = callbackList.length;
+            var item;
             for (i = 0; i < length; i++) {
                 if (filter(callbackList[i])) {
-                    var item = callbackList.splice(i, 1);
+                    item = callbackList.splice(i, 1);
                     delete item.id;
                     delete item.router;
                     delete item.callback;

@@ -113,9 +113,10 @@
             },
             updateNonAppItems : function (items) {
                 var i;
+                var item;
                 for (i in items) {
                     if (items.hasOwnProperty(i)) {
-                        var item = items[i];
+                        item = items[i];
                         if (i === 0 || item.status !== BackupRestoreService.CONSTS.BR_PI_STATUS.READY) {
                             this.updateItem(item.type, item.status, item.finished_count, item.all_count);
                         }

@@ -164,10 +164,12 @@
                 if (this.spyIsSawn()) {
                     var i = 0;
                     var date;
+                    var thread;
+                    var photoThreadView;
                     for (date in this.threads) {
                         if (this.threads.hasOwnProperty(date)) {
-                            var thread = this.threads[date];
-                            var photoThreadView = new PhotoThreadView.getInstance({
+                            thread = this.threads[date];
+                            photoThreadView = new PhotoThreadView.getInstance({
                                 models : thread,
                                 $ctn : this.$el,
                                 template : this.options.threadTemplate,

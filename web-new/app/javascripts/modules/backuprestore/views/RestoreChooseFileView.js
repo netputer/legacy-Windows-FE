@@ -55,7 +55,7 @@
                 }
 
                 // pop up panel
-                var panel = new PopupPanel({
+                new PopupPanel({
                     $content : doT.template(TemplateFactory.get('restore', 'old-version-tip')),
                     $host : this.$('.old-version-tip'),
                     delay : true
@@ -82,10 +82,12 @@
             },
             readRestoreFileInfo : function () {
                 var i;
+                var file_name;
+                var info;
                 for (i in RestoreContextModel.FileList) {
                     if (RestoreContextModel.FileList.hasOwnProperty(i)) {
-                        var file_name = RestoreContextModel.FileList[i].file_name;
-                        var info = RestoreContextModel.get('backupFileInfoDict')[file_name];
+                        file_name = RestoreContextModel.FileList[i].file_name;
+                        info = RestoreContextModel.get('backupFileInfoDict')[file_name];
                         if (info === undefined) {
                             this.readSinlgeFileInfo(file_name, i);
                         } else {

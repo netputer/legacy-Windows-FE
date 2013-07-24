@@ -146,6 +146,9 @@ module.exports = function (grunt) {
             files : [
                 'app/javascripts/**/*.js'
             ],
+            exclude: [
+                'app/javascripts/utilities/MD5.js'
+            ],
             directives : {
                 sloppy : true,
                 vars : true,
