@@ -32,7 +32,6 @@
         var importSelectAccountView;
         var importProgressView;
         var importAutoBackupView;
-        var importController;
         var contactsCollection;
 
         var ImportController = Backbone.View.extend({

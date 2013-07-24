@@ -13,7 +13,6 @@
         'message/collections/ConversationsCollection',
         'message/views/MessageSenderView',
         'message/views/ConversationsListView',
-        'main/collections/PIMCollection',
         'message/ImportController',
         'message/ExportController',
         'message/models/ExportContextModel'
@@ -30,7 +29,6 @@
         ConversationsCollection,
         MessageSenderView,
         ConversationsListView,
-        PIMCollection,
         ImportController,
         ExportController,
         ExportContextModel
@@ -41,7 +39,6 @@
 
         var conversationsListView;
         var conversationsCollection;
-        var pimCollection;
 
         var MessageModuleToolbarView = Toolbar.extend({
             template : doT.template(TemplateFactory.get('message', 'toolbar')),

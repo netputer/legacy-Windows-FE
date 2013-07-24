@@ -319,10 +319,6 @@
                     });
                 }
 
-                if (contactsListView.currentGroupId !== 'all') {
-                    var group = accountCollection.getGroupById(contactsListView.currentGroupId);
-                }
-
                 this.model = model;
                 this.template = editorTemplate;
                 this.renderEditor();

@@ -49,8 +49,6 @@
     ) {
         console.log('ContactModuleToolbarView - File loaded.');
 
-        var document = window.document;
-
         var accountCollection;
         var pimCollection;
 

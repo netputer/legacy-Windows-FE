@@ -77,12 +77,6 @@
 
                 var items = [];
 
-                var groupIds = _.flatten(
-                        _.map(contactList.currentModels, function (contact) {
-                            return _.map(contact.get('group'), function (group) { return group.group_row_id; });
-                        })
-                    );
-
                 var readOnlyAccounts = [];
                 _.each(contactList.currentModels, function (contact) {
                     var tempAccount = accountCollection.filter(function (account) {
