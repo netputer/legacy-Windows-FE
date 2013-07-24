@@ -3,7 +3,7 @@
  * @author wangye.zhao@wandoujia.com
  * @doc https://github.com/wandoulabs/engineering-documents/wiki/%5BClient%5D-ui-MouseState.js
  */
-(function (window, document, undefined) {
+(function (window, document) {
     'use strict';
 
     define([

@@ -226,6 +226,6 @@ define({
     EXPORT_USING_VCARD: '使用 vCard 导出',
 
     RETURN_ALL: '全部联系人',
-    CONTACT_TIP_PART : '{1} 个与「{2}」有关的联系人',
+    CONTACT_TIP_PART : '{1} 个与「{2}」有关的联系人'
 });
 

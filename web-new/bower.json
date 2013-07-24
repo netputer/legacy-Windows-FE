@@ -5,11 +5,12 @@
     "jquery": "~2.0.2",
     "underscore": "~1.4.4",
     "backbone": "~1.0.0",
-    "doT": "~0.2.0",
+    "doT": "latest",
     "requirejs": "~2.1.6",
     "requirejs-text": "~2.0.6",
     "requirejs-i18n": "~2.0.1",
-    "requirejs-doT": "~0.1.2"
+    "requirejs-doT": "~0.1.2",
+    "qrcode.js" : "latest"
   },
   "devDependencies": {}
 }

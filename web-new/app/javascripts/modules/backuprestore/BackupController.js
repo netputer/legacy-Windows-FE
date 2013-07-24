@@ -193,9 +193,6 @@
                     errorRetryView.show();
                 }, this);
 
-                backupProgressView.on('_NEED_USER_CONFIRM', function () {
-                }, this);
-
                 backupProgressView.on('_BACKUP_FINISH', function () {
                     backupProgressView.remove();
 

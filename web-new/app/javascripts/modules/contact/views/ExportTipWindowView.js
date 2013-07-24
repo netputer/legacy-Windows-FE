@@ -43,23 +43,23 @@
                 this.on('button_vcard', this.clickButtonVCard);
                 this.on('button_next', this.clickButtonNext);
             },
-            setFileType : function() {
+            setFileType : function () {
                 switch (ExportContextModel.get('fileType')) {
-                    case 1:
-                        this.$bodyContent = doT.template(TemplateFactory.get('contact', 'export-tip'))({
-                            tip : i18n.contact.ALERT_TIP_EXOPRT_OUTLOOK
-                        });
-                        break;
-                    case 2:
-                        this.$bodyContent = doT.template(TemplateFactory.get('contact', 'export-tip'))({
-                            tip : i18n.contact.ALERT_TIP_EXOPRT_WINDOWS_MAIL
-                        });
-                        break;
-                    case 3:
-                        this.$bodyContent = doT.template(TemplateFactory.get('contact', 'export-tip'))({
-                            tip : i18n.contact.ALERT_TIP_EXOPRT_NOKIA
-                        });
-                        break;
+                case 1:
+                    this.$bodyContent = doT.template(TemplateFactory.get('contact', 'export-tip'))({
+                        tip : i18n.contact.ALERT_TIP_EXOPRT_OUTLOOK
+                    });
+                    break;
+                case 2:
+                    this.$bodyContent = doT.template(TemplateFactory.get('contact', 'export-tip'))({
+                        tip : i18n.contact.ALERT_TIP_EXOPRT_WINDOWS_MAIL
+                    });
+                    break;
+                case 3:
+                    this.$bodyContent = doT.template(TemplateFactory.get('contact', 'export-tip'))({
+                        tip : i18n.contact.ALERT_TIP_EXOPRT_NOKIA
+                    });
+                    break;
                 }
             },
             clickButtonVCard : function () {

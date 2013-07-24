@@ -38,7 +38,7 @@
         var alert = window.alert;
         var confirm = window.confirm;
 
-        var AppService = _.extend(function () {}, Backbone.Events);
+        var AppService = _.extend(Backbone.Events);
 
         var exportPath;
 
@@ -370,11 +370,8 @@
         AppService.exportAppsAsync = function (ids) {
             var deferred = $.Deferred();
 
-            var appsCollection = AppsCollection.getInstance();
-
             var session = _.uniqueId('app.export_');
             var batchActionWindow;
-            var path;
             if (ids.length > 1) {
                 batchActionWindow = new BatchActionWindow({
                     session : session,
@@ -601,7 +598,6 @@
 
             var callback = function (resp) {
                 var failed = resp.body.failed;
-                var success = resp.body.success;
 
                 if (failed && failed.length > 0) {
 
