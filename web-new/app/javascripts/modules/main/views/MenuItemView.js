@@ -97,7 +97,7 @@
 
                     if (this.model.id === 2) {
                         $count.toggle(count > 0);
-                        $count.data('title', StringUtil.format(i18n.message.UPDATE_DES, count));
+                        $count.data('title', StringUtil.format(i18n.message.UNREAD_DES, count));
                     }
                 }, this);
             },
