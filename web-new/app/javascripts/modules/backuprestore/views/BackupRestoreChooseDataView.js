@@ -10,7 +10,7 @@
         'Internationalization',
         'utilities/StringUtil',
         'Configuration',
-        'LOG',
+        'Log',
         'ui/Panel',
         'ui/PopupPanel',
         'ui/UIHelper',
