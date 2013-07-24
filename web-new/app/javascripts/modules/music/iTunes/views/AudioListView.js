@@ -4,6 +4,7 @@
         'underscore',
         'doT',
         'jquery',
+        'backbone',
         'Configuration',
         'Internationalization',
         'ui/Panel',
@@ -19,6 +20,7 @@
         _,
         doT,
         $,
+        Backbone,
         CONFIG,
         i18n,
         Panel,
@@ -37,7 +39,7 @@
         var itunesListCollection;
         var type = '';
 
-        var ListView = Backbone.View.extend ({
+        var ListView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('iTunes', 'itunes-audio-list')),
             className : "audio-list-content vbox",
             initialize : function () {
@@ -213,7 +215,6 @@
                 });
 
                 this.on(UIHelper.EventsMapping.SHOW, function () {
-
                     if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
                         itunesListCollection = ITunesListCollection.getInstance();
                     } else {
@@ -223,7 +224,7 @@
                     this.bodyView = new AudioListBodyView();
                     this.$bodyContent = this.bodyView.render().$el;
 
-                    this.listenTo (this.bodyView, '__SELECT_CHANGE', function (data) {
+                    this.listenTo(this.bodyView, '__SELECT_CHANGE', function (data) {
 
                         if (CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
                             this.models = data.models;
@@ -262,11 +263,11 @@
                 this.close();
             },
             clickButtonNext : function () {
-
+                var data;
                 if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
                     var selectedPlaylistIds = [];
 
-                    var data = {
+                    data = {
                         iTunesIds   : [],
                         playlistIds : this.ids,
                         sourceType  : CONFIG.enums.ITUNES_IMPORT_PLAYLIST,
@@ -276,7 +277,7 @@
                         data.iTunesIds = data.iTunesIds.concat(model.get('tracks_id'));
                     });
                 } else {
-                    var data = {
+                    data = {
                         iTunesIds  : this.ids,
                         sourceType : CONFIG.enums.ITUNES_IMPORT_AUDIOS,
                         capacity : this.needCapacity

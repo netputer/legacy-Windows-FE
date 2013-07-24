@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window, document) {
     define([
         'backbone',
         'underscore',
@@ -239,7 +239,6 @@
                 var models = this.collection.models.concat();
                 var modelPool = [];
                 var modelSlibingNextPool = [];
-                var contentHeight = 0;
                 var smsCount = 0;
 
                 var fragment;
@@ -362,9 +361,11 @@
                 var i;
 
                 var fragment = document.createDocumentFragment();
+                var threadModel;
+                var threadItemView;
                 for (i = modelPool.length; i--; undefined) {
-                    var threadModel =  modelPool[wheelUp ? 'shift' : 'pop']();
-                    var threadItemView = ThreadsItemView.getInstance({
+                    threadModel =  modelPool[wheelUp ? 'shift' : 'pop']();
+                    threadItemView = ThreadsItemView.getInstance({
                         model : threadModel
                     });
 

@@ -403,9 +403,14 @@
                                 break;
                             case CONFIG.enums.MODEL_TYPE_PHOTO :
     }}
-    <!--<button class="button-set-as-wallpaper primary">{{= i18n.taskManager.SET_AS_WALL_PAPER }}</button>-->
+    <button class="button-set-as-wallpaper primary">{{= i18n.taskManager.SET_AS_WALL_PAPER }}</button>
     {{
                                 break;
+                             case CONFIG.enums.MODEL_TYPE_MUSIC :
+    }}
+    <button class="button-set-as-ringtong primary">{{= i18n.taskManager.SET_AS_RINGTONE }}</button>
+    {{
+                            break;
                         }
                         break;
                     case CONFIG.enums.TASK_STATE_FAILD :

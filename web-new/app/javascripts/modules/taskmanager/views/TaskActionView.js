@@ -89,6 +89,10 @@
                 evt.stopPropagation();
                 this.model.setAsWallpaperAsync();
             },
+            clickButtonSetAsRingtone : function (evt) {
+                evt.stopPropagation();
+                this.model.setAsRingtoneAsync();
+            },
             clickButtonChangeLocation : function (evt) {
                 evt.stopPropagation();
                 IO.requestAsync(CONFIG.actions.SAVE_APP_SETTING);
@@ -164,7 +168,8 @@
                 'click .button-how-to-connect' : 'clickButtonHowToConnect',
                 'click .button-dont-ask-again-device' : 'clickButtonDontAskAgainDevice',
                 'click .button-connect' : 'clickButtonConnect',
-                'click .button-change-path' : 'clickButtonChangePath'
+                'click .button-change-path' : 'clickButtonChangePath',
+                'click .button-set-as-ringtong' : 'clickButtonSetAsRingtone'
             }
         });
 

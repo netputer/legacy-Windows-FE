@@ -145,7 +145,7 @@
                     result = true;
                 } else {
                     // Request for permission
-                    this.requestPermission(this.show.bind(this));
+                    requestPermission(this.show.bind(this));
                     result = false;
                 }
                 return result;

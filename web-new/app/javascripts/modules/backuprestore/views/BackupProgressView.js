@@ -1,4 +1,4 @@
-/*global define, console*/
+/*global define*/
 (function (window) {
     define([
         'backbone',
@@ -10,7 +10,10 @@
         'Configuration',
         'ui/Panel',
         'ui/UIHelper',
+        'ui/AlertWindow',
         'ui/TemplateFactory',
+        'IOBackendDevice',
+        'utilities/StringUtil',
         'backuprestore/BackupRestoreService',
         'backuprestore/models/BackupContextModel',
         'backuprestore/views/BackupAppDataTipView'
@@ -24,12 +27,17 @@
         CONFIG,
         Panel,
         UIHelper,
+        AlertWindow,
         TemplateFactory,
+        IO,
+        StringUtil,
         BackupRestoreService,
         BackupContextModel,
         BackupAppDataTipView
     ) {
         console.log('BackupProgressView - File loaded. ');
+
+        var alert = window.alert;
 
         var bodyView;
         var backupSessionID;
@@ -105,10 +113,13 @@
             },
             updateNonAppItems : function (items) {
                 var i;
+                var item;
                 for (i in items) {
-                    var item = items[i];
-                    if (i === 0 || item.status !== BackupRestoreService.CONSTS.BR_PI_STATUS.READY) {
-                        this.updateItem(item.type, item.status, item.finished_count, item.all_count);
+                    if (items.hasOwnProperty(i)) {
+                        item = items[i];
+                        if (i === 0 || item.status !== BackupRestoreService.CONSTS.BR_PI_STATUS.READY) {
+                            this.updateItem(item.type, item.status, item.finished_count, item.all_count);
+                        }
                     }
                 }
             },

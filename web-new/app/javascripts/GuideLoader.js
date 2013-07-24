@@ -1,3 +1,4 @@
+/*global require*/
 require.config({
     paths : {
         jquery : '../bower_components/jquery/jquery',
@@ -42,7 +43,7 @@ require.config({
 });
 
 (function (window, document) {
-    var QUERYSTRING_PATTERN_PREFIX = '[\?\&\#]';
+    var QUERYSTRING_PATTERN_PREFIX = '[\\?\\&\\#]';
     var QUERYSTRING_PATTERN_SUFFIX = '=([^&]*)';
 
     var QueryString = {};

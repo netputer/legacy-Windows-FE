@@ -33,7 +33,7 @@
 
                 var stateFlag = false;
 
-                tasksCollection.on('refresh', function (tasksCollection) {
+                var refreshHandler = function (tasksCollection) {
                     var task = tasksCollection.get(this.options.taskId);
                     if (task) {
                         stateFlag = true;
@@ -51,14 +51,14 @@
 
                         if (task.get('type') === CONFIG.enums.TASK_TYPE_INSTALL
                                 && task.get('state') === CONFIG.enums.TASK_STATE_SUCCESS) {
-                            tasksCollection.off('refresh', arguments.callee);
+                            tasksCollection.off('refresh', refreshHandler);
                             this.trigger('remove');
                         } else if (task.get('state') === CONFIG.enums.TASK_STATE_FAILD) {
-                            tasksCollection.off('refresh', arguments.callee);
+                            tasksCollection.off('refresh', refreshHandler);
                             alert(i18n.optimize.INSTALL_ERROR);
                             this.trigger('remove');
-                        } else if (task.get('state') === CONFIG.enums.TASK_STATE_STOPPED){
-                            tasksCollection.off('refresh', arguments.callee);
+                        } else if (task.get('state') === CONFIG.enums.TASK_STATE_STOPPED) {
+                            tasksCollection.off('refresh', refreshHandler);
                             this.trigger('remove');
                         }
                     } else {
@@ -66,24 +66,26 @@
                             this.trigger('remove');
                         }
                     }
-                }, this);
+                };
+
+                tasksCollection.on('refresh', refreshHandler, this);
 
                 this.$el.remove();
             },
-            render : function() {
+            render : function () {
                 this.$el.html(this.template({
                     progress : 0
                 }));
                 return this;
             },
-            buttonClickCancel : function(evt) {
+            buttonClickCancel : function (evt) {
                 evt.stopPropagation();
 
                 this.$('.button-cancel').prop({
                     disabled : true
                 });
 
-                tasksCollection.get(this.options.taskId).deleteTaskAsync().done(function() {
+                tasksCollection.get(this.options.taskId).deleteTaskAsync().done(function () {
                     alert(i18n.optimize.INSTALL_CANCEL);
                     this.trigger('remove');
                 }.bind(this));

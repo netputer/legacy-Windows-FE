@@ -141,6 +141,7 @@ define({
 
 
     SET_AS_WALL_PAPER : 'Set as wallpaper',
+    SET_AS_RINGTONE : '设为来电铃声',
     START_UNZIPPING : 'Unzipping...',
     UNZIPING : 'Unzipping...',
     UNZIP_COMPLETE : 'Unzip completed',
