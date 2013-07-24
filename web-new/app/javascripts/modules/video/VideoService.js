@@ -33,7 +33,7 @@
 
         var alert = window.alert;
 
-        var VideoService = _.extend(function () {}, Backbone.Events);
+        var VideoService = _.extend({}, Backbone.Events);
 
         var exportPath;
 

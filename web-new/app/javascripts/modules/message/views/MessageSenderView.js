@@ -209,6 +209,7 @@
                     $content : i18n.message.ADD_BATCH_RECEIVER_TIP,
                     $host : $batchTip
                 });
+                panel.zero();
 
                 this.trigger(EventsMapping.RENDERED);
                 return this;
@@ -565,7 +566,7 @@
 
         var messageSenderView;
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function () {
                 if (!messageSenderView) {
                     messageSenderView = new MessageSenderView({

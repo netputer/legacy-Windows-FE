@@ -10,7 +10,7 @@
         'Internationalization',
         'utilities/StringUtil',
         'Configuration',
-        'LOG',
+        'Log',
         'ui/Panel',
         'ui/PopupPanel',
         'ui/UIHelper',
@@ -85,6 +85,7 @@
                     $host : this.$('.app-data-tip-ctn'),
                     delay : true
                 });
+                panel.zero();
 
                 // set data types in dataIdList as checked
                 this.$('ul li input').prop({

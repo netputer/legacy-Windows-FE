@@ -3,7 +3,6 @@
     define([
         'underscore',
         'doT',
-        'jquery',
         'Internationalization',
         'Device',
         'Log',
@@ -19,7 +18,6 @@
     ], function (
         _,
         doT,
-        $,
         i18n,
         Device,
         log,

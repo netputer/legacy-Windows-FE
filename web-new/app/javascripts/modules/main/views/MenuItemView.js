@@ -121,7 +121,7 @@
                 var tip = new PopupTip({
                     $host : this.$('[data-title]')
                 });
-
+                tip.zero();
 
                 return this;
             },

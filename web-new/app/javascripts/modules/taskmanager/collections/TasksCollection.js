@@ -7,7 +7,6 @@
         'IOBackendDevice',
         'Configuration',
         'Internationalization',
-        'utilities/StringUtil',
         'task/models/TaskModel',
         'app/collections/AppsCollection',
         'app/collections/WebAppsCollection'
@@ -18,7 +17,6 @@
         IO,
         CONFIG,
         i18n,
-        StringUtil,
         TaskModel,
         AppsCollection,
         WebAppsCollection

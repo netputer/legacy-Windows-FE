@@ -51,6 +51,7 @@
                     var tip = new PopupTip({
                         $host : $(button)
                     });
+                    tip.zero();
                 });
 
                 if (this.socialPlatformSelectorView) {

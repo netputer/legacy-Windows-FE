@@ -5,7 +5,6 @@
         'backbone',
         'jquery',
         'IOBackendDevice',
-        'Environment',
         'Configuration',
         'Device',
         'photo/models/PhotoModel'
@@ -14,7 +13,6 @@
         Backbone,
         $,
         IO,
-        Environment,
         CONFIG,
         Device,
         PhotoModel

@@ -5,14 +5,10 @@
 
 (function (window) {
     define([
-        'backbone',
-        'underscore',
         'jquery',
         'IO',
         'Configuration'
     ], function (
-        Backbone,
-        _,
         $,
         IO,
         CONFIG

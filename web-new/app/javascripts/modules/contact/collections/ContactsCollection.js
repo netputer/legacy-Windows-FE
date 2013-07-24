@@ -581,7 +581,7 @@
             },
             getByKeyWord: function () {
                 var reg = new RegExp(this.keyword, 'i');
-                return models = this.filter(function (model) {
+                return this.filter(function (model) {
                     var prefix = model.get('name').prefix;
                     var name = model.get('displayName');
                     return reg.test(name) || reg.test(prefix);
@@ -591,7 +591,7 @@
 
         var contactsCollection;
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function () {
                 if (!contactsCollection) {
                     contactsCollection = new ContactsCollection();

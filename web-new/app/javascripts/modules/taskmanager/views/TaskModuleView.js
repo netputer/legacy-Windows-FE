@@ -1,9 +1,8 @@
 /*global define*/
-(function (window, document) {
+(function (window) {
     define([
         'backbone',
         'doT',
-        'jquery',
         'underscore',
         'ui/TemplateFactory',
         'Configuration',
@@ -14,7 +13,6 @@
     ], function (
         Backbone,
         doT,
-        $,
         _,
         TemplateFactory,
         CONFIG,
@@ -125,4 +123,4 @@
 
         return factory;
     });
-}(this, this.document));
+}(this));

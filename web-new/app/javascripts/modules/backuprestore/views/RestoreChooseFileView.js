@@ -53,11 +53,12 @@
                 }
 
                 // pop up panel
-                new PopupPanel({
+                var popupPanel = new PopupPanel({
                     $content : doT.template(TemplateFactory.get('restore', 'old-version-tip')),
                     $host : this.$('.old-version-tip'),
                     delay : true
                 });
+                popupPanel.zero();
 
                 return this;
             },

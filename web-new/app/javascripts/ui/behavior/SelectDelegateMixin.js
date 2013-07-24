@@ -55,7 +55,12 @@
 
                 var originalSelected = selected.concat();
 
-                var targetSet = selectedSet[currentSetName] || (selectedSet[currentSetName] = []);
+                var targetSet;
+                if (selectedSet[currentSetName]) {
+                    targetSet = selectedSet[currentSetName];
+                } else {
+                    targetSet = selectedSet[currentSetName] = [];
+                }
 
                 var currentIds = _.pluck(dataSet.getter.call(this.listenToCollection), 'id');
                 if (keepSelect) {
@@ -189,10 +194,11 @@
             if (this.keepSelect) {
                 var selectedSet = this.selectedSet;
                 var key;
+                var items;
                 for (key in selectedSet) {
                     if (selectedSet.hasOwnProperty(key)) {
                         if (key !== this.currentSetName) {
-                            var items = selectedSet[key];
+                            items = selectedSet[key];
                             if (item instanceof Array) {
                                 this.selectedSet[key] = _.difference(items, item);
                             } else {

@@ -2,7 +2,6 @@
 (function (window) {
     define([
         'underscore',
-        'ui/TemplateFactory',
         'ui/PopupPanel',
         'IO',
         'Configuration',
@@ -10,7 +9,6 @@
         'Device'
     ], function (
         _,
-        TemplateFactory,
         PopupPanel,
         IO,
         CONFIG,

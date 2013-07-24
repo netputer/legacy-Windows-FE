@@ -5,25 +5,21 @@
         'underscore',
         'doT',
         'jquery',
-        'Device',
         'Internationalization',
         'ui/Panel',
         'ui/UIHelper',
         'ui/TemplateFactory',
-        'backuprestore/BackupRestoreService',
-        'backuprestore/models/BackupContextModel'
+        'backuprestore/BackupRestoreService'
     ], function (
         Backbone,
         _,
         doT,
         $,
-        Device,
         i18n,
         Panel,
         UIHelper,
         TemplateFactory,
-        BackupRestoreService,
-        BackupContextModel
+        BackupRestoreService
     ) {
         console.log('BackupAppDataTipView - File loaded. ');
 

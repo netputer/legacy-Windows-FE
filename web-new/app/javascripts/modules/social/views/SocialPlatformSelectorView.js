@@ -6,7 +6,6 @@
         'doT',
         'jquery',
         'Account',
-        'Configuration',
         'Internationalization',
         'ui/TemplateFactory'
     ], function (
@@ -15,7 +14,6 @@
         doT,
         $,
         Account,
-        CONFIG,
         i18n,
         TemplateFactory
     ) {

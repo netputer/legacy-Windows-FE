@@ -2,7 +2,6 @@
     define([
         'underscore',
         'jquery',
-        'IO',
         'Account',
         'Internationalization',
         'Configuration',
@@ -12,7 +11,6 @@
     ], function (
         _,
         $,
-        IO,
         Account,
         i18n,
         CONFIG,

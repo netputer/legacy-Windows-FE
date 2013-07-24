@@ -5,7 +5,6 @@
         'ui/behavior/ClickToHideMixin',
         'ui/AlertWindow',
         'Internationalization',
-        'Device',
         'task/collections/TasksCollection',
         'task/views/DeleteConfirmWindowView'
     ], function (
@@ -13,7 +12,6 @@
         ClickToHideMixin,
         AlertWindow,
         i18n,
-        Device,
         TasksCollection,
         DeleteConfirmWindowView
     ) {

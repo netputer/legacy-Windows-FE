@@ -7,7 +7,6 @@
         'Internationalization',
         'Device',
         'Log',
-        'music/collections/MusicsCollection',
         'music/MusicService'
     ], function (
         _,
@@ -16,7 +15,6 @@
         i18n,
         Device,
         log,
-        MusicsCollection,
         MusicService
     ) {
         console.log('MusicContextMenu - File loaded. ');

@@ -22,7 +22,6 @@
         console.log('Menu - File loaded.');
 
         var EventsMapping = UIHelper.EventsMapping;
-        var $window = $(window);
 
         var ItemBaseView = Backbone.View.extend({
             tagName : 'li',
