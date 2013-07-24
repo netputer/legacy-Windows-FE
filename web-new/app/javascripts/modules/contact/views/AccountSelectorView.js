@@ -233,7 +233,7 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function (args) {
                 return new AccountSelectorView(args);
             }

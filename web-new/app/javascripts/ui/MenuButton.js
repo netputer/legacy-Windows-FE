@@ -1,14 +1,12 @@
 /*global define*/
 (function (window) {
     define([
-        'underscore',
         'doT',
         'ui/UIHelper',
         'ui/TemplateFactory',
         'ui/Button',
         'ui/Menu'
     ], function (
-        _,
         doT,
         UIHelper,
         TemplateFacory,

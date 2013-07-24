@@ -5,7 +5,6 @@
         'doT',
         'jquery',
         'underscore',
-        'Device',
         'Internationalization',
         'IO',
         'Configuration',
@@ -13,7 +12,6 @@
         'message/models/ImportContextModel',
         'ui/Panel',
         'ui/AlertWindow',
-        'message/collections/MessageCollection',
         'message/collections/ConversationsCollection',
         'ui/TemplateFactory',
         'ui/UIHelper',
@@ -23,7 +21,6 @@
         doT,
         $,
         _,
-        Device,
         i18n,
         IO,
         CONFIG,
@@ -31,7 +28,6 @@
         ImportContextModel,
         Panel,
         AlertWindow,
-        MessageCollection,
         ConversationsCollection,
         TemplateFactory,
         UIHelper,
@@ -68,10 +64,10 @@
                 }.bind(this));
 
                 this.buttons = [{
-                    $button : $('<button>').html(i18n.contact.FINISH).addClass('button-finish primary').hide(),
+                    $button : $('<button>').html(i18n.ui.FINISH).addClass('button-finish primary').hide(),
                     eventName : 'button-finish'
                 }, {
-                    $button : $('<button>').html(i18n.contact.CANCEL).addClass('button-cancel'),
+                    $button : $('<button>').html(i18n.ui.CANCEL).addClass('button-cancel'),
                     eventName : 'button-cancel'
                 }];
             },
@@ -136,7 +132,7 @@
                         session : this.lastSessionId
                     }
                 }).done(function () {
-                    alert(i18n.common.CANCEL_IMPORT_TEXT);
+                    alert(i18n.misc.CANCEL_IMPORT_TEXT);
                     conversationConllection.syncAsync();
                 }).always(function () {
                     WindowController.releaseWindowAsync();

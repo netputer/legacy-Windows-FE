@@ -127,7 +127,7 @@
 
                 if (toggle) {
                     if (Device.get('isConnected') && !Device.get('hasSDCard') && !Device.get('hasEmulatedSD')) {
-                        this.$('.empty-tip').html(i18n.common.NO_SD_CARD_TIP_TEXT);
+                        this.$('.empty-tip').html(i18n.misc.NO_SD_CARD_TIP_TEXT);
                     } else {
                         this.$('.empty-tip').html(this.getEmptyTip(this.collection.data.photo_type));
                     }
@@ -162,7 +162,6 @@
             },
             renderThread : function () {
                 if (this.spyIsSawn()) {
-                    var i = 0;
                     var date;
                     var thread;
                     var photoThreadView;

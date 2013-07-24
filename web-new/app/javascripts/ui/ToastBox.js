@@ -2,14 +2,12 @@
 (function (window) {
     define([
         'jquery',
-        'underscore',
         'backbone',
         'ui/WindowState',
         'ui/MouseState',
         'ui/EventsMapping'
     ], function (
         $,
-        _,
         Backbone,
         WindowState,
         MouseState,

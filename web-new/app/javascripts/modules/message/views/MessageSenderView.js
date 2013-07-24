@@ -52,7 +52,6 @@
 
         var EventsMapping = UIHelper.EventsMapping;
         var KeyMapping = UIHelper.KeyMapping;
-        var MouseState = UIHelper.MouseState;
 
         var CLASS_MAPPING = {
             CONTACT_ADDRESS_INPUT : '.input-contact',
@@ -210,6 +209,7 @@
                     $content : i18n.message.ADD_BATCH_RECEIVER_TIP,
                     $host : $batchTip
                 });
+                panel.zero();
 
                 this.trigger(EventsMapping.RENDERED);
                 return this;
@@ -387,7 +387,7 @@
                     $button : $sendBtn,
                     eventName : 'button_send'
                 }, {
-                    $button : $('<button>').html(i18n.message.CANCEL),
+                    $button : $('<button>').html(i18n.ui.CANCEL),
                     eventName : EventsMapping.BUTTON_CANCEL
                 }];
 
@@ -566,7 +566,7 @@
 
         var messageSenderView;
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function () {
                 if (!messageSenderView) {
                     messageSenderView = new MessageSenderView({

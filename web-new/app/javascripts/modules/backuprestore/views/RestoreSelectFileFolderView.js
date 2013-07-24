@@ -34,8 +34,6 @@
         var ChooseRestoreFileBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('restore', 'select-file-folder')),
             className : 'w-restore-select-file-folder',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
                 return this;

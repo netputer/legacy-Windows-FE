@@ -2,7 +2,6 @@
     define([
         'underscore',
         'jquery',
-        'IO',
         'Account',
         'Internationalization',
         'Configuration',
@@ -12,7 +11,6 @@
     ], function (
         _,
         $,
-        IO,
         Account,
         i18n,
         CONFIG,
@@ -31,7 +29,7 @@
                 this.title = i18n.ui.TIP;
                 this.disableX = true;
                 this.buttons = [{
-                    $button : $('<button>').addClass('primary').html(i18n.common.RECOMMEND_YES),
+                    $button : $('<button>').addClass('primary').html(i18n.misc.RECOMMEND_YES),
                     eventName : 'YES'
                 }, {
                     $button : $('<button>').html(i18n.ui.NO),

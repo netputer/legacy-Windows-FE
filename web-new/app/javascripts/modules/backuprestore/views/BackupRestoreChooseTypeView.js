@@ -29,8 +29,6 @@
 
         var BackupRestoreChooseTypeBodyView = Backbone.View.extend({
             className : 'w-backup-choose-type',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
                 return this;

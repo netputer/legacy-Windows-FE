@@ -105,7 +105,6 @@
                     }.bind(this);
                 } else {
                     changeHandler = function (ids) {
-                        var tracks_count = ids.length;
                         var size = 0;
 
                         _.each(ids, function (id) {
@@ -245,11 +244,11 @@
                 });
 
                 this.buttons = [{
-                    $button : $('<button/>').html(i18n.common.PRE_STEP).addClass('button-pre')
+                    $button : $('<button/>').html(i18n.ui.PREV).addClass('button-pre')
                 }, {
-                    $button : $('<button/>').addClass('primary next-step button-next').html(i18n.common.NEXT_STEP)
+                    $button : $('<button/>').addClass('primary next-step button-next').html(i18n.ui.NEXT)
                 }, {
-                    $button : $('<button/>').html(i18n.common.CANCEL).addClass('button-cancel')
+                    $button : $('<button/>').html(i18n.ui.CANCEL).addClass('button-cancel')
                 }];
             },
             setType : function (t) {
@@ -265,8 +264,6 @@
             clickButtonNext : function () {
                 var data;
                 if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
-                    var selectedPlaylistIds = [];
-
                     data = {
                         iTunesIds   : [],
                         playlistIds : this.ids,

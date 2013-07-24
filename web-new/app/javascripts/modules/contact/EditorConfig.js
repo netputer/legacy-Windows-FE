@@ -1,9 +1,14 @@
-/*global define console*/
-(function(window, undefined) {
-    define(['Internationalization',
-            'Configuration',
-            'Environment'
-    ], function(i18n, CONFIG, Environment) {
+/*global define*/
+(function (window) {
+    define([
+        'Internationalization',
+        'Configuration',
+        'Environment'
+    ], function (
+        i18n,
+        CONFIG,
+        Environment
+    ) {
         console.log('EditorConfig - File loaded. ');
 
         var EditorConfig = {
@@ -60,7 +65,7 @@
                 name : i18n.contact.HOME_NUMBER,
                 value : 1
             }, {
-                name : i18n.contact.CELL_PHONE_NUMBER,
+                name : i18n.contact.CELL_PHONE,
                 value : 2
             }, {
                 name : i18n.contact.WORK_NUMBER,
@@ -114,7 +119,7 @@
                 name : i18n.contact.ASSISTANT,
                 value : 19
             }, {
-                name : i18n.contact.MMS,
+                name : i18n.misc.MMS,
                 value : 20
             }, {
                 name : i18n.contact.CUSTOME,
@@ -225,4 +230,4 @@
 
         return EditorConfig;
     });
-})(this);
+}(this));

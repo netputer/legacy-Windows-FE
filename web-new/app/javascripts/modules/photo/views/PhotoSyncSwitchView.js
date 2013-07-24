@@ -76,7 +76,7 @@
                         $tip = this.$('.tip').html(i18n.photo.UPLOADING_PHOTOS);
                         setTimeout(function () {
                             $tip.fadeOut(function () {
-                                $(this).html(i18n.sync.CLOUD_PHOTO).show();
+                                $(this).html(i18n.misc.NAV_PIC_CLOUD).show();
                             });
                         }, 3000);
                         break;
@@ -85,7 +85,7 @@
                         $tip = this.$('.tip').html(i18n.photo.PHOTO_BACKUP_AUTO);
                         setTimeout(function () {
                             $tip.fadeOut(function () {
-                                $(this).html(i18n.sync.CLOUD_PHOTO).show();
+                                $(this).html(i18n.misc.NAV_PIC_CLOUD).show();
                             });
                         }, 3000);
                         break;
@@ -94,7 +94,7 @@
             }, 500),
             clickButtonSync : function (evt) {
                 if ($(evt.currentTarget).hasClass('on')) {
-                    IframeMessageWorker.confirm(i18n.photo.TIP_CLOSE_PHOTO_SYNC, this.closePhotoSync, this);
+                    IframeMessageWorker.confirm(i18n.photo.TIP_CLOSE_PHOTO_SYNC, this.closePhotoSyncService, this);
                 } else {
                     this.showPhotoSyncAlertView(this.tryLogin);
                 }
@@ -105,7 +105,7 @@
                     'action' : $(evt.target).hasClass('on') ? 'off' : 'on'
                 });
             },
-            closePhotoSync : function () {
+            closePhotoSyncService : function () {
                 BackupRestoreService.stopRemoteSyncAsync();
                 SyncService.setPhotoSyncSwitchAsync(false).done(function () {
                     this.switchState('off');

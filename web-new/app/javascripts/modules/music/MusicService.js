@@ -27,7 +27,7 @@
 
         var alert = window.alert;
 
-        var MusicService = _.extend(function () {}, Backbone.Events);
+        var MusicService = _.extend({}, Backbone.Events);
 
         var exportPath;
 

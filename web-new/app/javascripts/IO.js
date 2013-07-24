@@ -19,11 +19,11 @@
     ) {
         console.log('IO - File loaded.');
 
-        var IO = _.extend(function () {}, Backbone.Events);
+        var IO = _.extend({}, Backbone.Events);
 
         MessageRouterMixin.mixin(IO);
 
-        IO.Backend = _.extend(function () {}, Backbone.Events);
+        IO.Backend = _.extend({}, Backbone.Events);
 
         MessageRouterMixin.mixin(IO.Backend);
 
@@ -117,7 +117,7 @@
             return deferred.promise();
         };
 
-        IO.Cloud = _.extend(function () {}, Backbone.Events);
+        IO.Cloud = _.extend({}, Backbone.Events);
 
         MessageRouterMixin.mixin(IO.Cloud);
 

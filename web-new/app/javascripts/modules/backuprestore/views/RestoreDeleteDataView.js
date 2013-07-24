@@ -36,8 +36,6 @@
         var RestoreDeleteDataBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('restore', 'restore-delete-data')),
             className : 'w-restore-delete-data',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
                 return this;

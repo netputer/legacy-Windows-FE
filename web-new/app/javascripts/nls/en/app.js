@@ -69,7 +69,6 @@ define({
     UPDATE_DES : '{1} app(s) to update',
     ONE_KEY_TRANSFER : 'One-click move ({1})',
     ONE_KEY_TRANSFER_DES : 'Move files to your SD card to make space on your device\'s internal storage',
-    ONE_KEY_UPDATE_TITLE : 'One-click update',
 
     WEB_APPS : 'Downloaded apps ({1})',
     WEB_APPS_EMPTY : 'Downloaded apps',
@@ -79,7 +78,6 @@ define({
     APP_SEARCH : 'App search',
     UNINSTALL_AFTER_HIDE : '"{1}" was deleted from your download history. Delete this app on your phone?',
     WEB_APPS_HIDE_TEXT : 'Hide',
-    WEB_APPS_HIDING_TEXT : 'Hiding',
     WEB_APPS_HIDE_FAILED_TEXT : 'Failed to hide',
 
     APP_WASH : 'App scan',
@@ -103,7 +101,6 @@ define({
     LOOK_FOR_DETAIL : 'Check app details',
 
     COL_NAME_LABEL : 'Name',
-    COL_SIZE_LABEL : 'Size',
     COL_RATE_LABEL : 'Feedback rate',
     COL_VERSION_LABEL : 'Version',
     COL_INSTALL_TIME : 'Install date',
@@ -111,12 +108,7 @@ define({
     INSTALL_POSITION_LABEL : 'Location: ',
 
     BUTTON_ADD_APP_LABEL : 'Install apps',
-    BUTTON_UNINSTALL_LABEL : 'Uninstall',
-    BUTTON_UPGRADE_LABEL : 'Update',
-    BUTTON_EXPORT_LABEL : 'Export',
 
-    BUTTON_INSTALL_LABEL : 'Install',
-    ALREAD_INSTALLED : 'Already Installed',
 
     BUTTON_MOVE_TO_DEVICE_LABEL : 'Move to internal storage',
 
@@ -145,7 +137,6 @@ define({
     SIZE : 'Size: ',
     PERMISSON : 'Permissions: ',
     MORE : 'More',
-    COLLAPSE : 'Collapse',
     RECOMMENDATION_DEFAULT : 'You might like',
     RECOMMENDATION : 'People who\'ve installed this app also like',
     PHONE : 'Internal storage',
@@ -173,7 +164,6 @@ define({
     UNINSTALL_FAILED : 'Failed to uninstall app',
     UNINSTALL_FAILED_SYSTEM_APP : 'Please grant SnapPea root privileges and try again',
 
-    APPS_IGNORE_UPGRADE_TEXT : 'Ignore update',
     APPS_CANCEL_IGNORE_TEXT : 'Unignore',
 
     APPS_TRANSFER_FAILED_TEXT : 'Failed to move the following app(s): ',

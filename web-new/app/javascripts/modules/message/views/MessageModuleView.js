@@ -1,5 +1,5 @@
 /*global define*/
-(function (window) {
+(function (window, document) {
     define([
         'backbone',
         'underscore',
@@ -14,8 +14,6 @@
         'message/models/MessageModel',
         'message/views/MessageModuleToolbarView',
         'message/views/ConversationsListView',
-        'message/views/BatchConversationsView',
-        'message/views/ThreadsPanelView',
         'message/views/MessageSenderView',
         'message/views/MessagePanelView',
         'message/collections/ConversationsCollection',
@@ -36,8 +34,6 @@
         MessageModel,
         MessageModuleToolbarView,
         ConversationsListView,
-        BatchConversationsView,
-        ThreadsPanelView,
         MessageSenderView,
         MessagePanelView,
         ConversationsCollection,
@@ -50,11 +46,7 @@
         var setInterval = window.setInterval;
         var clearInterval = window.clearInterval;
 
-        var document = window.document;
-
         var conversationsListView;
-        var batchConversationsView;
-        var threadsPanelView;
 
         var messageSenderView;
 
@@ -80,12 +72,6 @@
                 this.$el.prepend(MessageModuleToolbarView.getInstance().render().$el);
 
                 conversationsListView = ConversationsListView.getInstance();
-
-                // threadsPanelView = ThreadsPanelView.getInstance();
-
-                // batchConversationsView = BatchConversationsView.getInstance({
-                //     parentView : conversationsListView
-                // });
 
                 var $ctn = this.$('.w-message-ctn');
                 var fragment = document.createDocumentFragment();
@@ -238,4 +224,4 @@
 
         return factory;
     });
-}(this));
+}(this, this.document));

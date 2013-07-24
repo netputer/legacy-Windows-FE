@@ -37,7 +37,7 @@
                 this.buttons = [{
                     $button : $('<button>').addClass('primary button_save').html(i18n.contact.SAVE)
                 }, {
-                    $button : $('<button>').html(i18n.contact.CANCEL),
+                    $button : $('<button>').html(i18n.ui.CANCEL),
                     eventName : 'button_cancel'
                 }];
 

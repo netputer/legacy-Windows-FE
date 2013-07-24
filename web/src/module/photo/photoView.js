@@ -290,8 +290,8 @@ wonder.addModule('photo/photoView', function(W) {
                                                 });
                     var rotation;
                     switch(self._data.orientation){
-                        case 0 : 
-                            rotation = 0;                       
+                        case 0 :
+                            rotation = 0;
                         break;
                         case 3 :
                         case 90:
@@ -323,7 +323,7 @@ wonder.addModule('photo/photoView', function(W) {
                             window.Sync.PhotoSyncView.getInstance().tryToShowPhotoSyncAlertView();
                         }
                     };
-                    
+
                     socialService.show(data);
                 });
 
@@ -480,20 +480,20 @@ wonder.addModule('photo/photoView', function(W) {
         setThumbnailWeiboButton : function() {
             var isConnected = Device.get('isConnected');
             var weiboButton = this._element.find('.w-photo-item-thumbnail-share');
-			
+
             if(isConnected) {
                 weiboButton.show();
             } else {
                 weiboButton.hide();
             }
             switch(Environment.locale) {
-                case CONFIG.enums.LOCALE_EN_US : 
-                    title = i18n.common.SHARE_TO_FACEBOOK;
+                case CONFIG.enums.LOCALE_EN_US :
+                    title = i18n.misc.SHARE_TO_FACEBOOK;
                     break;
-                case CONFIG.enums.LOCALE_ZH_CN : 
+                case CONFIG.enums.LOCALE_ZH_CN :
                 case CONFIG.enums.LOCALE_DEFAULT :
-                default: 
-                    title = i18n.common.WEIBO_SHARE_TEXT;
+                default:
+                    title = i18n.misc.WEIBO_SHARE_TEXT;
                     break;
             }
             weiboButton.attr('title', title);

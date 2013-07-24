@@ -7,7 +7,6 @@
         'IOBackendDevice',
         'Configuration',
         'Internationalization',
-        'utilities/StringUtil',
         'task/models/TaskModel',
         'app/collections/AppsCollection',
         'app/collections/WebAppsCollection'
@@ -18,14 +17,11 @@
         IO,
         CONFIG,
         i18n,
-        StringUtil,
         TaskModel,
         AppsCollection,
         WebAppsCollection
     ) {
         console.log('TasksCollection - File loaded.');
-
-        var encodeURIComponent = window.encodeURIComponent;
 
         var appsCollection;
         var webAppsCollection;
@@ -386,7 +382,7 @@
 
         var tasksCollection;
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({}, {
             getInstance : function () {
                 if (!tasksCollection) {
                     tasksCollection = new TasksCollection();

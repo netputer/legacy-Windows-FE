@@ -27,7 +27,7 @@
     ) {
         console.log('SocialService - File loaded. ');
 
-        var SocialService = _.extend(function () {}, Backbone.Events);
+        var SocialService = _.extend({}, Backbone.Events);
 
         SocialService.show = function (config) {
             if (!!config) {

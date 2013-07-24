@@ -141,7 +141,7 @@
         var factory = _.extend({
             getInstance : function () {
                 return new CloudBackupView({
-                    action : i18n.welcome.GUIDE_CLOUD_BACKUP_OPEN
+                    action : i18n.misc.CLOUD_BACKUP_OPEN
                 });
             }
         });

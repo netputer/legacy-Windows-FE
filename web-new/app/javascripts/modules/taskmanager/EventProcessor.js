@@ -3,27 +3,17 @@
     define([
         'underscore',
         'backbone',
-        'Log',
         'IOBackendDevice',
-        'Settings',
-        'FunctionSwitch',
         'Configuration',
         'Device'
     ], function (
         _,
         Backbone,
-        log,
         IO,
-        Settings,
-        FunctionSwitch,
         CONFIG,
         Device
     ) {
         console.log('EventProcessor - File loaded.');
-
-        var MESSAGE_MAPPING = {
-            START_DOWNLOAD : 'START_DOWNLOAD'
-        };
 
         var messageNormalList = [];
 
@@ -35,7 +25,7 @@
                 var originalLength = messageNormalList.length;
 
                 var offlineTasks = _.filter(datas.status, function (task) {
-                    return /^OFFLINE--/.test(task.source);
+                    return (/^OFFLINE--/).test(task.source);
                 });
 
                 if (offlineTasks.length > 0 && !Device.get('isFastADB')) {

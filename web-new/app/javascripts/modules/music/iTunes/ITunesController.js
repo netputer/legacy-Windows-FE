@@ -8,7 +8,6 @@
         'Configuration',
         'Internationalization',
         'utilities/StringUtil',
-        'utilities/FormatDate',
         'ui/AlertWindow',
         'music/iTunes/collections/ITunesCollection',
         'music/iTunes/views/SelectLibraryView',
@@ -23,7 +22,6 @@
         CONFIG,
         i18n,
         StringUtil,
-        FormatDate,
         AlertWindow,
         ITunesCollection,
         SelectLibraryView,
@@ -57,25 +55,25 @@
                     }
 
                     if (capacity.indexOf('GB') !== -1) {
-                        time = StringUtil.format(i18n.common.HOUR, num);
+                        time = StringUtil.format(i18n.misc.HOUR, num);
                     } else if (capacity.indexOf('TB') !== -1) {
-                        time = StringUtil.format(i18n.common.HOUR, num * 1024);
+                        time = StringUtil.format(i18n.misc.HOUR, num * 1024);
                     }
 
                     var tip = StringUtil.format(i18n.music.CONFIRM_IMPORT, capacity, time);
                     var buttons = [
                         {
-                            $button : $('<button/>').addClass('primary').html(i18n.common.OK),
+                            $button : $('<button/>').addClass('primary').html(i18n.ui.OK),
                             eventName : 'OK'
                         },
                         {
-                            $button : $('<button/>').html(i18n.common.CANCEL),
+                            $button : $('<button/>').html(i18n.ui.CANCEL),
                             eventName : 'CANCEL'
                         }
                     ];
 
                     var tipPanelView = new Panel({
-                        title : i18n.common.DIALOG_TIP,
+                        title : i18n.ui.TIP,
                         width : 360,
                         disableX : true,
                         draggable : true,
@@ -143,7 +141,7 @@
                 }, this);
             }
 
-            function showStartPanel (data) {
+            function showStartPanel(data) {
                 selectLibraryView = SelectLibraryView.getInstance();
                 selectSourceView  = SelectSourceView.getInstance();
                 audioListView     = AudioListView.getInstance();

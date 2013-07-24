@@ -1,12 +1,8 @@
 /*global define*/
-(function (window, document) {
+(function (window) {
     define([
         'backbone',
         'underscore',
-        'doT',
-        'jquery',
-        'ui/TemplateFactory',
-        'Log',
         'app/wash/views/IntroView',
         'app/wash/views/ScanningView',
         'app/wash/views/ScanResultView',
@@ -16,10 +12,6 @@
     ], function (
         Backbone,
         _,
-        doT,
-        $,
-        TemplateFactory,
-        log,
         IntroView,
         ScanningView,
         ScanResultView,
@@ -164,4 +156,4 @@
 
         return factory;
     });
-}(this, this.document));
+}(this));

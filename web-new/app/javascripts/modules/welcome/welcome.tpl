@@ -39,17 +39,17 @@
             </button>
         </span>
         <span class="w-ui-buttongroup">
-            <button class="w-icon-btn min img button-play" data-title="{{= i18n.welcome.PLAY_BTN_TEXT }}">
+            <button class="w-icon-btn min img button-play" data-title="{{= i18n.misc.PLAY }}">
                 <span class="icon play-black"></span>
             </button>
-            <button class="w-icon-btn min img button-refresh" data-title="{{= i18n.welcome.REFRESH_BTN_TEXT }}">
+            <button class="w-icon-btn min img button-refresh" data-title="{{= i18n.misc.REFRESH }}">
                 <span class="icon refresh-black"></span>
             </button>
             <button class="w-icon-btn min img button-fullscreen" data-title="{{= i18n.welcome.FULLSCREEN_BTN_TEXT }}">
                 <span class="icon fullscreen-black"></span>
             </button>
         </span>
-        <button class="w-icon-btn min img button-share" data-title="{{= i18n.common.SHARE }}">
+        <button class="w-icon-btn min img button-share" data-title="{{= i18n.misc.SHARE }}">
             <span class="icon share-black"></span>
         </button>
     </div>
@@ -102,15 +102,15 @@
 
 <script type="text/x-ui-template" id="one-key-move-tip">
     <div>
-        <span class="des">{{= i18n.common.PHONE_CAPACITY_TIP }}</span>
-        <span class="link button-one-key-move">{{= i18n.common.PHONE_CAPACITY_ACTION }}</span>
+        <span class="des">{{= i18n.misc.PHONE_CAPACITY_TIP }}</span>
+        <span class="link button-one-key-move">{{= i18n.misc.PHONE_CAPACITY_ACTION }}</span>
     </div>
 </script>
 
 <script type="text/x-ui-template" id="open-sd-tip">
     <div>
-        <span class="des">{{= i18n.common.SD_CAPACITY_TIP }}</span>
-        <span class="link button-open-sd-card">{{= i18n.common.SD_CAPACITY_ACTION }}</span>
+        <span class="des">{{= i18n.misc.SD_CAPACITY_TIP }}</span>
+        <span class="link button-open-sd-card">{{= i18n.misc.SD_CAPACITY_ACTION }}</span>
     </div>
 </script>
 

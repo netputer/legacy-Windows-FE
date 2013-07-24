@@ -2,12 +2,10 @@
 (function (window) {
     define([
         'underscore',
-        'jquery',
-        'ui/behavior/DataSetMixin'
+        'jquery'
     ], function (
         _,
-        $,
-        DataSetMixin
+        $
     ) {
         console.log('HeaderMixin - File loaded.');
 

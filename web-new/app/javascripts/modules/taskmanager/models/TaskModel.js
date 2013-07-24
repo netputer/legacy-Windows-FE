@@ -1,15 +1,17 @@
-/*global define, Backbone, $*/
+/*global define*/
 (function (window) {
     define([
+        'backbone',
+        'jquery',
         'IO',
         'Internationalization',
-        'Configuration',
-        'utilities/StringUtil'
+        'Configuration'
     ], function (
+        Backbone,
+        $,
         IO,
         i18n,
-        CONFIG,
-        StringUtil
+        CONFIG
     ) {
         console.log('TaskModel - File loaded.');
 

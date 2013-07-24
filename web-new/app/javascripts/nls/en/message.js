@@ -17,20 +17,16 @@ define({
 
     ME : 'Me',
     UNNAMED_CONTACT : 'Unknown contacts',
-    MMS : 'MMS',
     NONE_SUBJECT : 'No subject',
     CONTAIN_MULTIMEDIA : 'Contains {1} multimedia attachment(s)',
     OPEN_ON_DEIVE : 'View on phone',
-    FOLD : 'Hide',
     EXPEND : 'Expand',
     SENDING : '(Sending...)',
     SEND_FAILED : 'Send failed ',
     SEND_FAILED_ALERT : 'Failed to send message',
     RESEND : ' Retry',
-    DELETE : 'Delete',
     FORWARD : 'Forward',
     COPY : 'Copy',
-    MARK_AS_UNREAD : 'Mark as unread',
     ADD_TO_CONTACT : 'Add to contacts',
     BATCH_SEND_TITLE : 'Please press send on your phone',
     BATCH_SEND_TOO_MANY_TIP : 'Message created, please complete by sending on your phone. To ensure that all messages are sent, SnapPea limits messages sent from the PC to 90 per hour. You\'ve passed this limit.',
@@ -69,28 +65,19 @@ define({
     COUNT_TIP : '(<span class="cover-count"></span> selected conversations, <span class="sms-count"></span> messages)',
 
     BATCH_CONVERSATION : 'Group messages',
-    TIP_UNREAD : '{1} messages, {2} unread',
-    TIP_FAILED : '{1} message(s), {2} failed to send',
 
     SMS_SUMMARY : '{1} message(s), {2} unread',
-    SMS_UNREAD_SUMMARY : '{2} unread message(s)',
 
     CONFIRM_DELETE_CONVERSATION : 'Delete {1} conversation(s) and {2} message(s)? ',
-    CONVERSATION_DELETE_PROGRESS : 'Deleting, please wait...',
     CONVERSATION_DELETE_SUCCESS : 'Deleted {1} message(s)',
     CONFIRM_MARK_AS_READ : 'Mark {1} conversation(s) as read? ',
     CONVERSATION_MARK_AS_READ_PROGRESS : 'Marking as read...',
     CONVERSATION_MARK_AS_READ_SUCCESS : 'Marked as read {1} message(s)',
 
-    ALERT_TIP_IMPORT_EXPORT_WIFI : '<p>Sorry, SnapPea does not support import and export via Wi-Fi because of the risk of data loss. Please connect via USB and try again. </p>',
     ALERT_TIP_EXPORT_MMS : 'Export will not include MMS messages',
 
-    WORD_COUNT : '{1} characters, ',
-    ADDRESS_COUNT : 'will send to {1} contact(s)',
     SEND : 'Send',
-    EXPORT : 'Export',
     BATCH_CONVERSATION_TITLE : 'All messages from {1} selected',
-    CANCEL : 'Cancel',
     SEND_WITH_SIM1 : 'Send from default SIM',
     SEND_WITH_SIM2 : 'Send from second SIM',
 
@@ -101,26 +88,19 @@ define({
     DUPLICATE : '{1} duplicate message(s) ignored.',
     EXPORT_MESSAGE : 'Export Messages',
     EXPORT_FAILED : 'Failed to export messages',
-    EXPORTING : 'Exporting, please don\'t turn off your phone',
     EXPORTING_SMS : 'Exporting messages, please wait...',
-    EXPORT_FINISH : 'Export completed',
     EXPORT_SMS_FINISH : 'Exporting messages completed',
     IMPORT_SELECT_FILE : 'Select .csv files to import',
     INVALID_FILE : 'Invalid .csv file',
     SELECT_MESSAGE : 'Select messages to export',
-    ALL_MESSAGE : 'All messages ',
     NO_CONVERSATION : 'You haven\'t received any messages yet',
-    NO_UNREAD_CONVERSATION : 'No unread messages',
     PROBLEM_WITH_DUAL_SIM_PHONE : 'Dual-SIM phone error',
     PROBLEM_WITH_DUAL_SIM_PHONE_TIP : '<p>If you\'re using a dual-SIM card phone, you can set one SIM card as your default for sending messages. <p> SnapPea might not support every kind of dual-SIM phone. If your phone is not recognized or unable to send messages, contact us <span class="button-feedback link"></span>',
 
     SELECT_BACKUP_FILE : 'Select auto backup file',
-    BACKUP_RECORD : 'Auto backup files',
     BACKUP_MESSAGE_NUMBER : 'Messages',
-    IMPORT_FROM_FILE : 'Import from file',
-    IMPORT_FROM_BACKUP : 'Import from backup',
 
     COPY_SMS : 'Message successfully copied to the Clipboard',
 
-    UNREAD_DES : '{1} 条未读短信',
+    UNREAD_DES : '{1} 条未读短信'
 });

@@ -3,7 +3,6 @@
     define([
         'underscore',
         'doT',
-        'jquery',
         'ui/Toolbar',
         'ui/TemplateFactory',
         'ui/AlertWindow',
@@ -19,7 +18,6 @@
     ], function (
         _,
         doT,
-        $,
         Toolbar,
         TemplateFactory,
         AlertWindow,
@@ -39,7 +37,6 @@
 
         var musicsListView;
         var musicsCollection;
-        var settingButton;
 
         var MusicModuleToolbarView = Toolbar.extend({
             template : doT.template(TemplateFactory.get('music', 'toolbar')),
@@ -110,7 +107,7 @@
             },
             clickButtonRefresh : function () {
                 musicsCollection.syncAsync().fail(function () {
-                    alert(i18n.common.REFRESH_ERROR);
+                    alert(i18n.misc.REFRESH_ERROR);
                 });
             },
             clickButtonExport : function () {

@@ -46,8 +46,6 @@
         var RestoreProgressBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('restore', 'resotre-progress')),
             className : 'w-restore-progress',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
                 this.resetContent();
@@ -251,19 +249,13 @@
                         this.handleProgress(progress);
                     }
                 }.bind(this)).fail(function (resp) {
-                    console.log(resp);
-
                     this.remove();
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 3);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
                 }.bind(this));
             },
             resumeRestore : function () {
-                BackupRestoreService.restoreResumeAsync(restoreSessionID).done(function (resp) {
-                    // do nothing, the progress will continue
-                }.bind(this)).fail(function (resp) {
-                    console.log(resp);
-
+                BackupRestoreService.restoreResumeAsync(restoreSessionID).fail(function (resp) {
                     this.remove();
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 4);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
@@ -342,8 +334,6 @@
                 });
             },
             restoreAllFinish : function () {
-                var filePath = RestoreContextModel.get('fileName');
-
                 BackupRestoreService.restoreFinishAsync(RestoreContextModel.get('fileName')).done(function (resp) {
                     this.$('.title').text(i18n.backup_restore.RESTORE_FINISH_LABEL);
                     this.setButtnState(false);

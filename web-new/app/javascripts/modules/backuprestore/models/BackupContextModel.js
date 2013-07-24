@@ -3,12 +3,10 @@
     define([
         'underscore',
         'backbone',
-        'Environment',
         'Configuration'
     ], function (
         _,
         Backbone,
-        Environment,
         CONFIG
     ) {
         console.log('BackupContextModel - File loaded.');

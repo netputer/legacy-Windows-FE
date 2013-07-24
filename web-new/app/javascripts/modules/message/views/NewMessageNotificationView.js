@@ -6,10 +6,8 @@
         'underscore',
         'IO',
         'Configuration',
-        'Environment',
         'Log',
         'Internationalization',
-        'utilities/QueryString',
         'utilities/StringUtil',
         'ui/TemplateFactory',
         'message/views/MessageSender4NotificationView'
@@ -19,10 +17,8 @@
         _,
         IO,
         CONFIG,
-        Environment,
         log,
         i18n,
-        QueryString,
         StringUtil,
         TemplateFactory,
         MessageSender4NotificationView
@@ -82,7 +78,7 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function (args) {
                 return new NewMessageNotificationView(args);
             }

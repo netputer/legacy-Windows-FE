@@ -11,9 +11,7 @@
         'Internationalization',
         'Log',
         'utilities/StringUtil',
-        'ui/Notification',
-        'ui/AlertWindow',
-        'ui/BatchActionWindow'
+        'ui/AlertWindow'
     ], function (
         Backbone,
         _,
@@ -25,15 +23,13 @@
         i18n,
         log,
         StringUtil,
-        Notification,
-        AlertWindow,
-        BatchActionWindow
+        AlertWindow
     ) {
         console.log('BackupRestoreService - File loaded.');
 
         var alert = window.alert;
 
-        var BackupRestoreService = _.extend(Backbone.Events);
+        var BackupRestoreService = _.extend({}, Backbone.Events);
 
         // ---------------------------- consts -------------------------------
 
@@ -854,9 +850,9 @@
 
                 var dateStr = '';
                 if (isSameDay(date, today)) {
-                    dateStr = i18n.common.TODAY;
+                    dateStr = i18n.misc.TODAY;
                 } else if (isSameDay(date, yesterday)) {
-                    dateStr = i18n.common.YESTODAY;
+                    dateStr = i18n.misc.YESTODAY;
                 } else {
                     if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
                         dateStr = StringUtil.formatDate('MM / dd / yyyy', timestamp);

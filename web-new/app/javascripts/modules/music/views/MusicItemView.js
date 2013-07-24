@@ -6,28 +6,22 @@
         'jquery',
         'ui/TemplateFactory',
         'ui/MenuButton',
-        'ui/Panel',
         'ui/BaseListItem',
         'utilities/StringUtil',
         'Internationalization',
         'Device',
-        'Configuration',
-        'music/MusicService',
-        'FunctionSwitch'
+        'music/MusicService'
     ], function (
         _,
         doT,
         $,
         TemplateFactory,
         MenuButton,
-        Panel,
         BaseListItem,
         StringUtil,
         i18n,
         Device,
-        CONFIG,
-        MusicService,
-        FunctionSwitch
+        MusicService
     ) {
         console.log('MusicItemView - File loaded. ');
 

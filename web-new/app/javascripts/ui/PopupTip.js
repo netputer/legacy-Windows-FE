@@ -1,12 +1,8 @@
 /*global define, console*/
 (function (window) {
     define([
-        'underscore',
-        'jquery',
         'ui/TipPanel'
     ], function (
-        _,
-        $,
         TipPanel
     ) {
         console.log('PopupTip - File loaded.');

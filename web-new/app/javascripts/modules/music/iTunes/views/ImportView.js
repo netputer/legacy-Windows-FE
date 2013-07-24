@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, undefined) {
+(function (window) {
     define([
         'underscore',
         'doT',
@@ -9,13 +9,11 @@
         'ui/Panel',
         'ui/AlertWindow',
         'ui/UIHelper',
-        'Environment',
         'WindowController',
         'Device',
         'Configuration',
         'Internationalization',
         'ui/TemplateFactory',
-        'ui/behavior/ButtonSetMixin',
         'utilities/StringUtil',
         'music/iTunes/collections/ITunesCollection'
     ], function (
@@ -27,13 +25,11 @@
         Panel,
         AlertWindow,
         UIHelper,
-        Environment,
         WindowController,
         Device,
         Configuration,
-        Internationalization,
+        i18n,
         TemplateFactory,
-        ButtonSetMixin,
         StringUtil,
         ITunesCollection
     ) {
@@ -41,7 +37,7 @@
         console.log('iTunes ImportView - File Loaded');
 
         var alert = window.alert;
-        var localeText = Internationalization.music;
+        var localeText = i18n.music;
 
         var importAudiosProgressCls = 'import-audios-progress';
         var createPlaylistCls = 'create-playlist-progress';
@@ -56,7 +52,7 @@
 
                 this.buttons = [
                     {
-                        $button : $('<button/>').addClass('import cancel').html(Internationalization.common.CANCEL),
+                        $button : $('<button/>').addClass('import cancel').html(i18n.ui.CANCEL),
                         eventName : 'import'
                     }
                 ];
@@ -132,10 +128,10 @@
             updatePanelTitleAndBtn : function (isImportFinish) {
                 if (isImportFinish) {
                     this.$('h3').html(localeText.IMPORT_COMPLETE);
-                    this.$('.import').removeClass('cancel').addClass('primary complete').html(Internationalization.common.OK);
+                    this.$('.import').removeClass('cancel').addClass('primary complete').html(i18n.ui.OK);
                 } else {
                     this.$('h3').html(localeText.IMPORTING_TITLE);
-                    this.$('.import').removeClass('complete').addClass('cancel').removeClass('primary').html(Internationalization.common.CANCEL);
+                    this.$('.import').removeClass('complete').addClass('cancel').removeClass('primary').html(i18n.ui.CANCEL);
                 }
             },
 
@@ -154,7 +150,7 @@
                 var session = Configuration.events.AUDIOS_IMPORT_MESSAGE;
 
                 this.renderProgress({
-                    tip : Internationalization.music.IMPORTING_AUDIOS_TIP,
+                    tip : i18n.music.IMPORTING_AUDIOS_TIP,
                     className : importAudiosProgressCls,
                     current : 0,
                     isFaild : false,
@@ -199,7 +195,7 @@
                 var session = Configuration.events.PLAYLIST_IMPORT_MESSAGE;
 
                 this.renderProgress({
-                    tip : Internationalization.music.CREATING_PLAYLIST_TIP,
+                    tip : i18n.music.CREATING_PLAYLIST_TIP,
                     className : createPlaylistCls,
                     current : 0,
                     isFaild : false,
@@ -229,7 +225,7 @@
 
             importAudiosSuccess : function (data) {
                 if (data.success && data.success.length === data.total) {
-                    this.$('.' + importAudiosProgressCls + ' .progress-tip').html(Internationalization.music.AUDIOS_IMPORT_COMPLETE);
+                    this.$('.' + importAudiosProgressCls + ' .progress-tip').html(i18n.music.AUDIOS_IMPORT_COMPLETE);
 
                     if (this.isCreatePlaylist) {
                         this.startCreatePlayList();
@@ -246,28 +242,28 @@
             importAudiosFail : function (data) {
                 IO.Backend.Device.offmessage(currentHandler);
                 var audiosData = {
-                    tip : Internationalization.music.AUDIOS_IMPORT_FAILD,
+                    tip : i18n.music.AUDIOS_IMPORT_FAILD,
                     className : importAudiosProgressCls,
                     isFaild : true,
-                    current : data.success && data.success.length || 0,
+                    current : (data.success && data.success.length) || 0,
                     total : data.total
                 };
                 this.renderProgress(audiosData);
 
-                var tip = StringUtil.format(Internationalization.music.IMPORT_AUDIOS_FAILD_TIP, data.failed.length);
+                var tip = StringUtil.format(i18n.music.IMPORT_AUDIOS_FAILD_TIP, data.failed.length);
                 var buttons = [{
-                    $button : $('<button/>').addClass('primary retry').html(Internationalization.common.RETRY_TEXT),
+                    $button : $('<button/>').addClass('primary retry').html(i18n.ui.RETRY),
                     eventName : 'RETRY'
                 }, {
-                    $button : $('<button/>').addClass('ignore').html(Internationalization.common.IGNORE),
+                    $button : $('<button/>').addClass('ignore').html(i18n.ui.IGNORE),
                     eventName : 'IGNORE'
                 }, {
-                    $button : $('<button/>').html(Internationalization.common.CANCEL),
+                    $button : $('<button/>').html(i18n.ui.CANCEL),
                     eventName : 'CANCEL'
                 }];
 
                 var tipPanelView = new Panel({
-                    title : Internationalization.common.DIALOG_TIP,
+                    title : i18n.ui.TIP,
                     width : 360,
                     disableX : true,
                     draggable : true,
@@ -311,24 +307,24 @@
                 IO.Backend.Device.offmessage(currentHandler);
 
                 if (data.success && (data.success.length === data.total)) {
-                    this.$('.' + createPlaylistCls + ' .progress-tip').html(Internationalization.music.CREATE_PLAYLIST_COMPLETE);
+                    this.$('.' + createPlaylistCls + ' .progress-tip').html(i18n.music.CREATE_PLAYLIST_COMPLETE);
                 } else {
                     this.createPlaylistFail(data);
 
-                    var tip = StringUtil.format(Internationalization.music.CREATE_PLAYLIST_FAILD_TIP, data.failed.length);
+                    var tip = StringUtil.format(i18n.music.CREATE_PLAYLIST_FAILD_TIP, data.failed.length);
                     var buttons = [
                         {
-                            $button : $('<button/>').addClass('primary retry').html(Internationalization.common.RETRY_TEXT),
+                            $button : $('<button/>').addClass('primary retry').html(i18n.ui.RETRY),
                             eventName : 'RETRY'
                         },
                         {
-                            $button : $('<button/>').html(Internationalization.common.CANCEL),
+                            $button : $('<button/>').html(i18n.ui.CANCEL),
                             eventName : 'CANCEL'
                         }
                     ];
 
                     var tipPanelView = new Panel({
-                        title : Internationalization.common.DIALOG_TIP,
+                        title : i18n.ui.TIP,
                         width : 360,
                         disableX : true,
                         draggable : true,
@@ -362,10 +358,10 @@
             createPlaylistFail : function (data) {
                 IO.Backend.Device.offmessage(currentHandler);
                 var playlistData = {
-                    tip : Internationalization.music.CREATE_PLAYLIST_FAILD,
+                    tip : i18n.music.CREATE_PLAYLIST_FAILD,
                     className : createPlaylistCls,
                     isFaild : true,
-                    current : data.success && data.success.length || 0,
+                    current : (data.success && data.success.length) || 0,
                     total : data.total
                 };
                 this.renderProgress(playlistData);

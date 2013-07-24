@@ -51,7 +51,9 @@
                 inst.resp = resp;
                 inst.show();
             },
-            preload : function () {}
+            preload : function () {
+                return;
+            }
         });
 
         return factory;

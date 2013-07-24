@@ -34,8 +34,6 @@
         var BackupAutoTipBodyLocalView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'backup-local-auto-tip')),
             className : 'w-backup-auto-tip hbox',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -46,8 +44,6 @@
         var BackupAutoTipBodyRemoteView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'backup-remote-auto-tip')),
             className : 'w-backup-auto-tip hbox',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -72,7 +68,7 @@
                     });
                 }, this);
 
-                var yesText = this.options.isLocal ? i18n.backup_restore.AUTO_BACKUP_YES : i18n.backup_restore.AUTO_BACKUP_REMOTE_YES;
+                var yesText = this.options.isLocal ? i18n.backup_restore.AUTO_BACKUP_YES : i18n.misc.CLOUD_BACKUP_OPEN;
                 this.buttons = [{
                     $button : $('<button>').html(yesText).addClass('button-next primary'),
                     eventName : 'button_next'

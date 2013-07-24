@@ -147,7 +147,12 @@ module.exports = function (grunt) {
                 'app/javascripts/**/*.js'
             ],
             exclude: [
-                'app/javascripts/utilities/MD5.js'
+                'app/javascripts/utilities/MD5.js',
+                'app/javascripts/ui/Panel.js',
+                'app/javascripts/usb-debug-new/usb-debug-new.js',
+                'app/javascripts/modules/contact/collections/ContactsCollection.js',
+                'app/javascripts/modules/message/views/MessageSenderView.js',
+                'app/javascripts/ui/Button.js'
             ],
             directives : {
                 sloppy : true,
@@ -158,7 +163,12 @@ module.exports = function (grunt) {
                 indent : 4,
                 unparam: true,
                 plusplus : true,
-                todo: true,
+                todo : true,
+                bitwise :  true,
+                stupid : true,
+                evil : true,
+                regexp : true,
+                ass : true,
                 predef: [ // array of pre-defined globals
                   'define', 'require'
                 ]

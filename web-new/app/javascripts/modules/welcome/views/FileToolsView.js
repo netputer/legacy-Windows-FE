@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, document) {
+(function (window) {
     define([
         'backbone',
         'underscore',
@@ -18,8 +18,7 @@
         'IO',
         'backuprestore/BackupController',
         'backuprestore/RestoreController',
-        'welcome/WelcomeService',
-        'sync/views/AccountGuideView'
+        'welcome/WelcomeService'
     ], function (
         Backbone,
         _,
@@ -38,8 +37,7 @@
         IO,
         BackupController,
         RestoreController,
-        WelcomeService,
-        AccountGuideView
+        WelcomeService
     ) {
         console.log('FileToolsView - File loaded.');
 
@@ -113,6 +111,7 @@
                 var tip = new PopupTip({
                     $host : this.$('.button-auto-backup')
                 });
+                tip.zero();
 
                 this.addFlashPanel();
 
@@ -168,7 +167,7 @@
                 WelcomeService.getAutoBackupDateAsync().done(function (resp) {
                     var ms = parseInt(resp.body.value, 10);
                     var date = StringUtil.formatDate("yyyy-MM-dd", ms);
-                    var tip = StringUtil.format(i18n.welcome.AUTO_BACKUP_TIP_COMPLETE, date);
+                    var tip = StringUtil.format(i18n.welcome.AUTO_BACKUP, date);
                     this.$('.button-auto-backup').data({
                         title : tip
                     });
@@ -283,4 +282,4 @@
 
         return factory;
     });
-}(this, this.document));
+}(this));
