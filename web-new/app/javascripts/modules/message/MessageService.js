@@ -160,7 +160,7 @@
                     session = _.uniqueId('sms.batch.delete_');
                     var batchActionWindow = new BatchActionWindow({
                         session : session,
-                        progressText : i18n.message.CONVERSATION_DELETE_PROGRESS,
+                        progressText : i18n.misc.DELETING,
                         cancelUrl : CONFIG.actions.SMS_CANCEL,
                         total : smsCount,
                         successText : i18n.message.CONVERSATION_DELETE_SUCCESS

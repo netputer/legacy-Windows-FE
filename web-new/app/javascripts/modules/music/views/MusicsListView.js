@@ -53,7 +53,7 @@
                 Device.on('change:hasSDCard', function (Device, hasSDCard) {
                     if (musicsList !== undefined) {
                         if (!hasSDCard) {
-                            musicsList.emptyTip = i18n.common.NO_SD_CARD_TIP_TEXT;
+                            musicsList.emptyTip = i18n.misc.NO_SD_CARD_TIP_TEXT;
                         } else {
                             musicsList.emptyTip = i18n.music.MUSIC_EMPTY_TEXT;
                         }
@@ -86,7 +86,7 @@
                     musicsList.on('contextMenu', this.showContextMenu, this);
 
                     if (!Device.get('hasSDCard')) {
-                        musicsList.emptyTip = i18n.common.NO_SD_CARD_TIP_TEXT;
+                        musicsList.emptyTip = i18n.misc.NO_SD_CARD_TIP_TEXT;
                     } else {
                         musicsList.emptyTip = i18n.music.MUSIC_EMPTY_TEXT;
                     }

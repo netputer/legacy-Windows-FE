@@ -295,7 +295,7 @@
                                 $button : $('<button>').html(i18n.contact.DONTSAVE),
                                 eventName : 'button_no'
                             }],
-                            title : i18n.contact.ALERT_TEXT,
+                            title : i18n.ui.TIP,
                             $bodyContent : i18n.contact.SAVE_TIP_TEXT
                         });
                         alertWindow.on('button_no', this.clickButtonCancel, this);
@@ -772,7 +772,7 @@
                         if (resp.state_code === 405) {
                             alert(i18n.contact.NO_EMAIL_CLIENT_TIP);
                         } else if (resp.state_code !== 200) {
-                            alert(i18n.common.SEND_MAIL_FAILD);
+                            alert(i18n.misc.SEND_MAIL_FAILD);
                         }
                     }
                 });

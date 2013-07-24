@@ -72,7 +72,7 @@
                     });
                 }, this);
 
-                var yesText = this.options.isLocal ? i18n.backup_restore.AUTO_BACKUP_YES : i18n.backup_restore.AUTO_BACKUP_REMOTE_YES;
+                var yesText = this.options.isLocal ? i18n.backup_restore.AUTO_BACKUP_YES : i18n.misc.CLOUD_BACKUP_OPEN;
                 this.buttons = [{
                     $button : $('<button>').html(yesText).addClass('button-next primary'),
                     eventName : 'button_next'

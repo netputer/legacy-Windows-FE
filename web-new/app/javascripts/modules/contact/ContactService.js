@@ -67,7 +67,7 @@
                         session = _.uniqueId('contact.batch.delete_');
                         batchActionWindow = new BatchActionWindow({
                             session : session,
-                            progressText : i18n.contact.CONTACT_DELETE_PROGRESS,
+                            progressText : i18n.misc.DELETING,
                             cancelUrl : CONFIG.actions.CONTACT_CANCEL,
                             total : ids.length,
                             successText : i18n.contact.CONTACT_DELETE_SUCCESS

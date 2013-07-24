@@ -113,10 +113,10 @@
                 }, this);
 
                 this.buttons = [{
-                    $button : $('<button>').html(i18n.common.NEXT_STEP).addClass('button-next primary'),
+                    $button : $('<button>').html(i18n.ui.NEXT).addClass('button-next primary'),
                     eventName : 'button-next'
                 }, {
-                    $button : $('<button>').html(i18n.contact.CANCEL),
+                    $button : $('<button>').html(i18n.ui.CANCEL),
                     eventName : UIHelper.EventsMapping.BUTTON_CANCEL
                 }];
             },
@@ -128,7 +128,7 @@
                 this.delegateEvents();
                 ImportAutoBackupView.__super__.render.apply(this, arguments);
 
-                var $buttonSwitch = $('<button>').html(i18n.contact.IMPORT_FROM_FILE).addClass('button-switch');
+                var $buttonSwitch = $('<button>').html(i18n.misc.IMPORT_FROM_FILE).addClass('button-switch');
                 this.$('.w-ui-window-footer-monitor').append($buttonSwitch);
 
                 return this;

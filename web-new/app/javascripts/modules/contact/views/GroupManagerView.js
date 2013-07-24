@@ -174,7 +174,7 @@
                 this.buttons = [{
                     $button : $('<button>').html(i18n.contact.SAVE).addClass('primary button_save')
                 }, {
-                    $button : $('<button>').html(i18n.contact.CANCEL).addClass('button_cancel'),
+                    $button : $('<button>').html(i18n.ui.CANCEL).addClass('button_cancel'),
                     eventName : 'button_cancel'
                 }];
             },

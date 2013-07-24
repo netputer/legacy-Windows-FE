@@ -15,12 +15,9 @@
         Panel,
         TemplateFactory,
         FormatDate,
-        Internationalization
+        i18n
     ) {
         console.log('selectLibraryView file loaded');
-
-        var localeText = Internationalization.music;
-        var commonText = Internationalization.common;
 
         var SelectLibraryView = Panel.extend({
             className : Panel.prototype.className + ' w-iTunes-select-library-panel',
@@ -29,14 +26,14 @@
                 SelectLibraryView.__super__.initialize.call(this);
 
                 var buttons = [{
-                    $button : $('<button/>').addClass('primary').html(commonText.NEXT_STEP),
+                    $button : $('<button/>').addClass('primary').html(i18n.ui.NEXT),
                     eventName : 'NEXT_STEP'
                 }, {
-                    $button : $('<button/>').html(commonText.CANCEL),
+                    $button : $('<button/>').html(i18n.misc.CANCEL),
                     eventName : 'CANCEL'
                 }];
 
-                this.title  = localeText.ITUNES_IMPORT;
+                this.title  = i18n.music.ITUNES_IMPORT;
                 this.width  = 430;
                 this.height = 270;
                 this.draggable = true;

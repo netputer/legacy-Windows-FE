@@ -76,7 +76,7 @@
                         $tip = this.$('.tip').html(i18n.photo.UPLOADING_PHOTOS);
                         setTimeout(function () {
                             $tip.fadeOut(function () {
-                                $(this).html(i18n.sync.CLOUD_PHOTO).show();
+                                $(this).html(i18n.misc.NAV_PIC_CLOUD).show();
                             });
                         }, 3000);
                         break;
@@ -85,7 +85,7 @@
                         $tip = this.$('.tip').html(i18n.photo.PHOTO_BACKUP_AUTO);
                         setTimeout(function () {
                             $tip.fadeOut(function () {
-                                $(this).html(i18n.sync.CLOUD_PHOTO).show();
+                                $(this).html(i18n.misc.NAV_PIC_CLOUD).show();
                             });
                         }, 3000);
                         break;

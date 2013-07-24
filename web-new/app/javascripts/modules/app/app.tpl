@@ -69,7 +69,7 @@
             <button class="w-icon-btn button-dislike min" data-title="{{= i18n.app.UNLIKE }}"><span class="icon dislike"></span></button>
         </span>
         <button class="w-icon-btn button-comment min"><span class="icon comment"></span>{{= i18n.app.COMMENTARY }}</button>
-        <button class="w-icon-btn button-share min"><span class="icon share"></span>{{= i18n.common.SHARE}}</button>
+        <button class="w-icon-btn button-share min"><span class="icon share"></span>{{= i18n.misc.SHARE}}</button>
     </div>
     <div class="input-ctn">
         <textarea placeholder="{{= StringUtil.format(i18n.app.COMMENTARY_PLACEHOLDER, it.base_info.name) }}" class="input-content"></textarea>
@@ -316,14 +316,14 @@
             {{??}}
                 <button class="button-update min">{{= i18n.app.UPDATE }}</button>
                 {{? !it.is_blocked }}
-                    <span class="button-ignore link">{{= i18n.app.APPS_IGNORE_UPGRADE_TEXT }}</span>
+                    <span class="button-ignore link">{{= i18n.ui.IGNORE }}</span>
                 {{?}}
             {{?}}
         {{?}}
     </div>
     <div class="web-update hbox">
         {{? it.installed }}
-            <span class="text-secondary" >{{= i18n.app.ALREAD_INSTALLED }}</span>
+            <span class="text-secondary" >{{= i18n.misc.NAV_APP_INSTALLED }}</span>
         {{??}}
             {{? it.isUpdating }}
                 <progress class="tiny" max="100" value="{{= it.progress }}"></progress>
@@ -332,7 +332,7 @@
                 <button class="button-install min">{{= i18n.app.INSTALL }}</button>
             {{?}}
         {{?}}
-        <span class="button-hide link">{{= i18n.common.DELETE_TEXT }}</span>
+        <span class="button-hide link">{{= i18n.misc.DELETE }}</span>
     </div>
     <div class="button-close" data-id="{{= it.id }}" title="{{= i18n.misc.DESELECT }}"></div>
 </script>
@@ -343,7 +343,7 @@
     <div class="info smart-list-sortable desc" data-smart-list-sortby="base_info.name" data-smart-list-sort-type="string">{{= i18n.app.COL_NAME_LABEL }}</div>
     <div class="current-version">{{= i18n.app.APP_INSTALL_VERSION_LABEL }}</div>
     <div class="target-version">{{= i18n.app.APP_LATEST_VERSION_LABEL }}</div>
-    <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.app.COL_SIZE_LABEL }}</div>
+    <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.misc.SIZE }}</div>
 </header>
 <footer class="w-smart-list-footer text-secondary"></footer>
 </script>
@@ -359,7 +359,7 @@
     <label class="check-select-all-wrap"><input class="check-select-all" type="checkbox" /></label>
     <div class="info smart-list-sortable desc" data-smart-list-sortby="base_info.name" data-smart-list-sort-type="string">{{= i18n.app.COL_NAME_LABEL }}</div>
     <div class="current-version">{{= i18n.app.APP_INSTALL_VERSION_LABEL }}</div>
-    <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.app.COL_SIZE_LABEL }}</div>
+    <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.misc.SIZE }}</div>
 </header>
 <footer class="w-smart-list-footer text-secondary"></footer>
 </script>
@@ -384,7 +384,7 @@
             <label class="check-select-all-wrap"><input class="check-select-all" type="checkbox" /></label>
             <div class="info smart-list-sortable desc" data-smart-list-sortby="base_info.name" data-smart-list-sort-type="string">{{= i18n.app.COL_NAME_LABEL }}</div>
             <div class="current-version">{{= i18n.app.COL_VERSION_LABEL }}</div>
-            <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.app.COL_SIZE_LABEL }}</div>
+            <div class="size smart-list-sortable" data-smart-list-sortby="base_info.apk_size" data-smart-list-sort-type="number">{{= i18n.misc.SIZE }}</div>
         </header>
         <footer class="w-smart-list-footer text-secondary"></footer>
     </div>
@@ -401,13 +401,13 @@
         <span class="icon add"></span>{{= i18n.app.BUTTON_ADD_APP_LABEL }}
     </button>
     <button class="w-icon-btn button-update min">
-        <span class="icon update"></span>{{= i18n.app.BUTTON_UPGRADE_LABEL }}
+        <span class="icon update"></span>{{= i18n.app.UPDATE }}
     </button>
     <button class="w-icon-btn button-uninstall min">
-        <span class="icon delete"></span>{{= i18n.app.BUTTON_UNINSTALL_LABEL }}
+        <span class="icon delete"></span>{{= i18n.app.UNINSTALL }}
     </button>
     <button class="w-icon-btn button-export min">
-        <span class="icon export"></span>{{= i18n.app.BUTTON_EXPORT_LABEL }}
+        <span class="icon export"></span>{{= i18n.misc.EXPORT }}
     </button>
     <div class="split"></div>
     <button class="w-icon-btn button-move-to-sd-card min">
@@ -418,7 +418,7 @@
     </button>
     <div class="split"></div>
     <button class="w-icon-btn button-refresh min">
-        <span class="icon refresh"></span>{{= i18n.common.REFRESH_TEXT }}
+        <span class="icon refresh"></span>{{= i18n.misc.REFRESH }}
     </button>
 </script>
 

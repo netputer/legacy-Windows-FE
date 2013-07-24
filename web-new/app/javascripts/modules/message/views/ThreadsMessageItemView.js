@@ -111,7 +111,7 @@
                 var $button = this.$('.button-toggle');
                 if ($content.hasClass('wc')) {
                     $content.removeClass('wc');
-                    $button.html(i18n.message.FOLD);
+                    $button.html(i18n.misc.COLLAPSE);
                 } else {
                     $content.addClass('wc');
                     $button.html(i18n.message.EXPEND);

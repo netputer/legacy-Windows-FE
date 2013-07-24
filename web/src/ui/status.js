@@ -151,10 +151,10 @@ wonder.addModule('ui/status', function(W) {
     function Progress(opt) {
         this.model = new W.ui.status.Progressbar();
         this.view = new W.ui.status.ProgressbarView(this.model);
-        this.cancelBtn = new W.ui.Button(i18n.common.CANCEL)
-        this.completeBtn = new W.ui.Button(i18n.common.COMPLETE_TEXT);
+        this.cancelBtn = new W.ui.Button(i18n.ui.CANCEL)
+        this.completeBtn = new W.ui.Button(i18n.misc.COMPLETE_TEXT);
         this.interval = null;
-        W.ui.Window.call(this, i18n.common.DIALOG_TIP, '', opt);
+        W.ui.Window.call(this, i18n.ui.TIP, '', opt);
         this.session = null;
         this.setDraggable(false);
         this.setSupportEsc(false);
@@ -189,7 +189,7 @@ wonder.addModule('ui/status', function(W) {
             this.model.setMax(val);
         },
         setCompleteBtnDelay : function(delay) {
-            this.completeBtn.setTitle(i18n.common.COMPLETE_TEXT + '(' + delay + ')');
+            this.completeBtn.setTitle(i18n.misc.COMPLETE_TEXT + '(' + delay + ')');
         },
         setProgress : function(val, max) {
             this.model.setProgress(val);
@@ -249,7 +249,7 @@ wonder.addModule('ui/status', function(W) {
                     this.setText(window.StringUtil.format(successText, data.total));
                 }
             }
-            
+
             this.handlerId = IO.Backend.Device.onmessage({
                 'data.channel' : bindId
             }, this.hander, this);

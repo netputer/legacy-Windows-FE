@@ -58,7 +58,7 @@
                 <div class="button button-delete" title="{{= i18n.misc.DELETE }}"></div>
                 <div class="button button-export" title="{{= i18n.misc.EXPORT }}"></div>
                 <div class="button button-wallpaper" title="{{= i18n.photo.SET_AS_WALLPAPER }}" data-title="{{= i18n.photo.WALLPAPER_SETTING_SUCCESS_TEXT }}"></div>
-                <div class="button button-share" title="{{= i18n.common.SHARE }}"></div>
+                <div class="button button-share" title="{{= i18n.misc.SHARE }}"></div>
             </div>
         </div>
     </div>
@@ -115,7 +115,7 @@
 </script>
 
 <script type="text/x-ui-template" id="photo-sync-switch">
-    <div class="tip">{{= i18n.sync.CLOUD_PHOTO }}</div>
+    <div class="tip">{{= i18n.misc.NAV_PIC_CLOUD }}</div>
     <div class="w-ui-switch-button button-sync">
         <div class="switcher"></div>
     </div>

@@ -249,7 +249,7 @@
                     });
                 } else {
                     $target.addClass('expend').slideDown('fast');
-                    $button.text(i18n.app.COLLAPSE);
+                    $button.text(i18n.misc.COLLAPSE);
                     $arrow.css({
                         '-webkit-transform' : 'rotate(-90deg)'
                     });

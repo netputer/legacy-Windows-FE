@@ -118,7 +118,7 @@
 
                 // load more button
                 this.$('.load-more-ctn').toggle(!RestoreContextModel.get('sanpshotListLoadFinish'));
-                this.$('.button-load-more').text(i18n.common.LOAD_MORE).addClass('link');
+                this.$('.button-load-more').text(i18n.misc.LOAD_MORE).addClass('link');
             },
             listLoaded : function () {
                 if (RestoreContextModel.get('snapshotList').length === 0) {
@@ -168,7 +168,7 @@
                 });
             },
             clickButtonLoadMore : function () {
-                this.$('.button-load-more').text(i18n.common.LOADING).removeClass('link');
+                this.$('.button-load-more').text(i18n.misc.LOADING).removeClass('link');
                 this.setBackupDate();
                 this.listSnapshot();
             },
