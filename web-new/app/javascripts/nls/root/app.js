@@ -119,7 +119,7 @@ define({
     MOVE_TO_DEVICE : '您选择了 {1} 个可移动到手机内存的应用，确定转移吗？',
     UPGRADE_TIP_TEXT : '确定要升级选中的 {1} 个应用？',
 
-    NON_USER_APPS_TEXT : '您还未安装过应用呢',
+    NON_USER_APPS_TEXT : '<div><span>嗯？看起来您的手机什么都没有装哦，</span></br><span>要不要去下几个好玩的游戏？</span></br><button class="primary button-download-game">马上下载游戏</button></div>',
     NON_SYSTEM_APPS_TEXT : '您的手机没有系统应用',
     NON_UPGRADE_APPS_TEXT : '太赞了，所有的应用都是最新的了',
     UPGRADE_TIP : '亲，目前不能为您的手机升级应用，我们正在努力中...',

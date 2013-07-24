@@ -32,6 +32,21 @@
         text-align: center;
         text-shadow: 0 1px 0 #fff;
         top: 10px;
+
+        &.center {
+
+            height: 280px;
+            top: 40%;
+            -webkit-transform: translate3d(0, -50%, 0);
+
+            button {
+                margin-top: 4px;
+            }
+        }
+
+        &.fix-text {
+            font-size: 14px;
+        }
     }
 
     .mask {

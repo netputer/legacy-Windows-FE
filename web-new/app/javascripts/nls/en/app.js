@@ -119,7 +119,7 @@ define({
     MOVE_TO_DEVICE : 'Move {1} apps to internal storage?',
     UPGRADE_TIP_TEXT : 'Update {1} app(s)?',
 
-    NON_USER_APPS_TEXT : 'You haven\'t installed the app',
+    NON_USER_APPS_TEXT : '<div><span>嗯？看起来您的手机什么都没有装哦，</span></br><span>要不要去下几个好玩的游戏？</span></br><button class="primary button-download-game">马上下载游戏</button></div>',
     NON_SYSTEM_APPS_TEXT : 'Your device doesn\'t have any system apps installed',
     NON_UPGRADE_APPS_TEXT : 'All your apps are up-to-date. Yay! ',
     UPGRADE_TIP : 'We currently can\'t update apps for your device, but we\'re working on it...',
