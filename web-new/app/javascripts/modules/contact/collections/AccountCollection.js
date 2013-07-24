@@ -260,7 +260,7 @@
 
         var accountCollection;
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function () {
                 if (!accountCollection) {
                     accountCollection = new AccountCollection();

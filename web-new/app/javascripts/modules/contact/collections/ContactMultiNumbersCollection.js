@@ -71,7 +71,7 @@
 
         var contactMultiNumbersCollection;
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function () {
                 if (!contactMultiNumbersCollection) {
                     contactMultiNumbersCollection = new ContactMultiNumbersCollection();

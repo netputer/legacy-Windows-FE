@@ -52,7 +52,6 @@
 
         var EventsMapping = UIHelper.EventsMapping;
         var KeyMapping = UIHelper.KeyMapping;
-        var MouseState = UIHelper.MouseState;
 
         var CLASS_MAPPING = {
             CONTACT_ADDRESS_INPUT : '.input-contact',

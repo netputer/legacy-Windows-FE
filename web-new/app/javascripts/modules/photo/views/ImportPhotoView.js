@@ -129,7 +129,6 @@
             },
             parsePhotos : function (resp) {
                 var newPhotos = [];
-                var faildText = [];
 
                 _.each(resp.body.image, function (image) {
                     image.id = StringUtil.MD5(image.path);

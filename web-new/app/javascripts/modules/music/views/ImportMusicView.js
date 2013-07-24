@@ -38,7 +38,6 @@
         console.log('ImportMusicView - File loaded.');
 
         var musicList;
-        var footerMonitorView;
 
         var alertWindow;
 
@@ -98,7 +97,6 @@
             },
             parseMusics : function (resp) {
                 var newMusics = [];
-                var faildText = [];
 
                 _.each(resp.body.audio, function (music) {
                     music.id = StringUtil.MD5(music.path);
@@ -174,9 +172,9 @@
                     bodyView.setFooterContent();
                 }, this);
 
-                this.on('button_yes', this.import, this);
+                this.on('button_yes', this.importMusicView, this);
             },
-            import : function () {
+            importMusicView : function () {
                 var paths = [];
                 _.each(musicList.selected, function (id) {
                     var music = bodyView.collection.get(id);

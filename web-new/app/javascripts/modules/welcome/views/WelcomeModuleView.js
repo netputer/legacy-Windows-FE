@@ -74,7 +74,7 @@
                 return welcomeModuleView;
             },
             preload : function () {
-
+                return;
             }
         });
 

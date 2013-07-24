@@ -42,8 +42,6 @@
         var RestoreRemoteListSnapshotBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('restore', 'choose-restore-date')),
             className : 'w-restore-choose-date',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -144,7 +142,6 @@
             readSnapshotInfo : function (formattedList) {
                 _.each(formattedList, function (item) {
                     var version = item.version;
-                    var udid = item.udid;
                     var info = RestoreContextModel.get('snapshotInfoDict')[version];
                     if (info === undefined) {
                         this.readSinlgeFileInfo(version, item.udid);

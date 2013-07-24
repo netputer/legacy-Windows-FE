@@ -260,14 +260,14 @@
                 this.setButtonState();
             },
             setButtonState : function () {
-
                 var readOnlyContactInSelected = (function () {
                     var flag = false;
                     var selected = contactList.currentModels;
 
                     var i;
+                    var contact;
                     for (i = selected.length; i--; undefined) {
-                        var contact = contactsCollection.get(selected[i]);
+                        contact = contactsCollection.get(selected[i]);
                         if (contact) {
                             flag = contact.get('read_only');
 

@@ -40,8 +40,6 @@
         var RestoreChooseFileBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('restore', 'choose-restore-file')),
             className : 'w-restore-choose-file',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({
                     list : RestoreContextModel.FileList

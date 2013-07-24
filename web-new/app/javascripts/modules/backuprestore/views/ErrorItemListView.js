@@ -117,8 +117,6 @@
             typeName : '',
             errorNumber : 0,
             isAllFailed : false,
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({
                     type_name : this.typeName,
@@ -135,13 +133,17 @@
                 return this;
             },
             resetContent : function () {
+                return;
             },
             selectItemInfoByType : function (spec, type) {
                 var i;
+                var item;
                 for (i in spec.item) {
-                    var item = spec.item[i];
-                    if (item.type === type) {
-                        return item;
+                    if (spec.item.hasOwnProperty(i)) {
+                        item = spec.item[i];
+                        if (item.type === type) {
+                            return item;
+                        }
                     }
                 }
                 return null;

@@ -39,8 +39,6 @@
             template : doT.template(TemplateFactory.get('backup', 'choose-backup-location')),
             className : 'w-backup-choose-location',
             invalidPattern : '[/\\\\:?*"<>|]',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 

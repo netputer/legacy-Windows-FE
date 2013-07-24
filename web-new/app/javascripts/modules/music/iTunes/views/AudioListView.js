@@ -105,7 +105,6 @@
                     }.bind(this);
                 } else {
                     changeHandler = function (ids) {
-                        var tracks_count = ids.length;
                         var size = 0;
 
                         _.each(ids, function (id) {
@@ -265,8 +264,6 @@
             clickButtonNext : function () {
                 var data;
                 if (type === CONFIG.enums.ITUNES_IMPORT_PLAYLIST) {
-                    var selectedPlaylistIds = [];
-
                     data = {
                         iTunesIds   : [],
                         playlistIds : this.ids,

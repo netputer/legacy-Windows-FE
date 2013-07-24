@@ -17,7 +17,7 @@
     ) {
         console.log('iTunesService - File loaded. ');
 
-        var ITunesService = _.extend(function () {}, Backbone.Events);
+        var ITunesService = _.extend({}, Backbone.Events);
 
         ITunesService.checkiTunesAsync = function () {
             var deferred = $.Deferred();

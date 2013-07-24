@@ -59,7 +59,9 @@ require.config({
     if (QueryString.get('debug') !== 'true') {
         var originalConsole = window.console;
 
-        var emptFunc = function () {};
+        var emptFunc = function () {
+            return;
+        };
 
         window.console = {
             debug : emptFunc,
@@ -97,6 +99,4 @@ require.config({
 
 require([
     'photo/PhotoModule'
-], function (
-    PhotoModule
-) {});
+]);

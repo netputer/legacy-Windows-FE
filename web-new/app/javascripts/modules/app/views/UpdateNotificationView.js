@@ -186,7 +186,7 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function (args) {
                 return new UpdateNotificationView(args);
             }

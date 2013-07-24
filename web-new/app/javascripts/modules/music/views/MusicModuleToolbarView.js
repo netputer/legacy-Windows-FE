@@ -39,7 +39,6 @@
 
         var musicsListView;
         var musicsCollection;
-        var settingButton;
 
         var MusicModuleToolbarView = Toolbar.extend({
             template : doT.template(TemplateFactory.get('music', 'toolbar')),

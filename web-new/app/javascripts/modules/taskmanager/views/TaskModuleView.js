@@ -26,7 +26,6 @@
         console.log('TaskModuleView - File loaded.');
 
         var taskListView;
-        var tasksCollection;
 
         var TaskModuleView = Backbone.View.extend({
             className : 'w-task-module-main module-main vbox',
@@ -52,8 +51,6 @@
                         }
                     }
                 });
-
-                tasksCollection = TasksCollection.getInstance();
 
                 Backbone.on('switchModule', function (data) {
                     if (data.module !== 'task') {

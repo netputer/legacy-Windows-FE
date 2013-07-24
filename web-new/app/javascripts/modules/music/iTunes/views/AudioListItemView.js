@@ -9,8 +9,7 @@
         'ui/BaseListItem',
         'ui/AlertWindow',
         'ui/UIHelper',
-        'Internationalization',
-        'music/iTunes/collections/iTunesCollection'
+        'Internationalization'
     ], function (
         Backbone,
         _,
@@ -20,13 +19,10 @@
         BaseListItem,
         AlertWindow,
         UIHelper,
-        i18n,
-        iTunesCollection
+        i18n
     ) {
 
         console.log('AudioListItem - File loaded');
-
-        var itunesCollection;
 
         var AudioListItemView = BaseListItem.extend({
             template : doT.template(TemplateFactory.get('iTunes', 'itunes-audio-list-item')),
@@ -34,14 +30,12 @@
             className : 'itunes-audio-list-item hbox',
             initialize : function () {
                 AudioListItemView.__super__.initialize.apply(this, arguments);
-                itunesCollection = iTunesCollection.getInstance();
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             },
             remove : function () {
-                itunesCollection = undefined;
                 AudioListItemView.__super__.remove.call(this, arguments);
             }
         });

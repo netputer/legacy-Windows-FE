@@ -21,7 +21,7 @@
 
         var history = window.history;
 
-        var WindowController = function () {};
+        var WindowController = {};
 
         WindowController.blockWindowAsync = function () {
             var deferred = $.Deferred();

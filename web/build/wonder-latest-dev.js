@@ -2203,9 +2203,9 @@ wonder.addModule('SelectDelegate', function(W) {
                 }
 
             } else if($.isArray(item)){
-                
+
                     if(!self.selectedItems.length){
-                        self.setSelectedItems(item); 
+                        self.setSelectedItems(item);
                     }else{
                         _.each(item, function(newItem){
                             if(self.selectedItems.indexOf(newItem) === -1){
@@ -2213,7 +2213,7 @@ wonder.addModule('SelectDelegate', function(W) {
                             }
                         });
                     }
-            
+
                 this.trigger('add', item);
                 return;
             } else {

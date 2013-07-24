@@ -26,7 +26,7 @@
         var alert = window.alert;
         var confirm = window.confirm;
 
-        var ContactService = _.extend(function () {}, Backbone.Events);
+        var ContactService = _.extend({}, Backbone.Events);
 
         ContactService.deleteContactsAsync = function (ids) {
             var deferred = $.Deferred();

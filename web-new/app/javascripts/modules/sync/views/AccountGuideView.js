@@ -38,8 +38,6 @@
             template : doT.template(TemplateFactory.get('sync', 'account-guide-body')),
             className : 'w-sync-account-guide-body',
             currentPage : 0,
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 

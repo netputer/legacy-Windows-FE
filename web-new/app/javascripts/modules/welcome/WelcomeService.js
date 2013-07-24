@@ -29,7 +29,7 @@
     ) {
         console.log('WelcomeService - File loaded.');
 
-        var WelcomeService = _.extend(function () {}, Backbone.Events);
+        var WelcomeService = _.extend({}, Backbone.Events);
 
         WelcomeService.openAutobackupFileAsync = function () {
             var deferred = $.Deferred();
