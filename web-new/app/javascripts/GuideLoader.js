@@ -2,7 +2,7 @@
 require.config({
     paths : {
         jquery : '../bower_components/jquery/jquery',
-        doT : '../bower_components/dot/doT',
+        doT : '../bower_components/doT/doT',
         underscore : '../bower_components/underscore/underscore',
         backbone : '../bower_components/backbone/backbone',
         text : '../bower_components/requirejs-text/text',
