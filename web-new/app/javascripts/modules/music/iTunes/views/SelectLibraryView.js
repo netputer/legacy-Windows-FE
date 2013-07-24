@@ -15,12 +15,12 @@
         Panel,
         TemplateFactory,
         FormatDate,
-        Internationalization
+        i18n
     ) {
         console.log('selectLibraryView file loaded');
 
-        var localeText = Internationalization.music;
-        var commonText = Internationalization.common;
+        var localeText = i18n.music;
+        var commonText = i18n.common;
 
         var SelectLibraryView = Panel.extend({
             className : Panel.prototype.className + ' w-iTunes-select-library-panel',
