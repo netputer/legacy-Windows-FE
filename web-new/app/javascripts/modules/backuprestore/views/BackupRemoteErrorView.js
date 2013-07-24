@@ -1,4 +1,4 @@
-/*global define, console*/
+/*global define*/
 (function (window) {
     define([
         'backbone',
@@ -34,8 +34,6 @@
         var BackupRemoteErrorBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'backup-remote-error-view')),
             className : 'w-backup-remote-error-view',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -50,15 +48,22 @@
 
                 // show details
                 var i;
+                var current;
+                var failedNum;
+                var brType;
+                var detail;
+                var $item;
                 for (i in result) {
-                    var current = result[i];
-                    var failedNum = current.total - current.success;
-                    if (failedNum > 0) {
-                        var brType = BackupRestoreService.GetBRTypeBy30x0x(current.data_type);
-                        var detail = StringUtil.format(i18n.backup_restore.BACKUP_TO_CLOUD_FAILED_DETAIL,
-                                                       failedNum, i18n.backup_restore.BR_TYPE_WORD_ENUM[brType]);
-                        var $item = $('<div>').html(detail).addClass('text-secondary detail');
-                        this.$('.content').append($item);
+                    if (result.hasOwnProperty(i)) {
+                        current = result[i];
+                        failedNum = current.total - current.success;
+                        if (failedNum > 0) {
+                            brType = BackupRestoreService.GetBRTypeBy30x0x(current.data_type);
+                            detail = StringUtil.format(i18n.backup_restore.BACKUP_TO_CLOUD_FAILED_DETAIL,
+                                                           failedNum, i18n.backup_restore.BR_TYPE_WORD_ENUM[brType]);
+                            $item = $('<div>').html(detail).addClass('text-secondary detail');
+                            this.$('.content').append($item);
+                        }
                     }
                 }
             }

@@ -214,7 +214,7 @@
                     webAppsCollection.remove(originalApp);
                     webAppsCollection.trigger('refresh', webAppsCollection);
                 }.bind(this)).fail(function () {
-                    if (originalApp.id === id) {
+                    if (originalApp.id === this.model.id) {
                         var $button = this.$('.button-hide');
                         $button.html(i18n.app.WEB_APPS_HIDE_FAILED_TEXT).removeClass('link button-hide').addClass('text-warning failed-text');
 

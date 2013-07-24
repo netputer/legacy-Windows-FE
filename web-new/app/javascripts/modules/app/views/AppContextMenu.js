@@ -36,7 +36,6 @@
         console.log('AppContextMenu - File loaded. ');
 
         var confirm = window.confirm;
-        var alert = window.alert;
 
         var appsCollection;
 
