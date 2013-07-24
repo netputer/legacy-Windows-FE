@@ -242,7 +242,7 @@
                 IO.requestAsync({
                     url : CONFIG.actions.MUSIC_SET_RINGTONE,
                     data : {
-                        photo_path : this.get('detail')
+                        phone_path : this.get('detail')
                     },
                     success : function (resp) {
                         if (resp.state_code === 200) {
@@ -263,7 +263,7 @@
                 IO.requestAsync({
                     url : CONFIG.actions.PHOTO_SET_WALLPAPER,
                     data : {
-                        photo_path : this.get('detail')
+                        phone_path : this.get('detail')
                     },
                     success : function (resp) {
                         if (resp.state_code === 200) {
