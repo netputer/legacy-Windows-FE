@@ -64,5 +64,7 @@ define({
     MOUNT_CANNOT_CREATE_PLAYLIST : '成功导入播放列表内的音乐, 但是无法在手机上创建播放列表, 因为您的手机 SD 卡被加载为「大容量存储设备」。',
     ALREADY_SELECT : '已选',
     SELECT_TIP : '{1} 个列表, 共 {2} 首歌曲, 所占空间 {3}',
-    CONFIRM_IMPORT : '您选择导入{1} 的音乐到手机, 一次导入大量的音乐可能会导致豌豆荚的运行缓慢, 此操作预计耗时{2}。<br/> 确定要导入吗?'
+    CONFIRM_IMPORT : '您选择导入{1} 的音乐到手机, 一次导入大量的音乐可能会导致豌豆荚的运行缓慢, 此操作预计耗时{2}。<br/> 确定要导入吗?',
+
+    MUSIC_EMPTY_TEXT_WANXIAODOU : '<div><span>哦？您的歌曲库一首歌都没有，</span></br><span>去下几首好听的歌曲吧？</span></br><button class="primary button-download-music grand">马上下载歌曲</button></div>'
 });

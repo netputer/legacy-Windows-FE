@@ -363,10 +363,8 @@
             getInstance : function () {
                 if (!appsCollection) {
                     appsCollection = new AppsCollection();
-                    appsCollection.trigger('update');
 
                     var pimCollection = PIMCollection.getInstance();
-
                     appsCollection.on('refresh', function (appsCollection) {
                         pimCollection.get(12).set({
                             count : appsCollection.getNormalApps().length
@@ -386,6 +384,8 @@
                             count : updatableCount
                         });
                     });
+
+                    appsCollection.trigger('update');
                 }
                 return appsCollection;
             },

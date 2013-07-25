@@ -12,7 +12,10 @@
         'ui/WindowState',
         'ui/MouseState',
         'Device',
-        'photo/views/PhotoThreadView'
+        'photo/views/PhotoThreadView',
+        'browser/views/BrowserModuleView',
+        'IO',
+        'Log'
     ], function (
         _,
         Backbone,
@@ -25,7 +28,10 @@
         WindowState,
         MouseState,
         Device,
-        PhotoThreadView
+        PhotoThreadView,
+        BrowserModuleView,
+        IO,
+        log
     ) {
         console.log('PhotoListView -File loaded. ');
 
@@ -126,6 +132,16 @@
                 }
 
                 if (toggle) {
+
+                    switch (this.collection.data.photo_type) {
+                    case CONFIG.enums.PHOTO_LIBRARY_TYPE:
+                    case CONFIG.enums.PHOTO_PHONE_TYPE:
+                        this.$('.empty-tip').addClass('center fix-text');
+                        break;
+                    default:
+                        this.$('.empty-tip').removeClass('center fix-text');
+                    }
+
                     if (Device.get('isConnected') && !Device.get('hasSDCard') && !Device.get('hasEmulatedSD')) {
                         this.$('.empty-tip').html(i18n.misc.NO_SD_CARD_TIP_TEXT);
                     } else {
@@ -192,9 +208,21 @@
             getEmptyTip : function (type) {
                 switch (type) {
                 case CONFIG.enums.PHOTO_PHONE_TYPE:
-                    return i18n.photo.EMPTY_PHONE_LIST;
+
+                    log({
+                        'event' : 'ui.show.wanxiaodou',
+                        'type' : 'phone_photo'
+                    });
+
+                    return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.EMPTY_PHONE_LIST;
                 case CONFIG.enums.PHOTO_LIBRARY_TYPE:
-                    return i18n.photo.EMPTY_LIBRARY_LIST;
+
+                    log({
+                        'event' : 'ui.show.wanxiaodou',
+                        'type' : 'library_photo'
+                    });
+
+                    return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.EMPTY_LIBRARY_LIST;
                 case CONFIG.enums.PHOTO_CLOUD_TYPE:
                     return i18n.photo.EMPTY_CLOUD_LIST;
                 default:
@@ -213,7 +241,6 @@
                 this.loading = this.collection.loading || this.collection.syncing;
                 this.listenTo(WindowState, 'resize', this.renderThread);
 
-                this.$('.empty-tip').html(this.getEmptyTip(this.collection.data.type));
                 return this;
             },
             startDraw : function () {
@@ -276,8 +303,18 @@
             clickButtonLogin :  function () {
                 Account.loginAsync('', 'cloud-photo');
             },
+            clickButtonDownload : function () {
+
+                log({
+                    'event' : 'ui.click.wanxiaodou_download',
+                    'type' : 'library_photo'
+                });
+
+                IO.sendCustomEventsAsync(CONFIG.events.WEB_NAVIGATE, {type: CONFIG.enums.NAVIGATE_TYPE_GALLERY, id: 256});
+            },
             events : {
                 'click .button-login' : 'clickButtonLogin',
+                'click .button-download-pic' : 'clickButtonDownload',
                 'mousedown' : 'startDraw'
             }
         });

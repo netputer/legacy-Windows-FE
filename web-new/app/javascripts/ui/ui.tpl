@@ -60,7 +60,9 @@
     <div class="w-ui-smartlist-scroll-ctn">
         <div class="w-ui-smartlist-scroll-substitution"></div>
     </div>
-    <div class="empty-tip w-layout-hide text-secondary"></div>
+    <div class="empty-tip w-layout-hide">
+        <div class="text-tip text-secondary"></div>
+    </div>
     {{= TemplateFactory.get('ui', 'loading') }}
 </script>
 

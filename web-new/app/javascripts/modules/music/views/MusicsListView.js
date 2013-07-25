@@ -10,7 +10,9 @@
         'Internationalization',
         'music/collections/MusicsCollection',
         'music/views/MusicItemView',
-        'music/views/MusicContextMenu'
+        'music/views/MusicContextMenu',
+        'browser/views/BrowserModuleView',
+        'Log'
     ], function (
         Backbone,
         _,
@@ -21,7 +23,10 @@
         i18n,
         MusicsCollection,
         MusicItemView,
-        MusicContextMenu
+        MusicContextMenu,
+        BrowserModuleView,
+        log
+
     ) {
         console.log('MusicsListView - File loaded. ');
 
@@ -52,9 +57,16 @@
                 Device.on('change:hasSDCard', function (Device, hasSDCard) {
                     if (musicsList !== undefined) {
                         if (!hasSDCard) {
+                            musicsList.showWanXiaoDou = false;
                             musicsList.emptyTip = i18n.misc.NO_SD_CARD_TIP_TEXT;
                         } else {
-                            musicsList.emptyTip = i18n.music.MUSIC_EMPTY_TEXT;
+                            musicsList.showWanXiaoDou = true;
+                            musicsList.emptyTip = i18n.music.MUSIC_EMPTY_TEXT_WANXIAODOU;
+
+                            log({
+                                'event' : 'ui.show.wanxiaodou',
+                                'type' : 'music'
+                            });
                         }
                     }
                 });
@@ -85,9 +97,16 @@
                     musicsList.on('contextMenu', this.showContextMenu, this);
 
                     if (!Device.get('hasSDCard')) {
+                        musicsList.showWanXiaoDou = false;
                         musicsList.emptyTip = i18n.misc.NO_SD_CARD_TIP_TEXT;
                     } else {
-                        musicsList.emptyTip = i18n.music.MUSIC_EMPTY_TEXT;
+                        musicsList.showWanXiaoDou = true;
+                        musicsList.emptyTip = i18n.music.MUSIC_EMPTY_TEXT_WANXIAODOU;
+
+                        log({
+                            'event' : 'ui.show.wanxiaodou',
+                            'type' : 'music'
+                        });
                     }
 
                     this.listenTo(musicsList, 'switchSet', this.toggleEmptyTip);
@@ -117,6 +136,17 @@
 
                 this.buildList();
                 return this;
+            },
+            clickButtonDownload: function () {
+                BrowserModuleView.navigateToThirdParty(255);
+
+                log({
+                    'event' : 'ui.click.wanxiaodou_download',
+                    'type' : 'music'
+                });
+            },
+            events : {
+                'click .button-download-music' : 'clickButtonDownload'
             }
         });
 
