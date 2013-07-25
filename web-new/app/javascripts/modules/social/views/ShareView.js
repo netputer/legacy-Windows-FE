@@ -442,11 +442,6 @@
                             'sns' : 'weibo'
                         });
                         shareView.close();
-                    }).on('button_cancel', function () {
-                        log({
-                            'event' : 'social.share_' + this.type + '.cancel',
-                            'sns' : 'weibo'
-                        });
                     });
 
                     shareView.on(UIHelper.EventsMapping.BUTTON_CANCEL, function () {
