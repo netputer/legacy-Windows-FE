@@ -27,8 +27,6 @@ define({
     NAME : 'Name',
     CELL_PHONE : 'Mobile',
     EMAIL : 'Email',
-    SAVE : 'Save',
-    DONTSAVE : 'Don\'t save',
     SAVE_SUCCESS : 'Saved',
     SAVE_FAILED : 'Failed to save',
 
@@ -146,6 +144,8 @@ define({
 
     EDIT_CONTACT_HEAD : 'Edit profile picture',
     EDIT_CONTACT_HEAD_SELECT_SOURCE : 'Select file: ',
+    EDIT_CONTACT_HEAD_SOURCE_BY_PHONE : 'My Photos',
+    EDIT_CONTACT_HEAD_SOURCE_BY_LIBRARY : 'Photo Library',
     EDIT_CONTACT_HEAD_PC_SOURCE : 'Select file',
     EDIT_CONTACT_HEAD_DEL_TEXT : 'Delete profile picture',
     ALERT_DEL_CONTACT_HEAD : 'Delete profile picture?',

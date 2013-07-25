@@ -21,7 +21,7 @@ wonder.addModule('contact/avatarEditor', function (W) {
         _data : {},
         _addComponent : function () {
             var self = this;
-            self.okBtn = new W.ui.Button (i18n.misc.SAVE_TEXT);
+            self.okBtn = new W.ui.Button (i18n.misc.SAVE);
             self.cancelBtn = new W.ui.Button (i18n.ui.CANCEL);
             self.returnBtn = new W.ui.Button (i18n.misc.RESELECT_FILE_TEXT);
             self.picFormatTip = $('<span/>').text(i18n.contact.ALERT_PIC_FORMAT_TIP).addClass('w-contact-pic-format-tip');
@@ -243,11 +243,11 @@ wonder.addModule('contact/avatarEditor', function (W) {
                 if (value == W.photo.PhotoCollection.type.PHONE) {
                     self.phonePhotosEl.show();
                     self.libraryPhotosEl.hide();
-                    this.setTitle(i18n.contact.EDIT_CONTACT_HEAD_SOURCE_BY_PHONE);
+                    this.setTitle(i18n.misc.NAV_PIC_PHONE_LIB);
                 } else if (value == W.photo.PhotoCollection.type.LIBRARY) {
                     self.phonePhotosEl.hide();
                     self.libraryPhotosEl.show();
-                    this.setTitle(i18n.contact.EDIT_CONTACT_HEAD_SOURCE_BY_LIBRARY);
+                    this.setTitle(i18n.misc.NAV_PIC_GALLERY);
                 }
 
                 self.refreshPhotosList();
