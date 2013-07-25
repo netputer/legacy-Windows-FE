@@ -5,7 +5,7 @@
         'jquery',
         'ui/UIHelper',
         'Internationalization',
-        'TemplateFactory',
+        'ui/TemplateFactory',
         'doT'
     ], function (_, $, UIHelper, i18n, TemplateFactory, doT) {
 
