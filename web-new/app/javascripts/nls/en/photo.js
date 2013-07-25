@@ -17,7 +17,7 @@ define({
     DELETE_PROGRESS_TEXT : 'Deleting pictures, please wait...',
     DELETE_SUCCESS_TEXT : 'Deleted {1} picture(s)',
     EMPTY_PHONE_LIST : '<span>好像您的手机上还没有照片哦，</span></br><span>要不先去手机上拍几张照片？</span>',
-    EMPTY_LIBRARY_LIST : '<span>好像您手机上还没有图片哦，</span></br><span>要不去下几张好看的壁纸吧？</span></br><button class="button-download-pic primary">马上下载壁纸</button>',
+    EMPTY_LIBRARY_LIST : '<span>好像您手机上还没有图片哦，</span></br><span>要不去下几张好看的壁纸吧？</span></br><button class="button-download-pic primary grand">马上下载壁纸</button>',
     EMPTY_CLOUD_LIST : 'No photos in your cloud album yet',
     EXPORT_FAILED_TEXT : 'Export failed',
     SLIDES_STOP_TEXT : 'Pause',

@@ -54,5 +54,5 @@ define({
     SELECT_TIP : '{1} playlist(s) and {2} song(s) selected, with a total size of {3}.',
     CONFIRM_IMPORT : 'You\'ve selected to import {1} of music to your device. Importing that much music at once will take an estimated {2} . <br/>Do you want to continue?',
 
-    MUSIC_EMPTY_TEXT_WANXIAODOU : '<div><span>哦？您的歌曲库一首歌都没有，</span></br><span>去下几首好听的歌曲吧？</span></br><button class="primary button-download-music">马上下载歌曲</button></div>'
+    MUSIC_EMPTY_TEXT_WANXIAODOU : '<div><span>哦？您的歌曲库一首歌都没有，</span></br><span>去下几首好听的歌曲吧？</span></br><button class="primary button-download-music grand">马上下载歌曲</button></div>'
 });
