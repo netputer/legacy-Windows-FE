@@ -182,7 +182,7 @@
                     success : function () {
 
                         WindowController.releaseWindowAsync();
-                        alert(i18n.misc.CANCEL_EXPORT_TEXT);
+                        alert(i18n.ui.CANCEL_EXPORT_TEXT);
                         this.trigger('_CANCEL');
                         IO.Backend.Device.offmessage(progressHandler);
                     }.bind(this)

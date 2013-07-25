@@ -289,14 +289,14 @@
                         var alertWindow = new AlertWindow({
                             draggable : true,
                             buttons : [{
-                                $button : $('<button>').html(i18n.contact.SAVE).addClass('primary'),
+                                $button : $('<button>').html(i18n.misc.SAVE).addClass('primary'),
                                 eventName : 'button_yes'
                             }, {
-                                $button : $('<button>').html(i18n.contact.DONTSAVE),
+                                $button : $('<button>').html(i18n.misc.DONTSAVE),
                                 eventName : 'button_no'
                             }],
                             title : i18n.ui.TIP,
-                            $bodyContent : i18n.contact.SAVE_TIP_TEXT
+                            $bodyContent : i18n.misc.SAVE_TIP_TEXT
                         });
                         alertWindow.on('button_no', this.clickButtonCancel, this);
 

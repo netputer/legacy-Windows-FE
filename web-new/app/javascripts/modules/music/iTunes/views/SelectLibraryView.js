@@ -29,7 +29,7 @@
                     $button : $('<button/>').addClass('primary').html(i18n.ui.NEXT),
                     eventName : 'NEXT_STEP'
                 }, {
-                    $button : $('<button/>').html(i18n.misc.CANCEL),
+                    $button : $('<button/>').html(i18n.ui.CANCEL),
                     eventName : 'CANCEL'
                 }];
 

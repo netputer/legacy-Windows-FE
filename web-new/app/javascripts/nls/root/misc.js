@@ -213,5 +213,8 @@ define({
     CLOUD_BACKUP_OPEN : '开启云备份',
     ACCOUNT : '账号',
     NICKNAME : '昵称',
-    CLOUD_PHOTO_OPEN : '开启云相册同步'
+    CLOUD_PHOTO_OPEN : '开启云相册同步',
+    RESELECT_FILE_TEXT : '重新选择文件',
+    SAVE : '保存',
+    DONTSAVE : '不保存'
 });

@@ -213,5 +213,8 @@ define({
     CLOUD_BACKUP_OPEN : 'Turn on cloud backup',
     ACCOUNT : 'Account',
     NICKNAME : 'Nickname',
-    CLOUD_PHOTO_OPEN : '开启云相册同步'
+    CLOUD_PHOTO_OPEN : '开启云相册同步',
+    RESELECT_FILE_TEXT : 'Re-select file',
+    SAVE : 'Save',
+    DONTSAVE : 'Don\'t save'
 });

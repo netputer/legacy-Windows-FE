@@ -27,8 +27,6 @@ define({
     NAME : '姓名',
     CELL_PHONE : '移动电话',
     EMAIL : '电子邮箱',
-    SAVE : '保存',
-    DONTSAVE : '不保存',
     SAVE_SUCCESS : '保存成功',
     SAVE_FAILED : '保存失败',
 
@@ -146,6 +144,8 @@ define({
 
     EDIT_CONTACT_HEAD : '编辑联系人头像',
     EDIT_CONTACT_HEAD_SELECT_SOURCE : '选择文件来源：',
+    EDIT_CONTACT_HEAD_SOURCE_BY_PHONE : '手机相册',
+    EDIT_CONTACT_HEAD_SOURCE_BY_LIBRARY : '图片库',
     EDIT_CONTACT_HEAD_PC_SOURCE : '从电脑上选择文件',
     EDIT_CONTACT_HEAD_DEL_TEXT : '删除当前头像',
     ALERT_DEL_CONTACT_HEAD : '确定删除当前联系人头像？',

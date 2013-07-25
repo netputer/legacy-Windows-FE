@@ -227,7 +227,7 @@
         <div class="category-selector"></div>
     </div>
     <div class="btn-ctn">
-        <button class="button-save primary">{{= i18n.contact.SAVE }}</button>
+        <button class="button-save primary">{{= i18n.misc.SAVE }}</button>
         <button class="button-cancel">{{= i18n.ui.CANCEL }}</button>
     </div>
 </script>
@@ -410,7 +410,7 @@
         </dl>
     </form>
     <div class="btn-ctn hbox">
-        <button type="button" class="button-save primary">{{= i18n.contact.SAVE }}</button>
+        <button type="button" class="button-save primary">{{= i18n.misc.SAVE }}</button>
         <div class="running">
         <div class="w-ui-loading-small" style="display: block; ">
             <div class="anima">

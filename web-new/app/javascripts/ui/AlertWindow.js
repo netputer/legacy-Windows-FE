@@ -77,12 +77,12 @@
             width : 360
         });
 
-        var confirm = function (content, yesCallback, cancleCallback, context) {
+        var confirm = function (content, yesCallback, cancelCallback, context) {
             confirmWindow.$bodyContent = content;
 
-            if (typeof cancleCallback !== 'function') {
-                context = cancleCallback;
-                cancleCallback = undefined;
+            if (typeof cancelCallback !== 'function') {
+                context = cancelCallback;
+                cancelCallback = undefined;
             }
 
             var yesHandler = function () {
@@ -90,18 +90,18 @@
                     yesCallback.call(context || window);
                 }
             };
-            var cancleHandler = function () {
-                if (cancleCallback !== undefined) {
-                    cancleCallback.call(context || window);
+            var cancelHandler = function () {
+                if (cancelCallback !== undefined) {
+                    cancelCallback.call(context || window);
                 }
             };
 
             confirmWindow.on(UIHelper.EventsMapping.BUTTON_YES, yesHandler);
-            confirmWindow.on(UIHelper.EventsMapping.BUTTON_CANCEL, cancleHandler);
+            confirmWindow.on(UIHelper.EventsMapping.BUTTON_CANCEL, cancelHandler);
 
             var removeHandler = function () {
                 confirmWindow.off(UIHelper.EventsMapping.BUTTON_YES, yesHandler);
-                confirmWindow.off(UIHelper.EventsMapping.BUTTON_CANCEL, cancleHandler);
+                confirmWindow.off(UIHelper.EventsMapping.BUTTON_CANCEL, cancelHandler);
                 confirmWindow.off(UIHelper.EventsMapping.REMOVE, removeHandler);
             };
 

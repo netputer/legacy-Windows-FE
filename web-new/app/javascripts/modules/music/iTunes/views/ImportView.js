@@ -128,7 +128,7 @@
             updatePanelTitleAndBtn : function (isImportFinish) {
                 if (isImportFinish) {
                     this.$('h3').html(localeText.IMPORT_COMPLETE);
-                    this.$('.import').removeClass('cancel').addClass('primary complete').html(i18n.ui.OK);
+                    this.$('.import').removeClass('cancel').addClass('primary complete').html(i18n.ui.CONFIRM);
                 } else {
                     this.$('h3').html(localeText.IMPORTING_TITLE);
                     this.$('.import').removeClass('complete').addClass('cancel').removeClass('primary').html(i18n.ui.CANCEL);
