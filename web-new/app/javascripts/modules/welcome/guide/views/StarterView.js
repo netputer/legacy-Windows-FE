@@ -76,7 +76,7 @@
                 } else {
                     setTimeout(function () {
                         this.queryResults = queryResponse;
-                        deferred.resolve()
+                        deferred.resolve();
                     }.bind(this));
                 }
 
@@ -159,7 +159,7 @@
             clickButtonInstall : function (evt) {
                 var $target = $(evt.currentTarget);
                 var model = new Backbone.Model({
-                    source : 'starter',
+                    source : 'starter-' + this.options.type,
                     downloadUrl : decodeURIComponent($target.data('url')),
                     title : $target.data('name'),
                     iconPath : $target.data('icon')
@@ -192,7 +192,7 @@
                     };
                 }, this);
 
-                TaskService.batchDownloadAsync(apps, 'starter-one-key-install');
+                TaskService.batchDownloadAsync(apps, 'starter-one-key-install-' + this.options.type);
 
                 this.trigger('next');
 
