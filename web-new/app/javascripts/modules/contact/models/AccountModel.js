@@ -26,6 +26,9 @@
         };
 
         var AccountModel = Backbone.Model.extend({
+            defaults : {
+                group : []
+            },
             initialize : function () {
                 var account = this.get('account');
                 this.set(account);
