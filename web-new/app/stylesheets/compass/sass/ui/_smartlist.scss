@@ -73,6 +73,19 @@
         right: 0;
         text-align: center;
         top: 10px;
+
+        &.center {
+            top: 40%;
+            -webkit-transform: translate3d(0, -50%, 0);
+        }
+
+        &.fix-text {
+            font-size: 14px;
+
+            button {
+                margin-top : 4px;
+            }
+        }
     }
 }
 

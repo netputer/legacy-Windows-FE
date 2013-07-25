@@ -370,15 +370,15 @@
             getInstance : function () {
                 if (!conversationsCollection) {
                     conversationsCollection = new ConversationsCollection();
-                    conversationsCollection.trigger('update');
 
                     var pimCollection = PIMCollection.getInstance();
-
                     conversationsCollection.on('refresh', function (conversationsCollection) {
                         pimCollection.get(2).set({
                             count : conversationsCollection.unreadCount
                         });
                     });
+
+                    conversationsCollection.trigger('update');
                 }
                 return conversationsCollection;
             }

@@ -10,7 +10,7 @@
         'ui/SmartList',
         'ui/behavior/ButtonSetMixin',
         'utilities/StringUtil',
-        'IOBackendDevice',
+        'Internationalization',
         'Device',
         'music/MusicService',
         'music/models/MusicModel',
