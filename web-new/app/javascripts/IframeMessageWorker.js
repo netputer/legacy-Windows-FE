@@ -21,10 +21,10 @@
             });
         };
 
-        IframeMessageWorker.confirm = function (message, yesCallback, cancleCallback, context) {
+        IframeMessageWorker.confirm = function (message, yesCallback, cancelCallback, context) {
 
-            if (typeof cancleCallback !== 'function') {
-                context = cancleCallback || window;
+            if (typeof cancelCallback !== 'function') {
+                context = cancelCallback || window;
             }
 
             var yesHandler = function () {
@@ -33,9 +33,9 @@
                 }
             };
 
-            var cancleHandler = function () {
-                if (cancleCallback !== undefined && typeof cancleCallback === 'function') {
-                    cancleCallback.call(context || window);
+            var cancelHandler = function () {
+                if (cancelCallback !== undefined && typeof cancelCallback === 'function') {
+                    cancelCallback.call(context || window);
                 }
             };
 
@@ -51,7 +51,7 @@
                 if (data.action === 'yes') {
                     yesHandler.call(this);
                 } else {
-                    cancleHandler.call(this);
+                    cancelHandler.call(this);
                 }
                 IO.Backend.Device.offmessage(handler);
             });

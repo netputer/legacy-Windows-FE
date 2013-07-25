@@ -63,7 +63,7 @@
                     var tip = StringUtil.format(i18n.music.CONFIRM_IMPORT, capacity, time);
                     var buttons = [
                         {
-                            $button : $('<button/>').addClass('primary').html(i18n.ui.OK),
+                            $button : $('<button/>').addClass('primary').html(i18n.ui.CONFIRM),
                             eventName : 'OK'
                         },
                         {
