@@ -59,7 +59,7 @@ wonder.addModule('video', function (W) {
 
             var mainBtn = new W.ui.ImageButton (locale.ADD_LOCAL_VIDEO_TEXT);
             var delBtn = new W.ui.ImageButton (i18n.misc.DELETE);
-            var expBtn = new W.ui.ImageButton (i18n.misc.EXPORT_TEXT);
+            var expBtn = new W.ui.ImageButton (i18n.misc.EXPORT);
             var refreshBtn = new W.ui.ImageButton (i18n.misc.REFRESH);
             checkboxDelegate = new W.ui.SelectDelegate ();
 
