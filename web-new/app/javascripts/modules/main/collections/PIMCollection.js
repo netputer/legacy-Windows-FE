@@ -39,7 +39,7 @@
             tab : 'all',
             id : 2,
             root : true,
-            count : -1,
+            count : 0,
             order : 30,
             icon : 'sms'
         }, {
