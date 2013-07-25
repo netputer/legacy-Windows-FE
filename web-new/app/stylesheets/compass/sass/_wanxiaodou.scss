@@ -12,7 +12,7 @@
     width: 200px;
 
     @each $img in apple, cat, cry, doubt, funny, hot, cat2, sell_his_self, sleepy,
-        speechless, wash, what {
+        speechless, wash, what, prick1, prick2 {
         &.#{$img} {
             @include wanxiaodou-sprite(#{$img});
         }

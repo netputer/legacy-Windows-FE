@@ -142,8 +142,8 @@
 </script>
 
 <script type="text/x-ui-template" id="wanxiaodou">
-    {{ var tips = ["apple", "cat", "cry", "doubt", "funny", "hot", "cat2", "sell_his_self", "sleepy", "speechless", "wash", "what"]; }}
-    {{ var i = _.random(0, 11); var tip = tips[i]; }}
+    {{ var tips = ["apple", "cat", "cry", "doubt", "funny", "hot", "cat2", "sell_his_self", "sleepy", "speechless", "wash", "what", "prick1", 'prick2']; }}
+    {{ var i = _.random(0, 13); var tip = tips[i]; }}
     <div class="w-wanxiaodou-img {{= tip }}"></div>
 </script>
 
