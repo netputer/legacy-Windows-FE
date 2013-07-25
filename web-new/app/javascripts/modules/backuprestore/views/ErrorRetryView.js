@@ -32,8 +32,6 @@
         var ErrorRetryBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'error-retry')),
             className : 'w-backup-error-retry',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
                 return this;

@@ -1,25 +1,16 @@
 /*global define*/
-(function (window, undefined) {
+(function (window) {
     define([
         'underscore',
         'backbone',
-        'jquery',
-        'IO',
         'Configuration',
-        'Log',
         'music/iTunes/models/ITunesListModel',
-        'music/iTunes/models/ListContextModel',
-        'utilities/StringUtil'
+        'music/iTunes/models/ListContextModel'
     ], function (
         _,
         Backbone,
-        $,
-        IO,
-        CONFIG,
-        log,
         ITunesListModel,
-        ListContextModel,
-        StringUtil
+        ListContextModel
     ) {
 
         console.log('ItunesListCollection - File loaded');

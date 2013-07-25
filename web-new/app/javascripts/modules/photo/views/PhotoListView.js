@@ -162,7 +162,6 @@
             },
             renderThread : function () {
                 if (this.spyIsSawn()) {
-                    var i = 0;
                     var date;
                     var thread;
                     var photoThreadView;

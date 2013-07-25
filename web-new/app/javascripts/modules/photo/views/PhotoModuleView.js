@@ -81,7 +81,7 @@
                 inst.show();
             },
             preload : function () {
-
+                return;
             }
         });
 

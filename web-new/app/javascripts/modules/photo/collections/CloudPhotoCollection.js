@@ -19,6 +19,7 @@
             },
             getThumbsAsync : function (ids) {
                 // thumbnails of cloud photo already got on show, need not to get them again
+                return;
             }
         });
 

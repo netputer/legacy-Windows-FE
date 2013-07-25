@@ -319,10 +319,6 @@
                     });
                 }
 
-                if (contactsListView.currentGroupId !== 'all') {
-                    var group = accountCollection.getGroupById(contactsListView.currentGroupId);
-                }
-
                 this.model = model;
                 this.template = editorTemplate;
                 this.renderEditor();
@@ -554,6 +550,7 @@
                     var tip = new PopupTip({
                         $host : $(this)
                     });
+                    tip.zero();
                 });
 
                 if (!Device.get('isConnected')) {

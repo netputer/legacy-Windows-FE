@@ -6,7 +6,6 @@
         'doT',
         'jquery',
         'Account',
-        'Configuration',
         'Internationalization',
         'ui/TemplateFactory'
     ], function (
@@ -15,7 +14,6 @@
         doT,
         $,
         Account,
-        CONFIG,
         i18n,
         TemplateFactory
     ) {
@@ -120,7 +118,7 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function (args) {
                 return new SocialPlatformSelectorView({
                     templateID : args ? 'social-platform-selector-big' : 'social-platform-selector'

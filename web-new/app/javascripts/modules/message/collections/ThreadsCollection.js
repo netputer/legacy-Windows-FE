@@ -194,7 +194,7 @@
                     threadsCollection = new ThreadsCollection(args);
                     threadsCollection.trigger('update');
                 }
-                
+
                 return threadsCollection;
             },
             getClass : function () {

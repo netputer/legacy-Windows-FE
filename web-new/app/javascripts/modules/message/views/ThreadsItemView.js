@@ -104,7 +104,9 @@
             },
             scrollTo : function (msg) {
                 var message = this.collection.get(msg.id);
-                message && message.trigger('scrollTo');
+                if (message !== undefined) {
+                    message.trigger('scrollTo');
+                }
             },
             showPreviousButton : function () {
                 this.$el.prepend('<div class="button-previous link">' + i18n.message.LOAD_MORE + '</div>');

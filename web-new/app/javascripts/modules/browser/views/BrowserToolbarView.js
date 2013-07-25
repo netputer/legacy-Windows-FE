@@ -43,9 +43,7 @@
     ) {
         console.log('BrowserToolbarView - File loaded.');
 
-        var alert = window.alert;
         var setTimeout = window.setTimeout;
-        var history = window.history;
 
         var extensionsCollection;
 

@@ -94,7 +94,7 @@
             }, 500),
             clickButtonSync : function (evt) {
                 if ($(evt.currentTarget).hasClass('on')) {
-                    IframeMessageWorker.confirm(i18n.photo.TIP_CLOSE_PHOTO_SYNC, this.closePhotoSync, this);
+                    IframeMessageWorker.confirm(i18n.photo.TIP_CLOSE_PHOTO_SYNC, this.closePhotoSyncService, this);
                 } else {
                     this.showPhotoSyncAlertView(this.tryLogin);
                 }
@@ -105,7 +105,7 @@
                     'action' : $(evt.target).hasClass('on') ? 'off' : 'on'
                 });
             },
-            closePhotoSync : function () {
+            closePhotoSyncService : function () {
                 BackupRestoreService.stopRemoteSyncAsync();
                 SyncService.setPhotoSyncSwitchAsync(false).done(function () {
                     this.switchState('off');

@@ -10,8 +10,6 @@
         'ui/SmartList',
         'ui/behavior/ButtonSetMixin',
         'utilities/StringUtil',
-        'IOBackendDevice',
-        'Configuration',
         'Internationalization',
         'Device',
         'photo/PhotoService',
@@ -27,8 +25,6 @@
         SmartList,
         ButtonSetMixin,
         StringUtil,
-        IO,
-        CONFIG,
         i18n,
         Device,
         PhotoService,
@@ -129,7 +125,6 @@
             },
             parsePhotos : function (resp) {
                 var newPhotos = [];
-                var faildText = [];
 
                 _.each(resp.body.image, function (image) {
                     image.id = StringUtil.MD5(image.path);

@@ -96,7 +96,7 @@
 
                 this.listenTo(appList, 'drop', function (event) {
                     var files = _.filter(window.client.drag_files, function (file) {
-                        return /\.(wd)?apk$/.test(file);
+                        return (/\.(wd)?apk$/).test(file);
                     });
 
                     if (files.length) {

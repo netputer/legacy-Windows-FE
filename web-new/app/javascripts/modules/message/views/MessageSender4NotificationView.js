@@ -5,28 +5,22 @@
         'underscore',
         'Configuration',
         'IOBackendDevice',
-        'Environment',
         'Device',
         'Log',
         'ui/TemplateFactory',
         'message/views/QuickSenderView',
         'message/models/MessageModel',
-        'message/collections/ThreadsCollection',
-        'message/collections/Threads4ContactCollection',
         'backuprestore/BackupRestoreService'
     ], function (
         doT,
         _,
         CONFIG,
         IO,
-        Environment,
         Device,
         log,
         TemplateFactory,
         QuickSenderView,
         MessageModel,
-        ThreadsCollection,
-        Threads4ContactCollection,
         BackupRestoreService
     ) {
         console.log('MessageSender4NotificationView - File loaded.');
@@ -187,7 +181,7 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function (args) {
                 return new MessageSender4NotificationView(args);
             }

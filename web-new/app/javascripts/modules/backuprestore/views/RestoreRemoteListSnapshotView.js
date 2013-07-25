@@ -1,5 +1,5 @@
-/*global define, console*/
-(function (window) {
+/*global define*/
+(function (window, document) {
     define([
         'backbone',
         'underscore',
@@ -12,6 +12,9 @@
         'ui/PopupPanel',
         'ui/UIHelper',
         'ui/TemplateFactory',
+        'ui/AlertWindow',
+        'FunctionSwitch',
+        'utilities/StringUtil',
         'backuprestore/BackupRestoreService',
         'backuprestore/models/RestoreContextModel'
     ], function (
@@ -26,16 +29,19 @@
         PopupPanel,
         UIHelper,
         TemplateFactory,
+        AlertWindow,
+        FunctionSwitch,
+        StringUtil,
         BackupRestoreService,
         RestoreContextModel
     ) {
         console.log('RestoreRemoteListSnapshotView - File loaded. ');
 
+        var alert = window.alert;
+
         var RestoreRemoteListSnapshotBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('restore', 'choose-restore-date')),
             className : 'w-restore-choose-date',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -70,7 +76,7 @@
             listSnapshot : function () {
                 var oldList = RestoreContextModel.get('snapshotList');
                 var lastEntity = oldList[oldList.length - 1];
-                BackupRestoreService.remoteSnapshotListAutoAsync(lastEntity).done(function(resp) {
+                BackupRestoreService.remoteSnapshotListAutoAsync(lastEntity).done(function (resp) {
                     var newList = JSON.parse(resp.body.value);
                     var concatedList = oldList.concat(newList);
                     RestoreContextModel.set('snapshotList', concatedList);
@@ -122,9 +128,9 @@
                 this.trigger('loaded');
             },
             readSinlgeFileInfo : function (version, udid) {
-                BackupRestoreService.remoteSnapshotInfoAllTypesAsync(version, udid).done(function(resp) {
+                BackupRestoreService.remoteSnapshotInfoAllTypesAsync(version, udid).done(function (resp) {
                     var info = {};
-                    _.each(JSON.parse(resp.body.value), function(item) {
+                    _.each(JSON.parse(resp.body.value), function (item) {
                         var brType = BackupRestoreService.getServerTypeFromBRType(item.type);
                         info[brType] = item.count;
                     });
@@ -136,7 +142,6 @@
             readSnapshotInfo : function (formattedList) {
                 _.each(formattedList, function (item) {
                     var version = item.version;
-                    var udid = item.udid;
                     var info = RestoreContextModel.get('snapshotInfoDict')[version];
                     if (info === undefined) {
                         this.readSinlgeFileInfo(version, item.udid);
@@ -175,7 +180,7 @@
             initialize : function () {
                 RestoreRemoteListSnapshotView.__super__.initialize.apply(this, arguments);
 
-                this.on(UIHelper.EventsMapping.SHOW, function() {
+                this.on(UIHelper.EventsMapping.SHOW, function () {
                     bodyView = new RestoreRemoteListSnapshotBodyView();
 
                     bodyView.on('loaded', function () {
@@ -252,4 +257,4 @@
 
         return factory;
     });
-}(this));
+}(this, this.document));

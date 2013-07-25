@@ -1,14 +1,24 @@
-/*global define, $, Backbone, _*/
+/*global define*/
 (function (window) {
     define([
+        'jquery',
+        'underscore',
+        'backbone',
         'IOBackendDevice',
         'Configuration',
-        'Device',
         'task/models/TaskModel'
-    ], function (IO, CONFIG, Device, TaskModel) {
+    ], function (
+        $,
+        _,
+        Backbone,
+        IO,
+        CONFIG,
+        Device,
+        TaskModel
+    ) {
         console.log('TaskService - File loaded.');
 
-        var TaskService = _.extend(function () {}, Backbone.Events);
+        var TaskService = _.extend({}, Backbone.Events);
 
         TaskService.BLOCK_LIST = [
             'NO_MORE_SDCARD',

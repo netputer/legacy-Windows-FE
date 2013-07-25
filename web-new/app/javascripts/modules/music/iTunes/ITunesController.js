@@ -8,7 +8,6 @@
         'Configuration',
         'Internationalization',
         'utilities/StringUtil',
-        'utilities/FormatDate',
         'ui/AlertWindow',
         'music/iTunes/collections/ITunesCollection',
         'music/iTunes/views/SelectLibraryView',
@@ -23,7 +22,6 @@
         CONFIG,
         i18n,
         StringUtil,
-        FormatDate,
         AlertWindow,
         ITunesCollection,
         SelectLibraryView,
@@ -143,7 +141,7 @@
                 }, this);
             }
 
-            function showStartPanel (data) {
+            function showStartPanel(data) {
                 selectLibraryView = SelectLibraryView.getInstance();
                 selectSourceView  = SelectSourceView.getInstance();
                 audioListView     = AudioListView.getInstance();

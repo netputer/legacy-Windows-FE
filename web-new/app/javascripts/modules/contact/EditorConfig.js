@@ -1,9 +1,14 @@
-/*global define console*/
-(function(window, undefined) {
-    define(['Internationalization',
-            'Configuration',
-            'Environment'
-    ], function(i18n, CONFIG, Environment) {
+/*global define*/
+(function (window) {
+    define([
+        'Internationalization',
+        'Configuration',
+        'Environment'
+    ], function (
+        i18n,
+        CONFIG,
+        Environment
+    ) {
         console.log('EditorConfig - File loaded. ');
 
         var EditorConfig = {
@@ -225,4 +230,4 @@
 
         return EditorConfig;
     });
-})(this);
+}(this));

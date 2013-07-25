@@ -40,8 +40,6 @@
         var RestoreChooseFileBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('restore', 'choose-restore-file')),
             className : 'w-restore-choose-file',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({
                     list : RestoreContextModel.FileList
@@ -55,11 +53,12 @@
                 }
 
                 // pop up panel
-                new PopupPanel({
+                var popupPanel = new PopupPanel({
                     $content : doT.template(TemplateFactory.get('restore', 'old-version-tip')),
                     $host : this.$('.old-version-tip'),
                     delay : true
                 });
+                popupPanel.zero();
 
                 return this;
             },

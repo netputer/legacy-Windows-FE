@@ -19,7 +19,7 @@
 
         var STYLESHEET_PREFIX = 'wdj-theme-file';
 
-        var ThemeManager = _.extend(Backbone.Events);
+        var ThemeManager = _.extend({}, Backbone.Events);
 
         var themeFolder;
 

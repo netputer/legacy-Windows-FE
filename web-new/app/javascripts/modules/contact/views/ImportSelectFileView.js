@@ -12,9 +12,9 @@
         'ui/UIHelper',
         'ui/AlertWindow',
         'ui/TemplateFactory',
-        'contact/ContactService',
         'IO',
-        'contact/models/ImportContextModel'
+        'contact/models/ImportContextModel',
+        'contact/ContactService'
     ], function (
         Backbone,
         doT,
@@ -27,9 +27,9 @@
         UIHelper,
         AlertWindow,
         TemplateFactory,
-        ContactService,
         IO,
-        ImportContextModel
+        ImportContextModel,
+        ContactService
     ) {
 
         console.log('ImportSelectFile - File loaded');

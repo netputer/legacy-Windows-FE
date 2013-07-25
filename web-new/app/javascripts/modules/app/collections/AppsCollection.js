@@ -7,7 +7,6 @@
         'jquery',
         'underscore',
         'IOBackendDevice',
-        'Environment',
         'Device',
         'Configuration',
         'FunctionSwitch',
@@ -18,7 +17,6 @@
         $,
         _,
         IO,
-        Environment,
         Device,
         CONFIG,
         FunctionSwitch,
@@ -27,11 +25,11 @@
     ) {
         console.log('AppsCollection - File loaded. ');
 
-        var updateHandler = function () {
+        var updateHandler = _.debounce(function () {
             if (this.collection !== undefined) {
                 this.collection.trigger('refresh', this.collection);
             }
-        };
+        }, 10);
 
         var AppsCollection = Backbone.Collection.extend({
             model : AppModel,
@@ -361,7 +359,7 @@
 
         var appsCollection;
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function () {
                 if (!appsCollection) {
                     appsCollection = new AppsCollection();

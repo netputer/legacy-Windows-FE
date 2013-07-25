@@ -86,7 +86,9 @@
 
         var factory = _.extend({
             enablePreload : false,
-            preload : function () {},
+            preload : function () {
+                return;
+            },
             getInstance : function (args) {
                 if (!galleryView) {
                     galleryView = new GalleryView(args);

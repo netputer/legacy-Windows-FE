@@ -148,6 +148,7 @@
                     var popup = new PopupTip({
                         $host : $(ele)
                     });
+                    popup.zero();
                 });
 
                 this.toggleView(Device);
@@ -312,7 +313,6 @@
                     });
 
                     var nowWidth = previewDeviceWrap.width();
-                    var nowHeight = previewDeviceWrap.height();
                     var screenRate = nowWidth / Device.get('shell').width;
                     preivewDeviceImg.css({
                         'position' : 'absolute',

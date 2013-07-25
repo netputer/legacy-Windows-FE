@@ -11,9 +11,7 @@
         'Internationalization',
         'Log',
         'utilities/StringUtil',
-        'ui/Notification',
-        'ui/AlertWindow',
-        'ui/BatchActionWindow'
+        'ui/AlertWindow'
     ], function (
         Backbone,
         _,
@@ -25,15 +23,13 @@
         i18n,
         log,
         StringUtil,
-        Notification,
-        AlertWindow,
-        BatchActionWindow
+        AlertWindow
     ) {
         console.log('BackupRestoreService - File loaded.');
 
         var alert = window.alert;
 
-        var BackupRestoreService = _.extend(Backbone.Events);
+        var BackupRestoreService = _.extend({}, Backbone.Events);
 
         // ---------------------------- consts -------------------------------
 

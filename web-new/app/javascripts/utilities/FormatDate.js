@@ -6,57 +6,77 @@
             date = date ? new Date(parseInt(date, 10)) : new Date();
             var output = format;
 
-            // TODO Add day support
-            output = output.replace(/y{4}|M{2}|d{2}|h{2}|H{2}|m{2}|s{2}/g, function (keyword) {
+            var zh = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            var en = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+            output = output.replace(/y{4}|D{2}|M{2}|d{2}|h{2}|H{2}|m{2}|s{2}/g, function (keyword) {
+                var result = '';
                 switch (keyword) {
                 case 'yyyy':
-                    return date.getFullYear();
+                    result = date.getFullYear();
+                    break;
                 case 'MM':
-                    var mm = date.getMonth() + 1;
-                    if (mm < 10) {
-                        return '0' + mm;
+                    var MM = date.getMonth() + 1;
+                    if (MM < 10) {
+                        result = '0' + MM;
                     } else {
-                        return mm;
+                        result = MM;
                     }
+                    break;
                 case 'dd':
                     var dd = date.getDate();
                     if (dd < 10) {
-                        return '0' + dd;
+                        result = '0' + dd;
                     } else {
-                        return dd;
+                        result = dd;
                     }
+                    break;
                 case 'HH':
                     var HH = date.getHours();
                     if (HH < 10) {
-                        return '0' + HH;
+                        result = '0' + HH;
                     } else {
-                        return HH;
+                        result = HH;
                     }
+                    break;
                 case 'hh':
-                    var HH = date.getHours();
-                    if (HH > 12) {
-                        HH = HH -12;
+                    var hh = date.getHours();
+                    if (hh > 12) {
+                        hh = hh - 12;
                     }
-                    if (HH < 10) {
-                        return '0' + HH;
+                    if (hh < 10) {
+                        result = '0' + hh;
                     } else {
-                        return HH;
+                        result = hh;
                     }
+                    break;
                 case 'mm':
                     var mm = date.getMinutes();
-                    if(mm < 10) {
-                        return '0' + mm;
+                    if (mm < 10) {
+                        result = '0' + mm;
                     } else {
-                        return mm;
+                        result = mm;
                     }
+                    break;
                 case 'ss':
                     var ss = date.getSeconds();
                     if (ss < 10) {
-                        return '0' + ss;
+                        result = '0' + ss;
                     } else {
-                        return ss;
+                        result = ss;
                     }
+                    break;
+                case 'DD':
+                    var DD = date.getDay();
+                    if (window.navigator.language.indexOf('zh') > -1) {
+                        result = zh[DD];
+                    } else {
+                        result = en[DD];
+                    }
+                    break;
                 }
+
+                return result;
             });
 
             return output;

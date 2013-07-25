@@ -27,8 +27,6 @@
     ) {
         console.log('IframeMessageListener - File loaded. ');
 
-        var alert = window.alert;
-
         var IframeMessageListener = _.extend({}, Backbone.Events);
 
         var handlers = [];

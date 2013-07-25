@@ -47,8 +47,6 @@
         var BackupProgressBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'backup-progress')),
             className : 'w-backup-progress',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
                 this.resetContent();
@@ -210,7 +208,6 @@
                     'data.channel' : sessionID
                 }, function (data) {
                     var progress = data;
-                    var i, item;
                     switch (progress.status) {
                     case BackupRestoreService.CONSTS.BR_STATUS.RUNNING:
                         this.updateNonAppItems(progress.item);

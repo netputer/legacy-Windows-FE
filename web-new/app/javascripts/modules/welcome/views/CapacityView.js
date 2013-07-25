@@ -62,6 +62,7 @@
                     var tip = new PopupTip({
                         $host : $(ele)
                     });
+                    tip.zero();
                 });
 
                 var panel;
@@ -112,6 +113,7 @@
                     var tip = new PopupTip({
                         $host : $(ele)
                     });
+                    tip.zero();
                 });
 
                 return this;

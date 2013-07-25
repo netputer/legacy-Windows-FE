@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, undefined) {
+(function (window) {
     define([
         'underscore',
         'doT',
@@ -9,13 +9,11 @@
         'ui/Panel',
         'ui/AlertWindow',
         'ui/UIHelper',
-        'Environment',
         'WindowController',
         'Device',
         'Configuration',
         'Internationalization',
         'ui/TemplateFactory',
-        'ui/behavior/ButtonSetMixin',
         'utilities/StringUtil',
         'music/iTunes/collections/ITunesCollection'
     ], function (
@@ -27,13 +25,11 @@
         Panel,
         AlertWindow,
         UIHelper,
-        Environment,
         WindowController,
         Device,
         Configuration,
         i18n,
         TemplateFactory,
-        ButtonSetMixin,
         StringUtil,
         ITunesCollection
     ) {
@@ -249,7 +245,7 @@
                     tip : i18n.music.AUDIOS_IMPORT_FAILD,
                     className : importAudiosProgressCls,
                     isFaild : true,
-                    current : data.success && data.success.length || 0,
+                    current : (data.success && data.success.length) || 0,
                     total : data.total
                 };
                 this.renderProgress(audiosData);
@@ -365,7 +361,7 @@
                     tip : i18n.music.CREATE_PLAYLIST_FAILD,
                     className : createPlaylistCls,
                     isFaild : true,
-                    current : data.success && data.success.length || 0,
+                    current : (data.success && data.success.length) || 0,
                     total : data.total
                 };
                 this.renderProgress(playlistData);

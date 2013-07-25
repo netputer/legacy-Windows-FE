@@ -19,7 +19,7 @@
     ) {
         console.log('UIHelper - File loaded.');
 
-        var UIHelper = window.UIHelper = {};
+        var UIHelper = {};
 
         Object.defineProperties(UIHelper, {
             EventsMapping : {
@@ -35,6 +35,8 @@
                 value : WindowState
             }
         });
+
+        window.UIHelper = UIHelper;
 
         return UIHelper;
     });

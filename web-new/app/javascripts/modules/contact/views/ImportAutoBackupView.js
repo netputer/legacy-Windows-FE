@@ -12,9 +12,8 @@
         'ui/Panel',
         'utilities/StringUtil',
         'contact/ContactService',
-        'contact/views/ImportSelectAccountView',
         'contact/models/ImportContextModel',
-        'Device',
+        'Device'
     ], function (
         Backbone,
         doT,
@@ -27,7 +26,6 @@
         Panel,
         StringUtil,
         ContactService,
-        ImportSelectAccountView,
         ImportContextModel,
         Device
     ) {
@@ -67,7 +65,7 @@
                     list : this.backList
                 }));
 
-                var $first = this.$('ul li input').first().prop({
+                this.$('ul li input').first().prop({
                     checked : true
                 });
 
@@ -83,8 +81,6 @@
                 }.bind(this));
             }
         });
-
-        var importSelectAccountView = ImportSelectAccountView.getInstance();
 
         var ImportAutoBackupView = Panel.extend({
             initialize : function () {
@@ -153,7 +149,7 @@
 
         var importAutoBackupView;
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function () {
                 if (!importAutoBackupView) {
                     importAutoBackupView = new ImportAutoBackupView({

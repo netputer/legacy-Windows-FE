@@ -13,8 +13,6 @@
     ) {
         console.log('ManagementView - File loaded.');
 
-        var extensionListView;
-
         var DoraemonModuleView = Backbone.View.extend({
             className : 'w-doraemon-module-main module-main vbox',
             initialize : function () {

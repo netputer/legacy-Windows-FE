@@ -13,7 +13,6 @@
         'ui/TemplateFactory',
         'ui/SmartList',
         'utilities/StringUtil',
-        'Configuration',
         'app/collections/AppsCollection',
         'app/views/AppItemView',
         'app/AppService'
@@ -28,7 +27,6 @@
         TemplateFactory,
         SmartList,
         StringUtil,
-        CONFIG,
         AppsCollection,
         AppItemView,
         AppService
