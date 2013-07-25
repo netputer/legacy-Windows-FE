@@ -13,7 +13,6 @@
         Backbone,
         IO,
         CONFIG,
-        Device,
         TaskModel
     ) {
         console.log('TaskService - File loaded.');
