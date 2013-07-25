@@ -93,9 +93,9 @@
 </script>
 
 <script type="text/x-ui-temlate" id="itunes-audio-list-item">
-   <div class="audio-name"><input type="checkbox" class="item-checker" value="{{= it.id }}" />{{= it.title }}</div>
-   <div class="cell audio-artist">{{= it.artist }}</div>
-   <div class="cell audio-album">{{= it.album }}</div>
+   <div class="audio-name wc"><input type="checkbox" class="item-checker" value="{{= it.id }}" />{{= it.title }}</div>
+   <div class="cell audio-artist wc">{{= it.artist }}</div>
+   <div class="cell audio-album wc">{{= it.album }}</div>
    <div class="cell audio-size">{{= it.sizeText }}</div>
 </script>
 </templates>

@@ -10,7 +10,7 @@
         'ui/SmartList',
         'ui/behavior/ButtonSetMixin',
         'utilities/StringUtil',
-        'IOBackendDevice',
+        'Internationalization',
         'Device',
         'music/MusicService',
         'music/models/MusicModel',
@@ -191,6 +191,7 @@
 
         var factory = _.extend({
             getInstance : function () {
+                console.log(i18n);
                 if (!importMusicView) {
                     importMusicView = new ImportMusicView({
                         title : i18n.music.ADD_LOCAL_MUSIC_TEXT,
