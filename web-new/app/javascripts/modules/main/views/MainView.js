@@ -16,6 +16,7 @@
         'Environment',
         'main/views/NavView',
         'task/views/TaskMonitorView',
+        'task/views/TaskModuleView',
         'backuprestore/BackupController',
         'main/views/FastUSBNotificationView',
         'main/collections/PIMCollection'
@@ -33,6 +34,7 @@
         Environment,
         NavView,
         TaskMonitorView,
+        TaskModuleView,
         BackupController,
         FastUSBNotificationView,
         PIMCollection
