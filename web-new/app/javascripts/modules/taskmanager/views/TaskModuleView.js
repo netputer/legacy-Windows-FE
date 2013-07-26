@@ -75,6 +75,9 @@
                 return this;
             },
             slideIn : function () {
+                if (!this.rendered) {
+                    this.render();
+                }
                 if (!this.show && !this.$el.hasClass('w-task-module-fade-in')) {
                     var showHandler = function () {
                         this.$el.removeClass('w-task-module-fade-in');
@@ -117,7 +120,7 @@
                 return taskModuleView;
             },
             preload : function () {
-                TasksCollection.getInstance();
+                taskModuleView.slideIn();
             }
         });
 
