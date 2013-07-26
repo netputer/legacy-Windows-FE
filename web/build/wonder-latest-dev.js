@@ -3072,9 +3072,9 @@ wonder.addModule('contact/avatarEditor', function (W) {
             var tip = '';
             if (this.picLists.length == 0) {
                 if (this.currentType == W.photo.PhotoCollection.type.PHONE) {
-                    tip = i18n.photo.EMPTY_PHONE_LIST;
+                    tip = i18n.contact.EMPTY_PHONE_LIST;
                 } else if (this.currentType == W.photo.PhotoCollection.type.LIBRARY) {
-                    tip = i18n.photo.EMPTY_LIBRARY_LIST;
+                    tip = i18n.contact.EMPTY_LIBRARY_LIST;
                 }
             }
 

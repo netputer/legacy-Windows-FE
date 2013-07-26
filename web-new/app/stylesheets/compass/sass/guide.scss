@@ -81,17 +81,15 @@
 
         .step-pointer {
             background-color: $componentBorderColor;
-            border: 3px solid transparent;
-            border-radius: 5px;
+            border: 5px solid transparent;
+            border-radius: 10px;
+            margin-left: 5px;
             -webkit-transition: all .2s linear;
-
-            + .step-pointer {
-                margin-left: 10px;
-            }
+            -webkit-transform: scale(.6);
 
             &.current {
                 border-color: $standardColor;
-                -webkit-transform: scale(1.5);
+                -webkit-transform: scale(1);
             }
         }
     }
