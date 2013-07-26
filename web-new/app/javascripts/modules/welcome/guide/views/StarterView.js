@@ -64,7 +64,16 @@
                     IO.requestAsync({
                         url : CONFIG.actions.APP_STARTER,
                         data : {
-                            f : 'windows'
+                            f : 'windows',
+                            opt_fields : [
+                                'apps.downloadCount',
+                                'apps.likesRate',
+                                'apps.tagline',
+                                'apps.title',
+                                'apps.icons.px68',
+                                'apps.ad',
+                                'apps.apks.downloadUrl.url'
+                            ].join(',')
                         },
                         success : function (resp) {
                             this.queryResults = resp;
