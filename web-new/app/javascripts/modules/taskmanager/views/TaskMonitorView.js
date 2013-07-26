@@ -342,13 +342,9 @@
                     }
                 }, this);
             },
-            clickView : function (evt) {
-                if (taskModuleView.show) {
+            toggleListView : function (show) {
+                if (taskModuleView.show || (show !== undefined && !show)) {
                     taskModuleView.slideOut();
-
-                    log({
-                        'event' : 'ui.click.task.toggle.close'
-                    });
                 } else {
                     if (taskModuleView.rendered) {
                         if (!$('.w-main .module-ctn').children().last()[0].contains(taskModuleView.$el[0])) {
@@ -358,11 +354,20 @@
                         $('.w-main .module-ctn').append(taskModuleView.render().$el);
                     }
                     taskModuleView.slideIn();
-
+                }
+            },
+            clickView : function (evt) {
+                if (taskModuleView.show) {
+                    log({
+                        'event' : 'ui.click.task.toggle.close'
+                    });
+                } else {
                     log({
                         'event' : 'ui.click.task.toggle.open'
                     });
                 }
+
+                this.toggleListView();
             },
             events : {
                 'click' : 'clickView'
