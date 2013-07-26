@@ -38,7 +38,6 @@
         var bodyView;
         var footerMonitorView;
         var sessionId;
-        var progressHandler;
 
         var FooterMonitorView = Backbone.View.extend({
             initialize : function () {
@@ -177,7 +176,7 @@
                     this.parsePhotos(msg);
                     this.toggleButtonDisable(true);
 
-                    progressHandler = IO.Backend.Device.onmessage({
+                    var progressHandler = IO.Backend.Device.onmessage({
                         'data.channel' : sessionId
                     }, function (msg) {
                         this.updatePhoto(msg.photo);
