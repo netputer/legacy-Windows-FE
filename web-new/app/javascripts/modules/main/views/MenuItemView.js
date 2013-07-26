@@ -10,6 +10,7 @@
         'utilities/StringUtil',
         'Internationalization',
         'Log',
+        'Device',
         'main/collections/PIMCollection',
         'main/MainRouter',
         'app/collections/AppsCollection'
@@ -23,6 +24,7 @@
         StringUtil,
         i18n,
         log,
+        Device,
         PIMCollection,
         MainRouter,
         AppsCollection
@@ -135,7 +137,8 @@
                         log({
                             'event' : 'ui.click.nav',
                             'id' : this.model.id,
-                            'label' : this.model.get('label')
+                            'label' : this.model.get('label'),
+                            'isFastADB' : Device.get('isFastADB')
                         });
                     }
                 } else {
