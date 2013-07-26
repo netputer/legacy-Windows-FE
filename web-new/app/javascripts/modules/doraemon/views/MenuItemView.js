@@ -10,6 +10,7 @@
         'Configuration',
         'ui/TemplateFactory',
         'FunctionSwitch',
+        'Device',
         'doraemon/collections/ExtensionsCollection',
         'browser/views/BrowserModuleView',
         'main/MainRouter'
@@ -23,6 +24,7 @@
         CONFIG,
         TemplateFactory,
         FunctionSwitch,
+        Device,
         ExtensionsCollection,
         BrowserModuleView,
         MainRouter
@@ -116,7 +118,8 @@
                     if (FunctionSwitch.PRIVACY.RECORD_BROWSE_HISTORY) {
                         log({
                             'event' : 'ui.click.dora.nav',
-                            'id' : this.model.id
+                            'id' : this.model.id,
+                            'isFastADB' : Device.get('isFastADB')
                         });
                     }
                 } else if (this.model.get('selected')) {
