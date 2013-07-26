@@ -298,13 +298,16 @@
             return deferred.promise();
         };
 
-        PhotoService.selectPhotosAsync = function (type) {
+        PhotoService.selectPhotosAsync = function (type, session) {
             var deferred = $.Deferred();
 
             IO.requestAsync({
                 url : CONFIG.actions.PHOTO_SELECT_PHOTO,
                 data : {
-                    type : type
+                    session : session,
+                    type : type,
+                    width : 42,
+                    height : 42
                 },
                 success : function (resp) {
                     if (resp.state_code === 200) {
@@ -312,6 +315,28 @@
                         deferred.resolve(resp);
                     } else {
                         console.error('PhotoService - Get selected photos faild. Error info: ' + resp.state_line);
+                        deferred.reject(resp);
+                    }
+                }
+            });
+
+            return deferred.promise();
+        };
+
+        PhotoService.cancelThumbnailAsync = function (session) {
+            var deferred = $.Deferred();
+
+            IO.requestAsync({
+                url : CONFIG.actions.PHOTO_CANCEL_THUMBNAIL,
+                data : {
+                    session : session
+                },
+                success : function (resp) {
+                    if (resp.state_code === 200) {
+                        console.log('PhotoService - Delete photo thumbnail success.');
+                        deferred.resolve(resp);
+                    } else {
+                        console.error('PhotoService - Delete photo thumbnail faild. Error info: ' + resp.state_line);
                         deferred.reject(resp);
                     }
                 }
