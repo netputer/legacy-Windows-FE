@@ -16,7 +16,6 @@
         'Environment',
         'main/views/NavView',
         'task/views/TaskMonitorView',
-        'task/views/TaskModuleView',
         'backuprestore/BackupController',
         'main/views/FastUSBNotificationView',
         'main/collections/PIMCollection'
@@ -34,7 +33,6 @@
         Environment,
         NavView,
         TaskMonitorView,
-        TaskModuleView,
         BackupController,
         FastUSBNotificationView,
         PIMCollection
@@ -121,7 +119,7 @@
                 }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_TASK_MANAGER:
-                TaskModuleView.getInstance().slideIn();
+                TaskMonitorView.getInstance().toggleListView(true);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_PIM_MODULE:
                 var target = PIMCollection.getInstance().get(msg.id);
