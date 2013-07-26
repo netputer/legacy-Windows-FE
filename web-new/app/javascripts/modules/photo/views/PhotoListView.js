@@ -164,7 +164,16 @@
                 }
 
                 this.threads = _.sortBy(collection.groupBy('key'), function (item, key) {
-                    return -Number(key);
+                    var result = -Number(key);
+
+                    if (_.isNaN(result)) {
+                        if (key.indexOf('wandoujia/image') >= 0) {
+                            result = -1;
+                        } else {
+                            result = 0;
+                        }
+                    }
+                    return result;
                 });
 
                 if (!collection.loading && !collection.syncing) {
