@@ -14,7 +14,8 @@
         'Device',
         'photo/PhotoService',
         'photo/models/PhotoModel',
-        'photo/views/PhotoListItemView'
+        'photo/views/PhotoListItemView',
+        'IO'
     ], function (
         Backbone,
         doT,
@@ -29,12 +30,15 @@
         Device,
         PhotoService,
         PhotoModel,
-        PhotoListItemView
+        PhotoListItemView,
+        IO
     ) {
         console.log('ImportPhotoView - File loaded.');
 
         var bodyView;
         var footerMonitorView;
+        var sessionId;
+        var progressHandler;
 
         var FooterMonitorView = Backbone.View.extend({
             initialize : function () {
@@ -148,6 +152,13 @@
                 }.bind(this));
                 this.photoList.addSelect(newPhotoIds);
             },
+            updatePhoto : function (image) {
+                var id = StringUtil.MD5(image.path);
+                var model = this.collection.get(id);
+                if (model) {
+                    model.set('thumbnail', image.thumbnail);
+                }
+            },
             remove : function () {
                 this.photoList.remove();
                 this.collection.set([]);
@@ -157,14 +168,32 @@
                 BodyView.__super__.remove.call(this);
             },
             selectPhotos : function (type) {
-                var alertWindow = new AlertWindow({
-                    $bodyContent : i18n.photo.IMPORT_PROGRESS_TEXT
-                });
-                alertWindow.show();
 
-                PhotoService.selectPhotosAsync(type).done(this.parsePhotos.bind(this)).always(function () {
-                    alertWindow.close();
-                });
+                sessionId = _.uniqueId('photo.import_');
+
+                PhotoService.selectPhotosAsync(type, sessionId).done(function (msg) {
+
+                    this.photoList.loading = true;
+                    this.parsePhotos(msg);
+                    this.toggleButtonDisable(true);
+
+                    progressHandler = IO.Backend.Device.onmessage({
+                        'data.channel' : sessionId
+                    }, function (msg) {
+                        this.updatePhoto(msg.photo);
+
+                        if (msg.current === msg.total) {
+                            IO.Backend.Device.offmessage(progressHandler);
+                            this.photoList.loading = false;
+                            this.toggleButtonDisable(false);
+                        }
+
+                    }, this);
+                }.bind(this));
+            },
+            toggleButtonDisable : function (disabled) {
+                this.$(".button-add-file").prop({disabled : disabled});
+                this.$(".button-add-folder").prop({disabled : disabled});
             },
             clickButtonAddFile : function () {
                 this.selectPhotos(0);
@@ -199,6 +228,10 @@
                 }, this);
 
                 this.on('button_yes', this.importPhoto, this);
+
+                this.on('button_cancel', function () {
+                    PhotoService.cancelThumbnailAsync(sessionId);
+                }, this);
             },
             importPhoto : function () {
                 var paths = [];
