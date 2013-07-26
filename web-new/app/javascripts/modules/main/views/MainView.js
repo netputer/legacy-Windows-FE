@@ -119,7 +119,7 @@
                 }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_TASK_MANAGER:
-                TaskMonitorView.getInstance().showListView();
+                TaskMonitorView.getInstance().slideIn();
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_PIM_MODULE:
                 var target = PIMCollection.getInstance().get(msg.id);

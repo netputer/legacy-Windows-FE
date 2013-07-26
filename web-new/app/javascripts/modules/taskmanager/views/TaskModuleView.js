@@ -120,7 +120,7 @@
                 return taskModuleView;
             },
             preload : function () {
-                taskModuleView.slideIn();
+                return;
             }
         });
 
