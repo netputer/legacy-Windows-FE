@@ -455,6 +455,7 @@
                 NAVIGATE_TYPE_THEME : 'themes',
                 NAVIGATE_TYPE_APP_WASH : 'wash',
                 NAVIGATE_TYPE_TASK_MANAGER : 'task_manager',
+                NAVIGATE_TYPE_PIM_MODULE : 'pim_module',
 
                 /* Update ignore states */
                 UPDATE_IGNORE_NONE : 'none',
