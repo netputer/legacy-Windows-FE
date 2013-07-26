@@ -296,7 +296,7 @@
                                 eventName : 'button_no'
                             }],
                             title : i18n.ui.TIP,
-                            $bodyContent : i18n.misc.SAVE_TIP_TEXT
+                            $bodyContent : i18n.contact.SAVE_TIP_TEXT
                         });
                         alertWindow.on('button_no', this.clickButtonCancel, this);
 
