@@ -117,7 +117,7 @@
                 return taskModuleView;
             },
             preload : function () {
-                TasksCollection.getInstance();
+                return;
             }
         });
 

@@ -4,12 +4,14 @@
         'underscore',
         'doT',
         'ui/TemplateFactory',
-        'ui/BaseListItem'
+        'ui/BaseListItem',
+        'Configuration'
     ], function (
         _,
         doT,
         TemplateFactory,
-        BaseListItem
+        BaseListItem,
+        CONFIG
     ) {
         console.log('PhotoListItemView - File loaded. ');
 

@@ -4,7 +4,7 @@
     <div class="icon category dor-{{= it.id }}"></div>
     {{??}}
     <div class="icon category">
-        <img class="img" src="{{= CONFIG.enums.DORAENON_DEFAULT }}"/>
+        <img class="img" src="{{= CONFIG.enums.DEFAULT_30X30 }}"/>
     </div>
     {{?}}
     {{= it.name }}
