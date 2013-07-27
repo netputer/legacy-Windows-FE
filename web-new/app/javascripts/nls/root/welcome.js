@@ -81,5 +81,6 @@ define({
     GUIDE_TIPS_READ_ALL : '都知道了',
     GUIDE_SUGGESTION : '更多精彩',
     GUIDE_SUGGESTION_TIP : '丰富多彩的内容站期待您的发现。',
-    GUIDE_SUGGESTION_READ_ALL : '我看完了'
+    GUIDE_SUGGESTION_READ_ALL : '我看完了',
+    GUIDE_TEXT_COUNTER : '{1} / {2}'
 });
