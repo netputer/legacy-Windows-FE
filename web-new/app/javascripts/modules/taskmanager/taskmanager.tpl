@@ -96,7 +96,7 @@
                             break;
                         case CONFIG.enums.TASK_STATE_WAITING :
         }}
-        <div class="progress hbox"><progress class="tiny" max="100" value="100" /></div>
+        <div class="progress running hbox"><progress class="tiny" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.WAITING_INSTALL }}</div>
         {{
                             break;
@@ -195,6 +195,7 @@
                             break;
                         case CONFIG.enums.TASK_STATE_WAITING :
         }}
+        <div class="progress running hbox"><progress class="tiny" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.WAITING_PUSHING }}</div>
         {{
                             break;
@@ -292,6 +293,11 @@
         <div>{{= i18n.taskManager.UNZIPING }}</div>
         {{
                             break;
+                        case CONFIG.enums.TASK_STATE_WAITING :
+        }}
+        <div class="progress running hbox"><progress class="tiny" max="100" value="100" /></div>
+        <div>{{= i18n.taskManager.WAITING_UNZIP }}</div>
+        {{
                         case CONFIG.enums.TASK_STATE_FAILD :
         }}
         <div class="text-warning">{{= i18n.taskManager.UNZIP_FAILED }}</div>
