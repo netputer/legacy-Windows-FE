@@ -79,5 +79,7 @@ define({
     GUIDE_TIPS_READ_ALL : 'OK, got it!',
     GUIDE_SUGGESTION : 'View more',
     GUIDE_SUGGESTION_TIP : 'There\'s more content for you to discover!',
-    GUIDE_SUGGESTION_READ_ALL : 'I\'m done'
+    GUIDE_SUGGESTION_READ_ALL : 'I\'m done',
+
+    GUIDE_TEXT_COUNTER : '{1} / {2}'
 });
