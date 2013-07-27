@@ -21,13 +21,13 @@
             <div class="count">{{= it.count }}</div>
         </label>
     </header>
-    <ul class="photo-ctn"></ul>
+    <ul class="media-ctn"></ul>
 </script>
 
 <script type="text/x-ui-template" id="photo-list">
     <div class="spy"></div>
     {{= TemplateFactory.get('ui', 'loading') }}
-    <div class="empty-tip text-secondary"></div>
+    <div class="empty-tip text-secondary">{{= i18n.video.NO_VIDEOS_TEXT }}</div>
     <div class="mask"></div>
 </script>
 
