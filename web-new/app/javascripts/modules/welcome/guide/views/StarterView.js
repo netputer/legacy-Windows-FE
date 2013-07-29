@@ -185,14 +185,34 @@
 
                 TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
 
-                $target.html(i18n.app.INSTALLING).prop({
-                    disabled : true
-                });
-
                 log({
                     'event' : 'ui.click.guide_starter_install',
                     'type' : this.options.type
                 });
+
+                $target.html(i18n.app.INSTALLING).prop({
+                    disabled : true
+                });
+
+                IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.APP_INSTALL_SUCCESS
+                }, function (data) {
+                    if ($target.data('packagename') === data.package_name) {
+                        $target.html(i18n.misc.NAV_APP_INSTALLED).prop({
+                            disabled : true
+                        });
+                    }
+                }, this);
+
+                IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.APP_INSTALL_FAILED
+                }, function (data) {
+                    if ($target.data('packagename') === data.package_name) {
+                        $target.html(i18n.app.INSTALL).prop({
+                            disabled : false
+                        });
+                    }
+                }, this);
             },
             clickButtonSkip : function () {
                 StarterView.__super__.clickButtonSkip.call(this);
