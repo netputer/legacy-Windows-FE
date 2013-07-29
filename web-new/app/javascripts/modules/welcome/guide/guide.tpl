@@ -134,7 +134,7 @@
             <div class="ad"></div>
             {{?}}
             <div class="title wc">{{! app.title }}</div>
-            <button data-url="{{= window.encodeURIComponent(app.apks[0].downloadUrl.url) }}" class="button-install min" data-name="{{! app.title }}" data-icon="{{= app.icons.px68 }}">{{= i18n.app.INSTALL }}</button>
+            <button data-packagename= "{{= app.apks[0].packageName }}" data-url="{{= window.encodeURIComponent(app.apks[0].downloadUrl.url) }}" class="button-install min" data-name="{{! app.title }}" data-icon="{{= app.icons.px68 }}">{{= i18n.app.INSTALL }}</button>
         </li>
         {{~}}
         </ul>
