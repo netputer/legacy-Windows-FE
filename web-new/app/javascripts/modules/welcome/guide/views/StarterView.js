@@ -185,6 +185,10 @@
 
                 TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
 
+                $target.html(i18n.app.INSTALLING).prop({
+                    disabled : true
+                });
+
                 log({
                     'event' : 'ui.click.guide_starter_install',
                     'type' : this.options.type
