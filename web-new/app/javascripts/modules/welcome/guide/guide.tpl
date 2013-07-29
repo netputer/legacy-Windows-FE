@@ -1,7 +1,6 @@
 <templates>
 <script type="text/x-ui-template" id="main">
     <div class="content vbox"></div>
-    <ul class="step-counter-ctn hbox"></ul>
 </script>
 
 <script type="text/x-ui-template" id="bind">
@@ -17,6 +16,7 @@
         </div>
     </div>
     <nav class="control hbox">
+        <div class="text-counter"></div>
         <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
@@ -30,6 +30,7 @@
             <div class="bg"></div>
         </div>
         <nav class="control hbox">
+            <div class="text-counter"></div>
             <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
             <button class="primary button-action">{{= it.action }}</button>
         </nav>
@@ -79,6 +80,7 @@
             </div>
         </div>
         <nav class="control hbox">
+            <div class="text-counter"></div>
             <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
             <button class="primary button-reg">{{= i18n.welcome.GUIDE_REG_NOW }}</button>
         </nav>
@@ -109,6 +111,7 @@
         <div class="bg"></div>
     </div>
     <nav class="control hbox">
+        <div class="text-counter"></div>
         <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
@@ -137,6 +140,7 @@
         </ul>
     </div>
     <nav class="control hbox">
+        <div class="text-counter"></div>
         <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
@@ -157,6 +161,7 @@
         </ul>
     </div>
     <nav class="control hbox">
+        <div class="text-counter"></div>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
 </script>
@@ -174,6 +179,7 @@
         </ul>
     </div>
     <nav class="control hbox">
+        <div class="text-counter"></div>
         <button class="primary button-skip">{{= it.action }}</button>
     </nav>
 </script>

@@ -156,5 +156,6 @@ define({
     SET_AS_RINGTONE_FAIL : '铃声设置失败',
 
     WAITING_RESTORE_APP_DATA : '等待恢复应用数据',
-    PROCESSING_RESTORE_APP_DATA : '正在恢复应用数据'
+    PROCESSING_RESTORE_APP_DATA : '正在恢复应用数据',
+    WAITING_UNZIP : '等待解压缩'
 });

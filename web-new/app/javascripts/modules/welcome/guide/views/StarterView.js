@@ -64,7 +64,20 @@
                     IO.requestAsync({
                         url : CONFIG.actions.APP_STARTER,
                         data : {
-                            f : 'windows'
+                            f : 'windows',
+                            opt_fields : [
+                                'apps.downloadCount',
+                                'apps.likesRate',
+                                'apps.tagline',
+                                'apps.title',
+                                'apps.icons.px68',
+                                'apps.ad',
+                                'apps.apks.downloadUrl.url',
+                                'apps.apks.bytes',
+                                'apps.apks.packageName',
+                                'apps.apks.versionCode',
+                                'apps.apks.versionName'
+                            ].join(',')
                         },
                         success : function (resp) {
                             this.queryResults = resp;
@@ -119,12 +132,16 @@
                         var app;
                         for (i = 0; i < length; i++) {
                             app = apps[i];
-                            if (appsCollection.get(app.packageName) === undefined) {
+                            if (appsCollection.get(app.apks[0].packageName) === undefined) {
                                 this.apps.push(app);
                             }
                             if (this.apps.length === 12) {
                                 break;
                             }
+                        }
+
+                        if (this.apps.length === 0) {
+                            deferred.reject();
                         }
 
                         log({
