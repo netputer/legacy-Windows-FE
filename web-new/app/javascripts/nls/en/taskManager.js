@@ -150,6 +150,10 @@ define({
     HOW_TO_CONNECT : 'Connection help',
     EMPTY_LIST : 'No tasks in progress',
 
+    SET_AS_WALLPAPER_SUCCESS : '壁纸设置成功',
+    SET_AS_WALLPAPER_FAIL: '壁纸设置失败',
+    SET_AS_RINGTONE_SUCCESS : '铃声设置成功',
+    SET_AS_RINGTONE_FAIL : '铃声设置失败',
 
     WAITING_RESTORE_APP_DATA : 'Waiting to restore app data',
     PROCESSING_RESTORE_APP_DATA : 'Restoring app data...'
