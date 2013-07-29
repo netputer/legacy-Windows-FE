@@ -46,7 +46,7 @@
 
     &.w-menuitem-disabled a {
         color: #646464;
-        cursor: default;
+        cursor: not-allowed;
         text-decoration: none;
     }
 }
@@ -171,6 +171,7 @@
         }
 
         &[disabled] {
+            cursor: not-allowed;
             opacity: $disabledOpacity;
         }
 

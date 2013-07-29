@@ -54,6 +54,7 @@ button {
     }
 
     &:disabled {
+        cursor: not-allowed;
         opacity: $disabledOpacity;
     }
 
@@ -333,6 +334,7 @@ textarea {
     &:disabled {
         background-color: $bgColor;
         border-color: $componentBorderColor;
+        cursor: not-allowed;
     }
 }
 
@@ -379,6 +381,7 @@ input[type="checkbox"] {
     }
 
     &:disabled {
+        cursor: not-allowed;
         opacity: $disabledOpacity;
     }
 
@@ -412,6 +415,7 @@ input[type="radio"] {
     }
 
     &:disabled {
+        cursor: not-allowed;
         opacity: $disabledOpacity;
     }
 }
