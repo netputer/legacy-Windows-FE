@@ -170,5 +170,7 @@ define({
     CONTACT_TIP_PART : '{1} 个与「{2}」有关的联系人',
 
     EMPTY_PHONE_LIST : 'Import a picture here!',
-    EMPTY_LIBRARY_LIST : 'Import a picture here!'
+    EMPTY_LIBRARY_LIST : 'Import a picture here!',
+
+    NAV_CONTACT_ALL : 'All Contacts'
 });
