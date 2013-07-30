@@ -5,6 +5,7 @@
         'underscore',
         'doT',
         'jquery',
+        'DB',
         'ui/TemplateFactory',
         'FunctionSwitch',
         'IOBackendDevice',
@@ -20,6 +21,7 @@
         _,
         doT,
         $,
+        DB,
         TemplateFactory,
         FunctionSwitch,
         IO,
@@ -153,9 +155,72 @@
                 return deferred.promise();
             },
             showBackground : function () {
-                $.when(this.initBackgroundAsync(), this.deviceViewAnimationAsync()).done(function () {
-                    this.$('.content').css('opacity', 1);
+                $.when(this.initBackgroundAsync(), this.deviceViewAnimationAsync(), this.loadCachedWallpaperAsync()).done(function () {
+                    this.$('.content.new').css('opacity', 1);
+                    this.$('.content.cache').css('opacity', 0).one('webkitTransitionEnd', function () {
+                        $(this).remove();
+                    });
                 }.bind(this));
+            },
+            loadCachedWallpaperAsync : function () {
+                var deferred = $.Deferred();
+
+                DB.readAsync('welcome', 'wallpaper').done(function (evt) {
+                    if (evt.target.result) {
+                        var cachedWallpaper = evt.target.result.value;
+                        this.renderWallpaperInCanvasAsync(cachedWallpaper, 'cache').done(function () {
+                            setTimeout(function () {
+                                this.$('.content:first').css('opacity', 1);
+                            }.bind(this));
+                            setTimeout(deferred.resolve, 3000);
+                        }.bind(this));
+                    } else {
+                        deferred.resolve();
+                    }
+                }.bind(this));
+                return deferred.promise();
+            },
+            loadImageAsync : function (url) {
+                var deferred = $.Deferred();
+
+                var $img = $(new window.Image());
+
+                var loadHandler = function () {
+                    deferred.resolve($img);
+                    $img.remove();
+                };
+
+                var errorHandler = function () {
+                    deferred.reject($img);
+                    $img.remove();
+                };
+
+                $img.one('load', loadHandler)
+                    .one('error', errorHandler)
+                    .attr('src', url);
+
+                return deferred.promise();
+            },
+            renderWallpaperInCanvasAsync : function (url, className) {
+                var deferred = $.Deferred();
+
+                var $canvas = $('<canvas>').addClass('content ' + className);
+
+                this.loadImageAsync(url).done(function ($img) {
+                    $canvas.attr({
+                        height : $img[0].height,
+                        width : $img[0].width
+                    });
+
+                    var context = $canvas[0].getContext('2d');
+                    context.drawImage($img[0], 0, 0);
+
+                    this.$('.bg').prepend($canvas);
+
+                    deferred.resolve($canvas);
+                }.bind(this));
+
+                return deferred.promise();
             },
             initBackgroundAsync : function () {
                 var deferred = $.Deferred();
@@ -163,14 +228,23 @@
                 this.loadBackgroundAsync().done(function (resp) {
                     var bg = resp[0];
                     if (bg.type === 0) {
-                        this.$('.bg').prepend($('<img>').attr('src', bg.url).addClass('content'));
+                        this.renderWallpaperInCanvasAsync(bg.url, 'new').done(function ($canvas) {
+                            deferred.resolve();
+
+                            // Cache wallpaper
+                            setTimeout(function () {
+                                DB.addOrUpdateAsync('welcome', {
+                                    key : 'wallpaper',
+                                    value : $canvas[0].toDataURL()
+                                });
+                            }, 5000);
+                        });
                     } else {
                         this.$('.bg').prepend($('<iframe>').attr('src', bg.url).addClass('content'));
+                        this.$('.content').one('load', function () {
+                            deferred.resolve();
+                        });
                     }
-
-                    this.$('.content').one('load', function () {
-                        deferred.resolve();
-                    });
                 }.bind(this)).fail(deferred.reject);
 
                 return deferred.promise();
