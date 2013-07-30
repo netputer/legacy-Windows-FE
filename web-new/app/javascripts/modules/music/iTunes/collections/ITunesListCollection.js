@@ -3,7 +3,6 @@
     define([
         'underscore',
         'backbone',
-        'Configuration',
         'music/iTunes/models/ITunesListModel',
         'music/iTunes/models/ListContextModel'
     ], function (
