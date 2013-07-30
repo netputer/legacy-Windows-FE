@@ -318,8 +318,8 @@
                 CLOUD_REG : 'https://account.wandoujia.com/v4/api/register',
                 CLOUD_SECCODE : 'https://account.wandoujia.com/v4/api/seccode',
 
-                WELCOME_BACKGROUND : 'http://211.152.116.25:8080/startpage/api/v1/background',
-                WELCOME_FEEDS : 'http://211.152.116.25:8080/startpage/api/v1/feeds'
+                WELCOME_BACKGROUND : 'http://apps.wandoujia.com/startpage/api/v1/background',
+                WELCOME_FEEDS : 'http://apps.wandoujia.com/startpage/api/v1/feeds'
             },
             events : {
                 // Backend events - Public events
