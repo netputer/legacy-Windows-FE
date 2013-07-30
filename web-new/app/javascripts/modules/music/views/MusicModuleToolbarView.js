@@ -55,13 +55,18 @@
                                 !Device.get('hasSDCard')
                 });
 
-                this.$('.button-itunes').prop({
-                    disabled : Device.get('isMounted') ||
+                var disabled = Device.get('isMounted') ||
                                 !Device.get('isConnected') ||
                                 !Device.get('hasSDCard') ||
                                 Device.get('isWifi') ||
-                                Device.get('isInternet')
-                });
+                                Device.get('isInternet');
+
+                var button = this.$('.button-itunes').prop({disabled : disabled});
+                if (disabled) {
+                    button.attr('title', i18n.music.CAN_NOT_IMPORT_UNDER_WIFI);
+                } else {
+                    button.removeAttr('title');
+                }
 
                 this.$('.button-delete').prop({
                     disabled : !Device.get('isConnected') ||
