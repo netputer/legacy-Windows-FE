@@ -39,6 +39,8 @@
             initFeeds : function () {
                 var collection = FeedsCollection.getInstance();
 
+                var fisrtScreen = true;
+
                 collection.on('refresh', function (collection) {
                     var fragment = document.createDocumentFragment();
                     collection.each(function (feed) {
@@ -78,12 +80,16 @@
                             fragment.appendChild(targetView.getInstance({
                                 model : feed,
                                 parentView : this
-                            }).render().$el[0]);
+                            }).render().$el.toggleClass('flip', !fisrtScreen)[0]);
                         }
                     }, this);
                     this.$el.append(fragment);
 
                     setTimeout(this.initLayout.bind(this));
+
+                    if (fisrtScreen) {
+                        fisrtScreen = false;
+                    }
                 }, this);
 
                 return this;
@@ -96,6 +102,8 @@
                     itemWidth : 350,
                     offset : 20
                 });
+
+                this.$('.w-welcome-feed-card.flip').removeClass('flip');
             },
             loadNextPage : function () {
                 var collection = FeedsCollection.getInstance();

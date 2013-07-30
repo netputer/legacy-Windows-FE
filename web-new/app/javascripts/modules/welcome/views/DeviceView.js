@@ -81,11 +81,11 @@
                     }
                 });
 
-                this.listenTo(Device, 'change:isConnected change:isFastADB', _.debounce(function (Device) {
+                this.listenTo(Device, 'change:isConnected change:isFastADB change:canScreenshot', _.debounce(function (Device) {
                     if (Device.get('isConnected') || Device.get('isFastADB')) {
                         Device.getScreenshotAsync();
                     }
-                    this.setDisable(!Device.get('isConnected') && !Device.get('isFastADB'));
+                    this.setDisable(!Device.get('canScreenshot'));
                 }));
 
                 this.listenTo(Device, 'change:shell', this.renderShell);
@@ -116,7 +116,7 @@
 
                 this.$el.append(screenControlView.render().$el);
 
-                this.setDisable(!Device.get('isConnected') && !Device.get('isFastADB'));
+                this.setDisable(!Device.get('canScreenshot'));
 
                 return this;
             },
@@ -212,7 +212,7 @@
                 }.bind(this));
             },
             mouseoverScreen : function () {
-                if (Device.get('isConnected') && !this.loading) {
+                if (Device.get('canScreenshot') && !this.loading) {
                     setTimeout(function () {
                         if (checkMousePosition.call(this)) {
                             screenControlView.$el.fadeIn();

@@ -26,7 +26,7 @@
         var clearInterval = window.clearInterval;
 
         var CapacityView = PopupPanel.extend({
-            className : 'w-ui-popup-tip w-layout-hid',
+            className : 'w-ui-popup-tip w-layout-hide',
             contentTemplate : doT.template(TemplateFactory.get('welcome', 'capacity')),
             initialize : function () {
                 CapacityView.__super__.initialize.apply(this, arguments);

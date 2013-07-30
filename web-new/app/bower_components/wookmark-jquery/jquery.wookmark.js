@@ -266,8 +266,6 @@
 
     // Main layout method.
     Wookmark.prototype.layout = function() {
-      // Do nothing if container isn't visible
-      if (!this.container.is(":visible")) return;
 
       // Calculate basic layout parameters.
       var columnWidth = this.getItemWidth() + this.offset,

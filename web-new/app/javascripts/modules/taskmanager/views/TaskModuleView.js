@@ -83,7 +83,8 @@
 
                     this.$('.w-task-mask').css('background-color', 'rgba(0, 0, 0, .4)');
                     this.$el.one('webkitAnimationEnd', showHandler)
-                            .css('visibility', 'visible').addClass('w-task-module-fade-in');
+                            .css('visibility', 'visible')
+                            .addClass('w-task-module-fade-in');
                 }
             },
             slideOut : function () {

@@ -130,34 +130,15 @@
                     this.$el.toggleClass('left', screenshot.rotation === 1 || screenshot.rotation === 3);
                 });
 
-                this.listenTo(Device, 'change', this.setButtonState);
+                this.listenTo(Device, 'change:isConnected change:canScreenshot', this.setButtonState);
             },
             setButtonState : function () {
                 this.$('.button-open-sd, .button-backup, .button-restore, .button-set-wallpaper')
                     .prop('disabled', !Device.get('isConnected'))
                     .attr('title', Device.get('isConnected') ? '' : i18n.welcome.CONNECT_UR_PHONE);
 
-                if (!Device.get('isConnected')) {
-                    this.$('.button-screen-shot').prop('disabled', !Device.get('isFastADB'));
-                    settingMenu.$el.prop('disabled', !Device.get('isFastADB'));
-
-
-                } else {
-                    if (Device.get('isUSB')) {
-                        this.$('.button-screen-shot').prop('disabled', false);
-                        settingMenu.$el.prop('disabled', false);
-                    } else {
-                        if (Device.get('isWifi')) {
-                            Device.canScreenshotAsync().done(function (resp) {
-                                this.$('.button-screen-shot').prop('disabled', !resp.body.value);
-                                settingMenu.$el.prop('disabled', !resp.body.value);
-                            }.bind(this));
-                        } else {
-                            this.$('.button-screen-shot').prop('disabled', true);
-                            settingMenu.$el.prop('disabled', true);
-                        }
-                    }
-                }
+                this.$('.button-screen-shot').prop('disabled', !Device.get('canScreenshot'));
+                settingMenu.$el.prop('disabled', !Device.get('canScreenshot'));
             },
             render : function () {
                 this.$el.html(this.template({}));

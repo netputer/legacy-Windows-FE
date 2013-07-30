@@ -97,6 +97,7 @@
         </li>
         {{~}}
     </ul>
+    <div class="link button-more">{{= i18n.app.MORE }}</div>
 </script>
 
 <script type="text/x-ui-template" id="clock">

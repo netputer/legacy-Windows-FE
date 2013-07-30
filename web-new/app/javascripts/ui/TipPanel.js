@@ -95,13 +95,13 @@
                     this.render();
                 }
 
-                if (this.rendered) {
+                if (this.$el.hasClass('w-layout-hide')) {
                     this.listenTo(WindowState, 'resize', this.hide);
 
                     this.locate();
 
-                    this.$el.removeClass('w-layout-hide');
-                    this.$el.toggleClass('w-anima-pop-in', this.popIn);
+                    this.$el.removeClass('w-layout-hide')
+                        .toggleClass('w-anima-pop-in', this.popIn);
 
                     var transitionEndHandler = function () {
                         this.trigger(EventsMapping.SHOW);
@@ -110,14 +110,16 @@
                 }
             },
             hide : function () {
-                this.$el.addClass('w-layout-hide');
+                if (!this.$el.hasClass('w-layout-hide')) {
+                    this.$el.addClass('w-layout-hide');
 
-                this.rendered = false;
-
-                setTimeout(function () {
-                    this.trigger(EventsMapping.REMOVE);
-                    TipPanel.__super__.remove.call(this);
-                }.bind(this), 500);
+                    var transitionEndHandler = function () {
+                        this.rendered = false;
+                        TipPanel.__super__.remove.call(this);
+                        this.trigger(EventsMapping.REMOVE);
+                    }.bind(this);
+                    this.$el.one('webkitTransitionEnd', transitionEndHandler);
+                }
             },
             remove : function () {
                 this.hide();

@@ -290,10 +290,13 @@
     box-sizing: border-box;
     height: 170px;
     padding: 15px 15px 10px;
-    position: absolute;
     width: 350px;
     -webkit-transition: -webkit-transform .3s ease-out, box-shadow .2s linear;
     -webkit-transform: translate3d(0, 0, 0);
+
+    &.flip {
+        -webkit-transition: box-shadow .2s linear;
+    }
 
     &:hover {
         box-shadow: 0 1px 3px rgba(0, 0, 0, .5), 0 3px 5px rgba(0, 0, 0, .1);
@@ -477,6 +480,19 @@
                         }
                     }
                 }
+            }
+        }
+
+        .button-more {
+            display: none;
+            bottom: 5px;
+            position: absolute;
+            right: 15px;
+        }
+
+        &:hover {
+            .button-more {
+                display: block;
             }
         }
     }
@@ -761,7 +777,7 @@
     position: absolute;
     right: 25px;
     top: 365px;
-    -webkit-transition: opacity .5s linear, padding .2s linear, left top .2s linear;
+    -webkit-transition: opacity .5s linear, padding .2s linear, -webkit-transform .2s linear;
 
     button {
         @each $icon in backup, restore, sd-white, screenshot, wallpaper {
@@ -806,6 +822,7 @@
         position: fixed;
         right: 0;
         top: 1px;
+        -webkit-transition: none;
 
         .button-top {
             display: inline-block;
@@ -841,12 +858,14 @@
 
             &:enabled:hover:not(.active):not(:active),
             &:enabled:focus {
+                border-color: transparent;
                 color: $textPrimary;
                 text-shadow: 0 1px 0 #fff;
             }
 
             &:enabled:active,
             &.active {
+                border-color: transparent;
                 color: $textActive;
                 text-shadow: 0 1px 0 #fff;
             }
@@ -856,6 +875,24 @@
             .arrow-ctn {
                 .arrow {
                     border-color: #808182 transparent transparent transparent;
+                }
+            }
+
+            &:enabled:hover {
+                .arrow-ctn {
+                    .arrow {
+                        border-color: $textPrimary transparent transparent transparent;
+                    }
+                }
+            }
+
+            &:enabled:active,
+            &.active,
+            &.active:hover {
+                .arrow-ctn {
+                    .arrow {
+                        border-color: $textActive transparent transparent transparent;
+                    }
                 }
             }
         }
