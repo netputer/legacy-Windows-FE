@@ -216,5 +216,7 @@ define({
     CLOUD_PHOTO_OPEN : '开启云相册同步',
     RESELECT_FILE_TEXT : '重新选择文件',
     SAVE : '保存',
-    DONTSAVE : '不保存'
+    DONTSAVE : '不保存',
+    PHONE : '手机内存',
+    SD_CARD : 'SD 卡'
 });

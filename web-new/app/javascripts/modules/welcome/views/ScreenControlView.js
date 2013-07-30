@@ -51,7 +51,7 @@
                     .removeClass('play')
                     .addClass('stop');
 
-                this.$('.button-pause .label').html(i18n.welcome.PAUSE_BTN_TEXT);
+                this.$('.button-pause .label').html(i18n.misc.PAUSE);
 
                 this.options.deviceView.play();
 
@@ -68,7 +68,7 @@
                     .removeClass('stop')
                     .addClass('play');
 
-                this.$('.button-play .label').html(i18n.welcome.PLAY_BTN_TEXT);
+                this.$('.button-play .label').html(i18n.misc.PLAY);
 
                 this.options.deviceView.stop();
 

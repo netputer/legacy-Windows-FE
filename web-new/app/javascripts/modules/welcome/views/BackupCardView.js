@@ -11,7 +11,8 @@
         'ui/TemplateFactory',
         'ui/AlertWindow',
         'welcome/views/FeedCardView',
-        'backuprestore/BackupController'
+        'backuprestore/BackupController',
+        'sync/SyncService'
     ], function (
         Backbone,
         _,
@@ -23,15 +24,23 @@
         TemplateFactory,
         AlertWindow,
         FeedCardView,
-        BackupController
+        BackupController,
+        SyncService
     ) {
         var alert = window.alert;
 
         var BackupCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'backup')),
-            className : FeedCardView.getClass().prototype.className + ' backup',
+            className : FeedCardView.getClass().prototype.className + ' backup hide',
             render : function () {
                 this.$el.html(this.template({}));
+
+                SyncService.getLastBackupDayAsync().done(function (resp) {
+                    if (parseInt(resp.body.value, 10) >= 10) {
+                        this.removeClass('hide');
+                        this.options.parentView.initLayout();
+                    }
+                }.bind(this));
                 return this;
             },
             clickButtonAction : function () {

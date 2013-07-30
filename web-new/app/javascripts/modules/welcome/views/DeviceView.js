@@ -48,7 +48,7 @@
 
         var checkMousePosition = function () {
             return this.$('.screen')[0].contains(MouseState.currentElement) ||
-                    deviceView.$el[0].contains(MouseState.currentElement);
+                    screenControlView.$el[0].contains(MouseState.currentElement);
         };
 
         var DeviceView = Backbone.View.extend({
@@ -71,15 +71,9 @@
                     fade : {
                         set : function (value) {
                             fade = value;
-                            if (fade) {
-                                this.$('.screen img').css({
-                                    opacity : '.3'
-                                });
-                            } else {
-                                this.$('.screen img').css({
-                                    opacity : '1'
-                                });
-                            }
+                            this.$('.screen img').css({
+                                opacity : fade ? '.3' : '1'
+                            });
                         },
                         get : function () {
                             return fade;
@@ -91,10 +85,21 @@
                     if (Device.get('isConnected') || Device.get('isFastADB')) {
                         Device.getScreenshotAsync();
                     }
+                    this.setDisable(!Device.get('isConnected') && !Device.get('isFastADB'));
                 }));
 
                 this.listenTo(Device, 'change:shell', this.renderShell);
                 this.listenTo(Device, 'change:screenshot', this.renderScreenshot);
+            },
+            setDisable : function (disable) {
+                this.$('.screenshot').toggle(!disable);
+                if (disable) {
+                    this.$('.offline-tip').css('display', '-webkit-box');
+                } else {
+                    this.$('.offline-tip').hide();
+                }
+
+                this.$el.css('opacity', disable ? '.7' : '1');
             },
             render : function () {
                 this.$el.html(this.template({}));
@@ -110,6 +115,8 @@
                 });
 
                 this.$el.append(screenControlView.render().$el);
+
+                this.setDisable(!Device.get('isConnected') && !Device.get('isFastADB'));
 
                 return this;
             },

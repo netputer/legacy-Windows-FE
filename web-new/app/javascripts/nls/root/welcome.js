@@ -1,6 +1,8 @@
 /*global define*/
 define({
     CLOCK_DATE_FORMAT : 'MM 月 dd 日',
+    OPEN_FOLDER : '打开文件夹',
+    TOP : '回到顶部',
 
     WELCOME_PAGE_SHOT : '分享您的手机和壁纸到新浪微博',
     WELCOME_PAGE_SHOT_FOR_FACEBOOK : '分享您的手机和壁纸到 Facebook',

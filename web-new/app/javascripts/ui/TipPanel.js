@@ -76,7 +76,6 @@
                 return;
             },
             render : function () {
-                this.beforeRender();
                 this.$el.html(this.template({}));
                 this.$el.append(this.$content);
                 this.$el.css({
@@ -96,17 +95,19 @@
                     this.render();
                 }
 
-                this.listenTo(WindowState, 'resize', this.hide);
+                if (this.rendered) {
+                    this.listenTo(WindowState, 'resize', this.hide);
 
-                this.locate();
+                    this.locate();
 
-                this.$el.removeClass('w-layout-hide');
-                this.$el.toggleClass('w-anima-pop-in', this.popIn);
+                    this.$el.removeClass('w-layout-hide');
+                    this.$el.toggleClass('w-anima-pop-in', this.popIn);
 
-                var transitionEndHandler = function () {
-                    this.trigger(EventsMapping.SHOW);
-                }.bind(this);
-                this.$el.one('webkitTransitionEnd', transitionEndHandler);
+                    var transitionEndHandler = function () {
+                        this.trigger(EventsMapping.SHOW);
+                    }.bind(this);
+                    this.$el.one('webkitTransitionEnd', transitionEndHandler);
+                }
             },
             hide : function () {
                 this.$el.addClass('w-layout-hide');

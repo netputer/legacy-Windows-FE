@@ -13,8 +13,10 @@
     height: 100%;
     position: relative;
     width: 100%;
-    -webkit-box-align: center;
-    -webkit-box-pack: center;
+    -webkit-box: {
+        align: center;
+        pack: center;
+    }
 
     .content-ctn {
         background-image: url('../images/connection-guide-bg-300X300.png');
@@ -47,21 +49,39 @@
  * Device view
  ********************************************************************************/
 .w-welcome-device-ctn {
+    margin-top: 40px;
     min-width: 305px;
     overflow: visible;
-    padding-top: 40px;
     position: relative;
-    -webkit-animation: fade-in-device 1.5s;
-    -webkit-transition: width 1s;
-    -webkit-transform: translate3d(0, 0, 0);
+    -webkit: {
+        animation: fade-in-device 1.5s;
+        transition: width 1s;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .shadow {
+        left: 10px;
+        position: absolute;
+        top: 10px;
+        -webkit-transition: all .7s ease-out;
+    }
+
+    .shadow {
+        left: 10px;
+        position: absolute;
+        top: 10px;
+        -webkit-transition: all .7s ease-out;
+    }
 
     .stage-ctn {
         position: relative;
 
         .screen-wrap {
-            -webkit-transform-origin: 50% 50%;
-            -webkit-transform-style: preserve-3d;
-            -webkit-transition: -webkit-transform .7s ease-out;
+            -webkit: {
+                transform-origin: 50% 50%;
+                transform-style: preserve-3d;
+                transition: -webkit-transform .7s ease-out;
+            }
 
             .screen-ctn {
                 @include misc-sprite(device-default);
@@ -70,7 +90,6 @@
                 pointer-events: all;
                 position: relative;
                 width: misc-sprite-width(device-default);
-                -webkit-filter: drop-shadow(15px 15px 30px rgba(0, 0, 0, .8));
 
                 .screen {
                     background-color: #000;
@@ -89,30 +108,53 @@
             color: #fff;
             display: none;
             left: 50%;
-            margin: -14px 0 0 -75px;
-            padding: 12px 0px;
+            padding: 12px 5px;
             position: absolute;
             text-align: center;
             top: 50%;
-            width: 150px;
+            -webkit-transform: translate3d(-50%, -50%, 0);
 
-            .ctn {
-                -webkit-box-align: center;
-                -webkit-box-pack: center;
+            .icon {
+                display: inline-block;
+                height: 16px;
+                margin-right: 5px;
+                vertical-align: middle;
+                width: 16px;
 
-                .icon {
-                    height: 16px;
-                    margin-right: 5px;
-                    width: 16px;
-
-                    &.success {
-                        @include sprite-sprite(success);
-                    }
-
-                    &.fail {
-                        @include sprite-sprite(fail);
-                    }
+                &.success {
+                    @include sprite-sprite(success);
                 }
+
+                &.fail {
+                    @include sprite-sprite(fail);
+                }
+            }
+
+            .des {
+                display: inline-block;
+            }
+        }
+
+
+
+        .offline-tip {
+            display: none;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+            -webkit-box-align: center;
+
+            .icon {
+                @include sprite-sprite(info-big);
+                height: 100px;
+                margin-bottom: 5px;
+                width: 100px;
+            }
+
+            .desc {
+                color: #fff;
+                text-align: center;
             }
         }
     }
@@ -134,8 +176,11 @@
             -webkit-transition-timing-function: ease-in;
         }
 
-        .w-welcome-screen-control-ctn {
-            -webkit-transform: translate3d(-50%, -55px, 0);
+        .shadow {
+            left: 105px;
+            top: 15px;
+            -webkit-transform: rotate(-90deg);
+            -webkit-transition-timing-function: ease-in;
         }
     }
 
@@ -147,13 +192,25 @@
             -webkit-transition-timing-function: ease-in;
         }
 
-        .w-welcome-screen-control-ctn {
-            -webkit-transform: translate3d(-50%, -55px, 0);
+        .shadow {
+            left: 105px;
+            top: 15px;
+            -webkit-transform: rotate(90deg);
+            -webkit-transition-timing-function: ease-in;
         }
     }
 
     &.turn-down {
+        .shadow {
+            -webkit-transform: rotate(-180deg);
+            -webkit-transition-timing-function: ease-in;
+        }
+
         .screen-wrap {
+            -webkit-transform: rotate(180deg);
+        }
+
+        .shadow {
             -webkit-transform: rotate(180deg);
         }
     }
@@ -173,6 +230,7 @@
     position: relative;
 
     .bg {
+        background-image: url(data:image/png;base64,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);
         box-shadow: 1px 0 0 rgba(0, 0, 0, .2) inset;
         height: 720px;
         left: 0;
@@ -228,14 +286,18 @@
 
 .w-welcome-feed-card {
     background: #fff;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .1);
     box-sizing: border-box;
     height: 170px;
     padding: 15px 15px 10px;
     position: absolute;
     width: 350px;
-    -webkit-transition: -webkit-transform .3s ease-out;
+    -webkit-transition: -webkit-transform .3s ease-out, box-shadow .2s linear;
     -webkit-transform: translate3d(0, 0, 0);
+
+    &:hover {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .5), 0 3px 5px rgba(0, 0, 0, .1);
+    }
 
     .link {
         color: #000;
@@ -252,6 +314,10 @@
     .icon-ctn {
         margin-right: 15px;
         width: 100px;
+
+        .title {
+            font-size: 16px;
+        }
     }
 
     .info-ctn {
@@ -380,7 +446,6 @@
 
         .icon-ctn {
             .title {
-                color: #72c460;
                 display: inline-block;
                 margin-top: 100px;
                 text-align: center;
@@ -509,8 +574,6 @@
                     color: #fff;
                     text-shadow: 0 1px 0 rgba(0, 0, 0, .4);
 
-
-
                     &:enabled:hover:not(.active):not(:active),
                     &:enabled:focus {
                         background: -webkit-linear-gradient(-90deg, rgba(255, 255, 255, .1) 0%, rgba(0, 0, 0, .05) 100%);
@@ -545,16 +608,19 @@
 .w-welcome-screen-control-ctn {
     background: rgba(0, 0, 0, .6);
     border-radius: 3px;
-    bottom: 70px;
     display: none;
     left: 50%;
-    padding: 4px 5px;
+    padding: 10px 5px;
     pointer-events: all;
     position: absolute;
     text-align: center;
-    width: 205px;
-    -webkit-transform: translate3d(-50%, 0, 0);
+    top: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
     -webkit-transition: -webkit-transform .7s ease-out;
+
+    .btn-ctn + .btn-ctn {
+        margin-top: 10px;
+    }
 
     button {
         @each $icon in refresh, play, stop, fullscreen {
@@ -593,29 +659,45 @@
 }
 
 .w-welcome-capacity {
-    -webkit-box-flex: 1;
-
     .phone-capacity,
     .external-capacity {
         -webkit-box-align: center;
 
-        .icon {
-            height: 16px;
+        .title {
             margin-right: 5px;
-            width: 16px;
+            width: 48px;
         }
     }
 
-    .phone-capacity {
-        margin-right: 20px;
-    }
+    progress {
+        height: 4px;
 
-    .phone-capacity .icon {
-        @include button-sprite(device);
-    }
+        &::-webkit-progress-bar {
+            background-color: #666;
+            border-radius: 2px;
+            box-shadow: none;
+            display: block;
+            height: 4px;
+        }
 
-    .external-capacity .icon {
-        @include button-sprite(sd);
+        &::-webkit-progress-value {
+            background-color: #c9c9c9;
+            background-image: none;
+            border-radius: 2px;
+            display: block;
+            height: 4px;
+            min-width: 10px;
+        }
+
+        &.highlight {
+            &::-webkit-progress-bar {
+                background-color: #ef362c;
+            }
+
+            &::-webkit-progress-value {
+                background-color: #ffc0b8;
+            }
+        }
     }
 
     .progress {
@@ -624,56 +706,7 @@
     }
 
     .ratio {
-        font-size: 11px;
-    }
-}
-
-.w-welcome-filetools-ctn {
-    .button-open-sd {
-        width: 80px;
-    }
-
-    .auto-backup-ctn {
-        display: none;
-
-        .auto-backup-icon {
-            margin-left: 5px;
-            margin-top: -1px;
-        }
-
-        .in-process {
-            background-image: url('../images/process.gif');
-            height: 16px;
-            width: 16px;
-        }
-    }
-}
-
-.w-welcome-flash-tip {
-    padding: 10px 0;
-    width: 225px;
-
-    .pic-ctn {
-        @include sprite-sprite(light);
-        height: 48px;
-        width: 43px;
-    }
-
-    .content-ctn {
-        padding-left: 10px;
-        -webkit-box-flex: 1;
-
-        .title {
-            color: #000;
-            margin-bottom: 5px;
-        }
-    }
-
-    .button-close {
-        @include button-close;
-        position: absolute;
-        right: 8px;
-        top: 5px;
+        font-size: 10px;
     }
 }
 
@@ -728,7 +761,7 @@
     position: absolute;
     right: 25px;
     top: 365px;
-    -webkit-transition: opacity .5s linear, padding .2s linear;
+    -webkit-transition: opacity .5s linear, padding .2s linear, left top .2s linear;
 
     button {
         @each $icon in backup, restore, sd-white, screenshot, wallpaper {
@@ -751,6 +784,14 @@
         }
     }
 
+    .spliter {
+        -webkit-box-flex: 1;
+    }
+
+    .button-top {
+        display: none;
+    }
+
     &.left {
         left: 25px;
         top: 420px;
@@ -765,7 +806,10 @@
         position: fixed;
         right: 0;
         top: 1px;
-        width: 100%;
+
+        .button-top {
+            display: inline-block;
+        }
     }
 
     &.light {
@@ -814,6 +858,16 @@
                     border-color: #808182 transparent transparent transparent;
                 }
             }
+        }
+    }
+}
+
+.w-autobackup-tip {
+    .button-open {
+        margin-left: 10px;
+
+        &:hover {
+            text-decoration: underline;
         }
     }
 }

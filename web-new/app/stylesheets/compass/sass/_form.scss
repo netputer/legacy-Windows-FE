@@ -80,7 +80,7 @@ button {
         }
     }
 
-    &.trans {
+    &.transparent {
         background: transparent;
         border-color: transparent;
         box-shadow: none;
@@ -301,7 +301,7 @@ button.w-icon-btn {
         }
     }
 
-    &.trans {
+    &.transparent {
         .arrow-ctn .arrow {
             border-top-color: rgba(255, 255, 255, .9);
         }

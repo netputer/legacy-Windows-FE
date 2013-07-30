@@ -101,6 +101,20 @@
             return deferred.promise();
         };
 
+        SyncService.getLastBackupDayAsync = function () {
+            var deferred = $.Deferred();
+
+            IO.requestAsync(CONFIG.actions.SYNC_BACKUP_DAY_DIFF).done(function (resp) {
+                if (resp.state_code === 200) {
+                    deferred.resolve(resp);
+                } else {
+                    deferred.reject(resp);
+                }
+            });
+
+            return deferred.promise();
+        };
+
         return SyncService;
     });
 }(this));

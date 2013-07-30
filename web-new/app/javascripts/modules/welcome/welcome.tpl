@@ -36,7 +36,7 @@
                     {{= StringUtil.format(i18n.welcome.CARD_APP_TAG_LINE, it.categories[0].name, it.installedCountStr) }}
                 </span>
             </div>
-            <button class="button-action">{{= i18n.app.INSTALL }}</button>
+            <button class="button-action"></button>
         </div>
         <div class="comment text-secondary">{{! it.comment }}</div>
         <footer class="footer text-thirdly">
@@ -83,7 +83,7 @@
 
 <script type="text/x-ui-template" id="item-list-card">
     <div class="icon-ctn">
-        <h1 class="text-secondary title">{{! it.title }}</h1>
+        <div class="text-primary title">{{! it.title }}</div>
     </div>
     <ul class="info-ctn">
         {{~ it.items : item }}
@@ -108,19 +108,23 @@
 </script>
 
 <script type="text/x-ui-template" id="device">
+    <img class="shadow" src="images/shadow.png" alt="" />
     <div class="stage-ctn">
+        <img class="shadow" alt="" src="images/shadow.png" />
         <div class="screen-wrap">
             <div class="screen-ctn vbox">
                 <div class="screen">
-                    <img alt="" />
+                    <img class="screenshot" alt="" />
                 </div>
             </div>
         </div>
         <div class="tip">
-            <div class="ctn hbox">
-                <div class="icon"></div>
-                <div class="des"></div>
-            </div>
+            <div class="icon"></div>
+            <div class="des"></div>
+        </div>
+        <div class="offline-tip vbox">
+            <div class="icon"></div>
+            <div class="desc">{{= i18n.misc.SCREEN_SHOT_UNDER_USB }}</div>
         </div>
         {{= TemplateFactory.get('ui', 'loading-white') }}
     </div>
@@ -128,62 +132,64 @@
 
 <script type="text/x-ui-template" id="toolbar">
     <span class="w-ui-buttongroup screen-shot-setting">
-        <button class="w-icon-btn min trans button-screen-shot">
+        <button class="w-icon-btn transparent min button-screen-shot">
             <span class="icon screenshot"></span>{{= i18n.welcome.SCREEN_SHOT_TEXT }}
         </button>
     </span>
-    <button class="w-icon-btn button-backup trans min">
+    <button class="w-icon-btn button-backup transparent min">
         <span class="icon backup"></span>{{= i18n.welcome.TOOL_BACKUP }}
     </button>
-    <!--
-    <span class="w-ui-buttongroup auto-backup-ctn">
-        <button class="button-group-backup min">{{= i18n.welcome.TOOL_BACKUP }}</button>
-        <button class="w-icon-btn img min button-auto-backup">
-            <span class="icon open-folder-black"></span>
-        </button>
-    </span>
-    -->
-    <button class="w-icon-btn button-restore trans min">
+    <button class="w-icon-btn button-restore transparent min">
         <span class="icon restore"></span>{{= i18n.welcome.TOOL_RECOVERY }}
     </button>
-    <button class="w-icon-btn button-open-sd trans min">
+    <button class="w-icon-btn button-open-sd transparent min">
         <span class="icon sd-white"></span>{{= i18n.welcome.TOOL_SD }}
     </button>
-    <button class="w-icon-btn button-set-wallpaper trans min">
+    <button class="w-icon-btn button-set-wallpaper transparent min">
         <span class="icon wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
     </button>
+    <div class='spliter'></div>
+    <button class="button-top transparent min">{{= i18n.welcome.TOP }}</button>
 </script>
 
 <script type="text/x-ui-template" id="device-tools">
-    <button class="w-icon-btn trans min button-refresh">
-        <span class="icon refresh"></span>
-        {{= i18n.welcome.REFRESH_BTN_TEXT }}
-    </button>
-    <button class="w-icon-btn trans min button-play">
-        <span class="icon play"></span>
-        <span class="label">{{= i18n.welcome.PLAY_BTN_TEXT }}</span>
-    </button>
-    <button class="w-icon-btn trans min button-fullscreen">
-        <span class="icon fullscreen"></span>
-        {{= i18n.welcome.FULLSCREEN_BTN_TEXT }}
-    </button>
+    <div class="btn-ctn">
+        <button class="w-icon-btn transparent min button-refresh">
+            <span class="icon refresh"></span>
+            {{= i18n.misc.REFRESH }}
+        </button>
+    </div>
+    <div class="btn-ctn">
+        <button class="w-icon-btn transparent min button-play">
+            <span class="icon play"></span>
+            <span class="label">{{= i18n.misc.PLAY }}</span>
+        </button>
+    </div>
+    <div class="btn-ctn">
+        <button class="w-icon-btn transparent min button-fullscreen">
+            <span class="icon fullscreen"></span>
+            {{= i18n.welcome.FULLSCREEN_BTN_TEXT }}
+        </button>
+    </div>
 </script>
 
 <script type="text/x-ui-template" id="capacity">
-    {{ var percent = parseInt((it.internalCapacity - it.internalFreeCapacity) / it.internalCapacity * 100, 10); }}
-    <div class="phone-capacity hbox{{? percent >= 90 }} outofspace{{?}}">
-        <div class="icon" data-title="{{= i18n.app.PHONE }}"></div>
-        <progress class="progress tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
-        <div class="ratio text-secondary">
-            <span class="{{? percent >= 90 }}text-warning{{?}}">{{= StringUtil.readableSize(it.internalCapacity - it.internalFreeCapacity) }}</span> / {{= StringUtil.readableSize(it.internalCapacity) }}
+    <div class="w-welcome-capacity">
+        {{ var percent = parseInt((it.internalCapacity - it.internalFreeCapacity) / it.internalCapacity * 100, 10); }}
+        <div class="phone-capacity hbox{{? percent >= 90 }} outofspace{{?}}">
+            <div class="title">{{= i18n.misc.PHONE }}</div>
+            <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
+            <div class="ratio">
+                <span class="{{? percent >= 90 }}text-warning{{?}}">{{= StringUtil.readableSize(it.internalCapacity - it.internalFreeCapacity) }}</span> / {{= StringUtil.readableSize(it.internalCapacity) }}
+            </div>
         </div>
-    </div>
-    {{ var percent =  parseInt((it.externalCapacity - it.externalFreeCapacity) / it.externalCapacity * 100, 10); }}
-    <div class="external-capacity hbox{{? percent >= 90 }} outofspace{{?}}">
-        <div class="icon" data-title="{{= i18n.app.SD_CARD }}"></div>
-        <progress class="progress tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
-        <div class="ratio text-secondary">
-            <span class="{{? percent >= 90 }}text-warning{{?}}">{{= StringUtil.readableSize(it.externalCapacity - it.externalFreeCapacity) }}</span> / {{= StringUtil.readableSize(it.externalCapacity) }}
+        {{ var percent =  parseInt((it.externalCapacity - it.externalFreeCapacity) / it.externalCapacity * 100, 10); }}
+        <div class="external-capacity hbox{{? percent >= 90 }} outofspace{{?}}">
+            <div class="title">{{= i18n.misc.SD_CARD }}</div>
+            <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
+            <div class="ratio">
+                <span class="{{? percent >= 90 }}text-warning{{?}}">{{= StringUtil.readableSize(it.externalCapacity - it.externalFreeCapacity) }}</span> / {{= StringUtil.readableSize(it.externalCapacity) }}
+            </div>
         </div>
     </div>
 </script>
@@ -210,28 +216,11 @@
     </div>
 </script>
 
-<script type="text/x-ui-template" id="one-key-move-tip">
-    <div>
-        <span class="des">{{= i18n.misc.PHONE_CAPACITY_TIP }}</span>
-        <span class="link button-one-key-move">{{= i18n.misc.PHONE_CAPACITY_ACTION }}</span>
-    </div>
-</script>
 
-<script type="text/x-ui-template" id="open-sd-tip">
-    <div>
-        <span class="des">{{= i18n.misc.SD_CAPACITY_TIP }}</span>
-        <span class="link button-open-sd-card">{{= i18n.misc.SD_CAPACITY_ACTION }}</span>
-    </div>
-</script>
-
-<script type="text/x-ui-template" id="flash-tip">
-    <div class="w-welcome-flash-tip hbox">
-        <div class="pic-ctn"></div>
-        <div class="content-ctn">
-            <h2 class="title">{{= i18n.welcome.FLASH_TIP_TITLE }}</h2>
-            <div class="desc">{{= i18n.welcome.FLASH_TIP_DESC }}</div>
-        </div>
-        <div class="button-close"></div>
+<script type="text/x-ui-template" id="autobackup-tip">
+    <div class="w-autobackup-tip">
+        <span>{{= StringUtil.format(i18n.welcome.AUTO_BACKUP, it.date) }}</span>
+        <span class="button-open">{{= i18n.welcome.OPEN_FOLDER }}</span>
     </div>
 </script>
 </templates>

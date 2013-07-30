@@ -11,6 +11,8 @@
         'IOBackendDevice',
         'Configuration',
         'Internationalization',
+        'Device',
+        'Log',
         'welcome/views/ClockView',
         'welcome/views/DeviceView',
         'welcome/views/ToolbarView',
@@ -27,6 +29,8 @@
         IO,
         CONFIG,
         i18n,
+        Device,
+        log,
         ClockView,
         DeviceView,
         ToolbarView,
@@ -116,6 +120,7 @@
                 deviceView = DeviceView.getInstance();
                 clockView = ClockView.getInstance();
                 toolbarView = ToolbarView.getInstance();
+                this.listenTo(toolbarView, 'top', this.scrollTopAnimation);
 
                 this.$('.top').append(deviceView.render().$el)
                     .append(clockView.render().$el);
@@ -136,7 +141,26 @@
 
                 this.showBackground();
 
+                var connectionType;
+                if (Device.get('isConnected')) {
+                    if (Device.get('isUSB')) {
+                        connectionType = 'usb';
+                    } else {
+                        connectionType = 'wifi';
+                    }
+                } else {
+                    connectionType = 'disconnected';
+                }
+
+                log({
+                    'event' : 'debug.show.welcome',
+                    'connectionType' : connectionType
+                });
+
                 return this;
+            },
+            scrollTopAnimation : function () {
+                this.$el[0].scrollTop = 0;
             },
             deviceViewAnimationAsync : function () {
                 var deferred = $.Deferred();

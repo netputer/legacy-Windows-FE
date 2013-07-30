@@ -102,16 +102,9 @@
                     this.isUserFlashedAsync().done(this.flashChangeHandler.bind(this));
                 }, this);
 
-                var connectedHandler = function (Device, isConnected) {
-                    if (isConnected) {
-                        this.getUdidAsync().done(function (resp) {
-                            this.set('udid', resp.body.value);
-                        }.bind(this));
-                        this.off('change:isConnected', connectedHandler);
-                    }
-                };
-
-                this.on('change:isConnected', connectedHandler, this);
+                this.getUdidAsync().done(function (resp) {
+                    this.set('udid', resp.body.value);
+                }.bind(this));
 
                 var getShellInfoHandler = function () {
                     this.getShellInfoAsync().done(function () {

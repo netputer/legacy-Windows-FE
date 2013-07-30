@@ -15,8 +15,14 @@
         'ui/MenuButton',
         'ui/TemplateFactory',
         'ui/AlertWindow',
+        'ui/PopupPanel',
+        'ui/Panel',
+        'utilities/StringUtil',
         'backuprestore/BackupController',
-        'backuprestore/RestoreController'
+        'backuprestore/RestoreController',
+        'welcome/views/DeviceView',
+        'welcome/views/CapacityView',
+        'welcome/WelcomeService'
     ], function (
         Backbone,
         _,
@@ -32,8 +38,14 @@
         MenuButton,
         TemplateFactory,
         AlertWindow,
+        PopupPanel,
+        Panel,
+        StringUtil,
         BackupController,
-        RestoreController
+        RestoreController,
+        DeviceView,
+        CapacityView,
+        WelcomeService
     ) {
 
         var alert = window.alert;
@@ -42,11 +54,13 @@
         var wrapWithShell = Settings.get('screenShot-wrapWithShell') !== undefined ? Settings.get('screenShot-wrapWithShell') : 1;
 
         var settingMenu;
+        var deviceView;
 
         var ToolbarView = Backbone.View.extend({
-            className : 'w-welcome-toolbar',
+            className : 'w-welcome-toolbar hbox',
             template : doT.template(TemplateFactory.get('welcome', 'toolbar')),
             initialize : function () {
+                deviceView = DeviceView.getInstance();
                 settingMenu = new MenuButton({
                     items : [{
                         label : i18n.welcome.SCREEN_SHOT_SAVE_TO_FILE,
@@ -119,11 +133,15 @@
                 this.listenTo(Device, 'change', this.setButtonState);
             },
             setButtonState : function () {
-                this.$('.button-open-sd, .button-backup, .button-restore').prop('disabled', !Device.get('isConnected'));
+                this.$('.button-open-sd, .button-backup, .button-restore, .button-set-wallpaper')
+                    .prop('disabled', !Device.get('isConnected'))
+                    .attr('title', Device.get('isConnected') ? '' : i18n.welcome.CONNECT_UR_PHONE);
 
                 if (!Device.get('isConnected')) {
                     this.$('.button-screen-shot').prop('disabled', !Device.get('isFastADB'));
                     settingMenu.$el.prop('disabled', !Device.get('isFastADB'));
+
+
                 } else {
                     if (Device.get('isUSB')) {
                         this.$('.button-screen-shot').prop('disabled', false);
@@ -143,10 +161,62 @@
             },
             render : function () {
                 this.$el.html(this.template({}));
-                this.$('.screen-shot-setting').append(settingMenu.render().$el.addClass('min trans toggle'));
+                this.$('.screen-shot-setting').append(settingMenu.render().$el.addClass('min transparent toggle'));
 
                 this.setButtonState();
+                this.renderBackupButtonPopup();
+                CapacityView.getInstance({
+                    $host : this.$('.button-open-sd')
+                });
                 return this;
+            },
+            renderBackupButtonPopup : function () {
+                WelcomeService.getAutoBackupDateAsync().done(function (resp) {
+                    var date = StringUtil.formatDate('yyyy-MM-dd', parseInt(resp.body.value, 10));
+                    var $tip = $(doT.template(TemplateFactory.get('welcome', 'autobackup-tip'))({
+                        date : date
+                    }));
+                    var popupPanel = new PopupPanel({
+                        $host : this.$('.button-backup'),
+                        $content : $tip,
+                        alignToHost : false
+                    });
+                    popupPanel.$el
+                        .removeClass('w-ui-popup-panel')
+                        .addClass('w-ui-popup-tip')
+                        .on('click', '.button-open', WelcomeService.openAutobackupFileAsync);
+                }.bind(this));
+            },
+            showScreenShotTip : function (value, success) {
+                var $tip = deviceView.$('.tip');
+
+                $tip.find('.icon').toggleClass('success', success).toggleClass('fail', !success);
+                $tip.find('.des').html(value);
+
+                $tip.fadeIn('fast');
+
+                setTimeout(function () {
+                    $tip.fadeOut('fast');
+                    deviceView.fade = false;
+                }.bind(this), 3000);
+            },
+            screenShotCallback : function (resp) {
+                if (resp.state_code === 200) {
+                    if (destination === CONFIG.enums.SCREEN_SHOT_DESTINATION_CLIPBOARD) {
+                        this.showScreenShotTip(i18n.welcome.SCREEN_SHOT_CLIPBOARD_SUCCESS, true);
+                    } else {
+                        this.showScreenShotTip(i18n.welcome.SAVE_SCREEN_SHOT_SUCCESS, true);
+
+                        if (!resp.body.auto_save_screenshot_dir) {
+                            var path = resp.body.screenshot_save_pos;
+                            this.showSavePathAlert(path);
+                        }
+                    }
+                } else if (resp.state_code === 402) {
+                    this.showScreenShotTip(i18n.welcome.SCREEN_SHOT_CANCELD, false);
+                } else {
+                    this.showScreenShotTip(i18n.welcome.SCREEN_SHOT_FAILD, false);
+                }
             },
             screenShotAsync : function () {
                 var deferred = $.Deferred();
@@ -165,8 +235,31 @@
 
                 return deferred.promise();
             },
+            showSavePathAlert : function (path) {
+                if (Settings.get('save_screen_shot_path') !== true) {
+                    var panel = new Panel({
+                        buttonSet : 'yes_no',
+                        $bodyContent : i18n.welcome.SAVE_PATH_FOR_SCREENSHOT_TIP,
+                        width : 360,
+                        title : i18n.ui.TIP
+                    });
+
+                    panel.once('button_yes', function () {
+                        IO.requestAsync({
+                            url : CONFIG.actions.SET_LAST_USED_DIR,
+                            data : {
+                                dir : path.slice(0, path.lastIndexOf('\\') + 1)
+                            }
+                        });
+                        Settings.set('save_screen_shot_path', true, true);
+                    }).once('button_no', function () {
+                        Settings.set('save_screen_shot_path', true, true);
+                    });
+
+                    panel.show();
+                }
+            },
             clickButtonOpenSD : function () {
-                // Disable the button for 2 seconds
                 var $btn = this.$('.button-open-sd').prop('disabled', true);
                 setTimeout(function () {
                     $btn.prop('disabled', false);
@@ -179,7 +272,6 @@
                 });
             },
             clickButtonBackup : function () {
-                // Disable backup restore with wifi in i18n version
                 if (!FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE && !Device.get('isUSB')) {
                     alert(i18n.backup_restore.TIP_IN_WIFI);
                     return;
@@ -193,7 +285,6 @@
                 });
             },
             clickButtonRestore : function () {
-                // Disable backup restore with wifi in i18n version
                 if (!FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE && !Device.get('isUSB')) {
                     alert(i18n.backup_restore.TIP_IN_WIFI);
                     return;
@@ -207,11 +298,11 @@
                 });
             },
             clickButtonScreenShot : function () {
-                // this.options.deviceView.loading = true;
-                // this.options.deviceView.fade = true;
+                deviceView.loading = true;
+                deviceView.fade = true;
                 this.screenShotAsync().always(function () {
-                    // this.options.deviceView.loading = false;
-                }.bind(this));
+                    deviceView.loading = false;
+                });
 
                 log({
                     'event' : 'ui.click.welcome.screen.shot',
@@ -219,11 +310,17 @@
                     'wrapWithShell' : wrapWithShell
                 });
             },
+            clickButtonSetWallpaper : function () {},
+            clickButtonTop : function () {
+                this.trigger('top');
+            },
             events : {
                 'click .button-screen-shot' : 'clickButtonScreenShot',
                 'click .button-open-sd' : 'clickButtonOpenSD',
                 'click .button-backup' : 'clickButtonBackup',
-                'click .button-restore' : 'clickButtonRestore'
+                'click .button-restore' : 'clickButtonRestore',
+                'click .button-set-wallpaper' : 'clickButtonSetWallpaper',
+                'click .button-top' : 'clickButtonTop'
             }
         });
 

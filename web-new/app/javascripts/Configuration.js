@@ -3,7 +3,6 @@
     'use strict';
 
     define([], function () {
-
         var Configuration = {
             BASE_PATH : window.require.s.contexts._.config.baseUrl,
             actions : {
