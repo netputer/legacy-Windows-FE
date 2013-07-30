@@ -1,4 +1,4 @@
-$standardColor: rgb(109, 184, 0);
+$standardColor: rgb(59, 170, 36);
 $splitLineColor: #d6d6d6;
 $bgColor: #f9f9f9;
 $borderColor: #e5e5e5;
@@ -8,23 +8,23 @@ $checkedColor: #e2fac0;
 
 $hardBorderColor: #d6d6d6;
 
-$linkColor: #3c7800;
-$textPrimary: #3c7800;
+$linkColor: $standardColor;
+$textPrimary: $standardColor;
 $textSecondary: #555;
 $textGrey: #999;
 $textHighlight: #b53d01;
-$textActive: #2c5300;
+$textActive: rgb(47, 124, 47);
 $textWhite : #fff;
 
 $btnRadius: 2px;
 $disabledOpacity: .4;
 
-$primaryBtnBgColor: -webkit-linear-gradient(-90deg, #63c100 0%, #46a100 100%);
+$primaryBtnBgColor: -webkit-linear-gradient(-90deg, #4eb23a 0%, #359921 100%);
 $primaryBtnBorderColor: #2c8e00;
 $primaryBtnTextColor: #fff;
-$primaryBtnHoverBgColor: -webkit-linear-gradient(-90deg, #6bc420 0%,#52ab07 100%);
-$primaryBtnActiveBgColor: -webkit-linear-gradient(-90deg, #419400 0%,#5baf00 100%);
-$primaryBtnActiveBorderColor: #298300;
+$primaryBtnHoverBgColor: -webkit-linear-gradient(-90deg, #57c840 0%,#3eaf27 100%);
+$primaryBtnActiveBgColor: -webkit-linear-gradient(-90deg, #359920 0%,#4eb23a 100%);
+$primaryBtnActiveBorderColor: #2c8e00;
 
 $secondaryBtnBgColor: -webkit-linear-gradient(-90deg, #f3f3f3 0%, #e9e9e9 100%);
 $secondaryBtnBorderColor: #999;
