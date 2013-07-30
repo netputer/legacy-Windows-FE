@@ -391,9 +391,6 @@
 </script>
 
 <script type="text/x-ui-template" id="quick-add">
-    <header>
-        {{= i18n.contact.CONTACT_INTRO }}
-    </header>
     <h3 class="legend">
         <span class="icon" />{{= i18n.contact.QUICK_ADD_CONTACT }}
     </h3>

@@ -22,7 +22,6 @@ define({
 
     GROUP_ALREADY_EXSIST : '已存在这个分组',
     PLEASE_INPUT_GROUP_NAME : '请填写分组名称',
-    CONTACT_INTRO : '<p>您可以通过豌豆荚快速查找和搜索联系人、管理分组、批量发送短信。</p><p>左侧列表默认显示的是您的全部联系人。如果您需要查看其他账号和分组下的联系人，请点击右上角菜单切换。</p>',
     QUICK_ADD_CONTACT : '快速新建联系人',
     NAME : '姓名',
     CELL_PHONE : '移动电话',

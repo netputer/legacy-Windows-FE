@@ -22,7 +22,6 @@ define({
 
     GROUP_ALREADY_EXSIST : 'Duplicate name',
     PLEASE_INPUT_GROUP_NAME : 'Enter group name',
-    CONTACT_INTRO : '<p>You can edit your phone\'s contacts in SnapPea for Windows. </p><p>Import, export, and send text messages from the comfort of your desktop. </p>',
     QUICK_ADD_CONTACT : 'Add contact',
     NAME : 'Name',
     CELL_PHONE : 'Mobile',

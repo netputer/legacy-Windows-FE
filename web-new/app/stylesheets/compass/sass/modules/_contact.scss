@@ -92,19 +92,8 @@
     position: absolute;
     top: 0;
 
-    header {
-        @include misc-sprite(contact-bg);
-        height: 100px;
-        padding: 80px 30px 0 105px;
-        width: 242px;
-
-        p + p {
-            margin-top: 1em;
-        }
-    }
-
     .legend {
-        margin: 30px 0 17px 20px;
+        margin: 20px 0 20px 20px;
 
         .icon {
             @include sprite-sprite(cross);
