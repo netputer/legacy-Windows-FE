@@ -4,8 +4,10 @@
         'backbone',
         'underscore',
         'doT',
+        'jquery',
         'Configuration',
         'Device',
+        'Log',
         'Internationalization',
         'ui/TemplateFactory',
         'ui/ImageLoader',
@@ -19,8 +21,10 @@
         Backbone,
         _,
         doT,
+        $,
         CONFIG,
         Device,
+        log,
         i18n,
         TemplateFactory,
         imageLoader,
@@ -48,7 +52,7 @@
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
 
-                imageLoader(this.model.get('icons').px256, this.$('.icon'));
+                imageLoader(this.model.get('icons').px100, this.$('.icon'));
 
                 this.renderButton();
 
@@ -76,7 +80,7 @@
                             disabled : !Device.get('isConnected')
                         });
                     } else {
-                        $button.html(i18n.app.ALREAD_INSTALLED).prop({
+                        $button.html(i18n.misc.NAV_APP_INSTALLED).prop({
                             disabled : true
                         });
                     }
@@ -90,7 +94,7 @@
                 var target = appsCollection.get(this.model.get('key'));
                 var model = new Backbone.Model().set({
                     title : this.model.get('title'),
-                    iconPath : this.model.get('icons').px78,
+                    iconPath : this.model.get('icons').px36,
                     packageName : this.model.get('key'),
                     source : 'start-page-single'
                 });
@@ -101,6 +105,14 @@
                 }
 
                 TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
+
+                log({
+                    'event' : 'ui.click.welcome_card_action',
+                    'type' : this.model.get('type'),
+                    'index' : this.getIndex(),
+                    'action' : 'install',
+                    'content' : this.model.get('key')
+                });
             },
             clickButtonNavigate : function () {
                 var basePath = 'http://apps.wandoujia.com/apps/{1}?pos=w/start_page_single';

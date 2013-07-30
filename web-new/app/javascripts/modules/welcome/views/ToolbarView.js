@@ -184,7 +184,12 @@
                     popupPanel.$el
                         .removeClass('w-ui-popup-panel')
                         .addClass('w-ui-popup-tip')
-                        .on('click', '.button-open', WelcomeService.openAutobackupFileAsync);
+                        .on('click', '.button-open', function () {
+                            WelcomeService.openAutobackupFileAsync();
+                            log({
+                                'event' : 'ui.click.welcome.open_backup_folder'
+                            });
+                        });
                 }.bind(this));
             },
             showScreenShotTip : function (value, success) {
@@ -313,6 +318,10 @@
             clickButtonSetWallpaper : function () {},
             clickButtonTop : function () {
                 this.trigger('top');
+
+                log({
+                    'event' : 'ui.click.welcome_button_top'
+                });
             },
             events : {
                 'click .button-screen-shot' : 'clickButtonScreenShot',

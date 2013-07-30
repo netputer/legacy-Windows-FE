@@ -5,6 +5,7 @@
         'underscore',
         'doT',
         'Configuration',
+        'Log',
         'Account',
         'IOBackendDevice',
         'Internationalization',
@@ -16,6 +17,7 @@
         _,
         doT,
         CONFIG,
+        log,
         Account,
         IO,
         i18n,
@@ -55,6 +57,13 @@
                         IO.Backend.Device.offmessage(handler);
                     }
                 }, this);
+
+                log({
+                    'event' : 'ui.click.welcome_card_action',
+                    'type' : this.model.get('type'),
+                    'index' : this.getIndex(),
+                    'action' : 'cloud-photo'
+                });
             },
             clickButtonIgnore : function () {
                 this.remove();

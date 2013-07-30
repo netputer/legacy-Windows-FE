@@ -2,10 +2,12 @@
 (function (window) {
     define([
         'backbone',
-        'underscore'
+        'underscore',
+        'jquery'
     ], function (
         Backbone,
-        _
+        _,
+        $
     ) {
         var FeedCardView = Backbone.View.extend({
             className : 'w-welcome-feed-card hbox',
@@ -13,6 +15,19 @@
             remove : function () {
                 FeedCardView.__super__.remove.call(this);
                 this.options.parentView.initLayout();
+            },
+            getIndex : function () {
+                var index = -1;
+                var $items = $('.w-welcome-feed-card:visible');
+                var i;
+                for (i = 0; i < $items.length; i++) {
+                    if ($items[i] === this.$el[0]) {
+                        index = i;
+                        break;
+                    }
+                }
+
+                return index;
             }
         });
 

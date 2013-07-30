@@ -6,6 +6,7 @@
         'doT',
         'jquery',
         'Internationalization',
+        'Log',
         'ui/TemplateFactory',
         'welcome/views/FeedCardView',
         'browser/views/BrowserModuleView'
@@ -15,6 +16,7 @@
         doT,
         $,
         i18n,
+        log,
         TemplateFactory,
         FeedCardView,
         BrowserModuleView
@@ -35,7 +37,16 @@
                 return this;
             },
             clickButtonNavigate : function (evt) {
-                BrowserModuleView.navigateToThirdParty(this.model.get('extId'), '', $(evt.currentTarget).data('url'));
+                var $target = $(evt.currentTarget);
+                BrowserModuleView.navigateToThirdParty(this.model.get('extId'), '', $target.data('url'));
+
+                log({
+                    'event' : 'ui.click.welcome_card_action',
+                    'type' : this.model.get('type'),
+                    'index' : this.getIndex(),
+                    'action' : 'navigate',
+                    'content' : $target.data('name')
+                });
             },
             events : {
                 'click .button-navigate' : 'clickButtonNavigate'

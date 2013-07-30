@@ -6,6 +6,7 @@
         'doT',
         'Internationalization',
         'Settings',
+        'Log',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'welcome/views/FeedCardView',
@@ -18,6 +19,7 @@
         doT,
         i18n,
         Settings,
+        log,
         TemplateFactory,
         StringUtil,
         FeedCardView,
@@ -73,6 +75,13 @@
             clickButtonAction : function () {
                 OneKeyUpdateWindowView.getInstance().show();
                 this.remove();
+
+                log({
+                    'event' : 'ui.click.welcome_card_action',
+                    'type' : this.model.get('type'),
+                    'index' : this.getIndex(),
+                    'action' : 'update'
+                });
             },
             clickButtonIgnore : function () {
                 this.remove();

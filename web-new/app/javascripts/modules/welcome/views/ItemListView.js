@@ -8,6 +8,7 @@
         'Configuration',
         'Device',
         'Internationalization',
+        'Log',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'welcome/views/FeedCardView',
@@ -23,6 +24,7 @@
         CONFIG,
         Device,
         i18n,
+        log,
         TemplateFactory,
         StringUtil,
         FeedCardView,
@@ -105,7 +107,7 @@
                 var target = appsCollection.get(item.key);
                 var model = new Backbone.Model().set({
                     title : item.title,
-                    iconPath : item.icons.px78,
+                    iconPath : item.icons.px36,
                     packageName : item.key,
                     source : 'start-page-list'
                 });
@@ -117,6 +119,14 @@
                 }
 
                 TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
+
+                log({
+                    'event' : 'ui.click.welcome_card_action',
+                    'type' : this.model.get('type'),
+                    'index' : this.getIndex(),
+                    'action' : 'install',
+                    'content' : item.key
+                });
             },
             clickButtonNavigate : function (evt) {
                 var item = _.find(this.model.get('items'), function (item) {

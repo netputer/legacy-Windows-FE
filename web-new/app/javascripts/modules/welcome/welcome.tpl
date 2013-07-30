@@ -51,7 +51,7 @@
         <h1 class="title">{{= it.title }}</h1>
         <ul class="list-ctn">
             {{~ it.items : item }}
-            <li class="item button-navigate" data-url="{{= item.url }}">{{! item.name }}</li>
+            <li class="item button-navigate" data-url="{{= item.url }}" date-name="{{! item.name }}">{{! item.name }}</li>
             {{~}}
         </ul>
     </div>

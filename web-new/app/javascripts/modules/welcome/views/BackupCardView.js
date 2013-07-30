@@ -7,6 +7,7 @@
         'Configuration',
         'Internationalization',
         'Device',
+        'Log',
         'FunctionSwitch',
         'ui/TemplateFactory',
         'ui/AlertWindow',
@@ -20,6 +21,7 @@
         CONFIG,
         i18n,
         Device,
+        log,
         FunctionSwitch,
         TemplateFactory,
         AlertWindow,
@@ -51,6 +53,13 @@
 
                 BackupController.start();
                 this.remove();
+
+                log({
+                    'event' : 'ui.click.welcome_card_action',
+                    'type' : this.model.get('type'),
+                    'index' : this.getIndex(),
+                    'action' : 'backup'
+                });
             },
             clickButtonIgnore : function () {
                 this.remove();

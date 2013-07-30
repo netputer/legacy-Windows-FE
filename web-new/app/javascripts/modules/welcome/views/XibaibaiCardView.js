@@ -8,6 +8,7 @@
         'Configuration',
         'Internationalization',
         'Settings',
+        'Log',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'welcome/views/FeedCardView',
@@ -23,6 +24,7 @@
         CONFIG,
         i18n,
         Settings,
+        log,
         TemplateFactory,
         StringUtil,
         FeedCardView,
@@ -77,6 +79,13 @@
                     }
                 });
                 this.remove();
+
+                log({
+                    'event' : 'ui.click.welcome_card_action',
+                    'type' : this.model.get('type'),
+                    'index' : this.getIndex(),
+                    'action' : 'xibaibai'
+                });
             },
             clickButtonIgnore : function () {
                 this.remove();
