@@ -14,7 +14,7 @@
         console.log('VideoListItemView - File loaded. ');
 
         var VideoListItemView = BaseListItem.extend({
-            template : doT.template(TemplateFactory.get('video', 'video-item')),
+            template : doT.template(TemplateFactory.get('video', 'video-list-item')),
             className : 'w-video-list-item hbox',
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
