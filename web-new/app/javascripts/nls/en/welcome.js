@@ -74,12 +74,13 @@ define({
     GUIDE_STARTER_TITLE : 'Must install apps',
     GUIDE_STARTER_TIP : 'Not many apps on your phone. You should try some of these star apps.',
     GUIDE_STARTER_APP_TIP : '{1} installations · {2}% positive reviews<br />{3}',
+    GUIDE_STARTER_GAME_TITLE : '必备游戏',
+    GUIDE_STARTER_GAME_TIP : '大家都在玩的热门游戏，您也装几个试试吧。',
     GUIDE_TIPS : 'Tips',
     GUIDE_TIPS_TIP : 'More tips about SnapPea!',
     GUIDE_TIPS_READ_ALL : 'OK, got it!',
     GUIDE_SUGGESTION : 'View more',
     GUIDE_SUGGESTION_TIP : 'There\'s more content for you to discover!',
     GUIDE_SUGGESTION_READ_ALL : 'I\'m done',
-
     GUIDE_TEXT_COUNTER : '{1} / {2}'
 });

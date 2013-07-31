@@ -139,7 +139,6 @@ define({
     SCAN_PASS : 'Safe! Passed security scan.',
     SCAN_FAILED : 'Failed security scan.',
 
-
     SET_AS_WALL_PAPER : 'Set as wallpaper',
     SET_AS_RINGTONE : '设为来电铃声',
     START_UNZIPPING : 'Unzipping...',
@@ -156,5 +155,6 @@ define({
     SET_AS_RINGTONE_FAIL : '铃声设置失败',
 
     WAITING_RESTORE_APP_DATA : 'Waiting to restore app data',
-    PROCESSING_RESTORE_APP_DATA : 'Restoring app data...'
+    PROCESSING_RESTORE_APP_DATA : 'Restoring app data...',
+    WAITING_UNZIP : '等待解压缩'
 });

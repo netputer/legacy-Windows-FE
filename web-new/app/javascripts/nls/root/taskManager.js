@@ -139,7 +139,6 @@ define({
     SCAN_PASS : '已通过安全扫描',
     SCAN_FAILED : '未通过安全扫描',
 
-
     SET_AS_WALL_PAPER : '设为手机壁纸',
     SET_AS_RINGTONE : '设为来电铃声',
     START_UNZIPPING : '开始解压',
