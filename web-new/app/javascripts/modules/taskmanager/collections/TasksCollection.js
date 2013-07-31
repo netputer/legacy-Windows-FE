@@ -120,7 +120,7 @@
                 return resp.body.status;
             },
             comparator : function (current) {
-                return Number(Date.now() + '0000') - Number(current.get('added_time'));
+                return -Number(current.get('added_time'));
             },
             initialize : function () {
                 var loading = false;
