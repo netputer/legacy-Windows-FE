@@ -51,13 +51,11 @@
                     disabled : !Device.get('isConnected') || !Device.get('hasSDCard')
                 });
 
-                this.$('.button-delete').prop({
-                    disabled : videosCollection.getSelectedVideo().length === 0
-                                || Device.get('isConnected')
-                });
-
-                this.$('.button-export').prop({
-                    disabled : videosCollection.getSelectedVideo().length === 0
+                this.$('.button-delete, .button-export').prop({
+                    disabled : videosCollection.length === 0
+                                || videosCollection.getSelectedVideo().length === 0
+                                || !Device.get('isConnected')
+                                || !Device.get('hasSDCard')
                 });
             },
             render : function () {
