@@ -98,6 +98,7 @@
         {{~}}
     </ul>
     <div class="link button-more">{{= i18n.app.MORE }}</div>
+    <div class="loading">{{= TemplateFactory.get('ui', 'loading-white') }}</div>
 </script>
 
 <script type="text/x-ui-template" id="clock">

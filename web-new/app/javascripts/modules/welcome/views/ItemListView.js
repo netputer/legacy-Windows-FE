@@ -9,6 +9,7 @@
         'Device',
         'Internationalization',
         'Log',
+        'IO',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'welcome/views/FeedCardView',
@@ -25,6 +26,7 @@
         Device,
         i18n,
         log,
+        IO,
         TemplateFactory,
         StringUtil,
         FeedCardView,
@@ -49,12 +51,26 @@
             template : doT.template(TemplateFactory.get('welcome', 'item-list-card')),
             className : FeedCardView.getClass().prototype.className + ' item-list',
             initialize : function () {
+                var loading = false;
+                Object.defineProperties(this, {
+                    loading : {
+                        set : function (value) {
+                            loading = Boolean(value);
+                            this.$('.loading').toggleClass('show', loading);
+                        },
+                        get : function () {
+                            return loading;
+                        }
+                    }
+                });
+
                 appsCollection = appsCollection || AppsCollection.getInstance();
                 tasksCollection = tasksCollection || TasksCollection.getInstance();
 
                 this.listenTo(appsCollection, 'refresh', this.renderButton);
                 this.listenTo(tasksCollection, 'refresh', this.renderButton);
                 this.listenTo(Device, 'change:isConnected', this.renderButton);
+                this.listenTo(this.model, 'change', this.render);
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
@@ -137,9 +153,40 @@
 
                 BrowserModuleView.navigateToThirdParty(item.extId, '', StringUtil.format(basePath, item.key));
             },
+            clickButtonMore : function (evt) {
+                this.loading = true;
+                IO.requestAsync({
+                    url : CONFIG.actions.WELCOME_SINGLE_FEED,
+                    data : {
+                        cursor : this.model.get('cursor'),
+                        max : 3,
+                        type : this.model.get('type'),
+                        udid : Device.get('udid')
+                    },
+                    success : function (resp) {
+                        if (_.isEmpty(resp)) {
+                            this.$('.loading').html(i18n.welcome.NO_MORE);
+                            setTimeout(function () {
+                                this.loading = false;
+                            }.bind(this), 3000);
+                        } else {
+                            var list = [20, 21, 22, 23, 24, 25];
+                            if (list.indexOf(resp.type) >= 0) {
+                                _.each(resp.items, function (item) {
+                                    if (item.tagline === 'null') {
+                                        item.tagline = '';
+                                    }
+                                });
+                            }
+                            this.model.set(resp);
+                        }
+                    }.bind(this)
+                });
+            },
             events : {
                 'click .button-action' : 'clickButtonAction',
-                'click .button-navigate' : 'clickButtonNavigate'
+                'click .button-navigate' : 'clickButtonNavigate',
+                'click .button-more' : 'clickButtonMore'
             }
         });
 
