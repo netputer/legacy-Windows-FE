@@ -51,27 +51,13 @@
             template : doT.template(TemplateFactory.get('doraemon', 'browser-toolbar')),
             initialize : function () {
                 var $iframe;
-                var frameId;
-                var frameBranch;
                 Object.defineProperties(this, {
                     $iframe : {
                         set : function (value) {
                             $iframe = value;
-                            frameId = $iframe.attr('id');
-                            frameBranch = $iframe.attr('branch');
                         },
                         get : function () {
                             return $iframe;
-                        }
-                    },
-                    frameId : {
-                        get : function () {
-                            return frameId;
-                        }
-                    },
-                    frameBranch : {
-                        get : function () {
-                            return frameBranch;
                         }
                     }
                 });
@@ -85,15 +71,6 @@
                 if (this.options.hasOwnProperty('$iframe')) {
                     this.$iframe = this.options.$iframe;
                 }
-
-
-                this.historyChangeHandler = IO.Backend.Device.onmessage({
-                    'data.channel' : CONFIG.events.HISTORY_CHANGED
-                }, function (data) {
-                    if (data.frame_id === this.$iframe[0].id) {
-                        this.setButtonState();
-                    }
-                }, this);
             },
             remove : function () {
                 IO.Backend.Device.offmessage(this.historyChangeHandler);
@@ -101,8 +78,6 @@
                 BrowserToolbarView.__super__.remove.call(this);
             },
             setButtonState : function () {
-                WindowController.navigationState(this.frameId);
-
                 var $buttonStar = this.$('.button-star');
 
                 if (FunctionSwitch.ENABLE_DORAEMON) {

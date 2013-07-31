@@ -73,13 +73,6 @@
                         } else {
                             tab = model.get('tab');
                         }
-
-                        Backbone.trigger('switchModule', {
-                            module : model.get('module'),
-                            tab : tab
-                        });
-
-                        MainRouter.navigate('main/' + model.get('module') + '/' + tab);
                     }
                 }, this);
 
@@ -141,15 +134,14 @@
                             'isFastADB' : Device.get('isFastADB')
                         });
                     }
-                } else {
-                    Backbone.trigger('switchModule', {
-                        module : this.model.get('module'),
-                        tab : this.model.get('tab')
-                    });
                 }
+
+                Backbone.trigger('switchModule', {
+                    module : this.model.get('module'),
+                    tab : this.model.get('tab')
+                });
             },
             clickTitleCount : function (evt) {
-
                 var data = {};
 
                 evt.stopPropagation();
@@ -165,7 +157,8 @@
                     };
                 } else {
                     data = {
-                        module : 'message'
+                        module : 'message',
+                        tab : 'all'
                     };
                 }
 

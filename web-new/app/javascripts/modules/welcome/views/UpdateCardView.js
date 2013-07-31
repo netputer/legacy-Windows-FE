@@ -64,13 +64,10 @@
                 return this;
             },
             clickButtonDetail : function () {
-                PIMCollection.getInstance().get(3).set('selected', true);
                 Backbone.trigger('switchModule', {
                     module : 'app',
                     tab : 'update'
                 });
-
-                PIMCollection.getInstance().get(14).set('selected', true);
             },
             clickButtonAction : function () {
                 OneKeyUpdateWindowView.getInstance().show();
