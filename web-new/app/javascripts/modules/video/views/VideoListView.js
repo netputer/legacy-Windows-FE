@@ -233,7 +233,7 @@
                         top : startPostiton.y - ctnOffset.top
                     });
 
-                    var clientWidth = this.$el[0].clientWidth;
+                    var clientWidth = this.$el[0].clientWidth + 190;
 
                     var moveHandler = function (MouseState) {
                         if (MouseState.x < startPostiton.x) {
