@@ -7,21 +7,19 @@
         'backbone',
         'doT',
         'Configuration',
-        'IframeMessageWorker',
         'ui/TemplateFactory',
         'ui/WindowState',
         'ui/MideaInfoPanelView',
-        'photo/views/SlideShowView'
+        'video/VideoService'
     ], function (
         _,
         Backbone,
         doT,
         CONFIG,
-        IframeMessageWorker,
         TemplateFactory,
         WindowState,
         MideaInfoPanelView,
-        SlideShowView
+        VideoService
     ) {
         console.log('VideoItemView - File loaded. ');
 
@@ -199,31 +197,6 @@
                     selected : !this.model.get('selected')
                 });
             },
-            dblclickThumb : function () {
-                SlideShowView.getInstance().start(this.model);
-            },
-            clickButtonShare : function (evt) {
-                evt.stopPropagation();
-
-                var doShare = function () {
-                    IframeMessageWorker.trigger(CONFIG.events.CUSTOM_IFRAME_PHOTO_SHARE, {
-                        path : this.model.get('originalPic'),
-                        orientation : this.model.get('orientation'),
-                        type : CONFIG.enums.SOCIAL_PHOTO,
-                        size : this.model.get('size')
-                    });
-                }.bind(this);
-
-                if (!this.model.get('originalPic')) {
-                    this.loading = true;
-                    this.model.getOriginalPicAsync().done(function () {
-                        this.loading = false;
-                        doShare.call(this);
-                    }.bind(this));
-                } else {
-                    doShare.call(this);
-                }
-            },
             clickButtonRetry : function (evt) {
                 evt.stopPropagation();
 
@@ -237,11 +210,13 @@
             clickButtonInfo : function (evt) {
                 evt.stopPropagation();
             },
+            clickButtonPlay : function (evt) {
+                VideoService.playVideo(this.model.id);
+            },
             events : {
                 'mousedown' : 'mousedownItem',
-                'click' : 'clickItem',
-                'click .button-share' : 'clickButtonShare',
-                'dblclick .thumb' : 'dblclickThumb',
+                'click .w-video-item-mask' : 'clickButtonPlay',
+                'click .control' : 'clickItem',
                 'click .button-retry' : 'clickButtonRetry',
                 'click .button-info' : 'clickButtonInfo'
             }
