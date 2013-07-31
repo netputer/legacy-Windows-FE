@@ -170,6 +170,8 @@ define({
     CONTACT_TIP_PART : '{1} 个与「{2}」有关的联系人',
 
     EMPTY_PHONE_LIST : '您的手机相册中还没有图片呢',
-    EMPTY_LIBRARY_LIST : '您的图库中还没有图片呢'
+    EMPTY_LIBRARY_LIST : '您的图库中还没有图片呢',
+
+    NAV_CONTACT_ALL : '全部联系人'
 });
 
