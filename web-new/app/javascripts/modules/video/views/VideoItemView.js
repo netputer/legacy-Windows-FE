@@ -141,7 +141,7 @@
 
                 this.listenTo(this.model, 'change:selected', changeSelectedHandler);
 
-                changeSelectedHandler.call(this, this.model, this.model.get('selected'));
+                changeSelectedHandler.call(this, this.model, !!this.model.get('selected'));
 
                 this.$('.thumb').on('error', function () {
                     if (this.$('.thumb').attr('src')) {
