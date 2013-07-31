@@ -1,6 +1,9 @@
 <templates>
 <script type="text/x-ui-template" id="photo-item">
     <img class="thumb" src="">
+    <div class="w-video-item-mask hbox">
+        <div class="w-video-item-button"></div>
+    </div>
     <div class="control hbox">
         <input type="checkbox" class="check-item dark">
         <div class="placeholder"></div>
@@ -31,7 +34,13 @@
 
 <script type="text/x-ui-template" id="video-list">
     <div class="spy"></div>
-    {{= TemplateFactory.get('ui', 'loading') }}
+    <div class="w-video-loading hbox">
+        <div class="w-video-loading-icon">
+            {{= TemplateFactory.get('ui', 'loading-white') }}
+        </div>
+        <div class="w-video-loading-text">{{= i18n.video.PLAY_VIDEO_TEXT }}</div>
+        <div class="w-video-loading-percent"></div>
+    </div>
     <div class="empty-tip text-secondary"></div>
     <div class="mask"></div>
 </script>

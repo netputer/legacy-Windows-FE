@@ -11,6 +11,63 @@
 
 .w-video-item {
     @extend .w-media-item;
+
+    .w-video-item-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+
+        .w-video-item-button {
+            width: 30px;
+            height: 30px;
+            @include sprite-sprite(video_play);
+        }
+
+        &:hover {
+            .w-video-item-button {
+                @include sprite-sprite(video_play_hover);
+            }
+        }
+    }
+}
+
+.w-video-loading {
+    background-color: rgba(0, 0, 0, .8);
+    border-radius: 3px;
+    color: #FFF;
+    left: 50%;
+    padding: 5px 10px;
+    position: fixed;
+    top: 50%;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+
+    .w-video-loading-icon {
+        height: 50px;
+        position: relative;
+        width: 50px;
+
+        .w-ui-loading {
+            display: block;
+            left: 0;
+            margin: 0;
+            top: 0;
+        }
+    }
+
+    .w-video-loading-text {
+        -webkit-box-flex: 1;
+    }
+
+    .w-video-loading-percent {
+        text-align: center;
+        width: 50px;
+    }
 }
 
 /********************************************************************************
