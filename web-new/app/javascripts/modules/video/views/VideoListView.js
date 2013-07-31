@@ -7,12 +7,15 @@
         'jquery',
         'Configuration',
         'Internationalization',
+        'IOBackendDevice',
         'Account',
         'ui/TemplateFactory',
         'ui/WindowState',
         'ui/MouseState',
+        'ui/KeyboardHelper',
         'Device',
-        'video/views/VideoThreadView'
+        'video/views/VideoThreadView',
+        'video/VideoService'
     ], function (
         _,
         Backbone,
@@ -20,12 +23,15 @@
         $,
         CONFIG,
         i18n,
+        IO,
         Account,
         TemplateFactory,
         WindowState,
         MouseState,
+        KeyboardHelper,
         Device,
-        VideoThreadView
+        VideoThreadView,
+        VideoService
     ) {
         console.log('VideoListView -File loaded. ');
 
@@ -66,9 +72,11 @@
                         set : function (value) {
                             loading = Boolean(value);
                             if (loading) {
-                                this.$('> .w-ui-loading').show();
+                                this.$('> .w-video-loading').css({
+                                    'display' : '-webkit-box'
+                                });
                             } else {
-                                this.$('> .w-ui-loading').hide();
+                                this.$('> .w-video-loading').hide();
                             }
                         }
                     }
@@ -84,6 +92,20 @@
                 this.listenTo(this.collection, 'syncStart update syncEnd refresh', function () {
                     this.loading = this.collection.loading || this.collection.syncing;
                 });
+
+                this.listenTo(Backbone, 'video.loadingStart', function () {
+                    this.loading = true;
+                });
+
+                this.listenTo(Backbone, 'video.loadingEnd', function () {
+                    this.loading = false;
+                });
+
+                this.listenTo(Backbone, 'video.loadingUpdate', function (percent) {
+                    this.$('.w-video-loading-percent').html(percent.current + '%');
+                });
+
+                KeyboardHelper.on('keydown', this.keyDown.bind(this));
 
                 this.listenTo(this.collection, 'remove', _.debounce(function () {
                     if (this.collection.length > 0) {
@@ -152,12 +174,12 @@
             },
             renderThread : function () {
                 if (this.spyIsSawn()) {
-                    var i = 0;
-                    var date;
+                    var date, thread, videoThreadView;
+
                     for (date in this.threads) {
                         if (this.threads.hasOwnProperty(date)) {
-                            var thread = this.threads[date];
-                            var videoThreadView = new VideoThreadView.getInstance({
+                            thread = this.threads[date];
+                            videoThreadView = new VideoThreadView.getInstance({
                                 models : thread,
                                 $ctn : this.$el
                             });
@@ -189,6 +211,11 @@
                 this.listenTo(WindowState, 'resize', this.renderThread);
                 return this;
             },
+            keyDown : function (e) {
+                if (e.which === KeyboardHelper.Mapping.ESC) {
+                    VideoService.cancelPlayVideo();
+                }
+            },
             startDraw : function () {
                 var $mask = this.$('.mask');
                 if ($mask.length > 0 && (WindowState.width - MouseState.x > 20) && this.collection.length > 0) {
@@ -206,7 +233,7 @@
                         top : startPostiton.y - ctnOffset.top
                     });
 
-                    var clientWidth = this.$el[0].clientWidth;
+                    var clientWidth = this.$el[0].clientWidth + 190;
 
                     var moveHandler = function (MouseState) {
                         if (MouseState.x < startPostiton.x) {

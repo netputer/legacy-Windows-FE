@@ -42,17 +42,20 @@
                 this.listenTo(Backbone, 'video:selected:change', this.setButtonState);
             },
             setButtonState : function () {
+                this.$('.check-select-all').prop({
+                    disabled : videosCollection.length === 0,
+                    checked : videosCollection.getSelectedVideo().length === videosCollection.length
+                });
+
                 this.$('.button-import, .button-refresh').prop({
                     disabled : !Device.get('isConnected') || !Device.get('hasSDCard')
                 });
 
-                this.$('.button-delete').prop({
-                    disabled : videosCollection.getSelectedVideo().length === 0
-                                || Device.get('isConnected')
-                });
-
-                this.$('.button-export').prop({
-                    disabled : videosCollection.getSelectedVideo().length === 0
+                this.$('.button-delete, .button-export').prop({
+                    disabled : videosCollection.length === 0
+                                || videosCollection.getSelectedVideo().length === 0
+                                || !Device.get('isConnected')
+                                || !Device.get('hasSDCard')
                 });
             },
             render : function () {

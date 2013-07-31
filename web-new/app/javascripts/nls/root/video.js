@@ -31,5 +31,6 @@ define({
     PLAY_CANNOT_READ : '视频读取错误。',
     ADD_VIDEO_LOADING : '正在添加视频，请稍候...',
     PLAY_VIDEO_SUCCESS : '视频读取成功。',
-    VIDEO_SUPPORT_TIP : 'Android 系统默认仅支持 .avi .3gp .mp4 .m4v 四种格式。如果需要导入其它格式视频，请使用 <span class="link button-manage-sd">SD 卡管理</span>。'
+    VIDEO_SUPPORT_TIP : 'Android 系统默认仅支持 .avi .3gp .mp4 .m4v 四种格式。如果需要导入其它格式视频，请使用 <span class="link button-manage-sd">SD 卡管理</span>。',
+    GET_VIDEO_ERROR : '获取视频失败'
 });

@@ -56,9 +56,9 @@
                     }
                 });
 
-                this.listenTo(this.options.models[0].collection, 'remove', function (photo) {
+                this.listenTo(this.options.models[0].collection, 'remove', function (video) {
                     var targetView = _.find(subView, function (view) {
-                        return view.model.id === photo.id;
+                        return view.model.id === video.id;
                     });
 
                     if (targetView !== undefined) {
@@ -70,7 +70,7 @@
                     }
 
                     var targetModel = _.find(this.options.models, function (model) {
-                        return model.id === photo.id;
+                        return model.id === video.id;
                     });
 
                     if (targetModel !== undefined) {
@@ -124,8 +124,8 @@
                 collection.getThumbsAsync(_.pluck(this.options.models, 'id'));
             },
             clickChecker : function (evt) {
-                _.each(this.options.models, function (photo) {
-                    photo.set({
+                _.each(this.options.models, function (video) {
+                    video.set({
                         selected : evt.target.checked
                     });
                 });

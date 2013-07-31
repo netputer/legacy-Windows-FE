@@ -7,25 +7,23 @@
         'backbone',
         'doT',
         'Configuration',
-        'IframeMessageWorker',
         'ui/TemplateFactory',
         'ui/WindowState',
         'ui/MideaInfoPanelView',
-        'photo/views/SlideShowView'
+        'video/VideoService'
     ], function (
         _,
         Backbone,
         doT,
         CONFIG,
-        IframeMessageWorker,
         TemplateFactory,
         WindowState,
         MideaInfoPanelView,
-        SlideShowView
+        VideoService
     ) {
         console.log('VideoItemView - File loaded. ');
 
-        var changeErrorHandler = function (photo, error) {
+        var changeErrorHandler = function (video, error) {
             this.loading = false;
             if (error) {
                 this.$('.error').show();
@@ -34,22 +32,18 @@
             }
         };
 
-        var changeThumbHandler = function (photo, thumb) {
+        var changeThumbHandler = function (video, thumb) {
             this.loading = false;
             this.$('.error').hide();
             this.$('.thumb').attr({
                 src : thumb
-            }).addClass('show rotate-' + photo.get('orientation'));
+            }).addClass('show');
 
-            this.listenTo(this.model, 'change:orientation', function (photo) {
-                this.$('.thumb').removeClass('rotate-0 rotate-90 rotate-180 rotate-270')
-                                .addClass('rotate-' + photo.get('orientation'));
-            });
             this.stopListening(this.model, 'change:thumb', changeThumbHandler);
             this.stopListening(this.model, 'change:error', changeErrorHandler);
         };
 
-        var changeSelectedHandler = function (photo, selected) {
+        var changeSelectedHandler = function (video, selected) {
             this.$el.toggleClass('selected', selected);
             this.$('.check-item').prop({
                 checked : selected
@@ -59,13 +53,13 @@
         var locateHandler = function () {
             if (this.isItemSawn()) {
                 this.renderContent();
-                this.stopListening(Backbone, 'photo:list:scroll', locateHandler);
+                this.stopListening(Backbone, 'video:list:scroll', locateHandler);
                 this.stopListening(WindowState, 'resize', locateHandler);
             }
         };
 
         var VideoItemView = Backbone.View.extend({
-            template : doT.template(TemplateFactory.get('video', 'photo-item')),
+            template : doT.template(TemplateFactory.get('video', 'video-item')),
             tagName : 'li',
             className : 'w-video-item',
             initialize : function () {
@@ -147,7 +141,7 @@
 
                 this.listenTo(this.model, 'change:selected', changeSelectedHandler);
 
-                changeSelectedHandler.call(this, this.model, this.model.get('selected'));
+                changeSelectedHandler.call(this, this.model, !!this.model.get('selected'));
 
                 this.$('.thumb').on('error', function () {
                     if (this.$('.thumb').attr('src')) {
@@ -178,7 +172,7 @@
                     if (this.isItemSawn()) {
                         this.renderContent();
                     } else {
-                        this.listenTo(Backbone, 'photo:list:scroll', locateHandler);
+                        this.listenTo(Backbone, 'video:list:scroll', locateHandler);
                     }
                     this.position = {
                         top : this.$el[0].offsetTop,
@@ -199,31 +193,6 @@
                     selected : !this.model.get('selected')
                 });
             },
-            dblclickThumb : function () {
-                SlideShowView.getInstance().start(this.model);
-            },
-            clickButtonShare : function (evt) {
-                evt.stopPropagation();
-
-                var doShare = function () {
-                    IframeMessageWorker.trigger(CONFIG.events.CUSTOM_IFRAME_PHOTO_SHARE, {
-                        path : this.model.get('originalPic'),
-                        orientation : this.model.get('orientation'),
-                        type : CONFIG.enums.SOCIAL_PHOTO,
-                        size : this.model.get('size')
-                    });
-                }.bind(this);
-
-                if (!this.model.get('originalPic')) {
-                    this.loading = true;
-                    this.model.getOriginalPicAsync().done(function () {
-                        this.loading = false;
-                        doShare.call(this);
-                    }.bind(this));
-                } else {
-                    doShare.call(this);
-                }
-            },
             clickButtonRetry : function (evt) {
                 evt.stopPropagation();
 
@@ -237,11 +206,13 @@
             clickButtonInfo : function (evt) {
                 evt.stopPropagation();
             },
+            clickButtonPlay : function (evt) {
+                VideoService.playVideo(this.model.id);
+            },
             events : {
                 'mousedown' : 'mousedownItem',
-                'click' : 'clickItem',
-                'click .button-share' : 'clickButtonShare',
-                'dblclick .thumb' : 'dblclickThumb',
+                'click .w-video-item-mask' : 'clickButtonPlay',
+                'click .control' : 'clickItem',
                 'click .button-retry' : 'clickButtonRetry',
                 'click .button-info' : 'clickButtonInfo'
             }

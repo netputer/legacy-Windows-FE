@@ -1,13 +1,16 @@
 <templates>
-<script type="text/x-ui-template" id="photo-item">
+<script type="text/x-ui-template" id="video-item">
     <img class="thumb" src="">
+    <div class="w-video-item-mask hbox">
+        <div class="w-video-item-button"></div>
+    </div>
     <div class="control hbox">
         <input type="checkbox" class="check-item dark">
         <div class="placeholder"></div>
         <div class="button-info"></div>
     </div>
     <div class="error text-thirdly">
-        {{= i18n.photo.GET_PHOTOS_ERROR }}
+        {{= i18n.video.GET_VIDEO_ERROR }}
         <div class="button-retry" title="{{= i18n.ui.RETRY }}"></div>
     </div>
 </script>
@@ -31,7 +34,13 @@
 
 <script type="text/x-ui-template" id="video-list">
     <div class="spy"></div>
-    {{= TemplateFactory.get('ui', 'loading') }}
+    <div class="w-video-loading hbox">
+        <div class="w-video-loading-icon">
+            {{= TemplateFactory.get('ui', 'loading-white') }}
+        </div>
+        <div class="w-video-loading-text">{{= i18n.video.PLAY_VIDEO_TEXT }}</div>
+        <div class="w-video-loading-percent"></div>
+    </div>
     <div class="empty-tip text-secondary"></div>
     <div class="mask"></div>
 </script>
@@ -47,7 +56,7 @@
     <ul class="media-ctn"></ul>
 </script>
 
-<script type="text/x-ui-template" id="video-item">
+<script type="text/x-ui-template" id="video-list-item">
     <label class="input item-checker-wrap hbox"><input class="item-checker" type="checkbox" value="{{= it.id }}"></label>
     <div class="title wc" title="{{! it.name }}">{{! it.name }}</div>
     <div class="format">{{= it.type }}</div>
