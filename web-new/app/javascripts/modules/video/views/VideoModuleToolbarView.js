@@ -42,6 +42,11 @@
                 this.listenTo(Backbone, 'video:selected:change', this.setButtonState);
             },
             setButtonState : function () {
+                this.$('.check-select-all').prop({
+                    disabled : videosCollection.length === 0,
+                    checked : videosCollection.getSelectedVideo().length === videosCollection.length
+                });
+
                 this.$('.button-import, .button-refresh').prop({
                     disabled : !Device.get('isConnected') || !Device.get('hasSDCard')
                 });
