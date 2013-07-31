@@ -182,6 +182,9 @@ define({
     RECOMMEND_LIST_EMPTY : 'Oh snap, no recs today',
     GET_RECOMMEND_ERROR : 'Oh no, no recs',
 
+    RETURN_ALL : '全部应用',
+    SEARCH_TIP_PART : '{1} 个与「{2}」有关的应用',
+
     /* Permission info */
     "android.permission-group.ACCOUNTS" : "访问您的帐户",
     "android.permission-group.COST_MONEY" : "需要您付费的服务",
