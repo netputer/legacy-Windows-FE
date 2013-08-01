@@ -100,7 +100,7 @@
                             });
                         } else if (targetApp.isUpdatable) {
                             $button.html(i18n.app.UPDATABLE).prop({
-                                disabled : !Device.get('isConnected')
+                                disabled : false
                             });
                         } else {
                             $button.html(i18n.misc.NAV_APP_INSTALLED).prop({
@@ -109,7 +109,7 @@
                         }
                     } else {
                         $button.html(i18n.app.INSTALL).prop({
-                            disabled : !Device.get('isConnected')
+                            disabled : false
                         });
                     }
                 });
