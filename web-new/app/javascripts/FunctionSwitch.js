@@ -183,7 +183,8 @@
             },
             ENABLE_USER_GUIDE : {
                 get : function () {
-                    return true;
+                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
+                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
                 }
             }
         });
