@@ -87,7 +87,11 @@
                     checked : targetCollection.getSelectedPhoto().length === targetCollection.length
                 });
 
-                this.$('.button-refresh, .button-import').prop({
+                this.$('.button-refresh').prop({
+                    disabled : !Device.get('isConnected') || isCloud
+                });
+
+                this.$('.button-import').prop({
                     disabled : !Device.get('isConnected')
                 });
 

@@ -40,7 +40,7 @@
                 -webkit-box-flex: 1;
 
                 h1 {
-                    margin-bottom: 10px;
+                    margin-bottom: 15px;
                 }
 
                 p {
@@ -67,12 +67,17 @@
                 .button-skip {
                     display: block;
                     margin-right: 15px;
+
+                    &.primary {
+                        margin-right: 0;
+                    }
                 }
             }
         }
     }
 
     .text-counter {
+        color: #9C9C9C;
         text-align: left;
         -webkit-box-flex: 1;
     }
@@ -100,7 +105,7 @@
     }
 
     .section {
-        height: 453px;
+        height: 483px;
         overflow: auto;
         -webkit-transform: translate3d(0, 0, 0);
         -webkit-transition: -webkit-transform .4s ease-out;
@@ -136,7 +141,7 @@
                     margin-left: 80px;
                 }
 
-                &.pravicy {
+                &.privacy {
                     margin: -2px 5px 0 80px;
                 }
 
@@ -214,13 +219,13 @@
 
 .w-guide-starter {
     .app-ctn {
-        margin-top: 15px;
         overflow: hidden;
 
         .app {
             float: left;
             height: 108px;
-            margin-bottom: 10px;
+            margin-top: 15px;
+            // margin-bottom: 10px;
             position: relative;
             text-align: center;
             width: 98px;
@@ -261,6 +266,12 @@
                 width: 16px;
             }
 
+            @each $icon in android, app, backup, contact, game, sdcard, sdcard, traffic {
+                .icon-#{$icon} {
+                    @include guide-sprite(#{$icon});
+                }
+            }
+
             .desc {
                 -webkit-box-flex: 1;
             }
@@ -282,8 +293,15 @@
 
             .item {
                 cursor: pointer;
-                height: 90px;
-                width: 385px;
+                margin-bottom: 5px;
+            }
+
+            @each $item in app, game, video, music, picture {
+                .item-#{$item} {
+                    @include guide-sprite(banner-#{$item});
+                    height: guide-sprite-height(banner-#{$item});
+                    width: guide-sprite-width(banner-#{$item});
+                }
             }
         }
     }
