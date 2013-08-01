@@ -369,29 +369,30 @@
                 var currentGroups = _.pluck(this.model.get('group'), 'group_row_id');
 
                 accountCollection.each(function (account) {
-                    if (!account.get('read_only')) {
-                        if (items.length > 0) {
-                            items.push({
-                                type : 'hr'
-                            });
-                        }
-
+                    if (items.length > 0) {
                         items.push({
-                            type : 'group',
-                            name : account.get('id'),
-                            label : account.get('displayName')
+                            type : 'hr'
                         });
+                    }
 
-                        accountCollection.getGroupsByAccount(account.id).each(function (group) {
-                            items.push({
-                                type : 'checkbox',
-                                name : group.get('id'),
-                                label : group.get('title'),
-                                checked : currentGroups.indexOf(group.get('id')) !== -1,
-                                value : group.get('id')
-                            });
-                        }, this);
+                    items.push({
+                        type : 'group',
+                        name : account.get('id'),
+                        label : account.get('displayName')
+                    });
 
+                    accountCollection.getGroupsByAccount(account.id).each(function (group) {
+                        items.push({
+                            type : 'checkbox',
+                            name : group.get('id'),
+                            label : group.get('title'),
+                            checked : currentGroups.indexOf(group.get('id')) !== -1,
+                            value : group.get('id')
+                        });
+                    }, this);
+
+
+                    if (!account.get('read_only')) {
                         items.push({
                             type : 'link',
                             label : i18n.contact.ADD_GROUP,
