@@ -83,7 +83,7 @@
                     passwordVerify : this.$('.password-verify').val(),
                     nickName : this.$('.nickname').val(),
                     captcha : this.$('.captcha').val(),
-                    pravicy : this.$('.pravicy').prop('checked')
+                    privacy : this.$('.privacy').prop('checked')
                 });
 
                 this.$('input').removeClass('invalid');
@@ -120,7 +120,7 @@
                     this.$('.section').css('-webkit-transform', 'translate3d(0, -100%, 0)');
                 }
             },
-            clickPavicy : function (evt) {
+            clickPrivacy : function (evt) {
                 this.$('.button-reg').prop('disabled', !evt.originalEvent.srcElement.checked);
             },
             clickButtonLogin : function () {
@@ -132,7 +132,7 @@
             },
             events :  {
                 'click .button-reg' : 'clickButtonReg',
-                'click .pravicy' : 'clickPavicy',
+                'click .privacy' : 'clickPrivacy',
                 'click .button-login' : 'clickButtonLogin',
                 'click .captcha-image' : 'clickCaptchaImage'
             }

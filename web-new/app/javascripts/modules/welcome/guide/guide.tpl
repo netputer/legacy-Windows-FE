@@ -65,7 +65,7 @@
                     <img src="https://account.wandoujia.com/v1/seccode/" class="captcha-image" title="点击更换" />
                 </label>
                 <label>
-                    <input type="checkbox" class="pravicy" checked />{{= i18n.welcome.GUIDE_REG_PRAVICY }}
+                    <input type="checkbox" class="privacy" checked />{{= i18n.welcome.GUIDE_REG_PRAVICY }}
                 </label>
             </form>
             <hr />
