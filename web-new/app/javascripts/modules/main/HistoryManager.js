@@ -8,6 +8,7 @@
         'Configuration',
         'Internationalization',
         'ui/AlertWindow',
+        'Device',
         'main/collections/PIMCollection',
         'app/collections/AppsCollection',
         'contact/collections/ContactsCollection',
@@ -25,6 +26,7 @@
         CONFIG,
         i18n,
         AlertWindow,
+        Device,
         PIMCollection,
         AppsCollection,
         ContactsCollection,
@@ -62,10 +64,12 @@
                 window.externalCall('', 'navigation', JSON.stringify({
                     canGoBack : backStack.length > 1,
                     canGoForward : forwarStack.length > 0,
-                    canReload : currentModule !== 'welcome' && currentModule !== 'app-wash' && currentModule !== 'optimize'
+                    canReload : currentModule !== 'welcome' && currentModule !== 'app-wash' && currentModule !== 'optimize' && Device.get('isConnected')
                 }));
             }
         };
+
+        Device.on('change:isConnected', updateNativeToolbarState);
 
         IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.NAVIGATE_BACK
