@@ -67,6 +67,10 @@
                 .button-skip {
                     display: block;
                     margin-right: 15px;
+
+                    &.primary {
+                        margin-right: 0;
+                    }
                 }
             }
         }
@@ -261,6 +265,12 @@
                 width: 16px;
             }
 
+            @each $icon in android, app, backup, contact, game, sdcard, sdcard, traffic {
+                .icon-#{$icon} {
+                    @include guide-sprite(#{$icon});
+                }
+            }
+
             .desc {
                 -webkit-box-flex: 1;
             }
@@ -282,8 +292,15 @@
 
             .item {
                 cursor: pointer;
-                height: 90px;
-                width: 385px;
+                margin-bottom: 5px;
+            }
+
+            @each $item in app, game, video, music, picture {
+                .item-#{$item} {
+                    @include guide-sprite(banner-#{$item});
+                    height: guide-sprite-height(banner-#{$item});
+                    width: guide-sprite-width(banner-#{$item});
+                }
             }
         }
     }
