@@ -4,12 +4,14 @@
         'backbone',
         'underscore',
         'Configuration',
-        'Device'
+        'Device',
+        'Log'
     ], function (
         Backbone,
         _,
         CONFIG,
-        Device
+        Device,
+        log
     ) {
         console.log('FeedsCollection - File loaded. ');
 
@@ -36,6 +38,12 @@
                             }
                         });
                     }
+                });
+
+                log({
+                    'event' : 'debug.welcome_feed_load',
+                    'totalFeedCursor' : this.data.totalFeedCursor,
+                    'singleFeedCursor' : this.data.singleFeedCursor
                 });
                 return resp.feeds;
             },

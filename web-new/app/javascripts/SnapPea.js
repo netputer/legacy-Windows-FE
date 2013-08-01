@@ -79,7 +79,6 @@
     //         $('head').append(doT.template(TemplateFactory.get('misc', 'font-style-xp'))({}));
     //     }
     // });
-
     require([
         'jquery',
         'backbone',

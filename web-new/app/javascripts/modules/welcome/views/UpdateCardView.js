@@ -42,8 +42,7 @@
             },
             render : function () {
                 var apps = appsCollection.getUpdatableApps();
-                var lastShownTimestamp = Settings.get('welcome-card-update-show') || 1;
-                var show = apps.length !== 0 && (StringUtil.formatDate('YY/MM/DD') !== StringUtil.formatDate('YY/MM/DD', lastShownTimestamp));
+                var show = apps.length !== 0;
                 this.$el.toggleClass('hide', !show);
                 if (show) {
                     this.$el.html(this.template({

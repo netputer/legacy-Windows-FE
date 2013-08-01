@@ -40,31 +40,29 @@
             tagName : 'li',
             render : function () {
                 this.$el.addClass('hide');
-                var lastShownTimestamp = Settings.get('welcome-card-xibaibai-show') || 1;
-                if (StringUtil.formatDate('YY/MM/DD') !== StringUtil.formatDate('YY/MM/DD', lastShownTimestamp)) {
-                    XibaibaiService.scanAppsAsync().done(function (appsQueryResultCollection) {
-                        if (appsQueryResultCollection.length !== 0) {
-                            var appsCollection = AppsCollection.getInstance();
 
-                            this.$el.html(this.template({
-                                items : _.map(appsQueryResultCollection.models.concat().splice(0, 5), function (item) {
-                                    return appsCollection.get(item.get('sourceApk').packageName).toJSON();
-                                }),
-                                title : i18n.welcome.CARD_XIBAIBAI_TITLE,
-                                desc : i18n.welcome.CARD_XIBAIBAI_DESC,
-                                action : i18n.welcome.CARD_XIBAIBAI_ACTION,
-                                length : appsQueryResultCollection.length
-                            }));
+                XibaibaiService.scanAppsAsync().done(function (appsQueryResultCollection) {
+                    if (appsQueryResultCollection.length !== 0) {
+                        var appsCollection = AppsCollection.getInstance();
 
-                            this.$('.count').toggleClass('min', appsQueryResultCollection.length > 99);
+                        this.$el.html(this.template({
+                            items : _.map(appsQueryResultCollection.models.concat().splice(0, 5), function (item) {
+                                return appsCollection.get(item.get('sourceApk').packageName).toJSON();
+                            }),
+                            title : i18n.welcome.CARD_XIBAIBAI_TITLE,
+                            desc : i18n.welcome.CARD_XIBAIBAI_DESC,
+                            action : i18n.welcome.CARD_XIBAIBAI_ACTION,
+                            length : appsQueryResultCollection.length
+                        }));
 
-                            this.$el.removeClass('hide');
-                            this.options.parentView.initLayout();
+                        this.$('.count').toggleClass('min', appsQueryResultCollection.length > 99);
 
-                            Settings.set('welcome-card-xibaibai-show', new Date().getTime(), true);
-                        }
-                    }.bind(this));
-                }
+                        this.$el.removeClass('hide');
+                        this.options.parentView.initLayout();
+
+                        Settings.set('welcome-card-xibaibai-show', new Date().getTime(), true);
+                    }
+                }.bind(this));
 
                 return this;
             },

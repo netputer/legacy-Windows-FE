@@ -6,6 +6,8 @@
         'doT',
         'jquery',
         'wookmark',
+        'Settings',
+        'utilities/StringUtil',
         'app/collections/AppsCollection',
         'welcome/views/UpdateCardView',
         'welcome/views/XibaibaiCardView',
@@ -21,6 +23,8 @@
         doT,
         $,
         wookmark,
+        Settings,
+        StringUtil,
         AppsCollection,
         UpdateCardView,
         XibaibaiCardView,
@@ -43,6 +47,8 @@
 
                 collection.on('refresh', function (collection) {
                     var fragment = document.createDocumentFragment();
+                    var lastShownTimestamp;
+                    var show;
                     collection.each(function (feed) {
                         var targetView;
                         switch (feed.get('type')) {
@@ -64,10 +70,18 @@
                             targetView = ItemListView;
                             break;
                         case 30:
-                            targetView = UpdateCardView;
+                            lastShownTimestamp = Settings.get('welcome-card-update-show') || 1;
+                            show = StringUtil.formatDate('YY/MM/DD') !== StringUtil.formatDate('YY/MM/DD', lastShownTimestamp);
+                            if (show) {
+                                targetView = UpdateCardView;
+                            }
                             break;
                         case 31:
-                            targetView = XibaibaiCardView;
+                            lastShownTimestamp = Settings.get('welcome-card-xibaibai-show') || 1;
+                            show = StringUtil.formatDate('YY/MM/DD') !== StringUtil.formatDate('YY/MM/DD', lastShownTimestamp);
+                            if (show) {
+                                targetView = XibaibaiCardView;
+                            }
                             break;
                         case 32:
                             targetView = CloudPhotoCardView;

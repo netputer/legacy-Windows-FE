@@ -103,7 +103,7 @@
                                 disabled : !Device.get('isConnected')
                             });
                         } else {
-                            $button.html(i18n.app.ALREAD_INSTALLED).prop({
+                            $button.html(i18n.misc.NAV_APP_INSTALLED).prop({
                                 disabled : true
                             });
                         }

@@ -3,7 +3,9 @@
     define(['jquery'], function ($) {
         var db;
 
-        $(function () {
+        var openDataBaseAsync = function () {
+            var deferred = $.Deferred();
+
             var openRequest = window.indexedDB.open('wandoujia2', 1);
 
             openRequest.onupgradeneeded = function (evt) {
@@ -15,24 +17,29 @@
 
             openRequest.onsuccess = function (evt) {
                 db = evt.target.result;
+                deferred.resolve();
             };
-        });
+
+            return deferred.promise();
+        };
 
         var DB = {};
 
         DB.addOrUpdateAsync = function (table, value) {
             var deferred = $.Deferred();
 
-            if (db) {
+            var doAction = function () {
                 var request = db.transaction(table, 'readwrite')
                             .objectStore(table)
                             .put(value);
 
                 request.oncomplete = deferred.resolve;
+            };
+
+            if (db) {
+                doAction();
             } else {
-                setInterval(function () {
-                    DB.addOrUpdateAsync(table, value);
-                }, 10);
+                openDataBaseAsync().done(doAction);
             }
 
             return deferred.promise();
@@ -41,16 +48,18 @@
         DB.readAsync = function (table, key) {
             var deferred = $.Deferred();
 
-            if (db) {
+            var doAction = function () {
                 var request = db.transaction(table, 'readonly')
                             .objectStore(table)
                             .get(key);
 
                 request.onsuccess = deferred.resolve;
+            };
+
+            if (db) {
+                doAction();
             } else {
-                setInterval(function () {
-                    DB.readAsync(table, key);
-                }, 10);
+                openDataBaseAsync().done(doAction);
             }
 
             return deferred.promise();

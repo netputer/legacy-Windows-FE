@@ -53,7 +53,7 @@
                     if (target.scrollHeight - (target.scrollTop + target.offsetHeight) < 400) {
                         FeedListView.getInstance().loadNextPage();
                     }
-                }.bind(this), 20);
+                }.bind(this), 50);
 
                 var loading = false;
 
@@ -106,7 +106,7 @@
                     .toggleClass('fixed', progress2 === 1);
 
                 deviceView.$el.css({
-                    'opacity' : 1 - (0.2 * progress2),
+                    'opacity' : (Device.get('canScreenshot') ? 1 : 0.7) - (0.2 * progress2),
                     '-webkit-transform' : 'translate3d(' + -Math.round(50 * progress2) + 'px, ' + -Math.round(180 * progress2)  + 'px, 0)'
                 });
 
@@ -180,7 +180,7 @@
             },
             showBackground : function () {
                 $.when(this.initBackgroundAsync(), this.deviceViewAnimationAsync(), this.loadCachedWallpaperAsync()).done(function () {
-                    this.$('.content.new').css('opacity', 1);
+                    this.$('.content.new, .mask').css('opacity', 1);
                     this.$('.content.cache').css('opacity', 0).one('webkitTransitionEnd', function () {
                         $(this).remove();
                     });
@@ -194,7 +194,7 @@
                         var cachedWallpaper = evt.target.result.value;
                         this.renderWallpaperInCanvasAsync(cachedWallpaper, 'cache').done(function () {
                             setTimeout(function () {
-                                this.$('.content:first').css('opacity', 1);
+                                this.$('.content:first, .mask').css('opacity', 1);
                             }.bind(this));
                             setTimeout(deferred.resolve, 3000);
                         }.bind(this));

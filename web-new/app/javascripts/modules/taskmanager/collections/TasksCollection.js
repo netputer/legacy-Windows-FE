@@ -27,6 +27,8 @@
         var webAppsCollection;
 
         var changeHandler = function () {
+            webAppsCollection = webAppsCollection || WebAppsCollection.getInstance();
+
             this.pretreatment();
 
             var id = this.get('detail');
@@ -85,6 +87,8 @@
         };
 
         var removeHandler = function () {
+            webAppsCollection = webAppsCollection || WebAppsCollection.getInstance();
+
             var id = this.get('detail');
             var relativedAppModel = appsCollection.get(id);
             var relativedWebAppModel = webAppsCollection.get(id);
@@ -181,7 +185,6 @@
                 });
 
                 appsCollection = appsCollection || AppsCollection.getInstance();
-                webAppsCollection = webAppsCollection || WebAppsCollection.getInstance();
 
                 this.on('add', function (task) {
                     task.on('change', changeHandler, task);
