@@ -13,18 +13,18 @@
     @extend .w-media-item;
 
     .w-video-item-mask {
+        height: 100%;
+        left: 0;
         position: absolute;
         top: 0;
-        left: 0;
         width: 100%;
-        height: 100%;
         -webkit-box-align: center;
         -webkit-box-pack: center;
 
         .w-video-item-button {
-            width: 30px;
-            height: 30px;
             @include sprite-sprite(video_play);
+            height: sprite-sprite-height(video_play);
+            width: sprite-sprite-width(video_play);
         }
 
         &:hover {
