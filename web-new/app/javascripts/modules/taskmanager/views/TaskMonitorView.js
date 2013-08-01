@@ -13,13 +13,10 @@
         'IOBackendDevice',
         'utilities/StringUtil',
         'task/collections/TasksCollection',
-        'main/views/NavView',
         'task/views/TaskDashboardView',
         'task/views/TaskNotifierPanelView',
         'task/views/TaskModuleView',
-        'task/EventProcessor',
-        'task/TaskService',
-        'main/collections/PIMCollection'
+        'task/EventProcessor'
     ], function (
         Backbone,
         doT,
@@ -33,13 +30,10 @@
         IO,
         StringUtil,
         TasksCollection,
-        NavView,
         TaskDashboardView,
         TaskNotifierPanelView,
         TaskModuleView,
-        EventProcessor,
-        TaskService,
-        PIMCollection
+        EventProcessor
     ) {
         console.log('TaskMonitorView - File loaded. ');
 
@@ -250,7 +244,7 @@
 
                         popupPanel.show();
 
-                        popupPanel.on('remove', function() {
+                        popupPanel.on('remove', function () {
                             notEnoughSpaceFlag = false;
                         });
 
@@ -348,13 +342,9 @@
                     }
                 }, this);
             },
-            clickView : function (evt) {
-                if (taskModuleView.show) {
+            toggleListView : function (show) {
+                if (taskModuleView.show || (show !== undefined && !show)) {
                     taskModuleView.slideOut();
-
-                    log({
-                        'event' : 'ui.click.task.toggle.close'
-                    });
                 } else {
                     if (taskModuleView.rendered) {
                         if (!$('.w-main .module-ctn').children().last()[0].contains(taskModuleView.$el[0])) {
@@ -364,11 +354,20 @@
                         $('.w-main .module-ctn').append(taskModuleView.render().$el);
                     }
                     taskModuleView.slideIn();
-
+                }
+            },
+            clickView : function (evt) {
+                if (taskModuleView.show) {
+                    log({
+                        'event' : 'ui.click.task.toggle.close'
+                    });
+                } else {
                     log({
                         'event' : 'ui.click.task.toggle.open'
                     });
                 }
+
+                this.toggleListView();
             },
             events : {
                 'click' : 'clickView'

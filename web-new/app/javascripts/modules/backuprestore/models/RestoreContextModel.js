@@ -1,11 +1,13 @@
-/*global console _ Backbone define*/
+/*global define*/
 (function (window) {
     define([
-        'Environment',
+        'underscore',
+        'backbone',
         'Configuration',
         'Internationalization'
     ], function (
-        Environment,
+        _,
+        Backbone,
         CONFIG,
         i18n
     ) {
@@ -21,7 +23,7 @@
                     },
                     FileList : {
                         get : function () {
-                            return _.map(this.get('backupFileList'), function(item) {
+                            return _.map(this.get('backupFileList'), function (item) {
                                 var shortFileName = item.substr(item.lastIndexOf('\\') + 1);
                                 var zip_index = shortFileName.lastIndexOf('.zip');
                                 if (zip_index > 0) {
@@ -51,7 +53,7 @@
                             });
 
                             return {
-                                item : _.map(noneApp, function(id) {
+                                item : _.map(noneApp, function (id) {
                                     return {
                                         type : id,
                                         count : numList[id]
@@ -94,18 +96,17 @@
                             var types = [];
                             _.each(this.get('dataIDList'), function (id) {
                                 switch (id) {
-                                    case CONFIG.enums.BR_TYPE_CONTACT:
-                                        types.push(1);
-                                        break;
-                                    case CONFIG.enums.BR_TYPE_SMS:
-                                        types.push(2);
-                                        break;
-                                    case CONFIG.enums.BR_TYPE_APP:
-                                        types.push(3);
-                                        break;
-                                    default:
-                                        console.error(type);
-                                        break;
+                                case CONFIG.enums.BR_TYPE_CONTACT:
+                                    types.push(1);
+                                    break;
+                                case CONFIG.enums.BR_TYPE_SMS:
+                                    types.push(2);
+                                    break;
+                                case CONFIG.enums.BR_TYPE_APP:
+                                    types.push(3);
+                                    break;
+                                default:
+                                    break;
                                 }
                             });
                             return types;
@@ -167,4 +168,4 @@
         var restoreContextModel = new RestoreContextModel();
         return restoreContextModel;
     });
-})(this);
+}(this));

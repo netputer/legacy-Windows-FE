@@ -5,31 +5,17 @@
         'underscore',
         'jquery',
         'IOBackendDevice',
-        'Configuration',
-        'Environment',
-        'Internationalization',
-        'Log',
-        'utilities/StringUtil',
-        'ui/Notification',
-        'ui/AlertWindow',
-        'ui/BatchActionWindow'
+        'Configuration'
     ], function (
         Backbone,
         _,
         $,
         IO,
-        CONFIG,
-        Environment,
-        i18n,
-        log,
-        StringUtil,
-        Notification,
-        AlertWindow,
-        BatchActionWindow
+        CONFIG
     ) {
         console.log('WelcomeService - File loaded.');
 
-        var WelcomeService = _.extend(function () {}, Backbone.Events);
+        var WelcomeService = _.extend({}, Backbone.Events);
 
         WelcomeService.openAutobackupFileAsync = function () {
             var deferred = $.Deferred();

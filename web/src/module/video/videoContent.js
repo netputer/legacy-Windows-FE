@@ -42,11 +42,11 @@ wonder.addModule('video/content', function(W){
 
         showTip: function(text){
             this.clearContent();
-            text && this._element.html(text);               
+            text && this._element.html(text);
         },
 
         getThreadTitle: function(){
-            return this._element.find('.w-video-thread:visible .w-video-thread-title');  
+            return this._element.find('.w-video-thread:visible .w-video-thread-title');
         },
 
         setPosition2Thread: function(thread, setPosition2ThreadTimer){
@@ -64,8 +64,8 @@ wonder.addModule('video/content', function(W){
                 var tpl = W.Template.get('video', 'video_info');
                 this.infoTpl = $(tpl);
                 this.infoTpl.appendTo(this._element);
-            }            
-               
+            }
+
             this._element.find('.w-video-name').html(data.name);
             this._element.find('.w-video-size').html(data.size);
             this._element.find('.w-video-duration').html(data.duration);
@@ -74,7 +74,7 @@ wonder.addModule('video/content', function(W){
                 display : 'block',
                 left : position.left,
                 top  : position.top
-            });  
+            });
         },
 
         hideVideoInfo: function(){
@@ -103,20 +103,20 @@ wonder.addModule('video/content', function(W){
         },
 
         clearContent: function(){
-            this._element.empty();  
+            this._element.empty();
         },
 
         playVideo: function(video_id){
             var self = this;
             var parentEl = self._element.parent('.w-video-content-wrapper');
-            var sessionId 
+            var sessionId
                 = self.lastSessionId
                 = progressWin.start(0, 100, locale.PLAY_VIDEO_TEXT, locale.PLAY_VIDEO_SUCCESS,'','','', parentEl);
             progressWin.view.setDelimiter('%');
             progressWin.view.hideMax();
             W.video.videoCollection.play(video_id, sessionId, function(response){
                 progressWin.hide();
-                
+
                 if(response.state_code == 500){
                     alert(locale.PLAY_DISCONNECT);
                 }else if(response.state_code == 400){
@@ -127,7 +127,7 @@ wonder.addModule('video/content', function(W){
                         var video_type = video_arry[video_arry.length - 1];
                         text = window.StringUtil.format(locale.PLAY_NO_PLAYER, video_type.toUpperCase());
                     }else{
-                        text = locale.PLAY_CANNOT_READ;   
+                        text = locale.PLAY_CANNOT_READ;
                     }
                     alert(text);
                 }
@@ -152,8 +152,8 @@ wonder.addModule('video/content', function(W){
                     }
 
                 }).delegate('.w-video-item-mask', 'mouseover', function(e){
-                    
-                    var offset = $(this).offset();                 
+
+                    var offset = $(this).offset();
                     var position = {
                         left : offset.left - 150,
                         top  : offset.top + 40
@@ -168,21 +168,21 @@ wonder.addModule('video/content', function(W){
                     data.duration = W.timer().formatTimerFromMillisecond(video_data.duration);
 
                     self.showVideoInfo(data, position);
-                    
+
                 }).delegate('.w-video-item-mask', 'mouseout', function(e){
-                    self.hideVideoInfo(); 
+                    self.hideVideoInfo();
                 });
 
                 Device.on('change:hasSDCard', function(Device){
                     var tipText = '';
                     if(!Device.get('hasSDCard')){
-                        tipText =  i18n.common.NO_SD_CARD_TIP_TEXT;
+                        tipText =  i18n.misc.NO_SD_CARD_TIP_TEXT;
                         this.showTip(tipText);
                     }if(this._threads.length <= 0){
                         tipText = locale.NO_VIDEOS_TEXT;
                         this.showTip(tipText);
                     }
-                    
+
                 }, this);
 
                 $(document).bind('keydown', function(e){
@@ -190,7 +190,7 @@ wonder.addModule('video/content', function(W){
                         W.video.videoCollection.cancelPlay(self.lastSessionId, '', function(){
                             progressWin.hide();
                         }, self);
-                   } 
+                   }
                 });
                 this.rendered = true;
             }

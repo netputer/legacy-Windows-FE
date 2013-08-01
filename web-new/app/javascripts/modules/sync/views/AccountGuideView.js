@@ -5,7 +5,6 @@
         'underscore',
         'doT',
         'jquery',
-        'Device',
         'Internationalization',
         'ui/Panel',
         'ui/UIHelper',
@@ -17,7 +16,6 @@
         _,
         doT,
         $,
-        Device,
         i18n,
         Panel,
         UIHelper,
@@ -38,8 +36,6 @@
             template : doT.template(TemplateFactory.get('sync', 'account-guide-body')),
             className : 'w-sync-account-guide-body',
             currentPage : 0,
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -101,7 +97,7 @@
             initialize : function () {
                 AccountGuideView.__super__.initialize.apply(this, arguments);
 
-                this.on(UIHelper.EventsMapping.SHOW, function() {
+                this.on(UIHelper.EventsMapping.SHOW, function () {
                     bodyView = new AccountGuideBodyView();
                     this.$bodyContent = bodyView.render().$el;
 
@@ -123,7 +119,7 @@
                 this.delegateEvents();
                 AccountGuideView.__super__.render.apply(this, arguments);
 
-                $buttonLast = $('<button>').html(i18n.ui.PREV).addClass('button-last');
+                var $buttonLast = $('<button>').html(i18n.ui.PREV).addClass('button-last');
                 this.$('.w-ui-window-footer-monitor').append($buttonLast);
 
                 return this;

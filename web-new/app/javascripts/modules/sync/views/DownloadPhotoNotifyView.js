@@ -9,9 +9,8 @@
         'Configuration',
         'Log',
         'Internationalization',
-        'ui/Panel',
         'ui/TemplateFactory',
-        'StringUtil',
+        'utilities/StringUtil',
         'welcome/WelcomeService',
         'backuprestore/BackupRestoreService'
     ], function (
@@ -23,7 +22,6 @@
         CONFIG,
         log,
         i18n,
-        Panel,
         TemplateFactory,
         StringUtil,
         WelcomeService,

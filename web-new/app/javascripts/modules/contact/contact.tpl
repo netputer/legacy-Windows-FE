@@ -117,7 +117,7 @@
                     <input data-id="{{= it.contact.name ? it.contact.name.id : '' }}" class="input-name" type="text" value="{{! it.contact.displayName || '' }}" placeholder="{{= i18n.contact.NAME }}" />
                 </div>
                 <div class="nickname">
-                     <input data-id="{{= (it.contact.nickname && it.contact.nickname[0] && it.contact.nickname[0].id) || '' }}" class="input-nickname" type="text" value="{{! (it.contact.nickname && it.contact.nickname[0] && it.contact.nickname[0].name) || '' }}" placeholder="{{= i18n.contact.NICKNAME }}" />
+                     <input data-id="{{= (it.contact.nickname && it.contact.nickname[0] && it.contact.nickname[0].id) || '' }}" class="input-nickname" type="text" value="{{! (it.contact.nickname && it.contact.nickname[0] && it.contact.nickname[0].name) || '' }}" placeholder="{{= i18n.misc.NICKNAME }}" />
 
                 </div>
                 <div class="switch text-secondary"></div>
@@ -132,7 +132,7 @@
                         <dt class="type text-secondary" data-cate="phone" data-type="{{= phone.type }}" data-label="{{= phone.label }}"></dt>
                         <dd class="wc enable-select">
                             <input data-id="{{= phone.id }}" data-type="{{= phone.type }}" data-label="{{= phone.label }}" class="input-phone" type="text" value="{{! phone.number || '' }}" />
-                            <span class="button-delete" title="{{= i18n.contact.DELETE }}"></span>
+                            <span class="button-delete" title="{{= i18n.misc.DELETE }}"></span>
                         </dd>
                         {{~}}
                     {{??}}
@@ -150,7 +150,7 @@
                         <dt class="type text-secondary" data-cate="email" data-type="{{= email.type }}" data-label="{{= email.label }}"></dt>
                         <dd class="wc enable-select">
                             <input data-id="{{= email.id }}" data-type="{{= email.type }}" data-label="{{= email.label }}" class="input-email" type="email" value="{{! email.address || '' }}" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" />
-                            <span class="button-delete" title="{{= i18n.contact.DELETE }}"></span>
+                            <span class="button-delete" title="{{= i18n.misc.DELETE }}"></span>
                         </dd>
                         {{~}}
                     {{??}}
@@ -168,7 +168,7 @@
                         <dt class="type text-secondary" data-cate="im" data-type="{{= im.protocol }}" data-label="{{= im.label }}"></dt>
                         <dd class="wc enable-select">
                             <input data-type="{{= im.protocol }}" data-id="{{= im.id }}" data-label="{{= im.label }}" class="input-im" type="text" value="{{! im.data || '' }}"/>
-                            <span class="button-delete" title="{{= i18n.contact.DELETE }}"></span>
+                            <span class="button-delete" title="{{= i18n.misc.DELETE }}"></span>
                         </dd>
                         {{~}}
                     {{?}}
@@ -181,7 +181,7 @@
                         <dt class="type text-secondary" data-cate="address" data-type="{{= address.type }}" data-label="{{= address.label }}"></dt>
                         <dd class="wc enable-select">
                             <input data-type="{{= address.type }}" data-id="{{= address.id }}" data-label="{{= address.label }}" class="input-address" type="text" value="{{! address.formatted_address || '' }}"/>
-                            <span class="button-delete" title="{{= i18n.contact.DELETE }}"></span>
+                            <span class="button-delete" title="{{= i18n.misc.DELETE }}"></span>
                         </dd>
                         {{~}}
                     {{?}}
@@ -194,7 +194,7 @@
                         <dt class="type text-secondary" data-cate="org" data-type="{{= organization.type }}" data-label="{{= organization.label }}"></dt>
                         <dd class="wc enable-select">
                             <input data-type="{{= organization.type }}" data-id="{{= organization.id }}" data-label="{{= organization.label }}" class="input-organization" type="text" value="{{! organization.company || '' }}"/>
-                            <span class="button-delete" title="{{= i18n.contact.DELETE }}"></span>
+                            <span class="button-delete" title="{{= i18n.misc.DELETE }}"></span>
                         {{~}}
                     {{?}}
                 </dl>
@@ -206,7 +206,7 @@
                         <dt class="type text-secondary" data-cate="note">{{= i18n.contact.REMARK }}</dt>
                         <dd class="wc enable-select">
                             <textarea data-id="{{= note.id }}" class="input-note">{{! note.note || '' }}</textarea>
-                            <span class="button-delete" title="{{= i18n.contact.DELETE }}"></span>
+                            <span class="button-delete" title="{{= i18n.misc.DELETE }}"></span>
                         </dd>
                         {{~}}
                     {{??}}
@@ -219,7 +219,7 @@
             </li>
             <li class="account-label">
                 <dl>
-                    <dt class="type text-secondary">{{= i18n.contact.ACCOUNT }}<dt>
+                    <dt class="type text-secondary">{{= i18n.misc.ACCOUNT }}<dt>
                     <dd class="account-ctn"></dd>
                 </dl>
             </li>
@@ -227,8 +227,8 @@
         <div class="category-selector"></div>
     </div>
     <div class="btn-ctn">
-        <button class="button-save primary">{{= i18n.contact.SAVE }}</button>
-        <button class="button-cancel">{{= i18n.contact.CANCEL }}</button>
+        <button class="button-save primary">{{= i18n.misc.SAVE }}</button>
+        <button class="button-cancel">{{= i18n.ui.CANCEL }}</button>
     </div>
 </script>
 
@@ -236,7 +236,7 @@
     <dt class="type text-secondary" data-cate="phone"></dt>
     <dd class="wc enable-select">
         <input data-type="1" class="input-phone" type="text" />
-        <span class="button-delete" title="{{= i18n.contact.DELETE }}"></span>
+        <span class="button-delete" title="{{= i18n.misc.DELETE }}"></span>
     </dd>
 </script>
 
@@ -244,7 +244,7 @@
     <dt class="type text-secondary" data-cate="email"></dt>
     <dd class="wc enable-select">
         <input data-type="1" class="input-email" type="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" />
-        <span class="button-delete" title="{{= i18n.contact.DELETE }}"></span>
+        <span class="button-delete" title="{{= i18n.misc.DELETE }}"></span>
     </dd>
 </script>
 
@@ -252,7 +252,7 @@
     <dt class="type text-secondary" data-cate="im"></dt>
     <dd class="wc enable-select">
         <input data-type="1" class="input-im" type="text" />
-        <span class="button-delete" title="{{= i18n.contact.DELETE }}"></span>
+        <span class="button-delete" title="{{= i18n.misc.DELETE }}"></span>
     </dd>
 </script>
 
@@ -260,7 +260,7 @@
     <dt class="type text-secondary" data-cate="address"></dt>
     <dd class="wc enable-select">
         <input data-type="1" class="input-address" type="text" />
-        <span class="button-delete" title="{{= i18n.contact.DELETE }}"></span>
+        <span class="button-delete" title="{{= i18n.misc.DELETE }}"></span>
     </dd>
 </script>
 
@@ -268,7 +268,7 @@
     <dt class="type text-secondary" data-cate="org"></dt>
     <dd class="wc enable-select">
         <input data-type="1" class="input-organization" type="text" />
-        <span class="button-delete" title="{{= i18n.contact.DELETE }}"></span>
+        <span class="button-delete" title="{{= i18n.misc.DELETE }}"></span>
     </dd>
 </script>
 
@@ -361,7 +361,7 @@
 </script>
 
 <script type="text/x-ui-temealate" id="add-group-body">
-    <label>{{= i18n.contact.GROUP_NAME }}<input class="input-group-name" type="text" autofocus="true" placeholder="{{= i18n.contact.GROUP_NAME_PLACEHOLDER }}" /></label>
+    <label>{{= i18n.contact.GROUP_NAME }}<input class="input-group-name" type="text" autofocus="true" placeholder="{{= i18n.contact.PLEASE_INPUT_GROUP_NAME }}" /></label>
     <span class="tip"></span>
 </script>
 
@@ -370,11 +370,11 @@
         <label class="select-file" >{{= i18n.contact.SELECT_BACKUP_FILE }}</label>
     </div>
     <div class="header hbox">
-        <div class="backup-record" >{{= i18n.contact.BACKUP_RECORD }}</div>
+        <div class="backup-record" >{{= i18n.misc.BACKUP_RECORD }}</div>
         <div class="contact-number" >{{= i18n.contact.BACKUP_MESSAGE_NUMBER }}</div>
     </div>
     <div class="list-ctn">
-        <div class="loading">{{= i18n.common.LOADING }}</div>
+        <div class="loading">{{= i18n.misc.LOADING }}</div>
         <ul class="list">
             {{~ it.list : item }}
             <li>
@@ -391,9 +391,6 @@
 </script>
 
 <script type="text/x-ui-template" id="quick-add">
-    <header>
-        {{= i18n.contact.CONTACT_INTRO }}
-    </header>
     <h3 class="legend">
         <span class="icon" />{{= i18n.contact.QUICK_ADD_CONTACT }}
     </h3>
@@ -405,12 +402,12 @@
             <dd><input id="w-contact-quick-add-phone" name="phone" type="text" class="input-phone" /></dd>
             <dt><label for="w-contact-quick-add-email">{{= i18n.contact.EMAIL }}</label></dt>
             <dd><input id="w-contact-quick-add-email" name="email" type="email" class="input-email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" /></dd>
-            <dt><label for="w-contact-quick-add-account">{{= i18n.contact.ACCOUNT }}</label></dt>
+            <dt><label for="w-contact-quick-add-account">{{= i18n.misc.ACCOUNT }}</label></dt>
             <dd class="account-ctn"></dd>
         </dl>
     </form>
     <div class="btn-ctn hbox">
-        <button type="button" class="button-save primary">{{= i18n.contact.SAVE }}</button>
+        <button type="button" class="button-save primary">{{= i18n.misc.SAVE }}</button>
         <div class="running">
         <div class="w-ui-loading-small" style="display: block; ">
             <div class="anima">
@@ -465,13 +462,13 @@
 
 <script type="text/x-ui-template" id="list-ctn">
     <button class="w-icon-btn transparent button-return">
-        <span class="icon return"></span>{{= i18n.contact.RETURN_ALL }}
+        <span class="icon return"></span>{{= i18n.contact.NAV_CONTACT_ALL }}
     </button>
     <header class="count-tip text-secondary"></header>
 </script>
 
 <script type="x-ui-template" id="custom-info">
-<label>{{= i18n.contact.LABEL }}<input type="text" class="input-label" /></label>
+<label>{{= i18n.misc.NAME }}<input type="text" class="input-label" /></label>
 </script>
 
 <script type="text/x-ui-template" id="contact-sim-tip">
@@ -530,7 +527,7 @@
         <li>
             <label>
                 <input type="radio" name="contact-export" value="2" />
-                {{= i18n.contact.ALL_CONTACT }}
+                {{= i18n.contact.NAV_CONTACT_ALL }}
                 <span class="count">({{= it.allNumber }})</span>
             </label>
         </li>
@@ -644,7 +641,7 @@
     </div>
     {{??}}
     <div class="wc delete">
-        <span class="link button-delete">{{= i18n.contact.DELETE }}</span>
+        <span class="link button-delete">{{= i18n.misc.DELETE }}</span>
     </div>
     <div class="wc rename">
         <span class="link button-rename">{{= i18n.contact.GROUP_UPDATE_LABEL }}</span>

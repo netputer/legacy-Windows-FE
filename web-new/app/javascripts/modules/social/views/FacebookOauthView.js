@@ -14,7 +14,7 @@
         $,
         Panel,
         QueryString,
-        Internationalization,
+        i18n,
         CONFIG,
         SocialData,
         FacebookShareView
@@ -50,7 +50,7 @@
         });
 
         var facebookOauthView = new FacebookOauthView({
-            title : Internationalization.common.SHARE_TO_FACEBOOK,
+            title : i18n.misc.SHARE_TO_FACEBOOK,
             draggable : true,
             width: 660,
             height: 540,

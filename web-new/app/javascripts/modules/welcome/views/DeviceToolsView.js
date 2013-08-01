@@ -148,6 +148,7 @@
                     var popup = new PopupTip({
                         $host : $(ele)
                     });
+                    popup.zero();
                 });
 
                 this.toggleView(Device);
@@ -243,7 +244,7 @@
             clickButtonPlay : function () {
                 this.$('.button-play')
                     .removeClass('button-play')
-                    .data('title', i18n.welcome.PAUSE_BTN_TEXT)
+                    .data('title', i18n.misc.PAUSE)
                     .addClass('button-pause')
                     .find('span')
                     .removeClass('play-black')
@@ -259,7 +260,7 @@
                 this.$('.button-pause')
                     .removeClass('button-pause')
                     .addClass('play-black')
-                    .data('title', i18n.welcome.PLAY_BTN_TEXT)
+                    .data('title', i18n.misc.PLAY)
                     .addClass('button-play')
                     .find('span')
                     .removeClass('pause-black')
@@ -312,7 +313,6 @@
                     });
 
                     var nowWidth = previewDeviceWrap.width();
-                    var nowHeight = previewDeviceWrap.height();
                     var screenRate = nowWidth / Device.get('shell').width;
                     preivewDeviceImg.css({
                         'position' : 'absolute',

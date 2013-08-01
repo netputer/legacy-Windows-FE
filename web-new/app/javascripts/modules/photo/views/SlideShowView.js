@@ -122,11 +122,11 @@
                 var title;
                 switch (Environment.get('locale')) {
                 case CONFIG.enums.LOCALE_EN_US:
-                    title = i18n.common.SHARE_TO_FACEBOOK;
+                    title = i18n.misc.SHARE_TO_FACEBOOK;
                     break;
                 case CONFIG.enums.LOCALE_ZH_CN:
                 case CONFIG.enums.LOCALE_DEFAULT:
-                    title = i18n.common.SHARE;
+                    title = i18n.misc.SHARE;
                     break;
                 }
                 $buttonShare.attr('title', title);

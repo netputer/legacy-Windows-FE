@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window, document) {
     define([
         'backbone',
         'underscore',
@@ -68,6 +68,8 @@
                 return this;
             },
             smartDate : function (days) {
+                var date;
+
                 var sourceMills = days * 24 * 60 * 60 * 1000;
                 var sourceDate = new Date(sourceMills);
                 var today = new Date();
@@ -75,24 +77,27 @@
                 if (sourceDate.getFullYear() === today.getFullYear() && sourceDate.getMonth() === today.getMonth()) {
                     switch (difference) {
                     case 0:
-                        return StringUtil.formatDate('今天 MM 月 dd 日', sourceMills);
+                        date = StringUtil.formatDate('今天 MM 月 dd 日', sourceMills);
+                        break;
                     case 1:
-                        return StringUtil.formatDate('昨天 MM 月 dd 日', sourceMills);
+                        date = StringUtil.formatDate('昨天 MM 月 dd 日', sourceMills);
+                        break;
                     case 2:
-                        return StringUtil.formatDate('前天 MM 月 dd 日', sourceMills);
+                        date = StringUtil.formatDate('前天 MM 月 dd 日', sourceMills);
+                        break;
                     default:
-                        return StringUtil.formatDate('MM 月 dd 日', sourceMills);
+                        date = StringUtil.formatDate('MM 月 dd 日', sourceMills);
                     }
                 } else {
                     var yearDifference = today.getFullYear() - sourceDate.getFullYear();
-                    var date;
                     if (yearDifference > 0) {
                         date = StringUtil.formatDate('yyyy 年 MM 月 dd 日', sourceMills);
                     } else {
                         date = StringUtil.formatDate('MM 月 dd 日', sourceMills);
                     }
-                    return date;
                 }
+
+                return date;
             },
             highlightSearch : function (msg) {
                 var message = this.collection.get(msg.id);
@@ -104,7 +109,9 @@
             },
             scrollTo : function (msg) {
                 var message = this.collection.get(msg.id);
-                message && message.trigger('scrollTo');
+                if (message !== undefined) {
+                    message.trigger('scrollTo');
+                }
             },
             showPreviousButton : function () {
                 this.$el.prepend('<div class="button-previous link">' + i18n.message.LOAD_MORE + '</div>');

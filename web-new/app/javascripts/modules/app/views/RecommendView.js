@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window, document) {
     define([
         'backbone',
         'doT',
@@ -62,6 +62,7 @@
                 var tip = new PopupTip({
                     $host : this.$('[data-title]')
                 });
+                tip.zero();
 
                 return this;
             },

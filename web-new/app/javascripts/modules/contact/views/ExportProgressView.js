@@ -87,7 +87,7 @@
                 this.finished = false;
                 this.$('.button-show-file, .button-finish').hide();
                 this.$('.button-cancel').show();
-                this.$('.progress-desc').text(i18n.contact.EXPORT_PROGRESS_DESC1);
+                this.$('.progress-desc').text(i18n.misc.EXPORTING);
             },
             exportContacts : function () {
 
@@ -182,7 +182,7 @@
                     success : function () {
 
                         WindowController.releaseWindowAsync();
-                        alert(i18n.common.CANCEL_EXPORT_TEXT);
+                        alert(i18n.ui.CANCEL_EXPORT_TEXT);
                         this.trigger('_CANCEL');
                         IO.Backend.Device.offmessage(progressHandler);
                     }.bind(this)

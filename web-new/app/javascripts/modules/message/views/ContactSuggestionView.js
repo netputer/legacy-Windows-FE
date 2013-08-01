@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window, document) {
     define([
         'backbone',
         'underscore',
@@ -392,7 +392,7 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function (args) {
                 return new ContactSuggestionView(args);
             }

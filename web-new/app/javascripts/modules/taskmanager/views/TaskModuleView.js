@@ -1,9 +1,8 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window) {
     define([
         'backbone',
         'doT',
-        'jquery',
         'underscore',
         'ui/TemplateFactory',
         'Configuration',
@@ -14,7 +13,6 @@
     ], function (
         Backbone,
         doT,
-        $,
         _,
         TemplateFactory,
         CONFIG,
@@ -26,7 +24,6 @@
         console.log('TaskModuleView - File loaded.');
 
         var taskListView;
-        var tasksCollection;
 
         var TaskModuleView = Backbone.View.extend({
             className : 'w-task-module-main module-main vbox',
@@ -52,8 +49,6 @@
                         }
                     }
                 });
-
-                tasksCollection = TasksCollection.getInstance();
 
                 Backbone.on('switchModule', function (data) {
                     if (data.module !== 'task') {
@@ -122,10 +117,10 @@
                 return taskModuleView;
             },
             preload : function () {
-                TasksCollection.getInstance();
+                return;
             }
         });
 
         return factory;
     });
-}(this, this.document));
+}(this));

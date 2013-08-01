@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window, document) {
 
     define([
         'backbone',
@@ -20,7 +20,6 @@
         'Device',
         'Log',
         'IO',
-        'welcome/WelcomeService',
         'app/collections/AppsCollection',
         'app/collections/WebAppsCollection',
         'app/views/AppItemView',
@@ -48,7 +47,6 @@
         Device,
         log,
         IO,
-        WelcomeService,
         AppsCollection,
         WebAppsCollection,
         AppItemView,
@@ -311,15 +309,22 @@
 
                 if (appList.currentModels.length === 0) {
                     var currentSet = appList.currentSet.name;
+                    appList.showWanXiaoDou = false;
                     switch (currentSet) {
                     case 'default':
                         if (Device.get('isMounted')) {
                             appList.emptyTip = $(doT.template(TemplateFactory.get('app', 'sd-mount'))({}));
                         } else {
+                            appList.showWanXiaoDou = true;
                             appList.emptyTip = i18n.app.NON_USER_APPS_TEXT;
+
+                            log({
+                                'event' : 'ui.show.wanxiaodou',
+                                'type' : 'app'
+                            });
                         }
                         break;
-                    case 'system':
+                    case 'sys':
                         appList.emptyTip = i18n.app.NON_SYSTEM_APPS_TEXT;
                         break;
                     case 'update':
@@ -543,6 +548,14 @@
                 this.switchListDataSet(tab);
                 this.selectTab(tab);
             },
+            clickButtonDownload : function () {
+                BrowserModuleView.navigateToThirdParty(223);
+
+                log({
+                    'event' : 'ui.click.wanxiaodou_download',
+                    'type' : 'app'
+                });
+            },
             events : {
                 'click .button-close-sd' : 'clickButtonCloseSD',
                 'click .button-close-flash' : 'clickButtonCloseFlash',
@@ -552,7 +565,8 @@
                 'click .button-login' : 'clickButtonLogin',
                 'click .button-find-app' : 'clickButtonFindApp',
                 'click .button-open-update' : 'clickButtonOpenUpdate',
-                'click .button-return' : 'clickButtonReturn'
+                'click .button-return' : 'clickButtonReturn',
+                'click .button-download-game' : 'clickButtonDownload'
             }
         });
 

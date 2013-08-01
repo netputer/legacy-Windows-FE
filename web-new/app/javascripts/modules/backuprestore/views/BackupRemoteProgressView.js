@@ -38,8 +38,6 @@
         var BackupRemoteProgressBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'backup-remote-progress')),
             className : 'w-backup-remote-progress',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
                 this.resetContent();

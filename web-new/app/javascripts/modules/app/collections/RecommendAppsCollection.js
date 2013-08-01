@@ -5,13 +5,11 @@
     define([
         'backbone',
         'underscore',
-        'IO',
         'Configuration',
         'app/models/RecommendAppModel'
     ], function (
         Backbone,
         _,
-        IO,
         CONFIG,
         RecommendAppModel
     ) {

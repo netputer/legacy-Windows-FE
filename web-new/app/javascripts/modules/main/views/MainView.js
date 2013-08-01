@@ -1,5 +1,5 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window, document) {
     'use strict';
 
     define([
@@ -17,7 +17,8 @@
         'main/views/NavView',
         'task/views/TaskMonitorView',
         'backuprestore/BackupController',
-        'main/views/FastUSBNotificationView'
+        'main/views/FastUSBNotificationView',
+        'main/collections/PIMCollection'
     ], function (
         Backbone,
         doT,
@@ -33,7 +34,8 @@
         NavView,
         TaskMonitorView,
         BackupController,
-        FastUSBNotificationView
+        FastUSBNotificationView,
+        PIMCollection
     ) {
         console.log('Wandoujia 2.0 launched.');
 
@@ -117,7 +119,11 @@
                 }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_TASK_MANAGER:
-                TaskMonitorView.getInstance().showListView();
+                TaskMonitorView.getInstance().toggleListView(true);
+                break;
+            case CONFIG.enums.NAVIGATE_TYPE_PIM_MODULE:
+                var target = PIMCollection.getInstance().get(msg.id);
+                target.set('selected', true);
                 break;
             }
         };

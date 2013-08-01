@@ -1,0 +1,20 @@
+/********************************************************************************
+ * This is the CSS declaration of wanxiaodou
+ *
+ * @author lixiaopeng@wandoujia.com
+ ********************************************************************************/
+ @import "skins/default/default";
+
+ .w-wanxiaodou-img {
+
+    height: 200px;
+    margin: 0px auto;
+    width: 200px;
+
+    @each $img in apple, cat, cry, doubt, funny, hot, cat2, sell_his_self, sleepy,
+        speechless, wash, what, prick1, prick2 {
+        &.#{$img} {
+            @include wanxiaodou-sprite(#{$img});
+        }
+    }
+}

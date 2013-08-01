@@ -5,11 +5,8 @@ define({
     ARTIST_TEXT : 'Artist',
     ALBUM_TEXT : 'Album',
     SING_TIME_TEXT : 'Time',
-    SING_SIZE_TEXT : 'Size',
     SING_FORMAT : 'Kind',
     FILE_SELECTOR_DESCRIPTION : 'Select songs from a file or folder',
-    MUSIC_PLAY_TEXT : 'Play',
-    MUSIC_STOP_TEXT : 'Stop',
     DELETE_TIP : 'Delete {1} song(s)? ',
     IMPORT_PROGRESS_TEXT : 'Importing songs, please wait...',
     IMPORT_SUCCESS_TEXT : 'Imported {1} song(s)',
@@ -24,24 +21,13 @@ define({
     SETTING_ITEM_CALL_RING_TEXT : 'Set as ringtone',
     SETTING_ITEM_NOTIFY_RING_TEXT : 'Set as notification',
     SETTING_ALARM_RING_TEXT : 'Set as alarm',
-    PHONE_RING_TEXT : 'Ringtone',
-    NOTIFY_RING_TEXT : 'Notification sound',
-    ALARM_RING_TEXT : 'Alarm sound',
-    MUSIC_ADDOR_COUNT_TEXT : '{1} of {2} selected. Free space on SD card: {3}',
-    MUSIC_ADDOR_GRID_TIP : 'Import a song here',
-    STOP_TEXT : 'Stop',
-    PLAY_TEXT : 'Play',
     MUSIC_EMPTY_TEXT : 'No songs found on your device. ',
     MUSIC_IMPORT_ERROR_TEXT : 'Sorry, failed to import the following song(s): ',
     MUSIC_EXPORT_ERROR_TEXT : 'Sorry, failed to export the following song(s): ',
     MUSIC_IMPORT_OPERATION_FAILED : 'Failed to import songs',
-    SET_RING_FAILED_TEXT : 'Failed to set ringtone',
-    SET_RING_SUCCESS_TEXT : 'Ringtone set!',
-    SETTING_RING_NOW_TEXT : 'Setting ringtone...',
     NO_SELECTED_MUSIC_TEXT : 'You haven\'t selected any songs',
     SELECT_FILES : 'Select music to import',
     MUSIC_CANNOT_PLAY_TEXT : 'Unsupported music format',
-    SHARE_SET_RINGTONE : 'Ringtone set. Share your fine new tune?',
 
     /*iTunes*/
     START_IMPORT_ITUNES_FAIL : 'iTunes import failed',
@@ -78,5 +64,7 @@ define({
     MOUNT_CANNOT_CREATE_PLAYLIST : 'Imported music in playlists, but unable to create playlists on your device',
     ALREADY_SELECT : 'Selected',
     SELECT_TIP : '{1} playlist(s) and {2} song(s) selected, with a total size of {3}.',
-    CONFIRM_IMPORT : 'You\'ve selected to import {1} of music to your device. Importing that much music at once will take an estimated {2} . <br/>Do you want to continue?'
+    CONFIRM_IMPORT : 'You\'ve selected to import {1} of music to your device. Importing that much music at once will take an estimated {2} . <br/>Do you want to continue?',
+
+    MUSIC_EMPTY_TEXT_WANXIAODOU : '<div><span>哦？您的歌曲库一首歌都没有，</span></br><span>去下几首好听的歌曲吧？</span></br><button class="primary button-download-music grand">马上下载歌曲</button></div>'
 });

@@ -24,7 +24,7 @@ define({
     FILE_SELECTOR_DESCRIPTION : '选择视频文件或包含视频文件的文件夹，支持多选',
     CANNOT_GET_SD_DATA : '暂时无法读取 SD 卡数据',
     PHONE_VIDEO_THREAD_NAME : '手机录像',
-    OTHER_VIDEO_THREAD_NAME : '其他视频',
+    OTHER_VIDEO_THREAD_NAME : '其它视频',
     PLAY_VIDEO_TEXT : '正在读取视频，请稍候...<br>按 Esc 取消',
     PLAY_DISCONNECT : '您的手机没有连接电脑，请连接后再播放。',
     PLAY_NO_PLAYER : '您的电脑不支持 {1} 格式，请尝试安装该格式播放器后再打开。',

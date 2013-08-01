@@ -1,25 +1,28 @@
-(function(window, undefined) {
-    define(['contact/models/ContactModel',
-            'contact/collections/ContactsCollection',
-            'contact/collections/AccountCollection',
-            'contact/views/BatchContactsView',
-            'contact/views/AccountSelectorView',
-            'contact/views/GroupSelectorView',
-            'contact/views/ImportAutoBackupView',
-            'contact/views/DetailPanelView',
-            'contact/views/ExportTipWindowView',
-            'contact/ContactService'
-    ], function(ContactModel,
-                ContactsCollection,
-                AccountCollection,
-                BatchContactsView,
-                AccountSelectorView,
-                GroupSelectorView,
-                ImportAutoBackupView,
-                DetailPanelView,
-                ExportTipWindowView,
-                ContactService) {
-        
+(function (window) {
+    define([
+        'contact/models/ContactModel',
+        'contact/collections/ContactsCollection',
+        'contact/collections/AccountCollection',
+        'contact/views/BatchContactsView',
+        'contact/views/AccountSelectorView',
+        'contact/views/GroupSelectorView',
+        'contact/views/ImportAutoBackupView',
+        'contact/views/DetailPanelView',
+        'contact/views/ExportTipWindowView',
+        'contact/ContactService'
+    ], function (
+        ContactModel,
+        ContactsCollection,
+        AccountCollection,
+        BatchContactsView,
+        AccountSelectorView,
+        GroupSelectorView,
+        ImportAutoBackupView,
+        DetailPanelView,
+        ExportTipWindowView,
+        ContactService
+    ) {
+
         var Contact = {
             ContactModel : ContactModel,
             ContactCollection : ContactsCollection,
@@ -37,4 +40,4 @@
 
         return Contact;
     });
-})(this);
+}(this));

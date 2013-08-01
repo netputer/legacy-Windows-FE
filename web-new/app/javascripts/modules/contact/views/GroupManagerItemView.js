@@ -38,27 +38,6 @@
             initialize : function () {
                 GroupManagerItemView.__super__.initialize.apply(this, arguments);
 
-                var isDelete = false;
-                var newTitle = '';
-                Object.defineProperties(this, {
-                    isDelete : {
-                        get : function () {
-                            return isDelete;
-                        },
-                        set : function (value) {
-                            isDelete = value;
-                        }
-                    },
-                    newTitle : {
-                        get : function () {
-                            return newTitle;
-                        },
-                        set : function (value) {
-                            newTitle = value;
-                        }
-                    }
-                });
-
                 accountCollection = AccountCollection.getInstance();
                 var name = this.model.get('account_name');
                 var type = this.model.get('account_type');
@@ -77,12 +56,14 @@
                 this.renameA = this.$('.rename .button-rename');
                 this.input = this.$('.new-name');
 
-                if (this.isDelete) {
+                var isDelete = _.contains(GroupManagerContextModel.get('del'), this.model.get.id);
+                if (isDelete) {
                     this.setDelete();
                 }
 
-                if (this.newTitle) {
-                    this.title.html(this.newTitle);
+                var newTitle = GroupManagerContextModel.get('rename')[this.model.id];
+                if (newTitle) {
+                    this.title.html(newTitle);
                 }
 
                 return this;
@@ -101,7 +82,6 @@
             },
             clickButtonDelete : function () {
                 this.setDelete();
-                this.isDelete = true;
             },
             clickButtonRename: function () {
                 this.showInput();
@@ -128,7 +108,6 @@
                 if (!newTitle) {
                     this.title.html(this.model.get('title'));
                     this.hideInput();
-                    this.newTitle = '';
                     return;
                 }
 
@@ -140,7 +119,6 @@
                 if (!!hasGroupName) {
                     alert(i18n.contact.GROUP_ALREADY_EXSIST);
                     this.title.html(this.model.get('title'));
-                    this.newTitle = '';
                     this.hideInput();
                     return;
                 }
@@ -149,8 +127,6 @@
                 var rename = GroupManagerContextModel.get('rename');
                 rename[this.model.id] = newTitle;
                 GroupManagerContextModel.set('rename', rename);
-
-                this.newTitle = newTitle;
 
                 this.isRenaming = false;
             },

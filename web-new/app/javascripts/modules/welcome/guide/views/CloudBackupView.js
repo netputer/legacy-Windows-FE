@@ -96,7 +96,7 @@
                     // });
                     this.$('.section').css('-webkit-transform', 'translate3d(0, -200%, 0)');
                     setTimeout(function () {
-                        this.trigger('next')
+                        this.trigger('next');
                     }.bind(this), 3000);
                 } else {
                     switch (this.userModel.validationError) {
@@ -141,7 +141,7 @@
         var factory = _.extend({
             getInstance : function () {
                 return new CloudBackupView({
-                    action : i18n.welcome.GUIDE_CLOUD_BACKUP_OPEN
+                    action : i18n.misc.CLOUD_BACKUP_OPEN
                 });
             }
         });

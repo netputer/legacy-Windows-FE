@@ -203,6 +203,7 @@
                 PHOTO_CLOUD_THUMBNAIL : 'wdj://photo/cloud_thumbnail.json',
                 PHOTO_CLOUD_THUMBNAILS : 'wdj://photo/cloud_thumbnails.json',
                 PHOTO_CLOUD_GET : 'wdj://photo/cloud_get.json',
+                PHOTO_CANCEL_THUMBNAIL : 'wdj://photo/cancel_thumbnail.json',
 
                 // Video Module
                 VIDEO_DOWNLOAD : 'wdj://video/download.json',
@@ -395,6 +396,7 @@
                 SYNC_PHOTO_COMPLETE : 'sync.complete',
                 SYNC_CLOUD_SETTING_CHANGE : 'sync.cloud_setting_changed',
                 SYNC_PHOTO_NOTIFY_UPDATE : 'sync.photo.num',
+                SYNC_BACKUP_START : 'backup.guide.start',
 
                 // Auto Backup
                 AUTO_BACKUP_START : 'autobackup.progress.start',
@@ -454,6 +456,7 @@
                 NAVIGATE_TYPE_THEME : 'themes',
                 NAVIGATE_TYPE_APP_WASH : 'wash',
                 NAVIGATE_TYPE_TASK_MANAGER : 'task_manager',
+                NAVIGATE_TYPE_PIM_MODULE : 'pim_module',
 
                 /* Update ignore states */
                 UPDATE_IGNORE_NONE : 'none',
@@ -532,8 +535,9 @@
                 TASK_DEFAULT_ICON_PATH_FILE : 'images/icon_default_file_36X36.png',
                 IMAGE_SPACER : 'images/spacer-20X20.png',
 
-                /* Doraemon icon */
-                DORAENON_DEFAULT : 'images/dor-default-30X30.png',
+                /* Defaut icon */
+                DEFAULT_30X30 : 'images/default-30X30.png',
+                DEFAULT_42X42 : 'images/default-42X42.png',
 
                 /* Model type */
                 MODEL_TYPE_APPLICATION : 'app',

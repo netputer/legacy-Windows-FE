@@ -35,9 +35,9 @@
                 this.width = 360;
 
                 this.buttons = [{
-                    $button : $('<button>').addClass('primary button_save').html(i18n.contact.SAVE)
+                    $button : $('<button>').addClass('primary button_save').html(i18n.misc.SAVE)
                 }, {
-                    $button : $('<button>').html(i18n.contact.CANCEL),
+                    $button : $('<button>').html(i18n.ui.CANCEL),
                     eventName : 'button_cancel'
                 }];
 

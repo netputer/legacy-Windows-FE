@@ -4,14 +4,12 @@
         'backbone',
         'IO',
         'Configuration',
-        'jquery',
-        'Device'
+        'jquery'
     ], function (
         Backbone,
         IO,
         CONFIG,
-        $,
-        Device
+        $
     ) {
         console.log('PhotoModel - File loaded. ');
 
@@ -33,7 +31,7 @@
                     data : {
                         photo_id : this.id
                     },
-                    success : function(resp) {
+                    success : function (resp) {
                         if (resp.state_code === 200) {
                             this.set({
                                 thumb : 'file:///' + resp.body.value

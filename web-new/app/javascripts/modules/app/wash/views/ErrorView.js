@@ -37,8 +37,6 @@
             }
         });
 
-        var errorView;
-
         var factory = _.extend({
             getInstance : function () {
                 return new ErrorView();

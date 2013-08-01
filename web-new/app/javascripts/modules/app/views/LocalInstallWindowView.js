@@ -96,7 +96,7 @@
 
                 this.listenTo(appList, 'drop', function (event) {
                     var files = _.filter(window.client.drag_files, function (file) {
-                        return /\.(wd)?apk$/.test(file);
+                        return (/\.(wd)?apk$/).test(file);
                     });
 
                     if (files.length) {
@@ -200,7 +200,7 @@
                 LocalInstallWindowView.__super__.initialize.apply(this, arguments);
 
                 this.buttons = [{
-                    $button : $('<button>').addClass('primary').html(i18n.app.BUTTON_INSTALL_LABEL),
+                    $button : $('<button>').addClass('primary').html(i18n.app.INSTALL),
                     eventName : 'button_install'
                 }, {
                     $button : $('<button>').html(i18n.ui.CANCEL),

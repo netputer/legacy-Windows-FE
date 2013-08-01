@@ -1,15 +1,17 @@
-/*global define, Backbone, $*/
+/*global define*/
 (function (window) {
     define([
+        'backbone',
+        'jquery',
         'IO',
         'Internationalization',
-        'Configuration',
-        'utilities/StringUtil'
+        'Configuration'
     ], function (
+        Backbone,
+        $,
         IO,
         i18n,
-        CONFIG,
-        StringUtil
+        CONFIG
     ) {
         console.log('TaskModel - File loaded.');
 
@@ -236,13 +238,34 @@
 
                 return deferred.promise();
             },
-            setAsWallpaperAsync : function (id) {
+            setAsRingtoneAsync : function () {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.MUSIC_SET_RINGTONE,
+                    data : {
+                        phone_path : this.get('detail')
+                    },
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('TaskModel - Set as ringtone success.');
+                            deferred.resolve(resp);
+                        } else {
+                            console.error('TaskModel - Set as ringtone failed. Error info: ' + resp.state_line);
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+
+                return deferred.promise();
+            },
+            setAsWallpaperAsync : function () {
                 var deferred = $.Deferred();
 
                 IO.requestAsync({
                     url : CONFIG.actions.PHOTO_SET_WALLPAPER,
                     data : {
-                        photo_id : id
+                        phone_path : this.get('detail')
                     },
                     success : function (resp) {
                         if (resp.state_code === 200) {

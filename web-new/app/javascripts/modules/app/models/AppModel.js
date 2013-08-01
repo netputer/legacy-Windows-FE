@@ -7,7 +7,6 @@
         'IO',
         'Internationalization',
         'Configuration',
-        'Environment',
         'utilities/StringUtil',
         'Device',
         'app/models/AppBaseModel'
@@ -18,7 +17,6 @@
         IO,
         i18n,
         CONFIG,
-        Environment,
         StringUtil,
         Device,
         AppBaseModel

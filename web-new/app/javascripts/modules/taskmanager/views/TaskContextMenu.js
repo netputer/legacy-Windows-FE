@@ -5,7 +5,6 @@
         'ui/behavior/ClickToHideMixin',
         'ui/AlertWindow',
         'Internationalization',
-        'Device',
         'task/collections/TasksCollection',
         'task/views/DeleteConfirmWindowView'
     ], function (
@@ -13,7 +12,6 @@
         ClickToHideMixin,
         AlertWindow,
         i18n,
-        Device,
         TasksCollection,
         DeleteConfirmWindowView
     ) {
@@ -100,7 +98,7 @@
                     type : 'normal',
                     name : 'resume',
                     value : 'resume',
-                    label : i18n.misc.RESUME,
+                    label : i18n.ui.CONTINUE,
                     disabled : !hasStoped
                 }, {
                     type : 'normal',

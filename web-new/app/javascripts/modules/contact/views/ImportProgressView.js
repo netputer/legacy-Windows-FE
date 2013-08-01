@@ -5,7 +5,6 @@
         'doT',
         'jquery',
         'underscore',
-        'Device',
         'Internationalization',
         'IO',
         'Configuration',
@@ -23,7 +22,6 @@
         doT,
         $,
         _,
-        Device,
         i18n,
         IO,
         CONFIG,
@@ -73,10 +71,10 @@
                 }, this);
 
                 this.buttons = [{
-                    $button : $('<button>').html(i18n.contact.FINISH).addClass('button-finish primary').hide(),
+                    $button : $('<button>').html(i18n.ui.FINISH).addClass('button-finish primary').hide(),
                     eventName : 'button-finish'
                 }, {
-                    $button : $('<button>').html(i18n.contact.CANCEL).addClass('button-cancel'),
+                    $button : $('<button>').html(i18n.ui.CANCEL).addClass('button-cancel'),
                     eventName : 'button-cancel'
                 }];
             },
@@ -140,7 +138,7 @@
                     if (resp.state_code === 200) {
 
                         contactsCollection.syncAsync();
-                        alert(i18n.common.CANCEL_IMPORT_TEXT);
+                        alert(i18n.ui.CANCEL_IMPORT_TEXT);
                     }
 
                 }.bind(this)).always(function () {

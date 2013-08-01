@@ -88,7 +88,7 @@
                     _.each(extensions, function (extension, i) {
                         extension.order = i;
                     });
-                } catch (e) {}
+                } catch (ignore) {}
                 return extensions;
             },
             comparator : function (extension) {
@@ -213,7 +213,10 @@
 
                 $.when(unstarDevsAsync.call(this, devs), unstarNormalsAsync.call(this, normals))
                     .done(function () {
-                        this.remove(ids);
+                        if (ids.length < this.models.length) {
+                            this.remove(ids);
+                        }
+
                         deferred.resolve();
                     }.bind(this))
                     .fail(deferred.reject);

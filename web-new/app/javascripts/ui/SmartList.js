@@ -11,7 +11,8 @@
         'ui/behavior/DataSetMixin',
         'ui/behavior/SelectDelegateMixin',
         'ui/behavior/ObserverMixin',
-        'ui/behavior/HeaderMixin'
+        'ui/behavior/HeaderMixin',
+        'ui/behavior/WanXiaoDouMixin'
     ], function (
         $,
         _,
@@ -23,7 +24,8 @@
         DataSetMixin,
         SelectDelegateMixin,
         ObserverMixin,
-        HeaderMixin
+        HeaderMixin,
+        WanXiaoDouMixin
     ) {
         console.log('SmartList - File loaded.');
 
@@ -100,9 +102,9 @@
 
         var addEmptyTip = function (emptyTip) {
             if (typeof emptyTip === 'object') {
-                this.$('.empty-tip').empty().append(emptyTip);
+                this.$('.text-tip').empty().append(emptyTip);
             } else if (emptyTip !== undefined) {
-                this.$('.empty-tip').html(emptyTip);
+                this.$('.text-tip').html(emptyTip);
             }
         };
 
@@ -114,6 +116,7 @@
                 SelectDelegateMixin.mixin(this);
                 ObserverMixin.mixin(this);
                 HeaderMixin.mixin(this);
+                WanXiaoDouMixin.mixin(this);
 
                 var rendered = false;
                 var ctnHeight = 0;
@@ -611,7 +614,7 @@
                 var index = this.currentModels.indexOf(model);
                 this.$(CLASS_MAPPING.SCROLL_CTN)[0].scrollTop = index * this.itemHeight;
 
-                if (this.onScreenItems[0]){
+                if (this.onScreenItems[0]) {
                     this.onScreenItems[0].$el[0].scrollIntoView();
                 }
             },

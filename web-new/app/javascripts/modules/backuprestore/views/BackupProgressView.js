@@ -1,4 +1,4 @@
-/*global define, console*/
+/*global define*/
 (function (window) {
     define([
         'backbone',
@@ -10,7 +10,10 @@
         'Configuration',
         'ui/Panel',
         'ui/UIHelper',
+        'ui/AlertWindow',
         'ui/TemplateFactory',
+        'IOBackendDevice',
+        'utilities/StringUtil',
         'backuprestore/BackupRestoreService',
         'backuprestore/models/BackupContextModel',
         'backuprestore/views/BackupAppDataTipView'
@@ -24,12 +27,17 @@
         CONFIG,
         Panel,
         UIHelper,
+        AlertWindow,
         TemplateFactory,
+        IO,
+        StringUtil,
         BackupRestoreService,
         BackupContextModel,
         BackupAppDataTipView
     ) {
         console.log('BackupProgressView - File loaded. ');
+
+        var alert = window.alert;
 
         var bodyView;
         var backupSessionID;
@@ -39,8 +47,6 @@
         var BackupProgressBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'backup-progress')),
             className : 'w-backup-progress',
-            initialize : function () {
-            },
             render : function () {
                 this.$el.html(this.template({}));
                 this.resetContent();
@@ -105,10 +111,13 @@
             },
             updateNonAppItems : function (items) {
                 var i;
+                var item;
                 for (i in items) {
-                    var item = items[i];
-                    if (i === 0 || item.status !== BackupRestoreService.CONSTS.BR_PI_STATUS.READY) {
-                        this.updateItem(item.type, item.status, item.finished_count, item.all_count);
+                    if (items.hasOwnProperty(i)) {
+                        item = items[i];
+                        if (i === 0 || item.status !== BackupRestoreService.CONSTS.BR_PI_STATUS.READY) {
+                            this.updateItem(item.type, item.status, item.finished_count, item.all_count);
+                        }
                     }
                 }
             },
@@ -199,7 +208,6 @@
                     'data.channel' : sessionID
                 }, function (data) {
                     var progress = data;
-                    var i, item;
                     switch (progress.status) {
                     case BackupRestoreService.CONSTS.BR_STATUS.RUNNING:
                         this.updateNonAppItems(progress.item);

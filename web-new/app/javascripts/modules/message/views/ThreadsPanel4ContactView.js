@@ -1,10 +1,9 @@
 /*global define*/
-(function (window, document, undefined) {
+(function (window, document) {
     define([
         'backbone',
         'underscore',
         'doT',
-        'Configuration',
         'Internationalization',
         'ui/TemplateFactory',
         'message/collections/ConversationsCollection',
@@ -15,7 +14,6 @@
         Backbone,
         _,
         doT,
-        CONFIG,
         i18n,
         TemplateFactory,
         ConversationsCollection,

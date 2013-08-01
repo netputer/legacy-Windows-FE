@@ -5,7 +5,6 @@
     define([
         'backbone',
         'doT',
-        'jquery',
         'underscore',
         'Internationalization',
         'ui/Panel',
@@ -15,16 +14,12 @@
         'ui/SmartList',
         'utilities/StringUtil',
         'Configuration',
-        'FunctionSwitch',
         'app/collections/AppsCollection',
         'app/views/AppItemView',
-        'task/TaskService',
-        'Account',
-        'Settings'
+        'task/TaskService'
     ], function (
         Backbone,
         doT,
-        $,
         _,
         i18n,
         Panel,
@@ -34,12 +29,9 @@
         SmartList,
         StringUtil,
         CONFIG,
-        FunctionSwitch,
         AppsCollection,
         AppItemView,
-        TaskService,
-        Account,
-        Settings
+        TaskService
     ) {
         console.log('OneKeyUpdateWindowView - File loaded.');
 

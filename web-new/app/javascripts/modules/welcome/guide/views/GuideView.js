@@ -5,6 +5,8 @@
         'jquery',
         'doT',
         'Configuration',
+        'Internationalization',
+        'utilities/StringUtil',
         'ui/TemplateFactory',
         'IO',
         'guide/views/BindView',
@@ -18,6 +20,8 @@
         $,
         doT,
         CONFIG,
+        i18n,
+        StringUtil,
         TemplateFactory,
         IO,
         BindView,
@@ -31,12 +35,12 @@
             className : 'w-guide-ctn vbox',
             template : doT.template(TemplateFactory.get('guide', 'main')),
             cardQueue : [],
+            totalCards: 0,
             regCardAsync : function (viewInstance) {
                 var deferred = $.Deferred();
 
                 viewInstance.checkAsync().done(function () {
                     this.cardQueue.push(viewInstance);
-                    this.$('.step-counter-ctn').append($('<li>').addClass('step-pointer'));
                 }.bind(this)).always(deferred.resolve);
 
                 return deferred.promise();
@@ -68,6 +72,10 @@
                         return this.regCardAsync(TipsView.getInstance());
                     }.bind(this))
                     .then(function () {
+                        this.totalCards = this.cardQueue.length;
+                        return $.Deferred().resolve();
+                    }.bind(this))
+                    .then(function () {
                         IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY);
                         this.run();
                     }.bind(this));
@@ -79,15 +87,15 @@
                 if (currentCard) {
                     this.$('.content')
                         .addClass('w-anima-fade-slide-in-right')
-                        .append(currentCard.render().$el).one('webkitAnimationEnd', function () {
+                        .append(currentCard.render().$el)
+                        .one('webkitAnimationEnd', function () {
                             $(this).css({
                                 '-webkit-transform' : 'translate3d(0, 0, 0)',
                                 'opacity' : 1
                             }).removeClass('w-anima-fade-slide-in-right');
                         });
 
-                    var $pointers = this.$('.step-counter-ctn .step-pointer').removeClass('current');
-                    $pointers.eq($pointers.length - this.cardQueue.length - 1).addClass('current');
+                    currentCard.$('.text-counter').text(StringUtil.format(i18n.welcome.GUIDE_TEXT_COUNTER, this.totalCards - this.cardQueue.length, this.totalCards));
 
                     currentCard.once('next', function () {
                         this.$('.content')

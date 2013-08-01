@@ -143,31 +143,43 @@ module.exports = function (grunt) {
             files : ['test/index.html']
         },
         jslint : {
-            files : [
-                'app/javascripts/**/*.js'
-            ],
-            directives : {
-                sloppy : true,
-                vars : true,
-                nomen : true,
-                devel : true,
-                browser : true,
-                indent : 4,
-                unparam: true,
-                plusplus : true,
-                todo: true,
-                predef: [ // array of pre-defined globals
-                  'define'
-                ]
-            },
-            options : {
-                // junit : 'out/junit.xml', // write the output to a JUnit XML
-                log : 'lint.log',
-                // jslintXml : 'out/jslint_xml.xml',
-                errorsOnly : true, // only display errors
-                // failOnError : false, // defaults to true
-                // shebang : true, // ignore shebang lines
-                // checkstyle : 'out/checkstyle.xml' // write a checkstyle-XML
+            sources : {
+                src : [
+                    'app/javascripts/**/*.js'
+                ],
+                exclude: [
+                    'app/javascripts/utilities/MD5.js',
+                    'app/javascripts/ui/Panel.js',
+                    'app/javascripts/usb-debug-new/usb-debug-new.js',
+                    'app/javascripts/modules/contact/collections/ContactsCollection.js',
+                    'app/javascripts/modules/message/views/MessageSenderView.js',
+                    'app/javascripts/ui/Button.js'
+                ],
+                directives : {
+                    sloppy : true,
+                    vars : true,
+                    nomen : true,
+                    devel : true,
+                    browser : true,
+                    indent : 4,
+                    unparam: true,
+                    plusplus : true,
+                    todo : true,
+                    bitwise :  true,
+                    stupid : true,
+                    evil : true,
+                    regexp : true,
+                    ass : true,
+                    predef: [ // array of pre-defined globals
+                      'define', 'require'
+                    ]
+                },
+                options : {
+                    // junit : 'out/junit.xml', // write the output to a JUnit XML
+                    // log : 'lint.log',
+                    // jslintXml : 'out/jslint_xml.xml',
+                    errorsOnly : true // only display errors
+                }
             }
         }
     });

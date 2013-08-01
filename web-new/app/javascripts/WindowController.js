@@ -5,14 +5,10 @@
 
 (function (window) {
     define([
-        'backbone',
-        'underscore',
         'jquery',
         'IO',
         'Configuration'
     ], function (
-        Backbone,
-        _,
         $,
         IO,
         CONFIG
@@ -21,7 +17,7 @@
 
         var history = window.history;
 
-        var WindowController = function () {};
+        var WindowController = {};
 
         WindowController.blockWindowAsync = function () {
             var deferred = $.Deferred();
@@ -75,7 +71,7 @@
                     canReload : false
                 }));
             } else {
-                $iframe = $(id);
+                $iframe = $('#' + id);
                 branch = $iframe.attr('branch');
                 window.externalCall('', 'navigation', JSON.stringify({
                     id : id,

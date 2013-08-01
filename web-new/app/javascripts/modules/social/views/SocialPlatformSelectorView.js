@@ -6,7 +6,6 @@
         'doT',
         'jquery',
         'Account',
-        'Configuration',
         'Internationalization',
         'ui/TemplateFactory'
     ], function (
@@ -15,7 +14,6 @@
         doT,
         $,
         Account,
-        CONFIG,
         i18n,
         TemplateFactory
     ) {
@@ -41,22 +39,22 @@
                     this.$('.social-platform[data-type="sina"], .social-platform-big[data-type="sina"]').prop({
                         checked : Account.isActive(Account.SINA)
                     });
-                    this.$('span[data-type="sina"]').text(Account.isActive(Account.SINA) ? i18n.common.SHARE_BINDED : i18n.common.SHARE_TO_SINA);
+                    this.$('span[data-type="sina"]').text(Account.isActive(Account.SINA) ? i18n.misc.SHARE_BINDED : i18n.misc.SHARE_TO_SINA);
 
                     this.$('.social-platform[data-type="qzone"], .social-platform-big[data-type="qzone"]').prop({
                         checked : Account.isActive(Account.QZONE)
                     });
-                    this.$('span[data-type="qzone"]').text(Account.isActive(Account.QZONE) ? i18n.common.SHARE_BINDED : i18n.common.SHARE_TO_QZONE);
+                    this.$('span[data-type="qzone"]').text(Account.isActive(Account.QZONE) ? i18n.misc.SHARE_BINDED : i18n.misc.SHARE_TO_QZONE);
 
                     this.$('.social-platform[data-type="tqq"], .social-platform-big[data-type="tqq"]').prop({
                         checked : Account.isActive(Account.TQQ)
                     });
-                    this.$('span[data-type="tqq"]').text(Account.isActive(Account.TQQ) ? i18n.common.SHARE_BINDED : i18n.common.SHARE_TO_QQ);
+                    this.$('span[data-type="tqq"]').text(Account.isActive(Account.TQQ) ? i18n.misc.SHARE_BINDED : i18n.misc.SHARE_TO_QQ);
 
                     this.$('.social-platform[data-type="renren"], .social-platform-big[data-type="renren"]').prop({
                         checked : Account.isActive(Account.RENREN)
                     });
-                    this.$('span[data-type="renren"]').text(Account.isActive(Account.RENREN) ? i18n.common.SHARE_BINDED : i18n.common.SHARE_TO_RENREN);
+                    this.$('span[data-type="renren"]').text(Account.isActive(Account.RENREN) ? i18n.misc.SHARE_BINDED : i18n.misc.SHARE_TO_RENREN);
                 } else {
                     this.$('.social-platform').prop({
                         checked : false
@@ -120,7 +118,7 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function (args) {
                 return new SocialPlatformSelectorView({
                     templateID : args ? 'social-platform-selector-big' : 'social-platform-selector'

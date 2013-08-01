@@ -4,7 +4,7 @@
         'backbone',
         'doT',
         'jquery',
-        'underscore',
+        'underscore'
     ], function (
         Backbone,
         doT,

@@ -1,23 +1,32 @@
-(function(window, undefined) {
-    define(["video/views/ImportVideoView"], function(ImportVideoView) {
+/*global define*/
+(function (window) {
+    define([
+        'underscore',
+        'backbone',
+        'video/views/ImportVideoView'
+    ], function (
+        _,
+        Backbone,
+        ImportVideoView
+    ) {
         console.log('VideoModuleView - File loaded. ');
 
         var VideoModuleView = Backbone.View.extend({
             className : 'w-video-module-main module-main vbox',
-            initialize : function() {
+            initialize : function () {
                 var rendered = false;
                 Object.defineProperties(this, {
                     rendered : {
-                        set : function(value) {
-                            rendered = value;
+                        set : function (value) {
+                            rendered = Boolean(value);
                         },
-                        get : function() {
+                        get : function () {
                             return rendered;
                         }
                     }
                 });
             },
-            render : function() {
+            render : function () {
                 window.wonder.PM.getPage('video_page').render();
                 this.$el.append(window.wonder.PM.getPage('video_page')._element);
 
@@ -29,25 +38,24 @@
         var videoModuleView;
 
         var factory = _.extend({
-            getInstance : function() {
-                if(!videoModuleView) {
+            getInstance : function () {
+                if (!videoModuleView) {
                     videoModuleView = new VideoModuleView();
                 }
                 return videoModuleView;
             },
-            showImport: function(param) {
-                console.log('show import video')
+            showImport: function (param) {
                 var obj = eval('(' + param + ')');
-                var resp = {'body': obj};
+                var resp = {'body' : obj};
                 var inst = ImportVideoView.getInstance();
                 inst.resp = resp;
                 inst.show();
             },
-            preload : function() {
-
+            preload : function () {
+                return;
             }
         });
 
         return factory;
     });
-})(this);
+}(this));

@@ -8,7 +8,6 @@
         'FunctionSwitch',
         'Configuration',
         'main/views/BindingDeviceWindowView',
-        'welcome/WelcomeService',
         'ui/AlertWindow',
         'IOBackendDevice',
         'backuprestore/BackupRestoreService',
@@ -31,7 +30,6 @@
         FunctionSwitch,
         CONFIG,
         BindingDeviceWindowView,
-        WelcomeService,
         AlertWindow,
         IO,
         BackupRestoreService,
@@ -191,9 +189,6 @@
                 backupProgressView.on('_APP_DATA_ERROR_ALL', function () {
                     errorRetryView.setContent(BackupContextModel.get('appDataErrorMessage'));
                     errorRetryView.show();
-                }, this);
-
-                backupProgressView.on('_NEED_USER_CONFIRM', function () {
                 }, this);
 
                 backupProgressView.on('_BACKUP_FINISH', function () {

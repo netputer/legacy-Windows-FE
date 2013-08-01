@@ -15,12 +15,12 @@
         <div class="w-photo-item">
             <img src="">
             <input type="checkbox" class="w-photo-item-checkbox item-hide">
-            <button class="w-photo-item-thumbnail-share w-icon-btn" title="<%= i18n.common.SHARE %>">
+            <button class="w-photo-item-thumbnail-share w-icon-btn" title="<%= i18n.misc.SHARE %>">
                 <span class="icon share"></span>
             </button>
         </div>
     </script>
-   
+
    <script type="text/template" id="toolbar-template">
        <div class="w-photo-player-toolbar">
           <button class="rotate-right-btn" title="<%= i18n.photo.ROTATE_RIGHT %>"></button>
@@ -33,10 +33,10 @@
           </div>
           <button class="export-btn" title="<%= i18n.misc.EXPORT %>"></button>
           <button class="wallpaper-btn" title="<%= i18n.photo.SET_AS_WALLPAPER %>"></button>
-          <button class="share-btn" title="<%= i18n.common.SHARE %>"></button>
+          <button class="share-btn" title="<%= i18n.misc.SHARE %>"></button>
        </div>
    </script>
-   
+
    <script type="text/template" id="photo_info">
         <div class="w-photo-item-info">
             <p><span class="w-photo-name"></span></p>

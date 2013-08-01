@@ -1967,10 +1967,10 @@ wonder.addModule('ui/status', function(W) {
     function Progress(opt) {
         this.model = new W.ui.status.Progressbar();
         this.view = new W.ui.status.ProgressbarView(this.model);
-        this.cancelBtn = new W.ui.Button(i18n.common.CANCEL)
-        this.completeBtn = new W.ui.Button(i18n.common.COMPLETE_TEXT);
+        this.cancelBtn = new W.ui.Button(i18n.ui.CANCEL)
+        this.completeBtn = new W.ui.Button(i18n.misc.COMPLETE_TEXT);
         this.interval = null;
-        W.ui.Window.call(this, i18n.common.DIALOG_TIP, '', opt);
+        W.ui.Window.call(this, i18n.ui.TIP, '', opt);
         this.session = null;
         this.setDraggable(false);
         this.setSupportEsc(false);
@@ -2005,7 +2005,7 @@ wonder.addModule('ui/status', function(W) {
             this.model.setMax(val);
         },
         setCompleteBtnDelay : function(delay) {
-            this.completeBtn.setTitle(i18n.common.COMPLETE_TEXT + '(' + delay + ')');
+            this.completeBtn.setTitle(i18n.misc.COMPLETE_TEXT + '(' + delay + ')');
         },
         setProgress : function(val, max) {
             this.model.setProgress(val);
@@ -2065,7 +2065,7 @@ wonder.addModule('ui/status', function(W) {
                     this.setText(window.StringUtil.format(successText, data.total));
                 }
             }
-            
+
             this.handlerId = IO.Backend.Device.onmessage({
                 'data.channel' : bindId
             }, this.hander, this);
@@ -2203,9 +2203,9 @@ wonder.addModule('SelectDelegate', function(W) {
                 }
 
             } else if($.isArray(item)){
-                
+
                     if(!self.selectedItems.length){
-                        self.setSelectedItems(item); 
+                        self.setSelectedItems(item);
                     }else{
                         _.each(item, function(newItem){
                             if(self.selectedItems.indexOf(newItem) === -1){
@@ -2213,7 +2213,7 @@ wonder.addModule('SelectDelegate', function(W) {
                             }
                         });
                     }
-            
+
                 this.trigger('add', item);
                 return;
             } else {
@@ -2835,9 +2835,9 @@ wonder.addModule('contact/avatarEditor', function (W) {
         _data : {},
         _addComponent : function () {
             var self = this;
-            self.okBtn = new W.ui.Button (i18n.common.SAVE_TEXT);
-            self.cancelBtn = new W.ui.Button (i18n.common.CANCEL);
-            self.returnBtn = new W.ui.Button (i18n.common.RESELECT_FILE_TEXT);
+            self.okBtn = new W.ui.Button (i18n.misc.SAVE);
+            self.cancelBtn = new W.ui.Button (i18n.ui.CANCEL);
+            self.returnBtn = new W.ui.Button (i18n.misc.RESELECT_FILE_TEXT);
             self.picFormatTip = $('<span/>').text(i18n.contact.ALERT_PIC_FORMAT_TIP).addClass('w-contact-pic-format-tip');
 
             self.addFooterContent(self.okBtn);
@@ -3057,11 +3057,11 @@ wonder.addModule('contact/avatarEditor', function (W) {
                 if (value == W.photo.PhotoCollection.type.PHONE) {
                     self.phonePhotosEl.show();
                     self.libraryPhotosEl.hide();
-                    this.setTitle(i18n.contact.EDIT_CONTACT_HEAD_SOURCE_BY_PHONE);
+                    this.setTitle(i18n.misc.NAV_PIC_PHONE_LIB);
                 } else if (value == W.photo.PhotoCollection.type.LIBRARY) {
                     self.phonePhotosEl.hide();
                     self.libraryPhotosEl.show();
-                    this.setTitle(i18n.contact.EDIT_CONTACT_HEAD_SOURCE_BY_LIBRARY);
+                    this.setTitle(i18n.misc.NAV_PIC_GALLERY);
                 }
 
                 self.refreshPhotosList();
@@ -3072,14 +3072,14 @@ wonder.addModule('contact/avatarEditor', function (W) {
             var tip = '';
             if (this.picLists.length == 0) {
                 if (this.currentType == W.photo.PhotoCollection.type.PHONE) {
-                    tip = i18n.photo.EMPTY_PHONE_LIST;
+                    tip = i18n.contact.EMPTY_PHONE_LIST;
                 } else if (this.currentType == W.photo.PhotoCollection.type.LIBRARY) {
-                    tip = i18n.photo.EMPTY_LIBRARY_LIST;
+                    tip = i18n.contact.EMPTY_LIBRARY_LIST;
                 }
             }
 
             if (Device.get('isMounted')) {
-                tip = i18n.common.SD_MOUNT_TIP_TEXT;
+                tip = i18n.misc.SD_MOUNT_TIP_TEXT;
             }
             this.tipEl.text(tip).show();
         },
@@ -4148,8 +4148,8 @@ wonder.addModule('photo/photoView', function(W) {
                                                 });
                     var rotation;
                     switch(self._data.orientation){
-                        case 0 : 
-                            rotation = 0;                       
+                        case 0 :
+                            rotation = 0;
                         break;
                         case 3 :
                         case 90:
@@ -4181,7 +4181,7 @@ wonder.addModule('photo/photoView', function(W) {
                             window.Sync.PhotoSyncView.getInstance().tryToShowPhotoSyncAlertView();
                         }
                     };
-                    
+
                     socialService.show(data);
                 });
 
@@ -4338,20 +4338,20 @@ wonder.addModule('photo/photoView', function(W) {
         setThumbnailWeiboButton : function() {
             var isConnected = Device.get('isConnected');
             var weiboButton = this._element.find('.w-photo-item-thumbnail-share');
-			
+
             if(isConnected) {
                 weiboButton.show();
             } else {
                 weiboButton.hide();
             }
             switch(Environment.locale) {
-                case CONFIG.enums.LOCALE_EN_US : 
-                    title = i18n.common.SHARE_TO_FACEBOOK;
+                case CONFIG.enums.LOCALE_EN_US :
+                    title = i18n.misc.SHARE_TO_FACEBOOK;
                     break;
-                case CONFIG.enums.LOCALE_ZH_CN : 
+                case CONFIG.enums.LOCALE_ZH_CN :
                 case CONFIG.enums.LOCALE_DEFAULT :
-                default: 
-                    title = i18n.common.WEIBO_SHARE_TEXT;
+                default:
+                    title = i18n.misc.WEIBO_SHARE_TEXT;
                     break;
             }
             weiboButton.attr('title', title);
@@ -4448,7 +4448,7 @@ wonder.useModule('photo');
  */
 wonder.addModule('video/dataCollection', function(W) {
     W.namespace('wonder.video');
-    var alert = new W.ui.Dialog(i18n.common.DIALOG_TIP);
+    var alert = new W.ui.Dialog(i18n.ui.TIP);
     alert.setButtonSet(W.ui.Dialog.ButtonSet.OK);
 
     function VideoCollection() {
@@ -4677,11 +4677,11 @@ wonder.addModule('video/content', function(W){
 
         showTip: function(text){
             this.clearContent();
-            text && this._element.html(text);               
+            text && this._element.html(text);
         },
 
         getThreadTitle: function(){
-            return this._element.find('.w-video-thread:visible .w-video-thread-title');  
+            return this._element.find('.w-video-thread:visible .w-video-thread-title');
         },
 
         setPosition2Thread: function(thread, setPosition2ThreadTimer){
@@ -4699,8 +4699,8 @@ wonder.addModule('video/content', function(W){
                 var tpl = W.Template.get('video', 'video_info');
                 this.infoTpl = $(tpl);
                 this.infoTpl.appendTo(this._element);
-            }            
-               
+            }
+
             this._element.find('.w-video-name').html(data.name);
             this._element.find('.w-video-size').html(data.size);
             this._element.find('.w-video-duration').html(data.duration);
@@ -4709,7 +4709,7 @@ wonder.addModule('video/content', function(W){
                 display : 'block',
                 left : position.left,
                 top  : position.top
-            });  
+            });
         },
 
         hideVideoInfo: function(){
@@ -4738,20 +4738,20 @@ wonder.addModule('video/content', function(W){
         },
 
         clearContent: function(){
-            this._element.empty();  
+            this._element.empty();
         },
 
         playVideo: function(video_id){
             var self = this;
             var parentEl = self._element.parent('.w-video-content-wrapper');
-            var sessionId 
+            var sessionId
                 = self.lastSessionId
                 = progressWin.start(0, 100, locale.PLAY_VIDEO_TEXT, locale.PLAY_VIDEO_SUCCESS,'','','', parentEl);
             progressWin.view.setDelimiter('%');
             progressWin.view.hideMax();
             W.video.videoCollection.play(video_id, sessionId, function(response){
                 progressWin.hide();
-                
+
                 if(response.state_code == 500){
                     alert(locale.PLAY_DISCONNECT);
                 }else if(response.state_code == 400){
@@ -4762,7 +4762,7 @@ wonder.addModule('video/content', function(W){
                         var video_type = video_arry[video_arry.length - 1];
                         text = window.StringUtil.format(locale.PLAY_NO_PLAYER, video_type.toUpperCase());
                     }else{
-                        text = locale.PLAY_CANNOT_READ;   
+                        text = locale.PLAY_CANNOT_READ;
                     }
                     alert(text);
                 }
@@ -4787,8 +4787,8 @@ wonder.addModule('video/content', function(W){
                     }
 
                 }).delegate('.w-video-item-mask', 'mouseover', function(e){
-                    
-                    var offset = $(this).offset();                 
+
+                    var offset = $(this).offset();
                     var position = {
                         left : offset.left - 150,
                         top  : offset.top + 40
@@ -4803,21 +4803,21 @@ wonder.addModule('video/content', function(W){
                     data.duration = W.timer().formatTimerFromMillisecond(video_data.duration);
 
                     self.showVideoInfo(data, position);
-                    
+
                 }).delegate('.w-video-item-mask', 'mouseout', function(e){
-                    self.hideVideoInfo(); 
+                    self.hideVideoInfo();
                 });
 
                 Device.on('change:hasSDCard', function(Device){
                     var tipText = '';
                     if(!Device.get('hasSDCard')){
-                        tipText =  i18n.common.NO_SD_CARD_TIP_TEXT;
+                        tipText =  i18n.misc.NO_SD_CARD_TIP_TEXT;
                         this.showTip(tipText);
                     }if(this._threads.length <= 0){
                         tipText = locale.NO_VIDEOS_TEXT;
                         this.showTip(tipText);
                     }
-                    
+
                 }, this);
 
                 $(document).bind('keydown', function(e){
@@ -4825,7 +4825,7 @@ wonder.addModule('video/content', function(W){
                         W.video.videoCollection.cancelPlay(self.lastSessionId, '', function(){
                             progressWin.hide();
                         }, self);
-                   } 
+                   }
                 });
                 this.rendered = true;
             }
@@ -5089,7 +5089,7 @@ wonder.addModule('video', function (W) {
 
     var loadingProcess = new W.ui.status.Process ();
     var loadingView = new W.ui.status.ProcessView (loadingProcess);
-    var deleteTipDialog = new W.ui.Dialog (i18n.common.DIALOG_TIP);
+    var deleteTipDialog = new W.ui.Dialog (i18n.ui.TIP);
     var progressWin = new W.ui.Progress ();
     var allCheckbox = $('<input/>').attr('type', 'checkbox');
     var videoContent = W.video.videoContent = new W.video.VideoContent ();
@@ -5118,7 +5118,7 @@ wonder.addModule('video', function (W) {
     var contentWrapper;
     var setPosition2ThreadTimer;
     var checkboxDelegate;
-    var alert = new W.ui.Dialog (i18n.common.DIALOG_TIP);
+    var alert = new W.ui.Dialog (i18n.ui.TIP);
     alert.setButtonSet(W.ui.Dialog.ButtonSet.OK);
 
     /**
@@ -5138,9 +5138,9 @@ wonder.addModule('video', function (W) {
             this.addTopContent(toolbar);
 
             var mainBtn = new W.ui.ImageButton (locale.ADD_LOCAL_VIDEO_TEXT);
-            var delBtn = new W.ui.ImageButton (i18n.common.DELETE_TEXT);
-            var expBtn = new W.ui.ImageButton (i18n.common.EXPORT_TEXT);
-            var refreshBtn = new W.ui.ImageButton (i18n.common.REFRESH_TEXT);
+            var delBtn = new W.ui.ImageButton (i18n.misc.DELETE);
+            var expBtn = new W.ui.ImageButton (i18n.misc.EXPORT);
+            var refreshBtn = new W.ui.ImageButton (i18n.misc.REFRESH);
             checkboxDelegate = new W.ui.SelectDelegate ();
 
             toolbar.addComponent('checkboxDelegateBtn', checkboxDelegate).addComponent('mainBtn', mainBtn).addComponent('deleteBtn', delBtn).addComponent('exportBtn', expBtn).addComponent('refreshBtn', refreshBtn);
@@ -5195,7 +5195,7 @@ wonder.addModule('video', function (W) {
             loadingProcess.start();
             videoCollection.sync(function (response) {
                 if (response.state_code !== 200 && response.state_code !== 402) {
-                    alert(i18n.common.REFRESH_ERROR);
+                    alert(i18n.misc.REFRESH_ERROR);
                 }
                 loadingProcess.finish();
                 window.Music.PIMCollection.getInstance().get(6).set({
@@ -5305,7 +5305,7 @@ wonder.addModule('video', function (W) {
                     }
                 });
             } else {
-                videoContent.showTip(i18n.common.NO_SD_CARD_TIP_TEXT);
+                videoContent.showTip(i18n.misc.NO_SD_CARD_TIP_TEXT);
                 loadingView.hide();
             }
         },

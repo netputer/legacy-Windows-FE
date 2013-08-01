@@ -118,7 +118,7 @@
             clickButtonRefresh : function () {
                 var targetCollection = this.getCollectionByTab(PhotoGalleryView.getInstance().currentTab);
                 targetCollection.syncAsync().fail(function () {
-                    IframeMessageWorker.alert(i18n.common.REFRESH_ERROR);
+                    IframeMessageWorker.alert(i18n.misc.REFRESH_ERROR);
                 });
             },
             clickCheckSelectAll : function (evt) {

@@ -58,7 +58,7 @@
                 <div class="button button-delete" title="{{= i18n.misc.DELETE }}"></div>
                 <div class="button button-export" title="{{= i18n.misc.EXPORT }}"></div>
                 <div class="button button-wallpaper" title="{{= i18n.photo.SET_AS_WALLPAPER }}" data-title="{{= i18n.photo.WALLPAPER_SETTING_SUCCESS_TEXT }}"></div>
-                <div class="button button-share" title="{{= i18n.common.SHARE }}"></div>
+                <div class="button button-share" title="{{= i18n.misc.SHARE }}"></div>
             </div>
         </div>
     </div>
@@ -86,7 +86,11 @@
 <script type="text/x-ui-template" id="photo-list-item">
     <label class="input item-checker-wrap hbox"><input class="item-checker" type="checkbox" value="{{= it.id }}"></label>
     <div class="preview">
+        {{? it.thumbnail}}
         <img src="file:///{{= it.thumbnail }}" alt="{{! it.name }}" />
+        {{??}}
+        <img src="{{= CONFIG.enums.DEFAULT_42X42 }}" alt="{{! it.name }}" />
+        {{?}}
     </div>
     <div class="title wc" title="{{! it.name }}">{{! it.name }}</div>
     <div class="format">{{= it.type }}</div>
@@ -115,7 +119,7 @@
 </script>
 
 <script type="text/x-ui-template" id="photo-sync-switch">
-    <div class="tip">{{= i18n.sync.CLOUD_PHOTO }}</div>
+    <div class="tip">{{= i18n.misc.NAV_PIC_CLOUD }}</div>
     <div class="w-ui-switch-button button-sync">
         <div class="switcher"></div>
     </div>

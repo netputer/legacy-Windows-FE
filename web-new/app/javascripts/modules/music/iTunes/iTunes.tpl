@@ -88,14 +88,14 @@
         <div class="cell audio-name smart-list-sortable desc" data-smart-list-sortby="title" data-smart-list-sort-type="string">{{= i18n.music.SING_NAME_TEXT }}</div>
         <div class="cell audio-artist smart-list-sortable desc" data-smart-list-sortby="artist" data-smart-list-sort-type="string">{{= i18n.music.ARTIST_TEXT }}</div>
         <div class="cell audio-album">{{= i18n.music.ALBUM_TEXT }}</div>
-        <div class="cell audio-size smart-list-sortable desc" data-smart-list-sortby="sizeText" data-smart-list-sort-type="string" >{{= i18n.music.SING_SIZE_TEXT }}</div>
+        <div class="cell audio-size smart-list-sortable desc" data-smart-list-sortby="sizeText" data-smart-list-sort-type="string" >{{= i18n.misc.SIZE }}</div>
     </header>
 </script>
 
 <script type="text/x-ui-temlate" id="itunes-audio-list-item">
-   <div class="audio-name"><input type="checkbox" class="item-checker" value="{{= it.id }}" />{{= it.title }}</div>
-   <div class="cell audio-artist">{{= it.artist }}</div>
-   <div class="cell audio-album">{{= it.album }}</div>
+   <div class="audio-name wc"><input type="checkbox" class="item-checker" value="{{= it.id }}" />{{= it.title }}</div>
+   <div class="cell audio-artist wc">{{= it.artist }}</div>
+   <div class="cell audio-album wc">{{= it.album }}</div>
    <div class="cell audio-size">{{= it.sizeText }}</div>
 </script>
 </templates>

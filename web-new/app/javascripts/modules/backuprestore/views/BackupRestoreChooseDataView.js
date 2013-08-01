@@ -10,7 +10,7 @@
         'Internationalization',
         'utilities/StringUtil',
         'Configuration',
-        'LOG',
+        'Log',
         'ui/Panel',
         'ui/PopupPanel',
         'ui/UIHelper',
@@ -41,8 +41,8 @@
     ) {
         console.log('BackupRestoreChooseDataView - File loaded. ');
 
-        var prepareBackupTimer;
         var alert = window.alert;
+
         var BackupRestoreChooseDataBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('backup', 'choose-backup-restore-data')),
             className : 'w-backup-restore-choose-data',
@@ -85,6 +85,7 @@
                     $host : this.$('.app-data-tip-ctn'),
                     delay : true
                 });
+                panel.zero();
 
                 // set data types in dataIdList as checked
                 this.$('ul li input').prop({
@@ -138,9 +139,7 @@
                     this.trigger('changed');
                 }.bind(this)).fail(function (resp) {
                     this.prepareBackupFailed();
-                }.bind(this)).always(function (resp) {
-                    clearTimeout(prepareBackupTimer);
-                });
+                }.bind(this));
             },
             prepareBackupFailed : function () {
                 this.trigger('remove');
@@ -415,13 +414,9 @@
                 bodyView.setData(this.options.isBackup ? BackupContextModel : RestoreContextModel);
                 this.trigger('_NEXT_STEP');
             },
-            clickButtonCancel : function () {
-                clearTimeout(prepareBackupTimer);
-            },
             events : {
                 'click .button-last' : 'clickButtonLast',
-                'click .button-next' : 'clickButtonNext',
-                'click .button-cancel' : 'clickButtonCancel'
+                'click .button-next' : 'clickButtonNext'
             }
         });
 

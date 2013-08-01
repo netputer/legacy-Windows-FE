@@ -12,6 +12,7 @@
         'Device',
         'Log',
         'ui/TemplateFactory',
+        'ui/ToastBox',
         'utilities/StringUtil',
         'task/collections/TasksCollection',
         'task/views/DeleteConfirmWindowView',
@@ -28,12 +29,15 @@
         Device,
         log,
         TemplateFactory,
+        ToastBox,
         StringUtil,
         TasksCollection,
         DeleteConfirmWindowView,
         PIMCollection
     ) {
         console.log('TaskActionView - File loaded.');
+
+        var boxViewInsance;
 
         var TaskActionView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('taskManager', 'task-action')),
@@ -87,7 +91,49 @@
             },
             clickButtonSetAsWallpaper : function (evt) {
                 evt.stopPropagation();
-                this.model.setAsWallpaperAsync();
+
+                var content;
+                this.model.setAsWallpaperAsync().done(function () {
+                    content = i18n.taskManager.SET_AS_WALLPAPER_SUCCESS;
+                }).fail(function () {
+                    content = i18n.taskManager.SET_AS_WALLPAPER_FAIL;
+                }).always(function () {
+                    if (boxViewInsance) {
+                        boxViewInsance.remove();
+                    }
+
+                    boxViewInsance = new ToastBox({
+                        $content : content
+                    });
+
+                    boxViewInsance.once('remove', function () {
+                        boxViewInsance  = undefined;
+                    });
+                    boxViewInsance.show();
+                });
+            },
+            clickButtonSetAsRingtone : function (evt) {
+                evt.stopPropagation();
+
+                var content;
+                this.model.setAsRingtoneAsync().done(function () {
+                    content = i18n.taskManager.SET_AS_RINGTONE_SUCCESS;
+                }).fail(function () {
+                    content = i18n.taskManager.SET_AS_RINGTONE_FAIL;
+                }).always(function () {
+                    if (boxViewInsance) {
+                        boxViewInsance.remove();
+                    }
+
+                    boxViewInsance = new ToastBox({
+                        $content : content
+                    });
+
+                    boxViewInsance.once('remove', function () {
+                        boxViewInsance  = undefined;
+                    });
+                    boxViewInsance.show();
+                });
             },
             clickButtonChangeLocation : function (evt) {
                 evt.stopPropagation();
@@ -164,7 +210,8 @@
                 'click .button-how-to-connect' : 'clickButtonHowToConnect',
                 'click .button-dont-ask-again-device' : 'clickButtonDontAskAgainDevice',
                 'click .button-connect' : 'clickButtonConnect',
-                'click .button-change-path' : 'clickButtonChangePath'
+                'click .button-change-path' : 'clickButtonChangePath',
+                'click .button-set-as-ringtong' : 'clickButtonSetAsRingtone'
             }
         });
 

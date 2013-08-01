@@ -72,28 +72,9 @@
         }
     }
 
-    .step-counter-ctn {
-        height: 30px;
-        -webkit-box: {
-            align: center;
-            pack: center;
-        }
-
-        .step-pointer {
-            background-color: $componentBorderColor;
-            border: 3px solid transparent;
-            border-radius: 5px;
-            -webkit-transition: all .2s linear;
-
-            + .step-pointer {
-                margin-left: 10px;
-            }
-
-            &.current {
-                border-color: $standardColor;
-                -webkit-transform: scale(1.5);
-            }
-        }
+    .text-counter {
+        text-align: left;
+        -webkit-box-flex: 1;
     }
 }
 

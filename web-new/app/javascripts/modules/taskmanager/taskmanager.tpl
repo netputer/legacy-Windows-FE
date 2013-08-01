@@ -8,7 +8,7 @@
 <script type="text/x-ui-template" id="task-list">
     <header class="w-smart-list-header text-secondary hbox">
         <div class="name">{{= i18n.taskManager.TASK_NAME }}</div>
-        <div class="size">{{= i18n.taskManager.SIZE }}</div>
+        <div class="size">{{= i18n.misc.SIZE }}</div>
         <div class="progress">{{= i18n.taskManager.PROGRESS }}</div>
         <div class="action"></div>
     </header>
@@ -20,7 +20,7 @@
         <span class="icon pause"></span>{{= i18n.misc.PAUSE }}
     </button>
     <button class="w-icon-btn button-continue min">
-        <span class="icon start"></span>{{= i18n.misc.RESUME }}
+        <span class="icon start"></span>{{= i18n.ui.CONTINUE }}
     </button>
     <button class="w-icon-btn button-delete min">
         <span class="icon delete"></span>{{= i18n.misc.DELETE }}
@@ -96,7 +96,7 @@
                             break;
                         case CONFIG.enums.TASK_STATE_WAITING :
         }}
-        <div class="progress hbox"><progress class="tiny" max="100" value="100" /></div>
+        <div class="progress running hbox"><progress class="tiny" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.WAITING_INSTALL }}</div>
         {{
                             break;
@@ -126,7 +126,7 @@
             {{? it.message === 'NEED_CONFIRM' }}
             {{= i18n.taskManager.CONFIRM_ON_DEVICE }}
             {{??}}
-            {{= i18n.misc.FINISH }}
+            {{= i18n.ui.FINISH }}
             {{?}}
         </div>
         {{
@@ -195,6 +195,7 @@
                             break;
                         case CONFIG.enums.TASK_STATE_WAITING :
         }}
+        <div class="progress running hbox"><progress class="tiny" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.WAITING_PUSHING }}</div>
         {{
                             break;
@@ -229,7 +230,7 @@
                             break;
                         case CONFIG.enums.TASK_STATE_SUCCESS :
         }}
-        <div>{{= i18n.misc.FINISH }}</div>
+        <div>{{= i18n.ui.FINISH }}</div>
         {{
                             break;
                         case CONFIG.enums.TASK_STATE_FAILD :
@@ -272,7 +273,7 @@
                         case CONFIG.enums.TASK_STATE_SUCCESS :
         }}
         <div>
-            {{= i18n.misc.FINISH }}
+            {{= i18n.ui.FINISH }}
         </div>
         {{
                             break;
@@ -292,6 +293,11 @@
         <div>{{= i18n.taskManager.UNZIPING }}</div>
         {{
                             break;
+                        case CONFIG.enums.TASK_STATE_WAITING :
+        }}
+        <div class="progress running hbox"><progress class="tiny" max="100" value="100" /></div>
+        <div>{{= i18n.taskManager.WAITING_UNZIP }}</div>
+        {{
                         case CONFIG.enums.TASK_STATE_FAILD :
         }}
         <div class="text-warning">{{= i18n.taskManager.UNZIP_FAILED }}</div>
@@ -311,7 +317,7 @@
                 switch (it.state) {
                     case CONFIG.enums.TASK_STATE_ADDED :
     }}
-    <button class="button-start">{{= i18n.misc.CONTINUE }}</button>
+    <button class="button-start">{{= i18n.ui.CONTINUE }}</button>
     {{
                         break;
                     case CONFIG.enums.TASK_STATE_PROCESSING :
@@ -336,7 +342,7 @@
                 switch (it.state) {
                     case CONFIG.enums.TASK_STATE_ADDED :
     }}
-    <button class="button-start">{{= i18n.misc.CONTINUE }}</button>
+    <button class="button-start">{{= i18n.ui.CONTINUE }}</button>
     {{
                         break;
                     case CONFIG.enums.TASK_STATE_FAILD :
@@ -390,22 +396,27 @@
                 switch (it.state) {
                     case CONFIG.enums.TASK_STATE_ADDED :
     }}
-    <button class="button-start">{{= i18n.misc.CONTINUE }}</button>
+    <button class="button-start">{{= i18n.ui.CONTINUE }}</button>
     {{
                         break;
                     case CONFIG.enums.TASK_STATE_SUCCESS :
                         switch(it.category) {
                             case CONFIG.enums.MODEL_TYPE_BOOK :
     }}
-    <button class="button-open-on-device primary">{{= i18n.taskManager.LOOK_OVER }}</button>
+    <button class="button-open-on-device primary">{{= i18n.misc.VIEW }}</button>
     {{
 
                                 break;
                             case CONFIG.enums.MODEL_TYPE_PHOTO :
     }}
-    <!--<button class="button-set-as-wallpaper primary">{{= i18n.taskManager.SET_AS_WALL_PAPER }}</button>-->
+    <button class="button-set-as-wallpaper primary">{{= i18n.taskManager.SET_AS_WALL_PAPER }}</button>
     {{
                                 break;
+                             case CONFIG.enums.MODEL_TYPE_MUSIC :
+    }}
+    <button class="button-set-as-ringtong primary">{{= i18n.taskManager.SET_AS_RINGTONE }}</button>
+    {{
+                            break;
                         }
                         break;
                     case CONFIG.enums.TASK_STATE_FAILD :

@@ -10,7 +10,6 @@
         'Configuration',
         'ui/Panel',
         'ui/KeyMapping',
-        'Environment',
         'Internationalization',
         'utilities/StringUtil',
         'Device',
@@ -27,7 +26,6 @@
         CONIFG,
         Panel,
         KeyMapping,
-        Environment,
         i18n,
         StringUtil,
         Device,
@@ -54,8 +52,7 @@
                 this.disableShareBtn(false);
                 try {
                     data = JSON.parse(data.value);
-                } catch (err) {
-                }
+                } catch (ignore) {}
 
                 var screenName = data.screen_name || '';
                 if (!screenName) {
@@ -68,7 +65,7 @@
                     this.$('.nickname').html(screenName);
                 }
 
-                this.showShareTip(StringUtil.format(i18n.common.SHARE_WIDGET_INPUT_COUNT_TEXT, 0), 'count');
+                this.showShareTip(StringUtil.format(i18n.misc.SHARE_WIDGET_INPUT_COUNT_TEXT, 0), 'count');
                 this.setPreviewContent();
             },
 
@@ -79,7 +76,7 @@
                     shareBtn.prop({
                         disabled : true
                     });
-                    this.$('.pic-size-tip').html(StringUtil.format(i18n.common.SHARE_WIDGET_PIC_LIMIT_SIZE_TIP, CONIFG.enums.SHARE_WIDGET_PIC_LIMIT_SIZE)).show();
+                    this.$('.pic-size-tip').html(StringUtil.format(i18n.misc.SHARE_WIDGET_PIC_LIMIT_SIZE_TIP, CONIFG.enums.SHARE_WIDGET_PIC_LIMIT_SIZE)).show();
                 } else {
                     shareBtn.prop({
                         disabled : !!isDisable
@@ -102,7 +99,6 @@
 
                 var sharePreview = this.$('.share-preview');
                 var sharePreviewContent = this.$('.share-preview-content').html('');
-                var viewPicFromPCBtn = this.$('.view-from-pc');
                 sharePreviewContent.addClass('loading');
 
                 var size = this.getPreviewContentSize();
@@ -185,7 +181,7 @@
                 });
 
                 if (this.automaticClosing) {
-                    this.showShareTip(i18n.common.SHARE_WIDGET_SENT_TEXT, 'success');
+                    this.showShareTip(i18n.misc.SHARE_WIDGET_SENT_TEXT, 'success');
                     var timer = setTimeout(function () {
                         if (this.shareCallback) {
                             this.shareCallback();
@@ -201,8 +197,7 @@
                     'sns' : 'weibo'
                 });
 
-                var error_code = data.value;
-                var errorMessage = i18n.common.SHARE_TO_FACEBOOK_FAILD;
+                var errorMessage = i18n.misc.SHARE_TO_FACEBOOK_FAILD;
                 this.showShareTip(errorMessage, 'error');
                 this.disableShareBtn(false);
             },
@@ -229,10 +224,10 @@
                 SocialData.viewOriginPicFromPicAsync(data, this.viewOriginPicFromPCSuccess.bind(this), this.viewOriginPicFromPCFail.bind(this));
             },
             viewOriginPicFromPCSuccess : function () {
-
+                return;
             },
             viewOriginPicFromPCFail : function () {
-                alert(i18n.common.SHARE_WIDGET_VIEW_FROM_PC_ERROR);
+                alert(i18n.misc.SHARE_WIDGET_VIEW_FROM_PC_ERROR);
             },
             KeyupTexterea : function (e) {
                 var val = this.$('textarea').val(),
@@ -247,10 +242,10 @@
 
                 if (!e.ctrlKey) {
                     if (diffLen >= 0) {
-                        this.showShareTip(StringUtil.format(i18n.common.SHARE_WIDGET_INPUT_COUNT_TEXT, len), 'count');
+                        this.showShareTip(StringUtil.format(i18n.misc.SHARE_WIDGET_INPUT_COUNT_TEXT, len), 'count');
                         this.disableShareBtn(false);
                     } else {
-                        this.showShareTip(StringUtil.format(i18n.common.SHARE_WIDGET_INPUT_OVER_COUNT_TEXT, len - maxLen), 'error');
+                        this.showShareTip(StringUtil.format(i18n.misc.SHARE_WIDGET_INPUT_OVER_COUNT_TEXT, len - maxLen), 'error');
                         this.disableShareBtn(true);
                     }
                 }
@@ -263,10 +258,10 @@
         });
 
         var buttons = [{
-            $button : $('<button/>').html(i18n.common.SHARE).addClass('primary share-btn'),
+            $button : $('<button/>').html(i18n.misc.SHARE).addClass('primary share-btn'),
             eventName : 'button_share'
         }, {
-            $button : $('<button/>').html(i18n.common.CANCEL),
+            $button : $('<button/>').html(i18n.ui.CANCEL),
             eventName : 'button_no'
         }];
 
@@ -276,7 +271,7 @@
             getInstance : function () {
                 if (!facebookShareView) {
                     facebookShareView = new FacebookShareView({
-                        title : i18n.common.SHARE_TO_FACEBOOK,
+                        title : i18n.misc.SHARE_TO_FACEBOOK,
                         width : 400,
                         height : 480,
                         buttons : buttons,
@@ -287,7 +282,7 @@
                         this.automaticClosing = true;
                         this.showShareTip('', 'sending');
 
-                        this.shareData.content = StringUtil.format(i18n.common.WANDOUJIA_TOPIC) + this.$('textarea').val() + StringUtil.format(i18n.common.FACEBOOK_MESSAGE_FROM, Device.get('deviceName'));
+                        this.shareData.content = StringUtil.format(i18n.misc.WANDOUJIA_TOPIC) + this.$('textarea').val() + StringUtil.format(i18n.misc.FACEBOOK_MESSAGE_FROM, Device.get('deviceName'));
 
                         this.disableShareBtn(true);
                         SocialData.shareAsync(this.shareData,

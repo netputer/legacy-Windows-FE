@@ -1,13 +1,12 @@
 <templates>
 <script type="text/x-ui-template" id="main">
     <div class="content vbox"></div>
-    <ul class="step-counter-ctn hbox"></ul>
 </script>
 
 <script type="text/x-ui-template" id="bind">
     <div class="stage">
         <div class="bg"></div>
-        <h1 class="text-secondary">{{= i18n.welcome.GUIDE_BIND }}</h1>
+        <h1 class="text-secondary">{{= i18n.misc.BINDING_DEVICE }}</h1>
         <p class="text-secondary desc">{{= i18n.welcome.GUIDE_BIND_DESC }}</p>
         <div class="hbox success">
             <div class="icon-pass"></div>
@@ -17,6 +16,7 @@
         </div>
     </div>
     <nav class="control hbox">
+        <div class="text-counter"></div>
         <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
@@ -25,11 +25,12 @@
 <script type="text/x-ui-template" id="cloud-backup">
     <section class="section vbox">
         <div class="stage vbox">
-            <h1 class="text-secondary">{{= i18n.welcome.GUIDE_CLOUD_BACKUP }}</h1>
-            <p class="text-secondary desc">{{= i18n.welcome.GUIDE_CLOUD_BACKUP_DESC }}</p>
+            <h1 class="text-secondary">{{= i18n.misc.CLOUD_BACKUP }}</h1>
+            <p class="text-secondary desc">{{= i18n.welcome.GUIDE_BIND_DESC }}</p>
             <div class="bg"></div>
         </div>
         <nav class="control hbox">
+            <div class="text-counter"></div>
             <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
             <button class="primary button-action">{{= it.action }}</button>
         </nav>
@@ -40,7 +41,7 @@
             <p class="text-secondary desc">{{= i18n.welcome.GUIDE_REG_DESC }}</p>
             <form class="text-secondary">
                 <label>
-                    <div class="label">{{= i18n.welcome.GUIDE_REG_ACCOUNT }}</div>
+                    <div class="label">{{= i18n.misc.ACCOUNT }}</div>
                     <input type="text" class="username" placeholder="{{= i18n.welcome.GUIDE_REG_ACCOUNT_PLACEHOLDER }}" />
                     <div class="text-warning">{{= i18n.welcome.GUIDE_REG_ACCOUNT_WARN }}</div>
                 </label>
@@ -54,8 +55,8 @@
                     <div class="text-warning">{{= i18n.welcome.GUIDE_REG_PSW_VERIFY_WARN }}</div>
                 </label>
                 <label>
-                    <div class="label">{{= i18n.welcome.GUIDE_REG_NICKNAME }}</div>
-                    <input type="text" class="nickname" placeholder="{{= i18n.welcome.GUIDE_REG_NICKNAME }}" />
+                    <div class="label">{{= i18n.misc.NICKNAME }}</div>
+                    <input type="text" class="nickname" placeholder="{{= i18n.misc.NICKNAME }}" />
                     <div class="text-warning">{{= i18n.welcome.GUIDE_REG_NICKNAME_WARN }}</div>
                 </label>
                 <label>
@@ -79,6 +80,7 @@
             </div>
         </div>
         <nav class="control hbox">
+            <div class="text-counter"></div>
             <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
             <button class="primary button-reg">{{= i18n.welcome.GUIDE_REG_NOW }}</button>
         </nav>
@@ -109,6 +111,7 @@
         <div class="bg"></div>
     </div>
     <nav class="control hbox">
+        <div class="text-counter"></div>
         <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
@@ -131,12 +134,13 @@
             <div class="ad"></div>
             {{?}}
             <div class="title wc">{{! app.title }}</div>
-            <button data-url="{{= window.encodeURIComponent(app.apks[0].downloadUrl.url) }}" class="button-install min" data-name="{{! app.title }}" data-icon="{{= app.icons.px68 }}">{{= i18n.app.INSTALL }}</button>
+            <button data-packagename= "{{= app.apks[0].packageName }}" data-url="{{= window.encodeURIComponent(app.apks[0].downloadUrl.url) }}" class="button-install min" data-name="{{! app.title }}" data-icon="{{= app.icons.px68 }}">{{= i18n.app.INSTALL }}</button>
         </li>
         {{~}}
         </ul>
     </div>
     <nav class="control hbox">
+        <div class="text-counter"></div>
         <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
@@ -151,12 +155,13 @@
         <li class="tip hbox">
             <img class="icon" alt="{{! tip.desc }}" src="{{= tip.icon }}" />
             <div class="desc">{{! tip.desc }}</div>
-            <a class="link button-open" target="_default" href="{{= tip.url }}">{{= i18n.welcome.GUIDE_TIPS_OPEN }}</a>
+            <a class="link button-open" target="_default" href="{{= tip.url }}">{{= i18n.misc.VIEW }}</a>
         </li>
         {{~}}
         </ul>
     </div>
     <nav class="control hbox">
+        <div class="text-counter"></div>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
 </script>
@@ -174,6 +179,7 @@
         </ul>
     </div>
     <nav class="control hbox">
+        <div class="text-counter"></div>
         <button class="primary button-skip">{{= it.action }}</button>
     </nav>
 </script>

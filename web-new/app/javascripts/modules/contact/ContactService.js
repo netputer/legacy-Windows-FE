@@ -26,7 +26,7 @@
         var alert = window.alert;
         var confirm = window.confirm;
 
-        var ContactService = _.extend(function () {}, Backbone.Events);
+        var ContactService = _.extend({}, Backbone.Events);
 
         ContactService.deleteContactsAsync = function (ids) {
             var deferred = $.Deferred();
@@ -67,7 +67,7 @@
                         session = _.uniqueId('contact.batch.delete_');
                         batchActionWindow = new BatchActionWindow({
                             session : session,
-                            progressText : i18n.contact.CONTACT_DELETE_PROGRESS,
+                            progressText : i18n.misc.DELETING,
                             cancelUrl : CONFIG.actions.CONTACT_CANCEL,
                             total : ids.length,
                             successText : i18n.contact.CONTACT_DELETE_SUCCESS

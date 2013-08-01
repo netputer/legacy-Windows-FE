@@ -7,7 +7,6 @@
         'IOBackendDevice',
         'Configuration',
         'Internationalization',
-        'utilities/StringUtil',
         'task/models/TaskModel',
         'app/collections/AppsCollection',
         'app/collections/WebAppsCollection'
@@ -18,14 +17,11 @@
         IO,
         CONFIG,
         i18n,
-        StringUtil,
         TaskModel,
         AppsCollection,
         WebAppsCollection
     ) {
         console.log('TasksCollection - File loaded.');
-
-        var encodeURIComponent = window.encodeURIComponent;
 
         var appsCollection;
         var webAppsCollection;
@@ -124,36 +120,9 @@
                 return resp.body.status;
             },
             comparator : function (current) {
-                var order;
-
-                switch (current.get('state')) {
-                case CONFIG.enums.TASK_STATE_FAILD:
-                    order = 0;
-                    break;
-
-                case CONFIG.enums.TASK_STATE_PROCESSING:
-                    order = 1;
-                    break;
-
-                case CONFIG.enums.TASK_STATE_WAITING:
-                    order = 2;
-                    break;
-
-                case CONFIG.enums.TASK_STATE_ADDED:
-                case CONFIG.enums.TASK_STATE_PAUSE:
-                case CONFIG.enums.TASK_STATE_STOPPED:
-                    order = 3;
-                    break;
-
-                case CONFIG.enums.TASK_STATE_SUCCESS:
-                    order = 4;
-                    break;
-                }
-
-                return order + '-' + current.get('added_time');
+                return Number(Date.now() + '0000') - Number(current.get('added_time'));
             },
             initialize : function () {
-                console.clear();
                 var loading = false;
                 var activeCount = 0;
                 var errorCount = 0;
@@ -387,7 +356,7 @@
 
         var tasksCollection;
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({}, {
             getInstance : function () {
                 if (!tasksCollection) {
                     tasksCollection = new TasksCollection();

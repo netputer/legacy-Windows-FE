@@ -30,7 +30,6 @@
             initialize : function () {
                 var loading = false;
                 var syncing = false;
-                var xmlData = [];
 
                 Object.defineProperties(this, {
                     loading : {
@@ -133,13 +132,9 @@
                         } else {
 
                             if (resp.state_code === 402) {
-                                var success = 0;
-                                if (resp.body && resp.body.success) {
-                                    success = resp.body.success.length;
-                                }
                                 log({
                                     'event' : 'debug.itunes.importCancel',
-                                    'success' : resp.body && resp.body.success.length || 0,
+                                    'success' : (resp.body && resp.body.success.length) || 0,
                                     'time' : endTime - startTime
                                 });
                             } else {

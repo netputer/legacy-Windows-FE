@@ -9,7 +9,6 @@
         'IOBackendDevice',
         'ui/Toolbar',
         'ui/TemplateFactory',
-        'ui/UIHelper',
         'task/collections/TasksCollection',
         'task/views/TaskListView',
         'task/views/DeleteConfirmWindowView'
@@ -22,14 +21,12 @@
         IO,
         Toolbar,
         TemplateFactory,
-        UIHelper,
         TasksCollection,
         TaskListView,
         DeleteConfirmWindowView
     ) {
         console.log('TaskModuleToolbarView - File loaded.');
 
-        var EventsMapping = UIHelper.EventsMapping;
 
         var taskListView;
         var tasksCollection;

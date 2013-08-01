@@ -51,6 +51,7 @@
                     var tip = new PopupTip({
                         $host : $(button)
                     });
+                    tip.zero();
                 });
 
                 if (this.socialPlatformSelectorView) {
@@ -289,7 +290,7 @@
             }
         });
 
-        var factory = _.extend(function () {}, {
+        var factory = _.extend({
             getInstance : function (args) {
                 return new CommentaryView(args);
             },

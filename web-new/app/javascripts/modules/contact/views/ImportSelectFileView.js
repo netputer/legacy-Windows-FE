@@ -12,9 +12,9 @@
         'ui/UIHelper',
         'ui/AlertWindow',
         'ui/TemplateFactory',
-        'contact/ContactService',
         'IO',
-        'contact/models/ImportContextModel'
+        'contact/models/ImportContextModel',
+        'contact/ContactService'
     ], function (
         Backbone,
         doT,
@@ -27,9 +27,9 @@
         UIHelper,
         AlertWindow,
         TemplateFactory,
-        ContactService,
         IO,
-        ImportContextModel
+        ImportContextModel,
+        ContactService
     ) {
 
         console.log('ImportSelectFile - File loaded');
@@ -108,13 +108,15 @@
                         if (onlyCsvReg.test(item)) {
                             alert(i18n.contact.ALERT_SELECT_MORE_CSV_FILE, yesHandle, this);
                             break;
-                        } else if (!vcfCsvReg.test(item)) {
+                        }
+
+                        if (!vcfCsvReg.test(item)) {
                             this.trigger('__SET_NEXT_BUTTON', true);
                             invalidEl.show();
                             break;
-                        } else {
-                            backendCheckFilePath.call(this, item);
                         }
+
+                        backendCheckFilePath.call(this, item);
                     }
                 } else {
                     if (vcfCsvReg.test(files)) {

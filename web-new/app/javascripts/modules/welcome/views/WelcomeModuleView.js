@@ -7,8 +7,7 @@
         'Environment',
         'Settings',
         'utilities/QueryString',
-        'welcome/views/ConnectionGuideView',
-        'welcome/views/CloseAutoStartView'
+        'welcome/views/ConnectionGuideView'
     ], function (
         Backbone,
         _,
@@ -16,8 +15,7 @@
         Environment,
         Settings,
         QueryString,
-        ConnectionGuideView,
-        CloseAutoStartView
+        ConnectionGuideView
     ) {
         console.log('WelcomeModuleView - File loaded.');
 
@@ -48,11 +46,6 @@
 
                 this.$el.append(this.contentView.render().$el);
 
-                if (!Settings.get('close_auto_start_view_shown') && QueryString.get('start_source') === 'helper') {
-                    this.$el.append(CloseAutoStartView.getInstance().render().$el);
-                    Settings.set('close_auto_start_view_shown', true);
-                }
-
                 this.rendered = true;
                 return this;
             },
@@ -74,7 +67,7 @@
                 return welcomeModuleView;
             },
             preload : function () {
-
+                return;
             }
         });
 

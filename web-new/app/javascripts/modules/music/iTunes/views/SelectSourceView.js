@@ -45,10 +45,10 @@
                 });
 
                 this.buttons = [{
-                    $button : $('<button/>').addClass('primary next-step').html(i18n.common.NEXT_STEP),
+                    $button : $('<button/>').addClass('primary next-step').html(i18n.ui.NEXT),
                     eventName : 'NEXT_STEP'
                 }, {
-                    $button : $('<button/>').html(i18n.common.CANCEL),
+                    $button : $('<button/>').html(i18n.ui.CANCEL),
                     eventName : 'CANCEL'
                 }];
 

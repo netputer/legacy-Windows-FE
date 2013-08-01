@@ -18,9 +18,9 @@
 
         var operators = FilterFunction.operators = {};
 
-        operators[''] = operators['eq'] = function (expectation, valueExpression) {
+        operators[''] = operators.eq = function (expectation, valueExpression) {
             var testExpression;
-            var callee = arguments.callee;
+            var callee = operators.eq;
 
             if (expectation.constructor === String || expectation.constructor === Number || expectation.constructor === Boolean) {
                 /* primitive strict equal */
@@ -44,34 +44,34 @@
             return testExpression;
         };
 
-        operators['ne'] = function (expectation, valueExpression) {
-            var eqExpression = operators['eq'](expectation, valueExpression);
+        operators.ne = function (expectation, valueExpression) {
+            var eqExpression = operators.eq(expectation, valueExpression);
             return '!(' + eqExpression + ')';
         };
 
-        operators['lt'] = function (expectation, valueExpression) {
+        operators.lt = function (expectation, valueExpression) {
             return valueExpression + '<' + valueToExpression(expectation);
         };
 
-        operators['lte'] = function (expectation, valueExpression) {
+        operators.lte = function (expectation, valueExpression) {
             return valueExpression + '<=' + valueToExpression(expectation);
         };
 
-        operators['gt'] = function (expectation, valueExpression) {
+        operators.gt = function (expectation, valueExpression) {
             return valueExpression + '>' + valueToExpression(expectation);
         };
 
-        operators['gte'] = function (expectation, valueExpression) {
+        operators.gte = function (expectation, valueExpression) {
             return valueExpression + '>=' + valueToExpression(expectation);
         };
 
         FilterFunction.generate = function (json) {
             var functionCode = 'return true';
 
-            Object.keys(json).forEach(function(selector) {
+            Object.keys(json).forEach(function (selector) {
                 var tests = json[selector];
                 if (tests.constructor === String || tests.constructor === Number || tests.constructor === Boolean) {
-                    if ('' in operators) {
+                    if (operators.hasOwnProperty('')) {
                         /* use default operator if it exists */
                         functionCode += '&&' + operators[''](tests, VARIABLE_NAME + selectorToExpression(selector));
                     }
@@ -83,7 +83,7 @@
                             /* it's an operator starts with $ sign */
                             operatorFound = true;
                             var operator = subSelector.substr(1);
-                            if (operator in operators) {
+                            if (operators.hasOwnProperty(operator)) {
                                 /* operator exists */
                                 functionCode += '&&' + operators[operator](tests[subSelector], VARIABLE_NAME + selectorToExpression(selector));
                             }

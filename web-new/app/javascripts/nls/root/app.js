@@ -69,7 +69,6 @@ define({
     UPDATE_DES : '{1} 个应用可升级',
     ONE_KEY_TRANSFER : '一键移动 ({1})',
     ONE_KEY_TRANSFER_DES : '帮您把手机内存的应用移动到 SD 卡上，彻底释放手机内存空间。',
-    ONE_KEY_UPDATE_TITLE : '一键升级',
 
     WEB_APPS : '下载过的应用 ({1})',
     WEB_APPS_EMPTY : '下载过的',
@@ -79,7 +78,6 @@ define({
     APP_SEARCH : '应用搜索',
     UNINSTALL_AFTER_HIDE : '已从下载历史中删除「{1}」，要在手机上卸载这个应用吗？',
     WEB_APPS_HIDE_TEXT : '隐藏',
-    WEB_APPS_HIDING_TEXT : '正在隐藏',
     WEB_APPS_HIDE_FAILED_TEXT : '隐藏失败',
 
     APP_WASH : '豌豆洗白白',
@@ -103,7 +101,6 @@ define({
     LOOK_FOR_DETAIL : '查看应用详情',
 
     COL_NAME_LABEL : '应用名称',
-    COL_SIZE_LABEL : '大小',
     COL_RATE_LABEL : '好评率',
     COL_VERSION_LABEL : '版本',
     COL_INSTALL_TIME : '安装时间',
@@ -111,12 +108,7 @@ define({
     INSTALL_POSITION_LABEL : '安装位置：',
 
     BUTTON_ADD_APP_LABEL : '安装新应用',
-    BUTTON_UNINSTALL_LABEL : '卸载',
-    BUTTON_UPGRADE_LABEL : '升级',
-    BUTTON_EXPORT_LABEL : '导出',
 
-    BUTTON_INSTALL_LABEL : '安装',
-    ALREAD_INSTALLED : '已安装',
 
     BUTTON_MOVE_TO_DEVICE_LABEL : '移动到手机内存',
 
@@ -127,7 +119,7 @@ define({
     MOVE_TO_DEVICE : '您选择了 {1} 个可移动到手机内存的应用，确定转移吗？',
     UPGRADE_TIP_TEXT : '确定要升级选中的 {1} 个应用？',
 
-    NON_USER_APPS_TEXT : '您还未安装过应用呢',
+    NON_USER_APPS_TEXT : '<div><span>嗯？看起来您的手机什么都没有装哦，</span></br><span>要不要去下几个好玩的游戏？</span></br><button class="primary button-download-game grand">马上下载游戏</button></div>',
     NON_SYSTEM_APPS_TEXT : '您的手机没有系统应用',
     NON_UPGRADE_APPS_TEXT : '太赞了，所有的应用都是最新的了',
     UPGRADE_TIP : '亲，目前不能为您的手机升级应用，我们正在努力中...',
@@ -145,7 +137,6 @@ define({
     SIZE : '大小：',
     PERMISSON : '权限：',
     MORE : '更多',
-    COLLAPSE : '收起',
     RECOMMENDATION_DEFAULT : '豌豆猜您也喜欢',
     RECOMMENDATION : '安装了这个应用的人也喜欢',
     PHONE : '手机内存',
@@ -173,7 +164,6 @@ define({
     UNINSTALL_FAILED : '非常抱歉，应用卸载失败。',
     UNINSTALL_FAILED_SYSTEM_APP : '请在豌豆荚上允许豌豆荚获取 root 权限后重试。',
 
-    APPS_IGNORE_UPGRADE_TEXT : '忽略',
     APPS_CANCEL_IGNORE_TEXT : '取消忽略',
 
     APPS_TRANSFER_FAILED_TEXT : '非常抱歉，以下应用转移失败：',

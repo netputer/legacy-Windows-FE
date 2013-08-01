@@ -23,12 +23,6 @@
         var batchConversationsView;
         var threadsPanelView;
 
-        var PANEL_CLASS_NAMES = [
-            '.empty-info',
-            '.w-message-threads-ctn',
-            '.w-message-batch-conversations'
-        ];
-
         var MessagePanelView = Backbone.View.extend({
             className : 'w-message-panel',
             template : doT.template(TemplateFactory.get('message', 'message-panel')),

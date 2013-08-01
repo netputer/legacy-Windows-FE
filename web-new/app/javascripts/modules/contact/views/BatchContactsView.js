@@ -77,12 +77,6 @@
 
                 var items = [];
 
-                var groupIds = _.flatten(
-                        _.map(contactList.currentModels, function (contact) {
-                            return _.map(contact.get('group'), function (group) { return group.group_row_id; });
-                        })
-                    );
-
                 var readOnlyAccounts = [];
                 _.each(contactList.currentModels, function (contact) {
                     var tempAccount = accountCollection.filter(function (account) {
@@ -266,14 +260,14 @@
                 this.setButtonState();
             },
             setButtonState : function () {
-
                 var readOnlyContactInSelected = (function () {
                     var flag = false;
                     var selected = contactList.currentModels;
 
                     var i;
+                    var contact;
                     for (i = selected.length; i--; undefined) {
-                        var contact = contactsCollection.get(selected[i]);
+                        contact = contactsCollection.get(selected[i]);
                         if (contact) {
                             flag = contact.get('read_only');
 

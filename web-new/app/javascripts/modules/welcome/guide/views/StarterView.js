@@ -64,7 +64,20 @@
                     IO.requestAsync({
                         url : CONFIG.actions.APP_STARTER,
                         data : {
-                            f : 'windows'
+                            f : 'windows',
+                            opt_fields : [
+                                'apps.downloadCount',
+                                'apps.likesRate',
+                                'apps.tagline',
+                                'apps.title',
+                                'apps.icons.px68',
+                                'apps.ad',
+                                'apps.apks.downloadUrl.url',
+                                'apps.apks.bytes',
+                                'apps.apks.packageName',
+                                'apps.apks.versionCode',
+                                'apps.apks.versionName'
+                            ].join(',')
                         },
                         success : function (resp) {
                             this.queryResults = resp;
@@ -76,7 +89,7 @@
                 } else {
                     setTimeout(function () {
                         this.queryResults = queryResponse;
-                        deferred.resolve()
+                        deferred.resolve();
                     }.bind(this));
                 }
 
@@ -119,12 +132,16 @@
                         var app;
                         for (i = 0; i < length; i++) {
                             app = apps[i];
-                            if (appsCollection.get(app.packageName) === undefined) {
+                            if (appsCollection.get(app.apks[0].packageName) === undefined) {
                                 this.apps.push(app);
                             }
                             if (this.apps.length === 12) {
                                 break;
                             }
+                        }
+
+                        if (this.apps.length === 0) {
+                            deferred.reject();
                         }
 
                         log({
@@ -152,6 +169,7 @@
                     var tip = new PopupTip({
                         $host : $(this)
                     });
+                    tip.zero();
                 });
 
                 return this;
@@ -159,13 +177,45 @@
             clickButtonInstall : function (evt) {
                 var $target = $(evt.currentTarget);
                 var model = new Backbone.Model({
-                    source : 'starter',
+                    source : 'starter-' + this.options.type,
                     downloadUrl : decodeURIComponent($target.data('url')),
                     title : $target.data('name'),
                     iconPath : $target.data('icon')
                 });
 
                 TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
+
+                $target.html(i18n.app.INSTALLING).prop({
+                    disabled : true
+                });
+
+                var successHandler, failedHandler;
+
+                successHandler = IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.APP_INSTALL_SUCCESS
+                }, function (data) {
+                    if ($target.data('packagename') === data.package_name) {
+                        $target.html(i18n.misc.NAV_APP_INSTALLED).prop({
+                            disabled : true
+                        });
+                    }
+
+                    IO.Backend.Device.offmessage(successHandler);
+                    IO.Backend.Device.offmessage(failedHandler);
+                }, this);
+
+                failedHandler = IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.APP_INSTALL_FAILED
+                }, function (data) {
+                    if ($target.data('packagename') === data.package_name) {
+                        $target.html(i18n.app.INSTALL).prop({
+                            disabled : false
+                        });
+                    }
+
+                    IO.Backend.Device.offmessage(successHandler);
+                    IO.Backend.Device.offmessage(failedHandler);
+                }, this);
 
                 log({
                     'event' : 'ui.click.guide_starter_install',
@@ -192,7 +242,7 @@
                     };
                 }, this);
 
-                TaskService.batchDownloadAsync(apps, 'starter-one-key-install');
+                TaskService.batchDownloadAsync(apps, 'starter-one-key-install-' + this.options.type);
 
                 this.trigger('next');
 

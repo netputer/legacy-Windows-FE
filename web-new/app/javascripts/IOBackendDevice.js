@@ -3,19 +3,17 @@
     define([
         'underscore',
         'IO',
-        'MessageRouterMixin',
         'Environment',
         'utilities/FilterFunction'
     ], function (
         _,
         IO,
-        MessageRouterMixin,
         Environment,
         FilterFunction
     ) {
         console.log('IOBackendDevice - File loded.');
 
-        IO.Backend.Device = _.extend(function () {}, IO.Backend);
+        IO.Backend.Device = _.extend({}, IO.Backend);
 
         IO.Backend.Device.onmessage = function (route, callback, listenToAllDevices, context) {
 
@@ -39,7 +37,7 @@
                 }, IO.Backend.Device);
             }
 
-            return IO.Backend.onmessage.call(IO.Backend, route, callback, context);
+            return IO.Backend.onmessage(route, callback, context);
         };
 
         window.IO = IO;
