@@ -246,7 +246,7 @@
                     alert(message, function () {
                         this.trigger('error');
                     }.bind(this));
-                    BackupRestoreService.recordError('debug.restore.progress.error', resp.state_code, 5);
+                    BackupRestoreService.recordError('debug.restore.progress.error', resp, 5);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
                 }.bind(this));
             },
