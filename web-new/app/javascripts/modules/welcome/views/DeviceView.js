@@ -10,6 +10,7 @@
         'Device',
         'IO',
         'Configuration',
+        'Internationalization',
         'Log',
         'welcome/views/ScreenControlView'
     ], function (
@@ -22,6 +23,7 @@
         Device,
         IO,
         CONFIG,
+        i18n,
         log,
         ScreenControlView
     ) {
@@ -92,6 +94,7 @@
                 this.listenTo(Device, 'change:screenshot', this.renderScreenshot);
             },
             setDisable : function (disable) {
+                this.$('.offline-tip .desc').html(Device.get('isConnected') ? i18n.misc.SCREEN_SHOT_UNDER_USB : i18n.misc.PHTONE_DISCONNECTED);
                 this.$('.screenshot').toggle(!disable);
                 if (disable) {
                     this.$('.offline-tip').css('display', '-webkit-box');

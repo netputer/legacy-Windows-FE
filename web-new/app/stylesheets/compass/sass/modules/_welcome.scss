@@ -140,6 +140,7 @@
         .offline-tip {
             display: none;
             left: 50%;
+            opacity: .5;
             position: absolute;
             top: 50%;
             -webkit-transform: translate3d(-50%, -50%, 0);
@@ -153,7 +154,7 @@
             }
 
             .desc {
-                color: rgba(255, 255, 255, .5);
+                color: #fff;
                 text-align: center;
             }
         }
