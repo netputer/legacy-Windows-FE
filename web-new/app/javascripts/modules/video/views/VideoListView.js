@@ -15,7 +15,8 @@
         'ui/KeyboardHelper',
         'Device',
         'video/views/VideoThreadView',
-        'video/VideoService'
+        'video/VideoService',
+        'utilities/FormatDate'
     ], function (
         _,
         Backbone,
@@ -31,7 +32,8 @@
         KeyboardHelper,
         Device,
         VideoThreadView,
-        VideoService
+        VideoService,
+        FormatDate
     ) {
         console.log('VideoListView -File loaded. ');
 
@@ -159,9 +161,15 @@
                     return;
                 }
 
-                this.threads = _.sortBy(collection.groupBy('key'), function (item, key) {
+                var group = collection.groupBy(function (item) {
+                    return Number(FormatDate('yyyyMM', item.get('date_added')));
+                });
+
+                this.threads = _.sortBy(group, function (item, key) {
                     return -Number(key);
                 });
+
+                // console.log('!!! - ', this.threads);
 
                 if (!collection.loading && !collection.syncing) {
                     this.toggleEmptyTip(collection.length === 0);
