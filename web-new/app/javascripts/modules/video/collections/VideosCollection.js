@@ -175,23 +175,7 @@
                 var deferred = $.Deferred();
 
                 _.each(ids, function (id) {
-                    IO.requestAsync({
-                        url : CONFIG.actions.VIDEO_THUMBNAIL,
-                        data : {
-                            video_id : id
-                        },
-                        success : function (resp) {
-                            var model = this.get(id);
-                            if (resp.state_code === 200) {
-                                model.set({
-                                    error : false,
-                                    thumb : 'file:///' + resp.body.value
-                                });
-                            } else {
-                                model.set('error', true);
-                            }
-                        }.bind(this)
-                    });
+                    this.get(id).getThumbnailAsync();
                 }, this);
 
                 return deferred.promise();
