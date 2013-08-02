@@ -27,20 +27,20 @@
             className : CardView.getClass().prototype.className + ' w-guide-suggestion',
             template : doT.template(TemplateFactory.get('guide', 'suggestion')),
             items : [{
-                banner : '../../../../images/guide/banner3.png',
-                extensionId : 18
+                extensionId : 18,
+                name : 'app'
             }, {
-                banner : '../../../../images/guide/banner4.png',
-                extensionId : 223
+                extensionId : 223,
+                name : 'game'
             }, {
-                banner : '../../../../images/guide/banner5.png',
-                extensionId : 258
+                extensionId : 258,
+                name : 'video'
             }, {
-                banner : '../../../../images/guide/banner1.png',
-                extensionId : 255
+                extensionId : 255,
+                name : 'music'
             }, {
-                banner : '../../../../images/guide/banner2.png',
-                extensionId : 256
+                extensionId : 256,
+                name : 'picture'
             }],
             initialize : function () {
                 this.on('next', function () {
