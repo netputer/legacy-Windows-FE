@@ -551,7 +551,7 @@
                 this.selectTab(tab);
             },
             clickButtonDownload : function () {
-                BrowserModuleView.navigateToThirdParty(223);
+                BrowserModuleView.navigateToThirdParty(223, '', "http://apps.wandoujia.com/starter");
 
                 log({
                     'event' : 'ui.click.wanxiaodou_download',
