@@ -34,6 +34,9 @@
 
 <script type="text/x-ui-template" id="video-list">
     <div class="spy"></div>
+    <div class="w-video-list-loading hbox">
+        {{= TemplateFactory.get('ui', 'loading') }}
+    </div>
     <div class="w-video-loading hbox">
         <div class="w-video-loading-icon">
             {{= TemplateFactory.get('ui', 'loading-white') }}
