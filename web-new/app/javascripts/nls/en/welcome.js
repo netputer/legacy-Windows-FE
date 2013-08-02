@@ -48,9 +48,9 @@ define({
     CLOSE_AUTO_START : 'To help you manage your phone, SnapPea will automatically open when you connect your phone. You can turn this off in <span class="link button-setup">Settings</span>',
 
     GUIDE_BIND_NOW : 'Link phone now',
-    GUIDE_BIND_DESC : 'After linking, SnapPea will auto-backup your contacts, messages, and photos. It makes it easy to restore and easy to connect. If this isn\'t your computer, don\'t link!',
+    GUIDE_BIND_DESC : 'If you link, SnapPea will auto-backup your contacts, messages, and photos. If this isn\'t your computer, don\'t link!',
     GUIDE_BIND_SUCCESS : 'Congrats, {1} phone is linked. SnapPea will auto-backup your <strong>contacts, messages, and photos</strong>',
-    GUIDE_CLOUD_BACKUP_SUCCESS : 'Congrats, you\'ve already registered and turned on cloud backups.',
+    GUIDE_CLOUD_BACKUP_SUCCESS : 'Congrats, you\'ve registered and turned on cloud backups.',
     GUIDE_REG : 'Register for SnapPea',
     GUIDE_REG_DESC : 'To turn on cloud albums you first have to register an account',
     GUIDE_REG_NOW : 'Register now',
@@ -74,13 +74,12 @@ define({
     GUIDE_STARTER_TITLE : 'Must install apps',
     GUIDE_STARTER_TIP : 'Not many apps on your phone. You should try some of these star apps.',
     GUIDE_STARTER_APP_TIP : '{1} installations · {2}% positive reviews<br />{3}',
-    GUIDE_STARTER_GAME_TITLE : '必备游戏',
-    GUIDE_STARTER_GAME_TIP : '大家都在玩的热门游戏，您也装几个试试吧。',
     GUIDE_TIPS : 'Tips',
     GUIDE_TIPS_TIP : 'More tips about SnapPea!',
     GUIDE_TIPS_READ_ALL : 'OK, got it!',
     GUIDE_SUGGESTION : 'View more',
     GUIDE_SUGGESTION_TIP : 'There\'s more content for you to discover!',
     GUIDE_SUGGESTION_READ_ALL : 'I\'m done',
+
     GUIDE_TEXT_COUNTER : '{1} / {2}'
 });
