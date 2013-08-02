@@ -12,9 +12,9 @@ define({
     GROUP_ALL : 'All groups',
     GROUP_LOADING : 'Loading group info...',
 
-    ALERT_TIP_EXOPRT_OUTLOOK : '<p>Export completed! </p><p>Outlook CSV format only supports three phone numbers or email addresses. It doesn\'t accept chat or profile pictures.</p>',
-    ALERT_TIP_EXOPRT_WINDOWS_MAIL : '<p>Export completed! </p><p>Windows Mail CSV supports only two phone numbers, one fax, and  one e-mail address. It doesn\'t accept groups, chat, or profile pictures.</p>',
-    ALERT_TIP_EXOPRT_NOKIA : '<p>Export completed!</p><p>Nokia CSV supports only three phone numbers, two fax numbers, and email addresses. It doesn\'t accept groups, chat, or profile pictures.</p>',
+    ALERT_TIP_EXOPRT_OUTLOOK : '<p>Export completed! </p><p>Outlook CSV format only supports 3 phone numbers or email addresses. It doesn\'t accept chat or profile pictures.</p>',
+    ALERT_TIP_EXOPRT_WINDOWS_MAIL : '<p>Export completed! </p><p>Windows Mail CSV supports only 2 phone numbers, one fax, and  one e-mail address. It doesn\'t accept groups, chat, or profile pictures.</p>',
+    ALERT_TIP_EXOPRT_NOKIA : '<p>Export completed!</p><p>Nokia CSV supports only 3 phone numbers, 2 fax numbers, and email addresses. It doesn\'t accept groups, chat, or profile pictures.</p>',
     ALERT_TIP_EXOPRT_VCARD : 'Because the CSV format is prone to errors, SnapPea recommends you export contacts in the vCard format.',
     ALERT_TIP_MERGE_MANY_CONTACTS : 'Merging all your contacts can take a while. Continue?',
     ALERT_TIP_MERGE_CONTACTS : '<p> Merge {1} selected contacts? </p><p> {2} contacts will be deleted after merging</p>',
@@ -38,7 +38,7 @@ define({
     REMARK : 'Notes',
     MERGE : 'Merge',
     DIAL : 'Call number',
-    DIAL_SUCCESS : 'SnapPea has already dialed that number, pick up your phone and say hello!',
+    DIAL_SUCCESS : 'Number was sent to your phone, complete the call on your phone!',
 
     SELECT_CONATCTS_BAKCUP_FILE : 'Select .vcf or .csv file',
     INVALID_BAKCUP_FILE : 'Invalid .vcf or .csv file',
@@ -107,7 +107,7 @@ define({
 
     DELETE_TIP_TEXT : 'Delete {1} selected contact(s)?',
 
-    NON_CONTACT_TEXT_PERMISSION : 'SnapPea is unable to show your contacts. It could be that a security app on your phone is blocking SnapPea, please enable this permission on your phone.',
+    NON_CONTACT_TEXT_PERMISSION : 'SnapPea is unable to display your contacts. A security app on your phone may be blocking SnapPea, please enable this permission on your phone.',
     NON_CONTACT_TEXT : 'You haven\'t added any contacts',
     NON_PHONE_CONTACT_TEXT : 'You don\'t have any contacts with a phone number',
     NON_STAR_CONTACT_TEXT : 'To add a favorite, click on the star next to a contact',
@@ -167,7 +167,7 @@ define({
 
     EXPORT_USING_VCARD : 'Export in vCard format',
 
-    CONTACT_TIP_PART : '{1} 个与「{2}」有关的联系人',
+    CONTACT_TIP_PART : '{1} contacts related to「{2}」',
 
     EMPTY_PHONE_LIST : 'Import a picture here!',
     EMPTY_LIBRARY_LIST : 'Import a picture here!'

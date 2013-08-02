@@ -1,5 +1,4 @@
 /*global define*/
-/*
 define({
     DELETE_TEXT : 'Delete',
     REFRESH_TEXT : 'Refresh',
@@ -70,4 +69,3 @@ define({
     LOADING : 'Loading...',
     LOAD_FAILD : 'Failed to load'
 });
-*/

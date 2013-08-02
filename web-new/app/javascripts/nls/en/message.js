@@ -1,7 +1,7 @@
 /*global define*/
 define({
-    SENDER_PLACEHOLDER : 'Write your message...',
-    SEND_A_SMS : 'Message your friend...',
+    SENDER_PLACEHOLDER : 'Write a message...',
+    SEND_A_SMS : 'Don\'t be shy, message a friend!',
     SEND_TO : 'Send to {1}：',
     LOAD_MORE : 'View more messages',
     SEND_MESSAGE : 'Send Message',
@@ -13,7 +13,7 @@ define({
     CONTENT_COUNT2 : '{1}',
     MESSAGE_COUNT : 'May be sent as {1} separate messages，',
     CONTACTS_COUNT : 'will send to {1} contact(s)',
-    BIRTHDAY_TIP : 'Today\'s his/her birthday, send your congrats! ',
+    BIRTHDAY_TIP : 'Tip: Send your birthday congratulations! ',
 
     ME : 'Me',
     UNNAMED_CONTACT : 'Unknown contacts',
@@ -33,8 +33,8 @@ define({
 
     DELETE_FAILD : 'Failed to delete',
 
-    ADD_BATCH_RECEIVER : 'Send group message',
-    ADD_BATCH_RECEIVER_TIP : 'Group messages can automatically replace recipient names. For example, send "John Doe" and "Jane Smith" a group message in this format: "Hi $NAME, Happy New Year!" Then John will see: "John Doe, Happy New Year!" Jane will see: "Jane Smith, Happy New Year!"',
+    ADD_BATCH_RECEIVER : 'Personalize message',
+    ADD_BATCH_RECEIVER_TIP : 'Personalized messages automatically replace recipient names. For example, send "John Doe" and "Jane Smith" a personalized message like this: "Hi $NAME, Happy New Year!"',
     MESSAGE_TOO_LONG : 'Your messages will be separated into several separate messages. Continue to send?',
 
     REPLY_MESSAGE : 'Reply',
@@ -49,7 +49,7 @@ define({
     CONTACT_SELECT : '{1} contacts selected ',
     CLEAR_ALL : ' Clear all',
 
-    NO_CONTACT_UNDER_THIS_ACCOUNT : 'Current account no contacts',
+    NO_CONTACT_UNDER_THIS_ACCOUNT : 'Current account has no contacts',
 
     BATCH_SEND : 'Mass',
     BATCH_SEND_TIP : '... And so on {1}.',
@@ -66,7 +66,7 @@ define({
 
     BATCH_CONVERSATION : 'Group messages',
 
-    SMS_SUMMARY : '{1} message(s), {2} unread',
+    SMS_SUMMARY : '{1} messages, {2} unread',
 
     CONFIRM_DELETE_CONVERSATION : 'Delete {1} conversation(s) and {2} message(s)? ',
     CONVERSATION_DELETE_SUCCESS : 'Deleted {1} message(s)',
@@ -102,7 +102,5 @@ define({
 
     COPY_SMS : 'Message successfully copied to the Clipboard',
 
-    RETURN_ALL : '全部短消息',
-    SEARCH_TIP : '{1} 个包含「{2}」的短消息',
-    UNREAD_DES : '{1} 条未读短信'
+    UNREAD_DES : '{1} unread message'
 });
