@@ -37,6 +37,11 @@
             }
         }
     }
+
+    &.error .error {
+        display: block;
+        top: 10%;
+    }
 }
 
 .w-video-loading {

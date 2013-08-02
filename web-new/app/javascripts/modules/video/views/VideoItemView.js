@@ -26,9 +26,11 @@
         var changeErrorHandler = function (video, error) {
             this.loading = false;
             if (error) {
-                this.$('.error').show();
+                // this.$('.error').show();
+                this.$el.addClass('error');
             } else {
-                this.$('.error').hide();
+                // this.$('.error').hide();
+                this.$el.removeClass('error');
             }
         };
 
