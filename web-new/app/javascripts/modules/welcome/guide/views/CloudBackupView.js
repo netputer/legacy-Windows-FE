@@ -30,22 +30,22 @@
 
         var UserModel = Backbone.Model.extend({
             defaults : {
-                userName : '',
+                username : '',
                 password : '',
                 passwordVerify : '',
-                nickName : '',
-                captcha : ''
+                nick : '',
+                seccode : ''
             },
             validate : function (attrs) {
                 var msg = '';
-                if (!validateEmail(attrs.userName)) {
-                    msg = 'userName';
+                if (!validateEmail(attrs.username)) {
+                    msg = 'username';
                 } else if (attrs.password.length < 6) {
                     msg = 'password';
                 } else if (attrs.password !== attrs.passwordVerify) {
                     msg = 'passwordVerify';
-                } else if (attrs.nickName.trim().length === 0) {
-                    msg = 'nickName';
+                } else if (attrs.nick.trim().length === 0) {
+                    msg = 'nick';
                 }
 
                 return msg;
@@ -78,11 +78,11 @@
             },
             clickButtonReg : function () {
                 this.userModel.set({
-                    userName : this.$('.username').val(),
+                    username : this.$('.username').val(),
                     password : this.$('.password').val(),
                     passwordVerify : this.$('.password-verify').val(),
-                    nickName : this.$('.nickname').val(),
-                    captcha : this.$('.captcha').val(),
+                    nick : this.$('.nickname').val(),
+                    seccode : this.$('.captcha').val(),
                     privacy : this.$('.privacy').prop('checked')
                 });
 
@@ -90,17 +90,25 @@
                 this.$('.text-warning').hide();
 
                 if (this.userModel.isValid()) {
-                    // IO.requestAsync({
-                    //     type : 'post',
-                    //     url : CONFIG.actions.ACCOUNT_REG
-                    // });
-                    this.$('.section').css('-webkit-transform', 'translate3d(0, -200%, 0)');
-                    setTimeout(function () {
-                        this.trigger('next');
-                    }.bind(this), 3000);
+                    IO.requestAsync({
+                        type : 'post',
+                        url : CONFIG.actions.CLOUD_REG,
+                        data : this.userModel.toJSON()
+                    }).done(function (resp, textStatus, xhr) {
+                        if (resp.error === 0) {
+                            this.$('.section').css('-webkit-transform', 'translate3d(0, -200%, 0)');
+                            setTimeout(function () {
+                                this.trigger('next');
+                            }.bind(this), 3000);
+                            // dont login?
+                        } else {
+                            alert(resp.msg);
+                            // where to show?
+                        }
+                    });
                 } else {
                     switch (this.userModel.validationError) {
-                    case 'userName':
+                    case 'username':
                         this.$('.username').addClass('invalid').next().show();
                         break;
                     case 'password':
@@ -109,7 +117,7 @@
                     case 'passwordVerify':
                         this.$('.password-verify').addClass('invalid').next().show();
                         break;
-                    case 'nickName':
+                    case 'nick':
                         this.$('.nickname').addClass('invalid').next().show();
                         break;
                     }
@@ -128,7 +136,17 @@
             },
             clickCaptchaImage : function () {
                 var $img = this.$('.captcha-image');
-                $img.attr('src', $img.attr('src'));
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', CONFIG.actions.CLOUD_SECCODE, true);
+                xhr.responseType = 'blob';
+
+                xhr.onload = function (e) {
+                    var blob = new Blob([this.response]);
+                    $img.attr('src', window.URL.createObjectURL(blob));
+                };
+
+                xhr.send();
             },
             events :  {
                 'click .button-reg' : 'clickButtonReg',
