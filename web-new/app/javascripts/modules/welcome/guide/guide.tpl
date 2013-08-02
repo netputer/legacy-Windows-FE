@@ -62,10 +62,10 @@
                 <label>
                     <div class="label">{{= i18n.welcome.GUIDE_REG_CAPTCHA }}</div>
                     <input type="text" class="captcha" />
-                    <img src="https://account.wandoujia.com/v1/seccode/" class="captcha-image" title="点击更换" />
+                    <img src="https://account.wandoujia.com/v4/api/seccode" class="captcha-image" title="点击更换" />
                 </label>
                 <label>
-                    <input type="checkbox" class="pravicy" checked />{{= i18n.welcome.GUIDE_REG_PRAVICY }}
+                    <input type="checkbox" class="privacy" checked />{{= i18n.welcome.GUIDE_REG_PRAVICY }}
                 </label>
             </form>
             <hr />
@@ -153,7 +153,7 @@
         <ul class="tip-ctn">
         {{~ it.tips : tip}}
         <li class="tip hbox">
-            <img class="icon" alt="{{! tip.desc }}" src="{{= tip.icon }}" />
+            <span class="icon icon-{{= tip.icon }}"></span>
             <div class="desc">{{! tip.desc }}</div>
             <a class="link button-open" target="_default" href="{{= tip.url }}">{{= i18n.misc.VIEW }}</a>
         </li>
@@ -172,9 +172,7 @@
         <p>{{= i18n.welcome.GUIDE_SUGGESTION_TIP }}</p>
         <ul class="item-ctn">
         {{~ it.items : item}}
-        <li class="item button-open" data-id="{{= item.extensionId }}">
-            <img src="{{= item.banner }}" />
-        </li>
+        <li class="item button-open item-{{= item.name }}" data-id="{{= item.extensionId }}"></li>
         {{~}}
         </ul>
     </div>
