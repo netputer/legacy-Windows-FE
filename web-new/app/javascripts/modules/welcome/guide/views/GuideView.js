@@ -59,9 +59,9 @@
                     // .then(function () {
                     //     return this.regCardAsync(BindView.getInstance());
                     // }.bind(this))
-                    .then(function () {
-                        return this.regCardAsync(CloudBackupView.getInstance());
-                    }.bind(this))
+                    // .then(function () {
+                    //     return this.regCardAsync(CloudBackupView.getInstance());
+                    // }.bind(this))
                     .then(function () {
                         return this.regCardAsync(XibaibaiView.getInstance());
                     }.bind(this))
