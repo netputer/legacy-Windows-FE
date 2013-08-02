@@ -87,9 +87,9 @@
                 var key;
                 if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
                         Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
-                    key = StringUtil.formatDate('yyyy 年 MM 月', this.options.models[0].get('date'));
+                    key = StringUtil.formatDate('yyyy 年 MM 月', this.options.models[0].get('date_added'));
                 } else {
-                    key = StringUtil.formatDate('yyyy-MM', this.options.models[0].get('date'));
+                    key = StringUtil.formatDate('yyyy-MM', this.options.models[0].get('date_added'));
                 }
                 this.$el.html(this.template({
                     key : key,
