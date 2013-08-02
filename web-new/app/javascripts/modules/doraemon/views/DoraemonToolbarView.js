@@ -141,7 +141,7 @@
                 });
 
                 disposableAlert.once('button_yes', function () {
-                    extensionsCollection.unstarredAsync(ids);
+                    extensionsCollection.unstarredAsync(ids, true);
                 });
 
                 disposableAlert.show();
