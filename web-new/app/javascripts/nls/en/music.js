@@ -34,12 +34,12 @@ define({
     CREATE_TIME : 'In progress...',
     ITUNES_IMPORT : 'Import iTunes music',
     SELECT_LIBRARY_TITLE : 'SnapPea detects that you have multiple iTunes music libraries, select Import',
-    ALL_AUDIOS_AND_PLAYLIST : 'All songs and playlists',
+    ALL_AUDIOS_AND_PLAYLIST : 'ALL songs and playlists',
     SCANNING_TIP : 'Scanning music library. If you have a large music library this could take a while, please be patient...',
     LESS_CAPACITY : 'Not enough free space',
     SELECT_SOURCE_TITLE : 'Select music to import to your device:',
-    SELECT_AUDIOS : 'Select song(s)',
-    SELECT_PLAYLIST : 'Select playlist(s)',
+    SELECT_AUDIOS : 'Select songs',
+    SELECT_PLAYLIST : 'Select playlists',
     PARSE_ITUNES_SOURCE_FAIL : 'Failed to read iTunes music library',
     IMPORTING_TITLE : 'Importing songs, don\'t disconnect your device...',
     IMPORTING_AUDIOS_TIP : 'If you have a large music library this could take a while, please be patient...',
@@ -50,7 +50,7 @@ define({
     CREATE_PLAYLIST_COMPLETE : 'Importing playlist(s) completed',
     PARSE_EMPTY_LIST : 'Sorry, failed to import songs',
     CREATE_PLAYLIST_FAILD_TIP : 'Songs were imported to your device, but failed to create {1} playlist(s)',
-    IMPORT_AUDIOS_FAILD_TIP : 'Failed to import {1} song(s) failed. Continue to import the playlist?',
+    IMPORT_AUDIOS_FAILD_TIP : '{1} song(s) failed to import . Continue to import the playlist?',
     SELECT_PLAYLIST_FOR_IMPORT : 'Select the playlists you want to import',
     PLAYLIST_NAME : 'Playlist',
     AUDIOS_COUNT : 'Number of songs',
@@ -67,5 +67,5 @@ define({
     CONFIRM_IMPORT : 'You\'ve selected to import {1} of music to your device. Importing that much music at once will take an estimated {2} . <br/>Do you want to continue?',
     CAN_NOT_IMPORT_UNDER_WIFI : 'Connect via USB to import iTunes music',
 
-    MUSIC_EMPTY_TEXT_WANXIAODOU : '<div><span>哦？您的歌曲库一首歌都没有，</span></br><span>去下几首好听的歌曲吧？</span></br><button class="primary button-download-music grand">马上下载歌曲</button></div>'
+    MUSIC_EMPTY_TEXT_WANXIAODOU : '<div><span>Oh？No songs on your phone. '
 });

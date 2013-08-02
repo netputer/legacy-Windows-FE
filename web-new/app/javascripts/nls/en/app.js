@@ -57,7 +57,7 @@ define({
 
     ALERT_TIP_CRITICAL_APP : '"{1}" can\'t be deleted. Deleting Android system apps can damage or "brick" your device.',
     ALERT_TIP_UNINSTALL_WIFI_CONFIRM : 'You\'re connected via Wi-Fi, please complete the install on your device.',
-    ALERT_TIP_DEL_SYS_APP_CONFIRM : '<p>Uninstall the selected {1} system app? </p><p>Deleting Android system apps can damage or "brick" your device.</p>',
+    ALERT_TIP_DEL_SYS_APP_CONFIRM : '<p>Uninstall the {1} selected system app? </p><p>Deleting Android system apps can damage or "brick" your device.</p>',
     ALERT_TIP_IGNORED_UPDATE_CONFIRM : 'Ignore this app update? After ignoring, you can still change your update settings later.',
     ALERT_TIP_MOVE_NEED_CONFIRM : 'Please confirm the app on your device',
     SD_MOUNT_TIP : 'Because your device is connected as a USB storage device, SnapPea cannot display the apps installed on your device. Please change your settings and try again.',
@@ -119,7 +119,7 @@ define({
     MOVE_TO_DEVICE : 'Move {1} apps to internal storage?',
     UPGRADE_TIP_TEXT : 'Update {1} app(s)?',
 
-    NON_USER_APPS_TEXT : '<div><span>嗯？看起来您的手机什么都没有装哦，</span></br><span>要不要去下几个好玩的游戏？</span></br><button class="primary button-download-game grand">马上下载游戏</button></div>',
+    NON_USER_APPS_TEXT : '<div><span>Oh? You haven\'t installed any apps or games yet,</span></br><span>use 1Mobile to download some!</span>',
     NON_SYSTEM_APPS_TEXT : 'Your device doesn\'t have any system apps installed',
     NON_UPGRADE_APPS_TEXT : 'All your apps are up-to-date. Yay! ',
     UPGRADE_TIP : 'We currently can\'t update apps for your device, but we\'re working on it...',
@@ -181,9 +181,6 @@ define({
     GETTING_RECOMMEND : 'Getting recommendations...',
     RECOMMEND_LIST_EMPTY : 'Oh snap, no recs today',
     GET_RECOMMEND_ERROR : 'Oh no, no recs',
-
-    RETURN_ALL : '全部应用',
-    SEARCH_TIP_PART : '{1} 个与「{2}」有关的应用',
 
     /* Permission info */
     "android.permission-group.ACCOUNTS" : "访问您的帐户",

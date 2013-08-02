@@ -139,8 +139,9 @@ define({
     SCAN_PASS : 'Safe! Passed security scan.',
     SCAN_FAILED : 'Failed security scan.',
 
+
     SET_AS_WALL_PAPER : 'Set as wallpaper',
-    SET_AS_RINGTONE : '设为来电铃声',
+    SET_AS_RINGTONE : 'Set as ringtone',
     START_UNZIPPING : 'Unzipping...',
     UNZIPING : 'Unzipping...',
     UNZIP_COMPLETE : 'Unzip completed',
@@ -149,12 +150,11 @@ define({
     HOW_TO_CONNECT : 'Connection help',
     EMPTY_LIST : 'No tasks in progress',
 
-    SET_AS_WALLPAPER_SUCCESS : '壁纸设置成功',
-    SET_AS_WALLPAPER_FAIL: '壁纸设置失败',
-    SET_AS_RINGTONE_SUCCESS : '铃声设置成功',
-    SET_AS_RINGTONE_FAIL : '铃声设置失败',
+    SET_AS_WALLPAPER_SUCCESS : 'Woot, new wallpaper!',
+    SET_AS_WALLPAPER_FAIL: 'Failed to set wallpaper',
+    SET_AS_RINGTONE_SUCCESS : 'Woot, new ringtone!',
+    SET_AS_RINGTONE_FAIL : 'Failed to set ringtone',
 
     WAITING_RESTORE_APP_DATA : 'Waiting to restore app data',
-    PROCESSING_RESTORE_APP_DATA : 'Restoring app data...',
-    WAITING_UNZIP : '等待解压缩'
+    PROCESSING_RESTORE_APP_DATA : 'Restoring app data...'
 });

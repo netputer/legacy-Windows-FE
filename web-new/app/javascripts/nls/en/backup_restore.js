@@ -15,7 +15,7 @@ define({
     START_BACKUP : 'Start backup',
     START_RESTORE : 'Start restore',
 
-    BACKUP_WAITING : 'Waiting to backup{1}',
+    BACKUP_WAITING : 'Waiting to backup {1}',
     BACKUP_PROCESS : '{1} backup in progress, please be patient...',
     BACKUP_PROCESS_APP_DATA : 'Backing up data, please check progress on your phone',
     BACKUP_FINISH : '{1} completed',
@@ -26,7 +26,7 @@ define({
     RESTORE_FINISH : '{1} restore completed',
     RESTORE_FAILED : '{1} restore failed',
 
-    TIP_IN_WIFI : 'To prevent data loss, SnapPea does not support backup or restore via Wi-Fi.<br />Please connect your device via USB cable and try again',
+    TIP_IN_WIFI : 'SnapPea does not support backup or restore via Wi-Fi. <br />Please connect your device via USB cable and try again',
 
     ERROR_WHEN_WRITE_ROM :  'Unable to detect your SD card... <br />Please confirm:<br />- "USB Mass Storage Mode" is turned off on your device.<br />- SD card is properly inserted into your device. <br />- Or, try inserting another SD card.',
 
@@ -117,9 +117,9 @@ define({
     RESTORE_OLD_VERSION_DL_LINK : 'http://dl.wandoujia.com/files/release/wdj_installer.exe',
 
     RESTORE_REMOTE_EMPTY_LIST : 'Your files aren\'t on the cloud. <br /> You must first backup to the cloud, before you can restore.',
-    RESTORE_BATTERY_TIP : 'Your device\'s batter power is less than 20%. If your device shuts down, your backup may be incomplete. We recommend that charge your device and then restore. Continue anyway?',
+    RESTORE_BATTERY_TIP : 'Device\'s battery power is less than 20%. If your device shuts down, your backup may not finish. We recommend that charge your device first and then restore. Continue anyway?',
     RESTORE_CHOOSE_ACCOUNT_TIP : 'Backup contacts to which account? Please select:',
-    RESTORE_DELETE_DATA_TIP : 'Don\'t want to delete any data? Choose to how to handle your restore.',
+    RESTORE_DELETE_DATA_TIP : 'Don\'t want to delete any data? Choose how to handle your restore.',
     RESTORE_DELETE_DATA_TIP_YES : 'Delete, I only need the data from the restore.',
     RESTORE_DELETE_DATA_TIP_NO : 'Don\'t delete, keep two copies of my data.',
 
@@ -159,7 +159,7 @@ define({
 
     BACKUP_GUIDE_TIP : 'You haven\'t backed up data!',
     BACKUP_GUIDE_TIP_DAY : '{1} days since your last backup!',
-    BACKUP_GUIDE_CONTENT : 'SnapPea reminds you to backup up your phone to prevent data loss. You can backup contacts, messages, photos, and apps.',
+    BACKUP_GUIDE_CONTENT : 'Remember to backup up your phone to prevent data loss. You can backup contacts, messages, photos, and apps.',
     BACKUP_GUIDE_NOW : 'Backup now',
 
     BACKUP_APP_DATA_UNSUPPORT : 'Your device is not supported at present',
