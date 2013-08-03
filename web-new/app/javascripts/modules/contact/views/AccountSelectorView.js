@@ -129,6 +129,7 @@
                     });
                 }
 
+                var isChecked = false;
                 accountCollection.each(function (account) {
                     if (this.displayReadOnly
                             || (!this.displayReadOnly && !account.get('read_only'))) {
@@ -151,15 +152,19 @@
                             name : this.inputName,
                             value : account.get('id'),
                             label : label,
-                            checked : (items.length === 0 && this.disableAllLabel)
-                                        || account.get('id') === this.accountId
+                            checked : account.get('id') === this.accountId
                         });
 
                         if (items[items.length - 1].checked) {
                             this.label = items[items.length - 1].label;
+                            isChecked = true;
                         }
                     }
                 }, this);
+
+                if (!isChecked && items.length > 0) {
+                    items[0].checked = true;
+                }
 
                 var selectedAccount = _.filter(items, function (item) {
                     return item.checked;

@@ -135,6 +135,14 @@ define({
     DOWNLOAD_APK_VERIFY_FAILED : '文件下载错误，<a href="http://wandoujia.zendesk.com/entries/23613118--%E5%AE%98%E6%96%B9%E5%B8%AE%E5%8A%A9-%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E9%94%99%E8%AF%AF%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B-" target="_default">查看帮助</a>',
     NOT_SUPPORT : '格式不支持',
 
+    NO_MORE_MEMORY : '手机内存剩余空间不足',
+    NO_MORE_SDCARD : 'SD 卡剩余空间不足',
+    SDCARD_MOUNT : '请不要挂载 SD 卡',
+    NO_SDCARD : '没有插入 SD 卡，无法传输文件',
+    DEVICE_NOT_FOUND : '设备没有连接，无法传输文件',
+    DEVICE_NOT_FOUND_TIP : '请使用 USB 连接或 Wi-Fi 将手机连接到豌豆荚，未完成的任务将在手机连接后继续。',
+
+
     SCANNING : '正在进行安全扫描',
     SCAN_PASS : '已通过安全扫描',
     SCAN_FAILED : '未通过安全扫描',
