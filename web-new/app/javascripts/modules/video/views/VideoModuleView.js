@@ -38,10 +38,11 @@
                 });
             },
             render : function () {
-                this.$el.html(this.template()).append(VideoModuleToolbarView.getInstance().render().$el)
+                this.$el.append(VideoModuleToolbarView.getInstance().render().$el)
                     .append(VideoListView.getInstance({
                         collection : VideosCollection.getInstance()
-                    }).render().$el);
+                    }).render().$el)
+                    .append(this.template());
 
                 this.rendered = true;
                 return this;
