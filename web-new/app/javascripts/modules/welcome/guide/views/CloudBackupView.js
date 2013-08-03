@@ -105,7 +105,7 @@
                             alert(resp.msg);
                             // where to show?
                         }
-                    });
+                    }.bind(this));
                 } else {
                     switch (this.userModel.validationError) {
                     case 'username':
