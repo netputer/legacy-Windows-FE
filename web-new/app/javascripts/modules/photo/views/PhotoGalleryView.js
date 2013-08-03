@@ -174,7 +174,7 @@
                             threadTemplate : this.options.threadTemplate,
                             itemTemplate : this.options.itemTemplate
                         });
-                        this.$el.prepend(this.phonePhotoView.render().$el);
+                        this.$el.append(this.phonePhotoView.render().$el);
                     } else {
                         this.phonePhotoView.$el.removeClass('w-layout-hidden');
                     }
@@ -188,7 +188,7 @@
                             threadTemplate : this.options.threadTemplate,
                             itemTemplate : this.options.itemTemplate
                         });
-                        this.$el.prepend(this.libPhotoView.render().$el);
+                        this.$el.append(this.libPhotoView.render().$el);
                     } else {
                         this.libPhotoView.$el.removeClass('w-layout-hidden');
                     }
@@ -202,7 +202,7 @@
                             threadTemplate : this.options.threadTemplate,
                             itemTemplate : this.options.itemTemplate
                         });
-                        this.$el.prepend(this.cloudPhotoView.render().$el.addClass('cloud'));
+                        this.$el.append(this.cloudPhotoView.render().$el.addClass('cloud'));
                     } else {
                         this.cloudPhotoView.$el.removeClass('w-layout-hidden');
                     }

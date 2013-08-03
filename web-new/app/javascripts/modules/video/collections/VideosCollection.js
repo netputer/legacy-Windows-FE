@@ -33,7 +33,7 @@
 
                 var result = [];
                 _.each(resp.body, function (videos) {
-                    result.concat(videos);
+                    result = result.concat(videos);
                 });
 
                 return result;
@@ -101,6 +101,7 @@
                         syncing = false;
                         this.trigger('syncEnd');
                     }
+
                     if (!!data) {
                         this.trigger('update');
                     } else {
@@ -169,6 +170,20 @@
                 });
 
                 return deferred.promise();
+            },
+            getThumbsAsync : function (ids) {
+                var deferred = $.Deferred();
+
+                _.each(ids, function (id) {
+                    this.get(id).getThumbnailAsync();
+                }, this);
+
+                return deferred.promise();
+            },
+            getSelectedVideo : function () {
+                return this.filter(function (video) {
+                    return video.get('selected');
+                });
             }
         });
 
@@ -182,20 +197,14 @@
 
                     videosCollection.on('refersh', function (videosCollection) {
                         PIMCollection.getInstance().get(6).set({
-                            count : videosCollection.length
+                            count : Device.get('isMounted') ? 0 : videosCollection.length
                         });
                     });
 
                     Device.on('change:isMounted', function (Device, isMounted) {
-                        if (isMounted) {
-                            PIMCollection.getInstance().get(6).set({
-                                count : 0
-                            });
-                        } else {
-                            PIMCollection.getInstance().get(6).set({
-                                count : videosCollection.length
-                            });
-                        }
+                        PIMCollection.getInstance().get(6).set({
+                            count : isMounted ? 0 : videosCollection.length
+                        });
                     });
                 }
                 return videosCollection;

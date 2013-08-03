@@ -105,16 +105,15 @@
                         this.initAutoClose();
 
                         this.countDown();
-
-                        if (this.blockWindow) {
-                            WindowController.releaseWindowAsync();
-                        }
                     }
                 }, this);
 
                 var removeHandler = function () {
                     IO.Backend.Device.offmessage(sessionHandler);
                     this.off(EventsMapping.REMOVE, removeHandler);
+                    if (this.blockWindow) {
+                        WindowController.releaseWindowAsync();
+                    }
                 };
                 this.on(EventsMapping.REMOVE, removeHandler);
 
@@ -126,9 +125,6 @@
                         }
                     }).always(function () {
                         IO.Backend.Device.offmessage(sessionHandler);
-                        if (this.blockWindow) {
-                            WindowController.releaseWindowAsync();
-                        }
                     }.bind(this));
                 }, this);
 
