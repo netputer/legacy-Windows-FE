@@ -12,7 +12,8 @@
         'Account',
         'ui/TemplateFactory',
         'utilities/ValidateEmail',
-        'guide/views/CardView'
+        'guide/views/CardView',
+        'backuprestore/BackupRestoreService'
     ], function (
         $,
         Backbone,
@@ -25,7 +26,8 @@
         Account,
         TemplateFactory,
         validateEmail,
-        CardView
+        CardView,
+        BackupRestoreService
     ) {
 
         var UserModel = Backbone.Model.extend({
@@ -123,9 +125,28 @@
                     }
                 }
             },
+            cloudBackupSuccess : function () {
+                console.log(this);
+
+                this.$('.section').css('-webkit-transform', 'translate3d(0, -100%, 0)');
+                setTimeout(function () {
+                    this.trigger('next');
+                }.bind(this), 3000);
+
+                // 作用域问题！
+            }.bind(this),
             clickButtonAction : function () {
                 if (!Account.get('isLogin')) {
-                    this.$('.section').css('-webkit-transform', 'translate3d(0, -100%, 0)');
+                    Account.regAsync(i18n.welcome.GUIDE_REG_LOGIN_AND_BACKUP).done(function () {
+                        var handler = IO.Backend.onmessage({
+                            'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
+                        }, function (data) {
+                            IO.Backend.offmessage(handler);
+                            BackupRestoreService.setRemoteAutoBackupSwitchAsync().done(this.cloudBackupSuccess);
+                        }, this);
+                    });
+                } else {
+                    BackupRestoreService.setRemoteAutoBackupSwitchAsync().done(this.cloudBackupSuccess);
                 }
             },
             clickPrivacy : function (evt) {
@@ -149,10 +170,10 @@
                 xhr.send();
             },
             events :  {
-                'click .button-reg' : 'clickButtonReg',
-                'click .privacy' : 'clickPrivacy',
-                'click .button-login' : 'clickButtonLogin',
-                'click .captcha-image' : 'clickCaptchaImage'
+                // 'click .button-reg' : 'clickButtonReg',
+                // 'click .privacy' : 'clickPrivacy',
+                // 'click .button-login' : 'clickButtonLogin',
+                // 'click .captcha-image' : 'clickCaptchaImage'
             }
         });
 

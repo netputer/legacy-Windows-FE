@@ -70,6 +70,35 @@
 
                 return deferred.promise();
             },
+            regAsync : function (title, source, platform) {
+                var deferred = $.Deferred();
+
+                if (!this.get('isLogin')) {
+                    if (platform) {
+                        platform = (platform === this.TQQ || platform === this.QZONE) ? this.QQ : platform;
+                    }
+
+                    IO.requestAsync({
+                        url : CONFIG.actions.ACCOUNT_REGIST,
+                        data : {
+                            title : title || '',
+                            source : source || '',
+                            platform : platform || ''
+                        },
+                        success : function (resp) {
+                            if (resp.state_code === 200) {
+                                deferred.resolve(resp);
+                            } else {
+                                deferred.reject(resp);
+                            }
+                        }
+                    });
+                } else {
+                    deferred.resolve();
+                }
+
+                return deferred.promise();
+            },
             loginAsync : function (title, source, platform) {
                 var deferred = $.Deferred();
 

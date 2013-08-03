@@ -35,7 +35,7 @@
             <button class="primary button-action">{{= it.action }}</button>
         </nav>
     </section>
-    <section class="section vbox">
+    <!-- <section class="section vbox">
         <div class="stage vbox">
             <h1 class="text-secondary">{{= i18n.welcome.GUIDE_REG }}</h1>
             <p class="text-secondary desc">{{= i18n.welcome.GUIDE_REG_DESC }}</p>
@@ -84,20 +84,15 @@
             <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
             <button class="primary button-reg">{{= i18n.welcome.GUIDE_REG_NOW }}</button>
         </nav>
-    </section>
+    </section> -->
     <section class="section vbox">
         <div class="stage">
-            <div class="hbox">
-                <hr />
-                <div class="log"></div>
-                <hr />
-            </div>
-            <div class="hbox success">
-                <div class="icon-pass"></div>
-                <p class="text-secondary">
-                    {{= i18n.welcome.GUIDE_CLOUD_BACKUP_SUCCESS }}
-                </p>
-            </div>
+            <h1 class="text-secondary">{{= i18n.misc.CLOUD_BACKUP }}</h1>
+            <p class="text-secondary desc">
+                <span class="icon-pass"></span>
+                <span class="text-secondary">{{= i18n.welcome.GUIDE_CLOUD_BACKUP_SUCCESS }}</span>
+            </p>
+            <div class="bg"></div>
         </div>
     </section>
 </script>
