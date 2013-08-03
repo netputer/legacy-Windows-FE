@@ -395,7 +395,8 @@
 
                 sortMenu.on('select', function (data) {
                     this.parseSortData(data);
-                    if (appList.$el.data('smart-list-sortby') === 'base_info.last_update_time') {
+                    if (appList.$el.data('smart-list-sortby') === 'base_info.last_update_time' ||
+                            appList.$el.data('smart-list-sortby') === 'base_info.apk_size') {
                         appList.sortModels(false);
                     } else {
                         appList.sortModels(true);
