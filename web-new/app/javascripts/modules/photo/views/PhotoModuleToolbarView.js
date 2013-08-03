@@ -97,9 +97,7 @@
 
                 this.$('.button-delete, .button-export').prop({
                     disabled : (!Device.get('isConnected') && !isCloud) || targetCollection.length === 0 ||
-                        targetCollection.filter(function (photo) {
-                            return photo.get('selected');
-                        }).length === 0
+                        targetCollection.getSelectedPhoto().length === 0
                 });
 
                 this.$('.button-fullscreen').prop({
