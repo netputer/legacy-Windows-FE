@@ -142,7 +142,7 @@
                 xhr.responseType = 'blob';
 
                 xhr.onload = function (e) {
-                    var blob = new Blob([this.response]);
+                    var blob = new window.Blob([this.response]);
                     $img.attr('src', window.URL.createObjectURL(blob));
                 };
 
