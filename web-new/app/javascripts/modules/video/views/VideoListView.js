@@ -75,11 +75,11 @@
                         set : function (value) {
                             loading = Boolean(value);
                             if (loading) {
-                                this.$('> .w-video-loading').css({
+                                this.$el.parent().find('.w-video-loading').css({
                                     'display' : '-webkit-box'
                                 });
                             } else {
-                                this.$('> .w-video-loading').hide();
+                                this.$el.parent().find('.w-video-loading').hide();
                             }
                         }
                     },
@@ -90,9 +90,9 @@
                         set : function (value) {
                             listLoading = Boolean(value);
                             if (listLoading) {
-                                this.$('> .w-video-list-loading').show();
+                                this.$el.parent().find('.w-video-list-loading').show();
                             } else {
-                                this.$('> .w-video-list-loading').hide();
+                                this.$el.parent().find('.w-video-list-loading').hide();
                             }
                         }
                     }
@@ -118,7 +118,7 @@
                 });
 
                 this.listenTo(Backbone, 'video.loadingUpdate', function (percent) {
-                    this.$('.w-video-loading-percent').html(percent.current + '%');
+                    this.$el.parent().find('.w-video-loading-percent').html(percent.current + '%');
                 });
 
                 KeyboardHelper.on('keydown', this.keyDown.bind(this));
