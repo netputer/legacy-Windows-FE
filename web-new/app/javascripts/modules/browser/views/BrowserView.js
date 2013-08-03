@@ -17,8 +17,7 @@
         'browser/views/BrowserToolbarView',
         'browser/views/InfoPanelView',
         'browser/views/AppDependencyView',
-        'doraemon/collections/ExtensionsCollection',
-        'main/MainRouter'
+        'doraemon/collections/ExtensionsCollection'
     ], function (
         Backbone,
         _,
@@ -34,8 +33,7 @@
         BrowserToolbarView,
         InfoPanelView,
         AppDependencyView,
-        ExtensionsCollection,
-        MainRouter
+        ExtensionsCollection
     ) {
         console.log('BrowserView - File loaded. ');
 
@@ -55,8 +53,6 @@
                 } else {
                     this.progress = 80;
                 }
-
-                MainRouter.navigate('browser/' + this.model.id + '/' + encodeURIComponent(iframe.contentWindow.location.href));
 
                 if (iframe.src === 'http://apps.wandoujia.com/') {
                     var endTime = new Date().getTime();

@@ -113,32 +113,6 @@ button {
         margin-left: 4px
     }
 
-    &.transparent {
-        background: transparent;
-        border-color: transparent;
-        border-radius: 0;
-        box-shadow: none;
-        color: $textSecondary;
-
-        &:enabled:hover:not(.active):not(:active),
-        &:enabled:focus {
-            background: transparent;
-            color: $textPrimary;
-        }
-
-        &:enabled:active,
-        &.active {
-            background: transparent;
-            box-shadow: none;
-            color: $textActive;
-        }
-
-        &.min {
-            min-width: 0;
-            padding: 2px 5px;
-        }
-    }
-
     &.min {
         height: 24px;
         padding: 2px 10px;
@@ -157,11 +131,6 @@ button {
         line-height: 18px;
         padding: 9px 15px;
         min-width: 80px;
-    }
-
-    + button,
-    + .w-ui-buttongroup {
-        margin-left: 4px
     }
 }
 

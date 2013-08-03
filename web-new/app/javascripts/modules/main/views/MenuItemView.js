@@ -12,7 +12,6 @@
         'Log',
         'Device',
         'main/collections/PIMCollection',
-        'main/MainRouter',
         'app/collections/AppsCollection'
     ], function (
         doT,
@@ -26,7 +25,6 @@
         log,
         Device,
         PIMCollection,
-        MainRouter,
         AppsCollection
     ) {
         console.log('MenuItemView - File loaded. ');

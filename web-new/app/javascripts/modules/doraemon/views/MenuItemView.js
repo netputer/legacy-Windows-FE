@@ -12,8 +12,7 @@
         'FunctionSwitch',
         'Device',
         'doraemon/collections/ExtensionsCollection',
-        'browser/views/BrowserModuleView',
-        'main/MainRouter'
+        'browser/views/BrowserModuleView'
     ], function (
         Backbone,
         _,
@@ -26,8 +25,7 @@
         FunctionSwitch,
         Device,
         ExtensionsCollection,
-        BrowserModuleView,
-        MainRouter
+        BrowserModuleView
     ) {
         console.log('MenuItemView - File loaded.');
 
