@@ -9,7 +9,7 @@
         'Configuration',
         'ui/TemplateFactory',
         'ui/WindowState',
-        'ui/MideaInfoPanelView',
+        'ui/MediaInfoPanelView',
         'video/VideoService'
     ], function (
         _,
@@ -18,7 +18,7 @@
         CONFIG,
         TemplateFactory,
         WindowState,
-        MideaInfoPanelView,
+        MediaInfoPanelView,
         VideoService
     ) {
         console.log('VideoItemView - File loaded. ');
@@ -149,13 +149,9 @@
                             error : true
                         });
                     }
-                }.bind(this)).on('load', function () {
-                    if (this.model.get('is_cloud')) {
-                        this.$('.thumb').css('margin-left', -(this.$('.thumb').width() / 2)).off('load').off('error');
-                    }
                 }.bind(this));
 
-                this.infoPanel = MideaInfoPanelView.getInstance({
+                this.infoPanel = MediaInfoPanelView.getInstance({
                     $host : this.$('.button-info'),
                     model : this.model
                 });

@@ -1,4 +1,16 @@
 <templates>
+<script type="text/x-ui-template" id="video">
+    <div class="w-video-list-loading hbox">
+        {{= TemplateFactory.get('ui', 'loading') }}
+    </div>
+    <div class="w-video-loading hbox">
+        <div class="w-video-loading-icon">
+            {{= TemplateFactory.get('ui', 'loading-white') }}
+        </div>
+        <div class="w-video-loading-text">{{= i18n.video.PLAY_VIDEO_TEXT }}</div>
+        <div class="w-video-loading-percent"></div>
+    </div>
+</script>
 <script type="text/x-ui-template" id="video-item">
     <img class="thumb" src="">
     <div class="w-video-item-mask hbox">
@@ -34,16 +46,6 @@
 
 <script type="text/x-ui-template" id="video-list">
     <div class="spy"></div>
-    <div class="w-video-list-loading hbox">
-        {{= TemplateFactory.get('ui', 'loading') }}
-    </div>
-    <div class="w-video-loading hbox">
-        <div class="w-video-loading-icon">
-            {{= TemplateFactory.get('ui', 'loading-white') }}
-        </div>
-        <div class="w-video-loading-text">{{= i18n.video.PLAY_VIDEO_TEXT }}</div>
-        <div class="w-video-loading-percent"></div>
-    </div>
     <div class="empty-tip text-secondary"></div>
     <div class="mask"></div>
 </script>

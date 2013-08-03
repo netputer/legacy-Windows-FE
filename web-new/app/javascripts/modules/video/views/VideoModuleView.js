@@ -3,6 +3,8 @@
     define([
         'underscore',
         'backbone',
+        'doT',
+        'ui/TemplateFactory',
         'video/views/VideoModuleToolbarView',
         'video/views/ImportVideoView',
         'video/views/VideoListView',
@@ -10,6 +12,8 @@
     ], function (
         _,
         Backbone,
+        doT,
+        TemplateFactory,
         VideoModuleToolbarView,
         ImportVideoView,
         VideoListView,
@@ -19,6 +23,7 @@
 
         var VideoModuleView = Backbone.View.extend({
             className : 'w-video-module-main module-main vbox',
+            template : doT.template(TemplateFactory.get('video', 'video')),
             initialize : function () {
                 var rendered = false;
                 Object.defineProperties(this, {
@@ -36,7 +41,8 @@
                 this.$el.append(VideoModuleToolbarView.getInstance().render().$el)
                     .append(VideoListView.getInstance({
                         collection : VideosCollection.getInstance()
-                    }).render().$el);
+                    }).render().$el)
+                    .append(this.template());
 
                 this.rendered = true;
                 return this;
