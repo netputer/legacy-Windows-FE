@@ -7,24 +7,28 @@
 
 .w-video-module-main {
     background-image: url(../images/texture-grey-bg-80X80.png);
+
+    .w-media-gallery {
+        top: 36px;
+    }
 }
 
 .w-video-item {
     @extend .w-media-item;
 
     .w-video-item-mask {
+        height: 100%;
+        left: 0;
         position: absolute;
         top: 0;
-        left: 0;
         width: 100%;
-        height: 100%;
         -webkit-box-align: center;
         -webkit-box-pack: center;
 
         .w-video-item-button {
-            width: 30px;
-            height: 30px;
             @include sprite-sprite(video_play);
+            height: sprite-sprite-height(video_play);
+            width: sprite-sprite-width(video_play);
         }
 
         &:hover {
@@ -33,12 +37,18 @@
             }
         }
     }
+
+    &.error .error {
+        display: block;
+        top: 10%;
+    }
 }
 
 .w-video-loading {
     background-color: rgba(0, 0, 0, .8);
     border-radius: 3px;
     color: #FFF;
+    display: none;
     left: 50%;
     padding: 5px 10px;
     position: fixed;
@@ -67,6 +77,12 @@
     .w-video-loading-percent {
         text-align: center;
         width: 50px;
+    }
+}
+
+.w-video-list-loading {
+    .w-ui-loading {
+        display: block;
     }
 }
 

@@ -15,7 +15,8 @@
         'ui/KeyboardHelper',
         'Device',
         'video/views/VideoThreadView',
-        'video/VideoService'
+        'video/VideoService',
+        'utilities/FormatDate'
     ], function (
         _,
         Backbone,
@@ -31,7 +32,8 @@
         KeyboardHelper,
         Device,
         VideoThreadView,
-        VideoService
+        VideoService,
+        FormatDate
     ) {
         console.log('VideoListView -File loaded. ');
 
@@ -46,6 +48,7 @@
                     Backbone.trigger('video:list:scroll', evt);
                 }.bind(this), 20);
                 var loading = false;
+                var listLoading = false;
                 Object.defineProperties(this, {
                     subView : {
                         get : function () {
@@ -79,6 +82,19 @@
                                 this.$('> .w-video-loading').hide();
                             }
                         }
+                    },
+                    listLoading : {
+                        get : function () {
+                            return listLoading;
+                        },
+                        set : function (value) {
+                            listLoading = Boolean(value);
+                            if (listLoading) {
+                                this.$('> .w-video-list-loading').show();
+                            } else {
+                                this.$('> .w-video-list-loading').hide();
+                            }
+                        }
                     }
                 });
                 this.listenTo(this.collection, 'refresh', function (collection) {
@@ -90,7 +106,7 @@
                 });
 
                 this.listenTo(this.collection, 'syncStart update syncEnd refresh', function () {
-                    this.loading = this.collection.loading || this.collection.syncing;
+                    this.listLoading = this.collection.loading || this.collection.syncing;
                 });
 
                 this.listenTo(Backbone, 'video.loadingStart', function () {
@@ -159,7 +175,11 @@
                     return;
                 }
 
-                this.threads = _.sortBy(collection.groupBy('key'), function (item, key) {
+                var group = collection.groupBy(function (item) {
+                    return Number(FormatDate('yyyyMM', item.get('date_added')));
+                });
+
+                this.threads = _.sortBy(group, function (item, key) {
                     return -Number(key);
                 });
 
@@ -207,7 +227,7 @@
                 }
                 this.$el.on('scroll', this.scrollHandler);
 
-                this.loading = this.collection.loading || this.collection.syncing;
+                this.listLoading = this.collection.loading || this.collection.syncing;
                 this.listenTo(WindowState, 'resize', this.renderThread);
                 return this;
             },
