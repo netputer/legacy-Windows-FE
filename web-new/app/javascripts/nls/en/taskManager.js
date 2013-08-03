@@ -135,6 +135,13 @@ define({
     DOWNLOAD_APK_VERIFY_FAILED : 'Download error',
     NOT_SUPPORT : 'Unsupported format',
 
+    MORE_MEMORY : 'Not enough internal storage space',
+    NO_MORE_SDCARD : 'Not enough SD card space',
+    SDCARD_MOUNT : 'Please don\'t remove SD card',
+    NO_SDCARD : 'No SD card found, unable to transfer files',
+    DEVICE_NOT_FOUND : 'Connect your device to transfer',
+    DEVICE_NOT_FOUND_TIP : 'Connect your device via USB or Wi-Fi, and SnapPea will finish these tasks',
+
     SCANNING : 'Security scan in progress...',
     SCAN_PASS : 'Safe! Passed security scan.',
     SCAN_FAILED : 'Failed security scan.',
