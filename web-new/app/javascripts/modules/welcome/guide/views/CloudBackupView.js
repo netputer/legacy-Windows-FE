@@ -68,9 +68,9 @@
 
                 IO.requestAsync(CONFIG.actions.SYNC_IS_SWITCH_ON).done(function (resp) {
                     if (!resp.body.value) {
-                        deferred.resolve(resp);
+                        deferred.resolve();
                     } else {
-                        deferred.reject(resp);
+                        deferred.reject();
                     }
                 });
 
@@ -126,15 +126,12 @@
                 }
             },
             cloudBackupSuccess : function () {
-                console.log(this);
-
                 this.$('.section').css('-webkit-transform', 'translate3d(0, -100%, 0)');
+
                 setTimeout(function () {
                     this.trigger('next');
                 }.bind(this), 3000);
-
-                // 作用域问题！
-            }.bind(this),
+            },
             clickButtonAction : function () {
                 if (!Account.get('isLogin')) {
                     Account.regAsync(i18n.welcome.GUIDE_REG_LOGIN_AND_BACKUP).done(function () {
@@ -142,11 +139,16 @@
                             'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                         }, function (data) {
                             IO.Backend.offmessage(handler);
-                            BackupRestoreService.setRemoteAutoBackupSwitchAsync().done(this.cloudBackupSuccess);
+
+                            BackupRestoreService.setRemoteAutoBackupSwitchAsync().done(function () {
+                                this.cloudBackupSuccess();
+                            }.bind(this));
                         }, this);
-                    });
+                    }.bind(this));
                 } else {
-                    BackupRestoreService.setRemoteAutoBackupSwitchAsync().done(this.cloudBackupSuccess);
+                    BackupRestoreService.setRemoteAutoBackupSwitchAsync().done(function () {
+                        this.cloudBackupSuccess();
+                    }.bind(this));
                 }
             },
             clickPrivacy : function (evt) {
