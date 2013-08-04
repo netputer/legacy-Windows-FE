@@ -242,7 +242,12 @@
                 });
 
                 if (paths.length > 0) {
-                    PhotoService.importPhotosAsync(paths);
+                    PhotoService.importPhotosAsync(paths).done(function () {
+                        IO.sendCustomEventsAsync(CONFIG.events.WEB_SWITCH_MODULE, {
+                            module : 'photo',
+                            tab : 'lib'
+                        });
+                    });
                 }
 
                 this.close();
