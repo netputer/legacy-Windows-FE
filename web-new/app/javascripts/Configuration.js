@@ -315,7 +315,8 @@
                 APP_WASH_SCAN : 'http://apps.wandoujia.com/api/v1/xibaibai/scanner',
                 APP_STARTER : 'http://apps.wandoujia.com/api/v1/apps?app_type=starter',
 
-                ACCOUNT_REG : 'https://account.wandoujia.com/v1/wandoujia/register.json'
+                CLOUD_REG : 'https://account.wandoujia.com/v4/api/register',
+                CLOUD_SECCODE : 'https://account.wandoujia.com/v4/api/seccode'
             },
             events : {
                 // Backend events - Public events
@@ -325,6 +326,7 @@
                 DEVICE_ID_CHANGE : 'device.change_to',
                 WEB_NAVIGATE : 'web.navigate',
                 WEB_FORCE_NAVIGATE : 'web.force.navigate',
+                WEB_SWITCH_MODULE : 'web.switch.module',
                 SETTING_PRIVACY : 'setting.privacy',
                 THEME_CHANGED : 'themes.folder_changed',
                 SETTING_APP_CHANGE : 'app.setting.changed',
