@@ -245,7 +245,7 @@
 
                 if (paths.length > 0) {
                     PhotoService.importPhotosAsync(paths).done(function () {
-                        IO.sendCustomEventsAsync(CONFIG.events.WEB_SWITCH_MODULE, {
+                        Backbone.trigger('switchModule', {
                             module : 'photo',
                             tab : 'lib'
                         });
