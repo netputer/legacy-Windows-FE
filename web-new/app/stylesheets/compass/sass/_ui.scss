@@ -22,6 +22,7 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
     position: absolute;
     -webkit-transition: opacity .2s linear;
+    -webkit-transform: translate3d(0, 0, 0);
 
     .arrow {
         border: {
