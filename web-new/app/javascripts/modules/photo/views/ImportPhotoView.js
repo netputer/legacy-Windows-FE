@@ -15,7 +15,8 @@
         'photo/PhotoService',
         'photo/models/PhotoModel',
         'photo/views/PhotoListItemView',
-        'IO'
+        'IO',
+        'Configuration'
     ], function (
         Backbone,
         doT,
@@ -31,7 +32,8 @@
         PhotoService,
         PhotoModel,
         PhotoListItemView,
-        IO
+        IO,
+        CONFIG
     ) {
         console.log('ImportPhotoView - File loaded.');
 

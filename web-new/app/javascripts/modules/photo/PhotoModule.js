@@ -2,14 +2,20 @@
 (function (window, document) {
     require([
         'jquery',
+        'backbone',
         'photo/views/PhotoModuleToolbarView',
         'photo/views/PhotoGalleryView',
-        'photo/views/SlideShowView'
+        'photo/views/SlideShowView',
+        'IO',
+        'Configuration'
     ], function (
         $,
+        Backbone,
         PhotoModuleToolbarView,
         PhotoGalleryView,
-        SlideShowView
+        SlideShowView,
+        IO,
+        CONFIG
     ) {
         var fragment = document.createDocumentFragment();
 
