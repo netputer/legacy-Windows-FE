@@ -17,11 +17,6 @@
                     if (this.$('.w-wanxiaodou-img').length === 0) {
                         $tipCtn.addClass('center fix-text');
                         this.$('.text-tip').before(doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}));
-                    } else {
-
-                        var w = doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({});
-                        this.$('.w-wanxiaodou-img').remove();
-                        this.$('.text-tip').before(w);
                     }
 
                     $tipCtn.toggleClass('w-layout-hide', !show);

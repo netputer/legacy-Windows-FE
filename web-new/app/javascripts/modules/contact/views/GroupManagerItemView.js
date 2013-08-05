@@ -56,7 +56,7 @@
                 this.renameA = this.$('.rename .button-rename');
                 this.input = this.$('.new-name');
 
-                var isDelete = _.contains(GroupManagerContextModel.get('del'), this.model.get.id);
+                var isDelete = _.contains(GroupManagerContextModel.get('del'), this.model.id);
                 if (isDelete) {
                     this.setDelete();
                 }

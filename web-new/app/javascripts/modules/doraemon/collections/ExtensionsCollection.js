@@ -194,7 +194,8 @@
 
                 return deferred.promise();
             },
-            unstarredAsync : function (ids) {
+            unstarredAsync : function (ids, force) {
+                force = force ? true : false;
                 var deferred = $.Deferred();
 
                 var devs = [];
@@ -213,13 +214,13 @@
 
                 $.when(unstarDevsAsync.call(this, devs), unstarNormalsAsync.call(this, normals))
                     .done(function () {
-                        if (ids.length < this.models.length) {
+
+                        if (force || ids.length < this.models.length) {
                             this.remove(ids);
                         }
-
                         deferred.resolve();
-                    }.bind(this))
-                    .fail(deferred.reject);
+
+                    }.bind(this)).fail(deferred.reject);
 
                 return deferred.promise();
             },

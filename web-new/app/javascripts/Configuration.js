@@ -326,6 +326,7 @@
                 DEVICE_ID_CHANGE : 'device.change_to',
                 WEB_NAVIGATE : 'web.navigate',
                 WEB_FORCE_NAVIGATE : 'web.force.navigate',
+                WEB_SWITCH_MODULE : 'web.switch.module',
                 SETTING_PRIVACY : 'setting.privacy',
                 THEME_CHANGED : 'themes.folder_changed',
                 SETTING_APP_CHANGE : 'app.setting.changed',
@@ -475,9 +476,9 @@
                 CONTACT_DESCRIPTION_ITEM_TYPE_PHONE_NUMBER : 0,
 
                 /* MUSIC ITUNES IMPORT TYPE*/
-                ITUNES_IMPORT_ALL : '0',
-                ITUNES_IMPORT_PLAYLIST : '1',
-                ITUNES_IMPORT_AUDIOS : '2',
+                ITUNES_IMPORT_ALL : 0,
+                ITUNES_IMPORT_PLAYLIST : 1,
+                ITUNES_IMPORT_AUDIOS : 2,
 
                 /* SMS Conversation Type*/
                 SMS_CONVERSATION_TYPE_ALL : 0,

@@ -38,7 +38,7 @@
                 var prefix = '~';
 
                 if (contact.get('name') !== undefined) {
-                    prefix = contact.get('name').prefix || '~';
+                    prefix = contact.get('name').family_name_spell || contact.get('name').prefix || '~';
                 }
                 return prefix;
             },
@@ -584,8 +584,22 @@
                 return this.filter(function (model) {
                     var prefix = model.get('name').prefix;
                     var name = model.get('displayName');
-                    return reg.test(name) || reg.test(prefix);
+
+                    if (!(reg.test(name) || reg.test(prefix))) {
+
+                        var match = false;
+                        var phones = model.get('phone') || [];
+                        _.every(phones, function (phone) {
+                            match = reg.test(phone.number);
+                            return !match;
+                        });
+
+                        return match;
+                    }
+
+                    return true;
                 });
+
             }
         });
 
