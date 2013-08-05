@@ -50,7 +50,7 @@ define({
     GUIDE_BIND_NOW : 'Link phone now',
     GUIDE_BIND_DESC : 'After linking, SnapPea will auto-backup your contacts, messages, and photos. It makes it easy to restore and easy to connect. If this isn\'t your computer, don\'t link!',
     GUIDE_BIND_SUCCESS : 'Congrats, {1} phone is linked. SnapPea will auto-backup your <strong>contacts, messages, and photos</strong>',
-    GUIDE_CLOUD_BACKUP_SUCCESS : 'Congrats, you\'ve already registered and turned on cloud backups.',
+    GUIDE_CLOUD_BACKUP_SUCCESS : '恭喜，您已经成功开启云备份！只要您手机连上了电脑，豌豆荚就会自动备份您的 应用、联系人和短信了。',
     GUIDE_REG : 'Register for SnapPea',
     GUIDE_REG_DESC : 'To turn on cloud albums you first have to register an account',
     GUIDE_REG_NOW : 'Register now',

@@ -12,7 +12,8 @@
         'Account',
         'ui/TemplateFactory',
         'utilities/ValidateEmail',
-        'guide/views/CardView'
+        'guide/views/CardView',
+        'backuprestore/BackupRestoreService'
     ], function (
         $,
         Backbone,
@@ -25,7 +26,8 @@
         Account,
         TemplateFactory,
         validateEmail,
-        CardView
+        CardView,
+        BackupRestoreService
     ) {
 
         var UserModel = Backbone.Model.extend({
@@ -66,9 +68,9 @@
 
                 IO.requestAsync(CONFIG.actions.SYNC_IS_SWITCH_ON).done(function (resp) {
                     if (!resp.body.value) {
-                        deferred.resolve(resp);
+                        deferred.resolve();
                     } else {
-                        deferred.reject(resp);
+                        deferred.reject();
                     }
                 });
 
@@ -105,7 +107,7 @@
                             alert(resp.msg);
                             // where to show?
                         }
-                    });
+                    }.bind(this));
                 } else {
                     switch (this.userModel.validationError) {
                     case 'username':
@@ -123,9 +125,30 @@
                     }
                 }
             },
+            cloudBackupSuccess : function () {
+                this.$('.section').css('-webkit-transform', 'translate3d(0, -100%, 0)');
+
+                setTimeout(function () {
+                    this.trigger('next');
+                }.bind(this), 3000);
+            },
             clickButtonAction : function () {
                 if (!Account.get('isLogin')) {
-                    this.$('.section').css('-webkit-transform', 'translate3d(0, -100%, 0)');
+                    Account.regAsync(i18n.welcome.GUIDE_REG_LOGIN_AND_BACKUP).done(function () {
+                        var handler = IO.Backend.onmessage({
+                            'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
+                        }, function (data) {
+                            IO.Backend.offmessage(handler);
+
+                            BackupRestoreService.setRemoteAutoBackupSwitchAsync().done(function () {
+                                this.cloudBackupSuccess();
+                            }.bind(this));
+                        }, this);
+                    }.bind(this));
+                } else {
+                    BackupRestoreService.setRemoteAutoBackupSwitchAsync().done(function () {
+                        this.cloudBackupSuccess();
+                    }.bind(this));
                 }
             },
             clickPrivacy : function (evt) {
@@ -149,10 +172,10 @@
                 xhr.send();
             },
             events :  {
-                'click .button-reg' : 'clickButtonReg',
-                'click .privacy' : 'clickPrivacy',
-                'click .button-login' : 'clickButtonLogin',
-                'click .captcha-image' : 'clickCaptchaImage'
+                // 'click .button-reg' : 'clickButtonReg',
+                // 'click .privacy' : 'clickPrivacy',
+                // 'click .button-login' : 'clickButtonLogin',
+                // 'click .captcha-image' : 'clickCaptchaImage'
             }
         });
 
