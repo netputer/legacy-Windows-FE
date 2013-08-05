@@ -144,18 +144,19 @@
 
                 var $img = $(new window.Image());
                 var loadHandler = function () {
-                    if (this.currentPhoto.get('originalPic') === $img.data('path')) {
+                    if (this.currentPhoto.get('originalPic') === $img.attr('src')) {
                         this.currentPhoto.set('widthLtHeight', $img[0].width > $img[0].height);
                         this.$('.photo').attr({
-                            src : $img[0].src
-                        }).addClass('rotate-' + this.currentPhoto.get('orientation'));
+                            src : $img.attr('src')
+                        }).removeClass('rotate-90 rotate-180 rotate-270').addClass('rotate-' + this.currentPhoto.get('orientation'));
 
                         this.adjustSize();
 
                         this.$('.photo').removeClass('hide');
 
                         if (playing) {
-                            this.playingTimer = setTimeout(this.showNext.bind(this), 4000);
+                            clearTimeout(this.playingTimer);
+                            this.playingTimer = setTimeout(this.showNext.bind(this), 3000);
                         }
                     }
                     $img.remove();
@@ -168,8 +169,8 @@
 
                 $img.one('load', loadHandler)
                     .one('error', errorHandler)
-                    .attr('src', this.currentPhoto.get('originalPic'))
-                    .data('path', this.currentPhoto.get('originalPic'));
+                    .attr('src', this.currentPhoto.get('originalPic'));
+
             },
             loadAsync : function () {
                 var deferred = $.Deferred();
@@ -284,10 +285,6 @@
                 var $photo = this.$('.photo');
 
                 var loadPhoto = function () {
-                    $photo.attr({
-                        src : ''
-                    }).removeClass('rotate-90 rotate-180 rotate-270');
-
                     this.currentPhoto = photo;
 
                     if (!photo.get('originalPic')) {
