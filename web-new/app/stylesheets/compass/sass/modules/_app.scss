@@ -202,16 +202,6 @@
         .transfer-all {
             display: none;
         }
-
-        .wash {
-            .beta {
-                @include sprite-sprite(beta);
-                display: inline-block;
-                height: 12px;
-                margin-left: 5px;
-                width: 25px;
-            }
-        }
     }
 }
 

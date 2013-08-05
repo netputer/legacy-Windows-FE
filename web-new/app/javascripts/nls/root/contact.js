@@ -154,6 +154,7 @@ define({
 
     BATCH_CONTACT_TITLE : '选择了 {1} 个联系人',
     ALERT_SELECT_MORE_CSV_FILE : '很抱歉，暂时不支持一次导入多个 csv 文件。请重新选择一个 csv 文件。',
+    IMPORT_FAIL_TYPE_FILE : '无效的 .vcf 或者 .csv 文件',
     IMPORT_CONTACTS_FAIL : '导入联系人失败',
     CONTACT_BATCH_GROUP_PROGRESS : '正在分组，请稍候...',
     CONTACT_BATCH_GROUP_SUCCESS : '成功为 {1} 个联系人设置分组',

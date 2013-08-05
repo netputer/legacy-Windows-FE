@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="wash">
-            <button class="button-wash">{{= i18n.app.APP_WASH }}<div class="beta"></div></button>
+            <button class="button-wash">{{= i18n.app.APP_WASH }}</button>
             <div class="des text-thirdly">
                 {{= i18n.app.APP_WASH_DES }}
             </div>

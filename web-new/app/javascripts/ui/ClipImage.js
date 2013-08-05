@@ -611,7 +611,7 @@
             createResizeEl : function (container) {
 
                 var els = ['tl', 'tr', 'bl', 'br'];
-                $.eachp(els, function (name) {
+                $.each(els, function (name) {
 
                     container.append(
                         $('<div/>').addClass('clip-resize-el clip-resize-' + name).append('<span>')
