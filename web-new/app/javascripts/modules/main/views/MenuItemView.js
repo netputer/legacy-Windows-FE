@@ -60,17 +60,6 @@
                                 });
                             }
                         });
-
-                        var tab;
-                        if (model.id === 3) {
-                            if (AppsCollection.getInstance().getUpdatableApps().length > 0) {
-                                tab = 'update';
-                            } else {
-                                tab = 'normal';
-                            }
-                        } else {
-                            tab = model.get('tab');
-                        }
                     }
                 }, this);
 

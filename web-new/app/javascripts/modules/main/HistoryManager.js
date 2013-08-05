@@ -40,8 +40,6 @@
         var alert = window.alert;
         var history = window.history;
 
-        var pimCollection = PIMCollection.getInstance();
-
         var backStack = [];
         var forwarStack = [];
 
@@ -124,7 +122,6 @@
             'data.channel' : CONFIG.events.NAVIGATE_REFRESH
         }, function (data) {
             var SnapPea = window.SnapPea;
-            var targetCollection;
             switch (SnapPea.CurrentModule) {
             case 'browser':
                 var iframe = $('#' + CONFIG.enums.IFRAME_PREFIX + SnapPea.CurrentTab + ' iframe')[0];

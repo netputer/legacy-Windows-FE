@@ -296,7 +296,9 @@
                     'wrapWithShell' : wrapWithShell
                 });
             },
-            clickButtonSetWallpaper : function () {},
+            clickButtonSetWallpaper : function () {
+                return;
+            },
             clickButtonTop : function () {
                 this.trigger('top');
 

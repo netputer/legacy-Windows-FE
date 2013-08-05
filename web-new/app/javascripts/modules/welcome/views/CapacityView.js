@@ -21,10 +21,6 @@
     ) {
         console.log('CapacityView - File loaded.');
 
-        var setTimeout = window.setTimeout;
-        var setInterval = window.setInterval;
-        var clearInterval = window.clearInterval;
-
         var CapacityView = PopupPanel.extend({
             className : 'w-ui-popup-tip w-layout-hide',
             contentTemplate : doT.template(TemplateFactory.get('welcome', 'capacity')),

@@ -334,27 +334,4 @@
             }
         }
     }
-
-    button {
-        &:not(.primary) {
-            background: transparent;
-            border-color: transparent;
-            border-radius: 0;
-            box-shadow: none;
-            color: $textSecondary;
-
-            &:enabled:hover:not(.active):not(:active),
-            &:enabled:focus {
-                background: transparent;
-                color: $textPrimary;
-            }
-
-            &:enabled:active,
-            &.active {
-                background: transparent;
-                box-shadow: none;
-                color: $textActive;
-            }
-        }
-    }
 }

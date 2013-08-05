@@ -10,7 +10,7 @@
 
             openRequest.onupgradeneeded = function (evt) {
                 db = evt.target.result;
-                var store = db.createObjectStore('welcome', {
+                db.createObjectStore('welcome', {
                     keyPath : 'key'
                 });
             };

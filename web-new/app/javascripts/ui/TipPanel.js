@@ -23,8 +23,6 @@
     ) {
         console.log('TipPanel - File loaded.');
 
-        var setTimeout = window.setTimeout;
-
         var EventsMapping = UIHelper.EventsMapping;
 
         var TipPanel = Backbone.View.extend({
