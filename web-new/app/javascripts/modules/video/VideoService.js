@@ -301,6 +301,51 @@
             return deferred.promise();
         };
 
+        var lastSessionId;
+
+        VideoService.playVideo = function (id) {
+            if (lastSessionId) {
+                VideoService.cancelPlayVideo();
+            }
+
+            var session = _.uniqueId('video.play_');
+            lastSessionId = session;
+            Backbone.trigger('video.loadingStart');
+
+            IO.requestAsync({
+                url : CONFIG.actions.VIDEO_PLAY,
+                data : {
+                    video_id : id,
+                    session : session
+                }
+            }).done(function (resp) {
+                Backbone.trigger('video.loadingEnd');
+            });
+
+            var progressHandler = IO.Backend.Device.onmessage({
+                'data.channel' : session
+            }, function (msg) {
+                Backbone.trigger('video.loadingUpdate', msg);
+
+                if (msg.current === msg.total) {
+                    IO.Backend.Device.offmessage(progressHandler);
+                }
+            }, this);
+        };
+
+        VideoService.cancelPlayVideo = function (sessionId) {
+            var cancelSessionId = sessionId || lastSessionId;
+
+            IO.requestAsync({
+                url : CONFIG.actions.VIDEO_CANCEL,
+                data : {
+                    session : cancelSessionId
+                }
+            });
+
+            Backbone.trigger('video.loadingEnd');
+        };
+
         return VideoService;
     });
 }(this));

@@ -6,25 +6,27 @@
         'underscore',
         'backbone',
         'doT',
+        'IO',
         'Configuration',
         'Environment',
         'ui/TemplateFactory',
         'utilities/StringUtil',
-        'photo/views/PhotoItemView'
+        'video/views/VideoItemView'
     ], function (
         _,
         Backbone,
         doT,
+        IO,
         CONFIG,
         Environment,
         TemplateFactory,
         StringUtil,
-        PhotoItemView
+        VideoItemView
     ) {
-        console.log('PhotoThreadView - File loaded. ');
+        console.log('VideoThreadView - File loaded. ');
 
-        var PhotoThreadView = Backbone.View.extend({
-            template : doT.template(TemplateFactory.get('photo', 'photo-thread')),
+        var VideoThreadView = Backbone.View.extend({
+            template : doT.template(TemplateFactory.get('video', 'video-thread')),
             className : 'w-media-thread',
             initialize : function () {
                 var subView = [];
@@ -39,7 +41,7 @@
 
                     this.$('.count').html(this.options.models.length);
 
-                    Backbone.trigger('photo:selected:change', selectedItem);
+                    Backbone.trigger('video:selected:change', selectedItem);
                 }.bind(this));
                 Object.defineProperties(this, {
                     subView : {
@@ -54,9 +56,9 @@
                     }
                 });
 
-                this.listenTo(this.options.models[0].collection, 'remove', function (photo) {
+                this.listenTo(this.options.models[0].collection, 'remove', function (video) {
                     var targetView = _.find(subView, function (view) {
-                        return view.model.id === photo.id;
+                        return view.model.id === video.id;
                     });
 
                     if (targetView !== undefined) {
@@ -68,7 +70,7 @@
                     }
 
                     var targetModel = _.find(this.options.models, function (model) {
-                        return model.id === photo.id;
+                        return model.id === video.id;
                     });
 
                     if (targetModel !== undefined) {
@@ -83,32 +85,26 @@
             },
             render : function () {
                 var key;
-
-                var currentType = this.options.models[0].collection.data.photo_type;
-                if (currentType === CONFIG.enums.PHOTO_PHONE_TYPE || currentType === CONFIG.enums.PHOTO_CLOUD_TYPE) {
-                    if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
-                        key = StringUtil.formatDate('yyyy 年 MM 月', this.options.models[0].get('date'));
-                    } else {
-                        key = StringUtil.formatDate('yyyy-MM', this.options.models[0].get('date'));
-                    }
+                if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
+                        Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
+                    key = StringUtil.formatDate('yyyy 年 MM 月', this.options.models[0].get('date_added'));
                 } else {
-                    key = this.options.models[0].get('key');
+                    key = StringUtil.formatDate('yyyy-MM', this.options.models[0].get('date_added'));
                 }
                 this.$el.html(this.template({
                     key : key,
                     count : this.options.models.length
                 }));
                 var fragment = document.createDocumentFragment();
-                _.each(this.options.models, function (photo) {
-                    var photoItemView = new PhotoItemView.getInstance({
-                        model : photo,
+                _.each(this.options.models, function (video) {
+                    var videoItemView = new VideoItemView.getInstance({
+                        model : video,
                         $ctn : this.options.$ctn,
                         template : this.options.itemTemplate
                     });
-                    fragment.appendChild(photoItemView.render().$el[0]);
-                    this.subView.push(photoItemView);
-                    this.listenTo(photo, 'change:selected', this.changeSelectedHandler);
+                    fragment.appendChild(videoItemView.render().$el[0]);
+                    this.subView.push(videoItemView);
+                    this.listenTo(video, 'change:selected', this.changeSelectedHandler);
                 }, this);
 
                 this.changeSelectedHandler();
@@ -121,15 +117,15 @@
                     view.remove();
                 });
                 this.subView.length = 0;
-                PhotoThreadView.__super__.remove.call(this);
+                VideoThreadView.__super__.remove.call(this);
             },
             getThumbsAsync : function () {
                 var collection = this.options.models[0].collection;
                 collection.getThumbsAsync(_.pluck(this.options.models, 'id'));
             },
             clickChecker : function (evt) {
-                _.each(this.options.models, function (photo) {
-                    photo.set({
+                _.each(this.options.models, function (video) {
+                    video.set({
                         selected : evt.target.checked
                     });
                 });
@@ -149,7 +145,7 @@
 
         var factory = _.extend({
             getInstance : function (args) {
-                return new PhotoThreadView(args);
+                return new VideoThreadView(args);
             }
         });
 

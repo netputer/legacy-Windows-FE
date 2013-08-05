@@ -11,7 +11,7 @@
         'ui/TemplateFactory',
         'ui/WindowState',
         'photo/views/SlideShowView',
-        'photo/views/PhotoInfoPanelView'
+        'ui/MediaInfoPanelView'
     ], function (
         _,
         Backbone,
@@ -21,7 +21,7 @@
         TemplateFactory,
         WindowState,
         SlideShowView,
-        PhotoInfoPanelView
+        MediaInfoPanelView
     ) {
         console.log('PhotoItemView - File loaded. ');
 
@@ -167,7 +167,7 @@
                     }
                 }.bind(this));
 
-                this.infoPanel = PhotoInfoPanelView.getInstance({
+                this.infoPanel = MediaInfoPanelView.getInstance({
                     $host : this.$('.button-info'),
                     model : this.model
                 });

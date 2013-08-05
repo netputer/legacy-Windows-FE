@@ -14,7 +14,7 @@
         'Device',
         'video/VideoService',
         'video/models/VideoModel',
-        'video/views/VideoItemView'
+        'video/views/VideoListItemView'
     ], function (
         Backbone,
         doT,
@@ -29,7 +29,7 @@
         Device,
         VideoService,
         VideoModel,
-        VideoItemView
+        VideoListItemView
     ) {
         console.log('ImportVideoView - File loaded.');
 
@@ -96,7 +96,7 @@
                 this.$el.html(this.template({}));
 
                 videoList = new SmartList({
-                    itemView : VideoItemView.getClass(),
+                    itemView : VideoListItemView.getClass(),
                     dataSet : [{
                         name : 'default',
                         getter : function () {

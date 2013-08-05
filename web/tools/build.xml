@@ -30,44 +30,26 @@
 			<path path="../src/ui/event.js" />
 			<path path="../src/ui/uibase.js" />
 			<path path="../src/ui/button.js" />
-			<path path="../src/ui/toolbar.js" />
 			<path path="../src/ui/menu.js" />
 			<path path="../src/ui/window.js" />
 			<path path="../src/ui/dialog.js" />
 			<path path="../src/ui/progressMonitor.js" />
 			<path path="../src/ui/status.js" />
-			<path path="../src/ui/selectDelegate.js" />
 			<path path="../src/ui/clipImage.js" />
 
 			<path path="../src/module/contact/contactpanel/avatarEditor.js" />
 
-			<path path="../src/module/pageManager.js" />
 
 			<path path="../src/module/photo/data.js" />
 			<path path="../src/module/photo/photoView.js" />
 			<path path="../src/module/photo/photo.js" />
-
-			<path path="../src/module/video/data.js" />
-			<path path="../src/module/video/videoContent.js" />
-			<path path="../src/module/video/videoThread.js" />
-			<path path="../src/module/video/videoItem.js" />
-			<path path="../src/module/video/video.js" />
-
-
 		</concat>
 		<concat destfile="${outputdir}/style.css" encoding="${charset}" outputencoding="${charset}">
 			<path path="../style/common.css" />
-
-
 			<path path="../style/uicss/button.css" />
 			<path path="../style/uicss/window.css" />
 			<path path="../style/uicss/misc.css" />
 			<path path="../style/uicss/clipImage.css" />
-
-			<path path="../style/photo.css" />
-
-			<path path="../style/video.css" />
-
 		</concat>
 	</target>
 	<target name="compile" depends="concat">

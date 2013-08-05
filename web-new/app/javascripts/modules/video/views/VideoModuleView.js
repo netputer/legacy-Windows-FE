@@ -3,16 +3,27 @@
     define([
         'underscore',
         'backbone',
-        'video/views/ImportVideoView'
+        'doT',
+        'ui/TemplateFactory',
+        'video/views/VideoModuleToolbarView',
+        'video/views/ImportVideoView',
+        'video/views/VideoListView',
+        'video/collections/VideosCollection'
     ], function (
         _,
         Backbone,
-        ImportVideoView
+        doT,
+        TemplateFactory,
+        VideoModuleToolbarView,
+        ImportVideoView,
+        VideoListView,
+        VideosCollection
     ) {
         console.log('VideoModuleView - File loaded. ');
 
         var VideoModuleView = Backbone.View.extend({
             className : 'w-video-module-main module-main vbox',
+            template : doT.template(TemplateFactory.get('video', 'video')),
             initialize : function () {
                 var rendered = false;
                 Object.defineProperties(this, {
@@ -27,8 +38,11 @@
                 });
             },
             render : function () {
-                window.wonder.PM.getPage('video_page').render();
-                this.$el.append(window.wonder.PM.getPage('video_page')._element);
+                this.$el.append(VideoModuleToolbarView.getInstance().render().$el)
+                    .append(VideoListView.getInstance({
+                        collection : VideosCollection.getInstance()
+                    }).render().$el)
+                    .append(this.template());
 
                 this.rendered = true;
                 return this;

@@ -15,19 +15,19 @@
         PopupPanel,
         StringUtil
     ) {
-        console.log('PhotoInfoPanelView - File loaded. ');
+        console.log('MediaInfoPanelView - File loaded. ');
 
-        var PhotoInfoPanelView = PopupPanel.extend({
+        var MediaInfoPanelView = PopupPanel.extend({
             className : 'w-ui-popup-tip',
             initialize : function () {
-                PhotoInfoPanelView.__super__.initialize.apply(this, arguments);
+                MediaInfoPanelView.__super__.initialize.apply(this, arguments);
                 this.$content = doT.template(TemplateFactory.get('photo', 'info'))(this.model.toJSON());
             }
         });
 
         var factory = _.extend({
             getInstance : function (args) {
-                return new PhotoInfoPanelView(args);
+                return new MediaInfoPanelView(args);
             }
         });
 

@@ -10,6 +10,7 @@
         'ui/Toolbar',
         'Internationalization',
         'IframeMessageWorker',
+        'Account',
         'Device',
         'Configuration',
         'IOBackendDevice',
@@ -29,6 +30,7 @@
         Toolbar,
         i18n,
         IframeMessageWorker,
+        Account,
         Device,
         CONFIG,
         IO,
@@ -88,7 +90,7 @@
                 });
 
                 this.$('.button-refresh').prop({
-                    disabled : !Device.get('isConnected') || isCloud
+                    disabled : !Device.get('isConnected') || (isCloud && !Account.get('isLogin'))
                 });
 
                 this.$('.button-import').prop({
@@ -97,9 +99,7 @@
 
                 this.$('.button-delete, .button-export').prop({
                     disabled : (!Device.get('isConnected') && !isCloud) || targetCollection.length === 0 ||
-                        targetCollection.filter(function (photo) {
-                            return photo.get('selected');
-                        }).length === 0
+                        targetCollection.getSelectedPhoto().length === 0
                 });
 
                 this.$('.button-fullscreen').prop({
