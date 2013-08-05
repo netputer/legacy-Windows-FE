@@ -309,7 +309,6 @@
 
                 if (appList.currentModels.length === 0) {
                     var currentSet = appList.currentSet.name;
-                    appList.showWanXiaoDou = false;
                     switch (currentSet) {
                     case 'default':
                         if (Device.get('isMounted')) {
@@ -325,9 +324,11 @@
                         }
                         break;
                     case 'sys':
+                        appList.showWanXiaoDou = false;
                         appList.emptyTip = i18n.app.NON_SYSTEM_APPS_TEXT;
                         break;
                     case 'update':
+                        appList.showWanXiaoDou = false;
                         if (FunctionSwitch.ENABLE_APP_UPGRADE) {
                             appList.emptyTip = appsCollection.loadingUpdateInfo ? i18n.app.LOADING_UPDATE : i18n.app.NON_UPGRADE_APPS_TEXT;
                         } else {
@@ -335,6 +336,7 @@
                         }
                         break;
                     case 'web':
+                        appList.showWanXiaoDou = false;
                         if (Account.get('isLogin')) {
                             appList.emptyTip = doT.template(TemplateFactory.get('app', 'web-app-empty-tip'))({});
                         } else {
@@ -550,7 +552,7 @@
                 this.selectTab(tab);
             },
             clickButtonDownload : function () {
-                BrowserModuleView.navigateToThirdParty(223);
+                BrowserModuleView.navigateToThirdParty(223, '', "http://apps.wandoujia.com/starter");
 
                 log({
                     'event' : 'ui.click.wanxiaodou_download',

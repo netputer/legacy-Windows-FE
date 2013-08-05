@@ -115,13 +115,15 @@
                 selectLibraryView.on('_CANCEL', itunesCollection.finishAsync, itunesCollection);
 
                 selectSourceView.on('_NEXT_STEP', function (data) {
-                    switch (parseInt(data.sourceType, 10)) {
+                    var type = parseInt(data.sourceType, 10);
+
+                    switch (type) {
                     case CONFIG.enums.ITUNES_IMPORT_ALL:
                         showConfirmImport(data, importView.show, importView);
                         selectSourceView.close();
                         break;
                     default:
-                        audioListView.setType(data.sourceType);
+                        audioListView.setType(type);
                         audioListView.show();
                     }
                 });
