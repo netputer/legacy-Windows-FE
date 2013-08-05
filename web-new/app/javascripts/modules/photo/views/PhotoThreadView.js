@@ -101,7 +101,7 @@
                 }));
                 var fragment = document.createDocumentFragment();
                 _.each(this.options.models, function (photo) {
-                    var photoItemView = new PhotoItemView.getInstance({
+                    var photoItemView = PhotoItemView.getInstance({
                         model : photo,
                         $ctn : this.options.$ctn,
                         template : this.options.itemTemplate

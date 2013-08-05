@@ -341,6 +341,25 @@
 
                 return deferred.promise();
             },
+            editorAvatarAsync : function (data) {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.EDIT_IMAGE,
+                    data : data,
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('ContactsCollection - Save avatar success. ');
+                            deferred.resolve(resp);
+                        } else {
+                            console.error('ContactsCollection - Save avatar. Error info: ' + resp.state_line);
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+
+                return deferred.promise();
+            },
             getContactsByGroupId : function (groupId) {
                 var filter;
                 if (UNGROUP_REG.test(groupId)) {

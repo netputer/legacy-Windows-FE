@@ -193,4 +193,13 @@
         </div>
     </div>
 </script>
+
+<script type="text/x-ui-template" id="clip-image">
+    <img class="origin-image"/>
+    <div class="mask"/>
+    <div class="cliping-box">
+        <img class="clip-box-image"/>
+        <div class="clip-box-surface"/>
+    </div>
+</script>
 </templates>

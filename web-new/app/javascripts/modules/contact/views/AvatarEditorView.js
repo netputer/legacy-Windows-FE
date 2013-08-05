@@ -8,7 +8,9 @@
         'ui/TemplateFactory',
         'ui/AlertWindow',
         'Internationalization',
-        'contact/views/AvatarGalleryView'
+        'contact/views/AvatarGalleryView',
+        'contact/views/AvatarEditorWindowView',
+        'photo/collections/PhotoCollection'
     ], function (
         Backbone,
         _,
@@ -17,7 +19,9 @@
         TemplateFactory,
         AlertWindow,
         i18n,
-        AvatarGalleryView
+        AvatarGalleryView,
+        AvatarEditorWindowView,
+        PhotoCollection
     ) {
         console.log('AvatarEditorView - File loaded. ');
 
@@ -30,7 +34,8 @@
                 this.$el.html(this.template({}));
 
                 this.listView = AvatarGalleryView.getInstance({
-                    parentView : this.options.parentView
+                    detialView : this.options.detialView,
+                    editorView : this.options.editorView
                 });
                 this.$el.append(this.listView.render().$el);
                 return this;
@@ -45,8 +50,19 @@
                     this.trigger('remove');
                 }, this);
             },
+            clickButtonSelectFromPC : function () {
+                PhotoCollection.getInstance().getPhotoFromPC(0).done(function (resp) {
+
+                    AvatarEditorWindowView.getInstance({
+                        detialView : this.options.detialView,
+                        editorView : this.options.editorView,
+                        selectPhotoPath : 'file:///' + resp.body.value
+                    }).show();
+                }.bind(this));
+            },
             events : {
-                'click .button-delete' : 'clickButtonDelete'
+                'click .button-delete' : 'clickButtonDelete',
+                'click .button-select-from-pc' : 'clickButtonSelectFromPC'
             }
         });
 
@@ -55,7 +71,8 @@
                 AvatarEditorView.__super__.initialize.apply(this, arguments);
                 this.once('show', function () {
                     var bodyView = new BodyView({
-                        parentView : this.options.parentView
+                        detialView : this.options.detialView,
+                        editorView : this
                     });
                     this.$bodyContent = bodyView.render().$el;
                     this.listenToOnce(bodyView, 'remove', this.remove);
@@ -71,7 +88,7 @@
             getInstance : function (args) {
                 return new AvatarEditorView(_.extend({
                     title : i18n.contact.EDIT_CONTACT_HEAD,
-                    height : 465,
+                    height : 510,
                     width : 660
                 }, args));
             }

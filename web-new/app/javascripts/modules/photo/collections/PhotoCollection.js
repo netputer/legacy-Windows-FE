@@ -213,6 +213,27 @@
                 return this.filter(function (photo) {
                     return photo.get('selected');
                 });
+            },
+            getPhotoFromPC : function (type) {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.SELECT_CONTACT_PHOTO,
+                    data : {
+                        type : type
+                    },
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('PhotoCollection - Selected Photos success.');
+                            deferred.resolve(resp);
+                        } else {
+                            console.error('PhotoCollection - Selected Photos failed. Error info: ' + resp.state_line);
+                            deferred.reject(resp);
+                        }
+                    }.bind(this)
+                });
+
+                return deferred.promise();
             }
         });
 
