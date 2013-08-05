@@ -154,6 +154,7 @@ define({
 
     BATCH_CONTACT_TITLE : '{1} contact(s) selected',
     ALERT_SELECT_MORE_CSV_FILE : 'Sorry, SnapPea only supports one CSV file at a time. Please try again!',
+    IMPORT_FAIL_TYPE_FILE : 'Invalid VCF or CSV file',
     IMPORT_CONTACTS_FAIL : 'Failed to import contacts',
     CONTACT_BATCH_GROUP_PROGRESS : 'Adding to group, please wait...',
     CONTACT_BATCH_GROUP_SUCCESS : 'Added {1} contacts to group',
