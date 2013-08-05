@@ -326,6 +326,7 @@
                 DEVICE_ID_CHANGE : 'device.change_to',
                 WEB_NAVIGATE : 'web.navigate',
                 WEB_FORCE_NAVIGATE : 'web.force.navigate',
+                WEB_SWITCH_MODULE : 'web.switch.module',
                 SETTING_PRIVACY : 'setting.privacy',
                 THEME_CHANGED : 'themes.folder_changed',
                 SETTING_APP_CHANGE : 'app.setting.changed',

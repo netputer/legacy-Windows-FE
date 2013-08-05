@@ -15,7 +15,8 @@
         'photo/PhotoService',
         'photo/models/PhotoModel',
         'photo/views/PhotoListItemView',
-        'IO'
+        'IO',
+        'Configuration'
     ], function (
         Backbone,
         doT,
@@ -31,7 +32,8 @@
         PhotoService,
         PhotoModel,
         PhotoListItemView,
-        IO
+        IO,
+        CONFIG
     ) {
         console.log('ImportPhotoView - File loaded.');
 
@@ -242,7 +244,12 @@
                 });
 
                 if (paths.length > 0) {
-                    PhotoService.importPhotosAsync(paths);
+                    PhotoService.importPhotosAsync(paths).done(function () {
+                        Backbone.trigger('switchModule', {
+                            module : 'photo',
+                            tab : 'lib'
+                        });
+                    });
                 }
 
                 this.close();

@@ -162,6 +162,8 @@
 
                 Backbone.on('switchModule', function (data) {
                     var module = data.module;
+                    var tab = data.tab;
+
                     if (Environment.get('deviceId') !== 'Default' || module === 'doraemon' || module === 'browser' || module === 'gallery') {
                         this.showModule(module, data.tab);
                     } else {
@@ -171,6 +173,12 @@
                     if (module === 'doraemon') {
                         NavView.getInstance().deselectAll();
                     }
+
+                    IO.sendCustomEventsAsync(CONFIG.events.WEB_SWITCH_MODULE, {
+                        module : module,
+                        tab : tab
+                    });
+
                 }, this);
 
                 IO.Backend.Device.onmessage({
