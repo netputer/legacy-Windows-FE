@@ -44,7 +44,7 @@
                 </div>
             </li>
             <li class="hbox">
-                <div class="icon account"></div>
+                <div class="icon contact"></div>
                 <div class="des">
                     <h2>{{= i18n.misc.BINDING_ACCOUNT }}</h2>
                     <div class="text-thirdly">{{= i18n.misc.BINDING_ACCOUNT_DES }}</div>
