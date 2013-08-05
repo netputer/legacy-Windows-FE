@@ -50,7 +50,7 @@ define({
     GUIDE_BIND_NOW : '立即绑定',
     GUIDE_BIND_DESC : '绑定自己的手机后，豌豆荚会帮助您自动备份手机联系人、短信、照片和应用，方便您即时恢复，还可以 Wi-Fi 下自动连接手机，无需手动操作。如果您使用的不是自己的电脑和手机，请不要绑定！',
     GUIDE_BIND_SUCCESS : '恭喜，你已经成功绑定 {1}，豌豆荚会自动帮您备份此手机的 <strong>联系人、短信、照片和应用。</strong>',
-    GUIDE_CLOUD_BACKUP_SUCCESS : '恭喜，您已经成功注册并开启了云备份。',
+    GUIDE_CLOUD_BACKUP_SUCCESS : '恭喜，您已经成功开启云备份！只要您手机连上了电脑，豌豆荚就会自动备份您的 应用、联系人和短信了。',
     GUIDE_REG : '注册豌豆荚',
     GUIDE_REG_DESC : '开启云备份请先注册豌豆荚账号',
     GUIDE_REG_NOW : '马上注册',

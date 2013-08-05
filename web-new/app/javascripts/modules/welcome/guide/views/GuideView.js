@@ -14,7 +14,9 @@
         'guide/views/XibaibaiView',
         'guide/views/StarterView',
         'guide/views/TipsView',
-        'guide/views/DoraSuggestionView'
+        'guide/views/DoraSuggestionView',
+        'Account',
+        'backuprestore/BackupRestoreService'
     ], function (
         Backbone,
         $,
@@ -59,9 +61,9 @@
                     // .then(function () {
                     //     return this.regCardAsync(BindView.getInstance());
                     // }.bind(this))
-                    // .then(function () {
-                    //     return this.regCardAsync(CloudBackupView.getInstance());
-                    // }.bind(this))
+                    .then(function () {
+                        return this.regCardAsync(CloudBackupView.getInstance());
+                    }.bind(this))
                     .then(function () {
                         return this.regCardAsync(XibaibaiView.getInstance());
                     }.bind(this))
