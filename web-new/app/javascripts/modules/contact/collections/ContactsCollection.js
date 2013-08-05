@@ -38,7 +38,7 @@
                 var prefix = '~';
 
                 if (contact.get('name') !== undefined) {
-                    prefix = contact.get('name').family_name_spell || contact.get('name').prefix || '~';
+                    prefix = contact.get('name').prefix || '~';
                 }
                 return prefix;
             },
