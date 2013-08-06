@@ -165,6 +165,8 @@ define({
     BACKUP_APP_DATA_UNSUPPORT : 'Your device is not supported at present',
     BACKUP_APP_DATA_NON_USB : 'Please connect via USB',
 
+    CUSTOM_UNZIP_BACKUP_FILE_ERROR : 'Sorry, failed to decompress and restore some apps.',
+
     /*NOT in SnapPea*/
 
     SYNC_PHOTO_PUSH_NOTIFY_TITLE : '您需要自动下载云相册图片到电脑吗？',
