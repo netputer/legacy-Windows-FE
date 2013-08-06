@@ -134,7 +134,8 @@ module.exports = function (grunt) {
                         'bower_components/dot/doT.js',
                         'bower_components/underscore/underscore.js',
                         'bower_components/backbone/backbone.js',
-                        'bower_components/requirejs-i18n/i18n.js'
+                        'bower_components/requirejs-i18n/i18n.js',
+                        'bower_components/qrcode.js/qrcode.js'
                     ]
                 }]
             }
@@ -171,7 +172,7 @@ module.exports = function (grunt) {
                     regexp : true,
                     ass : true,
                     predef: [ // array of pre-defined globals
-                      'define', 'require'
+                        'define', 'require'
                     ]
                 },
                 options : {

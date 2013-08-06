@@ -1,7 +1,7 @@
 /*global define, console*/
 (function (window) {
     define(['underscore', 'ui/UIHelper'], function (_, UIHelper) {
-        console.log('LimitInWindowMixin - File loaded.');
+        console.log('LimitInWindowMixin - File loaded. ');
 
         var WindowState = UIHelper.WindowState;
         var MouseState = UIHelper.MouseState;
@@ -76,9 +76,8 @@
                 }
             }
 
-            this.$el.offset({
-                left : Math.max(0, leftOffset),
-                top : topOffset
+            this.$el.css({
+                '-webkit-transform' : 'translate3d(' + Math.max(0, leftOffset) + 'px, ' + topOffset + 'px, 0)'
             });
         };
 
@@ -173,9 +172,8 @@
                 }
             }
 
-            this.$el.offset({
-                left : leftOffset,
-                top : topOffset
+            this.$el.css({
+                '-webkit-transform' : 'translate3d(' + leftOffset + 'px, ' + topOffset + 'px, 0)'
             });
         };
 
@@ -196,8 +194,8 @@
                     topOffset = calculatedTop;
                 } else {
                     topOffset = MouseState.y;
-                    this.$el.width(this.$el.width() + 12);
-                    this.$el.css('max-height', WindowState.height - topOffset - (thisOffsetHeight - this.$el.height()) - 80);
+                    this.$el.width(this.$el.width() + 12)
+                        .css('max-height', WindowState.height - topOffset - (thisOffsetHeight - this.$el.height()) - 80);
                 }
             } else {
                 topOffset = MouseState.y;
@@ -209,9 +207,8 @@
                 leftOffset = MouseState.x;
             }
 
-            this.$el.offset({
-                left : Math.max(0, leftOffset),
-                top : topOffset
+            this.$el.css({
+                '-webkit-transform' : 'translate3d(' + Math.max(0, leftOffset) + 'px, ' + topOffset + 'px, 0)'
             });
         };
 
