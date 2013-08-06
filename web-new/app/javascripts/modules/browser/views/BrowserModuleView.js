@@ -41,6 +41,12 @@
                         }
                     }
                 });
+
+                Backbone.on('switchModule', function (data) {
+                    if (data.module === 'browser' && !data.silent) {
+                        this.navigateToThirdParty(data.tab, ExtensionsCollection.getInstance().get(data.tab).get('name'), undefined, true);
+                    }
+                }, this);
             },
             render : function () {
                 this.rendered = true;
@@ -64,19 +70,13 @@
                     }).render().$el;
                     this.$el.prepend($browser);
                 }
-
-                var iframe = $browser.find('iframe');
-                WindowController.navigationState(iframe.attr('id'));
             },
             navigate : function (extensionModel, url) {
                 this.goto(extensionModel, false);
 
-                var iframe = this.$('#' + IFRAME_PREFIX + extensionModel.id).find('iframe');
-                iframe.attr({
+                this.$('#' + IFRAME_PREFIX + extensionModel.id).find('iframe').attr({
                     src : url
                 });
-
-                WindowController.navigationState(iframe.attr('id'));
             },
             navigateToThirdParty : function (extentionId, extentionName, url, isPreview) {
                 var extension = ExtensionsCollection.getInstance().get(extentionId);
@@ -175,6 +175,13 @@
             },
             navigateToThirdParty : function (id, name, url) {
                 this.getInstance().navigateToThirdParty(id, name, url, true);
+
+                Backbone.trigger('switchModule', {
+                    module : 'browser',
+                    tab : id,
+                    silent : true,
+                    ignore : true
+                });
             }
         });
 

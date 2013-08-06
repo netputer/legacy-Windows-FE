@@ -202,6 +202,24 @@
                         this.get(0).set('selected', true);
                     });
                 }
+
+                Backbone.on('switchModule', function (data) {
+                    var rootTarget = this.find(function (model) {
+                        return model.get('root') && model.get('module') === data.module;
+                    });
+                    if (rootTarget !== undefined) {
+                        rootTarget.set('selected', true);
+
+                        var target = this.find(function (model) {
+                            return model.get('module') === data.module && model.get('tab') === data.tab;
+                        });
+
+                        if (target !== undefined) {
+                            target.set('selected', true);
+                        }
+                    }
+
+                }, this);
             },
             getRootItems : function () {
                 return this.filter(function (item) {

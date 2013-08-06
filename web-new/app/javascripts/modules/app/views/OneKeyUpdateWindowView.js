@@ -111,18 +111,13 @@
                 this.on(EventsMapping.BUTTON_YES, this.updateAllApps, this);
             },
             updateAllApps : function () {
-                var updateApps = [];
-
                 var apps = _.map(appList.selected, function (id) {
                     var model = appsCollection.get(id);
 
                     model.set({
                         isUpdating : true
-                    });
+                    }).unignoreUpdateAsync();
 
-                    model.unignoreUpdateAsync();
-
-                    updateApps.push(model.get('base_info').package_name);
                     var updateModel = model.updateInfo.clone();
                     return {
                         downloadUrl : updateModel.get('downloadUrl'),

@@ -10,8 +10,7 @@
         'contact/collections/AccountCollection',
         'contact/views/ContactModuleToolbarView',
         'contact/views/ContactsListView',
-        'contact/views/ContactPanelView',
-        'main/collections/PIMCollection'
+        'contact/views/ContactPanelView'
     ], function (
         Backbone,
         doT,
@@ -22,8 +21,7 @@
         AccountCollection,
         ContactModuleToolbarView,
         ContactsListView,
-        ContactPanelView,
-        PIMCollection
+        ContactPanelView
     ) {
         console.log('ContactModuleView - File loaded. ');
 
@@ -82,8 +80,9 @@
                 AccountCollection.getInstance();
             },
             navigateGroup : function (msg) {
-                PIMCollection.getInstance().get(1).set({
-                    selected : true
+                Backbone.trigger('switchModule', {
+                    module : 'contact',
+                    tab : 'all'
                 });
 
                 var search = function () {
@@ -104,10 +103,11 @@
                 }
             },
             navigate : function (msg) {
-
-                PIMCollection.getInstance().get(1).set({
-                    selected : true
+                Backbone.trigger('switchModule', {
+                    module : 'contact',
+                    tab : 'all'
                 });
+
                 var highlight = function () {
                     contactModuleToolbarView.restoreFilter();
                     contactsListView.highlight(msg);
@@ -123,8 +123,9 @@
                 }
             },
             createNew : function (model) {
-                PIMCollection.getInstance().get(1).set({
-                    selected : true
+                Backbone.trigger('switchModule', {
+                    module : 'contact',
+                    tab : 'all'
                 });
 
                 model = new ContactModel(model);

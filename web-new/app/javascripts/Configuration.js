@@ -3,7 +3,6 @@
     'use strict';
 
     define([], function () {
-
         var Configuration = {
             BASE_PATH : window.require.s.contexts._.config.baseUrl,
             actions : {
@@ -307,6 +306,7 @@
                 SYNC_SET_SWITCH : 'wdj://window/sync_set_cloud_switch.json',
                 SYNC_IS_SWITCH_ON : 'wdj://window/sync_is_cloud_switch_on.json',
                 SYNC_STOP_REMOTE_SYNC : 'wdj://sync/stop_sync.json',
+                SYNC_BACKUP_DAY_DIFF : 'wdj://window/backup_day_diff.json',
 
                 // Cloud API
                 APP_QUERY_INFO : 'http://apps.wandoujia.com/api/v1/apps',
@@ -316,9 +316,18 @@
                 APP_STARTER : 'http://apps.wandoujia.com/api/v1/apps?app_type=starter',
 
                 CLOUD_REG : 'https://account.wandoujia.com/v4/api/register',
-                CLOUD_SECCODE : 'https://account.wandoujia.com/v4/api/seccode'
+                CLOUD_SECCODE : 'https://account.wandoujia.com/v4/api/seccode',
+
+                WELCOME_BACKGROUND : 'http://apps.wandoujia.com/startpage/api/v1/background',
+                WELCOME_FEEDS : 'http://apps.wandoujia.com/startpage/api/v1/feeds',
+                WELCOME_SINGLE_FEED : 'http://apps.wandoujia.com/startpage/api/v1/feed'
             },
             events : {
+                // Backend events - History
+                NAVIGATE_BACK : 'navigation.goBack',
+                NAVIGATE_FORWARD : 'navigation.goForward',
+                NAVIGATE_REFRESH : 'navigation.reload',
+
                 // Backend events - Public events
                 DEVICE_STATE_CHANGE : 'device.state_changed',
                 DEVICE_OFFLINE_CHANGE : 'device.offline_changed',

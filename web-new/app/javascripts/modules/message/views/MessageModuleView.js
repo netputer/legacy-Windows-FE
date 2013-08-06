@@ -18,8 +18,7 @@
         'message/views/MessagePanelView',
         'message/collections/ConversationsCollection',
         'message/collections/ThreadsCollection',
-        'message/collections/Threads4ContactCollection',
-        'main/collections/PIMCollection'
+        'message/collections/Threads4ContactCollection'
     ], function (
         Backbone,
         _,
@@ -38,8 +37,7 @@
         MessagePanelView,
         ConversationsCollection,
         ThreadsCollection,
-        Threads4ContactCollection,
-        PIMCollection
+        Threads4ContactCollection
     ) {
         console.log('MessageModuleView - File loaded.');
 
@@ -163,8 +161,9 @@
                 ThreadsCollection.getInstance();
             },
             navigateGroup : function (msg) {
-                PIMCollection.getInstance().get(2).set({
-                    selected : true
+                Backbone.trigger('switchModule', {
+                    module : 'message',
+                    tab : 'all'
                 });
 
                 var search = function () {
@@ -184,8 +183,9 @@
                 }
             },
             navigate : function (msg) {
-                PIMCollection.getInstance().get(2).set({
-                    selected : true
+                Backbone.trigger('switchModule', {
+                    module : 'message',
+                    tab : 'all'
                 });
 
                 var highlightSearch = function () {

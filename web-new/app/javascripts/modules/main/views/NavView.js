@@ -98,8 +98,6 @@
                     } else if (data.module === 'gallery') {
                         this.deselectAll();
                     }
-
-                    WindowController.navigationState();
                 }, this);
 
                 pimCollection.on('itemSelected', function () {
@@ -166,13 +164,16 @@
 
                     if (!redirectExtId) {
                         if (Environment.get('deviceId') === 'Default') {
-                            pimCollection.get(0).set({
-                                selected : true
+                            Backbone.trigger('switchModule', {
+                                module : 'welcome',
+                                tab : 'welcome'
                             });
                         } else {
-                            if (defaultModule !== undefined && pimCollection.get(defaultModule)) {
-                                pimCollection.get(defaultModule).set({
-                                    selected : true
+                            var defaultModuleModel = pimCollection.get(defaultModule);
+                            if (defaultModule !== undefined && defaultModuleModel) {
+                                Backbone.trigger('switchModule', {
+                                    module : defaultModuleModel.get('module'),
+                                    tab : defaultModuleModel.get('tab')
                                 });
                             } else {
                                 jumpToDefaultExtension();

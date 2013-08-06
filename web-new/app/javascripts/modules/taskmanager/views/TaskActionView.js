@@ -15,8 +15,7 @@
         'ui/ToastBox',
         'utilities/StringUtil',
         'task/collections/TasksCollection',
-        'task/views/DeleteConfirmWindowView',
-        'main/collections/PIMCollection'
+        'task/views/DeleteConfirmWindowView'
     ], function (
         Backbone,
         _,
@@ -32,8 +31,7 @@
         ToastBox,
         StringUtil,
         TasksCollection,
-        DeleteConfirmWindowView,
-        PIMCollection
+        DeleteConfirmWindowView
     ) {
         console.log('TaskActionView - File loaded.');
 
@@ -141,12 +139,9 @@
             },
             clickButtonManageApp : function (evt) {
                 evt.stopPropagation();
-                PIMCollection.getInstance().get(3).set({
-                    selected : false
-                }, {
-                    silent : true
-                }).set({
-                    selected : true
+                Backbone.trigger('switchModule', {
+                    module : 'app',
+                    tab : 'normal'
                 });
             },
             clickButtonDelete : function (evt) {

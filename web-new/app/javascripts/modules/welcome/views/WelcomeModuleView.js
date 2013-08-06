@@ -6,6 +6,8 @@
         'welcome/views/WelcomeView',
         'Environment',
         'Settings',
+        'Device',
+        'Log',
         'utilities/QueryString',
         'welcome/views/ConnectionGuideView'
     ], function (
@@ -14,6 +16,8 @@
         WelcomeView,
         Environment,
         Settings,
+        Device,
+        log,
         QueryString,
         ConnectionGuideView
     ) {
@@ -47,6 +51,13 @@
                 this.$el.append(this.contentView.render().$el);
 
                 this.rendered = true;
+
+                log({
+                    'event' : 'ui.show.welcome_module',
+                    'isConnected' : Device.get('isConnected'),
+                    'isUSB' : Device.get('isUSB'),
+                    'isWifi' : Device.get('isWifi')
+                });
                 return this;
             },
             remove : function () {

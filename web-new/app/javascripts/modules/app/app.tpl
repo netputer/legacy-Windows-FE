@@ -194,10 +194,10 @@
         <dt class="text-thirdly">{{= i18n.app.INSTALL_POSITION_LABEL }}</dt>
         <dd>
             {{? it.base_info.installed_location === CONFIG.enums.INSTALL_LOCATION_EXTENTION }}
-            {{= i18n.app.SD_CARD }}
+            {{= i18n.misc.SD_CARD }}
             <span class="link button-move-to-device">{{= i18n.app.MOVE }}</span>
             {{??}}
-            {{= i18n.app.PHONE }}
+            {{= i18n.misc.PHONE }}
             <span class="link button-move-to-sd-card">{{= i18n.app.MOVE }}</span>
             {{?}}
         </dd>
@@ -302,9 +302,9 @@
     {{? !it.isWeb }}
     <div class="location text-secondary">
         {{? it.base_info.installed_location === CONFIG.enums.INSTALL_LOCATION_EXTENTION }}
-        {{= i18n.app.SD_CARD }}
+        {{= i18n.misc.SD_CARD }}
         {{??}}
-        {{= i18n.app.PHONE }}
+        {{= i18n.misc.PHONE }}
         {{?}}
     </div>
     {{?}}
