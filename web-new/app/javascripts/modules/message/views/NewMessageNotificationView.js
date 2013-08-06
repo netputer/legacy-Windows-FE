@@ -33,7 +33,6 @@
             className : 'w-sms-notification',
             template : doT.template(TemplateFactory.get('message', 'message-notification')),
             initialize : function () {
-
                 senderView = MessageSender4NotificationView.getInstance({
                     model : this.model,
                     enableTip : false

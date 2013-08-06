@@ -154,7 +154,7 @@ body,
             top: 20px;
             width: 110px;
 
-            @each $logo in htc, huawei, lenovo, meizu, miui, moto, nexus, samsung, sony, zte {
+            @each $logo in htc, huawei, lenovo, meizu, xiaomi, motorola, nexus, samsung, sony, zte, ktouch, vivo {
                 &.#{$logo} {
                     @include usb-debug-new-sprite(#{$logo});
                 }
@@ -243,12 +243,12 @@ body,
                 background-image: -webkit-radial-gradient(85% 15%, #6C6C6C 19%, #4A4A4A 100%);
             }
 
-            &.huawei{
+            &.huawei, &.ktouch{
                 background-image: -webkit-radial-gradient(85% 15%, #F9FBFC 7%, #F3F3F3 100%);
                 color: #505050;
             }
 
-            &.miui {
+            &.xiaomi {
                 background-image: -webkit-radial-gradient(85% 15%, #FFA43B 3%, #FA6B06 100%);
             }
 
@@ -264,8 +264,12 @@ body,
                 background-image: -webkit-radial-gradient(85% 15%, #AFFF5C 12%, #22DC00 100%);
             }
 
-            &.moto {
+            &.motorola {
                 background-image: -webkit-radial-gradient(85% 15%, #FF8063 0%, #DD3C44 100%);
+            }
+
+            &.vivo{
+                background-image: -webkit-radial-gradient(85% 15%, #6EC8FB 7%, #0084CE 100%);    
             }
         }
     }

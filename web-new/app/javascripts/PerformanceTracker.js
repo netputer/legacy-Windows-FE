@@ -13,7 +13,7 @@
 
         PerformanceTracker.launch = function () {
             if (Distributor.PERFORMANCE_TRACK) {
-                $(function (argument) {
+                $(function () {
                     var msg = {'event' : 'debug.fe.timing'};
                     var k;
                     for (k in window.performance.timing) {

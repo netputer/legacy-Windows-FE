@@ -7,7 +7,6 @@
 
         var FormatString = function (input, values) {
             var result;
-
             if (typeof values === "object") {
                 var vars = values;
                 result = input.replace(/\{(\w+)\}/g, function (origin, target) {

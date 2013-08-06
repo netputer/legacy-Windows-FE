@@ -60,7 +60,7 @@
                 IO.requestAsync({
                     url : CONFIG.actions.PUBLISH_EVENT,
                     data : {
-                        channel : 'backup.guide.start',
+                        channel : CONFIG.events.SYNC_BACKUP_START,
                         value : JSON.stringify({
                             id : this.options.day
                         })

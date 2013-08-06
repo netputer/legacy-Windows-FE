@@ -55,10 +55,10 @@
                 deviceName : QueryString.get('device_name') || i18n.misc.DEFAULT_DEVICE_NAME,
                 udid : '',
                 shell : {},
-                screenshot : {}
+                screenshot : {},
+                canScreenshot : false
             },
             initialize : function () {
-
                 var listenBack = false;
 
                 IO.Backend.Device.onmessage({
@@ -102,16 +102,9 @@
                     this.isUserFlashedAsync().done(this.flashChangeHandler.bind(this));
                 }, this);
 
-                var connectedHandler = function (Device, isConnected) {
-                    if (isConnected) {
-                        this.getUdidAsync().done(function (resp) {
-                            this.set('udid', resp.body.value);
-                        }.bind(this));
-                        this.off('change:isConnected', connectedHandler);
-                    }
-                };
-
-                this.on('change:isConnected', connectedHandler, this);
+                this.getUdidAsync().done(function (resp) {
+                    this.set('udid', resp.body.value);
+                }.bind(this));
 
                 var getShellInfoHandler = function () {
                     this.getShellInfoAsync().done(function () {
@@ -120,7 +113,28 @@
                         }
                     }.bind(this));
                 };
+
+                var setCanScreenshotAsync = function (Device) {
+                    if (Device.get('isConnected')) {
+                        if (Device.get('isUSB')) {
+                            Device.set('canScreenshot', true);
+                        } else {
+                            if (Device.get('isWifi')) {
+                                Device.canScreenshotAsync().done(function (resp) {
+                                    Device.set('canScreenshot', resp.body.value);
+                                }.bind(this));
+                            } else {
+                                Device.set('canScreenshot', false);
+                            }
+                        }
+                    } else {
+                        Device.set('canScreenshot', Device.get('isFastADB'));
+                    }
+                };
+
                 this.on('change:isConnected', getShellInfoHandler, this);
+                this.on('change', setCanScreenshotAsync, this);
+                setCanScreenshotAsync(this);
             },
             getUdidAsync : function () {
                 var deferred = $.Deferred();

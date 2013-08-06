@@ -95,8 +95,6 @@
 
         .count {
             @include badge;
-            margin-top: -4px;
-            vertical-align: middle;
 
             &.unread {
                 background-color: $standardColor;
