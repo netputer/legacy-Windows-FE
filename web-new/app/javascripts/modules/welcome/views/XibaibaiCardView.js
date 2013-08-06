@@ -61,6 +61,11 @@
                         this.options.parentView.initLayout();
 
                         Settings.set('welcome-card-xibaibai-show', new Date().getTime(), true);
+
+                        log({
+                            'event' : 'ui.show.welcome_card',
+                            'type' : this.model.get('type')
+                        });
                     }
                 }.bind(this));
 

@@ -11,6 +11,7 @@
         'Log',
         'IO',
         'ui/TemplateFactory',
+        'ui/ImageLoader',
         'utilities/StringUtil',
         'welcome/views/FeedCardView',
         'task/TaskService',
@@ -28,6 +29,7 @@
         log,
         IO,
         TemplateFactory,
+        imageLoader,
         StringUtil,
         FeedCardView,
         TaskService,
@@ -51,19 +53,6 @@
             template : doT.template(TemplateFactory.get('welcome', 'item-list-card')),
             className : FeedCardView.getClass().prototype.className + ' item-list',
             initialize : function () {
-                var loading = false;
-                Object.defineProperties(this, {
-                    loading : {
-                        set : function (value) {
-                            loading = Boolean(value);
-                            this.$('.loading').toggleClass('show', loading);
-                        },
-                        get : function () {
-                            return loading;
-                        }
-                    }
-                });
-
                 appsCollection = appsCollection || AppsCollection.getInstance();
                 tasksCollection = tasksCollection || TasksCollection.getInstance();
 
@@ -77,6 +66,16 @@
                 this.$el.addClass(classMap[this.model.get('type')]);
 
                 this.renderButton();
+
+                var $icons = this.$('.icon');
+                _.each(this.model.get('items'), function (item, index) {
+                    imageLoader(item.icons.px36, $icons.eq(index));
+                });
+
+                log({
+                    'event' : 'ui.show.welcome_card',
+                    'type' : this.model.get('type')
+                });
                 return this;
             },
             renderButton : function () {
@@ -152,35 +151,21 @@
                 var basePath = 'http://apps.wandoujia.com/apps/{1}?pos=w/start_page_list';
 
                 BrowserModuleView.navigateToThirdParty(item.extId, '', StringUtil.format(basePath, item.key));
+
+                log({
+                    'event' : 'ui.click.welcome_card_navigate',
+                    'type' : this.model.get('type'),
+                    'index' : this.getIndex(),
+                    'content' : item.key
+                });
             },
             clickButtonMore : function (evt) {
-                this.loading = true;
-                IO.requestAsync({
-                    url : CONFIG.actions.WELCOME_SINGLE_FEED,
-                    data : {
-                        cursor : this.model.get('cursor'),
-                        max : 3,
-                        type : this.model.get('type'),
-                        udid : Device.get('udid')
-                    },
-                    success : function (resp) {
-                        if (_.isEmpty(resp)) {
-                            this.$('.loading').html(i18n.welcome.NO_MORE);
-                            setTimeout(function () {
-                                this.loading = false;
-                            }.bind(this), 3000);
-                        } else {
-                            var list = [20, 21, 22, 23, 24, 25];
-                            if (list.indexOf(resp.type) >= 0) {
-                                _.each(resp.items, function (item) {
-                                    if (item.tagline === 'null') {
-                                        item.tagline = '';
-                                    }
-                                });
-                            }
-                            this.model.set(resp);
-                        }
-                    }.bind(this)
+                BrowserModuleView.navigateToThirdParty(this.model.get('extId'), '', this.model.get('url'));
+
+                log({
+                    'event' : 'ui.click.welcome_card_more',
+                    'type' : this.model.get('type'),
+                    'content' : this.model.get('url')
                 });
             },
             events : {

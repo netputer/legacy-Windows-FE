@@ -41,6 +41,11 @@
                     if (parseInt(resp.body.value, 10) >= 10) {
                         this.removeClass('hide');
                         this.options.parentView.initLayout();
+
+                        log({
+                            'event' : 'ui.show.welcome_card',
+                            'type' : this.model.get('type')
+                        });
                     }
                 }.bind(this));
                 return this;

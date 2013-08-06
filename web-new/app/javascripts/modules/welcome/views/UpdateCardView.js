@@ -58,6 +58,11 @@
                     this.$('.count').toggleClass('min', apps.length > 99);
 
                     Settings.set('welcome-card-update-show', new Date().getTime(), true);
+
+                    log({
+                        'event' : 'ui.show.welcome_card',
+                        'type' : this.model.get('type')
+                    });
                 }
 
                 return this;

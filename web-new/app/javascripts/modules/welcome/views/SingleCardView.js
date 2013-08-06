@@ -56,6 +56,11 @@
 
                 this.renderButton();
 
+                log({
+                    'event' : 'ui.show.welcome_card',
+                    'type' : this.model.get('type')
+                });
+
                 return this;
             },
             renderButton : function () {
@@ -117,6 +122,13 @@
             clickButtonNavigate : function () {
                 var basePath = 'http://apps.wandoujia.com/apps/{1}?pos=w/start_page_single';
                 BrowserModuleView.navigateToThirdParty(this.model.get('extId'), '', StringUtil.format(basePath, this.model.get('key')));
+
+                log({
+                    'event' : 'ui.click.welcome_card_navigate',
+                    'type' : this.model.get('type'),
+                    'index' : this.getIndex(),
+                    'content' : this.model.get('key')
+                });
             },
             events : {
                 'click .button-action' : 'clickButtonAction',

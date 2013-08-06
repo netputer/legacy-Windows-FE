@@ -88,7 +88,7 @@
     <ul class="info-ctn">
         {{~ it.items : item }}
         <li class="item hbox">
-            <img class="icon button-navigate" src="{{= item.icons.px36 }}" alt="{{! item.title }}" data-key="{{= item.key }}" />
+            <img class="icon button-navigate" src="{{= CONFIG.enums.TASK_DEFAULT_ICON_PATH_APP }}" alt="{{! item.title }}" data-key="{{= item.key }}" />
             <div class="info">
                 <div class="wc title link button-navigate" data-key="{{= item.key }}">{{! item.title }}</div>
                 <div class="text-thirdly wc">{{! item.tagline }}</div>
@@ -98,7 +98,6 @@
         {{~}}
     </ul>
     <div class="link button-more">{{= i18n.app.MORE }}</div>
-    <div class="loading">{{= TemplateFactory.get('ui', 'loading-white') }}</div>
 </script>
 
 <script type="text/x-ui-template" id="clock">
