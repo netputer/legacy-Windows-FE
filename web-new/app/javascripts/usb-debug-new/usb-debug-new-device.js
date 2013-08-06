@@ -20,7 +20,7 @@ var brandInfo = {
                 top : '150px',
                 '-webkit-transform': 'rotate(180deg)'
             }
-        },{
+        }, {
             'des' : '点击确定',
             'pos' : {
                 left : '370px',
@@ -274,26 +274,26 @@ var brandInfo = {
             'pos' : {
                 left : '323px',
                 top : '294px'
-            },
+            }
         }, {
             'des' : '点击「设置」',
             'pos' : {
                 left : '298px',
                 top : '157px'
-            },
+            }
         }, {
             'des' : '选择「开发人员选项」',
             'pos' : {
                 left : '281px',
                 top : '283px'
-            },
+            }
         }, {
             'des' : '点击「USB 调试」',
             'pos' : {
                 left : '415px',
                 top : '168px',
                 '-webkit-transform': 'rotate(180deg)'
-            },
+            }
         }, {
             'des' : '点击确定',
             'pos' : {
@@ -309,26 +309,26 @@ var brandInfo = {
             'pos' : {
                 left : '326px',
                 top : '294px'
-            },
+            }
         }, {
             'des' : '点击「设置」',
             'pos' : {
                 left : '350px',
                 top : '267px'
-            },
+            }
         }, {
             'des' : '选择「开发人员选项」',
             'pos' : {
                 left : '281px',
                 top : '273px'
-            },
+            }
         }, {
             'des' : '点击「USB 调试」',
             'pos' : {
                 left : '406px',
                 top : '182px',
                 '-webkit-transform': 'rotate(180deg)'
-            },
+            }
         }, {
             'des' : '点击确定',
             'pos' : {
@@ -344,32 +344,32 @@ var brandInfo = {
             'pos' : {
                 left : '403px',
                 top : '200px'
-            },
+            }
         }, {
             'des' : '点击进入「通用」',
             'pos' : {
                 left : '263px',
                 top : '194px'
-            },
+            }
         }, {
             'des' : '点击进入「应用程序」',
             'pos' : {
                 left : '258px',
                 top : '197px'
-            },
+            }
         }, {
             'des' : '选择「开发」',
             'pos' : {
                 left : '250px',
                 top : '253px'
-            },
+            }
         }, {
             'des' : '点击「USB 调试」',
             'pos' : {
                 left : '395px',
                 top : '175px',
                 '-webkit-transform': 'rotate(180deg)'
-            },
+            }
         }, {
             'des' : '点击确定',
             'pos' : {
@@ -541,7 +541,7 @@ var systemInfo = {
             'pos' : {
                 left : '325px',
                 top : '295px'
-            },
+            }
         }, {
             'des' : '点击「设置」',
             'pos' : {
@@ -582,7 +582,7 @@ var systemInfo = {
             'pos' : {
                 left : '399px',
                 top : '215px'
-            },
+            }
         }, {
             'des' : '选择「辅助功能」',
             'pos' : {
