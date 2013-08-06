@@ -98,18 +98,4 @@ require.config({
     }
 }(this, this.document));
 
-require([
-    'Internationalization',
-    'contact/Contact',
-    'music/Music',
-    'sync/SyncService',
-    'SnapPea'
-], function (
-    i18n,
-    Contact,
-    Music,
-    SyncService,
-    SnapPea
-) {
-    require(['../../../web/build/wonder-latest-dev']);
-});
+require(['SnapPea'], function (SnapPea) {return;});
