@@ -8,6 +8,7 @@
         'FunctionSwitch',
         'Environment',
         'ui/Notification',
+        'backuprestore/BackupRestoreService',
         'welcome/WelcomeService'
     ], function (
         _,
@@ -17,6 +18,7 @@
         FunctionSwitch,
         Environment,
         Notification,
+        BackupRestoreService,
         WelcomeService
     ) {
         console.log('SyncModule - File loaded. ');
@@ -63,7 +65,7 @@
             });
             notification.show();
             handler = setTimeout(function () {
-                notification.cancel();
+                BackupRestoreService.closeAllNotificationAsync();
             }, 15 * 1000);
         };
 
