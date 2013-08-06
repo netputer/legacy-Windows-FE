@@ -48,7 +48,7 @@ define({
     AUDIOS_IMPORT_FAILD : 'Failed to import songs',
     CREATE_PLAYLIST_FAILD : 'Failed to import playlist(s)',
     CREATE_PLAYLIST_COMPLETE : 'Importing playlist(s) completed',
-    PARSE_EMPTY_LIST : 'Sorry, failed to import songs',
+    PARSE_EMPTY_LIST : 'Sorry, failed to find any songs in your iTunes library',
     CREATE_PLAYLIST_FAILD_TIP : 'Songs were imported to your device, but failed to create {1} playlist(s)',
     IMPORT_AUDIOS_FAILD_TIP : '{1} song(s) failed to import . Continue to import the playlist?',
     SELECT_PLAYLIST_FOR_IMPORT : 'Select the playlists you want to import',
@@ -67,5 +67,5 @@ define({
     CONFIRM_IMPORT : 'You\'ve selected to import {1} of music to your device. Importing that much music at once will take an estimated {2} . <br/>Do you want to continue?',
     CAN_NOT_IMPORT_UNDER_WIFI : 'Connect via USB to import iTunes music',
 
-    MUSIC_EMPTY_TEXT_WANXIAODOU : '<div><span>Oh？No songs on your phone. '
+    MUSIC_EMPTY_TEXT_WANXIAODOU : '<div><span>Oh? No songs on your phone. '
 });
