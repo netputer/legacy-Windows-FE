@@ -7,9 +7,14 @@
 /********************************************************************************
  * Typography
  ********************************************************************************/
- @font-face {
+@font-face {
     font-family: "Roboto-Light";
     src: url("Roboto-Light.ttf");
+}
+
+@font-face {
+    font-family: "Roboto-Thin";
+    src: url("Roboto-Thin.ttf");
 }
 
 body,

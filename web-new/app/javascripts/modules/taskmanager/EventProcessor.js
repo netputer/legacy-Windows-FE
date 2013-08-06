@@ -63,11 +63,11 @@
                 'data.channel' : CONFIG.events.TASK_STOP
             }, function (data) {
                 var originalLength = messageNormalList.length;
-                if (data.status.length > 0) {
+                if (data > 0) {
                     messageNormalList.push({
                         id : _.uniqueId('task-event-'),
                         message : 'TASK_FINISH',
-                        data : data.status.length
+                        data : data
                     });
 
                     if (originalLength === 0 && messageNormalList.length === 1) {

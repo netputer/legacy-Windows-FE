@@ -120,8 +120,10 @@
         color: #999;
         padding-right: 10px;
         text-shadow: 0 1px 0 #fff;
-        -webkit-box-align: center;
-        -webkit-box-flex: 1;
-        -webkit-box-pack: end;
+        -webkit-box: {
+            align: center;
+            flex: 1;
+            pack: end;
+        }
     }
 }

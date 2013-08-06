@@ -16,20 +16,10 @@
                     result = date.getFullYear();
                     break;
                 case 'MM':
-                    var MM = date.getMonth() + 1;
-                    if (MM < 10) {
-                        result = '0' + MM;
-                    } else {
-                        result = MM;
-                    }
+                    result = date.getMonth() + 1;
                     break;
                 case 'dd':
-                    var dd = date.getDate();
-                    if (dd < 10) {
-                        result = '0' + dd;
-                    } else {
-                        result = dd;
-                    }
+                    result = date.getDate();
                     break;
                 case 'HH':
                     var HH = date.getHours();

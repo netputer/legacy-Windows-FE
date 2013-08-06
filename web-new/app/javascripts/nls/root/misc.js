@@ -13,6 +13,7 @@ define({
     USB_APK_UPDATING : '正在为您升级手机上的豌豆荚，完成后即可管理手机...',
     USB_INSTALL_FAILED_NO_MORE_SPACE : '手机安装豌豆荚失败，空间不足',
     USB_INSTALL_FAILED_INTERNAL_ERROR : '手机安装豌豆荚失败，手机内部错误',
+    PHTONE_DISCONNECTED : '手机未连接',
 
     POSIBLE_REASON : '可能的原因：',
 
@@ -216,5 +217,7 @@ define({
     CLOUD_PHOTO_OPEN : '开启云相册同步',
     RESELECT_FILE_TEXT : '重新选择文件',
     SAVE : '保存',
-    DONTSAVE : '不保存'
+    DONTSAVE : '不保存',
+    PHONE : '手机内存',
+    SD_CARD : 'SD 卡'
 });

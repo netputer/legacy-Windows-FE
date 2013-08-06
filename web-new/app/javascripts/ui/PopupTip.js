@@ -15,8 +15,12 @@
                 this.ignoreSelf = true;
                 this.directionDown = false;
             },
-            beforeRender : function () {
+            render : function () {
                 this.$content = this.$host.data('title');
+                if (this.$content) {
+                    return PopupTip.__super__.render.call(this);
+                }
+                return this;
             }
         });
 

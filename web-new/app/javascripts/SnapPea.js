@@ -79,11 +79,11 @@
     //         $('head').append(doT.template(TemplateFactory.get('misc', 'font-style-xp'))({}));
     //     }
     // });
-
     require([
         'jquery',
         'backbone',
-        // 'main/MainRouter',
+        'DB',
+        'main/HistoryManager',
         'main/views/MainView',
         'doraemon/views/DoraemonModuleView',
         'doraemon/views/GalleryView',
@@ -116,7 +116,8 @@
     ], function (
         $,
         Backbone,
-        // MainRouter,
+        DB,
+        HistoryManager,
         MainView,
         DoraemonModuleView,
         GalleryView,
