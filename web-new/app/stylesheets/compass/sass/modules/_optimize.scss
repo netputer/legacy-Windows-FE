@@ -38,7 +38,7 @@
         }
 
         .pre-scan {
-            @include tx-sprite(pre-scan); 
+            @include tx-sprite(pre-scan);
         }
 
         .warn {
@@ -89,6 +89,12 @@
                     margin-left: 10px;
                 }
             }
+        }
+
+        .action {
+            height: 70px;
+            padding-bottom: 15px;
+            -webkit-box-pack: end;
         }
     }
 
