@@ -147,7 +147,8 @@
                     if (this.currentPhoto.get('originalPic') === $img.attr('src')) {
                         this.currentPhoto.set('widthLtHeight', $img[0].width > $img[0].height);
                         this.$('.photo').attr({
-                            src : $img.attr('src')
+                            src : $img.attr('src'),
+                            style : ''
                         }).removeClass('rotate-90 rotate-180 rotate-270').addClass('rotate-' + this.currentPhoto.get('orientation'));
 
                         this.adjustSize();
@@ -483,6 +484,30 @@
                 this.loading = true;
                 this.loadAsync();
             },
+            mouseWheelEvent : function (evt) {
+                var delta = evt.originalEvent.wheelDelta;
+                var $photo = this.$('.photo');
+                var matrix = $photo.css('transform');
+
+                var scale = 1, angle = 0;
+
+                if (matrix !== 'none') {
+                    var matrixArray = matrix.substr(7, matrix.length - 8).split(',');
+                    var a = matrixArray[0];
+                    var b = matrixArray[1];
+
+                    scale = (Math.sqrt(a * a + b * b));
+                    angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+                }
+
+                if (delta > 0) {
+                    scale = scale > 5 || scale + 0.4;
+                } else {
+                    scale = scale < 0.3 || scale - 0.4;
+                }
+
+                $photo.css('transform', 'scale(' + scale + ') rotate(' + angle + 'deg)');
+            },
             events : {
                 'click .photo' : 'clickPhoto',
                 'click .button-close' : 'clickButtonClose',
@@ -496,7 +521,8 @@
                 'click .button-export' : 'clickButtonExport',
                 'click .button-wallpaper' : 'clickButtonWallpaper',
                 'click .button-share' : 'clickButtonShare',
-                'click .button-retry' : 'clickButtonRetry'
+                'click .button-retry' : 'clickButtonRetry',
+                'mousewheel' : 'mouseWheelEvent'
             }
         });
 
