@@ -27,7 +27,9 @@
         <div class="title">{{= i18n.optimize.INSTALLING }}</div>
         <progress class="min" max="100" value="{{= it.progress }}"></progress>
     </div>
-    <button class="button-cancel">{{= i18n.ui.CANCEL }}</button>
+    <div class="action vbox">
+        <button class="button-cancel">{{= i18n.ui.CANCEL }}</button>
+    </div>
 </script>
 
 <script type="text/x-ui-template" id="scan-progress">
@@ -39,7 +41,9 @@
         </div>
         <div class="tip text-secondary wc"></div>
     </div>
-    <button class="button-cancel">{{= i18n.ui.CANCEL }}</button>
+    <div class="action vbox">
+        <button class="button-cancel">{{= i18n.ui.CANCEL }}</button>
+    </div>
 </script>
 
 <script type="text/x-ui-template" id="scan-monitor">
