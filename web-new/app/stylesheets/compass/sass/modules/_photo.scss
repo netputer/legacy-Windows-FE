@@ -79,7 +79,7 @@
 
         .photo {
             opacity: 1;
-            -webkit-transition: opacity .6s;
+            -webkit-transition: opacity .6s, -webkit-transform .2s;
 
             &.rotate-90 {
                 -webkit-transform: rotate(90deg);
@@ -183,9 +183,9 @@
     }
 
     .control {
-        height: 70px;
-        -webkit-box-align: center;
-        -webkit-box-pack: end;
+        bottom: 70px;
+        position: fixed;
+        width: 100%;
 
         .tip {
             color: #fff;
