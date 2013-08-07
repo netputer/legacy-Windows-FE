@@ -9,7 +9,6 @@
         'jquery',
         'ui/TemplateFactory',
         'ui/Toolbar',
-        'ui/AlertWindow',
         'ui/MenuButton',
         'utilities/StringUtil',
         'Internationalization',
@@ -33,7 +32,6 @@
         $,
         TemplateFactory,
         Toolbar,
-        AlertWindow,
         MenuButton,
         StringUtil,
         i18n,
@@ -53,7 +51,6 @@
     ) {
         console.log('AppModuleToolbarView - File loaded.');
 
-        var alert = window.alert;
         var confirm = window.confirm;
 
         var appListView;

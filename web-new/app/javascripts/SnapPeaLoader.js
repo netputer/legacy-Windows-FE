@@ -98,4 +98,6 @@ require.config({
     }
 }(this, this.document));
 
-require(['SnapPea'], function (SnapPea) {return;});
+require(['SnapPea'], function (SnapPea) {
+    return;
+});
