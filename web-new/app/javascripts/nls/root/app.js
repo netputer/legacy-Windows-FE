@@ -8,7 +8,6 @@ define({
     UPDATING : '升级中',
     COULD_UPDATE_TO : '升至：',
     COULD_UPDATE : '可升级至',
-    UPDATABLE : '可升级',
     MANAGE_MY_APPS : '管理我的应用',
     CONFIG : '设置',
     UPDATE_NOTIFI_FREQUENCE_WEEKLY : '每周提醒一次',

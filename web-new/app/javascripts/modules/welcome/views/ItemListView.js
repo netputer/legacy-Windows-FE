@@ -98,7 +98,7 @@
                                 disabled : true
                             });
                         } else if (targetApp.isUpdatable) {
-                            $button.html(i18n.app.UPDATABLE).prop({
+                            $button.html(i18n.app.UPDATE).prop({
                                 disabled : false
                             });
                         } else {
