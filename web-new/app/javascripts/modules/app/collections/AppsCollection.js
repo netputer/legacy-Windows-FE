@@ -170,9 +170,37 @@
                 });
             },
             getUpdatableApps : function () {
-                return FunctionSwitch.ENABLE_APP_UPGRADE ? this.filter(function (app) {
+                if (!FunctionSwitch.ENABLE_APP_UPGRADE) {
+                    return [];
+                }
+
+                var update = this.filter(function (app) {
                     return app.isUpdatable;
-                }) : [];
+                });
+
+                var arr = _.groupBy(update, function (app) {
+                    if (app.id.length > 19) {
+                        return 'us';
+                    }
+
+                    return 'others';
+                });
+
+                var result = [];
+
+                result.push(new AppModel({
+                    source : 'us'
+                }));
+
+                result = result.concat(arr.us);
+
+                result.push(new AppModel({
+                    source : 'others'
+                }));
+
+                result = result.concat(arr.others);
+
+                return result;
             },
             getSuggestMoveApps : function () {
                 return this.filter(function (app) {

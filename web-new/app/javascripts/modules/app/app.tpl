@@ -261,6 +261,13 @@
 </script>
 
 <script type="text/x-ui-template" id="app-list-item">
+    {{? !it.id }}
+    {{? it.source === 'us' }}
+        {{= i18n.app.UPDATE_FROM_US }}
+    {{??}}
+        {{= i18n.app.UPDATE_FROM_OTHERS }}
+    {{?}}
+    {{??}}
     <label class="input item-checker-wrap hbox"><input class="item-checker" type="checkbox" value="{{= it.id }}"></label>
     <div class="info hbox">
         <div class="icon">
@@ -335,6 +342,7 @@
         <span class="button-hide link">{{= i18n.misc.DELETE }}</span>
     </div>
     <div class="button-close" data-id="{{= it.id }}" title="{{= i18n.misc.DESELECT }}"></div>
+    {{?}}
 </script>
 
 <script type="text/x-ui-template" id="one-key-update-body">

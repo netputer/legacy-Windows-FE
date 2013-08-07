@@ -562,6 +562,38 @@
     }
 }
 
+.w-ui-smartlist-body-ctn {
+    .category {
+        line-height: 36px;
+        padding-left: 34px;
+    }
+
+    &.odd > .category {
+        &:nth-child(odd):not(.highlight):not(:hover) {
+            background-color: #ebebeb;;
+        }
+
+        &:nth-child(even):not(.highlight):not(:hover) {
+            background-color: #ebebeb;
+        }
+    }
+
+    > .category {
+        &:nth-child(odd):not(.highlight):not(:hover) {
+            background-color: #ebebeb;
+        }
+
+        &:nth-child(even):not(.highlight):not(:hover) {
+            background-color: #ebebeb;
+        }
+
+        &:hover,
+        &.highlight:hover {
+            background-color: #ebebeb;
+        }
+    }
+}
+
 /********************************************************************************
  * Application one key update window
  ********************************************************************************/

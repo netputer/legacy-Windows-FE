@@ -63,6 +63,11 @@
                 AppItemView.__super__.remove.call(this);
             },
             render : function () {
+                if (this.model.get('source') !== undefined) {
+                    this.$el.addClass('category').html(this.template(this.model.toJSON()));
+                    return this;
+                }
+
                 var $checker = this.$('.item-checker');
                 var checked = $checker.length > 0 ? $checker[0].checked : false;
 

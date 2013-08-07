@@ -184,8 +184,8 @@ define({
     RETURN_ALL : '全部应用',
     SEARCH_TIP_PART : '{1} 个与「{2}」有关的应用',
 
-    // UPDATE_FROM_US : '来自豌豆荚的升级',
-    // UPDATE_FROM_OTHERS : '来自其它市场的升级',
+    UPDATE_FROM_US : '来自豌豆荚的升级 - 经过豌豆荚审核',
+    UPDATE_FROM_OTHERS : '来自其他市场的升级 - 未经豌豆荚审核',
 
     /* Permission info */
     "android.permission-group.ACCOUNTS" : "访问您的账号",
