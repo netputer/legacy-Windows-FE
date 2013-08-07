@@ -20,8 +20,6 @@
                 ClipImage.__super__.initialize.apply(this, arguments);
 
                 var path = '';
-                var container;
-
                 var imageDefaultWidth = 0;
                 var imageDefaultHeight = 0;
                 var imageMiniWidth = 200;
@@ -37,14 +35,11 @@
                 var boxMaxHeight = 40;
                 var boxResizable = true;
                 var boxKeepSquare = true;
-
                 var extralTop = 0;
                 var extralLeft = 0;
-
                 var constHeightData = null;
                 var constWidthData = null;
                 var constBorderData;
-
                 var mouseMoveFlag = false;
                 var clipingBoxResizeFlag = false;
                 //var imageReizeFlag = false;
@@ -58,14 +53,6 @@
                         },
                         set : function (value) {
                             path = value;
-                        }
-                    },
-                    container : {
-                        get : function () {
-                            return container;
-                        },
-                        set : function (value) {
-                            container = value;
                         }
                     },
                     imageDefaultWidth : {
@@ -275,7 +262,7 @@
                 var mouseUpHandle = function (e) {
                     this.mouseMoveFlag = false;
                     this.clipingBoxResizeFlag = false;
-                    this.imageReizeFlag = false;
+                    //this.imageReizeFlag = false;
                 }.bind(this);
 
                 $(window.document).on('mouseup', mouseUpHandle);
@@ -342,9 +329,18 @@
                 img.src = source;
             },
             mouseDownSurface : function (evt) {
+                evt.stopPropagation();
+                evt.preventDefault();
+
                 this.mouseMoveFlag = true;
+
+                this.oldPosition.clientX = evt.clientX;
+                this.oldPosition.clientY = evt.clientY;
             },
             mouseDownResizeEl : function (evt) {
+                evt.stopPropagation();
+                evt.preventDefault();
+
                 var target = $(evt.currentTarget);
 
                 if (!!target.parent('cliping-box')) {
@@ -356,8 +352,7 @@
                 //}
 
                 this.resizeDirection = target.data('position').toUpperCase();
-            },
-            mouseDownClip : function (evt) {
+
                 this.oldPosition.clientX = evt.clientX;
                 this.oldPosition.clientY = evt.clientY;
             },
@@ -483,8 +478,8 @@
                         'marginLeft': (this.extralLeft - leftVal) + 'px'
                     });
 
-                    //this.oldPosition.clientY = eClientY;
-                    //this.oldPosition.clientX = eClientX;
+                    this.oldPosition.clientY = eClientY;
+                    this.oldPosition.clientX = eClientX;
 
                     return;
                 }
@@ -695,7 +690,6 @@
                 };
             },
             events : {
-                'mousedown' : 'mouseDownClip',
                 'mousemove' : 'mouseMoveClip',
                 'mousedown .clip-box-surface' : 'mouseDownSurface',
                 'mousedown .clip-resize-el' : 'mouseDownResizeEl'

@@ -85,8 +85,7 @@
                 }
                 this.clipImage = new ClipImage({
                     path : path,
-                    imageOrientation : orientation,
-                    container: this.$el
+                    imageOrientation : orientation
                 });
 
                 this.$('.w-ui-window-body').append(this.clipImage.render().$el);
