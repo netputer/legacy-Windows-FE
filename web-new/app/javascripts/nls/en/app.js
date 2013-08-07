@@ -134,6 +134,7 @@ define({
     UNINSTALL : 'Uninstall',
     VERSION : 'Version: ',
     LATEST_VERSION : 'Latest version: ',
+    LATEST_VERSION_SIZE : '新版大小：',
     SIZE : 'Size: ',
     PERMISSON : 'Permissions: ',
     MORE : 'More',

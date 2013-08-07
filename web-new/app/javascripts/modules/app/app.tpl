@@ -496,6 +496,14 @@
         <div>{{= i18n.app.VERSION }}v{{= originVersion }}</div>
         <div>{{= i18n.app.LATEST_VERSION }}v{{= targetVersion }}</div>
     </div>
+    <div class="content text-secondary">
+        <div>{{= i18n.app.LATEST_VERSION_SIZE }}{{= StringUtil.readableSize(it.upgrade_info.size) }}</div>
+        <!-- {{? 0 || it.upgrade_info.fromWDJ }}
+        <div>来自豌豆荚的升级</div>
+        {{??}}
+        <div>来自其它市场的升级</div>
+        {{?}} -->
+    </div>
     {{? !it.upgrade_info.changeLog.trim() }}
     <div class="title text-secondary">{{= i18n.app.CHANGE_LOG_EMPRY }}</div>
     {{??}}

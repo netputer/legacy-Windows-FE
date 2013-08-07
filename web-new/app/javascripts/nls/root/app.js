@@ -134,6 +134,7 @@ define({
     UNINSTALL : '卸载',
     VERSION : '当前版本：',
     LATEST_VERSION : '最新版本：',
+    LATEST_VERSION_SIZE : '新版大小：',
     SIZE : '大小：',
     PERMISSON : '权限：',
     MORE : '更多',
@@ -182,6 +183,9 @@ define({
 
     RETURN_ALL : '全部应用',
     SEARCH_TIP_PART : '{1} 个与「{2}」有关的应用',
+
+    // UPDATE_FROM_US : '来自豌豆荚的升级',
+    // UPDATE_FROM_OTHERS : '来自其它市场的升级',
 
     /* Permission info */
     "android.permission-group.ACCOUNTS" : "访问您的账号",
