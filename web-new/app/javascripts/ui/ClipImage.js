@@ -26,8 +26,8 @@
                 var imageDefaultHeight = 0;
                 var imageMiniWidth = 200;
                 var imageMiniHeight = 200;
-                var imageResizable = false;
-                var imageKeepSquare = false;
+                //var imageResizable = false;
+                //var imageKeepSquare = false;
                 var imageOrientation = 0;
                 var boxDefaultWidth = 100;
                 var boxDefaultHeight = 100;
@@ -41,9 +41,15 @@
                 var extralTop = 0;
                 var extralLeft = 0;
 
-                var constHeightData;
-                var constWidthData;
+                var constHeightData = null;
+                var constWidthData = null;
                 var constBorderData;
+
+                var mouseMoveFlag = false;
+                var clipingBoxResizeFlag = false;
+                //var imageReizeFlag = false;
+
+                var oldPosition = {};
 
                 Object.defineProperties(this, {
                     path : {
@@ -96,22 +102,22 @@
                             imageMiniHeight = value;
                         }
                     },
-                    imageResizable : {
+                    /*imageResizable : {
                         get : function () {
                             return imageResizable;
                         },
                         set : function (value) {
                             imageResizable = value;
                         }
-                    },
-                    imageKeepSquare : {
+                    },*/
+                    /*imageKeepSquare : {
                         get : function () {
                             return imageKeepSquare;
                         },
                         set : function (value) {
                             imageKeepSquare = value;
                         }
-                    },
+                    },*/
                     imageOrientation : {
                         get : function () {
                             return imageOrientation;
@@ -223,6 +229,38 @@
                         set : function (value) {
                             constBorderData = value;
                         }
+                    },
+                    mouseMoveFlag : {
+                        get : function () {
+                            return mouseMoveFlag;
+                        },
+                        set : function (value) {
+                            mouseMoveFlag = value;
+                        }
+                    },
+                    clipingBoxResizeFlag : {
+                        get : function () {
+                            return clipingBoxResizeFlag;
+                        },
+                        set : function (value) {
+                            clipingBoxResizeFlag = value;
+                        }
+                    },
+                    /*imageReizeFlag : {
+                        get : function () {
+                            return imageReizeFlag;
+                        },
+                        set : function (value) {
+                            imageReizeFlag = value;
+                        }
+                    },*/
+                    oldPosition : {
+                        get : function () {
+                            return oldPosition;
+                        },
+                        set : function (value) {
+                            oldPosition = value;
+                        }
                     }
                 });
 
@@ -233,14 +271,26 @@
                         this[key] = options[key];
                     }
                 }
+
+                var mouseUpHandle = function (e) {
+                    this.mouseMoveFlag = false;
+                    this.clipingBoxResizeFlag = false;
+                    this.imageReizeFlag = false;
+                }.bind(this);
+
+                $(window.document).on('mouseup', mouseUpHandle);
+
+                this.on('remove', function () {
+                    $(window.document).off('mouseup', mouseUpHandle);
+                });
             },
             render : function () {
 
                 this.$el.html(this.template({}));
 
-                this.originImg = this.$('.origin-image');
-                this.clipBox = this.$('.cliping-box');
-                this.clipImg = this.$('.clip-box-image');
+                this.$originImg = this.$('.origin-image');
+                this.$clipBox = this.$('.cliping-box');
+                this.$clipImg = this.$('.clip-box-image');
 
                 this.loadImage();
 
@@ -248,454 +298,366 @@
             },
             loadImage : function () {
                 var source = this.path + '?data=' + new Date().getTime();
-                var img = new Image();
+                var img = new window.Image();
 
                 img.onload = function () {
 
                     this.imageDefaultWidth = Math.min(img.width, this.$el.width());
                     this.imageDefaultHeight = Math.min(img.height, this.$el.height());
 
-                    this.originImg.attr('src', source);
-                    this.clipBox.css({
-                        width : this.boxDefaultWidth,
-                        height : this.boxDefaultHeight
+                    this.$originImg.attr('src', source);
+                    this.$clipBox.css({
+                        'width' : this.boxDefaultWidth,
+                        'height' : this.boxDefaultHeight
                     });
 
-                    this.clipImg.attr('src', source);
+                    this.$clipImg.attr('src', source);
 
                     this.setImage(source);
 
-                    if (this.imageResizable) {
+                    /*if (this.imageResizable) {
                         this.createResizeEl(this.$el);
-                    }
+                    }*/
 
                     if (this.boxResizable) {
-                        this.createResizeEl(this.clipBox);
+                        this.createResizeEl(this.$clipBox);
                     }
 
-                    this.bindAction();
+                    if (this.constHeightData === null || this.constWidthData === null) {
+                        var pT = parseInt(this.$el.css('padding-top'), 10);
+                        var pL = parseInt(this.$el.css('padding-left'), 10);
+
+                        var clipingBoxBorderTop = parseInt(this.$clipBox.css('border-top-width'), 10);
+                        //var clipingBoxBorderLeft = parseInt(this.$clipBox.css('border-left-width'), 10);
+                        var clipingBoxBorderBottom = parseInt(this.$clipBox.css('border-bottom-width'), 10);
+                        //var clipingBoxBorderRight = parseInt(this.$clipBox.css('border-right-width'), 10);
+
+                        this.constBorderData = clipingBoxBorderTop + clipingBoxBorderBottom;
+                        this.constHeightData =  pT + this.constBorderData;
+                        this.constWidthData = pL + this.constBorderData;
+                    }
 
                 }.bind(this);
 
                 img.src = source;
             },
-            bindAction : function () {
-                var old_bottom;
-                var old_right;
-                var old_top;
-                var old_left;
-                var old_margin_top;
-                var old_margin_left;
-                var old_width;
-                var old_height;
-                var eClientX_old;
-                var eClientY_old;
-                var mouseMoveFlag = false;
-                var clipingBoxResizeFlag = false;
-                var imageReizeFlag  = false;
-                var w = this.clipBox.width();
-                var h = this.clipBox.height();
-                var containerWidth  = this.$el.width();
-                var containerHeight = this.$el.height();
-                var resizeDirection = null;
+            mouseDownSurface : function (evt) {
+                this.mouseMoveFlag = true;
+            },
+            mouseDownResizeEl : function (evt) {
+                var target = $(evt.currentTarget);
 
-                if (this.constHeightData === null || this.constWidthData === null) {
-                    var pT = parseInt(this.$el.css('padding-top'), 10);
-                    var PL = parseInt(this.$el.css('padding-left'), 10);
+                if (!!target.parent('cliping-box')) {
+                    this.clipingBoxResizeFlag = true;
+                    this.calculateOldPosition();
+                }
+                //else if (!!target.parent('w-ui-clip-image')) {
+                //    this.imageReizeFlag = true;
+                //}
 
-                    var clipingBoxBorderTop = parseInt(this.clipBox.css('border-top-width'), 10);
-                    var clipingBoxBorderLeft = parseInt(this.clipBox.css('border-left-width'), 10);
-                    var clipingBoxBorderBottom = parseInt(this.clipBox.css('border-bottom-width'), 10);
-                    var clipingBoxBorderRight = parseInt(this.clipBox.css('border-right-width'), 10);
+                this.resizeDirection = target.data('position').toUpperCase();
+            },
+            mouseDownClip : function (evt) {
+                this.oldPosition.clientX = evt.clientX;
+                this.oldPosition.clientY = evt.clientY;
+            },
+            calculateOldPosition : function () {
+                var width = parseInt(this.$clipBox.width(), 10),
+                    height = parseInt(this.$clipBox.height(), 10),
+                    top  = this.$clipBox.position().top,
+                    left = this.$clipBox.position().left;
 
-                    this.constBorderData = clipingBoxBorderTop + clipingBoxBorderBottom;
-                    this.constHeightData =  pT + this.constBorderData;
-                    this.constWidthData = PL + this.constBorderData;
+                this.oldPosition = {
+                    width : width,
+                    height : height,
+                    top : top,
+                    left : left,
+                    bottom : this.$el.height() - top - height,
+                    right : this.$el.width() - left - width,
+                    marginTop : parseInt(this.$clipImg.css('marginTop'), 10),
+                    marginLeft : parseInt(this.$clipImg.css('marginLeft'), 10)
+                };
+            },
+            calculateResizeData : function (tmpHeight, tmpWidth, oldData1, oldData2) {
+                var imgNowWidth = this.$originImg.width(),
+                    imgNowHeight = this.$originImg.height(),
+                    containerWidth  = this.$el.width(),
+                    containerHeight = this.$el.height(),
+                    extralL,
+                    extralT;
+
+                switch (this.imageOrientation) {
+                case 0:
+                case 180:
+                    extralL = this.extralLeft;
+                    extralT = this.extralTop;
+                    break;
+                case 90:
+                case 270:
+                    extralL = (containerWidth - imgNowHeight) / 2;
+                    extralT = (containerHeight - imgNowWidth) / 2;
+                    break;
                 }
 
-                var calculateOldPosition = function () {
-                    old_width = parseInt(this.clipBox.width(), 10);
-                    old_height = parseInt(this.clipBox.height(), 10);
+                var tmpMaxWidth = containerWidth - oldData1 - extralL;
+                var tmpMaxHeight = containerHeight - oldData2 - extralT;
 
-                    old_top  = this.clipBox.position().top;
-                    old_left = this.clipBox.position().left;
-                    old_bottom = containerHeight - old_top - old_height;
-                    old_right = containerWidth - old_left - old_width;
+                var maxWidth = Math.min(this.boxMaxWidth, tmpMaxWidth);
+                var maxHeight = Math.min(this.boxMaxHeight, tmpMaxHeight);
+                var widthVal = tmpWidth < this.boxMiniWidth ? this.boxMiniWidth : Math.min(maxWidth, tmpWidth);
+                var heightVal = tmpHeight < this.boxMiniHeight ? this.boxMiniHeight : Math.min(maxHeight, tmpHeight);
 
-                    old_margin_top = parseInt(this.clipImg.css('margin-top'), 10);
-                    old_margin_left = parseInt(this.clipImg.css('margin-left'), 10);
+                if (this.boxKeepSquare) {
+                    widthVal = heightVal = Math.min(widthVal, heightVal);
+                }
 
-                }.bind(this);
+                return {
+                    width   : widthVal,
+                    height  : heightVal,
+                    extralL : extralL,
+                    extralT : extralT
+                };
+            },
+            mouseMoveClip : function (evt) {
+                var clipBoxWidth = this.$clipBox.width();
+                var clipBoxHeight = this.$clipBox.height();
+                var containerWidth  = this.$el.width();
+                var containerHeight = this.$el.height();
+                var imageHeight = this.$originImg.height();
+                var imageWidth = this.$originImg.width();
 
-                var calculateResizeData = function (tmpHeight, tmpWidth, oldData1, oldData2) {
-                    var imgNowWidth = this.originImg.width();
-                    var imgNowHeight = this.originImg.height();
-                    var extralL;
-                    var extralT;
+                var target = $(evt.target);
+                var eClientX = evt.clientX;
+                var eClientY = evt.clientY;
+                var clientXDiff = this.oldPosition.clientX - eClientX;
+                var clientYDiff = this.oldPosition.clientY - eClientY;
+
+                if (this.mouseMoveFlag) {
+                    var boundaryH, boundaryW, extralT, extralL;
 
                     switch (this.imageOrientation) {
                     case 0:
                     case 180:
-                        extralL = this.extralLeft;
+                        boundaryH = imageHeight;
+                        boundaryW = imageWidth;
                         extralT = this.extralTop;
+                        extralL = this.extralLeft;
                         break;
                     case 90:
                     case 270:
-                        extralL = (containerWidth - imgNowHeight) / 2;
-                        extralT = (containerHeight - imgNowWidth) / 2;
+                        var containerH = containerHeight;
+                        var containerW = containerWidth;
+                        boundaryH = Math.min(imageWidth, containerH);
+                        boundaryW = Math.min(imageHeight, containerW);
+
+                        if (containerH - boundaryH > 0) {
+                            extralT = (containerH - boundaryH) / 2;
+                        } else {
+                            extralT = 0;
+                        }
+
+                        if (containerW - boundaryW > 0) {
+                            extralL = (containerW - boundaryW) / 2;
+                        } else {
+                            extralL = 0;
+                        }
                         break;
                     }
 
-                    var tmpMaxWidth = containerWidth - oldData1 - extralL;
-                    var tmpMaxHeight = containerHeight - oldData2 - extralT;
+                    var topNow = this.$clipBox.position().top;
+                    var leftNow = this.$clipBox.position().left;
+                    var overBoundaryY = boundaryH - this.$clipBox.height() + extralT;
+                    var overBoundaryX = boundaryW - this.$clipBox.width() + extralL;
+                    var tmpTop = topNow - clientYDiff;
+                    var tmpLeft = leftNow - clientXDiff;
+                    var topVal = tmpTop  <= extralT ? extralT : (tmpTop >= overBoundaryY ? overBoundaryY : tmpTop);
+                    var leftVal = tmpLeft <= extralL ? extralL : (tmpLeft >= overBoundaryX ? overBoundaryX : tmpLeft);
 
-                    var maxWidth = Math.min(this.boxMaxWidth, tmpMaxWidth);
-                    var maxHeight = Math.min(this.boxMaxHeight, tmpMaxHeight);
-                    var widthVal = tmpWidth < this.boxMiniWidth ? this.boxMiniWidth : Math.min(maxWidth, tmpWidth);
-                    var heightVal = tmpHeight < this.boxMiniHeight ? this.boxMiniHeight : Math.min(maxHeight, tmpHeight);
+                    this.$clipBox.css({
+                        'top' : topVal,
+                        'left': leftVal
+                    });
 
-                    if (this.boxKeepSquare) {
-                        widthVal = heightVal = Math.min(widthVal, heightVal);
+                    this.$clipImg.css({
+                        'marginTop': (this.extralTop - topVal) + 'px',
+                        'marginLeft': (this.extralLeft - leftVal) + 'px'
+                    });
+
+                    //this.oldPosition.clientY = eClientY;
+                    //this.oldPosition.clientX = eClientX;
+
+                    return;
+                }
+
+                if (this.clipingBoxResizeFlag) {
+
+                    var tmpWidth = clipBoxWidth - clientXDiff;
+                    var tmpHeight = clipBoxHeight - clientYDiff;
+                    var constData = this.constHeightData;
+                    var marginTop;
+                    var marginLeft;
+                    var oldData1 = this.$clipBox.position().left, oldData2 = this.$clipBox.position().top;
+
+                    var vertical = this.resizeDirection.substr(0, 1);
+                    var horizontal = this.resizeDirection.substr(1, 2);
+
+                    var top = '', bottom = '', left = '', right = '';
+
+                    if (vertical === 'T') {
+                        clientYDiff = eClientY - this.oldPosition.clientY;
+                        tmpHeight = clipBoxHeight - clientYDiff;
+                        oldData2 = this.oldPosition.bottom;
                     }
 
-                    return {
-                        width   : widthVal,
-                        height  : heightVal,
-                        extralL : extralL,
-                        extralT : extralT
-                    };
-                }.bind(this);
-
-                this.$el.bind('mousedown', function (e) {
-                    var target = $(e.target);
-
-                    if (target.hasClass('clip-box-surface')) {
-                        mouseMoveFlag = true;
+                    if (horizontal === 'L') {
+                        clientXDiff = this.oldPosition.clientX - eClientX;
+                        tmpWidth = clipBoxWidth + clientXDiff;
+                        oldData1 = this.oldPosition.right;
                     }
 
-                    if (target.hasClass('clip-resize-el') || target.parent().hasClass('clip-resize-el')) {
-                        if (!!target.parent('cliping-box')) {
-                            clipingBoxResizeFlag = true;
+                    var data = this.calculateResizeData(tmpHeight, tmpWidth, oldData1, oldData2);
 
-                            if (target.hasClass('clip-resize-tl') || target.parent().hasClass('clip-resize-tl')) {
-                                resizeDirection = 'TL';
-                            } else if (target.hasClass('clip-resize-tr') || target.parent().hasClass('clip-resize-tr')) {
-                                resizeDirection = 'TR';
-                            } else if (target.hasClass('clip-resize-bl') || target.parent().hasClass('clip-resize-bl')) {
-                                resizeDirection = 'BL';
-                            } else if (target.hasClass('clip-resize-br') || target.parent().hasClass('clip-resize-br')) {
-                                resizeDirection = 'BR';
-                            }
-                            calculateOldPosition();
-                        } else if (!!target.parent('w-ui-clip-image')) {
-                            imageReizeFlag = true;
-                        }
-                    }
+                    switch (this.imageOrientation) {
+                    case 0:
+                    case 180:
 
-                    eClientX_old = e.clientX;
-                    eClientY_old = e.clientY;
-
-                }.bind(this));
-
-                this.$el.bind('mousemove', function (e) {
-                    var target = $(e.target);
-                    var eClientX = e.clientX;
-                    var eClientY = e.clientY;
-                    var clientXDiff = eClientX_old - eClientX;
-                    var clientYDiff = eClientY_old - eClientY;
-
-                    if (mouseMoveFlag) {
-                        var boundaryH, boundaryW;
-
-                        switch (this.imageOrientation) {
-                        case 0:
-                        case 180:
-                            boundaryH = this.originImg.height();
-                            boundaryW = this.originImg.width();
-                            extralT = this.extralTop;
-                            extralL = this.extralLeft;
-                            break;
-                        case 90:
-                        case 270:
-                            var containerH = this.$el.height();
-                            var containerW = this.$el.width();
-                            boundaryH = Math.min(this.originImg.width(), containerH);
-                            boundaryW = Math.min(this.originImg.height(), containerW);
-
-                            if (containerH - boundaryH > 0) {
-                                extralT = (containerH - boundaryH) / 2;
-                            } else {
-                                extralT = 0;
-                            }
-
-                            if (containerW - boundaryW > 0) {
-                                extralL = (containerW - boundaryW) / 2;
-                            } else {
-                                extralL = 0;
-                            }
-                            break;
+                        if (vertical === 'T') {
+                            marginTop = '-' + (containerHeight - this.oldPosition.bottom - data.height - data.extralT);
                         }
 
-                        var topNow = this.clipBox.position().top;
-                        var leftNow = this.clipBox.position().left;
-                        var overBoundaryY = boundaryH - this.clipBox.height() + extralT;
-                        var overBoundaryX = boundaryW - this.clipBox.width() + extralL;
-                        var tmpTop = topNow - clientYDiff;
-                        var tmpLeft = leftNow - clientXDiff;
-                        var topVal = tmpTop  <= extralT ? extralT : (tmpTop >= overBoundaryY ? overBoundaryY : tmpTop);
-                        var leftVal = tmpLeft <= extralL ? extralL : (tmpLeft >= overBoundaryX ? overBoundaryX : tmpLeft);
+                        if (horizontal === 'L') {
+                            marginLeft = '-' + (containerWidth - this.oldPosition.right - data.width - data.extralL);
+                        }
 
-                        this.clipBox.css({
-                            'top' : topVal,
-                            'left': leftVal
-                        });
+                        break;
+                    case 90:
+                    case 270:
 
-                        this.clipImg.css({
-                            'margin-top': (this.extralTop - topVal) + 'px',
-                            'margin-left': (this.extralLeft - leftVal) + 'px'
-                        });
-
-                        eClientY_old = eClientY;
-                        eClientX_old = eClientX;
-
-                    } else if (clipingBoxResizeFlag) {
-
-                        var w = this.clipBox.width();
-                        var h = this.clipBox.height();
-                        var top = this.clipBox.position().top;
-                        var left = this.clipBox.position().left;
-                        var imgNowWidth = this.originImg.width();
-                        var imgNowHeight = this.originImg.height();
-                        var tmpWidth = w - clientXDiff;
-                        var tmpHeight = h - clientYDiff;
-                        var constData = this.constHeightData;
-                        var marginTop;
-                        var marginLeft;
-                        var data;
-
-                        switch (resizeDirection) {
-                        case 'TL':
-                            clientYDiff = eClientY - eClientY_old;
-                            clientXDiff = eClientX_old - eClientX;
-                            tmpHeight = h - clientYDiff;
-                            tmpWidth = w + clientXDiff;
-
-                            data = calculateResizeData(tmpHeight, tmpWidth, old_right, old_bottom);
-
-                            if (imgNowWidth >= containerHeight) {
+                        if (vertical === 'T') {
+                            if (imageHeight >= containerWidth) {
                                 constData = this.constBorderData;
                             }
-
-                            switch (this.imageOrientation) {
-                            case 0:
-                            case 180:
-                                marginTop = '-' + (containerHeight - old_bottom - data.height - data.extralT);
-                                marginLeft = '-' + (containerWidth - old_right - data.width - data.extralL);
-                                break;
-                            case 90:
-                            case 270:
-                                if (imgNowWidth > containerHeight) {
-                                    constData = this.constBorderData;
-                                } else if (imgNowWidth === containerHeight) {
-                                    constData = 0;
-                                }
-                                marginTop = old_margin_top + data.height - old_height + constData;
-                                marginLeft = old_margin_left + data.width - old_width + constData;
-                                break;
-                            }
-
-                            this.clipBox.css({
-                                width  : data.width,
-                                height : data.height,
-                                bottom : old_bottom + this.constHeightData,
-                                right  : old_right + this.constWidthData,
-                                left   : '',
-                                top    : ''
-                            });
-
-                            this.clipImg.css({
-                                'margin-left' : marginLeft + 'px',
-                                'margin-top' :  marginTop + 'px'
-                            });
-                            break;
-                        case 'TR':
-                            clientYDiff = eClientY - eClientY_old;
-                            tmpHeight = h - clientYDiff;
-
-                            data = calculateResizeData(tmpHeight, tmpWidth, left, old_bottom);
-
-                            switch (this.imageOrientation) {
-                            case 0:
-                            case 180:
-                                marginTop = '-' + (containerHeight - old_bottom - data.height - data.extralT);
-                                break;
-                            case 90:
-                            case 270:
-                                marginTop = old_margin_top + data.height - old_height + this.constBorderData;
-                                break;
-                            }
-
-                            this.clipBox.css({
-                                width  : data.width,
-                                height : data.height,
-                                bottom : old_bottom + constData,
-                                left   : old_left,
-                                top    : '',
-                                right  : ''
-                            });
-
-                            this.clipImg.css({
-                                'margin-top' :  marginTop + 'px'
-                            });
-                            break;
-                        case 'BL':
-                            clientXDiff = eClientX_old - eClientX;
-                            tmpWidth = w + clientXDiff;
-
-                            data = calculateResizeData(tmpHeight, tmpWidth, old_right, top);
-
-                            switch (this.imageOrientation) {
-                            case 0:
-                            case 180:
-                                marginLeft = '-' + (containerWidth - old_right - data.width - data.extralL);
-                                break;
-                            case 90:
-                            case 270:
-                                if (imgNowWidth >= containerHeight) {
-                                    constData = this.constBorderData;
-                                }
-                                marginLeft = old_margin_left + data.width - old_width + constData;
-                                break;
-                            }
-
-                            this.clipBox.css({
-                                width : data.width,
-                                height: data.height,
-                                right : old_right + constData,
-                                top   : old_top,
-                                bottom: '',
-                                left  : ''
-                            });
-
-                            this.clipBox.css({
-                                'margin-left' : marginLeft + 'px'
-                            });
-                            break;
-                        case 'BR':
-                            data = calculateResizeData(tmpHeight, tmpWidth, left, top);
-
-                            this.clipBox.css({
-                                width : data.width,
-                                height: data.height,
-                                top   : old_top,
-                                left  : old_left,
-                                right : '',
-                                bottom: ''
-                            });
-                            break;
+                            marginTop = this.oldPosition.marginTop + data.height - this.oldPosition.height + constData;
                         }
 
-                        eClientY_old = eClientY;
-                        eClientX_old = eClientX;
-                    } else if (imageReizeFlag) {
-                        //TO DO
+                        if (horizontal === 'L') {
+                            if (imageWidth >= containerHeight) {
+                                constData = this.constBorderData;
+                            }
+                            marginLeft = this.oldPosition.marginLeft + data.width - this.oldPosition.width + constData;
+                        }
+                        break;
                     }
-                }.bind(this));
 
-                $(document).on('mouseup', function (e) {
-                    mouseMoveFlag = false;
-                    clipingBoxResizeFlag = false;
-                    imageReizeFlag = false;
-                });
+                    if (vertical === 'T') {
+                        bottom = this.oldPosition.bottom + this.constHeightData;
+                        this.$clipImg.css({
+                            'marginTop' :  marginTop + 'px'
+                        });
+                    } else {
+                        top = this.oldPosition.top;
+                    }
+
+                    if (horizontal === 'L') {
+                        right = this.oldPosition.right + this.constWidthData;
+                        this.$clipImg.css({
+                            'marginLeft' : marginLeft + 'px'
+                        });
+                    } else {
+                        left = this.oldPosition.left;
+                    }
+
+
+                    this.$clipBox.css({
+                        width  : data.width,
+                        height : data.height,
+                        bottom : bottom,
+                        right  : right,
+                        left   : left,
+                        top    : top
+                    });
+
+                    this.oldPosition.clientY = eClientY;
+                    this.oldPosition.clientX = eClientX;
+
+                    return;
+                }
+
+                //if (this.imageReizeFlag) {}
             },
             createResizeEl : function (container) {
 
                 var els = ['tl', 'tr', 'bl', 'br'];
-                $.each(els, function (name) {
+                $.map(els, function (name) {
 
                     container.append(
-                        $('<div/>').addClass('clip-resize-el clip-resize-' + name).append('<span>')
+                        $('<div/>').addClass('clip-resize-el clip-resize-' + name).data('position', name).append('<span>')
                     );
 
                 }.bind(this));
             },
             setImage : function (source) {
 
-                this.originImg.css({
+                this.$originImg.css({
                     'max-width' : this.imageDefaultWidth,
                     'max-height': this.imageDefaultHeight
                 });
 
                 setTimeout(function () {
 
-                    this.extralTop = this.originImg[0].offsetTop;
-                    this.extralLeft = this.originImg[0].offsetLeft;
+                    this.extralTop = this.$originImg[0].offsetTop;
+                    this.extralLeft = this.$originImg[0].offsetLeft;
 
-                    this.rotate(this.originImg, this.imageOrientation);
+                    this.rotate(this.$originImg, this.imageOrientation);
 
                     var w = (this.$el.width() - this.boxDefaultWidth) / 2;
                     var h = (this.$el.height() - this.boxDefaultHeight) / 2;
                     var clipBoxW = w - this.extralLeft;
                     var clipBoxH = h - this.extralTop;
 
-                    this.clipBox.css({
+                    this.$clipBox.css({
                         width : this.boxDefaultWidth,
                         height: this.boxDefaultHeight,
                         top : h,
                         left: w
                     });
 
-                    this.clipImg.attr('src', source);
-                    this.clipImg.css({
+                    this.$clipImg.attr('src', source);
+                    this.$clipImg.css({
                         'max-width' : this.imageDefaultWidth,
                         'max-height': this.imageDefaultHeight,
                         'margin-top': '-' + clipBoxH + 'px',
                         'margin-left': '-' + clipBoxW + 'px'
                     });
 
-                    this.rotate(this.clipImg, this.imageOrientation);
+                    this.rotate(this.$clipImg, this.imageOrientation);
 
                 }.bind(this), 0);
             },
             rotate : function (el, orientation) {
                 var rotate = {
-                    R90: 'rotate-90',
-                    R180: 'rotate-180',
-                    R270: 'rotate-270'
+                    90: 'rotate-90',
+                    180: 'rotate-180',
+                    270: 'rotate-270'
                 };
 
-                for (var i in rotate) {
-                    el.removeClass(rotate[i]);
-                }
+                var className = el.attr('class');
+                el.attr('class', className.replace(/\srotate-(\d{2,3})/, ''));
 
-                switch (orientation) {
-                    case 0 :
-                        break;
-                    case 90:
-                        el.addClass(rotate.R90);
-                    break;
-                    case 180:
-                        el.addClass(rotate.R180);
-                    break;
-                    case 270:
-                        el.addClass(rotate.R270);
-                    break;
+                if (rotate[orientation]) {
+                    el.addClass(rotate[orientation]);
                 }
-            },
-            remove: function () {
-                this.$el.remove();
-                this.stopListening();
             },
             clip : function () {
 
-                var originWidth = this.originImg[0].naturalWidth;
-                var originHeight = this.originImg[0].naturalHeight;
-                var nowWidth = this.originImg.width();
-                var nowHeight = this.originImg.height();
+                var originWidth = this.$originImg[0].naturalWidth;
+                var originHeight = this.$originImg[0].naturalHeight;
+                var nowWidth = this.$originImg.width();
+                var nowHeight = this.$originImg.height();
                 var containerW = this.$el.width();
                 var containerH = this.$el.height();
-                var clipBoxLeft = this.clipBox.position().left;
-                var clipBoxTop = this.clipBox.position().top;
+                var clipBoxLeft = this.$clipBox.position().left;
+                var clipBoxTop = this.$clipBox.position().top;
                 var rateWidth = 1;
                 var rateHeight = 1;
                 var top, left;
@@ -709,28 +671,34 @@
                 }
 
                 switch (this.imageOrientation) {
-                    case 0:
-                        case 180:
-                        left = clipBoxLeft - (containerW - nowWidth) / 2;
-                    top = clipBoxTop - (containerH - nowHeight)/ 2;
+                case 0:
+                case 180:
+                    left = clipBoxLeft - (containerW - nowWidth) / 2;
+                    top = clipBoxTop - (containerH - nowHeight) / 2;
                     break;
-                    case 90:
-                        case 270:
-                        left = clipBoxLeft - (containerW - nowHeight) / 2;
-                    top = clipBoxTop - (containerH - nowWidth)/ 2;
+                case 90:
+                case 270:
+                    left = clipBoxLeft - (containerW - nowHeight) / 2;
+                    top = clipBoxTop - (containerH - nowWidth) / 2;
                     var tmp = rateHeight;
                     rateHeight = rateWidth;
                     rateWidth = tmp;
                     break;
                 }
 
-                return{
-                    img : this.clipBox[0],
+                return {
+                    img : this.$clipBox[0],
                     top : top * rateHeight,
                     left: left * rateWidth,
-                    width: this.clipBox.width() * rateWidth,
-                    height:this.clipBox.height() * rateHeight
+                    width: this.$clipBox.width() * rateWidth,
+                    height: this.$clipBox.height() * rateHeight
                 };
+            },
+            events : {
+                'mousedown' : 'mouseDownClip',
+                'mousemove' : 'mouseMoveClip',
+                'mousedown .clip-box-surface' : 'mouseDownSurface',
+                'mousedown .clip-resize-el' : 'mouseDownResizeEl'
             }
         });
 

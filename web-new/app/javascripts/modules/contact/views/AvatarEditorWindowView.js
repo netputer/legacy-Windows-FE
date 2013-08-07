@@ -58,12 +58,9 @@
                     } else {
 
                         this.createClipImage(this.options.selectPhotoPath);
-                        this.once('remove', function () {
-                            this.clipImage.remove();
-                        });
+                        this.once('remove', this.clipImage.remove, this);
                     }
-
-                }, this);
+                });
 
                 this.buttons = [{
                     $button : $('<button>').html(i18n.misc.SAVE).addClass('button-save primary')
@@ -109,7 +106,7 @@
 
                 path = path.replace('file:///', '');
                 contactsCollection.editorAvatarAsync({
-                    'rect' : data.left + ';' + data.top + ';' + data.width + ';' + data.height,
+                    'rect' : [data.left, data.top, data.width, data.height].join(';'),
                     'dst_size' : this.options.detialView.getAvatarSize(),
                     'path' : path,
                     'degree' : this.options.selectPhotoPath ? 0 : this.options.selectPhoto.get('orientation')

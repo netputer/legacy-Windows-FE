@@ -51,7 +51,7 @@
                 }, this);
             },
             clickButtonSelectFromPC : function () {
-                PhotoCollection.getInstance().getPhotoFromPC(0).done(function (resp) {
+                PhotoCollection.getInstance().getPhotoFromPcAsync(0).done(function (resp) {
 
                     AvatarEditorWindowView.getInstance({
                         detialView : this.options.detialView,

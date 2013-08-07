@@ -11,42 +11,26 @@
     overflow: hidden;
     -webkit-box-align: center;
     -webkit-box-pack: center;
-    -webkit-user-select: none;
-    -webkit-box-flex : 1;
-
-    .origin-img{
-        -webkit-user-select:none;
-    }
-
-    .mask{
-        width: 100%;
-        height: 100%;
-        background:#000;
-        border-radius:3px;
-        opacity:.6;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+    -webkit-box-flex: 1;
 
     .cliping-box{
         position:absolute;
         overflow: hidden;
-        border:1px solid #6db800;
-        -webkit-user-select:none;
+        border: 1px solid #6db800;
+        -webkit-user-select: none;
 
         .clip-box-image {
-            -webkit-user-select:none;
+            -webkit-user-select: none;
         }
 
         .clip-box-surface {
-            position:absolute;
+            position: absolute;
             top: 0;
             left:0;
-            width:100%;
+            width: 100%;
             height: 100%;
             cursor: pointer;
-            -webkit-user-select:none;
+            -webkit-user-select: none;
         }
     }
 
@@ -60,7 +44,7 @@
         span{
             background-color:#6db800;
             height: 5px;
-            position:absolute;
+            position: absolute;
             width: 5px;
         }
 
@@ -77,16 +61,31 @@
         }
 
         &.clip-resize-bl, &.clip-resize-bl span{
+            bottom: 0px;
             cursor: nesw-resize;
             left: 0px;
-            bottom: 0px;
         }
 
         &.clip-resize-br, &.clip-resize-br span{
+            bottom: 0px;
             cursor: nwse-resize;
             right: 0px;
-            bottom: 0px;
         }
+    }
+    
+    .mask{
+        background: #000;
+        border-radius: 3px;
+        height: 100%;
+        left: 0;
+        opacity: .6;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    
+    .origin-img{
+        -webkit-user-select: none;
     }
 
     .rotate-90{

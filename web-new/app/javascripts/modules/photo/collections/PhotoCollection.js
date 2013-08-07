@@ -214,7 +214,7 @@
                     return photo.get('selected');
                 });
             },
-            getPhotoFromPC : function (type) {
+            getPhotoFromPcAsync : function (type) {
                 var deferred = $.Deferred();
 
                 IO.requestAsync({
