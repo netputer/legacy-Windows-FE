@@ -61,7 +61,7 @@
                     if (Device.get('isFastADB')) {
                         this.$el.slideDown();
                     }
-                }.bind(this), 0);
+                }.bind(this));
 
                 IO.requestAsync(CONFIG.actions.DEVICE_GET_USB_DETECT_STATE).done(function (resp) {
                     if (resp.state_code === 200) {
@@ -94,8 +94,18 @@
                     }
                 }
 
-                this.$el.toggleClass('loading', data > 0);
-                this.$el.toggleClass('error', data < 0);
+                this.$el.toggleClass('loading', data > 0)
+                    .toggleClass('error', data < 0);
+
+                if (parseInt(data, 10) === 1000) {
+                    this.$el.css({
+                        visibility : 'hidden'
+                    });
+                } else {
+                    this.$el.css({
+                        visibility : 'visible'
+                    });
+                }
             },
             clickButtonRetry : function () {
                 IO.requestAsync(CONFIG.actions.DEVICE_USB_REDETECT);

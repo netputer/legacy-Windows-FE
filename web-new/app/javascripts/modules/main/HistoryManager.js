@@ -154,6 +154,7 @@
             'data.channel' : CONFIG.events.NAVIGATE_REFRESH
         }, function (data) {
             var SnapPea = window.SnapPea;
+            var targetCollections = [];
             switch (SnapPea.CurrentModule) {
             case 'browser':
                 var iframe = $('#' + CONFIG.enums.IFRAME_PREFIX + SnapPea.CurrentTab + ' iframe')[0];
@@ -177,9 +178,7 @@
                     }
                 }
                 var targetCollection = appListView.list.currentSet.name === 'web' ? WebAppsCollection.getInstance() : AppsCollection.getInstance();
-                targetCollection.syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
-                });
+                targetCollections.push(targetCollection);
                 break;
             case 'contact':
                 ContactsCollection.getInstance().syncAsync().fail(function () {
@@ -213,6 +212,12 @@
                 });
                 break;
             }
+
+            _.each(targetCollections, function (targetCollection) {
+                targetCollection.syncAsync().fail(function () {
+                    alert(i18n.misc.REFRESH_ERROR);
+                });
+            });
 
             log({
                 'event' : 'ui.click.native_toolbar_refresh',

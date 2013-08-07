@@ -417,6 +417,7 @@
 }
 
 .w-app-list-item {
+    height: 36px;
     padding: 4px 0;
     position: relative;
     -webkit-box-align: center;
@@ -501,10 +502,10 @@
     .button-close {
         @include button-close;
         display: none;
-        margin-top: -8px;
         position: absolute;
         right: 8px;
         top: 50%;
+        -webkit-transform: translate3d(0, -50%, 0);
     }
 
     .share {

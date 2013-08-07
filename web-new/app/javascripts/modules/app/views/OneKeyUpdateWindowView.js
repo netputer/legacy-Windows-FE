@@ -141,7 +141,7 @@
                 if (!oneKeyUpdateWindowView) {
                     oneKeyUpdateWindowView = new OneKeyUpdateWindowView({
                         buttonSet : ButtonSetMixin.BUTTON_SET.YES_CANCEL,
-                        title : i18n.app.ONE_KEY_UPDATE_TITLE,
+                        title : i18n.app.UPDATE_ALL,
                         width : 630,
                         draggable : true
                     });
