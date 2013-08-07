@@ -13,6 +13,7 @@
         'IOBackendDevice',
         'ui/TemplateFactory',
         'ui/AlertWindow',
+        'ui/ImageLoader',
         'Internationalization',
         'FunctionSwitch',
         'utilities/StringUtil',
@@ -36,6 +37,7 @@
         IO,
         TemplateFactory,
         AlertWindow,
+        imageLoader,
         i18n,
         FunctionSwitch,
         StringUtil,
@@ -64,13 +66,15 @@
                 var updatingHandler = function (model, isUpdating) {
                     var $updateButton = model.get('isWeb') ? this.$('.app-info .button-install') : this.$('.app-info .button-update');
                     if (isUpdating) {
-                        $updateButton.html(model.get('isWeb') ? i18n.app.INSTALLING : i18n.app.UPDATING).prop({
-                            disabled : true
-                        });
+                        $updateButton.html(model.get('isWeb') ? i18n.app.INSTALLING : i18n.app.UPDATING)
+                            .prop({
+                                disabled : true
+                            });
                     } else {
-                        $updateButton.html(model.get('isWeb') ? i18n.app.INSTALL : i18n.app.UPDATE).prop({
-                            disabled : false
-                        });
+                        $updateButton.html(model.get('isWeb') ? i18n.app.INSTALL : i18n.app.UPDATE)
+                            .prop({
+                                disabled : false
+                            });
                     }
                 };
 
@@ -85,16 +89,13 @@
                 appsCollection = AppsCollection.getInstance();
                 webAppsCollection = WebAppsCollection.getInstance();
 
-                appsCollection.on('refresh', function (appsCollection) {
+                this.listenTo(appsCollection, 'refresh', function (appsCollection) {
                     var newApp = appsCollection.get(this.model.id);
                     if (newApp) {
                         this.model.set('base_info', newApp.get('base_info'));
                     }
-                }, this);
-
-                Device.on('change', this.setButtonState, this);
-
-                FunctionSwitch.on('change', this.setButtonState, this);
+                }).listenTo(Device, 'change', this.setButtonState)
+                    .listenTo(FunctionSwitch, 'change', this.setButtonState);
 
                 IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.TASK_STATUS_CHANGE
@@ -127,6 +128,13 @@
                     Device.get("hasEmulatedSD") ||
                     appsCollection.ableMoveToSD([this.model.id]).length === 0)
                 );
+
+                var $updateButton = this.model.get('isWeb') ? this.$('.app-info .button-install') : this.$('.app-info .button-update');
+                if (this.model.get('isWeb')) {
+                    $updateButton.toggle(!Device.get('isInternet'));
+                } else {
+                    $updateButton.toggle(this.model.isUpdatable && FunctionSwitch.ENABLE_APP_UPGRADE);
+                }
             },
             render : function () {
                 var $parent = this.$el.parent();
@@ -149,13 +157,8 @@
                     this.$el.append(this.commentaryView.render().$el);
                 }
 
-                var $updateButton = this.model.get('isWeb') ? this.$('.app-info .button-install') : this.$('.app-info .button-update');
-                if (((Device.get('isWifi') || Device.get('isInternet')) && !this.model.isUpdatable) ||
-                        !FunctionSwitch.ENABLE_APP_UPGRADE) {
-                    $updateButton.hide();
-                }
-
                 if (this.model.get('isUpdating')) {
+                    var $updateButton = this.model.get('isWeb') ? this.$('.app-info .button-install') : this.$('.app-info .button-update');
                     $updateButton.html(this.model.get('isWeb') ? i18n.app.INSTALLING : i18n.app.UPDATING).prop({
                         disabled : true
                     });
@@ -173,7 +176,7 @@
                     this.$el.append(this.recommendView.render().$el);
                 }
 
-                setTimeout(this.setButtonState.bind(this), 0);
+                setTimeout(this.setButtonState.bind(this));
 
                 this.renderIcon();
 
@@ -184,39 +187,17 @@
                 return this;
             },
             renderIcon : function () {
-                var iconURL = this.model.get('base_info').icon;
+                var iconURL = this.model.get('base_info').icon48 || this.model.get('base_info').icon;
                 if (iconURL && !/^file:\/\/\//.test(iconURL)) {
-                    var $icon = $(new window.Image());
-                    var loadHandler = function () {
-                        if (this.model.get('base_info').icon === $icon.data('path')) {
-                            this.$('.app-info .icon img').attr({
-                                src : $icon[0].src
-                            });
-                        }
-                        $icon.remove();
-                    }.bind(this);
-
-                    var errorHandler = function () {
-                        $icon.remove();
-                    };
-
-                    $icon.one('load', loadHandler);
-                    $icon.one('error', errorHandler);
-                    $icon.attr({
-                        'src' : iconURL
-                    }).data('path', iconURL);
-
-                    this.$('.app-info .icon img').attr({
-                        src : CONFIG.enums.TASK_DEFAULT_ICON_PATH_APP
-                    });
+                    imageLoader(iconURL, this.$('.app-info .icon'), true);
                 }
             },
             update : function (id) {
                 if (!(this.model && id === this.model.id)) {
                     if (this.model) {
-                        this.model.off('change:isUpdating', this.updatingHandler);
-                        this.model.off('change:base_info', this.render);
-                        this.model.off('change:isWeb', this.render, this);
+                        this.model.off('change:isUpdating', this.updatingHandler)
+                            .off('change:base_info', this.render)
+                            .off('change:isWeb', this.render, this);
                     }
 
                     this.model = appsCollection.get(id) || webAppsCollection.get(id);
@@ -232,9 +213,9 @@
                         this.render();
                     }
 
-                    this.model.on('change:isUpdating', this.updatingHandler, this);
-                    this.model.on('change:base_info', this.render, this);
-                    this.model.on('change:isWeb', this.render, this);
+                    this.model.on('change:isUpdating', this.updatingHandler, this)
+                        .on('change:base_info', this.render, this)
+                        .on('change:isWeb', this.render, this);
                 }
             },
             clickButtonTogglePermisson : function () {

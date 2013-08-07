@@ -9,8 +9,12 @@
         'Internationalization',
         'ui/AlertWindow',
         'Device',
+        'Account',
+        'Log',
         'main/collections/PIMCollection',
         'app/collections/AppsCollection',
+        'app/collections/WebAppsCollection',
+        'app/views/AppListView',
         'contact/collections/ContactsCollection',
         'message/collections/ConversationsCollection',
         'music/collections/MusicsCollection',
@@ -27,8 +31,12 @@
         i18n,
         AlertWindow,
         Device,
+        Account,
+        log,
         PIMCollection,
         AppsCollection,
+        WebAppsCollection,
+        AppListView,
         ContactsCollection,
         ConversationsCollection,
         MusicsCollection,
@@ -45,6 +53,11 @@
 
         var updateNativeToolbarState = function () {
             var SnapPea = window.SnapPea;
+
+            if (!SnapPea) {
+                return;
+            }
+
             var currentModule = SnapPea.CurrentModule;
             if (currentModule === 'browser') {
                 var $iframe = $('#' + CONFIG.enums.IFRAME_PREFIX + SnapPea.CurrentTab + ' iframe');
@@ -59,10 +72,29 @@
                     canReload : true
                 }));
             } else {
+                var canReload = false;
+
+                switch (SnapPea.CurrentModule) {
+                case 'welcome':
+                case 'app-wash':
+                case 'optimize':
+                    canReload = false;
+                    break;
+                case 'app':
+                    if (SnapPea.CurrentTab === 'web') {
+                        canReload = false;
+                    } else {
+                        canReload = Device.get('isConnected');
+                    }
+                    break;
+                default:
+                    canReload = Device.get('isConnected');
+                }
+
                 window.externalCall('', 'navigation', JSON.stringify({
                     canGoBack : backStack.length > 1,
                     canGoForward : forwarStack.length > 0,
-                    canReload : currentModule !== 'welcome' && currentModule !== 'app-wash' && currentModule !== 'optimize' && Device.get('isConnected')
+                    canReload : canReload
                 }));
             }
         };
@@ -128,7 +160,24 @@
                 iframe.reload(iframe.contentDocument.location.href);
                 break;
             case 'app':
-                AppsCollection.getInstance().syncAsync().fail(function () {
+                var appListView = AppListView.getInstance();
+                if (appListView.list.currentSet.name === 'web') {
+                    if (!Account.get('isLogin')) {
+                        Account.loginAsync('', 'app-list-refresh');
+                        var loginHandler = function (Account, isLogin) {
+                            if (isLogin) {
+                                WebAppsCollection.getInstance().syncAsync().fail(function () {
+                                    alert(i18n.misc.REFRESH_ERROR);
+                                });
+                                Account.off('change:isLogin', loginHandler);
+                            }
+                        };
+                        Account.on('change:isLogin', loginHandler, this);
+                        return;
+                    }
+                }
+                var targetCollection = appListView.list.currentSet.name === 'web' ? WebAppsCollection.getInstance() : AppsCollection.getInstance();
+                targetCollection.syncAsync().fail(function () {
                     alert(i18n.misc.REFRESH_ERROR);
                 });
                 break;
@@ -164,6 +213,11 @@
                 });
                 break;
             }
+
+            log({
+                'event' : 'ui.click.native_toolbar_refresh',
+                'module' : SnapPea.currentModule
+            });
         });
 
         IO.Backend.Device.onmessage({

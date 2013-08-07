@@ -31,9 +31,6 @@
             }
         };
 
-        // Exposure this function to global
-        window.log = Log;
-
         return Log;
     });
 }(this));

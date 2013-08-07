@@ -69,7 +69,7 @@
 
                 var $icons = this.$('.icon');
                 _.each(this.model.get('items'), function (item, index) {
-                    imageLoader(item.icons.px36, $icons.eq(index));
+                    imageLoader(item.icons.px36, $icons.eq(index), true);
                 });
 
                 log({
