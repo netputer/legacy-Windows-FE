@@ -53,11 +53,9 @@
     <div class="tip-link">
         {{= i18n.backup_restore.CHOOSE_RESTORE_FILE_TIP_BEFORE }}
         <span class="link button-select-file">{{= i18n.backup_restore.SELECT_BACKUP_FILE }}</span>
-        {{= i18n.backup_restore.CHOOSE_RESTORE_FILE_TIP_AFTER }}
         {{? FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE }}
+        {{= i18n.backup_restore.CHOOSE_RESTORE_FILE_TIP_AFTER }}
         <div class="old-version-tip" title=""></div>
-        {{??}}
-        <div class="old-version-tip locale-patch" title=""></div>
         {{?}}
     </div>
 </script>

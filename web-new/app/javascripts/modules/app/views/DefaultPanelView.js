@@ -3,13 +3,11 @@
     define([
         'backbone',
         'doT',
-        'IO',
         'underscore',
         'Log',
         'Internationalization',
         'Device',
         'Account',
-        'Configuration',
         'FunctionSwitch',
         'ui/TemplateFactory',
         'ui/AlertWindow',
@@ -21,13 +19,11 @@
     ], function (
         Backbone,
         doT,
-        IO,
         _,
         log,
         i18n,
         Device,
         Account,
-        CONFIG,
         FunctionSwitch,
         TemplateFactory,
         AlertWindow,
@@ -148,14 +144,9 @@
                 });
             },
             clickButtonWash : function () {
-                IO.requestAsync({
-                    url : CONFIG.actions.PUBLISH_EVENT,
-                    data : {
-                        channel : CONFIG.events.WEB_NAVIGATE,
-                        value : JSON.stringify({
-                            type : CONFIG.enums.NAVIGATE_TYPE_APP_WASH
-                        })
-                    }
+                Backbone.trigger('switchModule', {
+                    module : 'app-wash',
+                    tab : 'app-wash'
                 });
             },
             events : {

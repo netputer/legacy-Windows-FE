@@ -80,36 +80,37 @@ button {
         }
     }
 
-
-    + button,
-    + .w-ui-buttongroup {
-        margin-left: 4px
-    }
-
     &.transparent {
         background: transparent;
         border-color: transparent;
-        border-radius: 0;
         box-shadow: none;
-        color: $textSecondary;
+        color: rgba(255, 255, 255, .9);
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
 
         &:enabled:hover:not(.active):not(:active),
         &:enabled:focus {
-            background: transparent;
-            color: $textPrimary;
+            background: rgba(255, 255, 255, .1);
+            border-color: rgba(255, 255, 255, .2);
+            color: #fff;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
         }
 
         &:enabled:active,
         &.active {
-            background: transparent;
-            box-shadow: none;
-            color: $textActive;
+            background: rgba(255, 255, 255, .1);
+            color: rgba(255, 255, 255, .8);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
         }
 
-        &.min {
-            min-width: 0;
-            padding: 2px 5px;
+        + button {
+            margin-left: 0;
         }
+    }
+
+
+    + button,
+    + .w-ui-buttongroup {
+        margin-left: 4px
     }
 
     &.min {
@@ -131,11 +132,6 @@ button {
         padding: 9px 15px;
         min-width: 80px;
     }
-
-    + button,
-    + .w-ui-buttongroup {
-        margin-left: 4px
-    }
 }
 
 /********************************************************************************
@@ -151,9 +147,8 @@ button.w-icon-btn {
 
         @each $icon in add-grey, pause, start, delete, open-folder,
              add, mark-as-read, refresh, import, export,
-             update, up, down, star, sd, device, play-black, pause-black,
-             refresh-black, fullscreen-black, share-black, merge, ring, itunes,
-             open-folder-black, comment, share, like, dislike, reload, fullscreen,
+             update, up, down, star, sd, device, merge, ring, itunes,
+             comment, share, like, dislike, reload, fullscreen,
              move-down, reset, return {
             &.#{$icon} {
                 @include button-sprite(#{$icon});
@@ -262,15 +257,39 @@ button.w-icon-btn {
     }
 
     &.toggle {
-        min-width: 22px;
-        padding-left: 8px;
-        padding-right: 8px;
+        min-width: 16px;
+        padding-left: 5px;
+        padding-right: 5px;
 
         .label {
             display: none;
 
             + .arrow-ctn {
                 margin-left: 0px;
+            }
+        }
+    }
+
+    &.transparent {
+        .arrow-ctn .arrow {
+            border-top-color: rgba(255, 255, 255, .9);
+        }
+
+        &:enabled:hover {
+            .arrow-ctn {
+                .arrow {
+                    border-top-color: #fff;
+                }
+            }
+        }
+
+        &:enabled:active,
+        &.active,
+        &.active:hover {
+            .arrow-ctn {
+                .arrow {
+                    border-top-color: rgba(255, 255, 255, .8);
+                }
             }
         }
     }
@@ -308,9 +327,16 @@ button.w-icon-btn {
         }
     }
 
-    + button,
+    + button:not(.trans),
     + .w-ui-buttongroup {
         margin-left: 4px;
+    }
+
+    &:hover {
+        button {
+            background: rgba(255, 255, 255, .1);
+            border-color: rgba(255, 255, 255, .2);
+        }
     }
 }
 

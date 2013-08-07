@@ -112,7 +112,6 @@
                 } else {
                     this.listenTo(appsCollection, 'refresh', refreshHandler);
                     this.listenTo(Device, 'change:isConnected', refreshHandler);
-                    appsCollection.trigger('update');
                 }
 
                 return deferred.promise();

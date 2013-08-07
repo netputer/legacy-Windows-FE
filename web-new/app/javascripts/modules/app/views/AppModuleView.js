@@ -10,8 +10,7 @@
         'app/views/AppModuleToolbarView',
         'app/views/AppListView',
         'app/views/AppPanelView',
-        'app/collections/AppsCollection',
-        'main/collections/PIMCollection'
+        'app/collections/AppsCollection'
     ], function (
         Backbone,
         _,
@@ -22,8 +21,7 @@
         AppModuleToolbarView,
         AppListView,
         AppPanelView,
-        AppsCollection,
-        PIMCollection
+        AppsCollection
     ) {
         console.log('AppModuleMainView - File loaded.');
 
@@ -90,20 +88,15 @@
                 AppsCollection.getInstance().trigger('update');
             },
             showWebAppView : function () {
-                PIMCollection.getInstance().get(3).set({
-                    selected : true
+                Backbone.trigger('switchModule', {
+                    module : 'app',
+                    tab : 'web'
                 });
-
-                setTimeout(function () {
-                    Backbone.trigger('switchModule', {
-                        module : 'app',
-                        tab : 'web'
-                    });
-                }, 0);
             },
             navigateGroup : function (msg) {
-                PIMCollection.getInstance().get(3).set({
-                    selected: true
+                Backbone.trigger('switchModule', {
+                    module : 'app',
+                    tab : 'normal'
                 });
 
                 var filterSearch = function () {
@@ -123,10 +116,6 @@
                 }
             },
             navigate : function (msg) {
-                PIMCollection.getInstance().get(3).set({
-                    selected : true
-                });
-
                 var appsCollection = AppsCollection.getInstance();
 
                 var highlightSearch = function () {
@@ -148,7 +137,7 @@
                         setTimeout(function () {
                             Backbone.trigger('switchModule', newEvt);
                             appListView.highlight(target);
-                        }, 0);
+                        });
                     };
                     if (!appsCollection.loading && !appsCollection.syncing) {
                         highlight();

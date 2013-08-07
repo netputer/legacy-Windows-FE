@@ -148,8 +148,9 @@
                 return appWashModuleView;
             },
             navigate : function () {
-                PIMCollection.getInstance().get(19).set({
-                    selected : true
+                Backbone.trigger('switchModule', {
+                    module : 'app-wash',
+                    tab : 'app-wash'
                 });
             }
         });

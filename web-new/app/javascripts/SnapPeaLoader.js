@@ -5,6 +5,7 @@ require.config({
         underscore : '../bower_components/underscore/underscore',
         backbone : '../bower_components/backbone/backbone',
         text : '../bower_components/requirejs-text/text',
+        wookmark : '../bower_components/wookmark-jquery/jquery.wookmark',
         i18n : '../bower_components/requirejs-i18n/i18n',
         optimize : 'modules/optimize',
         main : 'modules/main',
@@ -36,7 +37,7 @@ require.config({
         },
         backbone : {
             deps: ['underscore', 'jquery'],
-            exports: 'Backbone'
+            exports : 'Backbone'
         }
     }
 });

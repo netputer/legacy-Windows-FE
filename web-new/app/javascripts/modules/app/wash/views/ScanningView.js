@@ -128,9 +128,7 @@
                         this.remove();
                     } else {
                         var session = _.uniqueId('app_wash_md5_');
-                        AppService.scanMD5Async(_.map(apps, function (app) {
-                            return app.get('base_info').package_name;
-                        }), session).done(function (resp) {
+                        AppService.scanMD5Async(_.pluck(apps, 'id'), session).done(function (resp) {
                             if (!cancel) {
                                 this.queryAppInfo(resp.body.success);
                             }

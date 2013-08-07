@@ -123,7 +123,10 @@
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_PIM_MODULE:
                 var target = PIMCollection.getInstance().get(msg.id);
-                target.set('selected', true);
+                Backbone.trigger('switchModule', {
+                    module : target.get('module'),
+                    tab : target.get('tab')
+                });
                 break;
             }
         };

@@ -35,10 +35,10 @@
         UIHelper,
         StringUtil
     ) {
-
         console.log('ImportProcessView - File loaded');
 
         var alert = window.alert;
+
         var ImportProcessBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('contact', 'import-progress')),
             className : 'w-contact-import-process-body',
@@ -54,11 +54,14 @@
 
         var importProcessView;
         var $bodyView;
-        var contactsCollection = ContactsCollection.getInstance();
-        var accountCollection = AccountCollection.getInstance();
-        var ImportProcessView = Panel.extend({
+        var contactsCollection;
+        var accountCollection;
 
+        var ImportProcessView = Panel.extend({
             initialize : function () {
+                contactsCollection = ContactsCollection.getInstance();
+                accountCollection = AccountCollection.getInstance();
+
                 ImportProcessView.__super__.initialize.apply(this, arguments);
 
                 this.on(UIHelper.EventsMapping.SHOW, function () {
