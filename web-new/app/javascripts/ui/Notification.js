@@ -1,6 +1,6 @@
 /*global define*/
 (function (window) {
-    define(['backbone', 'Environment'], function (Backbone, Environment) {
+    define(['backbone', 'Environment', 'jquery', 'IO', 'Configuration'], function (Backbone, Environment, $, IO, CONFIG) {
         console.log('Notification - File loaded.');
 
         var requestPermission = function (callback) {
@@ -151,7 +151,21 @@
                 return result;
             },
             cancel : function () {
-                this.notificationWindow.close();
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.CLOSE_ALL_NOTIFICATION,
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            deferred.resolve(resp);
+                        } else {
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+
+                return deferred.promise();
+                //this.notificationWindow.close();
             }
         });
 

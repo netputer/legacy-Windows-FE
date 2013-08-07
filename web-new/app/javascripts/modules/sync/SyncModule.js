@@ -65,7 +65,7 @@
             });
             notification.show();
             handler = setTimeout(function () {
-                BackupRestoreService.closeAllNotificationAsync();
+                notification.cancel();
             }, 15 * 1000);
         };
 
