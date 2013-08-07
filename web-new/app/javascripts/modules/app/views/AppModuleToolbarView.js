@@ -259,8 +259,7 @@
                 'click .button-update' : 'clickButtonUpdate',
                 'click .button-export' : 'clickButtonExport',
                 'click .button-move-to-sd-card' : 'clickButtonMoveToSDCard',
-                'click .button-move-to-device' : 'clickButtonMoveToDevice',
-                'click .button-refresh' : 'clickButtonRefresh'
+                'click .button-move-to-device' : 'clickButtonMoveToDevice'
             }
         });
 

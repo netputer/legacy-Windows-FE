@@ -109,10 +109,6 @@
         <span class="icon export"></span>{{= i18n.misc.EXPORT }}
     </button>
     <div class="split"></div>
-    <button class="w-icon-btn button-refresh min">
-        <span class="icon refresh"></span>{{= i18n.misc.REFRESH }}
-    </button>
-    <div class="split"></div>
     <button class="w-icon-btn button-fullscreen min">
         <span class="icon fullscreen"></span>{{= i18n.photo.SLIDE_PLAY_TEXT }}
     </button>

@@ -312,7 +312,6 @@
                 'click .button-new' : 'clickButtonNew',
                 'click .button-delete' : 'clickButtonDelete',
                 'click .button-export' : 'clickButtonExport',
-                'click .button-refresh' : 'clickButtonRefresh',
                 'click .button-merge' : 'clickButtonMerge',
                 'click .button-import' : 'clickButtonImport'
             }

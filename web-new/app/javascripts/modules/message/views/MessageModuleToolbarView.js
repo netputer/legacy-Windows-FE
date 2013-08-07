@@ -144,8 +144,7 @@
                 'click .button-delete' : 'clickButtonDelete',
                 'click .button-mark-as-read' : 'clickButtonMarkAsRead',
                 'click .button-import' : 'clickButtonImport',
-                'click .button-export' : 'clickButtonExport',
-                'click .button-refresh' : 'clickButtonRefresh'
+                'click .button-export' : 'clickButtonExport'
             }
         });
 

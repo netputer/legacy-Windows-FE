@@ -416,10 +416,6 @@
     <button class="w-icon-btn button-move-to-device min">
         <span class="icon device"></span>{{= i18n.app.BUTTON_MOVE_TO_DEVICE_LABEL }}
     </button>
-    <div class="split"></div>
-    <button class="w-icon-btn button-refresh min">
-        <span class="icon refresh"></span>{{= i18n.misc.REFRESH }}
-    </button>
 </script>
 
 <script type="text/x-ui-template" id="app-list">
