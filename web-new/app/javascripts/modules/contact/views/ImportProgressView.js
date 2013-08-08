@@ -141,7 +141,7 @@
                     if (resp.state_code === 200) {
 
                         contactsCollection.syncAsync();
-                        alert(i18n.ui.CANCEL_IMPORT_TEXT);
+                        alert(i18n.misc.CANCEL_IMPORT_TEXT);
                     }
 
                 }.bind(this)).always(function () {

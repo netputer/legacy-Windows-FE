@@ -132,7 +132,7 @@
                         session : this.lastSessionId
                     }
                 }).done(function () {
-                    alert(i18n.ui.CANCEL_IMPORT_TEXT);
+                    alert(i18n.misc.CANCEL_IMPORT_TEXT);
                     conversationConllection.syncAsync();
                 }).always(function () {
                     WindowController.releaseWindowAsync();

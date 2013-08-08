@@ -99,24 +99,31 @@
             },
             remove : function () {
                 if (this.phonePhotoView) {
+
                     this.phonePhotoView.remove();
                     delete this.phonePhotoView;
-                }
-                if (this.libPhotoView) {
-                    this.libPhotoView.remove();
-                    delete this.libPhotoView;
-                }
-                if (this.cloudPhotoView) {
-                    this.cloudPhotoView.remove();
-                    delete this.cloudPhotoView;
+
+                    PhonePhotoCollection.dispose();
+                    delete this.phonePhotoCollection;
                 }
 
-                PhonePhotoCollection.dispose();
-                delete this.phonePhotoCollection;
-                LibraryPhotoCollection.dispose();
-                delete this.libraryPhotoCollection;
-                CloudPhotoCollection.dispose();
-                delete this.cloudPhotoCollection;
+                if (this.libPhotoView) {
+
+                    this.libPhotoView.remove();
+                    delete this.libPhotoView;
+
+                    LibraryPhotoCollection.dispose();
+                    delete this.libraryPhotoCollection;
+                }
+
+                if (this.cloudPhotoView) {
+
+                    this.cloudPhotoView.remove();
+                    delete this.cloudPhotoView;
+
+                    CloudPhotoCollection.dispose();
+                    delete this.cloudPhotoCollection;
+                }
 
                 PhotoGalleryView.__super__.remove.call(this);
             },
