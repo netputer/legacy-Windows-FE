@@ -131,6 +131,10 @@
 
             var selected = this.selected;
 
+            item = _.filter(item, function (single) {
+                return single !== undefined;
+            });
+
             if (item instanceof Array) {
                 added = _.difference(item, _.intersection(selected, item));
 
