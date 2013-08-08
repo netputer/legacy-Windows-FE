@@ -15,7 +15,8 @@
         'ui/ToastBox',
         'utilities/StringUtil',
         'task/collections/TasksCollection',
-        'task/views/DeleteConfirmWindowView'
+        'task/views/DeleteConfirmWindowView',
+        'music/collections/MusicsCollection'
     ], function (
         Backbone,
         _,
@@ -31,11 +32,13 @@
         ToastBox,
         StringUtil,
         TasksCollection,
-        DeleteConfirmWindowView
+        DeleteConfirmWindowView,
+        MusicsCollection
     ) {
         console.log('TaskActionView - File loaded.');
 
         var boxViewInsance;
+        var musicsCollection;
 
         var TaskActionView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('taskManager', 'task-action')),
@@ -114,8 +117,14 @@
                 evt.stopPropagation();
 
                 var content;
-                this.model.setAsRingtoneAsync().done(function () {
+                this.model.setAsRingtoneAsync().done(function (resp) {
+
                     content = i18n.taskManager.SET_AS_RINGTONE_SUCCESS;
+
+                    musicsCollection = MusicsCollection.getInstance();
+                    musicsCollection.settings.ringtone = resp.body.value;
+                    musicsCollection.trigger('refresh', musicsCollection);
+                    musicsCollection = undefined;
                 }).fail(function () {
                     content = i18n.taskManager.SET_AS_RINGTONE_FAIL;
                 }).always(function () {
