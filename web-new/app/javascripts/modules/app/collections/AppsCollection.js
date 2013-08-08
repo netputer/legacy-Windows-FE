@@ -174,9 +174,12 @@
                     return [];
                 }
 
-                var update = this.filter(function (app) {
+                return this.filter(function (app) {
                     return app.isUpdatable;
                 });
+            },
+            getUpdatableAppsByArea : function () {
+                var update = this.getUpdatableApps();
 
                 var arr = _.groupBy(update, function (app) {
                     if (app.id.length > 19) {
