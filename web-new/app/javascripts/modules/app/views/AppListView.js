@@ -108,15 +108,12 @@
                 pimCollection = PIMCollection.getInstance();
 
                 this.listenTo(webAppsCollection, 'refresh', function (webAppsCollection) {
-
                     if (appList && appList.currentSet.name === 'web') {
                         appList.switchSet('web', webAppsCollection.getAll);
                     }
                     this.$('.tab li[data-tab="web"] .count').html(webAppsCollection.length);
                     this.relocatePointer();
-                });
-
-                this.listenTo(Device, 'change:isMounted', function (Device, isMounted) {
+                }).listenTo(Device, 'change:isMounted', function (Device, isMounted) {
                     if (isMounted) {
                         if (!this.sdTipShowed && appsCollection.length > 0) {
                             this.$('.sd-mount').slideDown('fast', function () {
@@ -126,14 +123,10 @@
                         }
 
                         if (this.flashTipShowed) {
-                            this.$('.flash').slideUp('fast', function () {
-                                appList.build();
-                            });
+                            this.$('.flash').slideUp('fast', appList.build.bind(appList));
                         }
                     } else {
-                        this.$('.sd-mount').slideUp('fast', function () {
-                            appList.build();
-                        });
+                        this.$('.sd-mount').slideUp('fast', appList.build.bind(appList));
 
                         this.tryToShowFlashTip();
                     }
@@ -149,13 +142,13 @@
                     });
                 }, this);
 
-                this.listenTo(Backbone, 'switchModule', this.switchModule);
-                this.listenTo(Account, 'change:isLogin', this.toggleEmptyTip);
-                this.listenTo(Device, 'change:isFastADB', function (Device, isFastADB) {
-                    if (appList) {
-                        this.toggleEmptyTip();
-                    }
-                });
+                this.listenTo(Backbone, 'switchModule', this.switchModule)
+                    .listenTo(Account, 'change:isLogin', this.toggleEmptyTip)
+                    .listenTo(Device, 'change:isFastADB', function (Device, isFastADB) {
+                        if (appList) {
+                            this.toggleEmptyTip();
+                        }
+                    });
             },
             switchModule : function (data) {
                 var module = data.module;
@@ -177,8 +170,8 @@
                     this.switchListDataSet(tab);
 
                     this.selectTab(tab);
-                    this.$el.toggleClass('web', tab === 'web');
-                    this.$el.toggleClass('update', tab === 'update');
+                    this.$el.toggleClass('web', tab === 'web')
+                            .toggleClass('update', tab === 'update');
                 }
             },
             toggleListeners : function (tab) {
@@ -191,12 +184,12 @@
                     newCollection = appsCollection;
                     oldCollection = webAppsCollection;
                 }
-                this.listenTo(newCollection, 'refresh', this.buildList);
-                this.stopListening(oldCollection, 'refresh', this.buildList);
-                appList.listenTo(newCollection, 'syncStart update syncEnd refresh', loadingHandler);
-                appList.stopListening(oldCollection, 'syncStart update syncEnd refresh', loadingHandler);
-                appList.loading = newCollection.loading || newCollection.syncing;
+                this.listenTo(newCollection, 'refresh', this.buildList)
+                    .stopListening(oldCollection, 'refresh', this.buildList);
 
+                appList.listenTo(newCollection, 'syncStart update syncEnd refresh', loadingHandler)
+                    .stopListening(oldCollection, 'syncStart update syncEnd refresh', loadingHandler);
+                appList.loading = newCollection.loading || newCollection.syncing;
                 appList.listenToCollection = newCollection;
             },
             buildList : function () {
@@ -222,11 +215,11 @@
                         'smart-list-sort-type' : 'string'
                     });
 
-                    this.listenTo(appList, 'switchSet', this.toggleEmptyTip);
-                    this.listenTo(appList, 'contextMenu', this.showContextMenu);
-                    this.listenTo(appList, 'select:change', function (selected) {
-                        this.trigger('select:change', selected);
-                    });
+                    this.listenTo(appList, 'switchSet', this.toggleEmptyTip)
+                        .listenTo(appList, 'contextMenu', this.showContextMenu)
+                        .listenTo(appList, 'select:change', function (selected) {
+                            this.trigger('select:change', selected);
+                        });
 
                     this.toggleListeners('normal');
                 } else {
@@ -277,7 +270,6 @@
                 }
             },
             resetHeader : function () {
-
                 this.$('.button-return, .search-tip').hide();
                 this.$('menu, .sort, .pointer').show();
             },
@@ -359,17 +351,10 @@
                 }
             },
             parseSortData : function (data) {
-                if (data.value === 'base_info.name') {
-                    appList.$el.data({
-                        'smart-list-sortby' : data.value,
-                        'smart-list-sort-type' : 'string'
-                    });
-                } else {
-                    appList.$el.data({
-                        'smart-list-sortby' : data.value,
-                        'smart-list-sort-type' : 'number'
-                    });
-                }
+                appList.$el.data({
+                    'smart-list-sortby' : data.value,
+                    'smart-list-sort-type' : data.value === 'base_info.name' ? 'string' : 'number'
+                });
             },
             render : function () {
                 this.$el.html(this.template((function () {
@@ -394,8 +379,7 @@
                 this.toggleEmptyTip();
 
                 sortMenu = SortMenu.getInstance();
-
-                sortMenu.on('select', function (data) {
+                this.listenTo(sortMenu, 'select', function (data) {
                     this.parseSortData(data);
                     if (appList.$el.data('smart-list-sortby') === 'base_info.last_update_time' ||
                             appList.$el.data('smart-list-sortby') === 'base_info.apk_size') {
@@ -404,22 +388,13 @@
                         appList.sortModels(true);
                     }
                     appList.build();
-                }, this);
+                });
 
                 this.$('.sort').append(sortMenu.render().$el);
 
                 this.listenTo(WindowState, 'resize', this.relocatePointer);
 
-                setTimeout(this.relocatePointer.bind(this), 0);
-
-                if (!FunctionSwitch.ENABLE_MY_APPS) {
-                    this.$('.w-list-tab-header li[data-tab="web"]').remove();
-                }
-
-                if (Environment.get('locale') !== CONFIG.enums.LOCALE_DEFAULT &&
-                        Environment.get('locale') !== CONFIG.enums.LOCALE_ZH_CN) {
-                    this.$('.w-list-tab-header li[data-tab="update"]').remove();
-                }
+                setTimeout(this.relocatePointer.bind(this));
 
                 return this;
             },
@@ -431,14 +406,10 @@
                 appList.scrollTo(app);
             },
             clickButtonCloseSD : function () {
-                this.$('.sd-mount').slideUp('fast', function () {
-                    appList.build();
-                });
+                this.$('.sd-mount').slideUp('fast', appList.build.bind(appList));
             },
             clickButtonCloseFlash : function () {
-                this.$('.flash').slideUp('fast', function () {
-                    appList.build();
-                });
+                this.$('.flash').slideUp('fast', appList.build.bind(appList));
 
                 log({
                     'event' : 'ui.click.flash.app.tip.close'
@@ -464,7 +435,7 @@
                         $pointer.css({
                             '-webkit-transition' : oldTransition
                         });
-                    }, 0);
+                    });
                 }
             },
             selectTab : function (tab) {
@@ -521,9 +492,7 @@
                     tab : 'web'
                 });
 
-                this.$('.flash').slideUp('fast', function () {
-                    appList.build();
-                });
+                this.$('.flash').slideUp('fast', appList.build.bind(appList));
 
                 log({
                     'event' : 'ui.click.flash.app.tip.try'
@@ -587,4 +556,3 @@
         return factory;
     });
 }(this, this.document));
-

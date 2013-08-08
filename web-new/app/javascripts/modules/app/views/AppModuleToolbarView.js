@@ -9,7 +9,6 @@
         'jquery',
         'ui/TemplateFactory',
         'ui/Toolbar',
-        'ui/AlertWindow',
         'ui/MenuButton',
         'utilities/StringUtil',
         'Internationalization',
@@ -24,7 +23,6 @@
         'app/views/LocalInstallWindowView',
         'social/views/QuickShareView',
         'app/collections/AppsCollection',
-        'app/collections/WebAppsCollection',
         'app/AppService',
         'task/TaskService'
     ], function (
@@ -34,7 +32,6 @@
         $,
         TemplateFactory,
         Toolbar,
-        AlertWindow,
         MenuButton,
         StringUtil,
         i18n,
@@ -49,13 +46,11 @@
         LocalInstallWindowView,
         QuickShareView,
         AppsCollection,
-        WebAppsCollection,
         AppService,
         TaskService
     ) {
         console.log('AppModuleToolbarView - File loaded.');
 
-        var alert = window.alert;
         var confirm = window.confirm;
 
         var appListView;
@@ -64,14 +59,11 @@
         var AppModuleToolbarView = Toolbar.extend({
             template : doT.template(TemplateFactory.get('app', 'toolbar')),
             initialize : function () {
-                Device.on('change', this.setButtonState, this);
-
-                FunctionSwitch.on('change', function (FunctionSwitch) {
-                    this.$('.button-update').toggle(FunctionSwitch.ENABLE_APP_UPGRADE);
-                }, this);
-
                 appsCollection = AppsCollection.getInstance();
-                appsCollection.on('refresh', this.setButtonState, this);
+
+                this.listenTo(Device, 'change', this.setButtonState)
+                    .listenTo(FunctionSwitch, 'change', this.setButtonState)
+                    .listenTo(appsCollection, 'refresh', this.setButtonState);
             },
             setButtonState : function () {
                 var selected = appListView.selected;
@@ -90,7 +82,7 @@
                                 ((window.SnapPea.CurrentModule === 'app' && window.SnapPea.CurrentTab === 'ignore') ?
                                     appsCollection.ableToUpdateIncludeIgnored(selected).length === 0 : appsCollection.ableToUpdate(selected).length === 0) ||
                                 currentSet === 'web'
-                });
+                }).toggle(Boolean(FunctionSwitch.ENABLE_APP_UPGRADE));
 
                 this.$('.button-export').prop({
                     disabled : !Device.get('isConnected') || selected.length === 0 ||
@@ -116,16 +108,6 @@
                                 appsCollection.ableMoveToSD(selected).length === 0 ||
                                 currentSet === 'web'
                 });
-
-                if (currentSet === 'web') {
-                    this.$('.button-refresh').prop({
-                        disabled : false
-                    });
-                } else {
-                    this.$('.button-refresh').prop({
-                        disabled : !Device.get('isConnected')
-                    });
-                }
             },
             render : function () {
                 this.$el.html(this.template({}));
@@ -134,13 +116,9 @@
                     $observer : this.$('.check-select-all')
                 });
 
-                appListView.on('select:change', this.setButtonState, this);
+                this.listenTo(appListView, 'select:change', this.setButtonState);
 
                 this.setButtonState();
-
-                if (!FunctionSwitch.ENABLE_APP_UPGRADE) {
-                    this.$('.button-update').hide();
-                }
 
                 return this;
             },
@@ -228,39 +206,13 @@
                     'source' : 'toolbar'
                 });
             },
-            clickButtonRefresh : function () {
-                if (appListView.list.currentSet.name === 'web') {
-                    if (!Account.get('isLogin')) {
-                        Account.loginAsync('', 'app-list-refresh');
-                        var loginHandler = function (Account, isLogin) {
-                            if (isLogin) {
-                                WebAppsCollection.getInstance().syncAsync().fail(function () {
-                                    alert(i18n.misc.REFRESH_ERROR);
-                                });
-                                Account.off('change:isLogin', loginHandler);
-                            }
-                        };
-                        Account.on('change:isLogin', loginHandler, this);
-                        return;
-                    }
-                }
-                var targetCollection = appListView.list.currentSet.name === 'web' ? WebAppsCollection.getInstance() : appsCollection;
-                targetCollection.syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
-                });
-
-                log({
-                    'event' : 'ui.click.app.button.refresh'
-                });
-            },
             events : {
                 'click .button-install' : 'clickButtonInstall',
                 'click .button-uninstall' : 'clickButtonUninstall',
                 'click .button-update' : 'clickButtonUpdate',
                 'click .button-export' : 'clickButtonExport',
                 'click .button-move-to-sd-card' : 'clickButtonMoveToSDCard',
-                'click .button-move-to-device' : 'clickButtonMoveToDevice',
-                'click .button-refresh' : 'clickButtonRefresh'
+                'click .button-move-to-device' : 'clickButtonMoveToDevice'
             }
         });
 

@@ -36,8 +36,6 @@
             }
         });
 
-        window.UIHelper = UIHelper;
-
         return UIHelper;
     });
 }(this));

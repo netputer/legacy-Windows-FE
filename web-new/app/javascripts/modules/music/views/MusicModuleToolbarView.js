@@ -132,7 +132,6 @@
             events : {
                 'click .button-add-music' : 'clickButtonAddMusic',
                 'click .button-delete' : 'clickButtonDelete',
-                'click .button-refresh' : 'clickButtonRefresh',
                 'click .button-export' : 'clickButtonExport',
                 'click .button-itunes' : 'clickButtonITunes'
             }

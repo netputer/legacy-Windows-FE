@@ -51,6 +51,12 @@
                     return PRIVACY;
                 }
             },
+            IS_CHINESE_VERSION :  {
+                get : function () {
+                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
+                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                }
+            },
             ENABLE_APP_UPGRADE : {
                 get : function () {
                     return PRIVACY.ENABLE_APP_UPGRADE &&

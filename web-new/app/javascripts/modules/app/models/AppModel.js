@@ -346,6 +346,7 @@
                             from : 'client.dora.app.list',
                             opt_fields : [
                                 'title',
+                                'icons.px36',
                                 'icons.px48',
                                 'categories',
                                 'likesCount',
@@ -363,7 +364,8 @@
                                 base_info : _.extend(this.get('base_info'), {
                                     name : resp.title,
                                     downloadUrl : resp.apks[0].downloadUrl,
-                                    icon : resp.icons.px48,
+                                    icon : resp.icons.px36,
+                                    icon48 : resp.icons.px48,
                                     version_name : resp.apks[0].versionName,
                                     apk_size : resp.apks[0].bytes
                                 }),

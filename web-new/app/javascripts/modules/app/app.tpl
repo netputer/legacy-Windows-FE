@@ -30,9 +30,7 @@
 </script>
 
 <script type="text/x-ui-template" id="app-recommend-item">
-    <div class="icon button-navigate-to-detail">
-        <img src="{{= CONFIG.enums.TASK_DEFAULT_ICON_PATH_APP }}" alt="{{= it.app.title }}" />
-    </div>
+    <img class="icon button-navigate-to-detail" src="{{= CONFIG.enums.TASK_DEFAULT_ICON_PATH_APP }}" alt="{{= it.app.title }}" />
     <div class="body vbox">
         <div class="title button-navigate-to-detail wc">{{= it.app.title }}</div>
         <div class="text-thirdly wc">
@@ -121,14 +119,10 @@
 
 <script type="text/x-ui-template" id="detail-panel">
     <div class="app-info hbox">
-        {{? FunctionSwitch.ENABLE_APP_UPGRADE }}
-        <div class="icon" title="{{= it.detail_page_info ? i18n.app.LOOK_FOR_DETAIL : i18n.app.APP_NOT_INDEXED }}">
-            <img src="{{= it.base_info.icon }}" alt="{{! it.base_info.name }}" class="{{? it.detail_page_info }}button-navigate-to-detail{{?}}" />
-        </div>
+        {{? /^file:\/\/\//.test(it.base_info.icon) }}
+        <img title="{{= it.detail_page_info ? i18n.app.LOOK_FOR_DETAIL : i18n.app.APP_NOT_INDEXED }}" src="{{= it.base_info.icon }}" alt="{{! it.base_info.name }}" class="icon{{? it.detail_page_info && FunctionSwitch.IS_CHINESE_VERSION }} button-navigate-to-detail{{?}}" />
         {{??}}
-        <div class="icon">
-            <img src="{{= it.base_info.icon }}" alt="{{! it.base_info.name }}" />
-        </div>
+        <img title="{{= it.detail_page_info ? i18n.app.LOOK_FOR_DETAIL : i18n.app.APP_NOT_INDEXED }}" src="{{= CONFIG.enums.TASK_DEFAULT_ICON_PATH_APP }}" alt="{{! it.base_info.name }}" class="icon{{? it.detail_page_info && FunctionSwitch.IS_CHINESE_VERSION }} button-navigate-to-detail{{?}}" />
         {{?}}
         <div class="title vbox">
             {{? FunctionSwitch.ENABLE_APP_UPGRADE }}
@@ -184,7 +178,7 @@
         <dd title="v{{= targetVersion }}" class="wc">v{{= targetVersion }}</dd>
         {{??}}
         <dd class="hbox">
-            <div class="versin wc">v{{= originVersion }}</div>
+            <div class="version wc">v{{= originVersion }}</div>
             {{? it.detail_page_info }}
             <div class="link button-navigate-to-version">{{= i18n.app.VERSION_HISTORY }}</div>
             {{?}}
@@ -242,7 +236,7 @@
                 {{~}}
             </ul>
             {{? unimportant.length > 0 }}
-            <span class="button-toggle-permission">
+            <span class="button-toggle-permission cf">
                 <span class="link">{{= i18n.app.MORE }}</span>
                 <span class="arrow">&raquo;</span>
             </span>
@@ -263,9 +257,11 @@
 <script type="text/x-ui-template" id="app-list-item">
     <label class="input item-checker-wrap hbox"><input class="item-checker" type="checkbox" value="{{= it.id }}"></label>
     <div class="info hbox">
-        <div class="icon">
-            <img src="{{= it.base_info.icon }}" alt="{{! it.base_info.name }}" />
-        </div>
+        {{? /^file:\/\/\//.test(it.base_info.icon) }}
+        <img class="icon" src="{{= it.base_info.icon }}" alt="{{! it.base_info.name }}" />
+        {{??}}
+        <img class="icon" src="{{= CONFIG.enums.TASK_DEFAULT_ICON_PATH_APP }}" alt="{{! it.base_info.name }}" />
+        {{?}}
         <div class="name wc">
             {{= it.base_info.name }}
             {{? StringUtil.isURL(it.upgrade_info.downloadUrl) }}
@@ -308,6 +304,7 @@
         {{?}}
     </div>
     {{?}}
+    {{? FunctionSwitch.ENABLE_APP_UPGRADE }}
     <div class="update hbox">
         {{? StringUtil.isURL(it.upgrade_info.downloadUrl) && !it.is_blocked }}
             {{? it.isUpdating }}
@@ -321,6 +318,8 @@
             {{?}}
         {{?}}
     </div>
+    {{?}}
+    {{? it.isWeb }}
     <div class="web-update hbox">
         {{? it.installed }}
             <span class="text-secondary" >{{= i18n.misc.NAV_APP_INSTALLED }}</span>
@@ -334,6 +333,7 @@
         {{?}}
         <span class="button-hide link">{{= i18n.misc.DELETE }}</span>
     </div>
+    {{?}}
     <div class="button-close" data-id="{{= it.id }}" title="{{= i18n.misc.DESELECT }}"></div>
 </script>
 
@@ -416,10 +416,6 @@
     <button class="w-icon-btn button-move-to-device min">
         <span class="icon device"></span>{{= i18n.app.BUTTON_MOVE_TO_DEVICE_LABEL }}
     </button>
-    <div class="split"></div>
-    <button class="w-icon-btn button-refresh min">
-        <span class="icon refresh"></span>{{= i18n.misc.REFRESH }}
-    </button>
 </script>
 
 <script type="text/x-ui-template" id="app-list">
@@ -437,14 +433,18 @@
                 <div>{{= i18n.misc.NAV_APP_SYS }}</div>
                 <div class="count">{{= it.sys }}</div>
             </li>
+            {{? FunctionSwitch.IS_CHINESE_VERSION }}
             <li class="hbox" data-tab="update">
                 <div>{{= i18n.misc.NAV_APP_UPDATABLE }}</div>
                 <div class="count">{{= it.update }}</div>
             </li>
+            {{?}}
+            {{? FunctionSwitch.ENABLE_MY_APPS }}
             <li class="hbox" data-tab="web">
                 <div>{{= i18n.app.WEB_APPS_EMPTY }}</div>
                 <div class="count">{{= it.web }}</div>
             </li>
+            {{?}}
         </menu>
         <div class="pointer"></div>
         <div class="sort"></div>

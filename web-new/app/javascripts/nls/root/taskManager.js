@@ -56,14 +56,12 @@ define({
     MERGE_VIDEO_SUCCESS : '合并 MP4 视频成功',
     UNKNOWN_NAME : '未知名称',
 
-
     CACHE_SIZE : '节省了 {1} 流量',
     ADD_TASK_TIP : '添加了 {1} 项任务',
     FINISH_TASK_TIP : '{1} 项任务已完成',
 
     DELETE_TASK : '删除应用',
     CONTINUE_INSTALL : '继续安装',
-
 
     /* Install failed reasons */
     INSTALL_FAILED_DEVICE_NOT_FOUND : '设备没有连接，无法安装',
