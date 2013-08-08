@@ -801,10 +801,9 @@
                         !Device.get('hasEmulatedSD')) {
                     alert(i18n.misc.ALERT_TIP_NO_SD_CARD);
                 } else {
-                    window.wonder.contact.avatarEditor.saveHandleAndShow(this);
-                    // AvatarEditorView.getInstance({
-                    //     parentView : this
-                    // }).show();
+                    AvatarEditorView.getInstance({
+                        detialView : this
+                    }).show();
                 }
 
                 log({

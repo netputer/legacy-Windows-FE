@@ -908,7 +908,8 @@
                 'sms_error_num' : context.get('smsErrorList').length,
                 'contacts_error_num' : context.get('contactsErrorList').length,
                 'app_error_num' : context.get('appErrorList').length,
-                'product_id' : Device.get('productId')
+                'product_id' : Device.get('productId'),
+                'is_usb' : Device.get('isUSB')
             });
         };
 
@@ -921,7 +922,8 @@
                 'data_id_list' : context.get('dataIDList').join(','),
                 'udid' : context.get('udid'),
                 'snapshot_list_num' : context.get('snapshotList').length,
-                'product_id' : Device.get('productId')
+                'product_id' : Device.get('productId'),
+                'is_usb' : Device.get('isUSB')
             });
         };
 
