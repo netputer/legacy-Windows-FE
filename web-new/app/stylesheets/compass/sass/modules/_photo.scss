@@ -183,9 +183,9 @@
     }
 
     .control {
-        bottom: 70px;
-        position: fixed;
-        width: 100%;
+        height: 70px;
+        -webkit-box-align: center;
+        -webkit-box-pack: end;
 
         .tip {
             color: #fff;

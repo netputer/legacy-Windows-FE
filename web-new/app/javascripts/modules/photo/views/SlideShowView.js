@@ -484,31 +484,50 @@
                 this.loading = true;
                 this.loadAsync();
             },
-            mouseWheelEvent : function (evt) {
-                var delta = evt.originalEvent.wheelDelta;
-                var $photo = this.$('.photo');
-                var matrix = $photo.css('transform');
+            getTransformItems : function ($elem) {
+                var matrix = $elem.css('transform');
 
-                var scale = 1, angle = 0;
-
-                if (matrix !== 'none') {
-                    var matrixArray = matrix.substr(7, matrix.length - 8).split(',');
-                    var a = matrixArray[0];
-                    var b = matrixArray[1];
-
-                    scale = (Math.sqrt(a * a + b * b));
-                    angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+                if (matrix === 'none') {
+                    return {
+                        scale : 1,
+                        angle : 0
+                    };
                 }
 
+                var matrixArray = matrix.substr(7, matrix.length - 8).split(',');
+                var a = matrixArray[0];
+                var b = matrixArray[1];
+
+                return {
+                    scale : Math.sqrt(a * a + b * b),
+                    angle : Math.round(Math.atan2(b, a) * (180 / Math.PI))
+                };
+            },
+            mouseWheelEvent : _.throttle(function (evt) {
+                var delta = evt.originalEvent.wheelDelta,
+                    $photo = this.$('.photo'),
+                    transform = this.getTransformItems($photo),
+                    scale = transform.scale,
+                    angle = transform.angle;
+
                 if (delta > 0) {
-                    scale = scale > 5 || scale + 0.4;
+                    scale = Number(scale + 0.5).toFixed(1);
+
+                    if (scale > 5) {
+                        scale = 5;
+                    }
                 } else {
-                    scale = scale < 0.3 || scale - 0.4;
+                    scale = Number(scale - 0.5).toFixed(1);
+
+                    if (scale < 0.5) {
+                        scale = 0.5;
+                    }
                 }
 
                 $photo.css('transform', 'scale(' + scale + ') rotate(' + angle + 'deg)');
-            },
+            }, 30),
             events : {
+                'mousewheel' : 'mouseWheelEvent',
                 'click .photo' : 'clickPhoto',
                 'click .button-close' : 'clickButtonClose',
                 'click .button-play' : 'clickButtonPlay',
@@ -521,8 +540,7 @@
                 'click .button-export' : 'clickButtonExport',
                 'click .button-wallpaper' : 'clickButtonWallpaper',
                 'click .button-share' : 'clickButtonShare',
-                'click .button-retry' : 'clickButtonRetry',
-                'mousewheel' : 'mouseWheelEvent'
+                'click .button-retry' : 'clickButtonRetry'
             }
         });
 
