@@ -131,10 +131,6 @@
 
             var selected = this.selected;
 
-            item = _.filter(item, function (single) {
-                return single !== undefined;
-            });
-
             if (item instanceof Array) {
                 added = _.difference(item, _.intersection(selected, item));
 
@@ -258,7 +254,11 @@
         };
 
         SelectDelegateMixin.selectAll = function () {
-            this.addSelect(_.pluck(this.currentModels, 'id'));
+            var models = _.filter(this.currentModels, function (model) {
+                return model.id !== undefined;
+            });
+
+            this.addSelect(_.pluck(models, 'id'));
         };
 
         return SelectDelegateMixin;

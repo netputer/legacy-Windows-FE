@@ -170,13 +170,9 @@
                 });
             },
             getUpdatableApps : function () {
-                if (!FunctionSwitch.ENABLE_APP_UPGRADE) {
-                    return [];
-                }
-
-                return this.filter(function (app) {
+                return FunctionSwitch.ENABLE_APP_UPGRADE ? this.filter(function (app) {
                     return app.isUpdatable;
-                });
+                }) : [];
             },
             getUpdatableAppsByArea : function () {
                 var update = this.getUpdatableApps();
