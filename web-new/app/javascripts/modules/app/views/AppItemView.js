@@ -233,7 +233,11 @@
                     'event' : 'ui.click.app_button_hide'
                 });
             },
+            rightClickItem : function (evt) {
+                evt.stopPropagation();
+            },
             events : {
+                'contextmenu' : 'rightClickItem',
                 'click .button-update' : 'clickButtonUpdate',
                 'click .button-ignore' : 'clickButtonIgnore',
                 'click .button-unignore' : 'clickButtonUnignore',
