@@ -975,4 +975,15 @@
     .w-photo-thread .photo-ctn {
         padding: 5px 5px 5px 25px;
     }
+
+    +
+    .empty-tip {
+        &.center {
+            top: 55%;
+        }
+    }
+}
+
+.w-contact-avatat-edit-body {
+    -webkit-box-flex: 1;
 }

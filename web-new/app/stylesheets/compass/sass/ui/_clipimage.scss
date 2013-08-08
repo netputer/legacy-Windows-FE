@@ -1,0 +1,102 @@
+/********************************************************************************
+ * This is the CSS declaration of Menu Component
+ *
+ * @author lixiaopeng@wandoujia.com
+ ********************************************************************************/
+ @import "../skins/default/default";
+ 
+ .w-ui-clip-image{
+    display: -webkit-box;
+    position: relative;
+    overflow: hidden;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-flex: 1;
+
+    .cliping-box{
+        position:absolute;
+        overflow: hidden;
+        border: 1px solid #6db800;
+        -webkit-user-select: none;
+
+        .clip-box-image {
+            -webkit-user-select: none;
+        }
+
+        .clip-box-surface {
+            position: absolute;
+            top: 0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            -webkit-user-select: none;
+        }
+    }
+
+    .clip-resize-el{
+        color: #6db800;
+        cursor: pointer;
+        height: 10px;
+        position: absolute;
+        width: 10px;
+
+        span{
+            background-color:#6db800;
+            height: 5px;
+            position: absolute;
+            width: 5px;
+        }
+
+        &.clip-resize-tl, &.clip-resize-tl span{
+            cursor: nwse-resize;
+            left: 0px;
+            top: 0px;
+        }
+
+        &.clip-resize-tr, &.clip-resize-tr span{
+            cursor: nesw-resize;
+            right: 0px;
+            top: 0px;
+        }
+
+        &.clip-resize-bl, &.clip-resize-bl span{
+            bottom: 0px;
+            cursor: nesw-resize;
+            left: 0px;
+        }
+
+        &.clip-resize-br, &.clip-resize-br span{
+            bottom: 0px;
+            cursor: nwse-resize;
+            right: 0px;
+        }
+    }
+    
+    .mask{
+        background: #000;
+        border-radius: 3px;
+        height: 100%;
+        left: 0;
+        opacity: .6;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    
+    .origin-img{
+        -webkit-user-select: none;
+    }
+
+    .rotate-90{
+        -webkit-transform: rotate(90deg);
+    }
+
+    .rotate-180{
+        -webkit-transform: rotate(180deg);
+    }
+
+    .rotate-270{
+        -webkit-transform: rotate(270deg);
+    }
+}

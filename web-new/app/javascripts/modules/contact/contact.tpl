@@ -588,7 +588,7 @@
         <span class="text-secondary" title="{{! it.key }}">{{! it.key }}</span>
         <div class="count">{{= it.count }}</div>
     </header>
-    <ul class="photo-ctn"></ul>
+    <ul class="media-ctn"></ul>
 </script>
 
 <script type="text/template" id="import-file-select">
@@ -648,5 +648,21 @@
         <input type="text" class="new-name">
     </div>
     {{?}}
+</script>
+
+<script type="text/x-ui-template" id="gallery">
+    <header class="w-list-tab-header">
+        <menu class="tab hbox">
+            <li class="hbox" data-tab="phone">
+                <div>{{= i18n.misc.NAV_PIC_PHONE_LIB }}</div>
+                <div class="count">{{= it.phone }}</div>
+            </li>
+            <li class="hbox" data-tab="lib">
+                <div>{{= i18n.misc.NAV_PIC_GALLERY }}</div>
+                <div class="count">{{= it.lib }}</div>
+            </li>
+        </menu>
+        <div class="pointer"></div>
+    </header>
 </script>
 </templates>
