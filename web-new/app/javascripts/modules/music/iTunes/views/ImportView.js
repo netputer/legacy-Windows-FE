@@ -184,9 +184,7 @@
                 if (Device.get('isMounted')) {
                     alert(localeText.MOUNT_CANNOT_CREATE_PLAYLIST);
 
-                    this.createPlaylistFail({
-                        total : (this.data.playlistIds && this.data.playlistIds.length) || 0
-                    });
+                    this.createPlaylistFail(0, (this.data.playlistIds && this.data.playlistIds.length) || 0);
 
                     this.updatePanelTitleAndBtn(true);
                     return;
@@ -306,12 +304,24 @@
                 this.updatePanelTitleAndBtn(true);
                 IO.Backend.Device.offmessage(currentHandler);
 
-                if (data.success && (data.success.length === data.total)) {
+                var failed = [];
+                var success = [];
+                _.map(data.failed, function (list) {
+                    if (list.error_code === Configuration.enums.ITUNES_PLAYLIST_EXISTED) {
+                        success.push(list);
+                    } else if (list.error_code === Configuration.enums.ITUNES_PLAYLIST_GENERIC_FAILURE) {
+                        failed.push(list);
+                    }
+                });
+                failed = failed.concat(data.failed).length;
+                success = success.concat(data.success || []).length;
+
+                if (success === data.total) {
                     this.$('.' + createPlaylistCls + ' .progress-tip').html(i18n.music.CREATE_PLAYLIST_COMPLETE);
                 } else {
-                    this.createPlaylistFail(data);
+                    this.createPlaylistFail(success, data.total);
 
-                    var tip = StringUtil.format(i18n.music.CREATE_PLAYLIST_FAILD_TIP, data.failed.length);
+                    var tip = StringUtil.format(i18n.music.CREATE_PLAYLIST_FAILD_TIP, failed);
                     var buttons = [
                         {
                             $button : $('<button/>').addClass('primary retry').html(i18n.ui.RETRY),
@@ -355,14 +365,14 @@
 
             },
 
-            createPlaylistFail : function (data) {
+            createPlaylistFail : function (success, total) {
                 IO.Backend.Device.offmessage(currentHandler);
                 var playlistData = {
                     tip : i18n.music.CREATE_PLAYLIST_FAILD,
                     className : createPlaylistCls,
                     isFaild : true,
-                    current : (data.success && data.success.length) || 0,
-                    total : data.total
+                    current : success,
+                    total : total
                 };
                 this.renderProgress(playlistData);
             },
