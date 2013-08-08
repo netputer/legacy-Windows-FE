@@ -234,7 +234,9 @@
                 });
             },
             rightClickItem : function (evt) {
-                evt.stopPropagation();
+                if ($(evt.currentTarget).hasClass('category')) {
+                    evt.stopPropagation();
+                }
             },
             events : {
                 'contextmenu' : 'rightClickItem',
