@@ -312,6 +312,10 @@
                     this.switchComparator();
                     this.build();
                 }, this);
+
+                this.listenTo(Backbone, 'selectApps', function (ids) {
+                    this.addSelect(ids);
+                }.bind(this));
             },
             render : function () {
                 this.$el.html(this.template({}));

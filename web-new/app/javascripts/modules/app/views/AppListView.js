@@ -108,7 +108,6 @@
                 pimCollection = PIMCollection.getInstance();
 
                 this.listenTo(webAppsCollection, 'refresh', function (webAppsCollection) {
-
                     if (appList && appList.currentSet.name === 'web') {
                         appList.switchSet('web', webAppsCollection.getAll);
                     }

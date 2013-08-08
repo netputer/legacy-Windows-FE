@@ -262,16 +262,18 @@
 
 <script type="text/x-ui-template" id="app-list-item">
     {{? !it.id }}
-    <div class="info hbox">
     {{? it.category === 'us' }}
+    <div class="info hbox">
         {{= i18n.app.CATEGORY_UPDATE_FROM_US }}
-    {{??}}
-        {{= i18n.app.CATEGORY_UPDATE_FROM_OTHERS }}
-    {{?}}
     </div>
     <div class="update hbox">
         <button class="button-update min" data-category="{{= it.category }}">{{= i18n.app.UPDATE }}</button>
     </div>
+    {{??}}
+    <div class="info hbox">
+        {{= i18n.app.CATEGORY_UPDATE_FROM_OTHERS }}
+    </div>
+    {{?}}
     {{??}}
     <label class="input item-checker-wrap hbox"><input class="item-checker" type="checkbox" value="{{= it.id }}"></label>
     <div class="info hbox">
