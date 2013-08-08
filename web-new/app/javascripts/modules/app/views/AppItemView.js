@@ -143,9 +143,9 @@
             clickButtonUpdate : function (evt) {
                 evt.stopPropagation();
 
-                var updateApp = function (model) {
+                var updateApp = function (model, source) {
                     var updateModel = model.updateInfo.set({
-                        source : 'update-button-list'
+                        source : source
                     });
 
                     TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, updateModel);
@@ -155,25 +155,35 @@
                     });
 
                     model.unignoreUpdateAsync();
-
-                    log({
-                        'event' : 'ui.click.app.button.update',
-                        'source' : 'list'
-                    });
                 };
 
                 var $currentButton = $(evt.currentTarget);
 
                 if ($currentButton.data('category') === undefined) {
-                    updateApp(this.model);
+                    updateApp(this.model, 'update-button-list');
+
+                    log({
+                        'event' : 'ui.click.app.button.update',
+                        'source' : 'list'
+                    });
                 } else {
                     var models = AppsCollection.getInstance().getUpdatableAppsByCategory($currentButton.data('category'));
 
                     if (models.length === 1) {
-                        updateApp(models[0]);
+                        updateApp(models[0], 'update-button-category');
+
+                        log({
+                            'event' : 'ui.click.app_button_category_update'
+                        });
                     } else {
                         confirm(StringUtil.format(i18n.app.UPGRADE_TIP_TEXT, models.length), function () {
-                            _.each(models, updateApp);
+                            _.each(models, function (model) {
+                                updateApp(model, 'update-button-category');
+                            });
+
+                            log({
+                                'event' : 'ui.click.app_button_category_update'
+                            });
                         });
                     }
                 }
