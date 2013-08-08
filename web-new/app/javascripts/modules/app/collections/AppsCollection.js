@@ -181,7 +181,7 @@
             getUpdatableAppsByArea : function () {
                 var update = this.getUpdatableApps();
 
-                var arr = _.groupBy(update, function (app) {
+                var group = _.groupBy(update, function (app) {
                     if (app.id.length > 19) {
                         return 'us';
                     }
@@ -191,17 +191,21 @@
 
                 var result = [];
 
-                result.push(new AppModel({
-                    source : 'us'
-                }));
+                if (group.us.length > 0) {
+                    var areaUs = new AppModel({
+                        source : 'us'
+                    });
 
-                result = result.concat(arr.us);
+                    result = result.concat(areaUs, group.us);
+                }
 
-                result.push(new AppModel({
-                    source : 'others'
-                }));
+                if (group.others.length > 0) {
+                    var areaOthers = new AppModel({
+                        source : 'others'
+                    });
 
-                result = result.concat(arr.others);
+                    result = result.concat(areaOthers, group.others);
+                }
 
                 return result;
             },
