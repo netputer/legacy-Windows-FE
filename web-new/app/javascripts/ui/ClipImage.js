@@ -421,7 +421,6 @@
                 var imageHeight = this.$originImg.height();
                 var imageWidth = this.$originImg.width();
 
-                var target = $(evt.target);
                 var eClientX = evt.clientX;
                 var eClientY = evt.clientY;
                 var clientXDiff = this.oldPosition.clientX - eClientX;
