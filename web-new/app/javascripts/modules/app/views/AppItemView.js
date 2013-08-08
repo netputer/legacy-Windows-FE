@@ -93,7 +93,7 @@
                 if (!FunctionSwitch.ENABLE_APP_UPGRADE) {
                     this.$('.update').remove();
                 } else if (StringUtil.isURL(this.model.get('upgrade_info').downloadUrl)) {
-                    if (!this.model.get('isUpdating') && this.model.get('upgrade_info').changeLog) {
+                    if (!this.model.get('isUpdating')) {
                         this.changeLogView = ChangeLogView.getInstance({
                             $host : this.$('.button-update'),
                             model : this.model
