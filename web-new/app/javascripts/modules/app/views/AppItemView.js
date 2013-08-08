@@ -17,6 +17,7 @@
         'task/TaskService',
         'app/views/ChangeLogView',
         'task/collections/TasksCollection',
+        'app/collections/AppsCollection',
         'app/collections/WebAppsCollection'
     ], function (
         Backbone,
@@ -35,6 +36,7 @@
         TaskService,
         ChangeLogView,
         TasksCollection,
+        AppsCollection,
         WebAppsCollection
     ) {
         console.log('AppItemView - File loaded.');
@@ -63,7 +65,7 @@
                 AppItemView.__super__.remove.call(this);
             },
             render : function () {
-                if (this.model.get('source') !== undefined) {
+                if (this.model.get('category')) {
                     this.$el.addClass('category').html(this.template(this.model.toJSON()));
                     return this;
                 }
@@ -141,20 +143,40 @@
             clickButtonUpdate : function (evt) {
                 evt.stopPropagation();
 
-                var model = this.model.updateInfo.set({
-                    source : 'update-button-list'
-                });
+                var updateApp = function (model) {
+                    var updateModel = model.updateInfo.set({
+                        source : 'update-button-list'
+                    });
 
-                TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
+                    TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, updateModel);
 
-                this.model.set({
-                    isUpdating : true
-                }).unignoreUpdateAsync();
+                    model.set({
+                        isUpdating : true
+                    });
 
-                log({
-                    'event' : 'ui.click.app.button.update',
-                    'source' : 'list'
-                });
+                    model.unignoreUpdateAsync();
+
+                    log({
+                        'event' : 'ui.click.app.button.update',
+                        'source' : 'list'
+                    });
+                };
+
+                var $currentButton = $(evt.currentTarget);
+
+                if ($currentButton.data('category') === undefined) {
+                    updateApp(this.model);
+                } else {
+                    var models = AppsCollection.getInstance().getUpdatableAppsByCategory($currentButton.data('category'));
+
+                    if (models.length === 1) {
+                        updateApp(models[0]);
+                    } else {
+                        confirm(StringUtil.format(i18n.app.UPGRADE_TIP_TEXT, models.length), function () {
+                            _.each(models, updateApp);
+                        });
+                    }
+                }
             },
             clickButtonIgnore : function (evt) {
                 evt.stopPropagation();

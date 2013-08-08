@@ -266,7 +266,7 @@
                     break;
                 case 'update':
                     this.$('.ignore-tip .count').html(StringUtil.format(i18n.app.IGNORED_APPS, appsCollection.getIgnoredApps().length));
-                    appList.switchSet('update', appsCollection.getUpdatableAppsByArea);
+                    appList.switchSet('update', appsCollection.getUpdatableAppsWithCategory);
                     break;
                 case 'web':
                     appList.switchSet('web', webAppsCollection.getAll);

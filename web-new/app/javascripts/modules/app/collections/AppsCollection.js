@@ -174,14 +174,16 @@
                     return app.isUpdatable;
                 }) : [];
             },
-            getUpdatableAppsByArea : function () {
+            getUpdatableAppsWithCategory : function () {
                 var update = this.getUpdatableApps();
 
                 var group = _.groupBy(update, function (app) {
                     if (app.id.length > 19) {
+                        app.set('source', 'us');
                         return 'us';
                     }
 
+                    app.set('source', 'others');
                     return 'others';
                 });
 
@@ -189,7 +191,7 @@
 
                 if (group.us.length > 0) {
                     var areaUs = new AppModel({
-                        source : 'us'
+                        category : 'us'
                     });
 
                     result = result.concat(areaUs, group.us);
@@ -197,13 +199,18 @@
 
                 if (group.others.length > 0) {
                     var areaOthers = new AppModel({
-                        source : 'others'
+                        category : 'others'
                     });
 
                     result = result.concat(areaOthers, group.others);
                 }
 
                 return result;
+            },
+            getUpdatableAppsByCategory : function (category) {
+                return this.filter(function (app) {
+                    return app.get('source') === category;
+                });
             },
             getSuggestMoveApps : function () {
                 return this.filter(function (app) {
