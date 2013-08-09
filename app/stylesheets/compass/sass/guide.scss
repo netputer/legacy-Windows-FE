@@ -26,14 +26,10 @@
 
     .content {
         background-color: #fff;
-        // border: 1px $componentBorderColor solid;
-        // border-radius: 5px;
-        padding: 5px;
         box-sizing: border-box;
+        padding: 5px;
         position: relative;
-
         -webkit-box-flex: 1;
-        // -webkit-transform: translate3d(100%, 0, 0);
 
         .w-guide-card {
             overflow: hidden;
@@ -64,7 +60,9 @@
 
             .control {
                 height: 28px;
+                line-height: 28px;
                 margin-top: 5px;
+                // position: relative;
                 -webkit-box: {
                     align: center;
                     pack: end;
@@ -91,6 +89,10 @@
     }
 
     .text-counter {
+        // position: absolute;
+        // left: 0;
+        // top: 0;
+        // width: 100%;
         color: #999;
         text-align: center;
         -webkit-box-flex: 1;
@@ -111,17 +113,25 @@
 }
 
 .w-guide-cloud-backup {
+    .text {
+        width: 250px;
+    }
+
     .bg {
         @include guide-sprite(bg-cloud-backup);
         height: guide-sprite-height(bg-cloud-backup);
-        margin-top: 40px;
+        margin: 20px 0 20px 20px;
         width: guide-sprite-width(bg-cloud-backup);
     }
 
-    .section {
-        // @include guide-sprite(bg-cloud-backup);
+    .primary {
+        position: absolute;
+        bottom: 30%;
+        left: 30px;
+    }
 
-        height: 483px;
+    .section {
+        height: 350px;
         overflow: auto;
         -webkit-transform: translate3d(0, 0, 0);
         -webkit-transition: -webkit-transform .4s ease-out;

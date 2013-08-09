@@ -24,8 +24,8 @@
 
 <script type="text/x-ui-template" id="cloud-backup">
     <section class="section vbox">
-        <div class="stage vbox">
-            <div class="text"></div>
+        <div class="stage hbox">
+            <div class="text">
                 <h1 class="text-secondary">{{= i18n.misc.CLOUD_BACKUP }}</h1>
                 <p class="text-thirdly desc">{{= i18n.welcome.GUIDE_BIND_DESC }}</p>
             </div>
@@ -151,8 +151,7 @@
         {{~ it.tips : tip}}
         <li class="tip hbox">
             <span class="icon icon-{{= tip.icon }}"></span>
-            <div class="desc">{{! tip.desc }}</div>
-            <a class="link button-open" target="_default" href="{{= tip.url }}">{{= i18n.misc.VIEW }}</a>
+            <div class="desc"><a class="link button-open" target="_default" href="{{= tip.url }}">{{! tip.desc }}</a></div>
         </li>
         {{~}}
         </ul>
