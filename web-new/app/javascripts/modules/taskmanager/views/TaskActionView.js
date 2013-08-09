@@ -38,7 +38,6 @@
         console.log('TaskActionView - File loaded.');
 
         var boxViewInsance;
-        var musicsCollection;
 
         var TaskActionView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('taskManager', 'task-action')),
@@ -121,10 +120,11 @@
 
                     content = i18n.taskManager.SET_AS_RINGTONE_SUCCESS;
 
-                    musicsCollection = MusicsCollection.getInstance();
+                    var musicsCollection = MusicsCollection.getInstance();
                     musicsCollection.settings.ringtone = resp.body.value;
                     musicsCollection.trigger('refresh', musicsCollection);
                     musicsCollection = undefined;
+
                 }).fail(function () {
                     content = i18n.taskManager.SET_AS_RINGTONE_FAIL;
                 }).always(function () {

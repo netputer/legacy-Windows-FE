@@ -13,7 +13,6 @@
         'ui/MouseState',
         'Device',
         'photo/views/PhotoThreadView',
-        'browser/views/BrowserModuleView',
         'IO',
         'Log'
     ], function (
@@ -29,7 +28,6 @@
         MouseState,
         Device,
         PhotoThreadView,
-        BrowserModuleView,
         IO,
         log
     ) {
@@ -132,21 +130,16 @@
                 }
 
                 if (toggle) {
+                    var type = this.collection.data.photo_type;
+                    var content = this.getEmptyTip(type);
 
-                    switch (this.collection.data.photo_type) {
-                    case CONFIG.enums.PHOTO_LIBRARY_TYPE:
-                    case CONFIG.enums.PHOTO_PHONE_TYPE:
-                        this.$('.empty-tip').addClass('center fix-text');
-                        break;
-                    default:
-                        this.$('.empty-tip').removeClass('center fix-text');
+                    if (type === CONFIG.enums.PHOTO_LIBRARY_TYPE || type === CONFIG.enums.PHOTO_PHONE_TYPE) {
+                        if (Device.get('isConnected') && !Device.get('hasSDCard') && !Device.get('hasEmulatedSD')) {
+                            content = doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.misc.NO_SD_CARD_TIP_TEXT;
+                        }
                     }
 
-                    if (Device.get('isConnected') && !Device.get('hasSDCard') && !Device.get('hasEmulatedSD')) {
-                        this.$('.empty-tip').html(i18n.misc.NO_SD_CARD_TIP_TEXT);
-                    } else {
-                        this.$('.empty-tip').html(this.getEmptyTip(this.collection.data.photo_type));
-                    }
+                    this.$('.empty-tip').html(content);
                 }
                 this.$('.empty-tip').toggle(toggle);
             },
@@ -233,9 +226,20 @@
 
                     return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.EMPTY_LIBRARY_LIST;
                 case CONFIG.enums.PHOTO_CLOUD_TYPE:
-                    return i18n.photo.EMPTY_CLOUD_LIST;
+
+                    log({
+                        'event' : 'ui.show.wanxiaodou',
+                        'type' : 'cloud_photo'
+                    });
+
+                    return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.EMPTY_CLOUD_LIST;
                 default:
-                    return i18n.photo.EMPTY_PHONE_LIST;
+                    log({
+                        'event' : 'ui.show.wanxiaodou',
+                        'type' : 'phone_photo'
+                    });
+
+                    return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.EMPTY_PHONE_LIST;
                 }
             },
             render : function () {

@@ -1,7 +1,7 @@
 /*global define*/
 define({
     ADD_LOCAL_VIDEO_TEXT : '添加本地视频',
-    NO_VIDEOS_TEXT : '您的手机中还没有视频呢。',
+    NO_VIDEOS_TEXT : '<div><span>您手机上还没有任何视频，</span></br><span>要不去下几个最近热门的电影看看？</span></br><button class="primary button-download-video grand">马上下载电影</button>',
     DELETE_TIP : '确定要删除选中的 {1} 个视频？',
     VIDEO_DELETE_ERROR_TEXT : '对不起，以下视频删除失败：',
     VIDEO_EXPORT_ERROR_TEXT : '对不起，以下视频导出失败：',

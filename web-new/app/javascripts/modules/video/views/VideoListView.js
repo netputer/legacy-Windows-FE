@@ -16,7 +16,9 @@
         'Device',
         'video/views/VideoThreadView',
         'video/VideoService',
-        'utilities/FormatDate'
+        'utilities/FormatDate',
+        'browser/views/BrowserModuleView',
+        'Log'
     ], function (
         _,
         Backbone,
@@ -33,7 +35,9 @@
         Device,
         VideoThreadView,
         VideoService,
-        formatdate
+        formatdate,
+        BrowserModuleView,
+        log
     ) {
         console.log('VideoListView -File loaded. ');
 
@@ -154,10 +158,20 @@
 
                 var $emptyTip = this.$('.empty-tip');
                 if (toggle) {
+
+                    log({
+                        'event' : 'ui.show.wanxiaodou',
+                        'type' : 'video'
+                    });
+
                     if (Device.get('isConnected') && !Device.get('hasSDCard') && !Device.get('hasEmulatedSD')) {
-                        $emptyTip.html(i18n.common.NO_SD_CARD_TIP_TEXT);
+                        $emptyTip.html(
+                            doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.misc.NO_SD_CARD_TIP_TEXT
+                        );
                     } else {
-                        $emptyTip.html(i18n.video.NO_VIDEOS_TEXT);
+                        $emptyTip.html(
+                            doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.video.NO_VIDEOS_TEXT
+                        );
                     }
                 }
                 $emptyTip.toggle(toggle);
@@ -293,8 +307,18 @@
                 }
 
             },
+            clickButtonDownload : function () {
+
+                log({
+                    'event' : 'ui.click.wanxiaodou_download',
+                    'type' : 'video'
+                });
+
+                IO.sendCustomEventsAsync(CONFIG.events.WEB_NAVIGATE, {type: CONFIG.enums.NAVIGATE_TYPE_GALLERY, id: 258});
+            },
             events : {
-                'mousedown' : 'startDraw'
+                'mousedown' : 'startDraw',
+                'click .button-download-video' : 'clickButtonDownload'
             }
         });
 
