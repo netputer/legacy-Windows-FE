@@ -123,7 +123,6 @@
                     var musicsCollection = MusicsCollection.getInstance();
                     musicsCollection.settings.ringtone = resp.body.value;
                     musicsCollection.trigger('refresh', musicsCollection);
-                    musicsCollection = undefined;
 
                 }).fail(function () {
                     content = i18n.taskManager.SET_AS_RINGTONE_FAIL;
