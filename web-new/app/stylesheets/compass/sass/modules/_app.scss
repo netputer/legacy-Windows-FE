@@ -51,14 +51,10 @@
         padding: 15px 5px 15px 15px;
 
         .icon {
+            display: block;
             height: 48px;
             margin-right: 10px;
             width: 48px;
-
-            img {
-                height: 48px;
-                width: 48px;
-            }
         }
 
         .title {
@@ -240,14 +236,10 @@
 
             .icon {
                 cursor: pointer;
+                display: block;
                 height: 36px;
                 margin-right: 10px;
                 width: 36px;
-
-                img {
-                    height: 36px;
-                    width: 36px;
-                }
             }
 
             .body {
@@ -387,10 +379,6 @@
                 margin-left: 10px;
             }
 
-            .web-update {
-                display: -webkit-box;
-            }
-
             .share {
                 display: block;
             }
@@ -429,6 +417,7 @@
 }
 
 .w-app-list-item {
+    height: 36px;
     padding: 4px 0;
     position: relative;
     -webkit-box-align: center;
@@ -443,14 +432,10 @@
         -webkit-box-flex: 1;
 
         .icon {
+            display: block;
             height: 36px;
-            margin-right: 8px;
+            margin-right: 10px;
             width: 36px;
-
-            img {
-                height: 36px;
-                width: 36px;
-            }
         }
 
         .name {
@@ -517,14 +502,10 @@
     .button-close {
         @include button-close;
         display: none;
-        margin-top: -8px;
         position: absolute;
         right: 8px;
         top: 50%;
-    }
-
-    .web-update {
-        display: none;
+        -webkit-transform: translate3d(0, -50%, 0);
     }
 
     .share {

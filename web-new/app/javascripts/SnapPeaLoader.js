@@ -43,40 +43,40 @@ require.config({
 });
 
 (function (window, document) {
-    var QUERYSTRING_PATTERN_PREFIX = '[\\?\\&\\#]';
-    var QUERYSTRING_PATTERN_SUFFIX = '=([^&]*)';
+    // var QUERYSTRING_PATTERN_PREFIX = '[\\?\\&\\#]';
+    // var QUERYSTRING_PATTERN_SUFFIX = '=([^&]*)';
 
-    var QueryString = {};
+    // var QueryString = {};
 
-    QueryString.get = function (key, string) {
-        string = string || window.location.search;
-        var matches = string.match(new RegExp(QUERYSTRING_PATTERN_PREFIX + key + QUERYSTRING_PATTERN_SUFFIX, 'i'));
-        var encodedValue = matches && matches[1];
-        var value = encodedValue && decodeURIComponent(encodedValue);
-        return value;
-    };
+    // QueryString.get = function (key, string) {
+    //     string = string || window.location.search;
+    //     var matches = string.match(new RegExp(QUERYSTRING_PATTERN_PREFIX + key + QUERYSTRING_PATTERN_SUFFIX, 'i'));
+    //     var encodedValue = matches && matches[1];
+    //     var value = encodedValue && decodeURIComponent(encodedValue);
+    //     return value;
+    // };
 
-    // Disable `console` object under release mode
-    if (QueryString.get('debug') !== 'true') {
-        var originalConsole = window.console;
+    // // Disable `console` object under release mode
+    // if (QueryString.get('debug') !== 'true') {
+    //     var originalConsole = window.console;
 
-        var emptFunc = function () {
-            return;
-        };
+    //     var emptFunc = function () {
+    //         return;
+    //     };
 
-        window.console = {
-            debug : emptFunc,
-            log : emptFunc,
-            time : emptFunc,
-            timeEnd : emptFunc,
-            dir : emptFunc,
-            error : emptFunc
-        };
+    //     window.console = {
+    //         debug : emptFunc,
+    //         log : emptFunc,
+    //         time : emptFunc,
+    //         timeEnd : emptFunc,
+    //         dir : emptFunc,
+    //         error : emptFunc
+    //     };
 
-        window.whosYourDaddy = function () {
-            window.console = originalConsole;
-        };
-    }
+    //     window.whosYourDaddy = function () {
+    //         window.console = originalConsole;
+    //     };
+    // }
 
     var ua = window.navigator.userAgent;
     if (ua.indexOf('Windows NT 5.1') >= 0 ||
@@ -98,18 +98,6 @@ require.config({
     }
 }(this, this.document));
 
-require([
-    'Internationalization',
-    'contact/Contact',
-    'music/Music',
-    'sync/SyncService',
-    'SnapPea'
-], function (
-    i18n,
-    Contact,
-    Music,
-    SyncService,
-    SnapPea
-) {
-    require(['../../../web/build/wonder-latest-dev']);
+require(['SnapPea'], function (SnapPea) {
+    return;
 });

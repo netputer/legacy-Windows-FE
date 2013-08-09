@@ -38,9 +38,6 @@
             Menu : Menu
         };
 
-        // TODO Remove this after migarate finished.
-        window.UI = UI;
-
         return UI;
     });
 }(this));

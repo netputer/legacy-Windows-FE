@@ -52,7 +52,7 @@
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
 
-                imageLoader(this.model.get('icons').px100, this.$('.icon'));
+                imageLoader(this.model.get('icons').px100, this.$('.icon'), true);
 
                 this.renderButton();
 

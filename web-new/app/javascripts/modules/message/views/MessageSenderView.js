@@ -47,6 +47,7 @@
 
         var document = window.document;
         var confirm = window.confirm;
+        var alert = window.alert;
         var clearInterval = window.clearInterval;
         var setInterval = window.setInterval;
 
@@ -325,6 +326,7 @@
                 if ($input.hasClass('focus')) {
                     return;
                 }
+
                 var countInterval = setInterval(function () {
                     this.contentCount = this.$('.input-content').val().length;
                 }.bind(this), 100);
@@ -521,22 +523,25 @@
                 } else {
                     var sendHandler = function () {
                         this.disabled();
-                        MessageService.sendMessageAsync(receiverList, content, this.serviceCenter, this.sendFrom).always(function () {
-                            this.disabled(false);
+                        MessageService.sendMessageAsync(receiverList, content, this.serviceCenter, this.sendFrom)
+                            .always(function () {
+                                this.disabled(false);
+                            }.bind(this))
+                            .done(this.close.bind(this))
+                            .fail(function (resp) {
+                                if (resp.state_code === 740) {
+                                    var panel = new AlertWindow({
+                                        title : i18n.message.BATCH_SEND_TITLE,
+                                        $bodyContent : i18n.message.BATCH_SEND_TOO_MANY_TIP,
+                                        buttonSet : 'yes',
+                                        width : 360
+                                    });
 
-                            this.close();
-                        }.bind(this)).fail(function (resp) {
-                            if (resp.state_code === 740) {
-                                var panel = new AlertWindow({
-                                    title : i18n.message.BATCH_SEND_TITLE,
-                                    $bodyContent : i18n.message.BATCH_SEND_TOO_MANY_TIP,
-                                    buttonSet : 'yes',
-                                    width : 360
-                                });
-
-                                panel.show();
-                            }
-                        });
+                                    panel.show();
+                                } else {
+                                    alert(i18n.message.SEND_FAILED_ALERT);
+                                }
+                            });
                     };
 
                     if (content.length >= 350) {

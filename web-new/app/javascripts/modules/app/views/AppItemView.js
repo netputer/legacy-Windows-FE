@@ -8,6 +8,7 @@
         'ui/TemplateFactory',
         'ui/AlertWindow',
         'ui/BaseListItem',
+        'ui/ImageLoader',
         'Configuration',
         'Device',
         'utilities/StringUtil',
@@ -27,6 +28,7 @@
         TemplateFactory,
         AlertWindow,
         BaseListItem,
+        imageLoader,
         CONFIG,
         Device,
         StringUtil,
@@ -92,9 +94,7 @@
             renderUpdateColumn : function () {
                 this.uninstall();
 
-                if (!FunctionSwitch.ENABLE_APP_UPGRADE) {
-                    this.$('.update').remove();
-                } else if (StringUtil.isURL(this.model.get('upgrade_info').downloadUrl)) {
+                if (FunctionSwitch.ENABLE_APP_UPGRADE && StringUtil.isURL(this.model.get('upgrade_info').downloadUrl)) {
                     if (!this.model.get('isUpdating')) {
                         this.changeLogView = ChangeLogView.getInstance({
                             $host : this.$('.button-update'),
@@ -117,27 +117,7 @@
             renderIcon : function () {
                 var iconURL = this.model.get('base_info').icon;
                 if (iconURL && !/^file:\/\/\//.test(iconURL)) {
-                    var $icon = $(new window.Image());
-                    var $img = this.$('.icon img');
-                    var loadHandler = function () {
-                        if (this.model.get('base_info').icon === $icon.data('path')) {
-                            $img.attr({
-                                src : $icon[0].src
-                            });
-                        }
-                        $icon.remove();
-                    }.bind(this);
-
-                    var errorHandler = function () {
-                        $icon.remove();
-                    };
-
-                    $icon.one('load', loadHandler)
-                        .one('error', errorHandler)
-                        .attr('src', iconURL)
-                        .data('path', iconURL);
-
-                    $img.attr('src', CONFIG.enums.TASK_DEFAULT_ICON_PATH_APP);
+                    imageLoader(iconURL, this.$('.icon'));
                 }
             },
             clickButtonUpdate : function (evt) {

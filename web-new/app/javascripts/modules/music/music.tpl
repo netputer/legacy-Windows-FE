@@ -10,10 +10,6 @@
     <button class="w-icon-btn button-export min">
         <span class="icon export"></span>{{= i18n.misc.EXPORT }}
     </button>
-    <div class="split"></div>
-    <button class="w-icon-btn button-refresh min">
-        <span class="icon refresh"></span>{{= i18n.misc.REFRESH }}
-    </button>
     <div class="itunes-wrap">
         <button class="w-icon-btn button-itunes min">
             <span class="icon itunes"></span>{{= i18n.music.ITUNES_IMPORT }}

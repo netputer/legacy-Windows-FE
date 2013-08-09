@@ -10,6 +10,7 @@
         'Configuration',
         'ui/TemplateFactory',
         'ui/PopupTip',
+        'ui/ImageLoader',
         'utilities/StringUtil',
         'app/collections/RecommendAppsCollection',
         'task/TaskService',
@@ -24,6 +25,7 @@
         CONFIG,
         TemplateFactory,
         PopupTip,
+        imageLoader,
         StringUtil,
         RecommendAppsCollection,
         TaskService,
@@ -41,23 +43,7 @@
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
 
-                var $icon = $(new window.Image());
-
-                var loadHandler = function () {
-                    this.$('.icon img').attr({
-                        src : $icon[0].src
-                    }).hide().fadeIn('fast');
-                    $icon.remove();
-                }.bind(this);
-
-                var errorHandler = function () {
-                    $icon.remove();
-                };
-
-                $icon.one('load', loadHandler)
-                    .one('error', errorHandler);
-
-                $icon[0].src = this.model.get('app').icons.px48;
+                imageLoader(this.model.get('app').icons.px48, this.$('.icon'), true);
 
                 var tip = new PopupTip({
                     $host : this.$('[data-title]')
@@ -175,8 +161,8 @@
                 })
             });
 
-            listItem.once('remove', removeCallback, this);
-            listItem.once('removed', removedCallback, this);
+            listItem.once('remove', removeCallback, this)
+                .once('removed', removedCallback, this);
 
             this.items.push(listItem);
 
