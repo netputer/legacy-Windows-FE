@@ -150,7 +150,7 @@
                     var models = AppsCollection.getInstance().getUpdatableAppsByCategory($currentButton.data('category'));
 
                     confirm(StringUtil.format(i18n.app.UPGRADE_TIP_TEXT, models.length), function () {
-                        Backbone.trigger('selectApps', _.pluck(models, 'id'));
+                        Backbone.trigger('app:selectApps', _.pluck(models, 'id'));
 
                         _.each(models, function (model) {
                             updateApp(model, 'update-button-category');
@@ -159,7 +159,7 @@
                         log({
                             'event' : 'ui.click.app_button_category_update'
                         });
-                    }.bind(this));
+                    });
                 }
             },
             clickButtonIgnore : function (evt) {
