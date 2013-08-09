@@ -134,7 +134,7 @@
                             if (appsCollection.get(app.apks[0].packageName) === undefined) {
                                 this.apps.push(app);
                             }
-                            if (this.apps.length === 12) {
+                            if (this.apps.length === 14) {
                                 break;
                             }
                         }
