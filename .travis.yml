@@ -4,9 +4,9 @@
  before_script:
    - npm install -g grunt-cli
    - gem install compass
-   - cd web-new
    - npm install
  notifications:
    email:
      - wangye.zhao@wandoujia.com
      - lixiaopeng@wandoujia.com
+     - netputer@wandoujia.com
