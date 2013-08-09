@@ -189,7 +189,7 @@
 
                 var result = [];
 
-                if (group.us.length > 0) {
+                if (group.us && group.us.length > 0) {
                     var areaUs = new AppModel({
                         category : 'us'
                     });
@@ -197,7 +197,7 @@
                     result = result.concat(areaUs, group.us);
                 }
 
-                if (group.others.length > 0) {
+                if (group.others && group.others.length > 0) {
                     var areaOthers = new AppModel({
                         category : 'others'
                     });
