@@ -111,15 +111,15 @@
 }
 
 .w-guide-cloud-backup {
-    // .bg {
-    //     @include guide-sprite(bg-cloud-backup);
-    //     height: guide-sprite-height(bg-cloud-backup);
-    //     margin-top: 40px;
-    //     width: guide-sprite-width(bg-cloud-backup);
-    // }
+    .bg {
+        @include guide-sprite(bg-cloud-backup);
+        height: guide-sprite-height(bg-cloud-backup);
+        margin-top: 40px;
+        width: guide-sprite-width(bg-cloud-backup);
+    }
 
     .section {
-        @include guide-sprite(bg-cloud-backup);
+        // @include guide-sprite(bg-cloud-backup);
 
         height: 483px;
         overflow: auto;
