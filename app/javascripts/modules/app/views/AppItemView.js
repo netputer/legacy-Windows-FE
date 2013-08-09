@@ -139,7 +139,7 @@
 
                 var $currentButton = $(evt.currentTarget);
 
-                if ($currentButton.data('category') === undefined) {
+                if ($currentButton.data('type') === undefined) {
                     updateApp(this.model, 'update-button-list');
 
                     log({
@@ -147,17 +147,17 @@
                         'source' : 'list'
                     });
                 } else {
-                    var models = AppsCollection.getInstance().getUpdatableAppsByCategory($currentButton.data('category'));
+                    var models = AppsCollection.getInstance().getUpdatableAppsByType($currentButton.data('type'));
 
                     confirm(StringUtil.format(i18n.app.UPGRADE_TIP_TEXT, models.length), function () {
                         Backbone.trigger('app:selectApps', _.pluck(models, 'id'));
 
                         _.each(models, function (model) {
-                            updateApp(model, 'update-button-category');
+                            updateApp(model, 'update-button-recommended');
                         });
 
                         log({
-                            'event' : 'ui.click.app_button_category_update'
+                            'event' : 'ui.click.app.button.recommended_update'
                         });
                     });
                 }

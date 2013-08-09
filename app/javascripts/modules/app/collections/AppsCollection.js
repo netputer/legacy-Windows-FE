@@ -178,38 +178,38 @@
                 var update = this.getUpdatableApps();
 
                 var group = _.groupBy(update, function (app) {
-                    if (app.id.length > 19) {
-                        app.set('source', 'us');
-                        return 'us';
+                    if (app.get('upgrade_info').recommendedType === 'STRONG_RECOMMEND') {
+                        app.set('recommendedType', 'recommended');
+                        return 'recommended';
                     }
 
-                    app.set('source', 'others');
-                    return 'others';
+                    app.set('recommendedType', 'notRecommended');
+                    return 'notRecommended';
                 });
 
                 var result = [];
 
-                if (group.us && group.us.length > 0) {
-                    var areaUs = new AppModel({
-                        category : 'us'
+                if (group.recommended && group.recommended.length > 0) {
+                    var recommended = new AppModel({
+                        category : 'recommended'
                     });
 
-                    result = result.concat(areaUs, group.us);
+                    result = result.concat(recommended, group.recommended);
                 }
 
-                if (group.others && group.others.length > 0) {
-                    var areaOthers = new AppModel({
-                        category : 'others'
+                if (group.notRecommended && group.notRecommended.length > 0) {
+                    var notRecommended = new AppModel({
+                        category : 'notRecommended'
                     });
 
-                    result = result.concat(areaOthers, group.others);
+                    result = result.concat(notRecommended, group.notRecommended);
                 }
 
                 return result;
             },
-            getUpdatableAppsByCategory : function (category) {
+            getUpdatableAppsByType : function (type) {
                 return this.filter(function (app) {
-                    return app.get('source') === category;
+                    return app.get('recommendedType') === type;
                 });
             },
             getSuggestMoveApps : function () {
