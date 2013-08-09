@@ -730,10 +730,11 @@
 }
 
 .w-welcome-guide-frame {
-    height: 495px;
-    padding-top: 40px;
-    width: 465px;
-    -webkit-transform: translate3d(100%, 0, 0);
+    margin: 40px 0 20px 25px;
+    height: 360px;
+    width: 730px;
+    position: relative;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .1);
 }
 
 .w-welcome-clock {

@@ -7,16 +7,16 @@
     <div class="stage">
         <div class="bg"></div>
         <h1 class="text-secondary">{{= i18n.misc.BINDING_DEVICE }}</h1>
-        <p class="text-secondary desc">{{= i18n.welcome.GUIDE_BIND_DESC }}</p>
+        <p class="text-thirdly desc">{{= i18n.welcome.GUIDE_BIND_DESC }}</p>
         <div class="hbox success">
             <div class="icon-pass"></div>
-            <p class="text-secondary">
+            <p class="text-thirdly">
                 {{= StringUtil.format(i18n.welcome.GUIDE_BIND_SUCCESS, Device.get('deviceName')) }}
             </p>
         </div>
     </div>
     <nav class="control hbox">
-        <div class="text-counter"></div>
+        <div class="text-counter text-thirdly"></div>
         <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
@@ -25,12 +25,14 @@
 <script type="text/x-ui-template" id="cloud-backup">
     <section class="section vbox">
         <div class="stage vbox">
-            <h1 class="text-secondary">{{= i18n.misc.CLOUD_BACKUP }}</h1>
-            <p class="text-secondary desc">{{= i18n.welcome.GUIDE_BIND_DESC }}</p>
+            <div class="text"></div>
+                <h1 class="text-secondary">{{= i18n.misc.CLOUD_BACKUP }}</h1>
+                <p class="text-thirdly desc">{{= i18n.welcome.GUIDE_BIND_DESC }}</p>
+            </div>
             <div class="bg"></div>
         </div>
         <nav class="control hbox">
-            <div class="text-counter"></div>
+            <div class="text-counter text-thirdly"></div>
             <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
             <button class="primary button-action">{{= it.action }}</button>
         </nav>
@@ -38,7 +40,7 @@
     <!-- <section class="section vbox">
         <div class="stage vbox">
             <h1 class="text-secondary">{{= i18n.welcome.GUIDE_REG }}</h1>
-            <p class="text-secondary desc">{{= i18n.welcome.GUIDE_REG_DESC }}</p>
+            <p class="text-thirdly desc">{{= i18n.welcome.GUIDE_REG_DESC }}</p>
             <form class="text-secondary">
                 <label>
                     <div class="label">{{= i18n.misc.ACCOUNT }}</div>
@@ -80,7 +82,7 @@
             </div>
         </div>
         <nav class="control hbox">
-            <div class="text-counter"></div>
+            <div class="text-counter text-thirdly"></div>
             <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
             <button class="primary button-reg">{{= i18n.welcome.GUIDE_REG_NOW }}</button>
         </nav>
@@ -88,7 +90,7 @@
     <section class="section vbox">
         <div class="stage">
             <h1 class="text-secondary">{{= i18n.misc.CLOUD_BACKUP }}</h1>
-            <p class="text-secondary desc">
+            <p class="text-thirdly desc">
                 <span class="icon-pass"></span>
                 <span class="text-secondary">{{= i18n.welcome.GUIDE_CLOUD_BACKUP_SUCCESS }}</span>
             </p>
@@ -106,7 +108,7 @@
         <div class="bg"></div>
     </div>
     <nav class="control hbox">
-        <div class="text-counter"></div>
+        <div class="text-counter text-thirdly"></div>
         <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
@@ -116,10 +118,10 @@
     <div class="stage">
         {{? it.type === 0 }}
         <h1 class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_TITLE }}</h1>
-        <p class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_TIP }}</p>
+        <p class="text-thirdly">{{= i18n.welcome.GUIDE_STARTER_TIP }}</p>
         {{??}}
         <h1 class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_GAME_TITLE }}</h1>
-        <p class="text-secondary">{{= i18n.welcome.GUIDE_STARTER_GAME_TIP }}</p>
+        <p class="text-thirdly">{{= i18n.welcome.GUIDE_STARTER_GAME_TIP }}</p>
         {{?}}
         <ul class="app-ctn">
         {{~ it.apps : app }}
@@ -135,7 +137,7 @@
         </ul>
     </div>
     <nav class="control hbox">
-        <div class="text-counter"></div>
+        <div class="text-counter text-thirdly"></div>
         <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
@@ -156,7 +158,7 @@
         </ul>
     </div>
     <nav class="control hbox">
-        <div class="text-counter"></div>
+        <div class="text-counter text-thirdly"></div>
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
 </script>
@@ -172,7 +174,7 @@
         </ul>
     </div>
     <nav class="control hbox">
-        <div class="text-counter"></div>
+        <div class="text-counter text-thirdly"></div>
         <button class="primary button-skip">{{= it.action }}</button>
     </nav>
 </script>

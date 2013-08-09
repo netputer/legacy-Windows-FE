@@ -16,6 +16,7 @@
         'welcome/views/ClockView',
         'welcome/views/DeviceView',
         'welcome/views/ToolbarView',
+        'welcome/views/GuideView',
         'welcome/views/FeedListView',
         'welcome/collections/FeedsCollection'
     ], function (
@@ -34,6 +35,7 @@
         ClockView,
         DeviceView,
         ToolbarView,
+        GuideView,
         FeedListView,
         FeedsCollection
     ) {
@@ -123,7 +125,8 @@
                 this.listenTo(toolbarView, 'top', this.scrollTopAnimation);
 
                 this.$('.top').append(deviceView.render().$el)
-                    .append(clockView.render().$el);
+                    .append(clockView.render().$el)
+                    .after(GuideView.getInstance().render().$el);
 
                 this.$('.w-ui-loading-horizental-ctn').before(FeedListView.getInstance().initFeeds().$el);
 

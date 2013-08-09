@@ -14,7 +14,9 @@
 @import "anima";
 @import "ui";
 
+
 .w-guide-ctn {
+    background-color: #fff;
     bottom: 0;
     left: 0;
     overflow: hidden;
@@ -24,11 +26,14 @@
 
     .content {
         background-color: #fff;
-        border: 1px $componentBorderColor solid;
-        border-radius: 5px;
+        // border: 1px $componentBorderColor solid;
+        // border-radius: 5px;
         padding: 5px;
+        box-sizing: border-box;
+        position: relative;
+
         -webkit-box-flex: 1;
-        -webkit-transform: translate3d(100%, 0, 0);
+        // -webkit-transform: translate3d(100%, 0, 0);
 
         .w-guide-card {
             overflow: hidden;
@@ -40,7 +45,7 @@
                 -webkit-box-flex: 1;
 
                 h1 {
-                    margin-bottom: 15px;
+                    margin-bottom: 5px;
                 }
 
                 p {
@@ -58,10 +63,19 @@
             }
 
             .control {
+                height: 28px;
                 margin-top: 5px;
                 -webkit-box: {
                     align: center;
                     pack: end;
+                }
+
+                .primary {
+                    height: 28px;
+                }
+
+                .link {
+                    color: #999;
                 }
 
                 .button-skip {
@@ -77,8 +91,8 @@
     }
 
     .text-counter {
-        color: #9C9C9C;
-        text-align: left;
+        color: #999;
+        text-align: center;
         -webkit-box-flex: 1;
     }
 }
@@ -97,14 +111,16 @@
 }
 
 .w-guide-cloud-backup {
-    .bg {
-        @include guide-sprite(bg-cloud-backup);
-        height: guide-sprite-height(bg-cloud-backup);
-        margin-top: 40px;
-        width: guide-sprite-width(bg-cloud-backup);
-    }
+    // .bg {
+    //     @include guide-sprite(bg-cloud-backup);
+    //     height: guide-sprite-height(bg-cloud-backup);
+    //     margin-top: 40px;
+    //     width: guide-sprite-width(bg-cloud-backup);
+    // }
 
     .section {
+        @include guide-sprite(bg-cloud-backup);
+
         height: 483px;
         overflow: auto;
         -webkit-transform: translate3d(0, 0, 0);
@@ -203,7 +219,7 @@
         position: relative;
 
         .title {
-            margin-top: 40px;
+            margin: 20px 0 10px;
         }
 
         .bg {
@@ -215,6 +231,19 @@
             width: guide-sprite-width(bg-xibaibai);
         }
     }
+
+    .control {
+        .primary {
+            position: absolute;
+            top: 130px;
+            left: 50%;
+            -webkit-transform: translate3d(-50%, 0, 0);
+        }
+    }
+}
+
+.w-guide-ctn .content .w-guide-xibaibai .control .button-skip {
+    margin-right: 0;
 }
 
 .w-guide-starter {
@@ -228,12 +257,12 @@
             // margin-bottom: 10px;
             position: relative;
             text-align: center;
-            width: 98px;
+            width: 94px;
 
             .ad {
                 @include guide-sprite(promoted);
                 height: 36px;
-                left: 21px;
+                left: 19px;
                 position: absolute;
                 top: 0;
                 width: 36px;
@@ -254,6 +283,11 @@
 .w-guide-tips {
     .tip-ctn {
         margin-top: 15px;
+        height: 210px;
+        -webkit-column-count: 2;
+        -webkit-column-gap: 30px;
+        -webkit-column-rule: 1px solid #ECEDEB;
+
 
         .tip {
             height: 34px;
