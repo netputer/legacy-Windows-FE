@@ -174,6 +174,44 @@
                     return app.isUpdatable;
                 }) : [];
             },
+            getUpdatableAppsWithCategory : function () {
+                var update = this.getUpdatableApps();
+
+                var group = _.groupBy(update, function (app) {
+                    if (app.id.length > 19) {
+                        app.set('source', 'us');
+                        return 'us';
+                    }
+
+                    app.set('source', 'others');
+                    return 'others';
+                });
+
+                var result = [];
+
+                if (group.us && group.us.length > 0) {
+                    var areaUs = new AppModel({
+                        category : 'us'
+                    });
+
+                    result = result.concat(areaUs, group.us);
+                }
+
+                if (group.others && group.others.length > 0) {
+                    var areaOthers = new AppModel({
+                        category : 'others'
+                    });
+
+                    result = result.concat(areaOthers, group.others);
+                }
+
+                return result;
+            },
+            getUpdatableAppsByCategory : function (category) {
+                return this.filter(function (app) {
+                    return app.get('source') === category;
+                });
+            },
             getSuggestMoveApps : function () {
                 return this.filter(function (app) {
                     return app.isSuggestMove;

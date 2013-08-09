@@ -255,6 +255,20 @@
 </script>
 
 <script type="text/x-ui-template" id="app-list-item">
+    {{? !it.id }}
+    {{? it.category === 'us' }}
+    <div class="info hbox">
+        {{= i18n.app.CATEGORY_UPDATE_FROM_US }}
+    </div>
+    <div class="update hbox">
+        <button class="button-update min" data-category="{{= it.category }}">{{= i18n.app.UPDATE }}</button>
+    </div>
+    {{??}}
+    <div class="info hbox">
+        {{= i18n.app.CATEGORY_UPDATE_FROM_OTHERS }}
+    </div>
+    {{?}}
+    {{??}}
     <label class="input item-checker-wrap hbox"><input class="item-checker" type="checkbox" value="{{= it.id }}"></label>
     <div class="info hbox">
         {{? /^file:\/\/\//.test(it.base_info.icon) }}
@@ -335,6 +349,7 @@
     </div>
     {{?}}
     <div class="button-close" data-id="{{= it.id }}" title="{{= i18n.misc.DESELECT }}"></div>
+    {{?}}
 </script>
 
 <script type="text/x-ui-template" id="one-key-update-body">
@@ -495,6 +510,14 @@
     <div class="version text-secondary">
         <div>{{= i18n.app.VERSION }}v{{= originVersion }}</div>
         <div>{{= i18n.app.LATEST_VERSION }}v{{= targetVersion }}</div>
+    </div>
+    <div class="content text-secondary">
+        <div>{{= i18n.app.LATEST_VERSION_SIZE }}{{= StringUtil.readableSize(it.upgrade_info.size) }}</div>
+        <!-- {{? 0 || it.upgrade_info.fromWDJ }}
+        <div>来自豌豆荚的升级</div>
+        {{??}}
+        <div>来自其它市场的升级</div>
+        {{?}} -->
     </div>
     {{? !it.upgrade_info.changeLog.trim() }}
     <div class="title text-secondary">{{= i18n.app.CHANGE_LOG_EMPRY }}</div>

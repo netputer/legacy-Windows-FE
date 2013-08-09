@@ -254,7 +254,11 @@
         };
 
         SelectDelegateMixin.selectAll = function () {
-            this.addSelect(_.pluck(this.currentModels, 'id'));
+            var models = _.filter(this.currentModels, function (model) {
+                return model.id !== undefined;
+            });
+
+            this.addSelect(_.pluck(models, 'id'));
         };
 
         return SelectDelegateMixin;

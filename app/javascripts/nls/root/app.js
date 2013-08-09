@@ -8,7 +8,6 @@ define({
     UPDATING : '升级中',
     COULD_UPDATE_TO : '升至：',
     COULD_UPDATE : '可升级至',
-    UPDATABLE : '可升级',
     MANAGE_MY_APPS : '管理我的应用',
     CONFIG : '设置',
     UPDATE_NOTIFI_FREQUENCE_WEEKLY : '每周提醒一次',
@@ -135,6 +134,7 @@ define({
     UNINSTALL : '卸载',
     VERSION : '当前版本：',
     LATEST_VERSION : '最新版本：',
+    LATEST_VERSION_SIZE : '新版大小：',
     SIZE : '大小：',
     PERMISSON : '权限：',
     MORE : '更多',
@@ -183,6 +183,9 @@ define({
 
     RETURN_ALL : '全部应用',
     SEARCH_TIP_PART : '{1} 个与「{2}」有关的应用',
+
+    CATEGORY_UPDATE_FROM_US : '来自豌豆荚的升级 - 经过豌豆荚审核',
+    CATEGORY_UPDATE_FROM_OTHERS : '来自其他市场的升级 - 未经豌豆荚审核',
 
     /* Permission info */
     "android.permission-group.ACCOUNTS" : "访问您的账号",

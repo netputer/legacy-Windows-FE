@@ -18,6 +18,7 @@
         'task/TaskService',
         'app/views/ChangeLogView',
         'task/collections/TasksCollection',
+        'app/collections/AppsCollection',
         'app/collections/WebAppsCollection'
     ], function (
         Backbone,
@@ -37,6 +38,7 @@
         TaskService,
         ChangeLogView,
         TasksCollection,
+        AppsCollection,
         WebAppsCollection
     ) {
         console.log('AppItemView - File loaded.');
@@ -65,6 +67,11 @@
                 AppItemView.__super__.remove.call(this);
             },
             render : function () {
+                if (this.model.get('category')) {
+                    this.$el.addClass('category').html(this.template(this.model.toJSON()));
+                    return this;
+                }
+
                 var $checker = this.$('.item-checker');
                 var checked = $checker.length > 0 ? $checker[0].checked : false;
 
@@ -88,7 +95,7 @@
                 this.uninstall();
 
                 if (FunctionSwitch.ENABLE_APP_UPGRADE && StringUtil.isURL(this.model.get('upgrade_info').downloadUrl)) {
-                    if (!this.model.get('isUpdating') && this.model.get('upgrade_info').changeLog) {
+                    if (!this.model.get('isUpdating')) {
                         this.changeLogView = ChangeLogView.getInstance({
                             $host : this.$('.button-update'),
                             model : this.model
@@ -116,20 +123,44 @@
             clickButtonUpdate : function (evt) {
                 evt.stopPropagation();
 
-                var model = this.model.updateInfo.set({
-                    source : 'update-button-list'
-                });
+                var updateApp = function (model, source) {
+                    var updateModel = model.updateInfo.set({
+                        source : source
+                    });
 
-                TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
+                    TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, updateModel);
 
-                this.model.set({
-                    isUpdating : true
-                }).unignoreUpdateAsync();
+                    model.set({
+                        isUpdating : true
+                    });
 
-                log({
-                    'event' : 'ui.click.app.button.update',
-                    'source' : 'list'
-                });
+                    model.unignoreUpdateAsync();
+                };
+
+                var $currentButton = $(evt.currentTarget);
+
+                if ($currentButton.data('category') === undefined) {
+                    updateApp(this.model, 'update-button-list');
+
+                    log({
+                        'event' : 'ui.click.app.button.update',
+                        'source' : 'list'
+                    });
+                } else {
+                    var models = AppsCollection.getInstance().getUpdatableAppsByCategory($currentButton.data('category'));
+
+                    confirm(StringUtil.format(i18n.app.UPGRADE_TIP_TEXT, models.length), function () {
+                        Backbone.trigger('app:selectApps', _.pluck(models, 'id'));
+
+                        _.each(models, function (model) {
+                            updateApp(model, 'update-button-category');
+                        });
+
+                        log({
+                            'event' : 'ui.click.app_button_category_update'
+                        });
+                    });
+                }
             },
             clickButtonIgnore : function (evt) {
                 evt.stopPropagation();
@@ -208,7 +239,13 @@
                     'event' : 'ui.click.app_button_hide'
                 });
             },
+            rightClickItem : function (evt) {
+                if ($(evt.currentTarget).hasClass('category')) {
+                    evt.stopPropagation();
+                }
+            },
             events : {
+                'contextmenu' : 'rightClickItem',
                 'click .button-update' : 'clickButtonUpdate',
                 'click .button-ignore' : 'clickButtonIgnore',
                 'click .button-unignore' : 'clickButtonUnignore',

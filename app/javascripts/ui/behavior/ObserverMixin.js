@@ -33,7 +33,10 @@
                                         disabled : true
                                     });
                                 } else {
-                                    var modelsCount = this.currentModels.length;
+                                    var modelsCount = _.filter(this.currentModels, function (model) {
+                                        return model.id !== undefined;
+                                    }).length;
+
                                     $observer.prop({
                                         checked : modelsCount === this.selected.length,
                                         disabled : modelsCount === 0

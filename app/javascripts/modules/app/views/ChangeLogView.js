@@ -4,12 +4,14 @@
         'doT',
         'underscore',
         'ui/TemplateFactory',
-        'ui/PopupPanel'
+        'ui/PopupPanel',
+        'utilities/StringUtil'
     ], function (
         doT,
         _,
         TemplateFactory,
-        PopupPanel
+        PopupPanel,
+        StringUtil
     ) {
         console.log('ChangeLogView - File loaded. ');
 
