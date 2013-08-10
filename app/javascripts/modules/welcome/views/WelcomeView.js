@@ -10,6 +10,7 @@
         'FunctionSwitch',
         'IOBackendDevice',
         'Configuration',
+        'Settings',
         'Internationalization',
         'Device',
         'Log',
@@ -18,7 +19,8 @@
         'welcome/views/ToolbarView',
         'welcome/views/GuideView',
         'welcome/views/FeedListView',
-        'welcome/collections/FeedsCollection'
+        'welcome/collections/FeedsCollection',
+        'welcome/views/TipsCardView'
     ], function (
         Backbone,
         _,
@@ -29,6 +31,7 @@
         FunctionSwitch,
         IO,
         CONFIG,
+        Settings,
         i18n,
         Device,
         log,
@@ -37,13 +40,15 @@
         ToolbarView,
         GuideView,
         FeedListView,
-        FeedsCollection
+        FeedsCollection,
+        TipsCardView
     ) {
         console.log('WelcomeView - File loaded.');
 
         var deviceView;
         var clockView;
         var toolbarView;
+        var guideView;
 
         var WelcomeView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('welcome', 'welcome')),
@@ -122,11 +127,13 @@
                 deviceView = DeviceView.getInstance();
                 clockView = ClockView.getInstance();
                 toolbarView = ToolbarView.getInstance();
+                guideView = GuideView.getInstance();
+
                 this.listenTo(toolbarView, 'top', this.scrollTopAnimation);
 
                 this.$('.top').append(deviceView.render().$el)
                     .append(clockView.render().$el)
-                    .after(GuideView.getInstance().render().$el);
+                    .after(guideView.render().$el.hide());
 
                 this.$('.w-ui-loading-horizental-ctn').before(FeedListView.getInstance().initFeeds().$el);
 
@@ -155,12 +162,40 @@
                     connectionType = 'disconnected';
                 }
 
+                if (FunctionSwitch.ENABLE_USER_GUIDE && !Settings.get('user_guide_shown')) {
+                    var handlerReady = IO.Backend.Device.onmessage({
+                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
+                    }, function () {
+                        this.switchToGuide();
+                        IO.Backend.Device.offmessage(handlerReady);
+                    }, this);
+
+                    var handlerFinish = IO.Backend.Device.onmessage({
+                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
+                    }, function () {
+                        this.switchToBillboard();
+                        IO.Backend.Device.offmessage(handlerFinish);
+                    }, this);
+
+                    this.$('.content').append(guideView.render().$el.hide());
+                }
+
                 log({
                     'event' : 'debug.show.welcome',
                     'connectionType' : connectionType
                 });
 
                 return this;
+            },
+            switchToGuide : function () {
+                guideView.$el.slideDown();
+            },
+            switchToBillboard : function () {
+                guideView.$el.slideUp();
+
+                // $('.feed-ctn').prepend(TipsCardView.getInstance().render().$el);
+
+                FeedListView.getInstance().initLayout();
             },
             scrollTopAnimation : function () {
                 this.$el[0].scrollTop = 0;

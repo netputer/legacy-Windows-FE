@@ -88,12 +88,14 @@
         </nav>
     </section> -->
     <section class="section vbox">
-        <div class="stage">
-            <h1 class="text-secondary">{{= i18n.misc.CLOUD_BACKUP }}</h1>
-            <p class="text-thirdly desc">
-                <span class="icon-pass"></span>
-                <span class="text-secondary">{{= i18n.welcome.GUIDE_CLOUD_BACKUP_SUCCESS }}</span>
-            </p>
+        <div class="stage hbox">
+            <div class="text">
+                <h1 class="text-secondary">{{= i18n.misc.CLOUD_BACKUP }}</h1>
+                <p class="text-thirdly desc">
+                    <span class="icon-pass"></span>
+                    <span class="text-secondary">{{= i18n.welcome.GUIDE_CLOUD_BACKUP_SUCCESS }}</span>
+                </p>
+            </div>
             <div class="bg"></div>
         </div>
     </section>

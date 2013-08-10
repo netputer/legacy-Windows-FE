@@ -252,8 +252,13 @@
     }
 }
 
-.w-guide-ctn .content .w-guide-xibaibai .control .button-skip {
-    margin-right: 0;
+.w-guide-ctn .content {
+    .w-guide-cloud-backup,
+    .w-guide-xibaibai {
+        .control .button-skip {
+            margin-right: 5px;
+        }
+    }
 }
 
 .w-guide-starter {
@@ -320,10 +325,10 @@
                 -webkit-box-flex: 1;
             }
 
-            + .tip {
-                border-top: 1px $borderColor solid;
-                box-shadow: 0 1px 0 #fff inset;
-            }
+            // + .tip {
+            //     border-top: 1px $borderColor solid;
+            //     box-shadow: 0 1px 0 #fff inset;
+            // }
         }
     }
 }

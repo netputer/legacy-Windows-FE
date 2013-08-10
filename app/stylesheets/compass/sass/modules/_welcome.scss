@@ -564,7 +564,8 @@
     }
 
     &.cloud-photo,
-    &.backup {
+    &.backup,
+    &.tips {
         -webkit-box-align: center;
 
         .icon-ctn {
@@ -620,6 +621,14 @@
 
         .icon-ctn {
             @include sprite-sprite(local-backup);
+        }
+    }
+
+    &.tips {
+        background-color: #5fb462;
+
+        .icon-ctn {
+            @include sprite-sprite(local-tips);
         }
     }
 }
