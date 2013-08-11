@@ -46,7 +46,7 @@
 
 <script type="text/x-ui-template" id="video-list">
     <div class="spy"></div>
-    <div class="empty-tip text-secondary"></div>
+    <div class="empty-tip text-secondary center fix-text"></div>
     <div class="mask"></div>
 </script>
 

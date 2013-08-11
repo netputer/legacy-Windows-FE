@@ -27,7 +27,7 @@
 <script type="text/x-ui-template" id="photo-list">
     <div class="spy"></div>
     {{= TemplateFactory.get('ui', 'loading') }}
-    <div class="empty-tip text-secondary">{{= i18n.video.NO_VIDEOS_TEXT }}</div>
+    <div class="empty-tip text-secondary center fix-text"></div>
     <div class="mask"></div>
 </script>
 

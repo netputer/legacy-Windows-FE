@@ -488,6 +488,8 @@
                 ITUNES_IMPORT_ALL : 0,
                 ITUNES_IMPORT_PLAYLIST : 1,
                 ITUNES_IMPORT_AUDIOS : 2,
+                ITUNES_PLAYLIST_EXISTED : 11010,
+                ITUNES_PLAYLIST_GENERIC_FAILURE : 15005,
 
                 /* SMS Conversation Type*/
                 SMS_CONVERSATION_TYPE_ALL : 0,
