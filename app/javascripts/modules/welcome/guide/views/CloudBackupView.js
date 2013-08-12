@@ -66,17 +66,13 @@
             checkAsync : function () {
                 var deferred = $.Deferred();
 
-                // IO.requestAsync(CONFIG.actions.SYNC_IS_SWITCH_ON).done(function (resp) {
-                //     console.log('!!! - sync is switch on? ', resp.body.value);
-
-                //     if (!resp.body.value) {
-                //         deferred.resolve();
-                //     } else {
-                //         deferred.reject();
-                //     }
-                // });
-
-                setTimeout(deferred.resolve, 100);
+                IO.requestAsync(CONFIG.actions.SYNC_IS_SWITCH_ON).done(function (resp) {
+                    if (!resp.body.value) {
+                        deferred.resolve();
+                    } else {
+                        deferred.reject();
+                    }
+                });
 
                 return deferred.promise();
             },
