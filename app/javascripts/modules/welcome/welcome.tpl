@@ -84,11 +84,11 @@
 <script type="text/x-ui-template" id="tips">
     <div class="icon-ctn"></div>
     <div class="info-ctn">
-        <h1 class="title">NUX {{= i18n.welcome.CARD_CLOUD_PHOTO_TITLE }}</h1>
-        <p class="desc">NUX {{= i18n.welcome.CARD_CLOUD_PHOTO_DESC }}</p>
+        <h1 class="title">{{= i18n.welcome.CARD_TIPS_TITLE }}</h1>
+        <p class="desc">{{= i18n.welcome.GUIDE_TIPS_TIP }}</p>
         <div class="btn-ctn hbox">
-            <button class="button-action">NUX {{= i18n.welcome.CARD_CLOUD_PHOTO_OPEN }}</button>
-            <span class="button-ignore">NUX {{= i18n.ui.IGNORE }}</span>
+            <button class="button-action">{{= i18n.welcome.CARD_TIPS_ACTION }}</button>
+            <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
         </div>
     </div>
 </script>
