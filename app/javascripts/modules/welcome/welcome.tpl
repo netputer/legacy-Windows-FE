@@ -87,7 +87,19 @@
         <h1 class="title">{{= i18n.welcome.CARD_TIPS_TITLE }}</h1>
         <p class="desc">{{= i18n.welcome.GUIDE_TIPS_TIP }}</p>
         <div class="btn-ctn hbox">
-            <button class="button-action">{{= i18n.welcome.CARD_TIPS_ACTION }}</button>
+            <button class="button-action">{{= i18n.misc.VIEW }}</button>
+            <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-ui-template" id="weibo">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">{{= i18n.welcome.CARD_WEIBO_TITLE }}</h1>
+        <p class="desc">{{= i18n.welcome.CARD_WEIBO_DESC }}</p>
+        <div class="btn-ctn hbox">
+            <button class="button-action">{{= i18n.welcome.CARD_WEIBO_ACTION }}</button>
             <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
         </div>
     </div>

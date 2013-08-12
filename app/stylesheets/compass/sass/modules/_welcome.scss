@@ -633,6 +633,14 @@
             @include sprite-sprite(local-tips);
         }
     }
+
+    &.weibo {
+        background-color: #fff;
+
+        .icon-ctn {
+            @include wanxiaodou-sprite(sell_his_self);
+        }
+    }
 }
 
 .w-welcome-screen-control-ctn {

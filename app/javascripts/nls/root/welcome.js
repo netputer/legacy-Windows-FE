@@ -106,5 +106,8 @@ define({
     CARD_BACKUP_ACTION : '备份',
     CARD_TIPS_TITLE : '关于豌豆荚的小技巧',
     CARD_TIPS_ACTION : '马上查看',
+    CARD_WEIBO_TITLE : '豌豆荚求关注！',
+    CARD_WEIBO_DESC : '新浪微博 @豌豆荚',
+    CARD_WEIBO_ACTION : '关注',
     NO_MORE : '没有更多了'
 });

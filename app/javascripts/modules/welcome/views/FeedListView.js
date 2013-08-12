@@ -17,6 +17,7 @@
         'welcome/views/CloudPhotoCardView',
         'welcome/views/BackupCardView',
         'welcome/views/TipsCardView',
+        'welcome/views/WeiboCardView',
         'welcome/collections/FeedsCollection'
     ], function (
         Backbone,
@@ -35,6 +36,7 @@
         CloudPhotoCardView,
         BackupCardView,
         TipsCardView,
+        WeiboCardView,
         FeedsCollection
     ) {
         console.log('FeedListView - File loaded. ');
@@ -97,6 +99,9 @@
                             break;
                         case 33:
                             targetView = BackupCardView;
+                            break;
+                        case 34:
+                            targetView = WeiboCardView;
                             break;
                         case 99:
                             targetView = TipsCardView;
