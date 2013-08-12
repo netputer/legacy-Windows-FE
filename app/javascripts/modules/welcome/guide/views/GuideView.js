@@ -67,9 +67,9 @@
                     .then(function () {
                         return this.regCardAsync(XibaibaiView.getInstance());
                     }.bind(this))
-                    .then(function () {
-                        return this.regCardAsync(DoraSuggestionView.getInstance());
-                    }.bind(this))
+                    // .then(function () {
+                    //     return this.regCardAsync(DoraSuggestionView.getInstance());
+                    // }.bind(this))
                     .then(function () {
                         return this.regCardAsync(TipsView.getInstance());
                     }.bind(this))

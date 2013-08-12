@@ -686,8 +686,12 @@
  * Application change log
  ********************************************************************************/
 .w-app-changelog {
+    .latest {
+        margin-top: 5px;
+    }
+
     .content {
-        margin: 5px 0;
+        margin-top: 5px;
         overflow-y: auto;
         -webkit-box-flex: 1;
     }

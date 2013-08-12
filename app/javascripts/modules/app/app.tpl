@@ -256,16 +256,16 @@
 
 <script type="text/x-ui-template" id="app-list-item">
     {{? !it.id }}
-    {{? it.category === 'us' }}
+    {{? it.category === 'recommended' }}
     <div class="info hbox">
-        {{= i18n.app.CATEGORY_UPDATE_FROM_US }}
+        {{= i18n.app.RECOMMENDED_UPDATE }}
     </div>
     <div class="update hbox">
-        <button class="button-update min" data-category="{{= it.category }}">{{= i18n.app.UPDATE }}</button>
+        <button class="button-update min" data-type="{{= it.category }}">{{= i18n.app.UPDATE }}</button>
     </div>
     {{??}}
     <div class="info hbox">
-        {{= i18n.app.CATEGORY_UPDATE_FROM_OTHERS }}
+        {{= i18n.app.NOT_RECOMMENDED_UPDATE }}
     </div>
     {{?}}
     {{??}}
@@ -511,13 +511,13 @@
         <div>{{= i18n.app.VERSION }}v{{= originVersion }}</div>
         <div>{{= i18n.app.LATEST_VERSION }}v{{= targetVersion }}</div>
     </div>
-    <div class="content text-secondary">
+    <div class="latest text-secondary">
         <div>{{= i18n.app.LATEST_VERSION_SIZE }}{{= StringUtil.readableSize(it.upgrade_info.size) }}</div>
-        <!-- {{? 0 || it.upgrade_info.fromWDJ }}
-        <div>来自豌豆荚的升级</div>
+        {{? it.upgrade_info.recommendedType === 'STRONG_RECOMMEND' }}
+        <div>{{= i18n.app.UPDATE_FROM_SNAPPEA }}</div>
         {{??}}
-        <div>来自其它市场的升级</div>
-        {{?}} -->
+        <div>{{= i18n.app.UPDATE_FROM_OTHERS }}</div>
+        {{?}}
     </div>
     {{? !it.upgrade_info.changeLog.trim() }}
     <div class="title text-secondary">{{= i18n.app.CHANGE_LOG_EMPRY }}</div>
