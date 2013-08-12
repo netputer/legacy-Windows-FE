@@ -30,72 +30,67 @@
         padding: 5px;
         position: relative;
         -webkit-box-flex: 1;
+    }
 
-        .w-guide-card {
-            overflow: hidden;
+    .w-guide-card {
+        overflow: hidden;
+        -webkit-box-flex: 1;
+
+        .stage {
+            background-image: url('../images/welcome_bg_100X100.png');
+            padding: 15px 30px;
             -webkit-box-flex: 1;
 
-            .stage {
-                background-image: url('../images/welcome_bg_100X100.png');
-                padding: 15px 30px;
-                -webkit-box-flex: 1;
-
-                h1 {
-                    margin-bottom: 5px;
-                }
-
-                p {
-                    line-height: 1.5em;
-                }
-
-                .icon-pass {
-                    @include sprite-sprite(pass);
-                    display: inline-block;
-                    height: sprite-sprite-height(pass);
-                    margin-right: 5px;
-                    vertical-align: middle;
-                    width: sprite-sprite-width(pass);
-                }
+            h1 {
+                margin-bottom: 5px;
             }
 
-            .control {
-                height: 28px;
-                line-height: 28px;
-                margin-top: 5px;
-                // position: relative;
-                -webkit-box: {
-                    align: center;
-                    pack: end;
-                }
+            p {
+                line-height: 1.5em;
+            }
 
-                .primary {
-                    height: 28px;
-                }
-
-                .link {
-                    color: #999;
-                }
-
-                .button-skip {
-                    display: block;
-                    margin-right: 15px;
-
-                    &.primary {
-                        margin-right: 0;
-                    }
-                }
+            .icon-pass {
+                @include sprite-sprite(pass);
+                display: inline-block;
+                height: sprite-sprite-height(pass);
+                margin-right: 5px;
+                vertical-align: middle;
+                width: sprite-sprite-width(pass);
             }
         }
     }
 
-    .text-counter {
-        // position: absolute;
-        // left: 0;
-        // top: 0;
-        // width: 100%;
-        color: #999;
-        text-align: center;
-        -webkit-box-flex: 1;
+    .control {
+        height: 28px;
+        line-height: 28px;
+        margin-top: 5px;
+        -webkit-box: {
+            align: center;
+            pack: end;
+        }
+
+        .text-counter {
+            left: 50%;
+            position: absolute;
+            -webkit-transform: translate3d(-50%, 0, 0);
+        }
+
+        .primary {
+            height: 28px;
+        }
+
+        .link {
+            color: #999;
+        }
+
+        .button-skip {
+            display: block;
+            margin-right: 15px;
+
+            &.primary {
+                margin-right: 0;
+            }
+        }
     }
 }
 
@@ -113,8 +108,13 @@
 }
 
 .w-guide-cloud-backup {
-    .text {
+    .section .stage .text {
+        margin-top: 50px;
         width: 250px;
+
+        h1 {
+            margin-bottom: 20px;
+        }
     }
 
     .bg {
@@ -126,7 +126,7 @@
 
     .primary {
         position: absolute;
-        bottom: 30%;
+        top: 180px;
         left: 30px;
     }
 
@@ -228,10 +228,6 @@
     .stage {
         position: relative;
 
-        .title {
-            margin: 20px 0 10px;
-        }
-
         .bg {
             @include guide-sprite(bg-xibaibai);
             bottom: 0;
@@ -245,18 +241,28 @@
     .control {
         .primary {
             position: absolute;
-            top: 130px;
+            top: 140px;
             left: 50%;
             -webkit-transform: translate3d(-50%, 0, 0);
         }
     }
 }
 
+.w-guide-ctn .content .w-guide-xibaibai .stage h1 {
+    margin: 5px 0 20px;
+}
+
 .w-guide-ctn .content {
     .w-guide-cloud-backup,
     .w-guide-xibaibai {
-        .control .button-skip {
-            margin-right: 5px;
+        .control {
+            .grand {
+                height: 38px;
+            }
+
+            .button-skip {
+                margin-right: 5px;
+            }
         }
     }
 }
@@ -303,7 +309,6 @@
         -webkit-column-gap: 30px;
         -webkit-column-rule: 1px solid #ECEDEB;
 
-
         .tip {
             height: 34px;
             -webkit-box-align: center;
@@ -315,14 +320,22 @@
                 width: 16px;
             }
 
-            @each $icon in android, app, backup, contact, game, sdcard, sdcard, traffic {
+            @each $icon in app, backup, contact, picture, ringtone, traffic, wifi {
                 .icon-#{$icon} {
-                    @include guide-sprite(#{$icon});
+                    @include guide-sprite(icon-#{$icon});
                 }
             }
 
             .desc {
                 -webkit-box-flex: 1;
+            }
+
+            a {
+                color: #4a4a4a;
+            }
+
+            a:hover {
+                color: #3baa24;
             }
 
             // + .tip {
