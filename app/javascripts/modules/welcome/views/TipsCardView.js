@@ -27,11 +27,11 @@
                 return this;
             },
             clickButtonAction : function () {
+                // TODO 如何唤起 iframe �?
+
                 log({
                     'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'cloud-photo'
+                    'action' : 'tips'
                 });
             },
             clickButtonIgnore : function () {

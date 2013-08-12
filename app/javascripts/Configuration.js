@@ -418,6 +418,7 @@
                 CUSTOM_WELCOME_BILLBOARD_NAVIGATE : 'billborad.navigate',
                 CUSTOM_WELCOME_USER_GUIDE_READY : 'welcome.guide.ready',
                 CUSTOM_WELCOME_USER_GUIDE_FINISH : 'welcome.guide.finish',
+                CUSTOM_WELCOME_USER_GUIDE_EMPTY : 'welcome.guide.empty',
                 CUSTOM_GALLERY_STAR : 'gallery.star',
                 CUSTOM_GALLERY_UNSTAR : 'gallery.unstar',
                 CUSTOM_IFRAME_ALERT : 'iframe.alert',
