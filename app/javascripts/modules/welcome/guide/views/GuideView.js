@@ -5,6 +5,7 @@
         'jquery',
         'doT',
         'Configuration',
+        'Settings',
         'Internationalization',
         'utilities/StringUtil',
         'ui/TemplateFactory',
@@ -22,6 +23,7 @@
         $,
         doT,
         CONFIG,
+        Settings,
         i18n,
         StringUtil,
         TemplateFactory,
@@ -118,7 +120,7 @@
                 }
             },
             run : function () {
-                if (this.cardQueue.length === 0) {
+                if (Settings.get('user_guide_shown') || this.cardQueue.length === 0) {
                     IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY);
                 } else {
                     this.showNextCard();
