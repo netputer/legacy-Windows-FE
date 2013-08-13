@@ -155,5 +155,12 @@ define({
 
     WAITING_RESTORE_APP_DATA : '等待恢复应用数据',
     PROCESSING_RESTORE_APP_DATA : '正在恢复应用数据',
-    WAITING_UNZIP : '等待解压缩'
+    WAITING_UNZIP : '等待解压缩',
+
+    NO_MORE_MEMORY : '手机内存剩余空间不足',
+    NO_MORE_SDCARD : 'SD 卡剩余空间不足',
+    SDCARD_MOUNT : '请不要挂载 SD 卡',
+    NO_SDCARD : '没有插入 SD 卡，无法传输文件',
+    DEVICE_NOT_FOUND : '设备没有连接，无法传输文件',
+    DEVICE_NOT_FOUND_TIP : '请使用 USB 连接或 Wi-Fi 将手机连接到豌豆荚，未完成的任务将在手机连接后继续。'
 });
