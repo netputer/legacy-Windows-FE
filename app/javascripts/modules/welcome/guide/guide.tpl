@@ -34,7 +34,7 @@
         <nav class="control hbox">
             <div class="text-counter text-thirdly"></div>
             <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
-            <button class="primary button-action">{{= it.action }}</button>
+            <button class="primary button-action grand">{{= it.action }}</button>
         </nav>
     </section>
     <!-- <section class="section vbox">
@@ -112,7 +112,7 @@
     <nav class="control hbox">
         <div class="text-counter text-thirdly"></div>
         <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
-        <button class="primary button-action">{{= it.action }}</button>
+        <button class="primary button-action grand">{{= it.action }}</button>
     </nav>
 </script>
 
