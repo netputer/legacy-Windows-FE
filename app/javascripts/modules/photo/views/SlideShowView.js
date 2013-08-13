@@ -527,7 +527,7 @@
                 $photo.css('transform', 'scale(' + scale + ') rotate(' + angle + 'deg)');
             }, 30),
             events : {
-                'mousewheel' : 'mouseWheelEvent',
+                // 'mousewheel' : 'mouseWheelEvent',
                 'click .photo' : 'clickPhoto',
                 'click .button-close' : 'clickButtonClose',
                 'click .button-play' : 'clickButtonPlay',
