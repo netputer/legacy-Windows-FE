@@ -636,9 +636,55 @@
 
     &.weibo {
         background-color: #fff;
+        -webkit-box-align: center;
 
         .icon-ctn {
-            @include wanxiaodou-sprite(sell_his_self);
+            @include sprite-sprite(weibo-follow);
+            height: 100px;
+        }
+
+        .icon-verified {
+            @include sprite-sprite(weibo-verified);
+            display: inline-block;
+            height: sprite-sprite-height(weibo-verified);
+            position: relative;
+            top: 1px;
+            width: sprite-sprite-width(weibo-verified);
+        }
+
+        .info-ctn {
+            .title {
+                color: #333;
+            }
+
+            .desc {
+                color: rgba(0, 0, 0, .5);
+                margin: 5px 0 10px;
+            }
+
+            .btn-ctn {
+                .button-action {
+                    @extend button;
+                    box-sizing: border-box;
+                    display: inline-block;
+                    text-align: center;
+                    text-decoration: none;
+
+                    &:hover {
+                        background-image: -webkit-linear-gradient(-90deg, #f8f8f8 0%, #f0f0f0 100%);
+                    }
+                }
+
+                .button-ignore {
+                    color: rgba(0, 0, 0, .5);
+                }
+            }
+        }
+
+        &.following {
+            .icon-ctn {
+                @include sprite-sprite(weibo-following);
+            }
         }
     }
 }

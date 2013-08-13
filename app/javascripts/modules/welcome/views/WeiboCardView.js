@@ -27,7 +27,11 @@
                 return this;
             },
             clickButtonAction : function () {
-                // TODO 弹出网页
+                setTimeout(function () {
+                    this.$el.addClass('following').find('.button-action').attr({
+                        disabled : true
+                    }).text(i18n.welcome.CARD_WEIBO_ACTION_CLICKED);
+                }.bind(this), 500);
 
                 log({
                     'event' : 'ui.click.welcome_card_action',

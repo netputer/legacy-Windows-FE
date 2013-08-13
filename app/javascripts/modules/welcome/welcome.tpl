@@ -99,7 +99,7 @@
         <h1 class="title">{{= i18n.welcome.CARD_WEIBO_TITLE }}</h1>
         <p class="desc">{{= i18n.welcome.CARD_WEIBO_DESC }}</p>
         <div class="btn-ctn hbox">
-            <button class="button-action">{{= i18n.welcome.CARD_WEIBO_ACTION }}</button>
+            <a class="button-action" href="http://weibo.com/wandoulabs" target="_default">{{= i18n.welcome.CARD_WEIBO_ACTION }}</a>
             <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
         </div>
     </div>
