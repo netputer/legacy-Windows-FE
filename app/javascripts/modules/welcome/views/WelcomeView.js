@@ -164,21 +164,23 @@
                     connectionType = 'disconnected';
                 }
 
-                if (FunctionSwitch.ENABLE_USER_GUIDE && !Settings.get('user_guide_shown')) {
-                    // TODO 为何事件不成功！！！
-                    var handlerReady = IO.Backend.Device.onmessage({
-                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
-                    }, function () {
-                        this.switchToGuide();
-                        IO.Backend.Device.offmessage(handlerReady);
-                    }, this);
+                if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                    if (!Settings.get('user_guide_shown')) {
+                        var handlerReady = IO.Backend.Device.onmessage({
+                            'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
+                        }, function () {
+                            this.switchToGuide();
+                            IO.Backend.Device.offmessage(handlerReady);
+                        }, this);
 
-                    var handlerFinish = IO.Backend.Device.onmessage({
-                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
-                    }, function () {
-                        this.switchToBillboard();
-                        IO.Backend.Device.offmessage(handlerFinish);
-                    }, this);
+                        var handlerFinish = IO.Backend.Device.onmessage({
+                            'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
+                        }, function () {
+                            this.switchToBillboard();
+                            IO.Backend.Device.offmessage(handlerFinish);
+                        }, this);
+
+                    }
 
                     var handlerEmpty = IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY
@@ -199,7 +201,11 @@
                 guideView.$el.slideDown();
             },
             switchToBillboard : function () {
+                console.log('prepare switch to bill board');
+
                 guideView.$el.slideUp();
+
+                console.log(this);
 
                 this.$('.feed-ctn').find('.tips').removeClass('hide');
                 feedListView.initLayout();
