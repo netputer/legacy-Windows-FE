@@ -351,6 +351,7 @@
                 TASK_NEED_CONFIRM : 'jobs.need_force',
                 TASK_DUPLICATED : 'jobs.duplicated',
                 TASK_STATUS_CHANGE : 'jobs.status_changed',
+                TASK_SHOW_PUSH_WINDOW : 'web.show_pushwindow',
 
                 // Backend events - Contact module
                 CONTACT_UPDATED : 'contacts.updated',
@@ -532,6 +533,7 @@
                 TASK_TYPE_MERGE_VIDEO : 6,
                 TASK_TYPE_UNZIP : 7,
                 TASK_TYPE_RESTORE_APP_DATA : 8,
+                TASH_TYPE_PUSH_PHONE : 9,
 
                 /* Task state */
                 TASK_STATE_ADDED : 0,

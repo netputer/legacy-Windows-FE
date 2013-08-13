@@ -157,10 +157,21 @@ define({
     PROCESSING_RESTORE_APP_DATA : '正在恢复应用数据',
     WAITING_UNZIP : '等待解压缩',
 
+    SEND_TO_PHONE : '发送到手机',
+    DO_NOT_SEND_TO_PHONE : '不发送',
+    SEND_TO_PHONE_HEAD : '手机未连接电脑，是否要发送内容到手机？',
+    SEND_TO_PHONE_CONTENT : '您的手机尚未连接电脑，所以不能直接下载内容到手机。<br />您是否要将内容发送到手机上？',
+
     NO_MORE_MEMORY : '手机内存剩余空间不足',
     NO_MORE_SDCARD : 'SD 卡剩余空间不足',
     SDCARD_MOUNT : '请不要挂载 SD 卡',
     NO_SDCARD : '没有插入 SD 卡，无法传输文件',
     DEVICE_NOT_FOUND : '设备没有连接，无法传输文件',
-    DEVICE_NOT_FOUND_TIP : '请使用 USB 连接或 Wi-Fi 将手机连接到豌豆荚，未完成的任务将在手机连接后继续。'
+
+    DEVICE_NOT_FOUND_TIP : '请使用 USB 连接或 Wi-Fi 将手机连接到豌豆荚，未完成的任务将在手机连接后继续。',
+    PUSHING_PHONE : '正在推送',
+    PUSH_PHONE_FAILED : '发送失败，请稍后再试',
+    PUSH_PHONE_SUCCESS : '已发送到手机',
+    RETRY_PUSH_PHONE : '重新发送',
+    CANCEL_PUSH_PHONE : '取消发送'
 });
