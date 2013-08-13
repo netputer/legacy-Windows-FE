@@ -19,19 +19,23 @@
         TemplateFactory,
         FeedCardView
     ) {
-        var TipsCardView = FeedCardView.getClass().extend({
-            template : doT.template(TemplateFactory.get('welcome', 'tips')),
-            className : FeedCardView.getClass().prototype.className + ' tips hide',
+        var WeiboCardView = FeedCardView.getClass().extend({
+            template : doT.template(TemplateFactory.get('welcome', 'weibo')),
+            className : FeedCardView.getClass().prototype.className + ' weibo',
             render : function () {
                 this.$el.html(this.template({}));
                 return this;
             },
             clickButtonAction : function () {
-                // TODO 如何呼唤 iframe 呢
+                setTimeout(function () {
+                    this.$el.addClass('following').find('.button-action').attr({
+                        disabled : true
+                    }).text(i18n.welcome.CARD_WEIBO_ACTION_CLICKED);
+                }.bind(this), 500);
 
                 log({
                     'event' : 'ui.click.welcome_card_action',
-                    'action' : 'tips'
+                    'action' : 'weibo'
                 });
             },
             clickButtonIgnore : function () {
@@ -45,7 +49,7 @@
 
         var factory = _.extend({
             getInstance : function (args) {
-                return new TipsCardView(args);
+                return new WeiboCardView(args);
             }
         });
 

@@ -85,21 +85,22 @@ button {
         border-color: transparent;
         box-shadow: none;
         color: rgba(255, 255, 255, .9);
-        text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
+        // text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, .8), 0 1px 0 rgba(0, 0, 0, .5);
 
         &:enabled:hover:not(.active):not(:active),
         &:enabled:focus {
             background: rgba(255, 255, 255, .1);
             border-color: rgba(255, 255, 255, .2);
             color: #fff;
-            text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
+            // text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
         }
 
         &:enabled:active,
         &.active {
             background: rgba(255, 255, 255, .1);
             color: rgba(255, 255, 255, .8);
-            text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
+            // text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
         }
 
         + button {

@@ -54,9 +54,9 @@ define({
     CLOSE_AUTO_START : '为方便您管理手机，豌豆荚在您手机连上电脑后会自动启动。如果您不希望自动启动，可以在 <span class="link button-setup">设置</span> 中关闭',
 
     GUIDE_BIND_NOW : '立即绑定',
-    GUIDE_BIND_DESC : '绑定自己的手机后，豌豆荚会帮助您自动备份手机联系人、短信、照片和应用，方便您即时恢复，还可以 Wi-Fi 下自动连接手机，无需手动操作。如果您使用的不是自己的电脑和手机，请不要绑定！',
+    GUIDE_BIND_DESC : '注册豌豆荚账号后即可开启云备份，手机联系人、短信和应用会自动备份到云端。让手机数据永不丢失，随时恢复！',
     GUIDE_BIND_SUCCESS : '恭喜，你已经成功绑定 {1}，豌豆荚会自动帮您备份此手机的 <strong>联系人、短信、照片和应用。</strong>',
-    GUIDE_CLOUD_BACKUP_SUCCESS : '恭喜，您已经成功开启云备份！只要您手机连上了电脑，豌豆荚就会自动备份您的 应用、联系人和短信了。',
+    GUIDE_CLOUD_BACKUP_SUCCESS : '您已经成功开启云备份！只要您手机连上了电脑，豌豆荚就会自动备份您的应用、联系人和短信了。',
     GUIDE_REG : '注册豌豆荚',
     GUIDE_REG_DESC : '开启云备份请先注册豌豆荚账号',
     GUIDE_REG_NOW : '马上注册',
@@ -104,6 +104,11 @@ define({
     CARD_BACKUP_TITLE : '已经 10 天没有备份了',
     CARD_BACKUP_DESC : '经常备份手机，再也不用担心数据丢失。您也可以尝试 自动备份 功能。',
     CARD_BACKUP_ACTION : '备份',
+    CARD_TIPS_TITLE : '关于豌豆荚的小技巧',
+    CARD_TIPS_ACTION : '马上查看',
+    CARD_WEIBO_TITLE : '豌豆荚求关注！',
+    CARD_WEIBO_DESC : '新浪微博 @豌豆荚 <span class="icon-verified"></span>',
+    CARD_WEIBO_ACTION : '关注',
+    CARD_WEIBO_ACTION_CLICKED : '已关注',
     NO_MORE : '没有更多了'
-
 });

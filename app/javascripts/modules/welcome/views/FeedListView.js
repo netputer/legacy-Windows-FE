@@ -16,6 +16,8 @@
         'welcome/views/ItemListView',
         'welcome/views/CloudPhotoCardView',
         'welcome/views/BackupCardView',
+        'welcome/views/TipsCardView',
+        'welcome/views/WeiboCardView',
         'welcome/collections/FeedsCollection'
     ], function (
         Backbone,
@@ -33,6 +35,8 @@
         ItemListView,
         CloudPhotoCardView,
         BackupCardView,
+        TipsCardView,
+        WeiboCardView,
         FeedsCollection
     ) {
         console.log('FeedListView - File loaded. ');
@@ -49,6 +53,13 @@
                     var fragment = document.createDocumentFragment();
                     var lastShownTimestamp;
                     var show;
+
+                    if (fisrtScreen) {
+                        collection.unshift({
+                            type : 99
+                        });
+                    }
+
                     collection.each(function (feed) {
                         var targetView;
                         switch (feed.get('type')) {
@@ -88,6 +99,12 @@
                             break;
                         case 33:
                             targetView = BackupCardView;
+                            break;
+                        case 34:
+                            targetView = WeiboCardView;
+                            break;
+                        case 99:
+                            targetView = TipsCardView;
                             break;
                         }
                         if (targetView !== undefined) {

@@ -266,12 +266,14 @@
     }
 
     .top {
+        margin-bottom: 35px;
         pointer-events: none;
         -webkit-box-align: end;
     }
 
     .feed-ctn {
-        margin: 35px 0 0 25px;
+        // margin: 35px 0 0 25px;
+        margin: 0 0 0 25px;
         max-width: 1480px;
         position: relative;
     }
@@ -631,6 +633,60 @@
             @include sprite-sprite(local-tips);
         }
     }
+
+    &.weibo {
+        background-color: #fff;
+        -webkit-box-align: center;
+
+        .icon-ctn {
+            @include sprite-sprite(weibo-follow);
+            height: 100px;
+        }
+
+        .icon-verified {
+            @include sprite-sprite(weibo-verified);
+            display: inline-block;
+            height: sprite-sprite-height(weibo-verified);
+            position: relative;
+            top: 1px;
+            width: sprite-sprite-width(weibo-verified);
+        }
+
+        .info-ctn {
+            .title {
+                color: #333;
+            }
+
+            .desc {
+                color: rgba(0, 0, 0, .5);
+                margin: 5px 0 10px;
+            }
+
+            .btn-ctn {
+                .button-action {
+                    @extend button;
+                    box-sizing: border-box;
+                    display: inline-block;
+                    text-align: center;
+                    text-decoration: none;
+
+                    &:hover {
+                        background-image: -webkit-linear-gradient(-90deg, #f8f8f8 0%, #f0f0f0 100%);
+                    }
+                }
+
+                .button-ignore {
+                    color: rgba(0, 0, 0, .5);
+                }
+            }
+        }
+
+        &.following {
+            .icon-ctn {
+                @include sprite-sprite(weibo-following);
+            }
+        }
+    }
 }
 
 .w-welcome-screen-control-ctn {
@@ -739,7 +795,7 @@
 }
 
 .w-welcome-guide-frame {
-    margin: 40px 0 20px 25px;
+    margin: 0 0 20px 25px;
     height: 360px;
     width: 730px;
     position: relative;
@@ -748,7 +804,8 @@
 
 .w-welcome-clock {
     color: #fff;
-    text-shadow: rgba(0, 0, 0, .3) 0 5px 8px, rgba(0, 0, 0, 0.3) 0 1px 2px;
+    // text-shadow: rgba(0, 0, 0, .3) 0 5px 8px, rgba(0, 0, 0, 0.3) 0 1px 2px;
+    text-shadow: rgba(0, 0, 0, .8) 0 3px 8px,rgba(0, 0, 0, .4) 0 1px 2px;
     height: 120px;
     margin-bottom: 110px;
     -webkit-animation: fade-in-time 1.5s;

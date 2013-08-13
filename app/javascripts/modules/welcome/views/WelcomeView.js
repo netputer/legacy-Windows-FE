@@ -49,6 +49,7 @@
         var clockView;
         var toolbarView;
         var guideView;
+        var feedListView;
 
         var WelcomeView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('welcome', 'welcome')),
@@ -58,7 +59,7 @@
                     var target = evt.target;
                     this.moveComponents(target.scrollTop);
                     if (target.scrollHeight - (target.scrollTop + target.offsetHeight) < 400) {
-                        FeedListView.getInstance().loadNextPage();
+                        feedListView.loadNextPage();
                     }
                 }.bind(this), 50);
 
@@ -128,6 +129,7 @@
                 clockView = ClockView.getInstance();
                 toolbarView = ToolbarView.getInstance();
                 guideView = GuideView.getInstance();
+                feedListView = FeedListView.getInstance();
 
                 this.listenTo(toolbarView, 'top', this.scrollTopAnimation);
 
@@ -135,7 +137,7 @@
                     .append(clockView.render().$el)
                     .after(guideView.render().$el.hide());
 
-                this.$('.w-ui-loading-horizental-ctn').before(FeedListView.getInstance().initFeeds().$el);
+                this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
 
                 this.$el.append(toolbarView.render().$el)
                     .on('scroll', this.scrollHandler);
@@ -163,6 +165,7 @@
                 }
 
                 if (FunctionSwitch.ENABLE_USER_GUIDE && !Settings.get('user_guide_shown')) {
+                    // TODO 为何事件不成功！！！
                     var handlerReady = IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
                     }, function () {
@@ -177,7 +180,12 @@
                         IO.Backend.Device.offmessage(handlerFinish);
                     }, this);
 
-                    this.$('.content').append(guideView.render().$el.hide());
+                    var handlerEmpty = IO.Backend.Device.onmessage({
+                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY
+                    }, function () {
+                        this.switchToBillboard();
+                        IO.Backend.Device.offmessage(handlerEmpty);
+                    }, this);
                 }
 
                 log({
@@ -193,9 +201,8 @@
             switchToBillboard : function () {
                 guideView.$el.slideUp();
 
-                // $('.feed-ctn').prepend(TipsCardView.getInstance().render().$el);
-
-                FeedListView.getInstance().initLayout();
+                this.$('.feed-ctn').find('.tips').removeClass('hide');
+                feedListView.initLayout();
             },
             scrollTopAnimation : function () {
                 this.$el[0].scrollTop = 0;
