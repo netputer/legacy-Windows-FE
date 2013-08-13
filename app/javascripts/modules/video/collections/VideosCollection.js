@@ -33,9 +33,11 @@
 
                 var result = [];
                 _.each(resp.body, function (videos) {
-                    if (typeof videos === 'object' && videos.id) {
-                        result = result.concat(videos);
-                    }
+                    _.each(videos, function (video) {
+                        if (typeof video === 'object' && video.id) {
+                            result.push(video);
+                        }
+                    });
                 });
 
                 return result;
