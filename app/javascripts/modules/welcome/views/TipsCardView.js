@@ -27,7 +27,7 @@
                 return this;
             },
             clickButtonAction : function () {
-                // TODO 如何唤起 iframe �?
+                // TODO 如何呼唤 iframe 呢
 
                 log({
                     'event' : 'ui.click.welcome_card_action',
