@@ -127,6 +127,7 @@
                 APP_IGNORE_WASH : 'wdj://apps/ignore_wash.json',
                 APP_GET_APP_DATA_COUNT : 'wdj://apps/app_data_count.json',
                 APP_GET_APP_DETAIL : 'wdj://apps/apk_detail.json',
+                APP_GET_IS_WDAPK_READY : 'wdj://apps/is_wdapk_ready.json',
 
                 // SMS and Calllog Module
                 SMS_GET_CONVERSATION : 'wdj://sms/conversations.json',
