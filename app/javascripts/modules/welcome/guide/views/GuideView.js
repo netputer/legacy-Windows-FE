@@ -91,8 +91,6 @@
                         this.run();
                     }.bind(this));
 
-                // console.error(this.cardQueue);
-
                 return this;
             },
             showNextCard : function () {
