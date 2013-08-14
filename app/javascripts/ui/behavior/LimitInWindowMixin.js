@@ -1,4 +1,4 @@
-;/*global define, console*/
+/*global define, console*/
 (function (window) {
     define(['underscore', 'ui/UIHelper'], function (_, UIHelper) {
         console.log('LimitInWindowMixin - File loaded. ');

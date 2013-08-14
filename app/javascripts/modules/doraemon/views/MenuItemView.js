@@ -121,6 +121,7 @@
                         tab : this.model.id
                     });
                 }
+                Backbone.trigger('cleanForwardStack');
             },
             events : {
                 'click' : 'clickItem'
