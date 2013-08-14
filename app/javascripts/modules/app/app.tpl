@@ -333,7 +333,6 @@
         {{?}}
     </div>
     {{?}}
-    {{? it.isWeb }}
     <div class="web-update hbox">
         {{? it.installed }}
             <span class="text-secondary" >{{= i18n.misc.NAV_APP_INSTALLED }}</span>
@@ -347,7 +346,6 @@
         {{?}}
         <span class="button-hide link">{{= i18n.misc.DELETE }}</span>
     </div>
-    {{?}}
     <div class="button-close" data-id="{{= it.id }}" title="{{= i18n.misc.DESELECT }}"></div>
     {{?}}
 </script>
