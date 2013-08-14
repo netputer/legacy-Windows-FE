@@ -179,10 +179,6 @@
                 this.$('.button-export').prop({
                     disabled : contactsCollection.length === 0
                 });
-
-                this.$('.button-refresh').prop({
-                    disabled : !Device.get('isConnected')
-                });
             },
             restoreFilter : function () {
                 accountSelectorView.selectByAccountId('all');
@@ -287,13 +283,6 @@
                 });
 
                 ExportController.start();
-            },
-            clickButtonRefresh : function () {
-                ContactsCollection.getInstance().syncAsync();
-
-                log({
-                    'event' : 'ui.click.contact.refresh.button.toolbar'
-                });
             },
             clickButtonMerge : function () {
                 ContactPanelView.getInstance().mergeContacts(contactsListView.selected);
