@@ -163,10 +163,7 @@
                 });
 
                 this.on('add', function (app) {
-                    app.on('change:update', updateHandler, app);
-                    app.once('remove', function () {
-                        this.off();
-                    }, app);
+                    app.on('change:update', updateHandler, app).once('remove', app.off, app);
                 });
             },
             getUpdatableApps : function () {

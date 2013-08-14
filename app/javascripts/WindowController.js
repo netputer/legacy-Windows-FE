@@ -34,12 +34,6 @@
                 }
             });
 
-            window.externalCall('', 'navigation', JSON.stringify({
-                canGoBack : false,
-                canGoForward : false,
-                canReload : false
-            }));
-
             return deferred.promise();
         };
 
@@ -59,8 +53,6 @@
                     }
                 }
             });
-
-            IO.sendCustomEventsAsync(CONFIG.events.HISTORY_CHANGED);
 
             return deferred.promise();
         };

@@ -181,7 +181,6 @@
                         module : module,
                         tab : tab
                     });
-
                 }, this);
 
                 IO.Backend.Device.onmessage({
