@@ -119,12 +119,6 @@
             clickButtonImport : function () {
                 IframeMessageWorker.trigger(CONFIG.events.PHOTO_SHOW_IMPORTOR);
             },
-            clickButtonRefresh : function () {
-                var targetCollection = this.getCollectionByTab(PhotoGalleryView.getInstance().currentTab);
-                targetCollection.syncAsync().fail(function () {
-                    IframeMessageWorker.alert(i18n.misc.REFRESH_ERROR);
-                });
-            },
             clickCheckSelectAll : function (evt) {
                 var targetCollection = this.getCollectionByTab(PhotoGalleryView.getInstance().currentTab);
 
@@ -193,7 +187,6 @@
             events : {
                 'click .button-import' : 'clickButtonImport',
                 'click .button-delete' : 'clickButtonDelete',
-                'click .button-refresh' : 'clickButtonRefresh',
                 'click .button-fullscreen' : 'clickButtonFullscreen',
                 'click .button-export' : 'clickButtonExport',
                 'click .check-select-all' : 'clickCheckSelectAll'

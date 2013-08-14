@@ -8,7 +8,6 @@
         'doT',
         'ui/TemplateFactory',
         'ui/Toolbar',
-        'ui/AlertWindow',
         'Internationalization',
         'Device',
         'video/collections/VideosCollection',
@@ -20,7 +19,6 @@
         doT,
         TemplateFactory,
         Toolbar,
-        AlertWindow,
         i18n,
         Device,
         VideosCollection,
@@ -28,8 +26,6 @@
         VideoService
     ) {
         console.log('VideoModuleToolbarView - File loaded. ');
-
-        var alert = window.alert;
 
         var videosCollection;
 
@@ -47,7 +43,7 @@
                     checked : videosCollection.getSelectedVideo().length === videosCollection.length
                 });
 
-                this.$('.button-import, .button-refresh').prop({
+                this.$('.button-import').prop({
                     disabled : !Device.get('isConnected') || !Device.get('hasSDCard')
                 });
 
@@ -63,13 +59,6 @@
 
                 this.setButtonState();
                 return this;
-            },
-            clickButtonRefresh : function () {
-                videosCollection.syncAsync(function (resp) {
-                    if (resp.state_code !== 200 && resp.state_code !== 402) {
-                        alert(i18n.common.REFRESH_ERROR);
-                    }
-                });
             },
             clickButtonImport : function () {
                 ImportVideoView.getInstance().show();
@@ -88,7 +77,6 @@
                 });
             },
             events : {
-                'click .button-refresh' : 'clickButtonRefresh',
                 'click .button-import' : 'clickButtonImport',
                 'click .button-delete' : 'clickbuttonDelete',
                 'click .button-export' : 'clickButtonExport',
