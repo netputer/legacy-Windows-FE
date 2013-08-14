@@ -5,6 +5,7 @@
         'jquery',
         'doT',
         'Configuration',
+        'Settings',
         'Internationalization',
         'utilities/StringUtil',
         'ui/TemplateFactory',
@@ -15,13 +16,13 @@
         'guide/views/StarterView',
         'guide/views/TipsView',
         'guide/views/DoraSuggestionView',
-        'Account',
-        'backuprestore/BackupRestoreService'
+        'utilities/QueryString'
     ], function (
         Backbone,
         $,
         doT,
         CONFIG,
+        Settings,
         i18n,
         StringUtil,
         TemplateFactory,
@@ -31,7 +32,8 @@
         XibaibaiView,
         StarterView,
         TipsView,
-        DoraSuggestionView
+        DoraSuggestionView,
+        queryString
     ) {
         var GuideView = Backbone.View.extend({
             className : 'w-guide-ctn vbox',
@@ -49,6 +51,13 @@
             },
             render : function () {
                 this.$el.html(this.template({}));
+
+                if (queryString.get('tips') === '1') {
+                    this.cardQueue.push(TipsView.getInstance());
+                    this.totalCards = 1;
+                    this.run();
+                    return this;
+                }
 
                 this.regCardAsync(StarterView.getInstance({
                     type : 0
@@ -86,6 +95,7 @@
             },
             showNextCard : function () {
                 var currentCard = this.cardQueue.shift();
+
                 if (currentCard) {
                     this.$('.content')
                         .addClass('w-anima-fade-slide-in-right')
@@ -121,8 +131,13 @@
                 if (this.cardQueue.length === 0) {
                     IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY);
                 } else {
-                    this.showNextCard();
+                    if (Settings.get('user_guide_shown') && queryString.get('tips') !== '1') {
+                        IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY);
+                    } else {
+                        this.showNextCard();
+                    }
                 }
+
             }
         });
 

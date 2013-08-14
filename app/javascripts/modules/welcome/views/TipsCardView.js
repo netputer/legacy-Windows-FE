@@ -27,7 +27,7 @@
                 return this;
             },
             clickButtonAction : function () {
-                // TODO 如何呼唤 iframe 呢
+                Backbone.trigger('welcome:showTips');
 
                 log({
                     'event' : 'ui.click.welcome_card_action',

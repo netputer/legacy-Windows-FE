@@ -741,11 +741,12 @@
 }
 
 .w-welcome-guide-frame {
-    margin: 0 0 20px 25px;
-    height: 360px;
-    width: 730px;
-    position: relative;
+    background-color: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .1);
+    height: 360px;
+    margin: 0 0 20px 25px;
+    position: relative;
+    width: 730px;
 }
 
 .w-welcome-clock {

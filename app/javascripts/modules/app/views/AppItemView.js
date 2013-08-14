@@ -68,14 +68,14 @@
             },
             render : function () {
                 if (this.model.get('category')) {
-                    this.$el.addClass('category').html(this.template(this.model.toJSON()));
+                    this.$el.toggleClass('category', true).html(this.template(this.model.toJSON()));
                     return this;
                 }
 
                 var $checker = this.$('.item-checker');
                 var checked = $checker.length > 0 ? $checker[0].checked : false;
 
-                this.$el.html(this.template(this.model.toJSON()));
+                this.$el.toggleClass('category', false).html(this.template(this.model.toJSON()));
 
                 this.$('.item-checker').prop({
                     checked : checked

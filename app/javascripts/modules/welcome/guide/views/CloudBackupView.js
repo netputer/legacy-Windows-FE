@@ -10,6 +10,7 @@
         'IO',
         'Log',
         'Account',
+        'Settings',
         'ui/TemplateFactory',
         'utilities/ValidateEmail',
         'guide/views/CardView',
@@ -24,6 +25,7 @@
         IO,
         log,
         Account,
+        Settings,
         TemplateFactory,
         validateEmail,
         CardView,
@@ -58,6 +60,11 @@
             className : CardView.getClass().prototype.className + ' w-guide-cloud-backup',
             template : doT.template(TemplateFactory.get('guide', 'cloud-backup')),
             userModel : new UserModel(),
+            initialize : function () {
+                this.on('next', function () {
+                    Settings.set('user_guide_shown_cloudbackup', true, true);
+                });
+            },
             render : function () {
                 _.extend(this.events, CloudBackupView.__super__.events);
                 this.delegateEvents();
@@ -66,15 +73,29 @@
             checkAsync : function () {
                 var deferred = $.Deferred();
 
-                IO.requestAsync(CONFIG.actions.SYNC_IS_SWITCH_ON).done(function (resp) {
-                    if (!resp.body.value) {
-                        deferred.resolve();
-                    } else {
-                        deferred.reject();
-                    }
-                });
+                if (Settings.get('user_guide_shown_cloudbackup')) {
+                    setTimeout(deferred.reject);
+                } else {
+                    IO.requestAsync(CONFIG.actions.SYNC_IS_SWITCH_ON).done(function (resp) {
+                        if (!resp.body.value) {
+                            setTimeout(deferred.resolve);
+                            log({
+                                'event' : 'debug.guide_cloudbackup_show'
+                            });
+                        } else {
+                            setTimeout(deferred.reject);
+                        }
+                    });
+                }
 
                 return deferred.promise();
+            },
+            clickButtonSkip : function () {
+                CloudBackupView.__super__.clickButtonSkip.call(this);
+
+                log({
+                    'event' : 'ui.click.guide_cloudbackup_skip'
+                });
             },
             clickButtonReg : function () {
                 this.userModel.set({
@@ -148,6 +169,10 @@
                         this.cloudBackupSuccess();
                     }.bind(this));
                 }
+
+                log({
+                    'event' : 'ui.click.guide_cloudbackup_action'
+                });
             },
             clickPrivacy : function (evt) {
                 this.$('.button-reg').prop('disabled', !evt.originalEvent.srcElement.checked);
