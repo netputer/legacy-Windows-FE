@@ -499,6 +499,10 @@
         }
     }
 
+    .web-update {
+        display: none;
+    }
+
     .button-close {
         @include button-close;
         display: none;
@@ -512,6 +516,10 @@
         display: none;
         width: 60px;
     }
+}
+
+.w-app-list.web .web-update {
+    display: -webkit-box;
 }
 
 .w-app-list-header {
