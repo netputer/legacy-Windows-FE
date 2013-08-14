@@ -34,7 +34,7 @@
                                     });
                                 } else {
                                     var modelsCount = _.filter(this.currentModels, function (model) {
-                                        return !model.get('category');
+                                        return !model.get('updateCategory');
                                     }).length;
 
                                     $observer.prop({

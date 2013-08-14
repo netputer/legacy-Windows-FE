@@ -255,7 +255,7 @@
 
         SelectDelegateMixin.selectAll = function () {
             var models = _.filter(this.currentModels, function (model) {
-                return !model.get('category');
+                return !model.get('updateCategory');
             });
 
             this.addSelect(_.pluck(models, 'id'));

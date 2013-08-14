@@ -255,13 +255,13 @@
 </script>
 
 <script type="text/x-ui-template" id="app-list-item">
-    {{? !!it.category }}
-    {{? it.category === 'recommended' }}
+    {{? !!it.updateCategory }}
+    {{? it.updateCategory === 'recommended' }}
     <div class="info hbox">
         {{= i18n.app.RECOMMENDED_UPDATE }}
     </div>
     <div class="update hbox">
-        <button class="button-update min" data-type="{{= it.category }}">{{= i18n.app.UPDATE }}</button>
+        <button class="button-update min" data-type="{{= it.updateCategory }}">{{= i18n.app.UPDATE }}</button>
     </div>
     {{??}}
     <div class="info hbox">
