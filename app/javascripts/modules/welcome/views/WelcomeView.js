@@ -227,7 +227,9 @@
             showBackground : function () {
                 $.when(this.initBackgroundAsync(), this.deviceViewAnimationAsync(), this.loadCachedWallpaperAsync()).done(function () {
                     this.$('.content.new, .mask').css('opacity', 1);
-                    this.$('.content.cache').css('opacity', 0).one('webkitTransitionEnd', $(this).remove);
+                    this.$('.content.cache').css('opacity', 0).one('webkitTransitionEnd', function () {
+                        $(this).remove();
+                    });
                 }.bind(this));
             },
             loadCachedWallpaperAsync : function () {
