@@ -255,13 +255,13 @@
 </script>
 
 <script type="text/x-ui-template" id="app-list-item">
-    {{? !it.id }}
-    {{? it.category === 'recommended' }}
+    {{? !!it.updateCategory }}
+    {{? it.updateCategory === 'recommended' }}
     <div class="info hbox">
         {{= i18n.app.RECOMMENDED_UPDATE }}
     </div>
     <div class="update hbox">
-        <button class="button-update min" data-type="{{= it.category }}">{{= i18n.app.UPDATE }}</button>
+        <button class="button-update min" data-type="{{= it.updateCategory }}">{{= i18n.app.UPDATE }}</button>
     </div>
     {{??}}
     <div class="info hbox">
@@ -333,7 +333,6 @@
         {{?}}
     </div>
     {{?}}
-    {{? it.isWeb }}
     <div class="web-update hbox">
         {{? it.installed }}
             <span class="text-secondary" >{{= i18n.misc.NAV_APP_INSTALLED }}</span>
@@ -347,7 +346,6 @@
         {{?}}
         <span class="button-hide link">{{= i18n.misc.DELETE }}</span>
     </div>
-    {{?}}
     <div class="button-close" data-id="{{= it.id }}" title="{{= i18n.misc.DESELECT }}"></div>
     {{?}}
 </script>
