@@ -18,8 +18,7 @@
         'contact/collections/ContactsCollection',
         'message/collections/ConversationsCollection',
         'music/collections/MusicsCollection',
-        'photo/collections/PhonePhotoCollection',
-        'photo/collections/LibraryPhotoCollection',
+        'photo/collections/PhotoCollection',
         'photo/collections/CloudPhotoCollection',
         'video/collections/VideosCollection'
     ], function (
@@ -40,8 +39,7 @@
         ContactsCollection,
         ConversationsCollection,
         MusicsCollection,
-        PhonePhotoCollection,
-        LibraryPhotoCollection,
+        PhotoCollection,
         CloudPhotoCollection,
         VideosCollection
     ) {
@@ -105,6 +103,22 @@
             'data.channel' : CONFIG.events.NAVIGATE_BACK
         }, function (data) {
             var SnapPea = window.SnapPea;
+
+            var doBack = function () {
+                forwarStack.push(backStack.pop());
+                var target = backStack.pop();
+
+                log({
+                    'event' : 'ui.click.native_toolbar_back',
+                    'current' : SnapPea.currentModule,
+                    'target' : target.module
+                });
+
+                Backbone.trigger('switchModule', _.extend(target, {
+                    ignore : true
+                }));
+            };
+
             if (SnapPea.CurrentModule === 'browser') {
                 var $iframe = $('#' + CONFIG.enums.IFRAME_PREFIX + SnapPea.CurrentTab + ' iframe');
                 var frameId = $iframe[0].id;
@@ -114,16 +128,10 @@
                     forwarStack.length = 0;
                     history.back2(frameId, branch);
                 } else {
-                    forwarStack.push(backStack.pop());
-                    Backbone.trigger('switchModule', _.extend(backStack.pop(), {
-                        ignore : true
-                    }));
+                    doBack.call(this);
                 }
             } else {
-                forwarStack.push(backStack.pop());
-                Backbone.trigger('switchModule', _.extend(backStack.pop(), {
-                    ignore : true
-                }));
+                doBack.call(this);
             }
         });
 
@@ -131,6 +139,21 @@
             'data.channel' : CONFIG.events.NAVIGATE_FORWARD
         }, function (data) {
             var SnapPea = window.SnapPea;
+
+            var doForward = function () {
+                var target = forwarStack.pop();
+
+                log({
+                    'event' : 'ui.click.native_toolbar_forward',
+                    'current' : SnapPea.currentModule,
+                    'target' : target.module
+                });
+
+                Backbone.trigger('switchModule', _.extend(target, {
+                    ignore : true
+                }));
+            };
+
             if (SnapPea.CurrentModule === 'browser') {
                 var $iframe = $('#' + CONFIG.enums.IFRAME_PREFIX + SnapPea.CurrentTab + ' iframe');
                 var frameId = $iframe[0].id;
@@ -139,14 +162,10 @@
                 if (forwardCount > 0) {
                     history.forward2(frameId, branch);
                 } else {
-                    Backbone.trigger('switchModule', _.extend(forwarStack.pop(), {
-                        ignore : true
-                    }));
+                    doForward.call(this);
                 }
             } else {
-                Backbone.trigger('switchModule', _.extend(forwarStack.pop(), {
-                    ignore : true
-                }));
+                doForward.call(this);
             }
         });
 
@@ -181,35 +200,20 @@
                 targetCollections.push(targetCollection);
                 break;
             case 'contact':
-                ContactsCollection.getInstance().syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
-                });
+                targetCollections.push(ContactsCollection.getInstance());
                 break;
             case 'message':
-                ConversationsCollection.getInstance().syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
-                });
+                targetCollections.push(ConversationsCollection.getInstance());
                 break;
             case 'music':
-                MusicsCollection.getInstance().syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
-                });
+                targetCollections.push(MusicsCollection.getInstance());
                 break;
             case 'photo':
-                PhonePhotoCollection.getInstance().syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
-                });
-                LibraryPhotoCollection.getInstance().syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
-                });
-                CloudPhotoCollection.getInstance().syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
-                });
+                targetCollections.push(PhotoCollection.getInstance());
+                targetCollections.push(CloudPhotoCollection.getInstance());
                 break;
             case 'video':
-                VideosCollection.getInstance().syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
-                });
+                targetCollections.push(VideosCollection.getInstance());
                 break;
             }
 
@@ -249,5 +253,10 @@
             canGoForward : true,
             canReload : true
         }));
+
+        Backbone.on('cleanForwardStack', function () {
+            forwarStack.length = 0;
+            updateNativeToolbarState();
+        });
     });
 }(this));

@@ -13,9 +13,7 @@
         IO,
         CONFIG
     ) {
-        console.log('WindowController - File loaded');
-
-        var history = window.history;
+        console.log('WindowController - File loaded. ');
 
         var WindowController = {};
 
@@ -57,29 +55,6 @@
             });
 
             return deferred.promise();
-        };
-
-        WindowController.navigationState = function (id) {
-            var $iframe;
-            var branch;
-
-            if (!id) {
-                window.externalCall('', 'navigation', JSON.stringify({
-                    id : '',
-                    canGoBack : false,
-                    canGoForward : false,
-                    canReload : false
-                }));
-            } else {
-                $iframe = $('#' + id);
-                branch = $iframe.attr('branch');
-                window.externalCall('', 'navigation', JSON.stringify({
-                    id : id,
-                    canGoBack : history.backCount(id, branch) ? true : false,
-                    canGoForward : history.forwardCount(id, branch) ? true : false,
-                    canReload : true
-                }));
-            }
         };
 
         return WindowController;
