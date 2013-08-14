@@ -388,6 +388,10 @@
             .input {
                 display: none;
             }
+
+            .web-update {
+                display: -webkit-box;
+            }
         }
     }
 
@@ -518,9 +522,7 @@
     }
 }
 
-.w-app-list.web .web-update {
-    display: -webkit-box;
-}
+
 
 .w-app-list-header {
     .check-select-all-wrap {
