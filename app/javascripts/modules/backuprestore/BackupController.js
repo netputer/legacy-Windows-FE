@@ -138,7 +138,9 @@
                 }, this);
 
                 backupChooseDataView.on('_TIME_OUT', function () {
-                    backupChooseTypeView.show();
+                    if (FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE) {
+                        backupChooseTypeView.show();
+                    }
                 }, this);
 
                 backupChooseAppTypeView.on('_NEXT_STEP', function () {
@@ -270,12 +272,21 @@
                 }, this);
             },
             startBackupLocal : function () {
-                if (BackupContextModel.IsAppSelected &&
-                        BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP] > 0 && FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE) {
-                    backupChooseAppTypeView.show();
-                } else {
+                if (!FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE ||
+                        !BackupContextModel.IsAppSelected ||
+                        BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP] <= 0) {
+
                     this.showNextAndRemoveCurrent(backupChooseDataView, backupChooseLocationView);
+                    return;
                 }
+
+                BackupRestoreService.getIsWdapkReadyAsync().done(function (resp) {
+                    if (resp.body.value) {
+                        backupChooseAppTypeView.show();
+                    } else {
+                        this.showNextAndRemoveCurrent(backupChooseDataView, backupChooseLocationView);
+                    }
+                }.bind(this));
             },
             startBackupRemote : function () {
                 this.showNextAndRemoveCurrent(backupChooseDataView, backupRemoteProgressView);

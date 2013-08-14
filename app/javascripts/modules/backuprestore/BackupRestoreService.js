@@ -194,6 +194,23 @@
             return deferred.promise();
         };
 
+        BackupRestoreService.getIsWdapkReadyAsync = function () {
+            var deferred = $.Deferred();
+
+            IO.requestAsync({
+                url : CONFIG.actions.APP_GET_IS_WDAPK_READY,
+                success : function (resp) {
+                    if (resp.state_code === 200) {
+                        deferred.resolve(resp);
+                    } else {
+                        deferred.reject(resp);
+                    }
+                }
+            });
+
+            return deferred.promise();
+        };
+
         BackupRestoreService.getDeviceTitleAsync = function () {
             var deferred = $.Deferred();
 
