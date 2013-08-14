@@ -1,13 +1,13 @@
  /********************************************************************************
  * This is the CSS declaration of Social
- * 
+ *
  * @author sunqiao@wandoujia.com
  ********************************************************************************/
  @import "../skins/default/default";
 /********************************************************************************
  * social platform selector
  ********************************************************************************/
- 
+
 .w-social-platform-selector {
     .social-platform {
         border: none;
@@ -19,10 +19,10 @@
         &:hover {
             border: none;
         }
-        
+
         &[data-type="sina"] {
             @include sprite-sprite(sina-off);
-            
+
         &:checked,
             &:checked:hover{
                 @include sprite-sprite(sina);
@@ -31,7 +31,7 @@
 
         &[data-type="qzone"] {
             @include sprite-sprite(qzone-off);
-            
+
             &:checked,
             &:checked:hover{
                 @include sprite-sprite(qzone);
@@ -40,7 +40,7 @@
 
         &[data-type="tqq"] {
             @include sprite-sprite(tqq-off);
-                
+
             &:checked,
             &:checked:hover{
                 @include sprite-sprite(tqq);
@@ -49,7 +49,7 @@
 
         &[data-type="renren"] {
             @include sprite-sprite(renren-off);
-            
+
             &:checked,
             &:checked:hover{
                 @include sprite-sprite(renren);
@@ -74,10 +74,10 @@
             &:hover {
                 border: none;
             }
-            
+
             &[data-type="sina"] {
                 @include sprite-sprite(weibo-default);
-                
+
                 &:checked,
                 &:checked:hover{
                     @include sprite-sprite(weibo-bind);
@@ -92,7 +92,7 @@
 
             &[data-type="qzone"] {
                 @include sprite-sprite(qzone-default);
-                
+
                 &:checked,
                 &:checked:hover{
                     @include sprite-sprite(qzone-bind);
@@ -107,7 +107,7 @@
 
             &[data-type="tqq"] {
                 @include sprite-sprite(qq-weibo-default);
-                
+
                 &:checked,
                 &:checked:hover{
                     @include sprite-sprite(qq-weibo-bind);
@@ -119,10 +119,10 @@
                     @include sprite-sprite(qq-weibo-down);
                 }
             }
-            
+
             &[data-type="renren"] {
                 @include sprite-sprite(renren-default);
-                
+
                 &:checked,
                 &:checked:hover{
                     @include sprite-sprite(renren-bind);
@@ -149,12 +149,12 @@
 
 .w-social-share-share {
     .share-tip {
-        float:right;
+        float: right;
     }
 
     .send-loading {
-        float: right;
         display: none;
+        float: right;
         margin-top: -2px;
     }
 
@@ -185,10 +185,117 @@
             &:hover {
                 cursor: pointer;
             }
-            
+
             + li {
                 margin-left: 10px;
             }
         }
     }
 }
+
+.w-social-share-oauth {
+    input {
+        width: 269px;
+    }
+
+    .oauth-tip {
+        margin-top: 2.7em;
+    }
+}
+
+.w-social-share-share {
+    .exit-oauth {
+        float: right;
+    }
+
+    .nickname {
+        float: right;
+        margin-right: 10px;
+    }
+
+    .header {
+        margin-bottom: 10px;
+    }
+
+    textarea {
+        height: 4.5em;
+        width: 358px;
+    }
+
+    &.compact-mode textarea {
+        height: 6em;
+        width: 358px;
+    }
+
+    .share-tip {
+        height: 16px;
+        min-width: 16px;
+    }
+}
+
+.w-social-share-panel {
+    .share-preview {
+        border: 1px solid #ddd;
+        height: 250px;
+        overflow: hidden;
+        position: absolute;
+        top: 38px;
+        width: 370px;
+    }
+
+    .share-preview-content {
+        display: -webkit-box;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        -webkit-box-align: center;
+        -webkit-box-orient: horizontal;
+        -webkit-box-pack: center;
+    }
+
+    .share-preview-header {
+        height: 24px;
+        width: 355px;
+        padding-left: 15px;
+        background-color: #eee;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .view-from-pc {
+        float: right;
+        margin-top: -25px;
+        margin-right: 15px;
+    }
+
+    footer {
+        height: 290px;
+        position: relative;
+    }
+
+    &.compact-mode footer {
+        height: auto;
+        padding-bottom: 16px;
+        position: relative;
+    }
+
+    .turn-left {
+        -webkit-transform: rotate(-90deg);
+    }
+
+    .turn-down {
+        -webkit-transform: rotate(180deg);
+    }
+
+    .turn-right {
+        -webkit-transform: rotate(90deg);
+    }
+}
+
+.w-social-share-oauth .error,
+.w-social-share-share .error,
+.w-social-share-share .pic-size-tip {
+    color: #f76200;
+}
+
+
+
+
