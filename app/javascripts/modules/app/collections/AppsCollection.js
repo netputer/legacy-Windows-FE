@@ -191,6 +191,7 @@
 
                 if (group.recommended && group.recommended.length > 0) {
                     var recommended = new AppModel({
+                        id : 'recommended',
                         category : 'recommended'
                     });
 
@@ -199,6 +200,7 @@
 
                 if (group.notRecommended && group.notRecommended.length > 0) {
                     var notRecommended = new AppModel({
+                        id : 'notRecommended',
                         category : 'notRecommended'
                     });
 

@@ -255,7 +255,7 @@
 </script>
 
 <script type="text/x-ui-template" id="app-list-item">
-    {{? !it.id }}
+    {{? !!it.category }}
     {{? it.category === 'recommended' }}
     <div class="info hbox">
         {{= i18n.app.RECOMMENDED_UPDATE }}
