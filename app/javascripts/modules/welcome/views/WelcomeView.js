@@ -172,23 +172,21 @@
                             this.switchToGuide();
                             IO.Backend.Device.offmessage(handlerReady);
                         }, this);
-
-                        var handlerFinish = IO.Backend.Device.onmessage({
-                            'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
-                        }, function () {
-                            this.switchToBillboard();
-                            IO.Backend.Device.offmessage(handlerFinish);
-                        }, this);
-
                     }
 
-                    var handlerEmpty = IO.Backend.Device.onmessage({
+                    IO.Backend.Device.onmessage({
+                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
+                    }, this.switchToBillboard.bind(this));
+
+                    IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY
-                    }, function () {
-                        this.switchToBillboard();
-                        IO.Backend.Device.offmessage(handlerEmpty);
-                    }, this);
+                    }, this.switchToBillboard.bind(this));
                 }
+
+                this.listenTo(Backbone, 'welcome:showTips', function () {
+                    this.$('.top').after(guideView.render(true).$el.hide());
+                    this.switchToGuide();
+                }.bind(this));
 
                 log({
                     'event' : 'debug.show.welcome',
@@ -199,15 +197,16 @@
             },
             switchToGuide : function () {
                 guideView.$el.slideDown();
+
+                this.$('.feed-ctn').find('.tips').toggleClass('hide', true);
+                feedListView.initLayout();
             },
             switchToBillboard : function () {
-                console.log('prepare switch to bill board');
+                guideView.$el.slideUp(function () {
+                    guideView.remove();
+                });
 
-                guideView.$el.slideUp();
-
-                console.log(this);
-
-                this.$('.feed-ctn').find('.tips').removeClass('hide');
+                this.$('.feed-ctn').find('.tips').toggleClass('hide', false);
                 feedListView.initLayout();
             },
             scrollTopAnimation : function () {
