@@ -312,8 +312,6 @@
                     this.switchComparator();
                     this.build();
                 }, this);
-
-                this.listenTo(Backbone, 'app:selectApps', this.addSelect);
             },
             render : function () {
                 this.$el.html(this.template({}));
@@ -327,7 +325,7 @@
                 setTimeout(function () {
                     calculateSettings.call(this);
                     supplyItems.call(this);
-                }.bind(this), 0);
+                }.bind(this));
 
                 this.rendered = true;
 
