@@ -6,7 +6,6 @@
         'jquery',
         'ui/Toolbar',
         'ui/TemplateFactory',
-        'ui/AlertWindow',
         'Internationalization',
         'Device',
         'Log',
@@ -22,7 +21,6 @@
         $,
         Toolbar,
         TemplateFactory,
-        AlertWindow,
         i18n,
         Device,
         log,
@@ -34,8 +32,6 @@
         ITunesController
     ) {
         console.log('MusicModuleToolbarView - File loaded. ');
-
-        var alert = window.alert;
 
         var musicsListView;
         var musicsCollection;
@@ -50,7 +46,7 @@
                 musicsCollection.on('refresh', this.setButtonState, this);
             },
             setButtonState : function () {
-                this.$('.button-add-music, .button-refresh').prop({
+                this.$('.button-add-music').prop({
                     disabled : !Device.get('isConnected') ||
                                 !Device.get('hasSDCard')
                 });
@@ -110,11 +106,6 @@
                     'event' : 'ui.click.music.button.delete',
                     'count' : musicsListView.selected.length,
                     'source' : 'toolbar'
-                });
-            },
-            clickButtonRefresh : function () {
-                musicsCollection.syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
                 });
             },
             clickButtonExport : function () {

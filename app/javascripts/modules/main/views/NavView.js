@@ -120,48 +120,6 @@
                 this.$el.append(pimMenuView.render().$el);
 
                 setTimeout(function () {
-                    var jumpToDefaultExtension = function (id) {
-                        var selectDefaultExtension = function (extensionsCollection) {
-                            if (window.SnapPea.CurrentModule === undefined) {
-                                var extension;
-                                if (id === undefined) {
-                                    extension = extensionsCollection.at(0);
-                                    if (extension !== undefined) {
-                                        extension.set({
-                                            selected : true
-                                        });
-                                    }
-                                } else {
-                                    extension = extensionsCollection.get(id);
-                                    if (extension !== undefined) {
-                                        extension.set({
-                                            selected : true
-                                        });
-                                    } else {
-                                        BrowserModuleView.navigateToThirdParty(id, '');
-                                    }
-                                }
-                            }
-                        };
-
-                        var refreshHandler = function (extensionsCollection) {
-                            if (extensionsCollection.length !== 0) {
-                                selectDefaultExtension(extensionsCollection);
-                                extensionsCollection.off('refresh', refreshHandler);
-                            }
-                        };
-
-                        if (extensionsCollection.loading) {
-                            extensionsCollection.on('refresh', refreshHandler);
-                        } else {
-                            if (extensionsCollection.length === 0) {
-                                extensionsCollection.on('refresh', refreshHandler);
-                            } else {
-                                selectDefaultExtension(extensionsCollection);
-                            }
-                        }
-                    };
-
                     if (!redirectExtId) {
                         if (Environment.get('deviceId') === 'Default') {
                             Backbone.trigger('switchModule', {
@@ -176,11 +134,17 @@
                                     tab : defaultModuleModel.get('tab')
                                 });
                             } else {
-                                jumpToDefaultExtension();
+                                Backbone.trigger('switchModule', {
+                                    module : 'welcome',
+                                    tab : 'welcome'
+                                });
                             }
                         }
                     } else {
-                        jumpToDefaultExtension(redirectExtId);
+                        Backbone.trigger('switchModule', {
+                            module : 'welcome',
+                            tab : 'welcome'
+                        });
                     }
 
                     toggleShadow.call(this);
