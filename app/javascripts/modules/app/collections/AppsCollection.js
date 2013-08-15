@@ -207,7 +207,7 @@
                 return result;
             },
             getUpdatableAppsByType : function (type) {
-                return this.filter(function (app) {
+                return _.filter(this.getUpdatableApps(), function (app) {
                     return app.get('recommendedType') === type;
                 });
             },
