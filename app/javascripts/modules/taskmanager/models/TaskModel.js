@@ -164,7 +164,28 @@
 
                 return deferred.promise();
             },
-            restartAsync : function (options) {
+            forceRestartAsync : function () {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.TASK_FORCE_RESTART,
+                    data : {
+                        job : this.get('id')
+                    },
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('TaskModel - Force restart task success.');
+                            deferred.resolve(resp);
+                        } else {
+                            console.error('TaskModel - Force restart task failed. Error info: ' + resp.state_line);
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+
+                return deferred.promise();
+            },
+            restartAsynw : function (options) {
                 var deferred = $.Deferred();
 
                 var data = {
@@ -185,10 +206,10 @@
                     data : data,
                     success : function (resp) {
                         if (resp.state_code === 200) {
-                            console.log('TaskModel - Force restart task success.');
+                            console.log('TaskModel - Restart task success.');
                             deferred.resolve(resp);
                         } else {
-                            console.error('TaskModel - Force restart task failed. Error info: ' + resp.state_line);
+                            console.error('TaskModel - Restart task failed. Error info: ' + resp.state_line);
                             deferred.reject(resp);
                         }
                     }

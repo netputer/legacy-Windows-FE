@@ -199,6 +199,7 @@
             },
             clickButtonPushToPhone : function(evt) {
                 evt.stopPropagation();
+                this.model.forceRestartAsync();
             },
             events : {
                 'click .button-start' : 'clickButtonStart',
