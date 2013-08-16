@@ -110,7 +110,7 @@
 
                 log({
                     'event' : 'ui.click.native_toolbar_back',
-                    'current' : SnapPea.currentModule,
+                    'current' : SnapPea.CurrentModule,
                     'target' : target.module
                 });
 
@@ -145,7 +145,7 @@
 
                 log({
                     'event' : 'ui.click.native_toolbar_forward',
-                    'current' : SnapPea.currentModule,
+                    'current' : SnapPea.CurrentModule,
                     'target' : target.module
                 });
 
@@ -225,7 +225,7 @@
 
             log({
                 'event' : 'ui.click.native_toolbar_refresh',
-                'module' : SnapPea.currentModule
+                'module' : SnapPea.CurrentModule
             });
         });
 
