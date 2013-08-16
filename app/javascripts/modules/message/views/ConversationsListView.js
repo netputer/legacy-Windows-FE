@@ -276,6 +276,8 @@
             showByKeyword : function () {
                 conversationsCollection.searchConversationAsync().done(function (resp) {
                     this.switchListDataSet('search');
+                    conversationList.toggleEmptyTip(false);
+
                     conversationList.deselectAll({
                         silent : true
                     });
