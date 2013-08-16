@@ -100,14 +100,14 @@
 
                 var appsCollection = AppsCollection.getInstance();
                 var refreshHandler = function () {
-                    if (!appsCollection.syncing && !appsCollection.loading && Device.get('isConnected')) {
+                    if (!appsCollection.syncing && !appsCollection.loading && Device.get('isConnected') && appsCollection.length > 0) {
                         this.stopListening(appsCollection, 'refresh', refreshHandler);
                         this.stopListening(Device, 'change:isConnected', refreshHandler);
                         deferred.resolve();
                     }
                 };
 
-                if (!appsCollection.syncing && !appsCollection.loading && Device.get('isConnected')) {
+                if (!appsCollection.syncing && !appsCollection.loading && Device.get('isConnected') && appsCollection.length > 0) {
                     setTimeout(deferred.resolve);
                 } else {
                     this.listenTo(appsCollection, 'refresh', refreshHandler);

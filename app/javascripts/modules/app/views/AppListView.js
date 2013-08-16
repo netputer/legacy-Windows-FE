@@ -215,6 +215,8 @@
                         'smart-list-sort-type' : 'string'
                     });
 
+                    appList.listenTo(Backbone, 'app:selectApps', appList.addSelect);
+
                     this.listenTo(appList, 'switchSet', this.toggleEmptyTip)
                         .listenTo(appList, 'contextMenu', this.showContextMenu)
                         .listenTo(appList, 'select:change', function (selected) {

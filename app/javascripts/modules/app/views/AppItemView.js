@@ -67,7 +67,7 @@
                 AppItemView.__super__.remove.call(this);
             },
             render : function () {
-                if (this.model.get('category')) {
+                if (this.model.get('updateCategory')) {
                     this.$el.toggleClass('category', true).html(this.template(this.model.toJSON()));
                     return this;
                 }
@@ -123,24 +123,18 @@
             clickButtonUpdate : function (evt) {
                 evt.stopPropagation();
 
-                var updateApp = function (model, source) {
-                    var updateModel = model.updateInfo.set({
-                        source : source
+                var $currentButton = $(evt.currentTarget);
+
+                if ($currentButton.data('type') === undefined) {
+                    var updateModel = this.model.updateInfo.set({
+                        source : 'update-button-list'
                     });
 
                     TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, updateModel);
 
-                    model.set({
+                    this.model.set({
                         isUpdating : true
-                    });
-
-                    model.unignoreUpdateAsync();
-                };
-
-                var $currentButton = $(evt.currentTarget);
-
-                if ($currentButton.data('type') === undefined) {
-                    updateApp(this.model, 'update-button-list');
+                    }).unignoreUpdateAsync();
 
                     log({
                         'event' : 'ui.click.app.button.update',
@@ -152,9 +146,25 @@
                     confirm(StringUtil.format(i18n.app.UPGRADE_TIP_TEXT, models.length), function () {
                         Backbone.trigger('app:selectApps', _.pluck(models, 'id'));
 
-                        _.each(models, function (model) {
-                            updateApp(model, 'update-button-recommended');
-                        });
+                        var updateApps = _.map(models, function (model) {
+                            model.set({
+                                isUpdating : true
+                            }).unignoreUpdateAsync();
+
+                            var currentUpdateModel = model.get('upgrade_info');
+
+                            return {
+                                downloadUrl : currentUpdateModel.downloadUrl,
+                                title : currentUpdateModel.title,
+                                iconSrc : currentUpdateModel.iconPath,
+                                versionName : currentUpdateModel.versionName,
+                                versionCode : currentUpdateModel.versionCode,
+                                size : currentUpdateModel.size,
+                                packageName : currentUpdateModel.packageName
+                            };
+                        }, this);
+
+                        TaskService.batchDownloadAsync(updateApps, 'update-button-recommended');
 
                         log({
                             'event' : 'ui.click.app.button.recommended_update'

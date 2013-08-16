@@ -176,17 +176,17 @@
 
                     IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
-                    }, this.switchToBillboard.bind(this));
+                    }, this.switchToBillboard, this);
 
                     IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY
-                    }, this.switchToBillboard.bind(this));
+                    }, this.switchToBillboard, this);
                 }
 
                 this.listenTo(Backbone, 'welcome:showTips', function () {
                     this.$('.top').after(guideView.render(true).$el.hide());
                     this.switchToGuide();
-                }.bind(this));
+                });
 
                 log({
                     'event' : 'debug.show.welcome',
@@ -202,11 +202,9 @@
                 feedListView.initLayout();
             },
             switchToBillboard : function () {
-                guideView.$el.slideUp(function () {
-                    guideView.remove();
-                });
+                guideView.$el.slideUp(guideView.remove.bind(guideView));
 
-                this.$('.feed-ctn').find('.tips').toggleClass('hide', false);
+                this.$('.feed-ctn .tips').toggleClass('hide', false);
                 feedListView.initLayout();
             },
             scrollTopAnimation : function () {
@@ -215,9 +213,7 @@
             deviceViewAnimationAsync : function () {
                 var deferred = $.Deferred();
 
-                deviceView.$el.one('webkitAnimationEnd', function () {
-                    deferred.resolve();
-                });
+                deviceView.$el.one('webkitAnimationEnd', deferred.resolve);
 
                 return deferred.promise();
             },
@@ -315,9 +311,7 @@
                         });
                     } else {
                         this.$('.bg').prepend($('<iframe>').attr('src', bg.url).addClass('content'));
-                        this.$('.content').one('load', function () {
-                            deferred.resolve();
-                        });
+                        this.$('.content').one('load', deferred.resolve);
                     }
                 }.bind(this)).fail(deferred.reject);
 

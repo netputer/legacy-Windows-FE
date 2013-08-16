@@ -188,7 +188,8 @@
 
                 if (group.recommended && group.recommended.length > 0) {
                     var recommended = new AppModel({
-                        category : 'recommended'
+                        id : 'recommended',
+                        updateCategory : 'recommended'
                     });
 
                     result = result.concat(recommended, group.recommended);
@@ -196,7 +197,8 @@
 
                 if (group.notRecommended && group.notRecommended.length > 0) {
                     var notRecommended = new AppModel({
-                        category : 'notRecommended'
+                        id : 'notRecommended',
+                        updateCategory : 'notRecommended'
                     });
 
                     result = result.concat(notRecommended, group.notRecommended);
@@ -205,7 +207,7 @@
                 return result;
             },
             getUpdatableAppsByType : function (type) {
-                return this.filter(function (app) {
+                return _.filter(this.getUpdatableApps(), function (app) {
                     return app.get('recommendedType') === type;
                 });
             },
