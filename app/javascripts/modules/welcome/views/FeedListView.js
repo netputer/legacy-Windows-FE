@@ -52,12 +52,6 @@
                     var lastShownTimestamp;
                     var show;
 
-                    if (fisrtScreen) {
-                        collection.unshift({
-                            type : 99
-                        });
-                    }
-
                     collection.each(function (feed) {
                         var targetView;
                         switch (feed.get('type')) {
