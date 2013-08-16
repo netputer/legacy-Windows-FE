@@ -55,7 +55,11 @@
                     externalFreeCapacity : Device.get('externalFreeCapacity')
                 }));
 
-                this.$content.find('.external-capacity').toggle(Device.get('hasSDCard'));
+                if (Device.get('hasSDCard')) {
+                    this.$content.find('.external-capacity').css('display', '-webkit-box');
+                } else {
+                    this.$content.find('.external-capacity').hide();
+                }
             }
         });
 
