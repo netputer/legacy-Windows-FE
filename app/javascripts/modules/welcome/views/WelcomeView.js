@@ -164,29 +164,29 @@
                     connectionType = 'disconnected';
                 }
 
-                if (FunctionSwitch.ENABLE_USER_GUIDE && !Settings.get('user_guide_shown')) {
-                    // TODO 为何事件不成功！！！
-                    var handlerReady = IO.Backend.Device.onmessage({
-                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
-                    }, function () {
-                        this.switchToGuide();
-                        IO.Backend.Device.offmessage(handlerReady);
-                    }, this);
+                if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                    if (!Settings.get('user_guide_shown')) {
+                        var handlerReady = IO.Backend.Device.onmessage({
+                            'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
+                        }, function () {
+                            this.switchToGuide();
+                            IO.Backend.Device.offmessage(handlerReady);
+                        }, this);
+                    }
 
-                    var handlerFinish = IO.Backend.Device.onmessage({
+                    IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
-                    }, function () {
-                        this.switchToBillboard();
-                        IO.Backend.Device.offmessage(handlerFinish);
-                    }, this);
+                    }, this.switchToBillboard, this);
 
-                    var handlerEmpty = IO.Backend.Device.onmessage({
+                    IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY
-                    }, function () {
-                        this.switchToBillboard();
-                        IO.Backend.Device.offmessage(handlerEmpty);
-                    }, this);
+                    }, this.switchToBillboard, this);
                 }
+
+                this.listenTo(Backbone, 'welcome:showTips', function () {
+                    this.$('.top').after(guideView.render(true).$el.hide());
+                    this.switchToGuide();
+                });
 
                 log({
                     'event' : 'debug.show.welcome',
@@ -197,11 +197,14 @@
             },
             switchToGuide : function () {
                 guideView.$el.slideDown();
+
+                this.$('.feed-ctn').find('.tips').toggleClass('hide', true);
+                feedListView.initLayout();
             },
             switchToBillboard : function () {
-                guideView.$el.slideUp();
+                guideView.$el.slideUp(guideView.remove.bind(guideView));
 
-                this.$('.feed-ctn').find('.tips').removeClass('hide');
+                this.$('.feed-ctn .tips').toggleClass('hide', false);
                 feedListView.initLayout();
             },
             scrollTopAnimation : function () {
@@ -210,9 +213,7 @@
             deviceViewAnimationAsync : function () {
                 var deferred = $.Deferred();
 
-                deviceView.$el.one('webkitAnimationEnd', function () {
-                    deferred.resolve();
-                });
+                deviceView.$el.one('webkitAnimationEnd', deferred.resolve);
 
                 return deferred.promise();
             },
@@ -310,9 +311,7 @@
                         });
                     } else {
                         this.$('.bg').prepend($('<iframe>').attr('src', bg.url).addClass('content'));
-                        this.$('.content').one('load', function () {
-                            deferred.resolve();
-                        });
+                        this.$('.content').one('load', deferred.resolve);
                     }
                 }.bind(this)).fail(deferred.reject);
 

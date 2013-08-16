@@ -14,12 +14,19 @@
         var GuideView = Backbone.View.extend({
             tagName : 'iframe',
             className : 'w-welcome-guide-frame',
-            render : function () {
+            render : function (tipsOnly) {
+                var url = CONFIG.BASE_PATH + 'modules/welcome/guide/guide.html';
+
+                if (tipsOnly === true) {
+                    url = url + '?tips=1';
+                }
+
                 this.$el.attr({
-                    src : CONFIG.BASE_PATH + 'modules/welcome/guide/guide.html' + Environment.get('search')
+                    src : url
                 }).css({
                     display : 'block'
                 });
+
                 return this;
             }
         });
