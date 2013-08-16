@@ -38,14 +38,28 @@
     top: 0;
 
     .button-return {
+        color: #333;
         display: none;
         margin-top: -2px;
         position: absolute;
+        text-shadow: none;
+
+        &:enabled:hover:not(.active):not(:active),
+        &:enabled:focus {
+            color: #333;
+            text-shadow: none;
+        }
 
         &:hover {
             .return{
                 @include button-sprite(return-hover);
             }
+        }
+
+        &:enabled:active,
+        &.active {
+            color: #333;
+            text-shadow: none;
         }
 
         &:active {
