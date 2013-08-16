@@ -80,10 +80,6 @@
                 this.$('.button-export').prop({
                     disabled : conversationsCollection.length === 0
                 });
-
-                this.$('.button-refresh').prop({
-                    disabled : !isConnected
-                });
             },
             clickButtonSend : function () {
                 MessageSenderView.getInstance().show();
@@ -133,11 +129,6 @@
                 } else {
                     handler();
                 }
-            },
-            clickButtonRefresh : function () {
-                conversationsCollection.syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
-                });
             },
             events : {
                 'click .button-send' : 'clickButtonSend',

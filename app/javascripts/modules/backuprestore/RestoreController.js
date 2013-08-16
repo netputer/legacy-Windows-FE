@@ -7,6 +7,7 @@
         'underscore',
         'IOBackendDevice',
         'Configuration',
+        'Log',
         'ui/AlertWindow',
         'Internationalization',
         'FunctionSwitch',
@@ -29,6 +30,7 @@
         _,
         IO,
         CONFIG,
+        log,
         AlertWindow,
         i18n,
         FunctionSwitch,
@@ -250,6 +252,8 @@
                 var is_folder_empty = (RestoreContextModel.get('backupFileList').length === 0);
                 var targetView = is_folder_empty ? restoreSelectFileFolderView : restoreChooseFileView;
                 this.showNextAndRemoveCurrent(currentView, targetView);
+
+                log({'event' : 'debug.restore.folder_empty'});
             },
             tryToStartRestore : function () {
                 if (RestoreContextModel.IsContactSelected && !RestoreContextModel.get('isAccountReady')) {

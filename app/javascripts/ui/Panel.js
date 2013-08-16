@@ -11,7 +11,9 @@
         'jquery',
         'ui/UIHelper',
         'ui/TemplateFactory',
-        'ui/behavior/Behaviors'
+        'ui/behavior/Behaviors',
+        'IO',
+        'Configuration'
     ], function (
         _,
         Backbone,
@@ -19,7 +21,9 @@
         $,
         UIHelper,
         TemplateFactory,
-        Behaviors
+        Behaviors,
+        IO,
+        CONFIG
     ) {
         console.log('Panel - File loaded.');
 
@@ -168,6 +172,18 @@
                         this[key] = options[key];
                     }
                 }
+
+                this.on(EventsMapping.SHOW, function (argument) {
+                    window.externalCall('', 'navigation', JSON.stringify({
+                        canGoBack : false,
+                        canGoForward : false,
+                        canReload : false
+                    }));
+                });
+
+                this.on(EventsMapping.HIDE, function (argument) {
+                    IO.sendCustomEventsAsync(CONFIG.events.HISTORY_CHANGED);
+                });
             },
             render : function () {
                 if (this.rendered) {

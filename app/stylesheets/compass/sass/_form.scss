@@ -34,7 +34,6 @@ button {
     }
 
     &:disabled {
-        cursor: not-allowed;
         opacity: $disabledOpacity;
     }
 
@@ -414,7 +413,6 @@ input[type="checkbox"] {
     }
 
     &:disabled {
-        cursor: not-allowed;
         opacity: $disabledOpacity;
     }
 
@@ -448,7 +446,6 @@ input[type="radio"] {
     }
 
     &:disabled {
-        cursor: not-allowed;
         opacity: $disabledOpacity;
     }
 }

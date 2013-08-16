@@ -123,10 +123,17 @@
                     }
                 }
 
-                Backbone.trigger('switchModule', {
-                    module : this.model.get('module'),
-                    tab : this.model.get('tab')
-                });
+                if (this.model.id === 3 && AppsCollection.getInstance().getUpdatableApps().length > 0) {
+                    Backbone.trigger('switchModule', {
+                        module : 'app',
+                        tab : 'update'
+                    });
+                } else {
+                    Backbone.trigger('switchModule', {
+                        module : this.model.get('module'),
+                        tab : this.model.get('tab')
+                    });
+                }
             },
             clickTitleCount : function (evt) {
                 var data = {};
