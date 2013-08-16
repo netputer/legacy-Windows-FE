@@ -210,7 +210,9 @@
                 break;
             case 'photo':
                 targetCollections.push(PhotoCollection.getInstance());
-                targetCollections.push(CloudPhotoCollection.getInstance());
+                if (Account.get('isLogin')) {
+                    targetCollections.push(CloudPhotoCollection.getInstance());
+                }
                 break;
             case 'video':
                 targetCollections.push(VideosCollection.getInstance());
