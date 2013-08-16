@@ -341,7 +341,13 @@
                     success : function (resp) {
                         if (resp.state_code === 200) {
                             console.log('ConversationsCollection - Search success.');
-                            this.modelsByKeywordIds = resp.body.value.split(',');
+
+                            var value = resp.body.value;
+                            if (value.length === 0) {
+                                this.modelsByKeywordIds = [];
+                            } else {
+                                this.modelsByKeywordIds = resp.body.value.split(',');
+                            }
                             deferred.resolve(resp);
 
                         } else {
