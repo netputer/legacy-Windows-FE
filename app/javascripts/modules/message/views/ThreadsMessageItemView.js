@@ -62,7 +62,9 @@
 
                 if (!this.model.isRead) {
                     setTimeout(function () {
-                        this.model.markAsReadAsync();
+                        if (window.SnapPea.CurrentModule === 'message') {
+                            this.model.markAsReadAsync();
+                        }
                     }.bind(this), 3000);
                 }
                 return this;

@@ -23,11 +23,13 @@
     ) {
         console.log('AvatarEditorWindowView - File loaded. ');
 
-        var contactsCollection = ContactsCollection.getInstance();
+        var contactsCollection;
 
         var AvatarEditorWindowView = Panel.extend({
             initialize : function () {
                 AvatarEditorWindowView.__super__.initialize.apply(this, arguments);
+
+                contactsCollection =  contactsCollection || ContactsCollection.getInstance();
 
                 var clipImage;
                 Object.defineProperties(this, {
@@ -42,7 +44,6 @@
                 });
 
                 this.once('show', function () {
-
                     if (this.options.selectPhoto) {
                         this.listenTo(this.options.selectPhoto, 'change:orientation', function () {
                             this.clipImage.remove();
@@ -56,7 +57,6 @@
                             this.clipImage.remove();
                         });
                     } else {
-
                         this.createClipImage(this.options.selectPhotoPath);
                         this.once('remove', this.clipImage.remove, this);
                     }
@@ -72,7 +72,6 @@
                 this.$reSelectBtn = $('<button>').html(i18n.misc.RESELECT_FILE_TEXT).addClass('button-reselect-file').addClass('primary');
             },
             createClipImage : function (source) {
-
                 var path;
                 var orientation;
 
@@ -91,7 +90,6 @@
                 this.$('.w-ui-window-body').append(this.clipImage.render().$el);
             },
             render : function () {
-
                 _.extend(this.events, AvatarEditorWindowView.__super__.events);
                 this.delegateEvents();
                 AvatarEditorWindowView.__super__.render.apply(this, arguments);
