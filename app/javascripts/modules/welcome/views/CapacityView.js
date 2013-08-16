@@ -54,6 +54,8 @@
                     internalFreeCapacity : Device.get('internalFreeCapacity'),
                     externalFreeCapacity : Device.get('externalFreeCapacity')
                 }));
+
+                this.$content.find('.external-capacity').toggle(Device.get('hasSDCard'));
             }
         });
 
