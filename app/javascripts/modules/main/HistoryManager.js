@@ -110,7 +110,7 @@
 
                 log({
                     'event' : 'ui.click.native_toolbar_back',
-                    'current' : SnapPea.currentModule,
+                    'current' : SnapPea.CurrentModule,
                     'target' : target.module
                 });
 
@@ -145,7 +145,7 @@
 
                 log({
                     'event' : 'ui.click.native_toolbar_forward',
-                    'current' : SnapPea.currentModule,
+                    'current' : SnapPea.CurrentModule,
                     'target' : target.module
                 });
 
@@ -210,7 +210,9 @@
                 break;
             case 'photo':
                 targetCollections.push(PhotoCollection.getInstance());
-                targetCollections.push(CloudPhotoCollection.getInstance());
+                if (Account.get('isLogin')) {
+                    targetCollections.push(CloudPhotoCollection.getInstance());
+                }
                 break;
             case 'video':
                 targetCollections.push(VideosCollection.getInstance());
@@ -225,7 +227,7 @@
 
             log({
                 'event' : 'ui.click.native_toolbar_refresh',
-                'module' : SnapPea.currentModule
+                'module' : SnapPea.CurrentModule
             });
         });
 
