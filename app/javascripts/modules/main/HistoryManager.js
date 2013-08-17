@@ -218,8 +218,10 @@
             }
 
             _.each(targetCollections, function (targetCollection) {
-                targetCollection.syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
+                targetCollection.syncAsync().fail(function (resp) {
+                    if (resp.state_code !== 702) {
+                        alert(i18n.misc.REFRESH_ERROR);
+                    }
                 });
             });
 
