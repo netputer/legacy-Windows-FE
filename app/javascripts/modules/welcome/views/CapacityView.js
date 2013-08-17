@@ -27,22 +27,18 @@
             initialize : function () {
                 CapacityView.__super__.initialize.apply(this, arguments);
 
-                this.listenTo(Device, 'change:isConnected', function (Device, isConnected) {
-                    $.when(Device.getDeviceCapacityAsync(), Device.getSDCapacityAsync()).done(function () {
+                var fillData = function () {
+                    $.when(Device.getDeviceCapacityAsync(), Device.getSDCapacityAsync()).always(function () {
                         this.fillData(Device);
                     }.bind(this));
-                });
+                };
 
-                this.listenTo(Backbone, 'switchModule', function (data) {
-                    $.when(Device.getDeviceCapacityAsync(), Device.getSDCapacityAsync()).done(function () {
-                        this.fillData(Device);
-                    }.bind(this));
-                });
+                this.listenTo(Device, 'change:isConnected', fillData);
+
+                this.listenTo(Backbone, 'switchModule', fillData);
 
                 if (Device.get('isConnected')) {
-                    $.when(Device.getDeviceCapacityAsync(), Device.getSDCapacityAsync()).done(function () {
-                        this.fillData(Device);
-                    }.bind(this));
+                    fillData.call(this);
                 }
 
                 this.fillData(Device);
@@ -54,6 +50,14 @@
                     internalFreeCapacity : Device.get('internalFreeCapacity'),
                     externalFreeCapacity : Device.get('externalFreeCapacity')
                 }));
+
+                if (!(Device.get('externalCapacity') === 0 &&
+                        Device.get('externalFreeCapacity') === 0) &&
+                        Device.get('hasSDCard')) {
+                    this.$content.find('.external-capacity').css('display', '-webkit-box');
+                } else {
+                    this.$content.find('.external-capacity').hide();
+                }
             }
         });
 
