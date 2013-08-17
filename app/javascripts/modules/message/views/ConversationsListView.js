@@ -165,6 +165,13 @@
                 return deferred.promise();
             },
             toggleEmptyTip : function () {
+
+                if (conversationList.currentSetName === 'search') {
+                    conversationList.emptyTip = '';
+                } else {
+                    conversationList.emptyTip = i18n.message.NO_CONVERSATION;
+                }
+
                 if (conversationsCollection.loading || conversationsCollection.syncing || Device.get('isFastADB')) {
                     conversationList.toggleEmptyTip(false);
                     return;
@@ -199,7 +206,6 @@
                     $observer : this.options.$observer,
                     itemHeight : 45,
                     listenToCollection : conversationsCollection,
-                    emptyTip : i18n.message.NO_CONVERSATION,
                     loading : conversationsCollection.loading || conversationsCollection.syncing
                 });
 
@@ -275,9 +281,8 @@
             },
             showByKeyword : function () {
                 conversationsCollection.searchConversationAsync().done(function (resp) {
-                    this.switchListDataSet('search');
-                    conversationList.toggleEmptyTip(false);
 
+                    this.switchListDataSet('search');
                     conversationList.deselectAll({
                         silent : true
                     });
