@@ -135,7 +135,7 @@
 
                 this.$('.top').append(deviceView.render().$el)
                     .append(clockView.render().$el)
-                    .after(guideView.render().$el.hide());
+                    .after(guideView.render().$el);
 
                 this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
 
@@ -184,8 +184,8 @@
                 }
 
                 this.listenTo(Backbone, 'welcome:showTips', function () {
-                    this.$('.top').after(guideView.render(true).$el.hide());
-                    this.switchToGuide();
+                    this.$('.top').after(guideView.render(true).$el);
+                    setTimeout(this.switchToGuide.bind(this));
                 });
 
                 log({
@@ -195,14 +195,28 @@
 
                 return this;
             },
+            scrollToGuide : function () {
+                if (Settings.get('user_guide_first_shown')) {
+                    return;
+                }
+
+                this.$el.animate({
+                    scrollTop: guideView.$el.offset().top - 65
+                }, 1000);
+
+                Settings.set('user_guide_first_shown', true, true);
+            },
             switchToGuide : function () {
-                guideView.$el.slideDown();
+                guideView.$el.show().css('height', '360px');
+                this.scrollToGuide.bind(this);
 
                 this.$('.feed-ctn').find('.tips').toggleClass('hide', true);
                 feedListView.initLayout();
             },
             switchToBillboard : function () {
-                guideView.$el.slideUp(guideView.remove.bind(guideView));
+                if (guideView.$el.css('height') !== '0px') {
+                    guideView.$el.css('height', 0).one('webkitTransitionEnd', guideView.remove.bind(guideView));
+                }
 
                 this.$('.feed-ctn .tips').toggleClass('hide', false);
                 feedListView.initLayout();
