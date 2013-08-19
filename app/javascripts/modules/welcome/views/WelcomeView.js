@@ -201,7 +201,7 @@
                 }
 
                 this.$el.animate({
-                    scrollTop: $('.w-welcome-guide-frame').offset().top - 40 - 25
+                    scrollTop: guideView.$el.offset().top - 65
                 }, 1000);
 
                 Settings.set('user_guide_first_shown', true, true);
