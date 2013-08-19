@@ -195,8 +195,19 @@
 
                 return this;
             },
+            scrollToGuide : function () {
+                if (Settings.get('user_guide_first_shown')) {
+                    return;
+                }
+
+                this.$el.animate({
+                    scrollTop: $('.w-welcome-guide-frame').offset().top - 40 - 25
+                }, 1000);
+
+                Settings.set('user_guide_first_shown', true, true);
+            },
             switchToGuide : function () {
-                guideView.$el.slideDown();
+                guideView.$el.slideDown(this.scrollToGuide.bind(this));
 
                 this.$('.feed-ctn').find('.tips').toggleClass('hide', true);
                 feedListView.initLayout();
