@@ -207,8 +207,7 @@
                 Settings.set('user_guide_first_shown', true, true);
             },
             switchToGuide : function () {
-                guideView.$el.show().css('height', '360px');
-                this.scrollToGuide.bind(this);
+                guideView.$el.show().css('height', '360px').one('webkitTransitionEnd', this.scrollToGuide.bind(this));
 
                 this.$('.feed-ctn').find('.tips').toggleClass('hide', true);
                 feedListView.initLayout();
@@ -233,7 +232,6 @@
             },
             loadBackgroundAsync : function () {
                 var deferred = $.Deferred();
-
                 IO.requestAsync(CONFIG.actions.WELCOME_BACKGROUND).done(deferred.resolve).fail(deferred.reject);
 
                 return deferred.promise();
