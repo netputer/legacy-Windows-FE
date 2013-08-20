@@ -196,7 +196,10 @@
                 return this;
             },
             scrollToGuide : function () {
-                if (Settings.get('user_guide_first_shown')) {
+                // if (Settings.get('user_guide_first_shown')) {
+                //     return;
+                // }
+                if (window.localStorage.getItem('user_guide_shown') === 'true') {
                     return;
                 }
 
@@ -204,7 +207,8 @@
                     scrollTop: guideView.$el.offset().top - 65
                 }, 1000);
 
-                Settings.set('user_guide_first_shown', true, true);
+                // Settings.set('user_guide_first_shown', true, true);
+                window.localStorage.setItem('user_guide_shown', 'true');
             },
             switchToGuide : function () {
                 guideView.$el.show().css('height', '360px').one('webkitTransitionEnd', this.scrollToGuide.bind(this));
