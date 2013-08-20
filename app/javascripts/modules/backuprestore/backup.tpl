@@ -91,7 +91,8 @@
 <script type="text/template" id="backup-progress-item">
     <div class="icon-ctn"></div>
     <div class="status">
-        <div class="progress-desc"></div>
+        <span class="progress-desc"></span>
+        <span class="progress-dup text-thirdly"></span>
         <div class="progress hbox">
             <progress class="tiny" max="" value="" />
         </div>
