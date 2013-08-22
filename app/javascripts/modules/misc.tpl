@@ -8,7 +8,9 @@
 </script>
 
 <script type="text/x-ui-template" id="main">
-    <div class="sidebar vbox"></div>
+    <div class="sidebar vbox">
+        <div class="w-misc-agent-host"></div>
+    </div>
     <div class="module-ctn"></div>
 </script>
 
@@ -147,4 +149,11 @@
     <div class="w-wanxiaodou-img {{= tip }}"></div>
 </script>
 
+<script type="text/x-ui-template" id="agent-notifi">
+    <div class="w-misc-agent-notifi">
+        <div class="bg"></div>
+        <div class="tip">{{= i18n.misc.AGENT_NOTIFI }}</div>
+        <div class="button-close"></div>
+    </div>
+</script>
 </templates>

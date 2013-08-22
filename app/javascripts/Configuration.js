@@ -340,6 +340,7 @@
                 SETTING_PRIVACY : 'setting.privacy',
                 THEME_CHANGED : 'themes.folder_changed',
                 SETTING_APP_CHANGE : 'app.setting.changed',
+                REVERSE_PROXY_START : 'reverse_proxy.start',
 
                 // Backend events - Task manager module
                 TASK_START : 'jobs.start',
