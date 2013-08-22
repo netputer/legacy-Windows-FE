@@ -974,6 +974,10 @@
         }
     }
 
+    .button-set-wallpaper {
+        display: none;
+    }
+
     .w-ui-buttongroup:hover button {
         background: rgba(255, 255, 255, .1);
         border-color: rgba(255, 255, 255, .2);

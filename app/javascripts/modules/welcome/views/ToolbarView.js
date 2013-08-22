@@ -22,7 +22,9 @@
         'backuprestore/RestoreController',
         'welcome/views/DeviceView',
         'welcome/views/CapacityView',
-        'welcome/WelcomeService'
+        'welcome/WelcomeService',
+        'task/TaskService',
+        'task/models/TaskModel'
     ], function (
         Backbone,
         _,
@@ -45,7 +47,9 @@
         RestoreController,
         DeviceView,
         CapacityView,
-        WelcomeService
+        WelcomeService,
+        TaskService,
+        TaskModel
     ) {
 
         var alert = window.alert;
@@ -131,6 +135,22 @@
                 });
 
                 this.listenTo(Device, 'change:isConnected change:canScreenshot', this.setButtonState);
+
+                var wallpaperUrl;
+
+                Object.defineProperties(this, {
+                    wallpaperUrl : {
+                        set : function (value) {
+                            if (!!value) {
+                                wallpaperUrl = value;
+                                this.$('.button-set-wallpaper').show();
+                            }
+                        },
+                        get : function () {
+                            return wallpaperUrl;
+                        }
+                    }
+                });
             },
             setButtonState : function () {
                 this.$('.button-open-sd, .button-backup, .button-restore, .button-set-wallpaper')
@@ -297,7 +317,30 @@
                 });
             },
             clickButtonSetWallpaper : function () {
-                return;
+                var model = new TaskModel();
+
+                model.set({
+                    downloadUrl : this.wallpaperUrl,
+                    iconPath : CONFIG.enums.TASK_DEFAULT_ICON_PATH_PHOTO,
+                    modelType : CONFIG.enums.MODEL_TYPE_PHOTO,
+                    title : '图片名字要写啥吖',
+                    set_wallpaper : true
+                });
+
+                TaskService.downloadAsync(model);
+
+                var handler = IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.TASK_STOP
+                }, function (msg) {
+                    var status = msg.status[0];
+
+                    if (status.more_info === 'set_wallpaper_auto') {
+                        model.set('detail', status.detail);
+                        model.setAsWallpaperAsync();
+
+                        IO.Backend.Device.offmessage(handler);
+                    }
+                }.bind(this));
             },
             clickButtonTop : function () {
                 this.trigger('top');

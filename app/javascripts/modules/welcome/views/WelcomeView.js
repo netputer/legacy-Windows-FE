@@ -314,6 +314,8 @@
                 this.loadBackgroundAsync().done(function (resp) {
                     var bg = resp[0];
                     if (bg.type === 0) {
+                        toolbarView.wallpaperUrl = bg.url;
+
                         this.renderWallpaperInCanvasAsync(bg.url, 'new').done(function ($canvas) {
                             deferred.resolve();
 

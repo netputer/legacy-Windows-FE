@@ -170,11 +170,9 @@
     <button class="w-icon-btn button-open-sd transparent min">
         <span class="icon sd-white"></span>{{= i18n.welcome.TOOL_SD }}
     </button>
-    <!--
     <button class="w-icon-btn button-set-wallpaper transparent min">
         <span class="icon wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
     </button>
-    -->
     <div class='spliter'></div>
     <button class="button-top transparent min">{{= i18n.welcome.TOP }}</button>
 </script>
