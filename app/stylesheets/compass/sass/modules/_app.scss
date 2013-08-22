@@ -568,8 +568,9 @@
 
 .w-ui-smartlist-body-ctn {
     .category {
+        font-weight: bold;
         line-height: 36px;
-        padding-left: 34px;
+        padding-left: 10px;
     }
 
     &.odd > .category {

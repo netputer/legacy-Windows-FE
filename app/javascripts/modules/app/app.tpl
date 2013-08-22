@@ -261,7 +261,7 @@
         {{= i18n.app.RECOMMENDED_UPDATE }}
     </div>
     <div class="update hbox">
-        <button class="button-update min" data-type="{{= it.updateCategory }}">{{= i18n.app.UPDATE }}</button>
+        <button class="button-update min" data-type="{{= it.updateCategory }}">{{= i18n.app.UPDATE_RECOMMENDED }}</button>
     </div>
     {{??}}
     <div class="info hbox">

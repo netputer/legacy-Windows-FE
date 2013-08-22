@@ -4,6 +4,7 @@ define({
     LATEST_LABEL : '最新：',
     DISLIKE : '猜错了',
     UPDATE_ALL : '一键升级',
+    UPDATE_RECOMMENDED : '全部升级',
     UPDATE : '升级',
     UPDATING : '升级中',
     COULD_UPDATE_TO : '升至：',

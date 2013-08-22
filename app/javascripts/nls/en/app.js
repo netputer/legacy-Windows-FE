@@ -4,6 +4,7 @@ define({
     LATEST_LABEL : 'Latest:',
     DISLIKE : 'Wrong guess',
     UPDATE_ALL : 'One-click update',
+    UPDATE_RECOMMENDED : '全部升级',
     UPDATE : 'Update',
     UPDATING : 'Update',
     COULD_UPDATE_TO : 'Update available',
