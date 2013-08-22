@@ -241,6 +241,8 @@
         width: 100%;
         -webkit-transform: translate3d(0, 0, 0);
 
+
+        iframe.content,
         .content {
             display: block;
             height: 760px;
@@ -251,6 +253,10 @@
             top: 0;
             -webkit-transform: translate3d(0, 0, 0);
             -webkit-transition: opacity .7s linear;
+        }
+
+        iframe.content {
+            width: 100%;
         }
 
         .mask {
