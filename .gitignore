@@ -12,3 +12,5 @@
 /lint.log
 /result.txt
 /duplicated.txt
+
+tools/build.xml

@@ -140,7 +140,10 @@
                 udid : '',
                 snapshotList : [],
                 snapshotInfoDict : {},
-                sanpshotListLoadFinish : false
+                sanpshotListLoadFinish : false,
+
+                smsDupCount : 0,
+                contactsDupCount : 0
             },
             clearCache : function () {
                 this.set('backupType', 0);
@@ -162,6 +165,9 @@
                 this.set('snapshotList', []);
                 this.set('snapshotInfoDict', {});
                 this.set('sanpshotListLoadFinish', false);
+
+                this.set('smsDupCount', 0);
+                this.set('contactsDupCount', 0);
             }
         });
 
