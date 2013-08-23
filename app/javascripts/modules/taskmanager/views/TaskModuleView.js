@@ -9,6 +9,7 @@
         'IOBackendDevice',
         'task/views/TaskModuleToolbarView',
         'task/views/TaskListView',
+        'task/views/TaskModuleCapacityView',
         'task/collections/TasksCollection'
     ], function (
         Backbone,
@@ -19,6 +20,7 @@
         IO,
         TaskModuleToolbarView,
         TaskListView,
+        TaskModuleCapacityView,
         TasksCollection
     ) {
         console.log('TaskModuleView - File loaded.');
@@ -69,6 +71,8 @@
                 taskListView = TaskListView.getInstance();
 
                 this.$('.ctn').append(taskListView.render().$el);
+
+                this.$('.ctn').append(TaskModuleCapacityView.getInstance().render().$el);
 
                 this.rendered = true;
 

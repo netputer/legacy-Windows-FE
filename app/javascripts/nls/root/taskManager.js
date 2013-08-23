@@ -63,6 +63,8 @@ define({
     DELETE_TASK : '删除应用',
     CONTINUE_INSTALL : '继续安装',
 
+    CAPACITY_TIPS : '{1}（{2} / {3}，剩余空间 {4}）',
+
     /* Install failed reasons */
     INSTALL_FAILED_DEVICE_NOT_FOUND : '设备没有连接，无法安装',
     INSTALL_FAILED_UNKNOWN : '安装失败，未知错误',
