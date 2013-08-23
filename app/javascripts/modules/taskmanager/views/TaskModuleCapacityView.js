@@ -2,6 +2,7 @@
 (function (window) {
     define([
         'underscore',
+        'jquery',
         'backbone',
         'doT',
         'Internationalization',
@@ -13,6 +14,7 @@
         'task/views/CapacityTipsView'
     ], function (
         _,
+        $,
         Backbone,
         doT,
         i18n,
