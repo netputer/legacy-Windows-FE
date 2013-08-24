@@ -179,6 +179,12 @@
 
 <script type="text/x-ui-template" id="device-tools">
     <div class="btn-ctn">
+        <button class="w-icon-btn transparent min button-capture">
+            <span class="icon capture"></span>
+            {{= i18n.welcome.SCREEN_SHOT_TEXT }}
+        </button>
+    </div>
+    <div class="btn-ctn">
         <button class="w-icon-btn transparent min button-refresh">
             <span class="icon refresh"></span>
             {{= i18n.misc.REFRESH }}

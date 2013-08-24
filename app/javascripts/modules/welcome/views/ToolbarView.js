@@ -136,6 +136,8 @@
 
                 this.listenTo(Device, 'change:isConnected change:canScreenshot', this.setButtonState);
 
+                deviceView.on('capture', this.clickButtonScreenShot.bind(this));
+
                 var wallpaperUrl;
 
                 Object.defineProperties(this, {

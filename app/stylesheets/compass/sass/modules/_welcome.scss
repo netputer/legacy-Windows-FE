@@ -707,6 +707,23 @@
     }
 
     button {
+        .icon.capture {
+            @include button-sprite(screenshot);
+        }
+
+        &:enabled:not(.active):not(:active):hover .icon {
+            &.capture {
+                @include button-sprite(screenshot-hover);
+            }
+        }
+
+        &:enabled:active .icon,
+        &.active .icon {
+            &.capture {
+                @include button-sprite(screenshot-active);
+            }
+        }
+
         @each $icon in refresh, play, stop, fullscreen {
             .icon.#{$icon} {
                 @include button-sprite(#{$icon}-light);
