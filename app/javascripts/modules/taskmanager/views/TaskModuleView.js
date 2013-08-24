@@ -1,11 +1,13 @@
 /*global define*/
 (function (window) {
     define([
+        'jquery',
         'backbone',
         'doT',
         'underscore',
         'ui/TemplateFactory',
         'ui/AlertWindow',
+        'Internationalization',
         'Configuration',
         'IOBackendDevice',
         'task/views/TaskModuleToolbarView',
@@ -13,11 +15,13 @@
         'task/collections/TasksCollection',
         'Log'
     ], function (
+        $,
         Backbone,
         doT,
         _,
         TemplateFactory,
         AlertWindow,
+        i18n,
         CONFIG,
         IO,
         TaskModuleToolbarView,
@@ -42,7 +46,7 @@
                     buttons : [{
                         $button : $('<button/>').html(i18n.taskManager.SEND_TO_PHONE).addClass('button_yes primary'),
                         eventName : 'button_yes'
-                    },{
+                    }, {
                         $button : $('<button/>').html(i18n.taskManager.DO_NOT_SEND_TO_PHONE).addClass('button_cancel'),
                         eventName : 'button_cancel'
                     }],
@@ -50,7 +54,9 @@
                 });
             }
 
-            var yesHandler = function () {
+            var yesHandler;
+            var cancelHandler;
+            yesHandler = function () {
                 IO.requestAsync({
                     url : msg.url + '&push=true'
                 });
@@ -61,10 +67,12 @@
                     'click' : isClick
                 });
 
-                pushNotificationView.off('button_cancel', cancelHandler);
+                if (cancelHandler) {
+                    pushNotificationView.off('button_cancel', cancelHandler);
+                }
             };
 
-            var cancelHandler = function () {
+            cancelHandler = function () {
                 IO.requestAsync({
                     url : msg.url + '&push=false'
                 });
@@ -75,7 +83,9 @@
                     'click' : isClick
                 });
 
-                pushNotificationView.off('button_yes', yesHandler);
+                if (yesHandler) {
+                    pushNotificationView.off('button_yes', yesHandler);
+                }
             };
 
             pushNotificationView.once('button_yes', yesHandler);

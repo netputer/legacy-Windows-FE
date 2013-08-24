@@ -197,7 +197,7 @@
                 evt.stopPropagation();
                 IO.requestAsync(CONFIG.actions.CONNET_PHONE);
             },
-            clickButtonPushToPhone : function(evt) {
+            clickButtonPushToPhone : function (evt) {
                 evt.stopPropagation();
                 this.model.forceRestartAsync();
             },

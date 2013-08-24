@@ -53,11 +53,11 @@
                     button : [{
                         $button : $('<button/>').html(i18n.misc.SEND_TO_PHONE),
                         eventName : 'button_yes'
-                    },{
+                    }, {
                         $button : $('<button/>').html(i18n.mics.DO_NOT_SEND_TO_PHONE),
                         eventName : 'button_cancel'
                     }],
-                    $bodyContent : doT.template(TemplateFactory('misc', 'push-notification'))
+                    $bodyContent : doT.template(TemplateFactory.get('misc', 'push-notification'))
                 });
 
                 pushNotificationView.on('button_yes', function () {});
