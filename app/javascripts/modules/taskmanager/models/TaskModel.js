@@ -185,7 +185,7 @@
 
                 return deferred.promise();
             },
-            restartAsynw : function (options) {
+            restartAsync : function (options) {
                 var deferred = $.Deferred();
 
                 var data = {
