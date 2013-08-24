@@ -219,5 +219,7 @@ define({
     SAVE : '保存',
     DONTSAVE : '不保存',
     PHONE : '手机内存',
-    SD_CARD : 'SD 卡'
+    SD_CARD : 'SD 卡',
+
+    AGENT_NOTIFI : '连接成功，现在手机上的豌豆荚也可以用电脑上网，不耗费流量。'
 });
