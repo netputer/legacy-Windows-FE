@@ -62,7 +62,7 @@
             setButtonState : function () {
                 return;
             },
-            clickButtonOpenSD : function () {
+            openSD : function () {
                 var $btn = this.$('.button-open-sd').prop('disabled', true);
 
                 setTimeout(function () {
@@ -70,16 +70,30 @@
                 }.bind(this), 2000);
 
                 Device.manageSDCardAsync();
+            },
+            clickInfoSD : function () {
+                this.openSD();
 
-                // log({
-                //     'event' : 'ui.click.welcome_button_manage_sd'
-                // });
+                log({
+                    'event' : 'ui.click.task_info_sd'
+                });
+            },
+            clickButtonOpenSD : function () {
+                this.openSD();
+
+                log({
+                    'event' : 'ui.click.task_button_open_sd'
+                });
             },
             clickButtonChangeLocation : function () {
                 IO.requestAsync(CONFIG.actions.SAVE_APP_SETTING);
+
+                log({
+                    'event' : 'ui.click.task_button_change_location'
+                });
             },
             events : {
-                'click .info-sd' : 'clickButtonOpenSD',
+                'click .info-sd' : 'clickInfoSD',
                 'click .button-open-sd' : 'clickButtonOpenSD',
                 'click .button-change-location' : 'clickButtonChangeLocation'
             }
