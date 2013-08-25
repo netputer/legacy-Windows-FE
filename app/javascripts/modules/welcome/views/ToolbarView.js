@@ -318,31 +318,72 @@
                     'wrapWithShell' : wrapWithShell
                 });
             },
+            setAsWallpaperAsync : function (id) {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.PHOTO_SET_WALLPAPER,
+                    data : {
+                        photo_id : id
+                    },
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            deferred.resolve(resp);
+                        } else {
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+
+                return deferred.promise();
+            },
             clickButtonSetWallpaper : function () {
                 var model = new TaskModel();
+
+                var path = this.wallpaperUrl.split('/');
+                var fileName = path[path.length - 1];
 
                 model.set({
                     downloadUrl : this.wallpaperUrl,
                     iconPath : CONFIG.enums.TASK_DEFAULT_ICON_PATH_PHOTO,
                     modelType : CONFIG.enums.MODEL_TYPE_PHOTO,
-                    title : '图片名字要写啥吖',
+                    title : fileName,
                     set_wallpaper : true
                 });
 
-                TaskService.downloadAsync(model);
+                TaskService.downloadAsync(model).done(function (resp) {
+                    var jobId = resp.body.value;
 
-                var handler = IO.Backend.Device.onmessage({
-                    'data.channel' : CONFIG.events.TASK_STOP
-                }, function (msg) {
-                    var status = msg.status[0];
+                    var handler = IO.Backend.Device.onmessage({
+                        'data.channel' : CONFIG.events.PHOTO_DOWNLOAD_WITH_IDS
+                    }, function (msg) {
+                        var content;
 
-                    if (status.more_info === 'set_wallpaper_auto') {
-                        model.set('detail', status.detail);
-                        model.setAsWallpaperAsync();
+                        if (msg[0] === jobId) {
+                            IO.Backend.Device.offmessage(handler);
+                            this.setAsWallpaperAsync(msg[1]).done(function () {
+                                content = i18n.taskManager.SET_AS_WALLPAPER_SUCCESS;
+                            }).fail(function () {
+                                content = i18n.taskManager.SET_AS_WALLPAPER_FAIL;
+                            }).always(function () {
+                                alert(content);
+                                // if (boxViewInsance) {
+                                //     boxViewInsance.remove();
+                                // }
 
-                        IO.Backend.Device.offmessage(handler);
-                    }
-                }.bind(this));
+                                // boxViewInsance = new ToastBox({
+                                //     $content : content
+                                // });
+
+                                // boxViewInsance.once('remove', function () {
+                                //     boxViewInsance  = undefined;
+                                // });
+
+                                // boxViewInsance.show();
+                            });
+                        }
+                    }.bind(this));
+                });
             },
             clickButtonTop : function () {
                 this.trigger('top');
