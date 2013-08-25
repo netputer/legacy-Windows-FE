@@ -333,6 +333,26 @@
                             break;
                 }
                 break;
+            case CONFIG.enums.TASH_TYPE_PUSH_PHONE :
+                switch (it.state) {
+                    case CONFIG.enums.TASK_STATE_PROCESSING :
+        }}
+        <div class="progress running hbox"><progress class="tiny" max="100" value="100" /></div>
+        <div>{{= i18n.taskManager.PUSHING_PHONE }}</div>
+        {{
+                        break;
+                    case CONFIG.enums.TASK_STATE_SUCCESS :
+        }}
+        <div>{{= i18n.taskManager.PUSH_PHONE_SUCCESS }}</div>
+        {{
+                        break;
+                    case CONFIG.enums.TASK_STATE_FAILD :
+        }}
+         <div class="text-warning">{{= i18n.taskManager.PUSH_PHONE_FAILED }}</div>
+        {{
+                        break;
+                }
+                break;
             }
         }}
     </div>
@@ -409,6 +429,7 @@
                                 it.message === 'DEVICE_NOT_FOUND') {
     }}
     <button class="button-connect primary">{{= i18n.welcome.CONNECT_PHONE }}</button>
+    <span class="button-push-phone link">{{= i18n.taskManager.SEND_TO_PHONE }}</span>
     {{
                         } else {
                             if(!it.blockAction) {
@@ -472,6 +493,24 @@
                         break;
                 }
                 break;
+            case CONFIG.enums.TASH_TYPE_PUSH_PHONE :
+                switch (it.state) {
+                    case CONFIG.enums.TASK_STATE_FAILD :
+    }}
+    <button class="button-retry">{{=i18n.taskManager.RETRY_PUSH_PHONE }}</button>
+    {{
+                        break;
+                     case CONFIG.enums.TASK_STATE_SUCCESS :
+    }}
+    <button class="button-retry">{{=i18n.taskManager.RETRY_PUSH_PHONE }}</button>
+    {{
+                        break;
+                     case CONFIG.enums.TASK_STATE_PROCESSING :
+    }}
+    <button class="button-retry">{{=i18n.taskManager.CANCEL_PUSH_PHONE }}</button>
+    {{
+                        break;
+                }
         }
     }}
 </script>
@@ -604,4 +643,15 @@
         <div class="button-close"></div>
     </div>
 </script>
+
+<script type="text/x-ui-template" id="push-notification">
+    <div class="w-send-to-phone hbox wrap">
+        <div class="pic-ctn"></div>
+        <div class="content-ctn">
+            <h2 class="header-text">{{= i18n.taskManager.SEND_TO_PHONE_HEAD }}</h2>
+            <p class="text-secondary">{{= i18n.taskManager.SEND_TO_PHONE_CONTENT}}</p>
+        </div>
+    </div>
+</script>
+
 </templates>

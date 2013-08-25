@@ -357,6 +357,33 @@
     }
 }
 
+/********************************************************************************
+ * TaskManager sned to phone view
+ ********************************************************************************/
+
+.w-send-to-phone {
+    .pic-ctn {
+        height: 64px;
+        width: 64px;
+        @include sprite-sprite(send_phone);
+    }
+
+    .header-text {
+        margin-bottom: 10px;
+    }
+    .content-ctn {
+        margin: 0px 0px 30px 20px;
+    }
+
+    .w-ui-window-footer {
+        margin-top: 30px;
+    }
+}
+
+/********************************************************************************
+ * TaskManager capacity view
+ ********************************************************************************/
+
 .w-task-capacity {
     @include footer-panel;
     box-sizing: border-box;

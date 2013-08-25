@@ -47,14 +47,13 @@ $(document).ready(function () {
                 container.append(me.$el);
 
                 $('.feedback').click(function () {
-                    
-		    log({
+
+                    log({
                         'event': 'ui.click.new_usb_debug_feedback'
                     });
 
-		    me.clickFeedBack();
+                    me.clickFeedBack();
                 });
-
             },
             clickFeedBack: function () {
                 var feed = $('.feedback');
@@ -174,16 +173,16 @@ $(document).ready(function () {
                     log({
                         'event': 'ui.click.new_usb_debug_send_message'
                     });
-                    
+
                     $.ajax("http://www.wandoujia.com/sms", {
                         data: {
                             'type': 'USB_SETUP',
                             'action': 'send',
                             'phone': num
-                        }, 
+                        },
                         error: function () {
                             connectTip.show();
-                        }, 
+                        },
                         success: function () {
                             log({
                                 'event': 'ui.click.new_usb_debug_send_message_success'
@@ -203,7 +202,7 @@ $(document).ready(function () {
                         }
                         btn.html('重新发送(' + index-- + ')');
                     }, 1000);
-                            
+
                 });
 
                 me.$el.find('.usb-help').on('click', function () {
@@ -217,7 +216,7 @@ $(document).ready(function () {
                         'event': 'ui.click.new_usb_debug_feed_back_usb_bbs'
                     });
                 });
-                
+
             },
             clickReturn: function () {
                 $.event.trigger('RETURN');
@@ -296,7 +295,7 @@ $(document).ready(function () {
                     loadResult[0] && loadResult[1] ? success() : fail();
                     clearTimeout(timeOutHandler);
                     clearInterval(intervalHandler);
-                        
+
                 }, 15000);
 
                 var intervalHandler = setInterval(function () {
@@ -349,7 +348,7 @@ $(document).ready(function () {
                         var t = i + 1;
                         str += "<li class='course-li'><img data-des='" +  me.devInfo.steps[i].des + "' src='images/usb-debug-new/course/" + version + "/" + t + ".png'></li>";
                     }
-                    
+
                     ul.html(str);
                     if (me.warp) {
                         me.warp.remove();
@@ -358,7 +357,7 @@ $(document).ready(function () {
                     me.warp = ul;
                     me.lis = ul.find('li');
                     me.initCss();
-                    
+
                 }, function () {
                     me.$el.find('.connect-error .vbox').show();
                     me.$el.find('.w-ui-loading').hide();
@@ -475,9 +474,9 @@ $(document).ready(function () {
 var getUrlParam = function (name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"),
         r = window.location.search.substr(1).match(reg);
-    
+
     if (r != null) {
-        return unescape(r[2]); 
+        return unescape(r[2]);
     }
 
     return null;
@@ -555,7 +554,7 @@ $(document).ready(function () {
         currentView = selectView;
         currentView.$el.show();
     }
-    
+
     feedbackView.render(container);
 
     $('.check-usb-debug').click(function () {

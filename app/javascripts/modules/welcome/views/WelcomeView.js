@@ -328,7 +328,7 @@
                             }, 5000);
                         });
                     } else {
-                        this.$('.bg').prepend($('<iframe>').attr('src', bg.url).addClass('content'));
+                        this.$('.bg').prepend($('<iframe>').attr('src', bg.url).addClass('content new'));
                         this.$('.content').one('load', deferred.resolve);
                     }
                 }.bind(this)).fail(deferred.reject);
