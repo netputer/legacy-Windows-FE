@@ -35,6 +35,8 @@
 
                 log({
                     'event' : 'ui.click.welcome_card_action',
+                    'type' : this.model.get('type'),
+                    'index' : this.getIndex(),
                     'action' : 'weibo'
                 });
             },

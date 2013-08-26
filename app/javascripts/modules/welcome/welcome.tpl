@@ -105,6 +105,20 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="changelog">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">{{= i18n.welcome.UPDATED }}</h1>
+        <p class="desc text-thirdly">{{= Settings.get('lastestVersion') + ' -> ' + Environment.get('backendVersion') }}</p>
+        <p class="info text-secondary">1234
+        </p>
+        <div class="btn-ctn hbox">
+            <button class="button-action">{{= i18n.misc.VIEW }}</button>
+            <span class="button-ignore text-thirdly">{{= i18n.ui.IGNORE }}</span>
+        </div>
+    </div>
+</script>
+
 <script type="text/x-ui-template" id="item-list-card">
     <div class="icon-ctn">
         <div class="text-primary title">{{! it.title }}</div>
