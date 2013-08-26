@@ -101,9 +101,27 @@
                     },
                     isUpdatable : {
                         get : function () {
-                            return !this.isIgnoredUpdate &&
-                                    this.get('upgrade_info').packageName !== undefined &&
-                                    StringUtil.isURL(this.get('upgrade_info').downloadUrl);
+                            var result = false;
+                            if (this.isSystem && !Device.get('isRoot')) {
+                                result = !this.isIgnoredUpdate &&
+                                            StringUtil.isURL(this.get('upgrade_info').downloadUrl) &&
+                                            this.isLegalToUpdate;
+                            } else {
+                                result = !this.isIgnoredUpdate &&
+                                            StringUtil.isURL(this.get('upgrade_info').downloadUrl);
+                            }
+                            return result;
+                        }
+                    },
+                    isLegalToUpdate : {
+                        get : function () {
+                            var result = true;
+                            if (this.get('upgrade_info').isRecommended === 'NOT_RECOMMEND') {
+                                result = StringUtil.isURL(this.get('upgrade_info').downloadUrl) && !this.get('upgrade_info').notRecommendedReason.signatureMatch;
+                            } else {
+                                result = StringUtil.isURL(this.get('upgrade_info').downloadUrl);
+                            }
+                            return result;
                         }
                     },
                     isIgnoredUpdate : {
