@@ -7,6 +7,7 @@
         'Log',
         'IOBackendDevice',
         'Internationalization',
+        'Settings',
         'ui/TemplateFactory',
         'welcome/views/FeedCardView'
     ], function (
@@ -16,6 +17,7 @@
         log,
         IO,
         i18n,
+        Settings,
         TemplateFactory,
         FeedCardView
     ) {
@@ -26,12 +28,17 @@
                 this.$el.html(this.template({}));
                 return this;
             },
+            hide : function () {
+                Settings.set('welcome_feed_weibo', true, true);
+            },
             clickButtonAction : function () {
                 setTimeout(function () {
                     this.$el.addClass('following').find('.button-action').attr({
                         disabled : true
                     }).text(i18n.welcome.CARD_WEIBO_ACTION_CLICKED);
                 }.bind(this), 500);
+
+                this.hide();
 
                 log({
                     'event' : 'ui.click.welcome_card_action',
@@ -41,6 +48,7 @@
                 });
             },
             clickButtonIgnore : function () {
+                this.hide();
                 this.remove();
             },
             events : {

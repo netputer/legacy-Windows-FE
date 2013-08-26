@@ -32,6 +32,34 @@
     <div class="button-close"></div>
 </script>
 
+<script type="text/x-ui-template" id="capacity">
+    <div class="info hbox">
+        <div class="info-device hbox">
+            <span class="icon device"></span>
+            {{ var percent = parseInt((it.internalCapacity - it.internalFreeCapacity) / it.internalCapacity * 100, 10); }}
+            <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
+        </div>
+        <div class="info-sd hbox">
+            <span class="icon sd"></span>
+            {{ var percent =  parseInt((it.externalCapacity - it.externalFreeCapacity) / it.externalCapacity * 100, 10); }}
+            <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
+        </div>
+    </div>
+    <div class="action">
+        <button class="button-open-sd">{{= i18n.taskManager.MANAGE_SD }}</button>
+        <button class="button-change-location">{{= i18n.taskManager.CHANGE_INSTALL_LOCATION }}</button>
+    </div>
+</script>
+
+<script type="text/x-ui-template" id="capacity-tips">
+    <span>{{= StringUtil.format(i18n.taskManager.CAPACITY_TIPS,
+        it.source === 'phone' ? i18n.misc.PHONE : i18n.misc.SD_CARD,
+        StringUtil.readableSize(it.total - it.free),
+        StringUtil.readableSize(it.total),
+        StringUtil.readableSize(it.free)
+    ) }}</span>
+</script>
+
 <script type="text/x-ui-template" id="list-item">
     <label class="input item-checker-wrap">
         <input class="item-checker" type="checkbox" value="{{= it.id }}">

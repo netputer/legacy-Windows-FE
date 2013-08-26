@@ -196,19 +196,19 @@
                 return this;
             },
             scrollToGuide : function () {
-                // if (Settings.get('user_guide_first_shown')) {
-                //     return;
-                // }
-                if (window.localStorage.getItem('user_guide_shown') === 'true') {
+                if (Settings.get('user_guide_first_shown')) {
                     return;
                 }
+                // if (window.localStorage.getItem('user_guide_shown') === 'true') {
+                //     return;
+                // }
 
                 this.$el.animate({
                     scrollTop: guideView.$el.offset().top - 65
                 }, 1000);
 
-                // Settings.set('user_guide_first_shown', true, true);
-                window.localStorage.setItem('user_guide_shown', 'true');
+                Settings.set('user_guide_first_shown', true, true);
+                // window.localStorage.setItem('user_guide_shown', 'true');
             },
             switchToGuide : function () {
                 guideView.$el.show().css('height', '360px').one('webkitTransitionEnd', this.scrollToGuide.bind(this));
@@ -314,6 +314,8 @@
                 this.loadBackgroundAsync().done(function (resp) {
                     var bg = resp[0];
                     if (bg.type === 0) {
+                        toolbarView.wallpaperUrl = bg.url;
+
                         this.renderWallpaperInCanvasAsync(bg.url, 'new').done(function ($canvas) {
                             deferred.resolve();
 

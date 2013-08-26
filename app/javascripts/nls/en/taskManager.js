@@ -64,6 +64,7 @@ define({
     DELETE_TASK : 'Delete task',
     CONTINUE_INSTALL : 'Resume install',
 
+    CAPACITY_TIPS : '{1}（{2} / {3}，剩余空间 {4}）',
 
     /* Install failed reasons */
     INSTALL_FAILED_DEVICE_NOT_FOUND : 'Unable to install, no device connected',

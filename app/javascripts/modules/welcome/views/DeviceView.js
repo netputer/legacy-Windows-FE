@@ -234,7 +234,7 @@
                                 }
                             }.bind(this), 50);
                         }
-                    }.bind(this), 1000);
+                    }.bind(this), 200);
                 }
             },
             play : function () {

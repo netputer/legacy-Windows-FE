@@ -29,6 +29,9 @@
 
                 return this;
             },
+            clickButtonCapture : function () {
+                this.options.deviceView.trigger('capture');
+            },
             clickButtonFullscreen : function () {
                 IO.requestAsync(CONFIG.actions.FULL_SCREEN);
 
@@ -77,6 +80,7 @@
                 });
             },
             events : {
+                'click .button-capture' : 'clickButtonCapture',
                 'click .button-fullscreen' : 'clickButtonFullscreen',
                 'click .button-refresh' : 'clickButtonRefresh',
                 'click .button-play' : 'clickButtonPlay',

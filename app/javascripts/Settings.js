@@ -15,15 +15,25 @@
         var DEVICE_SETTINGS_KEY = 'wdj_user_config_' + Environment.get('deviceId');
         var GLOBAL_SETTINGS_KEY = 'wdj_user_config_global';
 
-        var deviceSettings = JSON.parse(localStorage.getItem(DEVICE_SETTINGS_KEY) || JSON.stringify({}));
-        var globalSettings = JSON.parse(localStorage.getItem(GLOBAL_SETTINGS_KEY) || JSON.stringify({}));
+        var deviceSettings = JSON.parse(localStorage.getItem(DEVICE_SETTINGS_KEY) || '{}');
+        var globalSettings = JSON.parse(localStorage.getItem(GLOBAL_SETTINGS_KEY) || '{}');
 
         if (Environment.get('deviceId') === 'Default') {
             Environment.once('change:deviceId', function (Environment, deviceId) {
                 DEVICE_SETTINGS_KEY = 'wdj_user_config_' + deviceId;
-                deviceSettings = JSON.parse(localStorage.getItem(DEVICE_SETTINGS_KEY) || JSON.stringify({}));
+                deviceSettings = JSON.parse(localStorage.getItem(DEVICE_SETTINGS_KEY) || '{}');
             });
         }
+
+        window.addEventListener('storage', function (e) {
+            var newData = JSON.parse(e.newValue || '{}');
+
+            if (e.key === GLOBAL_SETTINGS_KEY) {
+                globalSettings = newData;
+            } else {
+                deviceSettings = newData;
+            }
+        });
 
         Settings.get = function (key) {
             var value;

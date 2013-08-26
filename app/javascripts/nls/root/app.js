@@ -4,6 +4,7 @@ define({
     LATEST_LABEL : '最新：',
     DISLIKE : '猜错了',
     UPDATE_ALL : '一键升级',
+    UPDATE_RECOMMENDED : '全部升级',
     UPDATE : '升级',
     UPDATING : '升级中',
     COULD_UPDATE_TO : '升至：',
@@ -188,8 +189,8 @@ define({
 
     UPDATE_FROM_SNAPPEA : '来自豌豆荚的升级',
     UPDATE_FROM_OTHERS : '来自其它市场的升级',
-    RECOMMENDED_UPDATE : '来自豌豆荚的升级 - 经过豌豆荚审核',
-    NOT_RECOMMENDED_UPDATE : '来自其它市场的升级 - 未经豌豆荚审核',
+    RECOMMENDED_UPDATE : '<strong>来自豌豆荚的升级</strong> - 经过豌豆荚审核',
+    NOT_RECOMMENDED_UPDATE : '<strong>来自其它市场的升级</strong> - 未经豌豆荚审核',
 
     /* Permission info */
     "android.permission-group.ACCOUNTS" : "访问您的账号",

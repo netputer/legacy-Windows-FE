@@ -379,3 +379,49 @@
         margin-top: 30px;
     }
 }
+
+/********************************************************************************
+ * TaskManager capacity view
+ ********************************************************************************/
+
+.w-task-capacity {
+    @include footer-panel;
+    box-sizing: border-box;
+    height: 0;
+    padding: 0 10px;
+    -webkit-box-align: center;
+    -webkit-transition: height .4s linear;
+
+    &.show {
+        height: 36px;
+    }
+
+    .icon {
+        display: block;
+        height: 16px;
+        width: 16px;
+        margin-right: 5px;
+
+        @each $icon in device, sd {
+            &.#{$icon} {
+                @include button-sprite(#{$icon});
+            }
+        }
+    }
+
+    .info {
+        -webkit-box-flex: 1;
+
+        .info-device,
+        .info-sd {
+            margin-right: 20px;
+            -webkit-box-align: center;
+        }
+
+        progress.highlight {
+            &::-webkit-progress-value {
+                background: #E64942;
+            }
+        }
+    }
+}

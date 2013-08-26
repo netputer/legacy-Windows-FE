@@ -89,7 +89,8 @@
                     force : model.get('force') === true ? 1 : 0,
                     format : model.get('format') || '',
                     ext_id : model.get('source') || 'unknown',
-                    packageName : model.get('packageName') || ''
+                    packageName : model.get('packageName') || '',
+                    set_wallpaper : model.get('set_wallpaper') || ''
                 },
                 success : function (resp) {
                     if (resp.state_code === 200) {

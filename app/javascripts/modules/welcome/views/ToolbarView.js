@@ -17,12 +17,15 @@
         'ui/AlertWindow',
         'ui/PopupPanel',
         'ui/Panel',
+        'ui/ToastBox',
         'utilities/StringUtil',
         'backuprestore/BackupController',
         'backuprestore/RestoreController',
         'welcome/views/DeviceView',
         'welcome/views/CapacityView',
-        'welcome/WelcomeService'
+        'welcome/WelcomeService',
+        'task/TaskService',
+        'task/models/TaskModel'
     ], function (
         Backbone,
         _,
@@ -40,12 +43,15 @@
         AlertWindow,
         PopupPanel,
         Panel,
+        ToastBox,
         StringUtil,
         BackupController,
         RestoreController,
         DeviceView,
         CapacityView,
-        WelcomeService
+        WelcomeService,
+        TaskService,
+        TaskModel
     ) {
 
         var alert = window.alert;
@@ -131,6 +137,24 @@
                 });
 
                 this.listenTo(Device, 'change:isConnected change:canScreenshot', this.setButtonState);
+
+                deviceView.on('capture', this.clickButtonScreenShot, this);
+
+                var wallpaperUrl;
+
+                Object.defineProperties(this, {
+                    wallpaperUrl : {
+                        set : function (value) {
+                            if (!!value) {
+                                wallpaperUrl = value;
+                                this.$('.button-set-wallpaper').show();
+                            }
+                        },
+                        get : function () {
+                            return wallpaperUrl;
+                        }
+                    }
+                });
             },
             setButtonState : function () {
                 this.$('.button-open-sd, .button-backup, .button-restore, .button-set-wallpaper')
@@ -296,8 +320,74 @@
                     'wrapWithShell' : wrapWithShell
                 });
             },
+            setAsWallpaperAsync : function (id) {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.PHOTO_SET_WALLPAPER,
+                    data : {
+                        photo_id : id
+                    },
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            deferred.resolve(resp);
+                        } else {
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+
+                return deferred.promise();
+            },
             clickButtonSetWallpaper : function () {
-                return;
+                var model = new TaskModel();
+
+                var path = this.wallpaperUrl.split('/');
+                var fileName = path[path.length - 1];
+
+                model.set({
+                    downloadUrl : this.wallpaperUrl,
+                    iconPath : CONFIG.enums.TASK_DEFAULT_ICON_PATH_PHOTO,
+                    modelType : CONFIG.enums.MODEL_TYPE_PHOTO,
+                    title : fileName,
+                    set_wallpaper : true
+                });
+
+                TaskService.downloadAsync(model).done(function (resp) {
+                    var jobId = resp.body.value;
+
+                    var handler = IO.Backend.Device.onmessage({
+                        'data.channel' : CONFIG.events.PHOTO_DOWNLOAD_WITH_IDS
+                    }, function (msg) {
+                        var content,
+                            boxViewInsance;
+
+                        if (msg[0] === Number(jobId)) {
+                            IO.Backend.Device.offmessage(handler);
+                            this.setAsWallpaperAsync(msg[1]).done(function () {
+                                content = i18n.taskManager.SET_AS_WALLPAPER_SUCCESS;
+                            }).fail(function () {
+                                content = i18n.taskManager.SET_AS_WALLPAPER_FAIL;
+                            }).always(function () {
+                                if (boxViewInsance) {
+                                    boxViewInsance.remove();
+                                }
+
+                                boxViewInsance = new ToastBox({
+                                    $content : content
+                                });
+
+                                boxViewInsance.once('remove', function () {
+                                    boxViewInsance  = undefined;
+                                });
+
+                                boxViewInsance.show();
+
+                                setTimeout(deviceView.showScreenshotAsync, 1000);
+                            }.bind(this));
+                        }
+                    }.bind(this));
+                }.bind(this));
             },
             clickButtonTop : function () {
                 this.trigger('top');

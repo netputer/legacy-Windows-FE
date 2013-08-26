@@ -380,6 +380,7 @@
                 PHOTO_DOWNLOAD_SUCCESS : 'photo_download',
                 PHOTO_UPDATED : 'photo.updated',
                 PHOTO_SHOW_IMPORTOR : 'photo.show.importor',
+                PHOTO_DOWNLOAD_WITH_IDS : 'photo.download.success',
 
                 // Backend events - Account module
                 ACCOUNT_STATE_CHANGE : 'account.state_changed',

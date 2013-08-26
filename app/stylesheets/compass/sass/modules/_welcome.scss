@@ -259,14 +259,11 @@
             width: 100%;
         }
 
-        .mask {
-            background: -webkit-linear-gradient(top, rgba(0, 0, 0, .05) 0%, rgba(0, 0, 0, 0) 3%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, .55) 100%, #f4f5f1 100%);
-            height: 100%;
-            left: 0;
-            opacity: 0;
-            pointer-events: none;
+        .gradient {
+            background: url(../images/welcome-gradient-bg.png) repeat-x;
+            bottom: 0;
+            height: 142px;
             position: absolute;
-            top: 0;
             width: 100%;
         }
     }
@@ -725,6 +722,23 @@
     }
 
     button {
+        .icon.capture {
+            @include button-sprite(screenshot);
+        }
+
+        &:enabled:not(.active):not(:active):hover .icon {
+            &.capture {
+                @include button-sprite(screenshot-hover);
+            }
+        }
+
+        &:enabled:active .icon,
+        &.active .icon {
+            &.capture {
+                @include button-sprite(screenshot-active);
+            }
+        }
+
         @each $icon in refresh, play, stop, fullscreen {
             .icon.#{$icon} {
                 @include button-sprite(#{$icon}-light);
@@ -990,6 +1004,10 @@
                 }
             }
         }
+    }
+
+    .button-set-wallpaper {
+        display: none;
     }
 
     .w-ui-buttongroup:hover button {

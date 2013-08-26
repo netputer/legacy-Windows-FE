@@ -1,7 +1,7 @@
 <templates>
 <script type="text/x-ui-template" id="welcome">
     <div class="bg">
-        <div class="mask"></div>
+        <div class="gradient"></div>
     </div>
     <div class="top hbox"></div>
     {{= TemplateFactory.get('ui', 'loading-horizental-transparent') }}
@@ -184,16 +184,20 @@
     <button class="w-icon-btn button-open-sd transparent min">
         <span class="icon sd-white"></span>{{= i18n.welcome.TOOL_SD }}
     </button>
-    <!--
     <button class="w-icon-btn button-set-wallpaper transparent min">
         <span class="icon wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
     </button>
-    -->
     <div class='spliter'></div>
     <button class="button-top transparent min">{{= i18n.welcome.TOP }}</button>
 </script>
 
 <script type="text/x-ui-template" id="device-tools">
+    <div class="btn-ctn">
+        <button class="w-icon-btn transparent min button-capture">
+            <span class="icon capture"></span>
+            {{= i18n.welcome.SCREEN_SHOT_TEXT }}
+        </button>
+    </div>
     <div class="btn-ctn">
         <button class="w-icon-btn transparent min button-refresh">
             <span class="icon refresh"></span>
