@@ -8,7 +8,7 @@
         'Device',
         'utilities/StringUtil',
         'ui/TemplateFactory',
-        'ui/PopupPanel'
+        'ui/TipPanel'
     ], function (
         Backbone,
         _,
@@ -17,11 +17,11 @@
         Device,
         StringUtil,
         TemplateFactory,
-        PopupPanel
+        TipPanel
     ) {
         console.log('CapacityTipsView - File loaded.');
 
-        var CapacityTipsView = PopupPanel.extend({
+        var CapacityTipsView = TipPanel.extend({
             className : 'w-ui-popup-tip w-layout-hide',
             contentTemplate : doT.template(TemplateFactory.get('taskManager', 'capacity-tips')),
             initialize : function () {
