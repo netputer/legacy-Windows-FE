@@ -97,7 +97,9 @@
                             targetView = BackupCardView;
                             break;
                         case 34:
-                            targetView = WeiboCardView;
+                            if (!Settings.get('welcome_feed_weibo')) {
+                                targetView = WeiboCardView;
+                            }
                             break;
                         case 98:
                             targetView = ChangelogCardView;
