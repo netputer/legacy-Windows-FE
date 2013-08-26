@@ -110,5 +110,6 @@ define({
     CARD_WEIBO_DESC : '新浪微博 @豌豆荚 <span class="icon-verified"></span>',
     CARD_WEIBO_ACTION : '关注',
     CARD_WEIBO_ACTION_CLICKED : '已关注',
-    NO_MORE : '没有更多了'
+    NO_MORE : '没有更多了',
+    UPDATED : '豌豆荚升级啦～'
 });

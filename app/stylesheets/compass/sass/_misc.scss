@@ -166,3 +166,27 @@
         top: 50%;
     }
 }
+
+.w-misc-agent-notifi {
+    padding: 5px 0;
+    text-align: center;
+    width: 185px;
+
+    .bg {
+        @include misc-sprite(agent-notifi);
+        display: inline-block;
+        height: misc-sprite-height(agent-notifi);
+        width: misc-sprite-width(agent-notifi);
+    }
+
+    .tip {
+        text-align: left;
+    }
+
+    .button-close {
+        @include button-close;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+}

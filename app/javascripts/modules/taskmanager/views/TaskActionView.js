@@ -197,6 +197,14 @@
                 evt.stopPropagation();
                 IO.requestAsync(CONFIG.actions.CONNET_PHONE);
             },
+            clickButtonPushToPhone : function (evt) {
+                evt.stopPropagation();
+                this.model.forceRestartAsync();
+            },
+            clickButtonRetryPushToPhone : function (evt) {
+                evt.stopPropagation();
+                this.model.forceRestartAsync();
+            },
             events : {
                 'click .button-start' : 'clickButtonStart',
                 'click .button-pause' : 'clickButtonPause',
@@ -214,7 +222,9 @@
                 'click .button-dont-ask-again-device' : 'clickButtonDontAskAgainDevice',
                 'click .button-connect' : 'clickButtonConnect',
                 'click .button-change-path' : 'clickButtonChangePath',
-                'click .button-set-as-ringtong' : 'clickButtonSetAsRingtone'
+                'click .button-set-as-ringtong' : 'clickButtonSetAsRingtone',
+                'click .button-push-phone' : 'clickButtonPushToPhone',
+                'click .button-retry-push-phone' : 'clickButtonRetryPushToPhone'
             }
         });
 

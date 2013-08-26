@@ -110,7 +110,7 @@
 
                 log({
                     'event' : 'ui.click.native_toolbar_back',
-                    'current' : SnapPea.currentModule,
+                    'current' : SnapPea.CurrentModule,
                     'target' : target.module
                 });
 
@@ -145,7 +145,7 @@
 
                 log({
                     'event' : 'ui.click.native_toolbar_forward',
-                    'current' : SnapPea.currentModule,
+                    'current' : SnapPea.CurrentModule,
                     'target' : target.module
                 });
 
@@ -210,7 +210,9 @@
                 break;
             case 'photo':
                 targetCollections.push(PhotoCollection.getInstance());
-                targetCollections.push(CloudPhotoCollection.getInstance());
+                if (Account.get('isLogin')) {
+                    targetCollections.push(CloudPhotoCollection.getInstance());
+                }
                 break;
             case 'video':
                 targetCollections.push(VideosCollection.getInstance());
@@ -218,14 +220,16 @@
             }
 
             _.each(targetCollections, function (targetCollection) {
-                targetCollection.syncAsync().fail(function () {
-                    alert(i18n.misc.REFRESH_ERROR);
+                targetCollection.syncAsync().fail(function (resp) {
+                    if (resp.state_code !== 702) {
+                        alert(i18n.misc.REFRESH_ERROR);
+                    }
                 });
             });
 
             log({
                 'event' : 'ui.click.native_toolbar_refresh',
-                'module' : SnapPea.currentModule
+                'module' : SnapPea.CurrentModule
             });
         });
 

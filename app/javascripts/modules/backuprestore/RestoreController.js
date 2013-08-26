@@ -180,10 +180,10 @@
                 }, this);
 
                 restoreProgressView.on('_NEXT_STEP', function () {
-                    if (RestoreContextModel.IsNoneAppSelected) {
-                        this.showNextAndRemoveCurrent(restoreProgressView, restoreDeleteDataView);
-                    } else {
+                    if (RestoreContextModel.IsAppSelected) {
                         this.showNextAndRemoveCurrent(restoreProgressView, restoreAppTipView);
+                    } else {
+                        restoreProgressView.remove();
                     }
                 }, this);
 

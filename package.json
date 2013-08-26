@@ -12,7 +12,7 @@
     "grunt-contrib-clean": "latest",
     "grunt-contrib-htmlmin": "latest",
     "grunt-contrib-livereload": "latest",
-    "grunt-contrib-imagemin": "latest",
+    "grunt-contrib-imagemin": "~0.1.4",
     "grunt-contrib-requirejs": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-rev": "latest",

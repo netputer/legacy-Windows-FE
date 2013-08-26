@@ -275,7 +275,6 @@
                 if (!FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE ||
                         !BackupContextModel.IsAppSelected ||
                         BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP] <= 0) {
-
                     this.showNextAndRemoveCurrent(backupChooseDataView, backupChooseLocationView);
                     return;
                 }
