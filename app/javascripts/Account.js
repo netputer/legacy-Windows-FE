@@ -145,6 +145,22 @@
 
                 return deferred.promise();
             },
+            resetAsync : function () {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.ACCOUNT_RESET,
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            deferred.resolve(resp);
+                        } else {
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+
+                return deferred.promise();
+            },
             changeHandler : function (accountInfo) {
                 if (accountInfo.auth) {
                     var member = accountInfo.member;
