@@ -48,6 +48,7 @@
             initialize : function () {
                 var loading = false;
                 var syncing = false;
+                var stateCode;
                 Object.defineProperties(this, {
                     loading : {
                         set : function (value) {
@@ -64,6 +65,14 @@
                         get : function () {
                             return syncing;
                         }
+                    },
+                    stateCode : {
+                        set : function (value) {
+                            stateCode = value;
+                        },
+                        get : function () {
+                            return stateCode;
+                        }
                     }
                 });
 
@@ -71,8 +80,11 @@
                     this.loading = true;
                     this.fetch({
                         success : function (collection, resp) {
+
                             console.log('PhotoCollection - Collection fetched.');
                             loading = false;
+
+                            collection.stateCode = resp.state_code;
                             collection.trigger('refresh', collection);
                         }
                     });

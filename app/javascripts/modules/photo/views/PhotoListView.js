@@ -130,6 +130,7 @@
                 }
 
                 if (toggle) {
+
                     var type = this.collection.data.photo_type;
                     var content = this.getEmptyTip(type);
 
@@ -152,6 +153,7 @@
                 PhotoListView.__super__.remove.call(this);
             },
             buildList : function (collection) {
+
                 if (!collection) {
                     return;
                 }
@@ -231,6 +233,10 @@
                         'event' : 'ui.show.wanxiaodou',
                         'type' : 'cloud_photo'
                     });
+
+                    if (this.collection.stateCode === 747) {
+                        return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.CUSTOM_RESOURCE_LOCKED;
+                    }
 
                     return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.EMPTY_CLOUD_LIST;
                 default:
@@ -325,9 +331,17 @@
 
                 IO.sendCustomEventsAsync(CONFIG.events.WEB_NAVIGATE, {type: CONFIG.enums.NAVIGATE_TYPE_GALLERY, id: 256});
             },
+            clickButtonReset : function () {
+                log({
+                    'event' : 'ui.click.reset_password',
+                    'type' : 'cloud_photo'
+                });
+                Account.resetAsync();
+            },
             events : {
                 'click .button-login' : 'clickButtonLogin',
                 'click .button-download-pic' : 'clickButtonDownload',
+                'click .button-reset-pw' : 'clickButtonReset',
                 'mousedown' : 'startDraw'
             }
         });
