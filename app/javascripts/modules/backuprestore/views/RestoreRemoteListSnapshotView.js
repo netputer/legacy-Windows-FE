@@ -90,7 +90,7 @@
                 }.bind(this)).fail(function (resp) {
                     this.remove();
                     var alertContext = (resp.state_code === 747) ?
-                        i18n.backup_restore.CUSTOM_RESOURCE_LOCKED : i18n.backup_restore.RESTORE_LIST_SNAPHOST_FAILED;
+                                i18n.backup_restore.CUSTOM_RESOURCE_LOCKED : i18n.backup_restore.RESTORE_LIST_SNAPHOST_FAILED;
                     var eventName = (resp.state_code === 747) ? 'locked' : 'loadFailed';
                     alert(alertContext, function () {
                         this.trigger(eventName);
