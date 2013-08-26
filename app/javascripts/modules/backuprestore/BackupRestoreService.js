@@ -64,8 +64,8 @@
                 737 : i18n.backup_restore.BACKUP_APP_DATA_ERROR_ENCRYPT,
                 738 : i18n.backup_restore.BACKUP_APP_DATA_ERROR_CONNECT_ERROR,
                 739 : i18n.backup_restore.USER_CANCELED,
-                740 : i18n.backup_restore.CUSTOM_AUTH_FAILED_ERROR,
-                741 : i18n.backup_restore.CUSTOM_SERVER_UNAVALABEL_ERROR,
+                741 : i18n.backup_restore.CUSTOM_AUTH_FAILED_ERROR,
+                742 : i18n.backup_restore.CUSTOM_SERVER_UNAVALABEL_ERROR,
                 746 : i18n.backup_restore.CUSTOM_UNZIP_BACKUP_FILE_ERROR
             },
 
