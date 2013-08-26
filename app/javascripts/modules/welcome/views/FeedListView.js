@@ -18,6 +18,7 @@
         'welcome/views/BackupCardView',
         'welcome/views/TipsCardView',
         'welcome/views/WeiboCardView',
+        'welcome/views/ChangelogCardView',
         'welcome/collections/FeedsCollection'
     ], function (
         Backbone,
@@ -37,6 +38,7 @@
         BackupCardView,
         TipsCardView,
         WeiboCardView,
+        ChangelogCardView,
         FeedsCollection
     ) {
         console.log('FeedListView - File loaded. ');
@@ -97,6 +99,9 @@
                         case 34:
                             targetView = WeiboCardView;
                             break;
+                        case 98:
+                            targetView = ChangelogCardView;
+                            break;
                         case 99:
                             targetView = TipsCardView;
                             break;
@@ -108,6 +113,7 @@
                             }).render().$el.toggleClass('flip', !fisrtScreen)[0]);
                         }
                     }, this);
+
                     this.$el.append(fragment);
 
                     setTimeout(this.initLayout.bind(this));
