@@ -387,9 +387,14 @@
 .w-task-capacity {
     @include footer-panel;
     box-sizing: border-box;
-    height: 36px;
+    height: 0;
     padding: 0 10px;
     -webkit-box-align: center;
+    -webkit-transition: height .4s linear;
+
+    &.show {
+        height: 36px;
+    }
 
     .icon {
         display: block;

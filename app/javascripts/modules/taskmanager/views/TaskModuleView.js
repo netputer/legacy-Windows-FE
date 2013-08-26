@@ -9,12 +9,12 @@
         'ui/AlertWindow',
         'Internationalization',
         'Configuration',
+        'Log',
         'IOBackendDevice',
         'task/views/TaskModuleToolbarView',
         'task/views/TaskListView',
         'task/views/TaskModuleCapacityView',
-        'task/collections/TasksCollection',
-        'Log'
+        'task/collections/TasksCollection'
     ], function (
         $,
         Backbone,
@@ -24,12 +24,12 @@
         AlertWindow,
         i18n,
         CONFIG,
+        log,
         IO,
         TaskModuleToolbarView,
         TaskListView,
         TaskModuleCapacityView,
-        TasksCollection,
-        log
+        TasksCollection
     ) {
         console.log('TaskModuleView - File loaded.');
 

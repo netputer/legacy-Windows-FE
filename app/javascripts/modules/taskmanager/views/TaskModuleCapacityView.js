@@ -30,37 +30,42 @@
         var TaskModuleCapacityView = Backbone.View.extend({
             className : 'w-task-capacity hbox',
             template : doT.template(TemplateFactory.get('taskManager', 'capacity')),
-            render : function () {
-                $.when(Device.getDeviceCapacityAsync(), Device.getSDCapacityAsync()).always(function () {
-                    var data = {
-                        internalCapacity : Device.get('internalCapacity'),
-                        externalCapacity : Device.get('externalCapacity'),
-                        internalFreeCapacity : Device.get('internalFreeCapacity'),
-                        externalFreeCapacity : Device.get('externalFreeCapacity')
-                    };
-
-                    this.$el.html(this.template(data));
-
-                    CapacityTipsView.getInstance({
-                        $host : this.$('.info-device'),
-                        source : 'phone',
-                        total : data.internalCapacity,
-                        free : data.internalFreeCapacity
-                    });
-
-                    CapacityTipsView.getInstance({
-                        $host : this.$('.info-sd'),
-                        source : 'sdcard',
-                        total : data.externalCapacity,
-                        free : data.externalFreeCapacity
-                    });
-                }.bind(this));
-
-                this.setButtonState();
-                return this;
+            initialize : function () {
+                this.listenTo(Device, 'change', this.render);
             },
-            setButtonState : function () {
-                return;
+            render : function () {
+                if (Device.get('isConnected')) {
+                    $.when(Device.getDeviceCapacityAsync(), Device.getSDCapacityAsync()).always(function () {
+                        var data = {
+                            internalCapacity : Device.get('internalCapacity'),
+                            externalCapacity : Device.get('externalCapacity'),
+                            internalFreeCapacity : Device.get('internalFreeCapacity'),
+                            externalFreeCapacity : Device.get('externalFreeCapacity')
+                        };
+
+                        this.$el.html(this.template(data));
+
+                        CapacityTipsView.getInstance({
+                            $host : this.$('.info-device'),
+                            source : 'phone',
+                            total : data.internalCapacity,
+                            free : data.internalFreeCapacity
+                        });
+
+                        CapacityTipsView.getInstance({
+                            $host : this.$('.info-sd'),
+                            source : 'sdcard',
+                            total : data.externalCapacity,
+                            free : data.externalFreeCapacity
+                        });
+
+                        this.$el.addClass('show');
+                    }.bind(this));
+                } else {
+                    this.$el.removeClass('show');
+                }
+
+                return this;
             },
             openSD : function () {
                 var $btn = this.$('.button-open-sd').prop('disabled', true);
