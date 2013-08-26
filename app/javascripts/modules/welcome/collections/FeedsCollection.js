@@ -28,6 +28,9 @@
                     resp.feeds.unshift({
                         type : 99
                     });
+                    resp.feeds.unshift({
+                        type : 98
+                    });
                 }
 
                 this.data.totalFeedCursor = resp.totalFeedCursor;

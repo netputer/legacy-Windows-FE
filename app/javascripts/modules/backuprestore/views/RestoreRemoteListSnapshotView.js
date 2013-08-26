@@ -89,8 +89,11 @@
                     this.listLoaded();
                 }.bind(this)).fail(function (resp) {
                     this.remove();
-                    alert(i18n.backup_restore.RESTORE_LIST_SNAPHOST_FAILED, function () {
-                        this.trigger('loadFailed');
+                    var alertContext = (resp.state_code === 747) ?
+                                i18n.backup_restore.CUSTOM_RESOURCE_LOCKED : i18n.backup_restore.RESTORE_LIST_SNAPHOST_FAILED;
+                    var eventName = (resp.state_code === 747) ? 'locked' : 'loadFailed';
+                    alert(alertContext, function () {
+                        this.trigger(eventName);
                     }.bind(this));
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
                 }.bind(this));
@@ -195,6 +198,10 @@
 
                     bodyView.on('loadFailed', function () {
                         this.trigger('_LAST_STEP');
+                    }, this);
+
+                    bodyView.on('locked', function () {
+                        this.trigger('_LOCKED');
                     }, this);
 
                     this.$bodyContent = bodyView.render().$el;

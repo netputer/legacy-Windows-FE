@@ -180,10 +180,10 @@
                 }, this);
 
                 restoreProgressView.on('_NEXT_STEP', function () {
-                    if (RestoreContextModel.IsNoneAppSelected) {
-                        this.showNextAndRemoveCurrent(restoreProgressView, restoreDeleteDataView);
-                    } else {
+                    if (RestoreContextModel.IsAppSelected) {
                         this.showNextAndRemoveCurrent(restoreProgressView, restoreAppTipView);
+                    } else {
+                        restoreProgressView.remove();
                     }
                 }, this);
 
@@ -230,6 +230,12 @@
                     alert(i18n.backup_restore.RESTORE_REMOTE_EMPTY_LIST, function () {
                         restoreChooseTypeView.show();
                     }, this);
+                }, this);
+
+                restoreRemoteListSnapshotView.on('_LOCKED', function () {
+                    restoreRemoteListSnapshotView.remove();
+                    RestoreContextModel.set('backupType', 0);
+                    Account.resetAsync();
                 }, this);
 
                 restoreRemoteListSnapshotView.on('_NEXT_STEP', function () {

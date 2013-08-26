@@ -111,6 +111,7 @@
                 this.title = RestoreContextModel.IsLocal ? i18n.backup_restore.RESTORE_TITLE_LOCAL : i18n.backup_restore.RESTORE_TITLE_REMOTE;
             },
             setButtnState : function (in_progress) {
+                this.$('.button-next').html(RestoreContextModel.IsAppSelected ? i18n.ui.CONTINUE : i18n.ui.FINISH);
                 this.$('.button-next').toggle(!in_progress);
                 this.$('.button-cancel').toggle(in_progress);
             },
@@ -165,6 +166,25 @@
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
                 }.bind(this));
 
+                // sms duplicate number
+                IO.Backend.Device.onmessage({
+                    'data.channel' : restoreSessionID + 'sms'
+                }, function (data) {
+                    var smsDupCount = parseInt(data, 10);
+                    this.updateItemDuplicate(CONFIG.enums.BR_TYPE_SMS, smsDupCount);
+                    RestoreContextModel.set('smsDupCount', smsDupCount);
+                }, this);
+
+                // contacts duplicate number
+                IO.Backend.Device.onmessage({
+                    'data.channel' : restoreSessionID + 'contacts'
+                }, function (data) {
+                    var contactsDupCount = parseInt(data, 10);
+                    this.updateItemDuplicate(CONFIG.enums.BR_TYPE_CONTACT, contactsDupCount);
+                    RestoreContextModel.set('contactsDupCount', contactsDupCount);
+                }, this);
+
+                // restore progress
                 restoreHandler = IO.Backend.Device.onmessage({
                     'data.channel' : restoreSessionID
                 }, function (data) {
@@ -255,7 +275,9 @@
                 }.bind(this));
             },
             resumeRestore : function () {
-                BackupRestoreService.restoreResumeAsync(restoreSessionID).fail(function (resp) {
+                BackupRestoreService.restoreResumeAsync(restoreSessionID,
+                                                        RestoreContextModel.get('smsDupCount'),
+                                                        RestoreContextModel.get('contactsDupCount')).fail(function (resp) {
                     this.remove();
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 4);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
@@ -291,6 +313,20 @@
                     this.$('.progress-ctn').append($item);
                 }
                 return $item;
+            },
+            updateItemDuplicate : function (type, dupCount) {
+                if (dupCount <= 0) {
+                    return;
+                }
+
+                var $item = this.findOrCreateProgressItem(type);
+                var content = '';
+                if (type === CONFIG.enums.BR_TYPE_CONTACT) {
+                    content = StringUtil.format(i18n.contact.DUPLICATE, dupCount);
+                } else if (type === CONFIG.enums.BR_TYPE_SMS) {
+                    content = StringUtil.format(i18n.message.DUPLICATE, dupCount);
+                }
+                $item.find('.progress-dup').text(content);
             },
             updateItem : function (type, status, currentValue, maxValue) {
                 var $item = this.findOrCreateProgressItem(type);

@@ -18,7 +18,8 @@
         'task/views/TaskMonitorView',
         'backuprestore/BackupController',
         'main/views/FastUSBNotificationView',
-        'main/collections/PIMCollection'
+        'main/collections/PIMCollection',
+        'main/views/AgentNotifiPopup'
     ], function (
         Backbone,
         doT,
@@ -35,7 +36,8 @@
         TaskMonitorView,
         BackupController,
         FastUSBNotificationView,
-        PIMCollection
+        PIMCollection,
+        AgentNotifiPopup
     ) {
         console.log('Wandoujia 2.0 launched.');
 
@@ -203,6 +205,17 @@
                 this.$('.sidebar').append(fragment);
 
                 this.$('.module-ctn').append(FastUSBNotificationView.getInstance().render().$el);
+
+                var delegate = IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.REVERSE_PROXY_START
+                }, function () {
+                    var popupPanel = new AgentNotifiPopup({
+                        $host : $('.w-misc-agent-host')
+                    });
+
+                    popupPanel.show();
+                    IO.Backend.Device.offmessage(delegate);
+                });
 
                 return this;
             },

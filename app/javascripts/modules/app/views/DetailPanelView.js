@@ -54,6 +54,7 @@
         console.log('DetailPanelView - File loaded.');
 
         var alert = window.alert;
+        var confirm = window.confirm;
         var setTimeout = window.setTimeout;
 
         var appsCollection;
@@ -162,6 +163,8 @@
                     $updateButton.html(this.model.get('isWeb') ? i18n.app.INSTALLING : i18n.app.UPDATING).prop({
                         disabled : true
                     });
+                } else {
+                    this.$('.button-update').toggleClass('secondary', !this.model.isLegalToUpdate);
                 }
 
                 if (FunctionSwitch.ENABLE_APP_RECOMMEND) {
@@ -237,19 +240,48 @@
                 }
             },
             clickButtonUpdate : function () {
-                var model = this.model.updateInfo.set({
+                var updateModel = this.model.updateInfo.clone().set({
                     source : 'update-button-detail-panel'
                 }, {
                     silent : true
                 });
 
-                TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
+                var updateApp = function (model) {
+                    TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
 
-                this.model.unignoreUpdateAsync();
+                    this.model.set({
+                        isUpdating : true
+                    }).unignoreUpdateAsync();
+                };
 
-                this.model.set({
-                    isUpdating : true
-                });
+                if (!this.model.isLegalToUpdate) {
+                    var baseInfo = this.model.get('base_info');
+
+                    var alertText;
+                    if (!this.model.isSystem) {
+                        alertText = $(StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL, baseInfo.name));
+                    } else {
+                        if (Device.isRoot) {
+                            alertText = $(StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL, baseInfo.name));
+                        } else {
+                            alertText = $(StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL_SYSTEM_UNROOT, baseInfo.name));
+                        }
+                    }
+
+                    confirm(alertText, function () {
+                        updateApp.call(this, updateModel.set({
+                            force : true
+                        }, {
+                            silent : true
+                        }));
+
+                        log({
+                            'event' : 'ui.click.app.illegal.update'
+                        });
+                    }, this);
+                } else {
+                    updateApp.call(this, updateModel);
+                }
 
                 log({
                     'event' : 'ui.click.app.button.update',

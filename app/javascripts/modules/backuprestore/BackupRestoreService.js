@@ -584,13 +584,15 @@
             return deferred.promise();
         };
 
-        BackupRestoreService.restoreResumeAsync = function (sessionID) {
+        BackupRestoreService.restoreResumeAsync = function (sessionID, dupSms, dupContacts) {
             var deferred = $.Deferred();
 
             IO.requestAsync({
                 url : CONFIG.actions.RESTORE_RESUME,
                 data : {
-                    session : sessionID
+                    session : sessionID,
+                    dup_sms : dupSms,
+                    dup_contacts : dupContacts
                 },
                 success : function (resp) {
                     if (resp.state_code === 200) {

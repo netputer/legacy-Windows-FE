@@ -5,7 +5,6 @@
     define([
         'backbone',
         'underscore',
-        'Log',
         'Internationalization',
         'FunctionSwitch',
         'Configuration',
@@ -15,7 +14,6 @@
     ], function (
         Backbone,
         _,
-        log,
         i18n,
         FunctionSwitch,
         CONFIG,

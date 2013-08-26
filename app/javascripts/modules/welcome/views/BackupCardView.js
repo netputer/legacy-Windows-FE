@@ -39,7 +39,7 @@
 
                 SyncService.getLastBackupDayAsync().done(function (resp) {
                     if (parseInt(resp.body.value, 10) >= 10) {
-                        this.removeClass('hide');
+                        this.$el.removeClass('hide');
                         this.options.parentView.initLayout();
 
                         log({

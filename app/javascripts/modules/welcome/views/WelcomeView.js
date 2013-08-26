@@ -135,7 +135,7 @@
 
                 this.$('.top').append(deviceView.render().$el)
                     .append(clockView.render().$el)
-                    .after(guideView.render().$el.hide());
+                    .after(guideView.render().$el);
 
                 this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
 
@@ -184,8 +184,8 @@
                 }
 
                 this.listenTo(Backbone, 'welcome:showTips', function () {
-                    this.$('.top').after(guideView.render(true).$el.hide());
-                    this.switchToGuide();
+                    this.$('.top').after(guideView.render(true).$el);
+                    setTimeout(this.switchToGuide.bind(this));
                 });
 
                 log({
@@ -195,14 +195,31 @@
 
                 return this;
             },
+            scrollToGuide : function () {
+                // if (Settings.get('user_guide_first_shown')) {
+                //     return;
+                // }
+                if (window.localStorage.getItem('user_guide_shown') === 'true') {
+                    return;
+                }
+
+                this.$el.animate({
+                    scrollTop: guideView.$el.offset().top - 65
+                }, 1000);
+
+                // Settings.set('user_guide_first_shown', true, true);
+                window.localStorage.setItem('user_guide_shown', 'true');
+            },
             switchToGuide : function () {
-                guideView.$el.slideDown();
+                guideView.$el.show().css('height', '360px').one('webkitTransitionEnd', this.scrollToGuide.bind(this));
 
                 this.$('.feed-ctn').find('.tips').toggleClass('hide', true);
                 feedListView.initLayout();
             },
             switchToBillboard : function () {
-                guideView.$el.slideUp(guideView.remove.bind(guideView));
+                if (guideView.$el.css('height') !== '0px') {
+                    guideView.$el.css('height', 0).one('webkitTransitionEnd', guideView.remove.bind(guideView));
+                }
 
                 this.$('.feed-ctn .tips').toggleClass('hide', false);
                 feedListView.initLayout();
@@ -219,7 +236,6 @@
             },
             loadBackgroundAsync : function () {
                 var deferred = $.Deferred();
-
                 IO.requestAsync(CONFIG.actions.WELCOME_BACKGROUND).done(deferred.resolve).fail(deferred.reject);
 
                 return deferred.promise();
@@ -310,7 +326,7 @@
                             }, 5000);
                         });
                     } else {
-                        this.$('.bg').prepend($('<iframe>').attr('src', bg.url).addClass('content'));
+                        this.$('.bg').prepend($('<iframe>').attr('src', bg.url).addClass('content new'));
                         this.$('.content').one('load', deferred.resolve);
                     }
                 }.bind(this)).fail(deferred.reject);
