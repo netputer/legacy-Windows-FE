@@ -235,6 +235,12 @@
                 restoreRemoteListSnapshotView.on('_LOCKED', function () {
                     restoreRemoteListSnapshotView.remove();
                     RestoreContextModel.set('backupType', 0);
+
+                    log({
+                        'event' : 'ui.click.reset_password',
+                        'type' : 'restore'
+                    });
+
                     Account.resetAsync();
                 }, this);
 

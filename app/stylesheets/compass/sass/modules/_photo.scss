@@ -33,6 +33,17 @@
             }
         }
     }
+
+    .empty-tip {
+        .reset {
+            display: block;
+            font-size: 12px;
+            line-height: 20px;
+            margin: 0px auto;
+            width: 350px;
+        }
+    }
+
 }
 
 .w-photo-item {
