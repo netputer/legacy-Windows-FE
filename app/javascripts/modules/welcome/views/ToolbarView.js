@@ -17,6 +17,7 @@
         'ui/AlertWindow',
         'ui/PopupPanel',
         'ui/Panel',
+        'ui/ToastBox',
         'utilities/StringUtil',
         'backuprestore/BackupController',
         'backuprestore/RestoreController',
@@ -42,6 +43,7 @@
         AlertWindow,
         PopupPanel,
         Panel,
+        ToastBox,
         StringUtil,
         BackupController,
         RestoreController,
@@ -357,33 +359,35 @@
                     var handler = IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.PHOTO_DOWNLOAD_WITH_IDS
                     }, function (msg) {
-                        var content;
+                        var content,
+                            boxViewInsance;
 
-                        if (msg[0] === jobId) {
+                        if (msg[0] === Number(jobId)) {
                             IO.Backend.Device.offmessage(handler);
                             this.setAsWallpaperAsync(msg[1]).done(function () {
                                 content = i18n.taskManager.SET_AS_WALLPAPER_SUCCESS;
                             }).fail(function () {
                                 content = i18n.taskManager.SET_AS_WALLPAPER_FAIL;
                             }).always(function () {
-                                alert(content);
-                                // if (boxViewInsance) {
-                                //     boxViewInsance.remove();
-                                // }
+                                if (boxViewInsance) {
+                                    boxViewInsance.remove();
+                                }
 
-                                // boxViewInsance = new ToastBox({
-                                //     $content : content
-                                // });
+                                boxViewInsance = new ToastBox({
+                                    $content : content
+                                });
 
-                                // boxViewInsance.once('remove', function () {
-                                //     boxViewInsance  = undefined;
-                                // });
+                                boxViewInsance.once('remove', function () {
+                                    boxViewInsance  = undefined;
+                                });
 
-                                // boxViewInsance.show();
-                            });
+                                boxViewInsance.show();
+
+                                setTimeout(deviceView.showScreenshotAsync, 1000);
+                            }.bind(this));
                         }
                     }.bind(this));
-                });
+                }.bind(this));
             },
             clickButtonTop : function () {
                 this.trigger('top');
