@@ -232,6 +232,12 @@
                     }, this);
                 }, this);
 
+                restoreRemoteListSnapshotView.on('_LOCKED', function () {
+                    restoreRemoteListSnapshotView.remove();
+                    RestoreContextModel.set('backupType', 0);
+                    Account.resetAsync();
+                }, this);
+
                 restoreRemoteListSnapshotView.on('_NEXT_STEP', function () {
                     this.showNextAndRemoveCurrent(restoreRemoteListSnapshotView, restoreChooseDataViewRemote);
                 }, this);

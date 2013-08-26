@@ -640,6 +640,18 @@
         }
     }
 
+    &.changelog {
+        -webkit-box-align: center;
+
+        .desc {
+            margin: 5px 0 10px;
+        }
+
+        .info {
+            margin: 10px 0;
+        }
+    }
+
     &.weibo {
         background-color: #fff;
         -webkit-box-align: center;
