@@ -228,6 +228,7 @@
                 ACCOUNT_REGIST : 'wdj://account/register.json',
                 ACCOUNT_INFO : 'wdj://account/account_info.json',
                 ACCOUNT_SHARE : 'wdj://account/share.json',
+                ACCOUNT_RESET : 'wdj://account/reset.json',
 
                 // Backup
                 BACKUP_PREPARE : 'wdj://backup/prepare.json',
