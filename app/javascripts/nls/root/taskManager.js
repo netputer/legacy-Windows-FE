@@ -175,5 +175,8 @@ define({
     PUSH_PHONE_FAILED : '发送失败，请稍后再试',
     PUSH_PHONE_SUCCESS : '已发送到手机',
     RETRY_PUSH_PHONE : '重新发送',
-    CANCEL_PUSH_PHONE : '取消发送'
+    CANCEL_PUSH_PHONE : '取消发送',
+
+    RETRY_INSTALL : '重新安装',
+    RETRY_PUSH_VIDEO : '重新传输'
 });

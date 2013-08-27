@@ -164,5 +164,8 @@ define({
     SDCARD_MOUNT : 'Please don\'t remove SD card',
     NO_SDCARD : 'No SD card found, unable to transfer files',
     DEVICE_NOT_FOUND : 'Connect your device to transfer',
-    DEVICE_NOT_FOUND_TIP : 'Connect your device via USB or Wi-Fi, and SnapPea will finish these tasks'
+    DEVICE_NOT_FOUND_TIP : 'Connect your device via USB or Wi-Fi, and SnapPea will finish these tasks',
+
+    RETRY_INSTALL : '重新安装',
+    RETRY_PUSH_VIDEO : '重新传输'
 });
