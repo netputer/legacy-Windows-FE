@@ -199,7 +199,7 @@
                     videosCollection = new VideosCollection();
                     videosCollection.trigger('update');
 
-                    videosCollection.on('refersh', function (videosCollection) {
+                    videosCollection.on('refresh', function (videosCollection) {
                         PIMCollection.getInstance().get(6).set({
                             count : Device.get('isMounted') ? 0 : videosCollection.length
                         });
