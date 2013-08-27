@@ -439,6 +439,10 @@
                             }
                         }
                         break;
+                    case CONFIG.enums.TASK_STATE_SUCCESS : 
+    }}
+    <button class="button-retry">{{= i18n.taskManager.RETRY_INSTALL }}</button>
+    {{                  break;
                 }
                 break;
             case CONFIG.enums.TASK_TYPE_PUSH :
@@ -464,6 +468,11 @@
                              case CONFIG.enums.MODEL_TYPE_MUSIC :
     }}
     <button class="button-set-as-ringtong primary">{{= i18n.taskManager.SET_AS_RINGTONE }}</button>
+    {{                      
+                            break;
+                        case CONFIG.enums.MODEL_TYPE_VIDEO:
+    }}
+    <button class="button-retry primary">{{= i18n.taskManager.RETRY_PUSH_VIDEO}}</button>
     {{
                             break;
                         }
