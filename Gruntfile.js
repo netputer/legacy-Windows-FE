@@ -7,24 +7,26 @@ module.exports = function (grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // configurable paths
-    var yeomanConfig = {
+    var paths = {
         app : 'app',
         dist : 'dist'
     };
 
     grunt.initConfig({
-        yeoman : yeomanConfig,
+        path : paths,
         watch : {
             compass : {
-                files : ['<%= yeoman.app %>/stylesheets/compass/{,*/}*/{,*/}*.{scss,sass,png}'],
+                files : [
+                    '<%= path.app %>/stylesheets/compass/{,*/}*/{,*/}*.{scss,sass,png}'
+                ],
                 tasks : ['compass']
             },
             livereload: {
                 files: [
-                    '<%= yeoman.app %>{,*/}*/*.html',
-                    '<%= yeoman.app %>/stylesheets/*.css',
-                    '<%= yeoman.app %>/javascripts/{,*/}*/{,*/}*.js',
-                    '<%= yeoman.app %>/images/{,*/}*/{,*/}*.{png,jpg,jpeg,gif,webp}'
+                    '<%= path.app %>{,*/}*/*.html',
+                    '<%= path.app %>/stylesheets/*.css',
+                    '<%= path.app %>/javascripts/{,*/}*/{,*/}*.js',
+                    '<%= path.app %>/images/{,*/}*/{,*/}*.{png,jpg,jpeg,gif,webp}'
                 ],
                 options : {
                     livereload : LIVERELOAD_PORT
@@ -48,8 +50,8 @@ module.exports = function (grunt) {
             },
             source : {
                 options : {
-                    appDir : '<%= yeoman.app %>/javascripts',
-                    dir :　'<%= yeoman.dist %>/javascripts',
+                    appDir : '<%= path.app %>/javascripts',
+                    dir :　'<%= path.dist %>/javascripts',
                     optimize : 'uglify',
                     uglify : {
                         toplevel : true,
@@ -65,10 +67,10 @@ module.exports = function (grunt) {
         },
         compass : {
             options : {
-                sassDir : '<%= yeoman.app %>/stylesheets/compass/sass',
-                cssDir : '<%= yeoman.app %>/stylesheets',
-                imagesDir : '<%= yeoman.app %>/stylesheets/compass/images',
-                generatedImagesDir : '<%= yeoman.app %>/images',
+                sassDir : '<%= path.app %>/stylesheets/compass/sass',
+                cssDir : '<%= path.app %>/stylesheets',
+                imagesDir : '<%= path.app %>/stylesheets/compass/images',
+                generatedImagesDir : '<%= path.app %>/images',
                 relativeAssets : true
             },
             dist : {
@@ -83,28 +85,34 @@ module.exports = function (grunt) {
             }
         },
         clean : {
-            dist : ['.tmp', '<%= yeoman.dist %>/*'],
-            server : '.tmp'
+            dist : ['.tmp', '<%= path.dist %>/*'],
+            server : '.tmp',
+            useless : [
+                '<%= path.dist %>/usb-debug-new.html',
+                '<%= path.dist %>/images/usb-debug-new',
+                '<%= path.dist %>/images/usb-debug-new*.*',
+                '<%= path.dist %>/javascripts/usb-debug-new'
+            ]
         },
         useminPrepare : {
-            html : ['<%= yeoman.app %>/index.html', '<%= yeoman.app %>/javascripts/modules/photo/photo.html'],
+            html : ['<%= path.app %>/index.html', '<%= path.app %>/javascripts/modules/photo/photo.html'],
             options : {
-                dest : '<%= yeoman.dist %>'
+                dest : '<%= path.dist %>'
             }
         },
         usemin : {
-            html : ['<%= yeoman.dist %>/{,*/}*.html'],
+            html : ['<%= path.dist %>/{,*/}*.html'],
             options : {
-                dirs : ['<%= yeoman.dist %>']
+                dirs : ['<%= path.dist %>']
             }
         },
         imagemin : {
             dist : {
                 files : [{
                     expand : true,
-                    cwd : '<%= yeoman.app %>/images',
+                    cwd : '<%= path.app %>/images',
                     src : '{,*/}*.{png,jpg,jpeg}',
-                    dest : '<%= yeoman.dist %>/images'
+                    dest : '<%= path.dist %>/images'
                 }]
             }
         },
@@ -112,9 +120,9 @@ module.exports = function (grunt) {
             dist : {
                 files : [{
                     expand : true,
-                    cwd : '<%= yeoman.app %>',
+                    cwd : '<%= path.app %>',
                     src : ['*.html', 'javascripts/{,*/}*/*.html'],
-                    dest : '<%= yeoman.dist %>'
+                    dest : '<%= path.dist %>'
                 }]
             }
         },
@@ -123,8 +131,8 @@ module.exports = function (grunt) {
                 files : [{
                     expand : true,
                     dot : true,
-                    cwd : '<%= yeoman.app %>',
-                    dest : '<%= yeoman.dist %>',
+                    cwd : '<%= path.app %>',
+                    dest : '<%= path.dist %>',
                     src : [
                         'images/{,*/}*.{webp,gif,png,jpg,jpeg}',
                         'stylesheets/{,*/}*.{css,ttf}',
@@ -171,14 +179,11 @@ module.exports = function (grunt) {
                     evil : true,
                     regexp : true,
                     ass : true,
-                    predef: [ // array of pre-defined globals
+                    predef: [
                         'define', 'require'
                     ]
                 },
                 options : {
-                    // junit : 'out/junit.xml', // write the output to a JUnit XML
-                    // log : 'lint.log',
-                    // jslintXml : 'out/jslint_xml.xml',
                     errorsOnly : true // only display errors
                 }
             }
@@ -203,7 +208,8 @@ module.exports = function (grunt) {
         'concat',
         'uglify',
         'requirejs:dist',
-        'usemin'
+        'usemin',
+        'clean:useless'
     ]);
 
     grunt.registerTask('test', function () {

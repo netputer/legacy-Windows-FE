@@ -45,16 +45,22 @@
                 appsCollection = appsCollection || AppsCollection.getInstance();
                 tasksCollection = tasksCollection || TasksCollection.getInstance();
 
-                this.listenTo(appsCollection, 'refresh', this.renderButton);
-                this.listenTo(tasksCollection, 'refresh', this.renderButton);
-                this.listenTo(Device, 'change:isConnected', this.renderButton);
+                this.listenTo(appsCollection, 'refresh', this.renderButton)
+                    .listenTo(tasksCollection, 'refresh', this.renderButton)
+                    .listenTo(Device, 'change:isConnected', this.renderButton);
             },
             render : function () {
-                this.$el.html(this.template(this.model.toJSON()));
+                this.$el.html(this.template(this.model.toJSON()))
+                    .toggleClass('ad', this.model.get('ad'));
 
                 imageLoader(this.model.get('icons').px100, this.$('.icon'), true);
 
                 this.renderButton();
+
+                if (this.model.get('ad')) {
+                    var image = new window.Image();
+                    image.src = this.model.get('imprUrl');
+                }
 
                 log({
                     'event' : 'ui.show.welcome_card',

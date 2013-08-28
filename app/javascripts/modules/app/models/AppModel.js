@@ -116,8 +116,9 @@
                     isLegalToUpdate : {
                         get : function () {
                             var result = true;
-                            if (this.get('upgrade_info').isRecommended === 'NOT_RECOMMEND') {
-                                result = StringUtil.isURL(this.get('upgrade_info').downloadUrl) && !this.get('upgrade_info').notRecommendedReason.signatureMatch;
+                            if (this.get('upgrade_info').recommendedType === 'NOT_RECOMMEND') {
+                                result = StringUtil.isURL(this.get('upgrade_info').downloadUrl) &&
+                                            this.get('upgrade_info').notRecommendReason.signatureMatch;
                             } else {
                                 result = StringUtil.isURL(this.get('upgrade_info').downloadUrl);
                             }
