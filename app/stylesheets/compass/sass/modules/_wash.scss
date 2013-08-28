@@ -171,7 +171,7 @@
                 border: 1px $splitLineColor solid;
                 border-bottom: none;
                 border-radius: 3px 3px 0 0;
-                box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+                box-shadow: $cardShadow;
                 box-sizing: border-box;
                 height: inherit;
                 left: 0;
