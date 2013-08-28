@@ -7,6 +7,7 @@
         'doT',
         'Log',
         'IOBackendDevice',
+        'Configuration',
         'Environment',
         'Settings',
         'Internationalization',
@@ -20,6 +21,7 @@
         doT,
         log,
         IO,
+        CONFIG,
         Environment,
         Settings,
         i18n,
@@ -37,13 +39,20 @@
                     this.$el.html(this.template({}));
 
                     $.ajax({
-                        url : '',
+                        url : CONFIG.actions.WELCOME_CHANGELOG,
                         data : {
-
+                            version : Environment.get('backendVersion').split('.')[1]
                         },
                         success : function (resp) {
+                            resp = JSON.parse(resp);
+                            this.$el.removeClass('hide');
 
-                            this.$el.remove('hide');
+                            this.$el.html(this.template({
+                                title : resp.title,
+                                subtitle : resp.subtitle,
+                                icon : resp.icon
+                            }));
+
                             Settings.set('latestVersion', Environment.get('backendVersion'), true);
 
                             this.options.parentView.initLayout();
