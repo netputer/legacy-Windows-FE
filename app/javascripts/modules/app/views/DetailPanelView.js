@@ -205,6 +205,8 @@
 
                     this.model = appsCollection.get(id) || webAppsCollection.get(id);
 
+                    console.log(this.model.toJSON());
+
                     if (this.model.get('isWeb')) {
                         var currentId = this.model.id;
                         this.model.queryAppInfoAsync().done(function () {
