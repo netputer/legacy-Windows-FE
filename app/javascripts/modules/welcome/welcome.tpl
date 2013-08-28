@@ -43,6 +43,7 @@
             {{= StringUtil.format(i18n.welcome.CARD_APP_FOOTER, it.channel, StringUtil.smartDate(it.updateTime)) }}
         </footer>
     </div>
+    <div class="ad-badge"></div>
 </script>
 
 <script type="text/x-ui-template" id="list-card">

@@ -351,6 +351,7 @@
 
     &.single {
         padding-bottom: 0;
+        position: absolute;
 
         .icon {
             cursor: pointer;
@@ -389,6 +390,22 @@
             .footer {
                 border-top: 1px $borderColor solid;
                 line-height: 35px;
+            }
+        }
+
+        .ad-badge {
+            @include sprite-sprite(promoted);
+            display: none;
+            height: 36px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 36px;
+        }
+
+        &.ad {
+            .ad-badge {
+                display: block;
             }
         }
     }
