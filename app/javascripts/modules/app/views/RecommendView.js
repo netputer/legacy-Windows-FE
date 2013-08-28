@@ -65,6 +65,8 @@
                     opacity: 0
                 }, 200, slideUpCallback);
 
+                this.model.collection.remove(this.model);
+
                 this.trigger('remove', this.model);
             },
             clickButtonInstall : function () {
@@ -110,11 +112,13 @@
             var modelsPool = this.modelsPool;
             var originalLegth = modelsPool.length;
             var packageNames = _.map(modelsPool, function (model) {
-                return model.get('packageName');
-            });
+                return model.get('app').packageName;
+            }).concat(_.map(this.items, function (item) {
+                return item.model.get('app').packageName;
+            }));
 
             this.modelsPool = modelsPool = modelsPool.concat(this.collection.filter(function (model) {
-                return packageNames.indexOf(model.get('packageName')) < 0;
+                return packageNames.indexOf(model.get('app').packageName) < 0;
             }));
 
             if (originalLegth === 0
@@ -141,7 +145,10 @@
                 this.collection.trigger('update');
             }
 
-            this.items.splice(this.items.indexOf(model), 1);
+            var target = _.find(this.items, function (item) {
+                return item.model === model;
+            });
+            this.items.splice(this.items.indexOf(target), 1);
 
             supplyItem.call(this);
         };
@@ -226,8 +233,8 @@
                     this.collection = RecommendAppsCollection.getInstance('app');
                 }
 
-                this.listenTo(this.collection, 'refresh', refreshCallback);
-                this.listenTo(this.collection, 'updateFailed', updateFailedCallback, this);
+                this.listenTo(this.collection, 'refresh', refreshCallback)
+                    .listenTo(this.collection, 'updateFailed', updateFailedCallback, this);
             },
             render : function () {
                 this.$el.html(this.template({}));
@@ -260,10 +267,10 @@
             },
             remove : function () {
                 _.each(this.items, function (item) {
-                    item.model.trigger('remove');
-                    item.model.clear({
-                        silent : true
-                    });
+                    item.model.trigger('remove')
+                        .clear({
+                            silent : true
+                        });
                 });
                 this.items = [];
 
