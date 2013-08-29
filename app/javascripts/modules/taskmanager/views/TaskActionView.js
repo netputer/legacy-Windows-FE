@@ -199,11 +199,19 @@
             },
             clickButtonPushToPhone : function (evt) {
                 evt.stopPropagation();
-                this.model.forceRestartAsync();
-            },
-            clickButtonRetryPushToPhone : function (evt) {
-                evt.stopPropagation();
-                this.model.forceRestartAsync();
+                this.model.getRealUrlAsync().done(function (url) {
+
+                    var pat = 'push=false';
+                    if (url.indexOf(pat) !== -1) {
+                        url = url.replace(pat, 'push=true');
+                    } else {
+                        url += '&push=true';
+                    }
+
+                    IO.requestAsync({
+                        url : url
+                    });
+                });
             },
             events : {
                 'click .button-start' : 'clickButtonStart',
@@ -223,8 +231,7 @@
                 'click .button-connect' : 'clickButtonConnect',
                 'click .button-change-path' : 'clickButtonChangePath',
                 'click .button-set-as-ringtong' : 'clickButtonSetAsRingtone',
-                'click .button-push-phone' : 'clickButtonPushToPhone',
-                'click .button-retry-push-phone' : 'clickButtonRetryPushToPhone'
+                'click .button-push-phone' : 'clickButtonPushToPhone'
             }
         });
 
