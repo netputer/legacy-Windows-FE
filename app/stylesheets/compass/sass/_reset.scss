@@ -120,9 +120,9 @@ body {
 ::-webkit-scrollbar-track:vertical {
     background-clip: padding-box;
     background-color: transparent;
-    border-width: 0;
+    border-left-width: 3px;
+    border-right-width: 0;
 }
-
 
 ::-webkit-scrollbar-thumb {
     background-clip: padding-box;
@@ -141,6 +141,7 @@ body {
 
 ::-webkit-scrollbar-thumb:vertical {
     border-width: 0;
+    border-left-width: 3px;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {

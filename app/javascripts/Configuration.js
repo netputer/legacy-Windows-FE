@@ -322,7 +322,8 @@
 
                 WELCOME_BACKGROUND : 'http://apps.wandoujia.com/startpage/api/v1/background',
                 WELCOME_FEEDS : 'http://apps.wandoujia.com/startpage/api/v1/feeds',
-                WELCOME_SINGLE_FEED : 'http://apps.wandoujia.com/startpage/api/v1/feed'
+                WELCOME_SINGLE_FEED : 'http://apps.wandoujia.com/startpage/api/v1/feed',
+                WELCOME_CHANGELOG : 'http://m.cfg.wandoujia.com/windows/index.php'
             },
             events : {
                 // Backend events - History

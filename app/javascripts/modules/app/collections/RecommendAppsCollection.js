@@ -38,13 +38,12 @@
                         this.fetch({
                             success : function (collection) {
                                 console.log('RecommendAppsCollection - Collection fetched.');
-                                loading = false;
                                 collection.trigger('refresh', collection);
                             },
                             error : function () {
                                 this.trigger('updateFailed');
                             },
-                            remove : false
+                            remove : true
                         });
                     }
                 }, this);
