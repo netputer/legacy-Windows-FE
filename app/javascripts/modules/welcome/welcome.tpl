@@ -109,7 +109,7 @@
 <script type="text/x-ui-template" id="changelog">
     <div class="icon-ctn">
         {{? it.icon }}
-        <img src={{= it.icon }} alt="" />
+        <img class="img" src={{= it.icon }} alt="" />
         {{?}}
     </div>
     <div class="info-ctn">
