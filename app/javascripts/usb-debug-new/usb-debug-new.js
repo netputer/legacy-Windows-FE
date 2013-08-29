@@ -163,8 +163,6 @@ $(document).ready(function () {
                             return;
                         }
                     } else {
-                        btn.prop('disabled', true);
-                        numTip.css('visibility', 'hidden');
                         return;
                     }
 
