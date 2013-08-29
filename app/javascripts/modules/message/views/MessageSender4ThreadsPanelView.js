@@ -166,7 +166,8 @@
                 this.$el.toggle(!disabled);
             },
             update : function (contact, defaultNumber) {
-                if (!_.isEqual(contact.toJSON(), this.model.toJSON())) {
+                if (!_.isEqual(contact.toJSON(), this.model.toJSON()) ||
+                        defaultNumber !== this.addresses) {
 
                     this.model = contact.clone();
 
