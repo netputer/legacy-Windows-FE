@@ -321,7 +321,7 @@
                 });
 
                 return deferred.promise();
-            },
+            }
         });
 
         return TaskModel;

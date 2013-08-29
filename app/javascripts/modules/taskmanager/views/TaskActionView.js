@@ -200,7 +200,7 @@
             clickButtonPushToPhone : function (evt) {
                 evt.stopPropagation();
                 this.model.getRealUrlAsync().done(function (url) {
-                    
+
                     var pat = 'push=false';
                     if (url.indexOf(pat) !== -1) {
                         url = url.replace(pat, 'push=true');
@@ -212,7 +212,7 @@
                         url : url
                     });
                 });
-            }
+            },
             events : {
                 'click .button-start' : 'clickButtonStart',
                 'click .button-pause' : 'clickButtonPause',
