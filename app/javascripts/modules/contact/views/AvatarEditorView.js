@@ -46,7 +46,7 @@
             },
             clickButtonDelete : function () {
                 confirm(i18n.contact.ALERT_DEL_CONTACT_HEAD, function () {
-                    this.options.parentView.refreshAvatar('');
+                    this.options.detialView.refreshAvatar('');
                     this.trigger('remove');
                 }, this);
             },
