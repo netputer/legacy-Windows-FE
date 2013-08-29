@@ -258,14 +258,14 @@
     {{? !!it.updateCategory }}
     {{? it.updateCategory === 'recommended' }}
     <div class="info hbox">
-        {{= i18n.app.RECOMMENDED_UPDATE }}
+        <strong>{{= i18n.app.UPDATE_FROM_SNAPPEA }}</strong>
     </div>
     <div class="update hbox">
         <button class="button-update min" data-type="{{= it.updateCategory }}">{{= i18n.app.UPDATE_RECOMMENDED }}</button>
     </div>
     {{??}}
     <div class="info hbox">
-        {{= i18n.app.NOT_RECOMMENDED_UPDATE }}
+        <strong>{{= i18n.app.UPDATE_FROM_OTHERS }}</strong>
     </div>
     {{?}}
     {{??}}
