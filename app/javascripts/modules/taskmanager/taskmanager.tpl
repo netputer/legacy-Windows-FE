@@ -514,11 +514,6 @@
     <button class="button-retry">{{=i18n.taskManager.RETRY_PUSH_PHONE }}</button>
     {{
                         break;
-                     case CONFIG.enums.TASK_STATE_PROCESSING :
-    }}
-    <button class="button-retry">{{=i18n.taskManager.CANCEL_PUSH_PHONE }}</button>
-    {{
-                        break;
                 }
         }
     }}
