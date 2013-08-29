@@ -652,6 +652,11 @@
 
         .icon-ctn {
             @include sprite-sprite(smile);
+
+            .img {
+                height: 100px;
+                width: 100px;
+            }
         }
 
         .desc {
