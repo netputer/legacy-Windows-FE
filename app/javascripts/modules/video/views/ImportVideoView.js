@@ -208,7 +208,7 @@
 
                     footerMonitorView.on('toggle_button', function (disabled) {
                         this.$('.button-yes').prop('disabled', disabled);
-                    }.bind(this));
+                    }, this);
 
                     this.$('.w-ui-window-footer-monitor').append(footerMonitorView.render().$el);
 
