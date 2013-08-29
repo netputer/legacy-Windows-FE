@@ -89,8 +89,8 @@
 
                 var outOfSpaceHandler = function (message) {
                     if (message.message === 'NEW_TASK' && !notEnoughSpaceFlag) {
-                        // IO.requestAsync(CONFIG.actions.WINDOW_DISK_FREE_SPACE).done(function (resp) {
-                            // if (Number(resp.body.value) < 1024 * 1024 * 500) {
+                        IO.requestAsync(CONFIG.actions.WINDOW_DISK_FREE_SPACE).done(function (resp) {
+                            if (Number(resp.body.value) < 1024 * 1024 * 500) {
                                 var popupPanel = TaskNotifierPanelView.getInstance({
                                     $host : this.$el,
                                     $content : $(doT.template(TemplateFactory.get('taskManager', 'out-of-space'))()),
@@ -103,14 +103,11 @@
                                 log({
                                     'event' : 'debug.taskManager.out_of_space_notifi_show'
                                 });
-                            // }
-                        // }.bind(this));
+                            }
+                        }.bind(this));
                         this.stopListening(EventProcessor, 'message', outOfSpaceHandler);
                     }
                 };
-                outOfSpaceHandler.call(this, {
-                    message : 'NEW_TASK'
-                });
                 this.listenTo(EventProcessor, 'message', outOfSpaceHandler);
 
                 EventProcessor.on('message', function (message) {
