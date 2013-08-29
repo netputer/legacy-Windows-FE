@@ -199,16 +199,12 @@
                 if (Settings.get('user_guide_first_shown')) {
                     return;
                 }
-                // if (window.localStorage.getItem('user_guide_shown') === 'true') {
-                //     return;
-                // }
 
                 this.$el.animate({
                     scrollTop: guideView.$el.offset().top - 65
                 }, 1000);
 
                 Settings.set('user_guide_first_shown', true, true);
-                // window.localStorage.setItem('user_guide_shown', 'true');
             },
             switchToGuide : function () {
                 guideView.$el.show().css('height', '360px').one('webkitTransitionEnd', this.scrollToGuide.bind(this));
@@ -217,7 +213,11 @@
                 feedListView.initLayout();
             },
             switchToBillboard : function () {
-                if (guideView.$el.css('height') !== '0px') {
+                console.error("guideView.$el.css('height')", guideView.$el.css('height'));
+
+                if (guideView.$el.css('height') === '0px') {
+                    guideView.remove();
+                } else {
                     guideView.$el.css('height', 0).one('webkitTransitionEnd', guideView.remove.bind(guideView));
                 }
 
