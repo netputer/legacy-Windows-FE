@@ -517,9 +517,7 @@
         <div>{{= i18n.app.UPDATE_FROM_OTHERS }}</div>
         {{?}}
     </div>
-    {{? !it.upgrade_info.changeLog.trim() }}
-    <div class="content text-secondary">{{= i18n.app.CHANGE_LOG_EMPRY }}</div>
-    {{??}}
+    {{? it.upgrade_info.changeLog.trim() }}
     <div class="content text-secondary">{{= it.upgrade_info.changeLog }}</div>
     {{?}}
 </script>
