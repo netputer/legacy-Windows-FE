@@ -53,7 +53,7 @@
                                 icon : resp.icon
                             }));
 
-                            Settings.set('latestVersion', Environment.get('backendVersion'), true);
+                            Settings.set('latestVersion', Environment.get('backendVersion'));
 
                             this.options.parentView.initLayout();
 
