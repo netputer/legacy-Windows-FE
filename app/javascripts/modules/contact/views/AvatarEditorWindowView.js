@@ -104,11 +104,11 @@
                 path = path.replace('file:///', '');
                 contactsCollection.editorAvatarAsync({
                     'rect' : [data.left, data.top, data.width, data.height].join(';'),
-                    'dst_size' : this.options.detialView.getAvatarSize(),
+                    'dst_size' : this.options.detailView.getAvatarSize(),
                     'path' : path,
                     'degree' : this.options.selectPhotoPath ? 0 : this.options.selectPhoto.get('orientation')
                 }).done(function (resp) {
-                    this.options.detialView.refreshAvatar(resp.body.value);
+                    this.options.detailView.refreshAvatar(resp.body.value);
                     this.remove();
                     this.options.editorView.remove();
                 }.bind(this));
