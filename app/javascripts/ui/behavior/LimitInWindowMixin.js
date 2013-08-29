@@ -182,7 +182,7 @@
             // });
 
             this.$el.css({
-                left :leftOffset,
+                left : leftOffset,
                 top : topOffset
             });
         };
