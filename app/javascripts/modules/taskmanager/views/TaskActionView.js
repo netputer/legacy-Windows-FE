@@ -211,6 +211,12 @@
                     IO.requestAsync({
                         url : url
                     });
+
+                    log({
+                        'event' : 'ui.click.send_to_phone',
+                        'type'  : 'YES',
+                        'click' : false
+                    });
                 });
             },
             events : {
