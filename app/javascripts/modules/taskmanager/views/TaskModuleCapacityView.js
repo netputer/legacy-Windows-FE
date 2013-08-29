@@ -45,6 +45,10 @@
 
                         this.$el.html(this.template(data));
 
+                        if (data.externalCapacity === 0) {
+                            this.$el.find('.info-sd').hide();
+                        }
+
                         CapacityTipsView.getInstance({
                             $host : this.$('.info-device'),
                             source : 'phone',
