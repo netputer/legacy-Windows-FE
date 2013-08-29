@@ -98,7 +98,7 @@
                 }
 
                 AvatarEditorWindowView.getInstance({
-                    detialView : this.options.detialView,
+                    detailView : this.options.detailView,
                     editorView : this.options.editorView,
                     selectPhoto : photo[0]
                 }).show();
