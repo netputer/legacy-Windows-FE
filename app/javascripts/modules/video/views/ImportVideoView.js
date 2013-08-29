@@ -64,6 +64,8 @@
             },
             setContent : function () {
                 var selectedSize = 0;
+                var restSize;
+
                 _.each(videoList.selected, function (id) {
                     selectedSize += parseInt(bodyView.collection.get(id).get('size'), 0);
                 });
@@ -72,11 +74,15 @@
 
                 if (Device.get('hasEmulatedSD')) {
                     tip += StringUtil.format(i18n.misc.DEVICE_CAPACITY_REMAIN, StringUtil.readableSize(Math.max(Device.get('internalFreeCapacity') - selectedSize, 0)));
+                    restSize = Math.min(Device.get('internalFreeCapacity') - selectedSize, 0);
                 } else {
                     tip += StringUtil.format(i18n.misc.SD_CAPACITY_REMAIN, StringUtil.readableSize(Math.max(Device.get('externalFreeCapacity') - selectedSize, 0)));
+                    restSize = Math.min(Device.get('externalFreeCapacity') - selectedSize, 0);
                 }
 
                 this.$el.html(tip);
+
+                this.trigger('toggle_button', restSize < 0);
             }
         });
 
@@ -200,7 +206,13 @@
 
                     footerMonitorView = new FooterMonitorView();
 
+                    footerMonitorView.on('toggle_button', function (disabled) {
+                        this.$('.button-yes').prop('disabled', disabled);
+                    }.bind(this));
+
                     this.$('.w-ui-window-footer-monitor').append(footerMonitorView.render().$el);
+
+                    this.once('remove', footerMonitorView.remove, footerMonitorView);
                 }, this);
 
                 this.on('button_yes', this.importVideo, this);
