@@ -300,6 +300,27 @@
                 });
 
                 return deferred.promise();
+            },
+            getRealUrlAsync : function () {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.TASK_GET_REAL_URL,
+                    data : {
+                        job : this.id
+                    },
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('TaskModel - Get Real Url success.');
+                            deferred.resolve(resp.body.value);
+                        } else {
+                            console.error('TaskModel - Set as wallpaper failed. Error info: ' + resp.state_line);
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+
+                return deferred.promise();
             }
         });
 

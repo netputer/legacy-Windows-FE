@@ -76,8 +76,13 @@
                 }
             }
 
+            // this.$el.css({
+            //     '-webkit-transform' : 'translate3d(' + Math.max(0, leftOffset) + 'px, ' + topOffset + 'px, 0)'
+            // });
+
             this.$el.css({
-                '-webkit-transform' : 'translate3d(' + Math.max(0, leftOffset) + 'px, ' + topOffset + 'px, 0)'
+                left : Math.max(0, leftOffset),
+                top : topOffset
             });
         };
 
@@ -172,8 +177,13 @@
                 }
             }
 
+            // this.$el.css({
+            //     '-webkit-transform' : 'translate3d(' + leftOffset + 'px, ' + topOffset + 'px, 0)'
+            // });
+
             this.$el.css({
-                '-webkit-transform' : 'translate3d(' + leftOffset + 'px, ' + topOffset + 'px, 0)'
+                left : leftOffset,
+                top : topOffset
             });
         };
 

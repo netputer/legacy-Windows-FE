@@ -429,7 +429,7 @@
                                 it.message === 'DEVICE_NOT_FOUND') {
     }}
     <button class="button-connect primary">{{= i18n.welcome.CONNECT_PHONE }}</button>
-    <span class="button-push-phone link">{{= i18n.taskManager.SEND_TO_PHONE }}</span>
+    <!--<span class="button-push-phone link">{{= i18n.taskManager.SEND_TO_PHONE }}</span>-->
     {{
                         } else {
                             if(!it.blockAction) {
@@ -503,11 +503,6 @@
                      case CONFIG.enums.TASK_STATE_SUCCESS :
     }}
     <button class="button-retry">{{=i18n.taskManager.RETRY_PUSH_PHONE }}</button>
-    {{
-                        break;
-                     case CONFIG.enums.TASK_STATE_PROCESSING :
-    }}
-    <button class="button-retry">{{=i18n.taskManager.CANCEL_PUSH_PHONE }}</button>
     {{
                         break;
                 }

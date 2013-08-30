@@ -34,7 +34,7 @@
                 this.$el.html(this.template({}));
 
                 this.listView = AvatarGalleryView.getInstance({
-                    detialView : this.options.detialView,
+                    detailView : this.options.detailView,
                     editorView : this.options.editorView
                 });
                 this.$el.append(this.listView.render().$el);
@@ -46,7 +46,7 @@
             },
             clickButtonDelete : function () {
                 confirm(i18n.contact.ALERT_DEL_CONTACT_HEAD, function () {
-                    this.options.parentView.refreshAvatar('');
+                    this.options.detailView.refreshAvatar('');
                     this.trigger('remove');
                 }, this);
             },
@@ -54,7 +54,7 @@
                 PhotoCollection.getInstance().getPhotoFromPcAsync(0).done(function (resp) {
 
                     AvatarEditorWindowView.getInstance({
-                        detialView : this.options.detialView,
+                        detailView : this.options.detailView,
                         editorView : this.options.editorView,
                         selectPhotoPath : 'file:///' + resp.body.value
                     }).show();
@@ -71,7 +71,7 @@
                 AvatarEditorView.__super__.initialize.apply(this, arguments);
                 this.once('show', function () {
                     var bodyView = new BodyView({
-                        detialView : this.options.detialView,
+                        detailView : this.options.detailView,
                         editorView : this
                     });
                     this.$bodyContent = bodyView.render().$el;
