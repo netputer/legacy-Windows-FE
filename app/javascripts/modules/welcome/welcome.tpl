@@ -272,7 +272,6 @@
     </div>
 </script>
 
-
 <script type="text/x-ui-template" id="autobackup-tip">
     <div class="w-autobackup-tip">
         <span>{{= StringUtil.format(i18n.welcome.AUTO_BACKUP, it.date) }}</span>
