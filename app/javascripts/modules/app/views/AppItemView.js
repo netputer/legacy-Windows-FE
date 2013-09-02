@@ -96,7 +96,7 @@
 
                 if (FunctionSwitch.ENABLE_APP_UPGRADE && StringUtil.isURL(this.model.get('upgrade_info').downloadUrl)) {
                     if (!this.model.get('isUpdating')) {
-                        this.$('.button-update').toggleClass('secondary', !this.model.isLegalToUpdate);
+                        this.$('.button-update').toggleClass('illegal', !this.model.isLegalToUpdate);
 
                         this.changeLogView = ChangeLogView.getInstance({
                             $host : this.$('.button-update'),
