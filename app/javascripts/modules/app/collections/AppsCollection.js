@@ -173,6 +173,13 @@
                     return app.isUpdatable;
                 }) : [];
             },
+            getUpdatableAppsWithoutIllegal : function () {
+                var update = this.getUpdatableApps();
+
+                return update.filter(function (app) {
+                    return app.isLegalToUpdate;
+                });
+            },
             getUpdatableAppsWithCategory : function () {
                 var update = this.getUpdatableApps();
 
