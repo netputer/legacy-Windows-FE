@@ -38,31 +38,13 @@
                 if (show) {
                     this.$el.html(this.template({}));
 
-                    $.ajax({
+                    IO.requestAsync({
                         url : CONFIG.actions.WELCOME_CHANGELOG,
                         data : {
                             version : Environment.get('backendVersion')
                         },
                         success : function (resp) {
-                            resp = JSON.parse(resp);
-                            if (resp.subtitle && resp.icon) {
-                                this.$el.removeClass('hide');
 
-                                this.$el.html(this.template({
-                                    title : resp.title,
-                                    subtitle : resp.subtitle,
-                                    icon : resp.icon
-                                }));
-
-                                Settings.set('latestVersion', Environment.get('backendVersion'));
-
-                                this.options.parentView.initLayout();
-
-                                log({
-                                    'event' : 'ui.show.welcome_card',
-                                    'type' : this.model.get('type')
-                                });
-                            }
                         }.bind(this)
                     });
                 }
