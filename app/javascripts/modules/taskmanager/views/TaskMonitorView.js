@@ -98,7 +98,7 @@
                                     popIn : true
                                 });
 
-                                popupPanel.show();
+                                setTimeout(popupPanel.show.bind(popupPanel));
 
                                 log({
                                     'event' : 'debug.taskManager.out_of_space_notifi_show'
@@ -108,7 +108,6 @@
                         this.stopListening(EventProcessor, 'message', outOfSpaceHandler);
                     }
                 };
-
                 this.listenTo(EventProcessor, 'message', outOfSpaceHandler);
 
                 EventProcessor.on('message', function (message) {

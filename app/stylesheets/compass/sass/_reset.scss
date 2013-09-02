@@ -107,6 +107,7 @@ body {
 ::-webkit-scrollbar {
     height: 10px;
     width: 10px;
+    -webkit-box-shadow: none;
 }
 
 ::-webkit-scrollbar-track:vertical,
@@ -115,13 +116,13 @@ body {
 ::-webkit-scrollbar-thumb:horizontal {
     border-style: solid;
     border-color: transparent;
+    -webkit-box-shadow: none;
 }
 
 ::-webkit-scrollbar-track:vertical {
     background-clip: padding-box;
     background-color: transparent;
-    border-left-width: 3px;
-    border-right-width: 0;
+    border-width: 0 0 0 3px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -140,8 +141,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-    border-width: 0;
-    border-left-width: 3px;
+    border-width: 0 0 0 3px;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
