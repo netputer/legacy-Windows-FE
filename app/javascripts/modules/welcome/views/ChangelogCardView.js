@@ -38,13 +38,17 @@
                 if (show) {
                     this.$el.html(this.template({}));
 
-                    $.ajax({
+                    IO.requestAsync({
                         url : CONFIG.actions.WELCOME_CHANGELOG,
                         data : {
                             version : Environment.get('backendVersion')
                         },
                         success : function (resp) {
-                            resp = JSON.parse(resp);
+                            try {
+                                resp = JSON.parse(resp);
+                            } catch (e) {
+                                resp = {};
+                            }
                             if (resp.subtitle && resp.icon) {
                                 this.$el.removeClass('hide');
 

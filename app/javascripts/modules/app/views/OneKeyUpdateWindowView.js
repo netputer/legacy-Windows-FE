@@ -48,7 +48,7 @@
 
                 this.listenTo(appsCollection, 'refresh', function (appsCollection) {
                     if (appList !== undefined) {
-                        appList.switchSet('default', appsCollection.getUpdatableApps);
+                        appList.switchSet('default', appsCollection.getUpdatableAppsWithoutIllegal);
                     }
                 });
             },
@@ -59,7 +59,7 @@
                     itemView : AppItemView.getClass(),
                     dataSet : [{
                         name : 'default',
-                        getter : appsCollection.getUpdatableApps
+                        getter : appsCollection.getUpdatableAppsWithoutIllegal
                     }],
                     keepSelect : false,
                     $observer : this.$('.check-select-all'),
