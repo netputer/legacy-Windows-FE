@@ -258,14 +258,18 @@
     {{? !!it.updateCategory }}
     {{? it.updateCategory === 'recommended' }}
     <div class="info hbox">
-        <strong>{{= i18n.app.UPDATE_FROM_SNAPPEA }}</strong>
+        <strong>{{= i18n.app.UPDATE_CATEGORY_RECOMMENDED }}</strong>
     </div>
     <div class="update hbox">
         <button class="button-update min" data-type="{{= it.updateCategory }}">{{= i18n.app.UPDATE_RECOMMENDED }}</button>
     </div>
+    {{?? it.updateCategory === 'warning' }}
+    <div class="info hbox">
+        <strong>{{= i18n.app.UPDATE_CATEGORY_WARNING }}</strong>
+    </div>
     {{??}}
     <div class="info hbox">
-        <strong>{{= i18n.app.UPDATE_FROM_OTHERS }}</strong>
+        <strong>{{= i18n.app.UPDATE_CATEGORY_NOT_RECOMMENDED }}</strong>
     </div>
     {{?}}
     {{??}}
@@ -512,9 +516,11 @@
     <div class="latest text-secondary">
         <div>{{= i18n.app.LATEST_VERSION_SIZE }}{{= StringUtil.readableSize(it.upgrade_info.size) }}</div>
         {{? it.upgrade_info.recommendedType === 'STRONG_RECOMMEND' }}
-        <div>{{= i18n.app.UPDATE_FROM_SNAPPEA }}</div>
+        <div>{{= i18n.app.UPDATE_CATEGORY_RECOMMENDED }}</div>
+        {{?? it.upgrade_info.recommendedType === 'WARNNING' }}
+        <div>{{= i18n.app.UPDATE_CATEGORY_WARNING }}</div>
         {{??}}
-        <div>{{= i18n.app.UPDATE_FROM_OTHERS }}</div>
+        <div>{{= i18n.app.UPDATE_CATEGORY_NOT_RECOMMENDED }}</div>
         {{?}}
     </div>
     {{? it.upgrade_info.changeLog.trim() }}
