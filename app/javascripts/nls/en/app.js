@@ -187,10 +187,9 @@ define({
     RETURN_ALL : '全部应用',
     SEARCH_TIP_PART : '{1} 个与「{2}」有关的应用',
 
-    UPDATE_FROM_SNAPPEA : '来自豌豆荚的升级',
-    UPDATE_FROM_OTHERS : '来自其它市场的升级',
-    RECOMMENDED_UPDATE : '<strong>来自豌豆荚的升级</strong> - 经过豌豆荚审核',
-    NOT_RECOMMENDED_UPDATE : '<strong>来自其它市场的升级</strong> - 未经豌豆荚审核',
+    UPDATE_CATEGORY_RECOMMENDED : '来自豌豆荚的升级',
+    UPDATE_CATEGORY_WARNING : '来自其它市场的升级',
+    UPDATE_CATEGORY_NOT_RECOMMENDED : '需谨慎的升级',
 
     /* Permission info */
     "android.permission-group.ACCOUNTS" : "访问您的帐户",

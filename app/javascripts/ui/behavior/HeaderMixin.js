@@ -63,23 +63,31 @@
             var sortType = this.$el.data('smart-list-sort-type');
 
             this.listenToCollection.comparator = function (a, b) {
-                a = a.toJSON();
-                b = b.toJSON();
+                var keyA = a.toJSON();
+                var keyB = b.toJSON();
 
-                var i;
-                for (i = 0; i < sortBy.length; i++) {
-                    a = a[sortBy[i]];
-                    b = b[sortBy[i]];
+                if (sortBy[0] === 'update') {
+                    sortType = 'string';
+
+                    keyA = keyA.update + keyA.base_info.name;
+                    keyB = keyB.update + keyB.base_info.name;
+                } else {
+                    var i;
+                    for (i = 0; i < sortBy.length; i++) {
+                        keyA = keyA[sortBy[i]];
+                        keyB = keyB[sortBy[i]];
+                    }
                 }
 
                 var result;
                 if (sortType === 'string') {
-                    result = asc ? a.localeCompare(b) : b.localeCompare(a);
+                    result = asc ? keyA.localeCompare(keyB) : keyB.localeCompare(keyA);
                 } else if (sortType === 'number') {
-                    result = asc ? (a - b) : (b - a);
+                    result = asc ? (keyA - keyB) : (keyB - keyA);
                 }
                 return result;
             };
+
             this.listenToCollection.sort();
         };
 

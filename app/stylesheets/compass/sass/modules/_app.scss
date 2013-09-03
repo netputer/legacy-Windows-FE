@@ -72,6 +72,10 @@
                     min-width: 50px;
                 }
             }
+
+            .button-update.illegal {
+                color: #8C8C8C;
+            }
         }
     }
 
@@ -513,6 +517,10 @@
             + .failed-text {
                 margin-left: 10px;
             }
+        }
+
+        .button-update.illegal:enabled {
+            color: #8C8C8C;
         }
     }
 

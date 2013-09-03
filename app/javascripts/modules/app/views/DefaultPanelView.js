@@ -60,7 +60,7 @@
             renderButtons : function () {
                 // udpate all
                 var $updateAll = this.$('.update-all');
-                var updatableCount = FunctionSwitch.ENABLE_APP_UPGRADE ? appsCollection.getUpdatableApps().length : 0;
+                var updatableCount = FunctionSwitch.ENABLE_APP_UPGRADE ? appsCollection.getUpdatableAppsWithoutIllegal().length : 0;
                 if (updatableCount > 0 &&
                         FunctionSwitch.ENABLE_APP_UPGRADE) {
                     $updateAll.find('button .label').html(StringUtil.format(i18n.app.ONE_KEY_UPDATE, updatableCount));

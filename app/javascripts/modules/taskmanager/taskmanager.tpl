@@ -429,7 +429,7 @@
                                 it.message === 'DEVICE_NOT_FOUND') {
     }}
     <button class="button-connect primary">{{= i18n.welcome.CONNECT_PHONE }}</button>
-    <span class="button-push-phone link">{{= i18n.taskManager.SEND_TO_PHONE }}</span>
+    <!--<span class="button-push-phone link">{{= i18n.taskManager.SEND_TO_PHONE }}</span>-->
     {{
                         } else {
                             if(!it.blockAction) {
