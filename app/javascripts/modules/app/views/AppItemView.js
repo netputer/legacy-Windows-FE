@@ -146,14 +146,12 @@
                         var baseInfo = this.model.get('base_info');
 
                         var alertText;
-                        if (!this.model.isSystem) {
-                            alertText = $(StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL, baseInfo.name));
+                        if (this.model.isSystem && !Device.isRoot) {
+                            alertText = StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL_SYSTEM_UNROOT, baseInfo.name);
+                        } else if (!!this.model.get('upgrade_info').notRecommendReason) {
+                            alertText = StringUtil.format(i18n.app.ALERT_TIP_UPDATE_NOT_RECOMMENDED, this.model.get('upgrade_info').notRecommendReason.description);
                         } else {
-                            if (Device.isRoot) {
-                                alertText = $(StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL, baseInfo.name));
-                            } else {
-                                alertText = $(StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL_SYSTEM_UNROOT, baseInfo.name));
-                            }
+                            alertText = StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL, baseInfo.name);
                         }
 
                         confirm(alertText, function () {

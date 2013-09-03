@@ -62,6 +62,7 @@ define({
     ALERT_TIP_IGNORED_UPDATE_CONFIRM : '确定要忽略此应用的升级吗？忽略成功后，您可以在「忽略升级的应用」中更改此设置。',
     ALERT_TIP_MOVE_NEED_CONFIRM : '请到手机上确认移动应用。',
     ALERT_TIP_UPDATE_ILLEGAL : '<p>检测到「{1}」新版本和已安装版本签名不一致。</p><p>如果您选择继续升级，豌豆荚会帮您先删除旧版本再安装，这样原来的应用数据和游戏存档将会丢失。</p><p>是否继续？</p>',
+    ALERT_TIP_UPDATE_NOT_RECOMMENDED : '<p>{1}</p><p>是否继续？</p>',
     ALERT_TIP_UPDATE_ILLEGAL_SYSTEM_UNROOT : '<p>检测到「{1}」新版本和已安装版本签名不一致。</p><p>由于此应用是一个系统应用，豌豆荚需要 root 权限才能为您升级此应用。</p><p>是否继续？</p>',
     SD_MOUNT_TIP : '由于您在手机上打开了「USB 存储设备」，豌豆荚无法显示您安装的应用程序。请根据提示管理「USB 存储」选项功能再试。',
     SD_MOUNT_TIP2 : '您在手机上打开了「USB 存储设备」，如果您有安装在 SD 卡上的应用，将不能被读取。<a href="http://help.wandoujia.com/entries/22332803-sd" target="_default">查看帮助</a>',
@@ -190,6 +191,7 @@ define({
     UPDATE_CATEGORY_RECOMMENDED : '来自豌豆荚的升级',
     UPDATE_CATEGORY_WARNING : '来自其它市场的升级',
     UPDATE_CATEGORY_NOT_RECOMMENDED : '需谨慎的升级',
+    NOT_RECOMMENDED_REASON : '谨慎升级的理由：',
 
     /* Permission info */
     "android.permission-group.ACCOUNTS" : "访问您的账号",

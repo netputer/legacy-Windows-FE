@@ -190,6 +190,7 @@ define({
     UPDATE_CATEGORY_RECOMMENDED : '来自豌豆荚的升级',
     UPDATE_CATEGORY_WARNING : '来自其它市场的升级',
     UPDATE_CATEGORY_NOT_RECOMMENDED : '需谨慎的升级',
+    NOT_RECOMMENDED_REASON : '谨慎升级的理由：',
 
     /* Permission info */
     "android.permission-group.ACCOUNTS" : "访问您的帐户",
