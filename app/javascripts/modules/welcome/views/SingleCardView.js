@@ -53,6 +53,10 @@
                 this.$el.html(this.template(this.model.toJSON()))
                     .toggleClass('ad', this.model.get('ad'));
 
+                if (this.model.get('ad')) {
+                    this.$('.footer').remove();
+                }
+
                 imageLoader(this.model.get('icons').px100, this.$('.icon'), true);
 
                 this.renderButton();

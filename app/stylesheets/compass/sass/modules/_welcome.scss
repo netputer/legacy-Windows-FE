@@ -323,6 +323,7 @@
     }
 
     .icon-ctn {
+        height: 100px;
         margin-right: 15px;
         width: 100px;
 
@@ -429,8 +430,6 @@
             &.#{$icon} {
                 .icon-ctn {
                     @include sprite-sprite(promote-#{$icon});
-                    height: 100px;
-                    width: 100px;
                 }
             }
         }
@@ -466,8 +465,6 @@
             &.#{$icon} {
                 .icon-ctn {
                     @include sprite-sprite(list-#{$icon});
-                    height: 100px;
-                    width: 100px;
                 }
             }
         }
@@ -590,10 +587,6 @@
     &.tips {
         -webkit-box-align: center;
 
-        .icon-ctn {
-            height: 100px;
-        }
-
         .info-ctn {
             .title {
                 color: #fff;
@@ -657,6 +650,15 @@
     &.changelog {
         -webkit-box-align: center;
 
+        .icon-ctn {
+            @include sprite-sprite(smile);
+
+            .img {
+                height: 100px;
+                width: 100px;
+            }
+        }
+
         .desc {
             margin: 5px 0 10px;
         }
@@ -672,7 +674,6 @@
 
         .icon-ctn {
             @include sprite-sprite(weibo-follow);
-            height: 100px;
         }
 
         .icon-verified {
