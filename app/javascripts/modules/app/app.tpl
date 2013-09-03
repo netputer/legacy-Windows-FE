@@ -520,7 +520,7 @@
         {{?? it.upgrade_info.recommendedType === 'WARNNING' }}
         <div>{{= i18n.app.UPDATE_CATEGORY_WARNING }}</div>
         {{??}}
-        <div>{{= i18n.app.UPDATE_CATEGORY_NOT_RECOMMENDED }}</div>
+        <div>{{= i18n.app.NOT_RECOMMENDED_REASON + it.upgrade_info.notRecommendReason.description }}</div>
         {{?}}
     </div>
     {{? it.upgrade_info.changeLog.trim() }}
