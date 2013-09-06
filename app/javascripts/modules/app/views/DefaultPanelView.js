@@ -94,7 +94,9 @@
                 this.$el.html(this.template({}));
 
                 if (FunctionSwitch.ENABLE_APP_RECOMMEND) {
-                    this.$el.append(HotCateView.getInstance().render().$el);
+                    if (false) {
+                        this.$el.append(HotCateView.getInstance().render().$el);
+                    }
                     this.$el.append(RecommendView.getInstance().render().$el);
                 }
 
