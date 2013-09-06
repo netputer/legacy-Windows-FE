@@ -540,4 +540,9 @@
         <div class="mount-sd"></div>
     </div>
 </script>
+
+<script type="text/x-ui-template" id="hot-cate">
+    <h3 class="text-secondary">您喜欢的应用类型</h3>
+    <h3 class="text-secondary">最新应用专题</h3>
+</script>
 </templates>

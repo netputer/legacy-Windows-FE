@@ -34,6 +34,7 @@
             parse : function (attrs) {
                 delete attrs.base_info.requested_permission;
                 delete attrs.base_info.pinyin;
+                delete attrs.base_info.source_path;
 
                 var baseInfo = attrs.base_info;
 

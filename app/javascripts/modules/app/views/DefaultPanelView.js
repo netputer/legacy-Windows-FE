@@ -15,7 +15,8 @@
         'app/collections/AppsCollection',
         'app/views/RecommendView',
         'app/views/OneKeyUpdateWindowView',
-        'app/views/OneKeyMoveWindowView'
+        'app/views/OneKeyMoveWindowView',
+        'app/views/HotCateView'
     ], function (
         Backbone,
         doT,
@@ -31,7 +32,8 @@
         AppsCollection,
         RecommendView,
         OneKeyUpdateWindowView,
-        OneKeyMoveWindowView
+        OneKeyMoveWindowView,
+        HotCateView
     ) {
         console.log('DefaultPanelView - File loaded.');
 
@@ -92,6 +94,9 @@
                 this.$el.html(this.template({}));
 
                 if (FunctionSwitch.ENABLE_APP_RECOMMEND) {
+                    if (false) {
+                        this.$el.append(HotCateView.getInstance().render().$el);
+                    }
                     this.$el.append(RecommendView.getInstance().render().$el);
                 }
 
