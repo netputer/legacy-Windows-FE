@@ -26,6 +26,12 @@
             className : FeedCardView.getClass().prototype.className + ' weibo',
             render : function () {
                 this.$el.html(this.template({}));
+
+                log({
+                    'event' : 'ui.show.welcome_card',
+                    'type' : this.model.get('type')
+                });
+
                 return this;
             },
             hide : function () {
