@@ -13,11 +13,11 @@
             tagName : 'li',
             initialize : function () {
                 this.render = _.wrap(this.render, function (renderFunc) {
-                    var $checker = this.$('input[type="checkbox"]');
+                    var $checker = this.$('.item-checker');
                     if ($checker.length > 0) {
                         var checked = $checker.prop('checked');
                         renderFunc.call(this);
-                        this.$('input[type="checkbox"]').prop('checked', checked);
+                        this.$('.item-checker').prop('checked', checked);
                     } else {
                         renderFunc.call(this);
                     }
@@ -26,9 +26,9 @@
                 }.bind(this));
             },
             toggleSelect : function (select) {
-                select = select !== undefined ? select : !this.$('input[type="checkbox"]').prop('checked');
+                select = select !== undefined ? select : !this.$('.item-checker').prop('checked');
                 this.$el.toggleClass('highlight', select);
-                this.$('input[type="checkbox"]').prop({
+                this.$('.item-checker').prop({
                     checked : select
                 });
             },

@@ -65,6 +65,7 @@
                         url : CONFIG.actions.APP_STARTER,
                         data : {
                             f : 'windows',
+                            pos : 'w/nux',
                             opt_fields : [
                                 'apps.downloadCount',
                                 'apps.likesRate',
