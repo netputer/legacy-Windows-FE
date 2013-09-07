@@ -2,6 +2,7 @@
 <script type="text/x-ui-template" id="welcome">
     <div class="bg">
         <div class="gradient"></div>
+        <div class="mask"></div>
     </div>
     <div class="top hbox"></div>
     {{= TemplateFactory.get('ui', 'loading-horizental-transparent') }}
