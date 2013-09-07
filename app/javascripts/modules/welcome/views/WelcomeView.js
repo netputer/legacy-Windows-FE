@@ -241,7 +241,9 @@
                 feedListView.initLayout();
             },
             scrollTopAnimation : function () {
-                this.$el[0].scrollTop = 0;
+                this.$el.animate({
+                    scrollTop: 0
+                }, 1000);
             },
             deviceViewAnimationAsync : function () {
                 var deferred = $.Deferred();
