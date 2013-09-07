@@ -23,10 +23,12 @@
             contact : 'modules/contact',
             photo : 'modules/photo',
             video : 'modules/video',
-            backuprestore : 'modules/backuprestore',
             social : 'modules/social',
             sync : 'modules/sync',
-            guide : 'modules/welcome/guide'
+            guide : 'modules/welcome/guide',
+
+            backuprestore : 'modules/backuprestore',
+            new_backupstore : 'modules/new_backupstore'
         },
         shim: {
             doT : {
