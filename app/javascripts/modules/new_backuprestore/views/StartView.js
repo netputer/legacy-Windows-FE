@@ -13,7 +13,7 @@
         'new_backuprestore/BackupRestoreService',
         'Account',
         'IO',
-        'Configuration.js',
+        'Configuration',
         'Internationalization'
     ], function (
         $,

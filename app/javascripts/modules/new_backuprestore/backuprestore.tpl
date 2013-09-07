@@ -2,175 +2,175 @@
 
 <script type="text/x-ui-template" id="start">
     <div class="action-panel hbox">
-    	<div class="container backup">
-			<div class="icon"/>
-			<div class="info">
-				<span class="title">{{= i18n.new_backuprestore.BACKUP }}</span>
-            	<span class="desc text-thirdly">{{= i18n.new_backuprestore.BACKUP_DES }}</span>
-			</div>
-			<div class="action-container">
-				<div class="action-backup-local action-button vbox">
-					<div class="top hbox">
-						<div class="action-icon"/>
-						<span class="title">{{= i18n.new_backuprestore.BACKUP_TO_LOCAL }}</span>
-					</div>
-					<span class="desc">{{= i18n.new_backuprestore.BACKUP_TO_LOCAL_DESC }}</span>
-				</div>
+        <div class="container backup">
+            <div class="icon"/>
+            <div class="info">
+                <span class="title">{{= i18n.new_backuprestore.BACKUP }}</span>
+                <span class="desc text-thirdly">{{= i18n.new_backuprestore.BACKUP_DES }}</span>
+            </div>
+            <div class="action-container">
+                <div class="action-backup-local action-button vbox">
+                    <div class="top hbox">
+                        <div class="action-icon"/>
+                        <span class="title">{{= i18n.new_backuprestore.BACKUP_TO_LOCAL }}</span>
+                    </div>
+                    <span class="desc">{{= i18n.new_backuprestore.BACKUP_TO_LOCAL_DESC }}</span>
+                </div>
 
-				<div class="action-backup-remote action-button vbox">
-					<div class="top hbox">
-						<div class="action-icon"/>
-						<span class="title">{{= i18n.new_backuprestore.BACKUP_TO_CLOUD }}</span>
-					</div>
-					<span class="desc">{{= i18n.new_backuprestore.BACKUP_TO_CLOUD_DESC }}</span>
-				</div>
-			</div>
-		</div>
-		<div class="container restore">
-			<div class="icon"/>
-			<div class="info">
-				<span class="title">{{= i18n.new_backuprestore.RESTORE }}</span>
-            	<span class="desc text-thirdly">{{= i18n.new_backuprestore.RESTORE_DES }}</span>
-			</div>
-			<div class="action-container">
-				<div class="action-restore-local action-button vbox">
-					<div class="top hbox">
-						<div class="action-icon"/>
-						<span class="title">{{= i18n.new_backuprestore.RESTORE_FROM_LOCAL }}</span>
-					</div>
-					<span class="desc">{{= i18n.new_backuprestore.RESTORE_FROM_LOCAL_DESC }}</span>
-				</div>
+                <div class="action-backup-remote action-button vbox">
+                    <div class="top hbox">
+                        <div class="action-icon"/>
+                        <span class="title">{{= i18n.new_backuprestore.BACKUP_TO_CLOUD }}</span>
+                    </div>
+                    <span class="desc">{{= i18n.new_backuprestore.BACKUP_TO_CLOUD_DESC }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="container restore">
+            <div class="icon"/>
+            <div class="info">
+                <span class="title">{{= i18n.new_backuprestore.RESTORE }}</span>
+                <span class="desc text-thirdly">{{= i18n.new_backuprestore.RESTORE_DES }}</span>
+            </div>
+            <div class="action-container">
+                <div class="action-restore-local action-button vbox">
+                    <div class="top hbox">
+                        <div class="action-icon"/>
+                        <span class="title">{{= i18n.new_backuprestore.RESTORE_FROM_LOCAL }}</span>
+                    </div>
+                    <span class="desc">{{= i18n.new_backuprestore.RESTORE_FROM_LOCAL_DESC }}</span>
+                </div>
 
-				<div class="action-restore-remote action-button vbox">
-					<div class="top hbox">
-						<div class="action-icon"/>
-						<span class="title">{{= i18n.new_backuprestore.RESTORE_FROM_CLOUD }}</span>
-					</div>
-					<span class="desc">{{= i18n.new_backuprestore.RESTORE_FROM_CLOUD_DESC }}</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="info-panel hbox">
-		<div class="last-backup-time info-panel hbox">
-			<div class="icon"/>
-			<div class="info">
-				<span class="title">{{= i18n.new_backuprestore.LAST_BACKUP_TIME }}</span>
-				<br/>
-				<span class="last-time"></span>
-			</div>
-		</div>
-		<div class="auto-backup-local info-panel hbox">
-			<div class="icon"/>
-			<div class="info">
-				<span class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_TO_LOCAL }}</span>
-				<br/>
-				<span class="is-auto-backup-local"></span>
-				<span class="do-action local"></span>
-			</div>
-		</div>
-		<div class="auto-backup-remote info-panel hbox">
-			<div class="icon"/>
-			<div class="info">
-				<span class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_TO_LOCAL }}</span>
-				<br/>
-				<span class="is-auto-backup-remote"></span>
-				<span class="do-action remote"></span>
-			</div>
-		</div>
-	</div>
+                <div class="action-restore-remote action-button vbox">
+                    <div class="top hbox">
+                        <div class="action-icon"/>
+                        <span class="title">{{= i18n.new_backuprestore.RESTORE_FROM_CLOUD }}</span>
+                    </div>
+                    <span class="desc">{{= i18n.new_backuprestore.RESTORE_FROM_CLOUD_DESC }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-panel hbox">
+        <div class="last-backup-time info-panel hbox">
+            <div class="icon"/>
+            <div class="info">
+                <span class="title">{{= i18n.new_backuprestore.LAST_BACKUP_TIME }}</span>
+                <br/>
+                <span class="last-time"></span>
+            </div>
+        </div>
+        <div class="auto-backup-local info-panel hbox">
+            <div class="icon"/>
+            <div class="info">
+                <span class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_TO_LOCAL }}</span>
+                <br/>
+                <span class="is-auto-backup-local"></span>
+                <span class="do-action local"></span>
+            </div>
+        </div>
+        <div class="auto-backup-remote info-panel hbox">
+            <div class="icon"/>
+            <div class="info">
+                <span class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_TO_LOCAL }}</span>
+                <br/>
+                <span class="is-auto-backup-remote"></span>
+                <span class="do-action remote"></span>
+            </div>
+        </div>
+    </div>
 </script>
 
 <script type="text/x-ui-template" id="base">
-	<div class="top vbox">
-		<span class="big-title"></span>
-		<span class="text-thirdly state-title"></span>
-	</div>
+    <div class="top vbox">
+        <span class="big-title"></span>
+        <span class="text-thirdly state-title"></span>
+    </div>
 </script>
 
 <script type="text/x-ui-template" id="backup-restore-progress">
-	<div class="content-box contact vbox">
-		<div class="title-box hbox">
-			<div class="icon"/>
-			<span class="title">{{= i18n.new_backuprestore.CONTACT}}</span>
-			<br/>	
-			<span class="count"></span>
-		</div>
-		<progress class="tiny progress" max="100" value="0" style="display:none"></progress>
-		<span class="error"></span>
-	</div>
-	<div class="content-box sms vbox">
-		<div class="title-box hbox">
-			<div class="icon"/>
-			<span class="title">{{= i18n.new_backuprestore.SMS}}</span>
-			<br/>	
-			<span class="count"></span>
-		</div>
-		<progress class="tiny progress" max="100" value="0" style="display:none"></progress>
-		<span class="error"></span>
-	</div>
-	<div class="content-box app vbox">
-		<div class="title-box hbox">
-			<div class="icon"/>
-			<span class="title app-only">{{= i18n.new_backuprestore.APP}}</span>
-			<span class="title app-and-data" style="display:none">{{= i18n.new_backuprestore.APP_AND_DATA}}</span><div class="beta" style="display:none"/>
-			<br/>	
-			<span class="count"></span>
-		</div>
-		<progress class="tiny progress" max="100" value="0" style="display:none"></progress>
-		<span class="error"></span>
-	</div>
+    <div class="content-box contact vbox">
+        <div class="title-box hbox">
+            <div class="icon"/>
+            <span class="title">{{= i18n.new_backuprestore.CONTACT}}</span>
+            <br/>
+            <span class="count"></span>
+        </div>
+        <progress class="tiny progress" max="100" value="0" style="display:none"></progress>
+        <span class="error"></span>
+    </div>
+    <div class="content-box sms vbox">
+        <div class="title-box hbox">
+            <div class="icon"/>
+            <span class="title">{{= i18n.new_backuprestore.SMS}}</span>
+            <br/>
+            <span class="count"></span>
+        </div>
+        <progress class="tiny progress" max="100" value="0" style="display:none"></progress>
+        <span class="error"></span>
+    </div>
+    <div class="content-box app vbox">
+        <div class="title-box hbox">
+            <div class="icon"/>
+            <span class="title app-only">{{= i18n.new_backuprestore.APP}}</span>
+            <span class="title app-and-data" style="display:none">{{= i18n.new_backuprestore.APP_AND_DATA}}</span><div class="beta" style="display:none"/>
+            <br/>
+            <span class="count"></span>
+        </div>
+        <progress class="tiny progress" max="100" value="0" style="display:none"></progress>
+        <span class="error"></span>
+    </div>
 </script>
 
 <script type="text/x-ui-template" id="local-backup-advance">
-	<dl class="container">
-		<dt class="text-bold">{{= i18n.new_backuprestore.DATA_TYPE}}</dt>
-		<dd>
-			<label><input type="checkbox" name="contact" value='{{= CONFIG.enums.BR_TYPE_CONTACT }}'/>{{=i18n.new_backuprestore.CONTACT}}</label>
-			<label><input type="checkbox" name="sms" value='{{= CONFIG.enums.BR_TYPE_SMS }}'/>{{=i18n.new_backuprestore.SMS}}</label>
-			<label><input type="checkbox" name="app" value='{{= CONFIG.enums.BR_TYPE_APP }}'/>{{=i18n.new_backuprestore.APP}}</label>
-			<label><input type="checkbox" name='appdata' value="{{= CONFIG.enums.BR_TYPE_APP_DATA }}"/>{{=i18n.new_backuprestore.APP_DATA}}</label><div class="beta"/>
-		</dd>
-		<dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_TYPE}}</dt>
-		<dd>
-			<label><input type="radio" name="backup-type" value="2"/>{{= i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE}}</label><br/>
-			<span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE_DESC}}</span><br/>
-			<label><input type="radio"  name="backup-type" value="0"/>{{= i18n.new_backuprestore.APP_TYPE_APK_TITLE}}</label><br/>
-			<span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_APK_TITLE_DESC}}</span>
-		</dd>
-		<dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_FILE_PATH}}</dt>
-		<dd>
-			<span class="file-path">{{= it.filePath }}</span>
-			<a class="link change-backup-path">{{=i18n.new_backuprestore.BACKUP_CHANGE_FILE_PATH}}</a> 
-		</dd>
-		<dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_FILE_NAME}}</dt>
-		<dd>
-			<input type="text" class="file-name" name="file-name" value="{{= it.fileName }}"/>
-		</dd>
-	</dl>
+    <dl class="container">
+        <dt class="text-bold">{{= i18n.new_backuprestore.DATA_TYPE}}</dt>
+        <dd>
+            <label><input type="checkbox" name="contact" value='{{= CONFIG.enums.BR_TYPE_CONTACT }}'/>{{=i18n.new_backuprestore.CONTACT}}</label>
+            <label><input type="checkbox" name="sms" value='{{= CONFIG.enums.BR_TYPE_SMS }}'/>{{=i18n.new_backuprestore.SMS}}</label>
+            <label><input type="checkbox" name="app" value='{{= CONFIG.enums.BR_TYPE_APP }}'/>{{=i18n.new_backuprestore.APP}}</label>
+            <label><input type="checkbox" name='appdata' value="{{= CONFIG.enums.BR_TYPE_APP_DATA }}"/>{{=i18n.new_backuprestore.APP_DATA}}</label><div class="beta"/>
+        </dd>
+        <dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_TYPE}}</dt>
+        <dd>
+            <label><input type="radio" name="backup-type" value="2"/>{{= i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE}}</label><br/>
+            <span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE_DESC}}</span><br/>
+            <label><input type="radio"  name="backup-type" value="0"/>{{= i18n.new_backuprestore.APP_TYPE_APK_TITLE}}</label><br/>
+            <span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_APK_TITLE_DESC}}</span>
+        </dd>
+        <dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_FILE_PATH}}</dt>
+        <dd>
+            <span class="file-path">{{= it.filePath }}</span>
+            <a class="link change-backup-path">{{=i18n.new_backuprestore.BACKUP_CHANGE_FILE_PATH}}</a>
+        </dd>
+        <dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_FILE_NAME}}</dt>
+        <dd>
+            <input type="text" class="file-name" name="file-name" value="{{= it.fileName }}"/>
+        </dd>
+    </dl>
 </script>
 
 <script type="text/x-ui-template" id="remote-backup-advance">
-	<dl class="container">
-		<dt class="text-bold">{{= i18n.new_backuprestore.DATA_TYPE}}</dt>
-		<dd>
-			<label><input type="checkbox" name="contact" value='{{= CONFIG.enums.BR_TYPE_CONTACT }}'/>{{=i18n.new_backuprestore.CONTACT}}</label>
-			<label><input type="checkbox" name="sms" value='{{= CONFIG.enums.BR_TYPE_SMS }}'/>{{=i18n.new_backuprestore.SMS}}</label>
-			<label><input type="checkbox" name="app" value='{{= CONFIG.enums.BR_TYPE_APP }}'/>{{=i18n.new_backuprestore.APP}}</label>
-		</dd>
-	</dl>
+    <dl class="container">
+        <dt class="text-bold">{{= i18n.new_backuprestore.DATA_TYPE}}</dt>
+        <dd>
+            <label><input type="checkbox" name="contact" value='{{= CONFIG.enums.BR_TYPE_CONTACT }}'/>{{=i18n.new_backuprestore.CONTACT}}</label>
+            <label><input type="checkbox" name="sms" value='{{= CONFIG.enums.BR_TYPE_SMS }}'/>{{=i18n.new_backuprestore.SMS}}</label>
+            <label><input type="checkbox" name="app" value='{{= CONFIG.enums.BR_TYPE_APP }}'/>{{=i18n.new_backuprestore.APP}}</label>
+        </dd>
+    </dl>
 </script>
 
 <script  type="text/x-ui-template" id="backup-footer">
-	<div class="left">
-		<span class="link advanced">{{= i18n.new_backuprestore.ADVANCED}}</span>
-		<span class="link showfile" style="display:none">{{= i18n.new_backuprestore.OPEN_BACKUP_FILE}}</span>
-	</div>
-	<div class="right hbox">
-		<span class="link cancel">{{= i18n.new_backuprestore.CANCEL}}</span>
-		<button class="startbackup primary max" disabled>{{= i18n.new_backuprestore.START_BACKUP}}</button>
-		<button class="done primary max" style="display:none">{{= i18n.new_backuprestore.DONE}}</button>
-	</div>
+    <div class="left">
+        <span class="link advanced">{{= i18n.new_backuprestore.ADVANCED}}</span>
+        <span class="link showfile" style="display:none">{{= i18n.new_backuprestore.OPEN_BACKUP_FILE}}</span>
+    </div>
+    <div class="right hbox">
+        <span class="link cancel">{{= i18n.new_backuprestore.CANCEL}}</span>
+        <button class="startbackup primary max" disabled>{{= i18n.new_backuprestore.START_BACKUP}}</button>
+        <button class="done primary max" style="display:none">{{= i18n.new_backuprestore.DONE}}</button>
+    </div>
 </script>
 
 <script type="text/template" id="backup-app-data-tip-view">
@@ -226,83 +226,83 @@
 </script>
 
 <script  type="text/x-ui-template" id="restore-footer">
-	<div class="left">
-		<span class="link advanced">{{= i18n.new_backuprestore.ADVANCED}}</span>
-		<span class="link showfile">{{= i18n.new_backuprestore.OPEN_RESTORE_FILE}}</span>
-		<span class="link taskmanager">查看下载任务</span>
-	</div>
-	<div class="right hbox">
-		<span class="link cancel">{{= i18n.new_backuprestore.CANCEL}}</span>
-		<button class="startrestore primary max">{{= i18n.new_backuprestore.START_RESTORE}}</button>
-		<button class="confirm primary max" disabled>确定</button>
-		<button class="done primary max">{{= i18n.new_backuprestore.DONE}}</button>
-	</div>
+    <div class="left">
+        <span class="link advanced">{{= i18n.new_backuprestore.ADVANCED}}</span>
+        <span class="link showfile">{{= i18n.new_backuprestore.OPEN_RESTORE_FILE}}</span>
+        <span class="link taskmanager">查看下载任务</span>
+    </div>
+    <div class="right hbox">
+        <span class="link cancel">{{= i18n.new_backuprestore.CANCEL}}</span>
+        <button class="startrestore primary max">{{= i18n.new_backuprestore.START_RESTORE}}</button>
+        <button class="confirm primary max" disabled>{{= i18n.ui.CONFIRM }}</button>
+        <button class="done primary max">{{= i18n.new_backuprestore.DONE}}</button>
+    </div>
 </script>
 
 <script  type="text/x-ui-template" id="restore-file-list-item">
-	<div class="hbox text-bold name" title="{{= it.path}}">
-		<input class="item-checker" type="checkbox" value="{{= it.id}}"/>{{= it.name}}
-	</div>
-	<div class="num-container hbox">
-		<div class="contact-icon icon"/>
-		<span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_CONTACT] }}</span>
-	</div>
-	<div class="num-container hbox">
-		<div class="sms-icon icon"/>
-		<span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_SMS] }}</span>
-	</div>
-	<div class="num-container hbox">
-		<div class="app-icon icon"/>
-		<span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_APP] }}</span>
-		{{? it[CONFIG.enums.BR_TYPE_APP_DATA] > 0}}
-			<div class="app-data-icon"/>
-		{{?}}
-	</div>
+    <div class="hbox text-bold name" title="{{= it.path}}">
+        <input class="item-checker" type="radio" value="{{= it.id}}"/>{{= it.name}}
+    </div>
+    <div class="num-container hbox">
+        <div class="contact-icon icon"/>
+        <span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_CONTACT] }}</span>
+    </div>
+    <div class="num-container hbox">
+        <div class="sms-icon icon"/>
+        <span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_SMS] }}</span>
+    </div>
+    <div class="num-container hbox">
+        <div class="app-icon icon"/>
+        <span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_APP] }}</span>
+        {{? it[CONFIG.enums.BR_TYPE_APP_DATA] > 0}}
+            <div class="app-data-icon"/>
+        {{?}}
+    </div>
 </script>
 
 <script  type="text/x-ui-template" id="restore-remote-file-list-item">
-	<div class="hbox text-bold name">
-		<input class="item-checker" type="checkbox" value="{{= it.timestamp}}"/>{{= it.time}}{{=it.deviceName}}
-	</div>
-	<div class="num-container hbox">
-		<div class="contact-icon icon"/>
-		<span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_CONTACT] }}</span>
-	</div>
-	<div class="num-container hbox">
-		<div class="sms-icon icon"/>
-		<span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_SMS] }}</span>
-	</div>
-	<div class="num-container hbox">
-		<div class="app-icon icon"/>
-		<span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_APP] }}</span>
-	</div>
+    <div class="hbox text-bold name">
+        <input class="item-checker" type="radio" value="{{= it.timestamp}}"/>{{= it.time}}{{=it.deviceName}}
+    </div>
+    <div class="num-container hbox">
+        <div class="contact-icon icon"/>
+        <span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_CONTACT] }}</span>
+    </div>
+    <div class="num-container hbox">
+        <div class="sms-icon icon"/>
+        <span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_SMS] }}</span>
+    </div>
+    <div class="num-container hbox">
+        <div class="app-icon icon"/>
+        <span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_APP] }}</span>
+    </div>
 </script>
 
 <script type="text/x-ui-template" id="local-restore-advance">
-	<dl class="container">
-		<dt class="text-bold">{{= i18n.new_backuprestore.DATA_TYPE}}</dt>
-		<dd>
-			<label><input type="checkbox" name="contact" value='{{= CONFIG.enums.BR_TYPE_CONTACT }}'/>{{=i18n.new_backuprestore.CONTACT}}</label>
-			<label><input type="checkbox" name="sms" value='{{= CONFIG.enums.BR_TYPE_SMS }}'/>{{=i18n.new_backuprestore.SMS}}</label>
-			<label><input type="checkbox" name="app" value='{{= CONFIG.enums.BR_TYPE_APP }}'/>{{=i18n.new_backuprestore.APP}}</label>
-			<label><input type="checkbox" name='appdata' value="{{= CONFIG.enums.BR_TYPE_APP_DATA }}"/>{{=i18n.new_backuprestore.APP_DATA}}</label><div class="beta"/>
-		</dd>
-	</dl>
+    <dl class="container">
+        <dt class="text-bold">{{= i18n.new_backuprestore.DATA_TYPE}}</dt>
+        <dd>
+            <label><input type="checkbox" name="contact" value='{{= CONFIG.enums.BR_TYPE_CONTACT }}'/>{{=i18n.new_backuprestore.CONTACT}}</label>
+            <label><input type="checkbox" name="sms" value='{{= CONFIG.enums.BR_TYPE_SMS }}'/>{{=i18n.new_backuprestore.SMS}}</label>
+            <label><input type="checkbox" name="app" value='{{= CONFIG.enums.BR_TYPE_APP }}'/>{{=i18n.new_backuprestore.APP}}</label>
+            <label><input type="checkbox" name='appdata' value="{{= CONFIG.enums.BR_TYPE_APP_DATA }}"/>{{=i18n.new_backuprestore.APP_DATA}}</label><div class="beta"/>
+        </dd>
+    </dl>
 </script>
 
 <script type="text/x-ui-template" id="remote-restore-advance">
-	<dl class="container">
-		<dt class="text-bold">{{= i18n.new_backuprestore.DATA_TYPE}}</dt>
-		<dd>
-			<label><input type="checkbox" name="contact" value='{{= CONFIG.enums.BR_TYPE_CONTACT }}'/>{{=i18n.new_backuprestore.CONTACT}}</label>
-			<label><input type="checkbox" name="sms" value='{{= CONFIG.enums.BR_TYPE_SMS }}'/>{{=i18n.new_backuprestore.SMS}}</label>
-			<label><input type="checkbox" name="app" value='{{= CONFIG.enums.BR_TYPE_APP }}'/>{{=i18n.new_backuprestore.APP}}</label>
-		</dd>
-	</dl>
+    <dl class="container">
+        <dt class="text-bold">{{= i18n.new_backuprestore.DATA_TYPE}}</dt>
+        <dd>
+            <label><input type="checkbox" name="contact" value='{{= CONFIG.enums.BR_TYPE_CONTACT }}'/>{{=i18n.new_backuprestore.CONTACT}}</label>
+            <label><input type="checkbox" name="sms" value='{{= CONFIG.enums.BR_TYPE_SMS }}'/>{{=i18n.new_backuprestore.SMS}}</label>
+            <label><input type="checkbox" name="app" value='{{= CONFIG.enums.BR_TYPE_APP }}'/>{{=i18n.new_backuprestore.APP}}</label>
+        </dd>
+    </dl>
 </script>
 
 <script type="text/x-ui-template" id="backup-restore-download">
-	<progress class="progress" max="100" value="0"></progress>
+    <progress class="progress" max="100" value="0"></progress>
 </script>
 
 </templates>
