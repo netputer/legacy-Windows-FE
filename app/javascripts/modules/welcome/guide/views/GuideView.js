@@ -84,9 +84,6 @@
                     }.bind(this))
                     .then(function () {
                         this.totalCards = this.cardQueue.length;
-                        return $.Deferred().resolve();
-                    }.bind(this))
-                    .then(function () {
                         IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY);
                         this.run();
                     }.bind(this));
