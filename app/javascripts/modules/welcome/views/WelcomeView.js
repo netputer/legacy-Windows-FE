@@ -20,7 +20,8 @@
         'welcome/views/GuideView',
         'welcome/views/FeedListView',
         'welcome/collections/FeedsCollection',
-        'welcome/views/TipsCardView'
+        'welcome/views/TipsCardView',
+        'welcome/views/CapacityBarView'
     ], function (
         Backbone,
         _,
@@ -41,13 +42,15 @@
         GuideView,
         FeedListView,
         FeedsCollection,
-        TipsCardView
+        TipsCardView,
+        CapacityBarView
     ) {
         console.log('WelcomeView - File loaded.');
 
         var deviceView;
         var clockView;
         var toolbarView;
+        var capacityBarView;
         var guideView;
         var feedListView;
 
@@ -128,6 +131,7 @@
                 deviceView = DeviceView.getInstance();
                 clockView = ClockView.getInstance();
                 toolbarView = ToolbarView.getInstance();
+                capacityBarView = CapacityBarView.getInstance();
                 guideView = GuideView.getInstance();
                 feedListView = FeedListView.getInstance();
 
@@ -141,6 +145,8 @@
 
                 this.$el.append(toolbarView.render().$el)
                     .on('scroll', this.scrollHandler);
+
+                this.$el.append(capacityBarView.render().$el);
 
                 var feedsCollection = FeedsCollection.getInstance();
                 var noticeArray = [
@@ -222,8 +228,6 @@
                 feedListView.initLayout();
             },
             switchToBillboard : function () {
-                console.error("guideView.$el.css('height')", guideView.$el.css('height'));
-
                 if (guideView.$el.css('height') === '0px') {
                     guideView.remove();
                 } else {
@@ -234,7 +238,6 @@
                 feedListView.initLayout();
             },
             scrollTopAnimation : function () {
-                console.error('yo');
                 this.$el[0].scrollTop = 0;
             },
             deviceViewAnimationAsync : function () {
