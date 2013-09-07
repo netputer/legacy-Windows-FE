@@ -1,6 +1,7 @@
 <templates>
 <script type="text/x-ui-template" id="welcome">
     <div class="bg">
+        <div class="mask"></div>
         <div class="gradient"></div>
     </div>
     <div class="top hbox"></div>
@@ -200,6 +201,21 @@
     </button>
     <div class='spliter'></div>
     <button class="button-top transparent min">{{= i18n.welcome.TOP }}</button>
+</script>
+
+<script type="text/x-ui-template" id="capacitybar">
+    <div class="info hbox">
+        <div class="info-device hbox">
+            <span class="icon device"></span>
+            {{ var percent = parseInt((it.internalCapacity - it.internalFreeCapacity) / it.internalCapacity * 100, 10); }}
+            <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
+        </div>
+        <div class="info-sd hbox">
+            <span class="icon sd"></span>
+            {{ var percent = parseInt((it.externalCapacity - it.externalFreeCapacity) / it.externalCapacity * 100, 10); }}
+            <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
+        </div>
+    </div>
 </script>
 
 <script type="text/x-ui-template" id="device-tools">

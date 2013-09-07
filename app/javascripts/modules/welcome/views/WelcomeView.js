@@ -20,7 +20,8 @@
         'welcome/views/GuideView',
         'welcome/views/FeedListView',
         'welcome/collections/FeedsCollection',
-        'welcome/views/TipsCardView'
+        'welcome/views/TipsCardView',
+        'welcome/views/CapacityBarView'
     ], function (
         Backbone,
         _,
@@ -41,13 +42,15 @@
         GuideView,
         FeedListView,
         FeedsCollection,
-        TipsCardView
+        TipsCardView,
+        CapacityBarView
     ) {
         console.log('WelcomeView - File loaded.');
 
         var deviceView;
         var clockView;
         var toolbarView;
+        var capacityBarView;
         var guideView;
         var feedListView;
 
@@ -89,10 +92,13 @@
                     opacity : 1 - progress1
                 });
 
+                this.$('.w-welcome-capacitybar').css({
+                    opacity : 1 - progress1 * 2
+                });
+
                 this.$('.bg .content').css({
                     '-webkit-transform' : 'translate3d(' + -Math.round(50 * progress1) + 'px, ' + -Math.round(40 * progress1)  + 'px, 0)'
                 });
-
 
                 var progress2 = scrollTop <= 80 ? 0 : (scrollTop - 80) / 320;
                 if (progress1 < 1) {
@@ -128,6 +134,7 @@
                 deviceView = DeviceView.getInstance();
                 clockView = ClockView.getInstance();
                 toolbarView = ToolbarView.getInstance();
+                capacityBarView = CapacityBarView.getInstance();
                 guideView = GuideView.getInstance();
                 feedListView = FeedListView.getInstance();
 
@@ -141,6 +148,8 @@
 
                 this.$el.append(toolbarView.render().$el)
                     .on('scroll', this.scrollHandler);
+
+                this.$el.append(capacityBarView.render().$el);
 
                 var feedsCollection = FeedsCollection.getInstance();
                 var noticeArray = [
@@ -222,8 +231,6 @@
                 feedListView.initLayout();
             },
             switchToBillboard : function () {
-                console.error("guideView.$el.css('height')", guideView.$el.css('height'));
-
                 if (guideView.$el.css('height') === '0px') {
                     guideView.remove();
                 } else {
@@ -234,8 +241,9 @@
                 feedListView.initLayout();
             },
             scrollTopAnimation : function () {
-                console.error('yo');
-                this.$el[0].scrollTop = 0;
+                this.$el.animate({
+                    scrollTop: 0
+                }, 1000);
             },
             deviceViewAnimationAsync : function () {
                 var deferred = $.Deferred();
