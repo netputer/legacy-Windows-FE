@@ -85,7 +85,7 @@
             }
         }
 
-        @each $icon in contact, sms, app, music, photo, video, optimize, wash {
+        @each $icon in contact, sms, app, music, photo, video, optimize, wash, backup{
             .icon.#{$icon} {
                 @include nav-sprite(nav-#{$icon});
             }
