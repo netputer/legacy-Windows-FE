@@ -974,9 +974,9 @@
         padding-left: 15px;
 
         button {
+            color: #808182;
             font-size: 12px;
             font-weight: normal;
-            color: #808182;
             text-shadow: 0 1px 0 #fff;
 
             @each $icon in backup, restore, sd-white, screenshot, wallpaper {
@@ -1114,16 +1114,14 @@
     position: absolute;
     top: 415px;
     box-sizing: border-box;
-    // padding: 0 10px;
     -webkit-box-align: center;
-    -webkit-transition: height .4s linear;
 
     .icon {
         display: block;
         height: 16px;
-        width: 16px;
         margin-right: 3px;
         opacity: .5;
+        width: 16px;
 
         @each $icon in device, sd {
             &.#{$icon} {
