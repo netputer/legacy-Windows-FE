@@ -212,7 +212,7 @@
         </div>
         <div class="info-sd hbox">
             <span class="icon sd"></span>
-            {{ var percent =  parseInt((it.externalCapacity - it.externalFreeCapacity) / it.externalCapacity * 100, 10); }}
+            {{ var percent = parseInt((it.externalCapacity - it.externalFreeCapacity) / it.externalCapacity * 100, 10); }}
             <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
     </div>
