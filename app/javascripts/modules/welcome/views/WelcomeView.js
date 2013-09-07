@@ -92,10 +92,13 @@
                     opacity : 1 - progress1
                 });
 
+                this.$('.w-welcome-capacitybar').css({
+                    opacity : 1 - progress1 * 2
+                });
+
                 this.$('.bg .content').css({
                     '-webkit-transform' : 'translate3d(' + -Math.round(50 * progress1) + 'px, ' + -Math.round(40 * progress1)  + 'px, 0)'
                 });
-
 
                 var progress2 = scrollTop <= 80 ? 0 : (scrollTop - 80) / 320;
                 if (progress1 < 1) {
