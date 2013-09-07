@@ -253,6 +253,9 @@
                     this.trigger('__TASK_MANAGER');
                 });
 
+                this.listenTo(footerView, '__SHOW_MORE', function () {
+                    fileListView.update();
+                });
             },
             startRestoreSmsAndContact : function () {
 

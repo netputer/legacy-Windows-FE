@@ -229,7 +229,8 @@
     <div class="left">
         <span class="link advanced">{{= i18n.new_backuprestore.ADVANCED}}</span>
         <span class="link showfile">{{= i18n.new_backuprestore.OPEN_RESTORE_FILE}}</span>
-        <span class="link taskmanager">查看下载任务</span>
+        <span class="link taskmanager">{{= i18n.new_backuprestore.SWITCH_TASK_MODULE}}</span>
+        <span class="link showmore">{{= i18n.new_backuprestore.SHOW_MORE}}</span>
     </div>
     <div class="right hbox">
         <span class="link cancel">{{= i18n.new_backuprestore.CANCEL}}</span>

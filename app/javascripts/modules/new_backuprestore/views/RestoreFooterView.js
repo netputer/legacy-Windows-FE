@@ -61,11 +61,15 @@
                             var $confirm = this.$('.confirm').hide();
                             var $done = this.$('.done').hide();
                             var $taskmanager = this.$('.taskmanager').hide();
+                            var $showMore = this.$('.showmore').hide();
 
                             switch (value) {
                             case 'selectFile':
                                 if (isLocal) {
                                     $showFile.show();
+                                }
+                                if (!isLocal) {
+                                    $showMore.show();
                                 }
                                 $cancel.show();
                                 $confirm.show();
@@ -121,6 +125,9 @@
             clickBtnConfirm : function () {
                 this.trigger('__CONFIRM');
             },
+            clickBtnShowMore : function () {
+                this.trigger('__SHOW_MORE');
+            },
             render : function () {
                 this.$el.html(this.template({}));
                 return this;
@@ -139,7 +146,8 @@
                 'click .done' : 'clickBtnDone',
                 'click .showfile' : 'clickBtnShowFile',
                 'click .taskmanager' : 'clickBtnTaskManager',
-                'click .confirm' : 'clickBtnConfirm'
+                'click .confirm' : 'clickBtnConfirm',
+                'click .showmore' : 'clickBtnShowMore'
             }
         });
 

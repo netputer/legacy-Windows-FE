@@ -112,7 +112,11 @@
                 BackupRestoreService.remoteSnapshotListAutoAsync(lastEntity).done(function (resp) {
 
                     var newList = JSON.parse(resp.body.value);
-                    restoreFileCollection.updateAsync(newList);
+                    if (newList.length > 0) {
+                        restoreFileCollection.updateAsync(newList);
+                        return;
+                    }
+                    fileList.loading = false;
 
                 }.bind(this)).fail(function (resp) {
 

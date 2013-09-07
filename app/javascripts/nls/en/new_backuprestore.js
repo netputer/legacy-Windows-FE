@@ -218,6 +218,8 @@ define({
     AUTO_BACKUP_TO_LOCAL : '自动备份到电脑',
     AUTO_BACKUP_TO_REMOTE : '自动备份到云端',
     DONE : '完成',
+    SWITCH_TASK_MODULE : '查看下载任务',
+    SHOW_MORE : '显示更多',
 
 
     /*NOT in SnapPea*/

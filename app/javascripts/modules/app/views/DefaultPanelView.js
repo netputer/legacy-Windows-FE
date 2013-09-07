@@ -93,8 +93,9 @@
             render : function () {
                 this.$el.html(this.template({}));
 
+                var turnOnHotCate = false;
                 if (FunctionSwitch.ENABLE_APP_RECOMMEND) {
-                    if (false) {
+                    if (turnOnHotCate) {
                         this.$el.append(HotCateView.getInstance().render().$el);
                     }
                     this.$el.append(RecommendView.getInstance().render().$el);
