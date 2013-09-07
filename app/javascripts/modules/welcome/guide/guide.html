@@ -7,7 +7,16 @@
     </head>
     <body class="vbox">
         <!-- build:js javascripts/GuideLoader.js -->
+        <script type="text/javascript">
+        if (window.OneRingRequest === undefined) {
+            window.OneRingRequest = function () {};
+            window.OneRingStreaming = function () {};
+        }
+        </script>
         <script type="text/javascript" data-main="../../../GuideLoader" src="../../../../bower_components/requirejs/require.js"></script>
-        <!-- build:js javascripts/PhotoModuleLoader.js -->
+        <script type="text/javascript">
+            this.document.write('<script src=\"http://localhost:35729/livereload.js?snipver=1\"><\/script>');
+        </script>
+        <!-- endbuild -->
     </body>
 </html>

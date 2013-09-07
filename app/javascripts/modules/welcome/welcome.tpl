@@ -43,6 +43,7 @@
             {{= StringUtil.format(i18n.welcome.CARD_APP_FOOTER, it.channel, StringUtil.smartDate(it.updateTime)) }}
         </footer>
     </div>
+    <div class="ad-badge"></div>
 </script>
 
 <script type="text/x-ui-template" id="list-card">
@@ -106,11 +107,21 @@
 </script>
 
 <script type="text/x-ui-template" id="changelog">
-    <div class="icon-ctn"></div>
+    <div class="icon-ctn">
+        {{? it.icon }}
+        <img class="img" src={{= it.icon }} alt="" />
+        {{?}}
+    </div>
     <div class="info-ctn">
         <h1 class="title">{{= i18n.welcome.UPDATED }}</h1>
-        <p class="desc text-thirdly">{{= Settings.get('lastestVersion') + ' -> ' + Environment.get('backendVersion') }}</p>
-        <p class="info text-secondary">1234
+        <p class="desc text-thirdly">
+            {{? Settings.get('latestVersion') }}
+            {{= Settings.get('latestVersion') + ' -> ' + Environment.get('backendVersion') }}
+            {{??}}
+            {{= Environment.get('backendVersion') }}
+            {{?}}
+        </p>
+        <p class="info text-secondary">{{= it.subtitle }}
         </p>
         <div class="btn-ctn hbox">
             <button class="button-action">{{= i18n.misc.VIEW }}</button>
@@ -260,7 +271,6 @@
         </div>
     </div>
 </script>
-
 
 <script type="text/x-ui-template" id="autobackup-tip">
     <div class="w-autobackup-tip">

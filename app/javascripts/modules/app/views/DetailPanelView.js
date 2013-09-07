@@ -164,7 +164,7 @@
                         disabled : true
                     });
                 } else {
-                    this.$('.button-update').toggleClass('secondary', !this.model.isLegalToUpdate);
+                    this.$('.button-update').toggleClass('illegal', !this.model.isLegalToUpdate);
                 }
 
                 if (FunctionSwitch.ENABLE_APP_RECOMMEND) {
@@ -204,6 +204,8 @@
                     }
 
                     this.model = appsCollection.get(id) || webAppsCollection.get(id);
+
+                    console.log(this.model.toJSON());
 
                     if (this.model.get('isWeb')) {
                         var currentId = this.model.id;

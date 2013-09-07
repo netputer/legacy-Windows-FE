@@ -364,6 +364,7 @@
 
                         if (msg[0] === Number(jobId)) {
                             IO.Backend.Device.offmessage(handler);
+
                             this.setAsWallpaperAsync(msg[1]).done(function () {
                                 content = i18n.taskManager.SET_AS_WALLPAPER_SUCCESS;
                             }).fail(function () {
@@ -384,6 +385,10 @@
                                 boxViewInsance.show();
 
                                 setTimeout(deviceView.showScreenshotAsync, 1000);
+
+                                log({
+                                    'event' : 'ui.click.welcome_button_set_as_wallpaper'
+                                });
                             }.bind(this));
                         }
                     }.bind(this));

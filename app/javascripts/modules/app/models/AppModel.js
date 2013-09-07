@@ -34,6 +34,7 @@
             parse : function (attrs) {
                 delete attrs.base_info.requested_permission;
                 delete attrs.base_info.pinyin;
+                delete attrs.base_info.source_path;
 
                 var baseInfo = attrs.base_info;
 
@@ -116,8 +117,9 @@
                     isLegalToUpdate : {
                         get : function () {
                             var result = true;
-                            if (this.get('upgrade_info').isRecommended === 'NOT_RECOMMEND') {
-                                result = StringUtil.isURL(this.get('upgrade_info').downloadUrl) && !this.get('upgrade_info').notRecommendedReason.signatureMatch;
+                            if (this.get('upgrade_info').recommendedType === 'NOT_RECOMMEND') {
+                                result = StringUtil.isURL(this.get('upgrade_info').downloadUrl) &&
+                                            this.get('upgrade_info').notRecommendReason.signatureMatch;
                             } else {
                                 result = StringUtil.isURL(this.get('upgrade_info').downloadUrl);
                             }

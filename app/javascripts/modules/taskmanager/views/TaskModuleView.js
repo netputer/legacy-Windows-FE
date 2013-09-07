@@ -81,7 +81,7 @@
 
                 log({
                     'event' : 'ui.click.send_to_phone',
-                    'type'  : 'yes',
+                    'type'  : 'NO',
                     'click' : isClick
                 });
 

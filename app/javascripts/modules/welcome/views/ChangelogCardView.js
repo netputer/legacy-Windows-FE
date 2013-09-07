@@ -7,6 +7,7 @@
         'doT',
         'Log',
         'IOBackendDevice',
+        'Configuration',
         'Environment',
         'Settings',
         'Internationalization',
@@ -20,6 +21,7 @@
         doT,
         log,
         IO,
+        CONFIG,
         Environment,
         Settings,
         i18n,
@@ -36,22 +38,35 @@
                 if (show) {
                     this.$el.html(this.template({}));
 
-                    $.ajax({
-                        url : '',
+                    IO.requestAsync({
+                        url : CONFIG.actions.WELCOME_CHANGELOG,
                         data : {
-
+                            version : Environment.get('backendVersion')
                         },
                         success : function (resp) {
+                            try {
+                                resp = JSON.parse(resp);
+                            } catch (e) {
+                                resp = {};
+                            }
+                            if (resp.subtitle && resp.icon) {
+                                this.$el.removeClass('hide');
 
-                            this.$el.remove('hide');
-                            Settings.set('latestVersion', Environment.get('backendVersion'), true);
+                                this.$el.html(this.template({
+                                    title : resp.title,
+                                    subtitle : resp.subtitle,
+                                    icon : resp.icon
+                                }));
 
-                            this.options.parentView.initLayout();
+                                Settings.set('latestVersion', Environment.get('backendVersion'));
 
-                            log({
-                                'event' : 'ui.show.welcome_card',
-                                'type' : this.model.get('type')
-                            });
+                                this.options.parentView.initLayout();
+
+                                log({
+                                    'event' : 'ui.show.welcome_card',
+                                    'type' : this.model.get('type')
+                                });
+                            }
                         }.bind(this)
                     });
                 }

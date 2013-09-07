@@ -15,7 +15,8 @@
         'app/collections/AppsCollection',
         'app/views/RecommendView',
         'app/views/OneKeyUpdateWindowView',
-        'app/views/OneKeyMoveWindowView'
+        'app/views/OneKeyMoveWindowView',
+        'app/views/HotCateView'
     ], function (
         Backbone,
         doT,
@@ -31,7 +32,8 @@
         AppsCollection,
         RecommendView,
         OneKeyUpdateWindowView,
-        OneKeyMoveWindowView
+        OneKeyMoveWindowView,
+        HotCateView
     ) {
         console.log('DefaultPanelView - File loaded.');
 
@@ -60,7 +62,7 @@
             renderButtons : function () {
                 // udpate all
                 var $updateAll = this.$('.update-all');
-                var updatableCount = FunctionSwitch.ENABLE_APP_UPGRADE ? appsCollection.getUpdatableApps().length : 0;
+                var updatableCount = FunctionSwitch.ENABLE_APP_UPGRADE ? appsCollection.getUpdatableAppsWithoutIllegal().length : 0;
                 if (updatableCount > 0 &&
                         FunctionSwitch.ENABLE_APP_UPGRADE) {
                     $updateAll.find('button .label').html(StringUtil.format(i18n.app.ONE_KEY_UPDATE, updatableCount));
@@ -92,6 +94,9 @@
                 this.$el.html(this.template({}));
 
                 if (FunctionSwitch.ENABLE_APP_RECOMMEND) {
+                    if (false) {
+                        this.$el.append(HotCateView.getInstance().render().$el);
+                    }
                     this.$el.append(RecommendView.getInstance().render().$el);
                 }
 

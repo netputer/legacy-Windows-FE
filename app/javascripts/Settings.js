@@ -28,10 +28,14 @@
         window.addEventListener('storage', function (e) {
             var newData = JSON.parse(e.newValue || '{}');
 
-            if (e.key === GLOBAL_SETTINGS_KEY) {
-                globalSettings = newData;
-            } else {
+            switch (e.key) {
+            case DEVICE_SETTINGS_KEY:
                 deviceSettings = newData;
+                break;
+
+            case GLOBAL_SETTINGS_KEY:
+                globalSettings = newData;
+                break;
             }
         });
 

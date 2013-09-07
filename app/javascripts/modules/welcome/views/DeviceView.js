@@ -90,8 +90,8 @@
                     this.setDisable(!Device.get('canScreenshot'));
                 }));
 
-                this.listenTo(Device, 'change:shell', this.renderShell);
-                this.listenTo(Device, 'change:screenshot', this.renderScreenshot);
+                this.listenTo(Device, 'change:shell', this.renderShell)
+                    .listenTo(Device, 'change:screenshot', this.renderScreenshot);
             },
             setDisable : function (disable) {
                 this.$('.offline-tip .desc').html(Device.get('isConnected') ? i18n.misc.SCREEN_SHOT_UNDER_USB : i18n.misc.PHTONE_DISCONNECTED);
@@ -182,7 +182,8 @@
                         $screenCtn.css({
                             'width' : shell.width,
                             'height' : shell.height,
-                            'background-image' : 'url(' + shell.path + ')'
+                            'background-image' : 'url(' + shell.path + ')',
+                            'background-position' : '0 0'
                         }).fadeIn('fast');
 
                         screenshotStyle = {

@@ -31,6 +31,11 @@
             MouseState.trigger('mousemove', MouseState);
         }, 25));
 
+        // A global delegate of mousewheel
+        $(document).on('mousewheel', _.throttle(function (evt) {
+            MouseState.trigger('mousewheel', currentElement);
+        }, 25));
+
         Object.defineProperties(MouseState, {
             x : {
                 get : function () {

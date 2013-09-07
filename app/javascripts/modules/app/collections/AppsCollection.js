@@ -173,38 +173,42 @@
                     return app.isUpdatable;
                 }) : [];
             },
+            getUpdatableAppsWithoutIllegal : function () {
+                var update = this.getUpdatableApps();
+
+                return update.filter(function (app) {
+                    return app.isLegalToUpdate;
+                });
+            },
             getUpdatableAppsWithCategory : function () {
                 var update = this.getUpdatableApps();
 
                 var group = _.groupBy(update, function (app) {
-                    if (app.get('upgrade_info').recommendedType === 'STRONG_RECOMMEND') {
+                    switch (app.get('upgrade_info').recommendedType) {
+                    case 'STRONG_RECOMMEND':
                         app.set('recommendedType', 'recommended');
                         return 'recommended';
+                    case 'WARNNING':
+                        app.set('recommendedType', 'warning');
+                        return 'warning';
+                    case 'NOT_RECOMMEND':
+                        app.set('recommendedType', 'notRecommended');
+                        return 'notRecommended';
                     }
-
-                    app.set('recommendedType', 'notRecommended');
-                    return 'notRecommended';
                 });
 
                 var result = [];
 
-                if (group.recommended && group.recommended.length > 0) {
-                    var recommended = new AppModel({
-                        id : 'recommended',
-                        updateCategory : 'recommended'
-                    });
+                _.each(group, function (element, index) {
+                    if (group[index] && group[index].length > 0) {
+                        var categoryModel = new AppModel({
+                            id : index,
+                            updateCategory : index
+                        });
 
-                    result = result.concat(recommended, group.recommended);
-                }
-
-                if (group.notRecommended && group.notRecommended.length > 0) {
-                    var notRecommended = new AppModel({
-                        id : 'notRecommended',
-                        updateCategory : 'notRecommended'
-                    });
-
-                    result = result.concat(notRecommended, group.notRecommended);
-                }
+                        result = result.concat(categoryModel, group[index]);
+                    }
+                });
 
                 return result;
             },

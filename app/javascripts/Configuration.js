@@ -324,13 +324,15 @@
                 APP_WASH_GET_TEXT : 'http://apps.wandoujia.com/api/v1/xibaibai/feedback',
                 APP_WASH_SCAN : 'http://apps.wandoujia.com/api/v1/xibaibai/scanner',
                 APP_STARTER : 'http://apps.wandoujia.com/api/v1/apps?app_type=starter',
+                APP_SPECIAL : 'http://apps.wandoujia.com/api/v1/special',
 
                 CLOUD_REG : 'https://account.wandoujia.com/v4/api/register',
                 CLOUD_SECCODE : 'https://account.wandoujia.com/v4/api/seccode',
 
                 WELCOME_BACKGROUND : 'http://apps.wandoujia.com/startpage/api/v1/background',
                 WELCOME_FEEDS : 'http://apps.wandoujia.com/startpage/api/v1/feeds',
-                WELCOME_SINGLE_FEED : 'http://apps.wandoujia.com/startpage/api/v1/feed'
+                WELCOME_SINGLE_FEED : 'http://apps.wandoujia.com/startpage/api/v1/feed',
+                WELCOME_CHANGELOG : 'http://m.cfg.wandoujia.com/windows/index.php'
             },
             events : {
                 // Backend events - History

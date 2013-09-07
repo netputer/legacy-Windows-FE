@@ -96,7 +96,7 @@
 
                 if (FunctionSwitch.ENABLE_APP_UPGRADE && StringUtil.isURL(this.model.get('upgrade_info').downloadUrl)) {
                     if (!this.model.get('isUpdating')) {
-                        this.$('.button-update').toggleClass('secondary', !this.model.isLegalToUpdate);
+                        this.$('.button-update').toggleClass('illegal', !this.model.isLegalToUpdate);
 
                         this.changeLogView = ChangeLogView.getInstance({
                             $host : this.$('.button-update'),
@@ -146,14 +146,12 @@
                         var baseInfo = this.model.get('base_info');
 
                         var alertText;
-                        if (!this.model.isSystem) {
-                            alertText = $(StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL, baseInfo.name));
+                        if (this.model.isSystem && !Device.isRoot) {
+                            alertText = StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL_SYSTEM_UNROOT, baseInfo.name);
+                        } else if (!!this.model.get('upgrade_info').notRecommendReason) {
+                            alertText = StringUtil.format(i18n.app.ALERT_TIP_UPDATE_NOT_RECOMMENDED, this.model.get('upgrade_info').notRecommendReason.description);
                         } else {
-                            if (Device.isRoot) {
-                                alertText = $(StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL, baseInfo.name));
-                            } else {
-                                alertText = $(StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL_SYSTEM_UNROOT, baseInfo.name));
-                            }
+                            alertText = StringUtil.format(i18n.app.ALERT_TIP_UPDATE_ILLEGAL, baseInfo.name);
                         }
 
                         confirm(alertText, function () {

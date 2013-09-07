@@ -802,7 +802,7 @@
                     alert(i18n.misc.ALERT_TIP_NO_SD_CARD);
                 } else {
                     AvatarEditorView.getInstance({
-                        detialView : this
+                        detailView : this
                     }).show();
                 }
 

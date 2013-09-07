@@ -143,11 +143,18 @@
                     .on('scroll', this.scrollHandler);
 
                 var feedsCollection = FeedsCollection.getInstance();
+                var noticeArray = [
+                    i18n.welcome.NO_MORE_1,
+                    i18n.welcome.NO_MORE_2,
+                    i18n.welcome.NO_MORE_3
+                ];
+
                 this.loading = feedsCollection.loading;
                 this.listenTo(feedsCollection, 'update refresh', function () {
                     this.loading = feedsCollection.loading;
                     if (feedsCollection.finish) {
-                        this.$('.w-ui-loading-horizental-ctn').show().html(i18n.welcome.NO_MORE);
+                        var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
+                        this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
                     }
                 });
 
@@ -188,6 +195,8 @@
                     setTimeout(this.switchToGuide.bind(this));
                 });
 
+                this.$el.on('click', '.back-to-top', this.scrollTopAnimation.bind(this));
+
                 log({
                     'event' : 'debug.show.welcome',
                     'connectionType' : connectionType
@@ -199,16 +208,12 @@
                 if (Settings.get('user_guide_first_shown')) {
                     return;
                 }
-                // if (window.localStorage.getItem('user_guide_shown') === 'true') {
-                //     return;
-                // }
 
                 this.$el.animate({
                     scrollTop: guideView.$el.offset().top - 65
                 }, 1000);
 
                 Settings.set('user_guide_first_shown', true, true);
-                // window.localStorage.setItem('user_guide_shown', 'true');
             },
             switchToGuide : function () {
                 guideView.$el.show().css('height', '360px').one('webkitTransitionEnd', this.scrollToGuide.bind(this));
@@ -217,7 +222,11 @@
                 feedListView.initLayout();
             },
             switchToBillboard : function () {
-                if (guideView.$el.css('height') !== '0px') {
+                console.error("guideView.$el.css('height')", guideView.$el.css('height'));
+
+                if (guideView.$el.css('height') === '0px') {
+                    guideView.remove();
+                } else {
                     guideView.$el.css('height', 0).one('webkitTransitionEnd', guideView.remove.bind(guideView));
                 }
 
@@ -225,6 +234,7 @@
                 feedListView.initLayout();
             },
             scrollTopAnimation : function () {
+                console.error('yo');
                 this.$el[0].scrollTop = 0;
             },
             deviceViewAnimationAsync : function () {
