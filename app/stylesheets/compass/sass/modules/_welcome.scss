@@ -894,14 +894,18 @@
 
 .w-welcome-toolbar {
     border-top: 1px rgba(255, 255, 255, .2) solid;
+    box-shadow: 0 1px 0 0 rgba(0,0,0,0.1) inset;
     left: 305px;
-    padding: 7px 0 7px;
+    padding: 10px 0 7px;
     position: absolute;
     right: 25px;
     top: 365px;
     -webkit-transition: opacity .5s linear, padding .2s linear, -webkit-transform .1s linear;
 
     button {
+        font-size: 13px;
+        font-weight: bold;
+
         @each $icon in backup, restore, sd-white, screenshot, wallpaper {
             .icon.#{$icon} {
                 @include button-sprite(#{$icon});
@@ -959,6 +963,8 @@
         padding-left: 15px;
 
         button {
+            font-size: 12px;
+            font-weight: normal;
             color: #808182;
             text-shadow: 0 1px 0 #fff;
 
@@ -1089,5 +1095,68 @@
     }
     100% {
         -webkit-transform: rotate(360deg);
+    }
+}
+
+.w-welcome-capacitybar {
+    left: 315px;
+    position: absolute;
+    top: 415px;
+    box-sizing: border-box;
+    // padding: 0 10px;
+    -webkit-box-align: center;
+    -webkit-transition: height .4s linear;
+
+    .icon {
+        display: block;
+        height: 16px;
+        width: 16px;
+        margin-right: 3px;
+        opacity: .5;
+
+        @each $icon in device, sd {
+            &.#{$icon} {
+                @include button-sprite(capacity-#{$icon});
+            }
+        }
+    }
+
+    .info {
+        -webkit-box-flex: 1;
+
+        .info-device,
+        .info-sd {
+            margin-right: 20px;
+            -webkit-box-align: center;
+        }
+
+        progress {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 2px 4px rgba(0, 0, 0, .1);
+            height: 4px;
+            width: 80px;
+
+            &::-webkit-progress-bar {
+                background-color: rgba(240,240,240,0.5);
+                border-radius: 2px;
+                box-shadow: none;
+                display: block;
+                height: 4px;
+            }
+
+            &::-webkit-progress-value {
+                background-color: #fff;
+                background-image: none;
+                border-radius: 2px;
+                display: block;
+                height: 4px;
+                min-width: 10px;
+            }
+
+            &.highlight {
+                &::-webkit-progress-value {
+                    background-color: #F24949;
+                }
+            }
+        }
     }
 }
