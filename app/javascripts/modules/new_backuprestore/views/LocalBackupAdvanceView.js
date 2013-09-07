@@ -88,10 +88,7 @@
                     filePath : BackupContextModel.get('filePath')
                 }));
 
-                setTimeout(function () {
-                    this.initState();
-                }.bind(this), 0);
-
+                this.initState();
                 return this;
             },
             initState : function () {

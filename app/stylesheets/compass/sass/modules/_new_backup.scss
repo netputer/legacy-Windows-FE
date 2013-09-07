@@ -14,7 +14,7 @@
 .w-backuprestore-start {
     height: 550px;
     width: 650px;
-   
+
     .action-panel {
         height: 300px;
         -webkit-box-align: center;
@@ -35,7 +35,7 @@
 
             &.backup {
                 margin-right: 25px;
-                
+
                 .icon {
                     @include backuprestore-sprite(backupbutton);
                 }
@@ -43,7 +43,7 @@
 
             &.restore {
                 margin-left: 25px;
-            
+
                 .icon {
                     @include backuprestore-sprite(restorebutton);
                 }
@@ -51,7 +51,7 @@
 
             .icon {
                 height: 96px;
-                margin: 80px auto 30px auto;
+                margin: 80px auto 30px;
                 width: 144px;
             }
 
@@ -68,23 +68,23 @@
 
             .action-container {
                 background: #fff;
-                color: #FFF;
+                color: #fff;
                 position: relative;
                 margin: 10px;
                 -webkit-transition: all .2s;
-                
+
 
                 .action-button {
                     background: #3baa24;
                     cursor: pointer;
                     height: 135px;
                     -webkit-box-align: center;
-                    
+
                     .top {
 
-                        width: 280px;
                         margin-top: 40px;
                         margin-bottom: 20px;
+                        width: 280px;
                         -webkit-box-align: center;
                         -webkit-box-pack: center;
 
@@ -95,8 +95,8 @@
                         }
 
                         .title {
-                            font-size: 18px;
                             display: block;
+                            font-size: 18px;
                         }
                     }
 
@@ -118,7 +118,7 @@
 
                 .action-backup-remote,
                 .action-restore-remote {
-                    margin-top: 5px; 
+                    margin-top: 5px;
 
                     .action-icon {
                         @include backuprestore-sprite(cloudlight);
@@ -131,11 +131,11 @@
     .info-panel {
         height: 250px;
         -webkit-box-align: center;
-        
+
         .info-panel {
             height: 40px;
             width: 210px;
-           
+
             &.last-backup-time {
                 margin-right: 5px;
 
@@ -190,7 +190,7 @@
     width: 650px;
 
     .top {
-        border-bottom: 1px #d6d6d6 solid;
+        border-bottom: 1px $secondaryBtnBorderColor solid;
         height: 150px;
 
         .big-title {
@@ -203,8 +203,8 @@
 }
 
 .w-backuprestore-progress {
-    border-bottom: 1px #d6d6d6 solid;
-    border-top: 1px #e6e6e6 solid;
+    border-bottom: 1px $secondaryBtnBorderColor solid;
+    border-top: 1px $windowBorderColor solid;
     height: 250px;
 
     .content-box {
@@ -220,11 +220,11 @@
         .title-box {
             color: #ccc;
             height: 48px;
-            margin-top: 90px;
             margin-bottom: 30px;
+            margin-top: 90px;
             width: 210px;
             -webkit-box-align: center;
-            -webkit-box-pack: center; 
+            -webkit-box-pack: center;
 
             .count {
                 color: black;
@@ -263,8 +263,8 @@
     }
 
     .sms {
-        margin-right: 5px;
         margin-left: 5px;
+        margin-right: 5px;
 
         .icon {
             @include backuprestore-sprite(sms);
@@ -302,7 +302,7 @@
 
 .w-backuprestore-footer {
     height: 150px;
-    border-top: 1px #e6e6e6 solid;
+    border-top: 1px $windowBorderColor solid;
 
     .left {
         margin-top: 15px;
@@ -409,15 +409,15 @@
     }
 
     .app-list-ctn {
+        border: 1px $borderColor solid;
         height: 144px;
         overflow-y: auto;
-        border: 1px $borderColor solid;
         -webkit-box-align: center;
 
         li {
-            padding: 1px 0;
             border-bottom: 1px solid #ccc;
             border-right: 1px solid #ccc;
+            padding: 1px 0;
             -webkit-box-align: center;
             -webkit-box-flex: 1;
 
@@ -449,8 +449,8 @@
 
 .w-backuprestore-download,
 .w-backuprestore-file-list {
-    border-bottom: 1px #d6d6d6 solid;
-    border-top: 1px #e6e6e6 solid;
+    border-bottom: 1px $secondaryBtnBorderColor solid;
+    border-top: 1px $windowBorderColor solid;
     height: 250px;
 }
 

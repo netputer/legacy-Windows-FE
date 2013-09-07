@@ -50,49 +50,46 @@
                         get : function () {
                             return isLocal;
                         }
-                    },
-                    setButtonState : {
-                        set : function (value) {
-
-                            var $showFile = this.$('.showfile').hide();
-                            var $advanced = this.$('.advanced').hide();
-                            var $cancel = this.$('.cancel').hide();
-                            var $startrestore = this.$('.startrestore').hide();
-                            var $confirm = this.$('.confirm').hide();
-                            var $done = this.$('.done').hide();
-                            var $taskmanager = this.$('.taskmanager').hide();
-                            var $showMore = this.$('.showmore').hide();
-
-                            switch (value) {
-                            case 'selectFile':
-                                if (isLocal) {
-                                    $showFile.show();
-                                }
-                                if (!isLocal) {
-                                    $showMore.show();
-                                }
-                                $cancel.show();
-                                $confirm.show();
-                                break;
-                            case 'downloading':
-                                $cancel.show();
-                                break;
-                            case 'ready':
-                                $cancel.show();
-                                $advanced.show();
-                                $startrestore.show();
-                                break;
-                            case 'progressing':
-                                $cancel.show();
-                                break;
-                            case 'done':
-                                $done.show();
-                                $taskmanager.show();
-                                break;
-                            }
-                        }
                     }
                 });
+            },
+            setButtonState : function (type) {
+                var $showFile = this.$('.showfile').hide();
+                var $advanced = this.$('.advanced').hide();
+                var $cancel = this.$('.cancel').hide();
+                var $startrestore = this.$('.startrestore').hide();
+                var $confirm = this.$('.confirm').hide();
+                var $done = this.$('.done').hide();
+                var $taskmanager = this.$('.taskmanager').hide();
+                var $showMore = this.$('.showmore').hide();
+
+                switch (type) {
+                case 'selectFile':
+                    if (this.isLocal) {
+                        $showFile.show();
+                    }
+                    if (!this.isLocal) {
+                        $showMore.show();
+                    }
+                    $cancel.show();
+                    $confirm.show();
+                    break;
+                case 'downloading':
+                    $cancel.show();
+                    break;
+                case 'ready':
+                    $cancel.show();
+                    $advanced.show();
+                    $startrestore.show();
+                    break;
+                case 'progressing':
+                    $cancel.show();
+                    break;
+                case 'done':
+                    $done.show();
+                    $taskmanager.show();
+                    break;
+                }
             },
             clickBtnAdvanced : function () {
 

@@ -71,6 +71,7 @@
             },
             appendView : function (view) {
                 this.$el.append(view.render().$el);
+                view.initState();
             },
             showStartView : function () {
 

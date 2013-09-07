@@ -62,10 +62,6 @@
 
                 this.$el.html(this.template({}));
 
-                setTimeout(function () {
-                    this.initState();
-                }.bind(this), 0);
-
                 return this;
             },
             initState : function () {

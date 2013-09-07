@@ -49,26 +49,18 @@
 
         var footerView;
         var FooterView = BackupFooterView.extend({
-            initialize : function () {
-                FooterView.__super__.initialize.apply(this, arguments);
-
-                Object.defineProperties(this, {
-                    buttonState : {
-                        set : function (value) {
-                            switch (value) {
-                            case 'progressing':
-                                this.$('.startbackup').hide();
-                                this.$('.advanced').hide();
-                                break;
-                            case 'done':
-                                this.$('.done').show();
-                                this.$('.cancel').hide();
-                                this.$('.showfile').show();
-                                break;
-                            }
-                        }
-                    }
-                });
+            setButtonState : function (type) {
+                switch (type) {
+                case 'progressing':
+                    this.$('.startbackup').hide();
+                    this.$('.advanced').hide();
+                    break;
+                case 'done':
+                    this.$('.done').show();
+                    this.$('.cancel').hide();
+                    this.$('.showfile').show();
+                    break;
+                }
             }
         });
 
@@ -150,11 +142,6 @@
                 footerView = new FooterView();
                 this.$el.append(footerView.render().$el);
 
-                setTimeout(function () {
-                    this.initState();
-                    this.bindEvent();
-                }.bind(this), 0);
-
                 return this;
             },
             bindEvent : function () {
@@ -181,6 +168,7 @@
             },
             initState : function () {
 
+                this.bindEvent();
                 this.initAttrsState();
                 var deviceName =  Device.get('deviceName');
                 this.bigTitle = StringUtil.format(i18n.new_backuprestore.BACKUP_DEVICE_TITLE, deviceName);
@@ -255,7 +243,7 @@
                 }
             },
             setDomState : function (isDone) {
-                footerView.buttonState = isDone ? 'done' : 'progressing';
+                footerView.setButtonState(isDone ? 'done' : 'progressing');
                 this.stateTitle = isDone ? i18n.new_backuprestore.BACKUP_LOCAL_COMPLATE_TITLE : i18n.new_backuprestore.BACKUPING;
                 this.bigTitle = isDone ? i18n.new_backuprestore.BACKUP_FINISH_LABEL : i18n.new_backuprestore.BACKUP_DEVICE_LOCAL_DESC;
             },

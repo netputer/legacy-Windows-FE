@@ -90,11 +90,9 @@
             render : function () {
                 this.$el.html(this.template({}));
 
-                setTimeout(function () {
-                    this.$contact = this.$('.content-box.contact');
-                    this.$sms = this.$('.content-box.sms');
-                    this.$app = this.$('.content-box.app');
-                }.bind(this), 0);
+                this.$contact = this.$('.content-box.contact');
+                this.$sms = this.$('.content-box.sms');
+                this.$app = this.$('.content-box.app');
 
                 return this;
             },

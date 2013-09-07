@@ -156,22 +156,18 @@
                 footerView.isLocal = this.isLocal;
                 this.$el.append(footerView.render().$el);
 
-                setTimeout(function () {
-                    this.initState();
-                    this.bindEvent();
-                    this.initAttrsState();
-                }.bind(this), 0);
-
                 return this;
             },
             initState : function () {
+                this.bindEvent();
+                this.initAttrsState();
 
                 this.bigTitle = StringUtil.format(i18n.new_backuprestore.RESTORE_DEVICE_TITLE, Device.get('deviceName'));
                 this.stateTitle = i18n.new_backuprestore.RESTORE_CHOOSE_DESC;
 
                 fileListView.buildList();
 
-                footerView.setButtonState = 'selectFile';
+                footerView.setButtonState('selectFile');
 
                 this.listenTo(fileListView, 'selected', function (isSelected) {
                     footerView.enableConfirmButton = isSelected;
@@ -202,14 +198,14 @@
                 this.listenTo(footerView, '__START_RESTORE', function () {
 
                     if (this.isLocal) {
-                        footerView.setButtonState = 'progressing';
+                        footerView.setButtonState('progressing');
                         if (RestoreContextModel.IsNoneAppSelected) {
                             this.startRestoreSmsAndContact();
                         } else if (RestoreContextModel.IsAppSelected && RestoreContextModel.IsAppDataSelected) {
                             this.startRestoreApps();
                         }
                     } else {
-                        footerView.setButtonState = 'downloading';
+                        footerView.setButtonState('downloading');
                         this.showDownloadView();
                         this.download();
                     }
@@ -261,7 +257,7 @@
 
                 this.sessionId = _.uniqueId('restore.nonapps_');
                 this.isProgressing = true;
-                footerView.setButtonState = 'progressing';
+                footerView.setButtonState('progressing');
 
                 var filePath = RestoreContextModel.get('fileName');
                 var accountType = RestoreContextModel.get('accountType');
@@ -468,7 +464,7 @@
                     if (RestoreContextModel.IsAppSelected) {
                         this.stateTitle.append(i18n.new_backuprestore.RESTORE_APP_COMPLATE);
                     }
-                    footerView.setButtonState = 'done';
+                    footerView.setButtonState('done');
 
 
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, true, fileListView.getAll().length);
@@ -502,13 +498,13 @@
 
                 progressView.selectAppData = RestoreContextModel.IsAppDataSelected;
 
-                footerView.setButtonState = 'ready';
+                footerView.setButtonState('ready');
             },
             showDownloadView : function () {
                 this.stateTitle = i18n.new_backuprestore.RESTORE_DOWNLOAD_PROGRESSING;
                 progressView.$el.hide();
                 downloadView.$el.show();
-                footerView.setButtonState = 'downloading';
+                footerView.setButtonState('downloading');
             },
             download : function () {
 
@@ -539,7 +535,7 @@
                             this.offMessageHandler();
 
                             this.showRestoreView();
-                            footerView.setButtonState = 'progressing';
+                            footerView.setButtonState('progressing');
                             if (RestoreContextModel.IsNoneAppSelected) {
                                 this.startRestoreSmsAndContact();
                             } else {
