@@ -93,6 +93,7 @@ define({
     NAV_PIC_CLOUD : '云相册',
     NAV_VIDEO : '我的视频',
     NAV_SHOW_GALLERY : '更多内容',
+    NAV_BACKUP_RESTORE : '备份和恢复',
 
     ADD_COLLECT : '添加收藏',
     MOVE_UP : '上移',
