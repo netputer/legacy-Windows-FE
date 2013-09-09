@@ -407,13 +407,20 @@
                 @include button-sprite(#{$icon});
             }
         }
+
+        @each $icon in sd-internal, sd-external {
+            &.#{$icon} {
+                @include button-sprite(task-#{$icon});
+            }
+        }
     }
 
     .info {
         -webkit-box-flex: 1;
 
         .info-device,
-        .info-sd {
+        .info-sd-internal,
+        .info-sd-external {
             margin-right: 20px;
             -webkit-box-align: center;
         }
