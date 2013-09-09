@@ -50,6 +50,11 @@
             updateAsync : function (list) {
                 var models = [];
 
+                if (list.length === 0) {
+                    this.trigger('refresh');
+                    return;
+                }
+
                 var deferreds = _.map(list, function (item) {
 
                     var version = item.version;
