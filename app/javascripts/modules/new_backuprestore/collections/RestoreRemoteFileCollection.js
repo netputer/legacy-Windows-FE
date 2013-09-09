@@ -70,7 +70,7 @@
                             udid : udid,
                             deviceName : deviceName,
                             timestamp: timestamp,
-                            id : timestamp
+                            id : String(timestamp)
 
                         };
                         _.each(JSON.parse(resp.body.value), function (item) {
