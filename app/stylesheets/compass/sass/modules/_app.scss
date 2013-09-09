@@ -999,3 +999,33 @@
         width: 470px;
     }
 }
+
+.w-app-hot {
+    padding: 15px 5px 0 15px;
+
+    h3 {
+        margin-bottom: 5px;
+    }
+
+    .tags-ctn {
+        padding-bottom: 15px;
+
+        .tag {
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 5px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .banner-ctn {
+        height: 74px;
+
+        .banner {
+            width: 190px;
+        }
+    }
+}

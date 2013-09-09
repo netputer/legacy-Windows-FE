@@ -397,6 +397,39 @@
                 return this.find(function (app) {
                     return app.get('base_info').package_name === packageName;
                 }) !== undefined;
+            },
+            getAppsTags : function () {
+                var tags = [];
+
+                this.each(function (app) {
+                    if (app.get('web_info')) {
+                        tags = tags.concat(_.pluck(app.get('web_info').tags, 'tag'));
+                    }
+                });
+
+                return _.uniq(tags);
+            },
+            getCategories : function () {
+                var cates = [];
+
+                this.each(function (app) {
+                    if (app.get('web_info') && app.get('web_info').categories) {
+                        _.each(app.get('web_info').categories, function (cate) {
+                            var target = _.find(cates, function (c) {
+                                return c.name === cate.name;
+                            });
+
+                            if (!target) {
+                                cates.push({
+                                    name : cate.name,
+                                    alias : cate.alias
+                                });
+                            }
+                        });
+                    }
+                });
+
+                return cates;
             }
         });
 

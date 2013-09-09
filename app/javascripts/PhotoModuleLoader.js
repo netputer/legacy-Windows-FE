@@ -19,10 +19,12 @@ require.config({
         contact : 'modules/contact',
         photo : 'modules/photo',
         video : 'modules/video',
-        backuprestore : 'modules/backuprestore',
         social : 'modules/social',
         sync : 'modules/sync',
-        guide : 'modules/welcome/guide'
+        guide : 'modules/welcome/guide',
+
+        backuprestore : 'modules/backuprestore',
+        new_backuprestore : 'modules/new_backuprestore'
     },
     shim: {
         doT : {

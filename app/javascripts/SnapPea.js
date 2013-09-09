@@ -111,7 +111,9 @@
         'IframeMessageListener',
         'PerformanceTracker',
         'main/views/BindingDeviceWindowView',
-        'backuprestore/BackupController'
+
+        'backuprestore/BackupController',
+        'new_backuprestore/views/BackupRestoreModuleView'
     ], function (
         $,
         Backbone,
@@ -144,7 +146,9 @@
         IframeMessageListener,
         PerformanceTracker,
         BindingDeviceWindowView,
-        BackupController
+
+        BackupController,
+        BackupRestoreModuleView
     ) {
         window.SnapPea = window.SnapPea || {};
 
@@ -168,6 +172,9 @@
         mainView.regModule('optimize', OptimizeModuleView);
         mainView.regModule('app-wash', AppWashModuleView);
         mainView.regModule('gallery', GalleryView);
+
+        //TODO
+        mainView.regModule('backup-restore', BackupRestoreModuleView);
 
         var init = function () {
             BindingDeviceWindowView.getInstance().checkAsync();

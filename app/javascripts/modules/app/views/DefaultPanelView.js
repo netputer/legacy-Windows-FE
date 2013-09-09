@@ -94,10 +94,10 @@
                 this.$el.html(this.template({}));
 
                 if (FunctionSwitch.ENABLE_APP_RECOMMEND) {
-                    if (false) {
-                        this.$el.append(HotCateView.getInstance().render().$el);
-                    }
-                    this.$el.append(RecommendView.getInstance().render().$el);
+                    this.$el.append(HotCateView.getInstance().render().$el)
+                        .append(RecommendView.getInstance({
+                            limit : 5
+                        }).render().$el);
                 }
 
                 if (!FunctionSwitch.ENABLE_APP_WASH) {

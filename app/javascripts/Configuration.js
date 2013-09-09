@@ -34,12 +34,17 @@
                 WINDOW_DEVICE_BIND : 'wdj://window/bind_device.json',
                 WINDOW_DEVICE_UNBIND : 'wdj://window/unbind_device.json',
                 WINDOW_DEVICE_NEED_BIND : 'wdj://window/need_bind.json',
+
                 RECORD_CURRENT_BACKUP_TIME : 'wdj://window/record_backup_time.json',
                 WINDOW_OPEN_PRIVACY_SETTING : 'wdj://window/open_privacy_setting.json',
                 DEVICE_USB_REDETECT : 'wdj://window/usb_redetect.json',
                 DEVICE_GET_USB_DETECT_STATE : 'wdj://window/usb_detect_state.json',
                 WINDOW_OPEN_SETTING : 'wdj://window/open_setting.json',
                 WINDOW_DISK_FREE_SPACE : 'wdj://window/disk_free_space.json',
+
+                //BACKUPRESTORE
+                GET_LAST_BACKUP_TIME : 'wdj://window/get_latest_backup_time.json',
+
 
                 DEVICE_GET_WALLPAPER : 'wdj://device/wallpaper.json',
                 DEVICE_GET_DEVICE_STATE : 'wdj://device/state.json',
@@ -129,6 +134,7 @@
                 APP_GET_APP_DATA_COUNT : 'wdj://apps/app_data_count.json',
                 APP_GET_APP_DETAIL : 'wdj://apps/apk_detail.json',
                 APP_GET_IS_WDAPK_READY : 'wdj://apps/is_wdapk_ready.json',
+                IS_SUPPORT_APP_DATA : 'wdj://apps/is_support_app_data.json',
 
                 // SMS and Calllog Module
                 SMS_GET_CONVERSATION : 'wdj://sms/conversations.json',
@@ -306,10 +312,12 @@
                 SYNC_SNAPSHOT_LIST : 'wdj://sync/snapshot_list.json',
                 SYNC_SNAPSHOT_INFO : 'wdj://sync/snapshot_info.json',
                 SYNC_SNAPSHOT_FILE : 'wdj://sync/snapshot_file.json',
+                SYNC_SET_LOCAL_SWITCH : 'wdj://window/sync_set_local_switch.json',
                 SYNC_SET_SWITCH : 'wdj://window/sync_set_cloud_switch.json',
                 SYNC_IS_SWITCH_ON : 'wdj://window/sync_is_cloud_switch_on.json',
                 SYNC_STOP_REMOTE_SYNC : 'wdj://sync/stop_sync.json',
                 SYNC_BACKUP_DAY_DIFF : 'wdj://window/backup_day_diff.json',
+                IS_LOCAL_SWITCH_ON : 'wdj://window/sync_is_local_switch_on.json',
 
                 // Cloud API
                 APP_QUERY_INFO : 'http://apps.wandoujia.com/api/v1/apps',
