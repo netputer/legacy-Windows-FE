@@ -252,11 +252,10 @@
             },
             buildList : function () {
                 var modelsPool = this.modelsPool;
-
                 var $ctn = this.$('.list').empty();
                 var fragment = document.createDocumentFragment();
                 var i;
-                for (i = 0; i < 8; i++) {
+                for (i = 0; i < (this.options.limit || 8); i++) {
                     if (modelsPool.length > 0) {
                         fragment.appendChild(renderItem.call(this)[0]);
                     } else {

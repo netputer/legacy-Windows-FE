@@ -93,12 +93,11 @@
             render : function () {
                 this.$el.html(this.template({}));
 
-                var turnOnHotCate = false;
                 if (FunctionSwitch.ENABLE_APP_RECOMMEND) {
-                    if (turnOnHotCate) {
-                        this.$el.append(HotCateView.getInstance().render().$el);
-                    }
-                    this.$el.append(RecommendView.getInstance().render().$el);
+                    this.$el.append(HotCateView.getInstance().render().$el)
+                        .append(RecommendView.getInstance({
+                            limit : 5
+                        }).render().$el);
                 }
 
                 if (!FunctionSwitch.ENABLE_APP_WASH) {
