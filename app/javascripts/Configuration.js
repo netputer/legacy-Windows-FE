@@ -46,6 +46,7 @@
                 DEVICE_GET_SCREENSHOT_INFO : 'wdj://device/screenshot.json',
                 DEVICE_GET_INTERNAL_ROOM : 'wdj://device/internal.json',
                 DEVICE_GET_EXTERNAL_ROOM : 'wdj://device/external.json',
+                DEVICE_GET_CAPACITY : 'wdj://device/storage.json',
                 DEVICE_OPEN_SD_CARD : 'wdj://device/open_sdcard.json',
                 DEVICE_TITLE : 'wdj://device/title.json',
                 DEVICE_GET_BATTERY : 'wdj://device/battery.json',

@@ -56,7 +56,13 @@
                 udid : '',
                 shell : {},
                 screenshot : {},
-                canScreenshot : false
+                canScreenshot : false,
+                deviceCapacity : 0,
+                deviceFreeCapacity : 0,
+                internalSDCapacity : 0,
+                internalSDFreeCapacity : 0,
+                externalSDCapacity : 0,
+                externalSDFreeCapacity : 0
             },
             initialize : function () {
                 var listenBack = false;
@@ -183,7 +189,9 @@
                             console.log('Device - Get external capacity success.');
                             this.set({
                                 externalCapacity : parseInt(resp.body.total_size, 10),
-                                externalFreeCapacity : parseInt(resp.body.available_size, 10)
+                                externalFreeCapacity : parseInt(resp.body.available_size, 10),
+                                internalSDCapacity : parseInt(resp.body.total_size, 10),
+                                internalSDFreeCapacity : parseInt(resp.body.available_size, 10)
                             });
                             deferred.resolve(resp);
                         } else {
@@ -205,11 +213,55 @@
                             console.log('Device - Get internal capacity success.');
                             this.set({
                                 internalCapacity : parseInt(resp.body.total_size, 10),
-                                internalFreeCapacity : parseInt(resp.body.available_size, 10)
+                                internalFreeCapacity : parseInt(resp.body.available_size, 10),
+                                deviceCapacity : parseInt(resp.body.total_size, 10),
+                                deviceFreeCapacity : parseInt(resp.body.available_size, 10)
                             });
                             deferred.resolve(resp);
                         } else {
                             console.error('Device - Get internal capacity failed. Error info: ' + resp.state_line);
+                            deferred.reject(resp);
+                        }
+                    }.bind(this)
+                });
+
+                return deferred.promise();
+            },
+            getCapacityAsync : function () {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.DEVICE_GET_CAPACITY,
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('Device - Get device capacity success.');
+
+                            _.each(resp.body.storage_infos, function (info) {
+                                switch (info.type) {
+                                case 0:
+                                    this.set({
+                                        deviceCapacity : parseInt(info.total_size, 10),
+                                        deviceFreeCapacity : parseInt(info.available_size, 10)
+                                    });
+                                    break;
+                                case 1:
+                                    this.set({
+                                        internalSDCapacity : parseInt(info.total_size, 10),
+                                        internalSDFreeCapacity : parseInt(info.available_size, 10)
+                                    });
+                                    break;
+                                case 2:
+                                    this.set({
+                                        externalSDCapacity : parseInt(info.total_size, 10),
+                                        externalSDFreeCapacity : parseInt(info.available_size, 10)
+                                    });
+                                    break;
+                                }
+                            }, this);
+
+                            deferred.resolve(resp);
+                        } else {
+                            console.error('Device - Get device capacity failed. Error info: ' + resp.state_line);
                             deferred.reject(resp);
                         }
                     }.bind(this)
