@@ -35,32 +35,41 @@
             },
             render : function () {
                 if (Device.get('isConnected')) {
-                    $.when(Device.getDeviceCapacityAsync(), Device.getSDCapacityAsync()).always(function () {
+                    Device.getCapacityAsync().always(function () {
                         var data = {
-                            internalCapacity : Device.get('internalCapacity'),
-                            externalCapacity : Device.get('externalCapacity'),
-                            internalFreeCapacity : Device.get('internalFreeCapacity'),
-                            externalFreeCapacity : Device.get('externalFreeCapacity')
+                            deviceCapacity : Device.get('deviceCapacity'),
+                            deviceFreeCapacity : Device.get('deviceFreeCapacity'),
+                            internalSDCapacity : Device.get('internalSDCapacity'),
+                            internalSDFreeCapacity : Device.get('internalSDFreeCapacity'),
+                            externalSDCapacity : Device.get('externalSDCapacity'),
+                            externalSDFreeCapacity : Device.get('externalSDFreeCapacity')
                         };
 
                         this.$el.html(this.template(data));
 
-                        if (data.externalCapacity === 0) {
-                            this.$el.find('.info-sd').hide();
-                        }
+                        // if (data.externalCapacity === 0) {
+                        //     this.$el.find('.info-sd').hide();
+                        // }
 
                         CapacityTipsView.getInstance({
                             $host : this.$('.info-device'),
                             source : 'phone',
-                            total : data.internalCapacity,
-                            free : data.internalFreeCapacity
+                            total : data.deviceCapacity,
+                            free : data.deviceFreeCapacity
                         });
 
                         CapacityTipsView.getInstance({
-                            $host : this.$('.info-sd'),
+                            $host : this.$('.info-sd-internal'),
                             source : 'sdcard',
-                            total : data.externalCapacity,
-                            free : data.externalFreeCapacity
+                            total : data.internalSDCapacity,
+                            free : data.internalSDFreeCapacity
+                        });
+
+                        CapacityTipsView.getInstance({
+                            $host : this.$('.info-sd-external'),
+                            source : 'sdcard',
+                            total : data.externalSDCapacity,
+                            free : data.externalSDFreeCapacity
                         });
 
                         this.$el.addClass('show');

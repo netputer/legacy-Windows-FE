@@ -36,14 +36,27 @@
     <div class="info hbox">
         <div class="info-device hbox">
             <span class="icon device"></span>
-            {{ var percent = parseInt((it.internalCapacity - it.internalFreeCapacity) / it.internalCapacity * 100, 10); }}
+            {{ var percent = parseInt((it.deviceCapacity - it.deviceFreeCapacity) / it.deviceCapacity * 100, 10); }}
             <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
-        <div class="info-sd hbox">
+        {{? it.externalSDCapacity === 0 }}
+        <div class="info-sd-internal hbox">
             <span class="icon sd"></span>
-            {{ var percent =  parseInt((it.externalCapacity - it.externalFreeCapacity) / it.externalCapacity * 100, 10); }}
+            {{ var percent =  parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
             <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
+        {{??}}
+        <div class="info-sd-internal hbox">
+            <span class="icon sd-internal"></span>
+            {{ var percent =  parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
+            <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
+        </div>
+        <div class="info-sd-external hbox">
+            <span class="icon sd-external"></span>
+            {{ var percent =  parseInt((it.externalSDCapacity - it.externalSDFreeCapacity) / it.externalSDCapacity * 100, 10); }}
+            <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
+        </div>
+        {{?}}
     </div>
     <div class="action">
         <button class="button-open-sd">{{= i18n.taskManager.MANAGE_SD }}</button>
@@ -439,7 +452,7 @@
                             }
                         }
                         break;
-                    case CONFIG.enums.TASK_STATE_SUCCESS : 
+                    case CONFIG.enums.TASK_STATE_SUCCESS :
     }}
     <button class="button-retry">{{= i18n.taskManager.RETRY_INSTALL }}</button>
     {{                  break;
@@ -468,7 +481,7 @@
                              case CONFIG.enums.MODEL_TYPE_MUSIC :
     }}
     <button class="button-set-as-ringtong primary">{{= i18n.taskManager.SET_AS_RINGTONE }}</button>
-    {{                      
+    {{
                             break;
                         case CONFIG.enums.MODEL_TYPE_VIDEO:
     }}
