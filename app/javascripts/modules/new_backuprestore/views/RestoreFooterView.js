@@ -86,8 +86,11 @@
                     $cancel.show();
                     break;
                 case 'done':
+                    if (RestoreContextModel.IsAppSelected) {
+                        $taskmanager.show();
+                    }
+
                     $done.show();
-                    $taskmanager.show();
                     break;
                 }
             },
