@@ -543,6 +543,10 @@
 
 <script type="text/x-ui-template" id="hot-cate">
     <h3 class="text-secondary">您喜欢的应用类型</h3>
+    <ul class="tags-ctn"></ul>
     <h3 class="text-secondary">最新应用专题</h3>
+    <div class="banner-ctn">
+        <img class="banner" alt="" />
+    </div>
 </script>
 </templates>
