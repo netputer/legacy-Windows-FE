@@ -264,6 +264,8 @@
                 }
 
                 this.currentModule = name;
+
+                Backbone.trigger('showModule', name);
             },
             hideModule : function (name) {
                 var moduleInstance = this.modules[name].getInstance();
@@ -273,6 +275,8 @@
                         opacity : 0
                     });
                 }
+
+                Backbone.trigger('hideModule', name);
             }
         });
 
