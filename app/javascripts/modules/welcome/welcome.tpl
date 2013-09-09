@@ -207,14 +207,27 @@
     <div class="info hbox">
         <div class="info-device hbox">
             <span class="icon device"></span>
-            {{ var percent = parseInt((it.internalCapacity - it.internalFreeCapacity) / it.internalCapacity * 100, 10); }}
+            {{ var percent = parseInt((it.deviceCapacity - it.deviceFreeCapacity) / it.deviceCapacity * 100, 10); }}
             <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
-        <div class="info-sd hbox">
+        {{? it.externalSDCapacity === 0 }}
+        <div class="info-sd-internal hbox">
             <span class="icon sd"></span>
-            {{ var percent = parseInt((it.externalCapacity - it.externalFreeCapacity) / it.externalCapacity * 100, 10); }}
+            {{ var percent = parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
             <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
+        {{??}}
+        <div class="info-sd-internal hbox">
+            <span class="icon sd-internal"></span>
+            {{ var percent = parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
+            <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
+        </div>
+        <div class="info-sd-external hbox">
+            <span class="icon sd-external"></span>
+            {{ var percent = parseInt((it.externalSDCapacity - it.externalSDFreeCapacity) / it.externalSDCapacity * 100, 10); }}
+            <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
+        </div>
+        {{?}}
     </div>
 </script>
 

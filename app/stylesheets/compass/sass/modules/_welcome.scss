@@ -1123,7 +1123,7 @@
         opacity: .5;
         width: 16px;
 
-        @each $icon in device, sd {
+        @each $icon in device, sd, sd-internal, sd-external {
             &.#{$icon} {
                 @include button-sprite(capacity-#{$icon});
             }
@@ -1134,7 +1134,8 @@
         -webkit-box-flex: 1;
 
         .info-device,
-        .info-sd {
+        .info-sd-internal,
+        .info-sd-external {
             margin-right: 20px;
             -webkit-box-align: center;
         }
