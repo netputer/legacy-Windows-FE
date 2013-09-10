@@ -258,7 +258,7 @@
                 'is_local' : context.IsLocal,
                 'data_id_list' : context.get('dataIDList').join(','),
                 'appt_type' : context.get('appType'),
-                'full_file_name' : context.GetFullFilePath,
+                'full_file_name' : context.fileFullPath,
                 'sms_error_num' : context.get('smsErrorList').length,
                 'contacts_error_num' : context.get('contactsErrorList').length,
                 'app_error_num' : context.get('appErrorList').length,

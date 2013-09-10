@@ -79,7 +79,6 @@
             label : i18n.misc.NAV_BACKUP_RESTORE,
             id : 20,
             root : true,
-            hide : true,
             module : 'backup-restore',
             tab : 'backup-restore',
             order : 60,

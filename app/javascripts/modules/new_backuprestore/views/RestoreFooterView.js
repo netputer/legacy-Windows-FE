@@ -94,6 +94,9 @@
                     break;
                 }
             },
+            hideShowMoreBtn : function () {
+                this.$('.showmore').hide();
+            },
             clickBtnAdvanced : function () {
 
                 if (!advanceView) {

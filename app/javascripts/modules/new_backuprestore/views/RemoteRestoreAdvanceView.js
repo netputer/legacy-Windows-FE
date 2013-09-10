@@ -38,11 +38,6 @@
             render : function () {
 
                 this.$el.html(this.template({}));
-
-                setTimeout(function () {
-                    this.initState();
-                }.bind(this), 0);
-
                 return this;
             },
             initState : function () {
@@ -73,6 +68,7 @@
                 this.on(UIHelper.EventsMapping.SHOW, function () {
                     this.bodyView = new BodyView();
                     this.$bodyContent = this.bodyView.render().$el;
+                    this.bodyView.initState();
                     this.center();
 
                     this.once('remove', function () {

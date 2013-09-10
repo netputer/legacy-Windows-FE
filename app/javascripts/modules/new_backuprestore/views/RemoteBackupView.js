@@ -99,6 +99,12 @@
             remove : function () {
                 RemoteBackupView.__super__.remove.apply(this, arguments);
 
+                progressView.remove();
+                progressView = undefined;
+
+                footerView.remove();
+                footerView = undefined;
+
                 if (remoteErrorView) {
                     remoteErrorView.remove();
                     remoteErrorView = undefined;
@@ -173,7 +179,7 @@
                 });
             },
             setDomState : function (isDone) {
-                footerView.buttonState(isDone ? 'done' : 'progressing');
+                footerView.setButtonState(isDone ? 'done' : 'progressing');
                 this.stateTitle = isDone ? i18n.new_backuprestore.BACKUP_REMOTE_COMPLATE_TITLE : i18n.new_backuprestore.BACKUPING;
                 this.bigTitle = isDone ? i18n.new_backuprestore.BACKUP_FINISH_LABEL : i18n.new_backuprestore.BACKUP_DEVICE_LOCAL_DESC;
             },

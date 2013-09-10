@@ -256,7 +256,7 @@
         <div class="app-icon icon"/>
         <span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_APP] }}</span>
         {{? it[CONFIG.enums.BR_TYPE_APP_DATA] > 0}}
-            <div class="app-data-icon"/>
+            <div class="app-data-icon" data-title="{{= i18n.new_backuprestore.INCLUDE_APP_DATA}}"/>
         {{?}}
     </div>
 </script>
@@ -303,7 +303,7 @@
 </script>
 
 <script type="text/x-ui-template" id="backup-restore-download">
-    <progress class="progress" max="100" value="0"></progress>
+    <progress class="progress tiny" max="100" value="0"></progress>
 </script>
 
 </templates>

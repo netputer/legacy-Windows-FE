@@ -249,7 +249,7 @@
             },
             startBackup : function () {
 
-                var filePath = BackupContextModel.GetFullFilePath;
+                var filePath = BackupContextModel.fileFullPath;
                 var brSpec = BackupContextModel.GetBRSpec;
                 var finishedNum = 0;
 
@@ -457,7 +457,7 @@
             backupAllFinish : function () {
 
                 this.stateTitle = i18n.new_backuprestore.BACKUP_COMPRESSING;
-                BackupRestoreService.backupFinishAsync(BackupContextModel.GetFullFilePath).done(function (resp) {
+                BackupRestoreService.backupFinishAsync(BackupContextModel.fileFullPath).done(function (resp) {
                     this.setDomState(true);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, true);
                 }.bind(this)).fail(function (resp) {

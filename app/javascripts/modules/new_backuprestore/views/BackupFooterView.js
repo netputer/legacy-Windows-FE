@@ -65,7 +65,7 @@
                 this.trigger('__DONE');
             },
             clickBtnShowFile : function () {
-                BackupRestoreService.showFileAsync(BackupContextModel.get('filePath'));
+                BackupRestoreService.showFileAsync(BackupContextModel.fileFullName);
             },
             render : function () {
                 this.$el.html(this.template({}));
