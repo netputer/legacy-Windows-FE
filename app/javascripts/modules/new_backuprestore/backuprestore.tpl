@@ -72,7 +72,7 @@
         <div class="auto-backup-remote info-panel hbox">
             <div class="icon"/>
             <div class="info">
-                <span class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_TO_LOCAL }}</span>
+                <span class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_TO_REMOTE }}</span>
                 <br/>
                 <span class="is-auto-backup-remote"></span>
                 <span class="do-action remote"></span>
