@@ -61,6 +61,7 @@
                 fileList.remove();
                 fileList = undefined;
 
+                restoreFileCollection.reset();
                 restoreFileCollection = undefined;
             },
             buildList : function () {

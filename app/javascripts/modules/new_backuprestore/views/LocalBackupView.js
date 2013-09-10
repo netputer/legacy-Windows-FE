@@ -153,12 +153,16 @@
 
                     this.userCancelled = true;
                     if (this.isProgressing) {
-                        this.isProgressing = false;
-                        this.offMessageHandler();
-                        BackupRestoreService.backupCancelAsync(this.sessionId);
-                        alert(i18n.new_backuprestore.CANCELED);
+
+                        confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
+                            this.isProgressing = false;
+                            this.offMessageHandler();
+                            BackupRestoreService.backupCancelAsync(this.sessionId);
+                            this.trigger('__CANCEL');
+                        }.bind(this));
+                    } else {
+                        this.trigger('__CANCEL');
                     }
-                    this.trigger('__CANCEL');
                 });
 
                 this.listenTo(footerView, '__START_BACKUP', function () {
@@ -299,7 +303,7 @@
 
                 }.bind(this)).fail(function (resp) {
 
-                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 0);
+                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 0, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
 
                 }.bind(this));
@@ -356,7 +360,7 @@
                     this.offMessageHandler();
                     //this.setDomState(true);
 
-                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 1);
+                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 1, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
 
                 }.bind(this));
@@ -464,7 +468,7 @@
                     this.setDomState(true);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, true);
                 }.bind(this)).fail(function (resp) {
-                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 2);
+                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 2, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
                 }.bind(this));
             },

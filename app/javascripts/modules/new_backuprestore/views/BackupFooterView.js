@@ -38,7 +38,10 @@
                     enableBackupButton : {
                         set : function (value) {
                             var isConnected = Device.get('isConnected');
-                            this.$('.startbackup, .advanced').prop('disabled', !isConnected && !value);
+                            var disabled = !isConnected && !value;
+                            this.$('.startbackup').prop('disabled', disabled);
+                            this.$('.advanced').toggle(!disabled);
+
                         }
                     },
                     isLocal : {
@@ -81,7 +84,7 @@
                 this.listenTo(Device, 'change:isConnected', function () {
                     var isConnected = Device.get('isConnected');
                     this.$('.startbackup').prop('disabled', !isConnected);
-                    this.$('.advanced').prop('disabled', !isConnected);
+                    this.$('.advanced').toggle(isConnected);
                 });
 
                 this.listenTo(BackupContextModel, 'change:dataIDList', function () {

@@ -134,13 +134,16 @@
 
                     this.userCancelled = true;
                     if (this.isProgressing) {
-                        this.progressing = false;
-                        this.offMessageHandler();
-                        BackupRestoreService.stopRemoteSyncAsync();
-                        alert(i18n.new_backuprestore.CANCELED);
-                    }
 
-                    this.trigger('__CANCEL');
+                        confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
+                            this.progressing = false;
+                            this.offMessageHandler();
+                            BackupRestoreService.stopRemoteSyncAsync();
+                            this.trigger('__CANCEL');
+                        }.bind(this));
+                    } else {
+                        this.trigger('__CANCEL');
+                    }
                 });
 
                 this.listenTo(footerView, '__START_BACKUP', function () {
@@ -187,7 +190,7 @@
             startBackup : function () {
 
                 this.isProgressing = true;
-                this.setDomState(true);
+                this.setDomState(false);
 
                 log({
                     'event' : 'debug.backup.remote.start'

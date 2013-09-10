@@ -476,6 +476,17 @@
             margin-left: 20px;
             margin-right: 20px;
         }
+
+        .time {
+            display: inline-block;
+            width: 100px
+        }
+
+        .device-name {
+            display: inline-block;
+            text-align: center;
+            width: 180px;
+        }
     }
 
     .num-container {

@@ -127,6 +127,7 @@
                 RestoreView.__super__.initialize.apply(this, arguments);
 
                 var isLocal = false;
+                var appHandler;
                 Object.defineProperties(this, {
                     isLocal : {
                         set : function (value) {
@@ -134,6 +135,14 @@
                         },
                         get : function () {
                             return isLocal;
+                        }
+                    },
+                    appHandler : {
+                        set : function (value) {
+                            appHandler  = value;
+                        },
+                        get : function () {
+                            return appHandler;
                         }
                     }
                 });
@@ -189,13 +198,24 @@
                 this.listenTo(footerView, '__CANCEL __RETURN_TO_START', function () {
                     this.userCancelled = true;
                     if (this.isProgressing) {
-                        this.progressing = false;
-                        this.offMessageHandler();
-                        BackupRestoreService.restoreCancelAsync(this.sessionId);
-                        alert(i18n.new_backuprestore.CANCELED);
-                    }
 
-                    this.trigger('__CANCEL');
+                        confirm(i18n.new_backuprestore.CANCEL_RESTORE, function () {
+
+                            this.progressing = false;
+                            this.offMessageHandler();
+
+                            if (this.appHandler) {
+                                window.clearInterval(this.appHandler);
+                                this.appHandler = undefined;
+                            }
+
+                            BackupRestoreService.restoreCancelAsync(this.sessionId);
+                            this.trigger('__CANCEL');
+
+                        }.bind(this));
+                    } else {
+                        this.trigger('__CANCEL');
+                    }
                 });
 
                 this.listenTo(footerView, '__START_RESTORE', function () {
@@ -281,7 +301,7 @@
                 BackupRestoreService.restoreStartNonAppsAsync(filePath, this.sessionId, accountType, accountName, brSpec).done(function (resp) {
                     RestoreContextModel.set('appPath', resp.body.value);
                 }.bind(this)).fail(function (resp) {
-                    BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 1);
+                    BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 1, !this.IsAppDataSelected);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
                 }.bind(this));
 
@@ -367,18 +387,18 @@
                 var update = function () {
                     var value = 0;
 
-                    var handle = setInterval(function () {
+                    this.appHandler = setInterval(function () {
                         progressView.updateProgress(CONFIG.enums.BR_TYPE_APP, value, 100);
 
                         if (value === 100) {
-                            window.clearInterval(handle);
+                            window.clearInterval(this.appHandler);
 
                             var filePath = RestoreContextModel.get('fileName');
                             BackupRestoreService.restoreStartAppsAsync(filePath, RestoreContextModel.IsAppDataSelected).done(function () {
                                 this.restoreAllFinish();
                                 progressView.setContentState(CONFIG.enums.BR_TYPE_APP, true);
                             }.bind(this)).fail(function (resp) {
-                                BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 7);
+                                BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 7, this.userCancelled);
                                 BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
                             });
                         }
@@ -466,7 +486,6 @@
                 }.bind(this));
             },
 
-
             restoreAllFinish : function () {
 
                 BackupRestoreService.restoreFinishAsync(RestoreContextModel.get('fileName')).done(function (resp) {
@@ -490,7 +509,7 @@
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, true, fileListView.getAll().length);
                 }.bind(this)).fail(function (resp) {
 
-                    BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 2);
+                    BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 2, this.userCancelled);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
                 }.bind(this));
 
@@ -579,7 +598,7 @@
                     this.progressing = false;
                     this.offMessageHandler();
 
-                    BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 0);
+                    BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 0, this.userCancelled);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
                 }.bind(this));
 

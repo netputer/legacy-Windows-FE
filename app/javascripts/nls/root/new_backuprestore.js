@@ -182,6 +182,7 @@ define({
     BACKUPING : '正在备份数据，请不要断开连接...',
     BACKUP_LOCAL_COMPLATE_TITLE : '已成功将以下数据备份到电脑',
     BACKUP_REMOTE_COMPLATE_TITLE : '已成功将以下数据备份到云端',
+    CANCEL_BACKUP : '备份正在进行，是否取消备份？',
 
     RESTORE : '恢复',
     RESTORE_DES : '将您之前备份的数据恢复到手机',
@@ -200,6 +201,7 @@ define({
     RESTORE_APP_COMPLATE : '软件已经开始下载，下载完成后将自动安装到您的手机，期间请不要断开连接',
     RESTORING : '正在恢复数据，请不要断开连接。',
     INCLUDE_APP_DATA : '包含应用数据',
+    CANCEL_RESTORE : '恢复正在进行，是否取消恢复？',
 
     ENABLE : '已开启',
     DISABLE : '未开启',
