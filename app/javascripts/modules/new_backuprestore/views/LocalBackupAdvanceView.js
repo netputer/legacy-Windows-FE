@@ -187,6 +187,7 @@
             clickButtonYes : function () {
 
                 if (!this.bodyView.isFileNameLegal()) {
+                    alert(i18n.new_backuprestore.FILE_NAME_UNLEGAL);
                     return;
                 }
 

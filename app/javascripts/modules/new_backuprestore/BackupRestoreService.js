@@ -54,6 +54,7 @@
                 402 : i18n.backup_restore.CANCELED,
                 412 : i18n.backup_restore.SD_CARD_ERROR,
                 500 : i18n.backup_restore.RESTORE_CONNECTION_LOST,
+                707 : i18n.backup_restore.WRITE_LOCAL_FILE_ERROR,
                 709 : i18n.backup_restore.ERROR_WHEN_WRITE_ROM,
                 720 : i18n.backup_restore.RESTORE_INVLID_FILE,
                 723 : i18n.backup_restore.BACKUP_RESTORE_RUNING,

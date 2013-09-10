@@ -90,6 +90,7 @@
                     break;
                 case BackupRestoreService.CONSTS.SYNC_PROGRESS.COMPLETED:
                     this.setContentState(type, true);
+                    this.setProgressState(type, false);
                     break;
                 }
             }
@@ -186,7 +187,7 @@
             startBackup : function () {
 
                 this.isProgressing = true;
-                this.setDomState(false);
+                this.setDomState(true);
 
                 log({
                     'event' : 'debug.backup.remote.start'
@@ -249,6 +250,7 @@
             initProgressItems : function (brSpec) {
                 _.each(brSpec.item, function (item) {
                     progressView.showProgress(item.type);
+                    progressView.setProgressState(item.type, true);
                     progressView.updateProgressStatus(item.type, BackupRestoreService.CONSTS.BR_PI_STATUS.WAITING, false);
                 }, this);
             },

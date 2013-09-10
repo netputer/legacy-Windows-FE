@@ -174,7 +174,8 @@
                 this.bigTitle = StringUtil.format(i18n.new_backuprestore.BACKUP_DEVICE_TITLE, deviceName);
                 this.stateTitle = i18n.new_backuprestore.BACKUP_DEVICE_LOCAL_DESC;
 
-                BackupRestoreService.prepareBackupAsync().done(function (resp) {
+                var initDone = [];
+                initDone.push(BackupRestoreService.prepareBackupAsync().done(function (resp) {
 
                     var dataNumList = {};
                     _.each(resp.body.item, function (item) {
@@ -195,21 +196,23 @@
                     });
                     this.trigger('__TIME_OUT');
 
-                }.bind(this));
+                }.bind(this)));
 
-                BackupRestoreService.getSettingPathAsync().done(function (resp) {
+                initDone.push(BackupRestoreService.getSettingPathAsync().done(function (resp) {
 
                     var path = resp.body.value;
                     BackupContextModel.set('filePath', path);
-
-                    footerView.enableBackupButton = true;
 
                 }.bind(this)).fail(function () {
 
                     BackupRestoreService.showAndRecordError(i18n.new_backuprestore.GET_FILE_PATH_FAILED, 0);
                     this.trigger('__TIME_OUT');
 
-                }.bind(this));
+                }.bind(this)));
+
+                $.when.apply(this, initDone).done(function () {
+                    footerView.enableBackupButton = true;
+                });
 
 
                 if (deviceName !== undefined && deviceName.length > 0) {

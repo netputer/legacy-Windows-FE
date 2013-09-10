@@ -204,7 +204,7 @@
                         footerView.setButtonState('progressing');
                         if (RestoreContextModel.IsNoneAppSelected) {
                             this.startRestoreSmsAndContact();
-                        } else if (RestoreContextModel.IsAppSelected && RestoreContextModel.IsAppDataSelected) {
+                        } else if (RestoreContextModel.IsAppSelected || RestoreContextModel.IsAppDataSelected) {
                             this.startRestoreApps();
                         }
                     } else {
@@ -258,6 +258,10 @@
 
                 this.listenTo(fileListView, '__HIDE_SHOW_MORE', function () {
                     footerView.hideShowMoreBtn();
+                });
+
+                this.listenTo(fileListView, '__DISPLAY_SHOW_MORE', function () {
+                    footerView.displayShowMoreBtn();
                 });
             },
             startRestoreSmsAndContact : function () {
@@ -358,6 +362,7 @@
 
                 this.stateTitle = i18n.new_backuprestore.RESTORING;
                 this.progressing = true;
+                progressView.showProgress(CONFIG.enums.BR_TYPE_APP);
 
                 var update = function () {
                     var value = 0;
