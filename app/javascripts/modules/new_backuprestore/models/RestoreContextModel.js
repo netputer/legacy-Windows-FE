@@ -103,6 +103,7 @@
 
                 // data type selected to restore
                 dataIDList : [],
+                originDataIDList: [],
 
                 isAccountReady : false,
                 accountType : '',
@@ -129,6 +130,7 @@
 
                 this.set('fileName', '');
                 this.set('dataIDList', []);
+                this.set('originDataIDList', []);
 
                 this.set('isAccountReady', false);
                 this.set('accountType', '');

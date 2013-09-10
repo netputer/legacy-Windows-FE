@@ -126,6 +126,7 @@
                     }
                 });
                 RestoreContextModel.set('dataIDList', list);
+                RestoreContextModel.set('originDataIDList', list);
 
                 BackupRestoreService.getSupportAppDataAsync().done(function (resp) {
 

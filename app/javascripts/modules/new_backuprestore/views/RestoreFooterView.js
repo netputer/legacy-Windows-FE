@@ -7,6 +7,7 @@
         'doT',
         'ui/TemplateFactory',
         'Device',
+        'Account',
         'new_backuprestore/BackupRestoreService',
         'new_backuprestore/views/RemoteRestoreAdvanceView',
         'new_backuprestore/views/LocalRestoreAdvanceView',
@@ -18,6 +19,7 @@
         doT,
         TemplateFactory,
         Device,
+        Account,
         BackupRestoreService,
         RemoteRestoreAdvanceView,
         LocalRestoreAdvanceView,
@@ -38,14 +40,16 @@
                     enableRestoreButton : {
                         set : function (value) {
                             var isConnected = Device.get('isConnected');
-                            var disabled = !isConnected && !value;
+                            var isLogin = Account.get('isLogin');
+                            var disabled = !isConnected || !isLogin || !value;
                             this.$('.startbackup').prop('disabled', disabled);
-                            this.$('.advanced').toggle('disabled', !disabled);
                         }
                     },
                     enableConfirmButton : {
                         set : function (value) {
-                            this.$('.confirm').prop('disabled', !value);
+                            var isLogin = Account.get('isLogin');
+                            var disabled = !isLogin || !value;
+                            this.$('.confirm').prop('disabled', disabled);
                         }
                     },
                     isLocal : {
@@ -66,6 +70,7 @@
                 var $confirm = this.$('.confirm').hide();
                 var $done = this.$('.done').hide();
                 var $taskmanager = this.$('.taskmanager').hide();
+                this.$('.showmore').hide();
 
                 switch (type) {
                 case 'selectFile':
@@ -152,6 +157,13 @@
                     var list = RestoreContextModel.get('dataIDList');
                     this.enableRestoreButton = (list.length !== 0);
                 });
+
+                if (!this.isLocal) {
+                    this.listenTo(Account, 'change:isLogin', function () {
+                        var isLogin = Account.get('isLogin');
+                        this.$('.startrestore, .confirm').prop('disabled', !isLogin);
+                    });
+                }
             },
             remove : function () {
                 RemoteFooterView.__super__.remove.apply(this, arguments);

@@ -44,6 +44,13 @@
                 _.map(BackupContextModel.get('dataIDList'), function (item) {
                     $('input[type=checkbox][value=' + item +  ']').prop('checked', true);
                 });
+            },
+            clickBackupContent : function () {
+                var checked = this.$('input[type=checkbox]:checked');
+                this.trigger('__ENABLE_CONFIRM', checked.length > 0);
+            },
+            events : {
+                'click input[type=checkbox]' : 'clickBackupContent'
             }
         });
 
@@ -64,6 +71,10 @@
                     this.$bodyContent = this.bodyView.render().$el;
                     this.bodyView.initState();
                     this.center();
+
+                    this.listenTo(this.bodyView, '__ENABLE_CONFIRM', function (enable) {
+                        this.$('.button_yes').prop('disabled', !enable);
+                    });
 
                     this.once('remove', function () {
                         this.bodyView.remove();

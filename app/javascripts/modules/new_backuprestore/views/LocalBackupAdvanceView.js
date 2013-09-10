@@ -154,10 +154,15 @@
                     this.$('input[type=checkbox][name=appdata]').prop('checked', checked);
                 }
             },
+            clickBackupContent : function () {
+                var checked = this.$('input[type=checkbox]:checked');
+                this.trigger('__ENABLE_CONFIRM', checked.length > 0);
+            },
             events : {
                 'click .change-backup-path' : 'clickSetFilePath',
                 'click input[type=checkbox][name=appdata]' : 'clickAppData',
-                'click input[type=checkbox][name=app]' : 'clickApp'
+                'click input[type=checkbox][name=app]' : 'clickApp',
+                'click input[type=checkbox]' : 'clickBackupContent'
             }
         });
 
@@ -177,6 +182,10 @@
                     this.$bodyContent = this.bodyView.render().$el;
                     this.bodyView.initState();
                     this.center();
+
+                    this.listenTo(this.bodyView, '__ENABLE_CONFIRM', function (enable) {
+                        this.$('.button_yes').prop('disabled', !enable);
+                    });
 
                     this.once('remove', function () {
                         this.bodyView.remove();

@@ -202,6 +202,7 @@ define({
     RESTORING : '正在恢复数据，请不要断开连接。',
     INCLUDE_APP_DATA : '包含应用数据',
     CANCEL_RESTORE : '恢复正在进行，是否取消恢复？',
+    NO_REMOTE_BACKUP_FILE : '您还没有备份过数据到云端',
 
     ENABLE : '已开启',
     DISABLE : '未开启',
