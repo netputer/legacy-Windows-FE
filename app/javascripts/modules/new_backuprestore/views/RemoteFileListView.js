@@ -47,6 +47,7 @@
                 RemoteFileListView.__super__.initialize.apply(this, arguments);
 
                 var selectedId;
+                var listLength = 0;
                 Object.defineProperties(this, {
                     selectedId : {
                         set : function (value) {
@@ -54,6 +55,14 @@
                         },
                         get : function () {
                             return selectedId;
+                        }
+                    },
+                    listLength : {
+                        set : function (value) {
+                            listLength = value;
+                        },
+                        get : function () {
+                            return listLength;
                         }
                     }
                 });
@@ -89,6 +98,10 @@
                 this.listenTo(restoreFileCollection, 'refresh', function () {
                     fileList.switchSet('all');
                     fileList.loading = false;
+
+                    if (this.listLength === BackupRestoreService.CONSTS.DefaultSnapshot.Size) {
+                        this.trigger('__DISPLAY_SHOW_MORE');
+                    }
                 });
 
                 this.listenTo(fileList, 'select:change', function (selected) {
@@ -114,11 +127,18 @@
                     var newList = JSON.parse(resp.body.value);
                     restoreFileCollection.updateAsync(newList);
 
+                    if (newList.length < BackupRestoreService.CONSTS.DefaultSnapshot.Size) {
+                        this.trigger('__HIDE_SHOW_MORE');
+                    }
+                    this.listLength = newList.length;
+
                 }.bind(this)).fail(function (resp) {
 
                     var alertContext = (resp.state_code === 747) ? i18n.new_backuprestore.CUSTOM_RESOURCE_LOCKED : i18n.new_backuprestore.RESTORE_LIST_SNAPHOST_FAILED;
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
                     alert(alertContext);
+
+                    this.trigger('__RETURN_TO_START');
 
                 }.bind(this));
             },

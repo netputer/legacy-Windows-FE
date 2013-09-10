@@ -5,6 +5,7 @@
         'backbone',
         'underscore',
         'doT',
+        'Device',
         'ui/TemplateFactory',
         'new_backuprestore/BackupRestoreService',
         'new_backuprestore/views/RemoteBackupAdvanceView',
@@ -15,6 +16,7 @@
         Backbone,
         _,
         doT,
+        Device,
         TemplateFactory,
         BackupRestoreService,
         RemoteBackupAdvanceView,
@@ -35,7 +37,8 @@
                 Object.defineProperties(this, {
                     enableBackupButton : {
                         set : function (value) {
-                            this.$('.startbackup').prop('disabled', !value);
+                            var isConnected = Device.get('isConnected');
+                            this.$('.startbackup, .advanced').prop('disabled', !isConnected && !value);
                         }
                     },
                     isLocal : {
@@ -65,11 +68,26 @@
                 this.trigger('__DONE');
             },
             clickBtnShowFile : function () {
-                BackupRestoreService.showFileAsync(BackupContextModel.get('filePath'));
+                BackupRestoreService.showFileAsync(BackupContextModel.fileFullName);
             },
             render : function () {
                 this.$el.html(this.template({}));
+
+                this.initState();
                 return this;
+            },
+            initState : function () {
+
+                this.listenTo(Device, 'change:isConnected', function () {
+                    var isConnected = Device.get('isConnected');
+                    this.$('.startbackup').prop('disabled', !isConnected);
+                    this.$('.advanced').prop('disabled', !isConnected);
+                });
+
+                this.listenTo(BackupContextModel, 'change:dataIDList', function () {
+                    var list = BackupContextModel.get('dataIDList');
+                    this.enableBackupButton = (list.length !== 0);
+                });
             },
             remove : function () {
                 BackupFooterView.__super__.remove.apply(this, arguments);

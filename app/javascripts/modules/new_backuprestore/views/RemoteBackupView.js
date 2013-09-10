@@ -90,6 +90,7 @@
                     break;
                 case BackupRestoreService.CONSTS.SYNC_PROGRESS.COMPLETED:
                     this.setContentState(type, true);
+                    this.setProgressState(type, false);
                     break;
                 }
             }
@@ -98,6 +99,12 @@
         var RemoteBackupView = BaseView.extend({
             remove : function () {
                 RemoteBackupView.__super__.remove.apply(this, arguments);
+
+                progressView.remove();
+                progressView = undefined;
+
+                footerView.remove();
+                footerView = undefined;
 
                 if (remoteErrorView) {
                     remoteErrorView.remove();
@@ -173,14 +180,14 @@
                 });
             },
             setDomState : function (isDone) {
-                footerView.buttonState(isDone ? 'done' : 'progressing');
+                footerView.setButtonState(isDone ? 'done' : 'progressing');
                 this.stateTitle = isDone ? i18n.new_backuprestore.BACKUP_REMOTE_COMPLATE_TITLE : i18n.new_backuprestore.BACKUPING;
                 this.bigTitle = isDone ? i18n.new_backuprestore.BACKUP_FINISH_LABEL : i18n.new_backuprestore.BACKUP_DEVICE_LOCAL_DESC;
             },
             startBackup : function () {
 
                 this.isProgressing = true;
-                this.setDomState(false);
+                this.setDomState(true);
 
                 log({
                     'event' : 'debug.backup.remote.start'
@@ -243,6 +250,7 @@
             initProgressItems : function (brSpec) {
                 _.each(brSpec.item, function (item) {
                     progressView.showProgress(item.type);
+                    progressView.setProgressState(item.type, true);
                     progressView.updateProgressStatus(item.type, BackupRestoreService.CONSTS.BR_PI_STATUS.WAITING, false);
                 }, this);
             },

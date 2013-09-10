@@ -93,6 +93,9 @@
             remove : function () {
                 this.$progress = undefined;
                 DownloadView.__super__.remove.call(this);
+            },
+            setProgressState : function (isRunning) {
+                this.$progress.toggleClass('running', isRunning);
             }
         });
 
@@ -183,7 +186,7 @@
                 });
             },
             bindEvent : function () {
-                this.listenTo(footerView, '__CANCEL', function () {
+                this.listenTo(footerView, '__CANCEL __RETURN_TO_START', function () {
                     this.userCancelled = true;
                     if (this.isProgressing) {
                         this.progressing = false;
@@ -201,7 +204,7 @@
                         footerView.setButtonState('progressing');
                         if (RestoreContextModel.IsNoneAppSelected) {
                             this.startRestoreSmsAndContact();
-                        } else if (RestoreContextModel.IsAppSelected && RestoreContextModel.IsAppDataSelected) {
+                        } else if (RestoreContextModel.IsAppSelected || RestoreContextModel.IsAppDataSelected) {
                             this.startRestoreApps();
                         }
                     } else {
@@ -252,12 +255,21 @@
                 this.listenTo(footerView, '__SHOW_MORE', function () {
                     fileListView.update();
                 });
+
+                this.listenTo(fileListView, '__HIDE_SHOW_MORE', function () {
+                    footerView.hideShowMoreBtn();
+                });
+
+                this.listenTo(fileListView, '__DISPLAY_SHOW_MORE', function () {
+                    footerView.displayShowMoreBtn();
+                });
             },
             startRestoreSmsAndContact : function () {
 
                 this.sessionId = _.uniqueId('restore.nonapps_');
                 this.isProgressing = true;
                 footerView.setButtonState('progressing');
+                this.stateTitle = i18n.new_backuprestore.RESTORING;
 
                 var filePath = RestoreContextModel.get('fileName');
                 var accountType = RestoreContextModel.get('accountType');
@@ -343,6 +355,14 @@
                 }
             },
             startRestoreApps : function () {
+
+                if (this.userCancelled) {
+                    return;
+                }
+
+                this.stateTitle = i18n.new_backuprestore.RESTORING;
+                this.progressing = true;
+                progressView.showProgress(CONFIG.enums.BR_TYPE_APP);
 
                 var update = function () {
                     var value = 0;
@@ -473,6 +493,8 @@
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 2);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
                 }.bind(this));
+
+                this.progressing = false;
             },
 
             updateNonAppItems : function (items) {
@@ -528,11 +550,12 @@
 
                     var now = new Date();
                     var time = now - timeBegin;
-                    if (time  < 10000) {
+                    if (time  < 5000) {
                         setTimeout(function () {
 
                             this.progressing = false;
                             this.offMessageHandler();
+                            downloadView.setProgressState(false);
 
                             this.showRestoreView();
                             footerView.setButtonState('progressing');
@@ -541,7 +564,9 @@
                             } else {
                                 this.startRestoreApps();
                             }
-                        }.bind(this), 10000 - time);
+
+                        }.bind(this), 5000 - time);
+                        downloadView.setProgressState(true);
                     }
 
                     log({ 'event' : 'debug.restore.remote.download.success' });

@@ -6,6 +6,7 @@
         'underscore',
         'doT',
         'ui/TemplateFactory',
+        'Device',
         'new_backuprestore/BackupRestoreService',
         'new_backuprestore/views/RemoteRestoreAdvanceView',
         'new_backuprestore/views/LocalRestoreAdvanceView',
@@ -16,6 +17,7 @@
         _,
         doT,
         TemplateFactory,
+        Device,
         BackupRestoreService,
         RemoteRestoreAdvanceView,
         LocalRestoreAdvanceView,
@@ -35,7 +37,8 @@
                 Object.defineProperties(this, {
                     enableRestoreButton : {
                         set : function (value) {
-                            this.$('.startrestore').prop('disabled', !value);
+                            var isConnected = Device.get('isConnected');
+                            this.$('.startbackup, .advanced').prop('disabled', !isConnected && !value);
                         }
                     },
                     enableConfirmButton : {
@@ -61,15 +64,11 @@
                 var $confirm = this.$('.confirm').hide();
                 var $done = this.$('.done').hide();
                 var $taskmanager = this.$('.taskmanager').hide();
-                var $showMore = this.$('.showmore').hide();
 
                 switch (type) {
                 case 'selectFile':
                     if (this.isLocal) {
                         $showFile.show();
-                    }
-                    if (!this.isLocal) {
-                        $showMore.show();
                     }
                     $cancel.show();
                     $confirm.show();
@@ -93,6 +92,12 @@
                     $done.show();
                     break;
                 }
+            },
+            hideShowMoreBtn : function () {
+                this.$('.showmore').hide();
+            },
+            displayShowMoreBtn : function () {
+                this.$('.showmore').show();
             },
             clickBtnAdvanced : function () {
 
@@ -130,7 +135,21 @@
             },
             render : function () {
                 this.$el.html(this.template({}));
+
+                this.initState();
                 return this;
+            },
+            initState : function () {
+                this.listenTo(Device, 'change:isConnected', function () {
+                    var isConnected = Device.get('isConnected');
+                    this.$('.startrestore').prop('disabled', !isConnected);
+                    this.$('.advanced').prop('disabled', !isConnected);
+                });
+
+                this.listenTo(RestoreContextModel, 'change:dataIDList', function () {
+                    var list = RestoreContextModel.get('dataIDList');
+                    this.enableRestoreButton = (list.length !== 0);
+                });
             },
             remove : function () {
                 RemoteFooterView.__super__.remove.apply(this, arguments);

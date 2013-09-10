@@ -162,11 +162,11 @@ define({
     CUSTOM_RESOURCE_LOCKED : '豌豆荚在 8 月 25 日碰到技术故障，当天我们暂时关闭了豌豆荚的账号服务，12 个小时后账号服务修复完成。但为了您的信息安全考虑，目前通过旧的密码将不能使用云恢复、云相册等功能。请您立即修改密码，以便正常使用豌豆荚。',
 
     BACKUP : '备份',
-    BACKUP_DES : '将您的收集数据存储电脑或云端',
+    BACKUP_DES : '将您的手机数据存储电脑或云端',
     BACKUP_TO_LOCAL : '备份到电脑',
     BACKUP_TO_LOCAL_DESC : '速度较快，恢复的时候需要连接电脑',
     BACKUP_TO_CLOUD : '备份到云端',
-    BACKUP_TO_CLOUD_DESC : '需登录账号并在联网时进行，可在其他电脑或直接在手机上恢复',
+    BACKUP_TO_CLOUD_DESC : '需登录账号并在联网时进行，可在其它电脑或直接在手机上恢复',
     BACKUP_DEVICE_TITLE : '备份 {1} 的数据',
     BACKUP_DEVICE_LOCAL_DESC : '豌豆荚已经准备好为您备份以下数据到电脑',
     BACKUP_DEVICE_REMOTE_DESC : '豌豆荚已经准备好为您备份以下数据到云端',
@@ -194,10 +194,12 @@ define({
     RESTORE_CHOOSE_DESC : '请选择一个备份文件开始恢复',
     OPEN_RESTORE_FILE : '手动选择备份文件',
     RESTORE_ADVANCE_TITLE : '恢复高级选项',
-    RESTORE_CONTACT_COMPLATE : '联系人已经恢复到您的手机',
-    RESTORE_SMS_COMPLATE : '短信已经恢复到您的手机',
-    RESTORE_NONAPP_COMPLATE : '联系人和短信已经恢复到您的手机',
+    RESTORE_CONTACT_COMPLATE : '联系人已经恢复到您的手机。',
+    RESTORE_SMS_COMPLATE : '短信已经恢复到您的手机。',
+    RESTORE_NONAPP_COMPLATE : '联系人和短信已经恢复到您的手机。',
     RESTORE_APP_COMPLATE : '软件已经开始下载，下载完成后将自动安装到您的手机，期间请不要断开连接',
+    RESTORING : '正在恢复数据，请不要断开连接。',
+    INCLUDE_APP_DATA : '包含应用数据',
 
     ENABLE : '已开启',
     DISABLE : '未开启',
@@ -220,5 +222,6 @@ define({
     AUTO_BACKUP_TO_REMOTE : '自动备份到云端',
     DONE : '完成',
     SWITCH_TASK_MODULE : '查看下载任务',
-    SHOW_MORE : '显示更多'
+    SHOW_MORE : '显示更多',
+    WRITE_LOCAL_FILE_ERROR : "写入本地文件出错"
 });

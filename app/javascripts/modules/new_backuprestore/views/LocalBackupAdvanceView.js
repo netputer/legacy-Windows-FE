@@ -88,7 +88,6 @@
                     filePath : BackupContextModel.get('filePath')
                 }));
 
-                this.initState();
                 return this;
             },
             initState : function () {
@@ -105,8 +104,10 @@
 
                 }.bind(this));
 
+                var defaultBackupType = BackupContextModel.get('appType');
+                this.$('input[type=radio][value=' + defaultBackupType + ']').prop('checked', true);
                 BackupRestoreService.getIsWdapkReadyAsync().done(function (resp) {
-                    this.$('input[type=radio][value=0]').prop('disabled', !resp.body.value);
+                    this.$('input[type=radio][value=2]').prop('disabled', !resp.body.value);
                 }.bind(this));
 
                 _.map(BackupContextModel.get('dataIDList'), function (item) {
@@ -174,6 +175,7 @@
                 this.on(UIHelper.EventsMapping.SHOW, function () {
                     this.bodyView = new BodyView();
                     this.$bodyContent = this.bodyView.render().$el;
+                    this.bodyView.initState();
                     this.center();
 
                     this.once('remove', function () {
@@ -185,10 +187,11 @@
             clickButtonYes : function () {
 
                 if (!this.bodyView.isFileNameLegal()) {
+                    alert(i18n.new_backuprestore.FILE_NAME_UNLEGAL);
                     return;
                 }
 
-                BackupRestoreService.checkFileAsync(BackupContextModel.GetFullFilePath).done(function (resp) {
+                BackupRestoreService.checkFileAsync(BackupContextModel.fileFullPath).done(function (resp) {
                     var status_code = parseInt(resp.body.value, 10);
                     if (status_code === 1) {
                         confirm(i18n.new_backuprestore.OVERWIRTE_EXISTS_FILE_TIP, function () {
@@ -206,7 +209,7 @@
 
                 var list = [];
                 _.map(this.$('input[type=checkbox]:checked'), function (input) {
-                    list.push(parseInt(input.value, 104));
+                    list.push(parseInt(input.value, 10));
                 });
 
                 BackupContextModel.set('dataIDList', list);

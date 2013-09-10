@@ -6,17 +6,26 @@
         'underscore',
         'doT',
         'Configuration',
-        'ui/TemplateFactory'
+        'ui/TemplateFactory',
+        'new_backuprestore/models/BackupContextModel'
     ], function (
         $,
         Backbone,
         _,
         doT,
         CONFIG,
-        TemplateFactory
+        TemplateFactory,
+        BackupContextModel
     ) {
 
         console.log('BackupRestoreProgressView - File loaded.');
+
+        var backupList = [
+            CONFIG.enums.BR_TYPE_CONTACT,
+            CONFIG.enums.BR_TYPE_SMS,
+            CONFIG.enums.BR_TYPE_APP,
+            CONFIG.enums.BR_TYPE_APP_DATA
+        ];
 
         var BackupRestoreProgressView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('new_backuprestore', 'backup-restore-progress')),
@@ -94,7 +103,28 @@
                 this.$sms = this.$('.content-box.sms');
                 this.$app = this.$('.content-box.app');
 
+                this.initState();
+
                 return this;
+            },
+            initState : function () {
+                this.listenTo(BackupContextModel, 'change:dataIDList', function () {
+                    var list = BackupContextModel.get('dataIDList');
+                    var content;
+
+                    var hideList = _.difference(backupList, list);
+                    _.map(hideList, function (item) {
+                        content = this.getContent(item);
+                        content.hide();
+                    }, this);
+
+                    _.map(list, function (item) {
+                        content = this.getContent(item);
+                        content.show();
+                    }, this);
+
+
+                });
             },
             getProgress : function (type) {
                 var $progress;

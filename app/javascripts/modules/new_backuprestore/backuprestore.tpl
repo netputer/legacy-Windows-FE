@@ -72,7 +72,7 @@
         <div class="auto-backup-remote info-panel hbox">
             <div class="icon"/>
             <div class="info">
-                <span class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_TO_LOCAL }}</span>
+                <span class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_TO_REMOTE }}</span>
                 <br/>
                 <span class="is-auto-backup-remote"></span>
                 <span class="do-action remote"></span>
@@ -145,7 +145,7 @@
         </dd>
         <dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_FILE_NAME}}</dt>
         <dd>
-            <input type="text" class="file-name" name="file-name" value="{{= it.fileName }}"/>
+            <input type="text" class="file-name" name="file-name" value="{{= it.fileName }}" maxlength="100"/>
         </dd>
     </dl>
 </script>
@@ -230,7 +230,7 @@
         <span class="link advanced">{{= i18n.new_backuprestore.ADVANCED}}</span>
         <span class="link showfile">{{= i18n.new_backuprestore.OPEN_RESTORE_FILE}}</span>
         <span class="link taskmanager">{{= i18n.new_backuprestore.SWITCH_TASK_MODULE}}</span>
-        <span class="link showmore">{{= i18n.new_backuprestore.SHOW_MORE}}</span>
+        <span class="link showmore" style="display:none">{{= i18n.new_backuprestore.SHOW_MORE}}</span>
     </div>
     <div class="right hbox">
         <span class="link cancel">{{= i18n.new_backuprestore.CANCEL}}</span>
@@ -256,7 +256,7 @@
         <div class="app-icon icon"/>
         <span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_APP] }}</span>
         {{? it[CONFIG.enums.BR_TYPE_APP_DATA] > 0}}
-            <div class="app-data-icon"/>
+            <div class="app-data-icon" data-title="{{= i18n.new_backuprestore.INCLUDE_APP_DATA}}"/>
         {{?}}
     </div>
 </script>
@@ -303,7 +303,7 @@
 </script>
 
 <script type="text/x-ui-template" id="backup-restore-download">
-    <progress class="progress" max="100" value="0"></progress>
+    <progress class="progress tiny" max="100" value="0"></progress>
 </script>
 
 </templates>

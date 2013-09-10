@@ -38,11 +38,6 @@
             render : function () {
 
                 this.$el.html(this.template({}));
-
-                setTimeout(function () {
-                    this.initState();
-                }.bind(this), 0);
-
                 return this;
             },
             initState : function () {
@@ -81,6 +76,7 @@
                 this.on(UIHelper.EventsMapping.SHOW, function () {
                     this.bodyView = new BodyView();
                     this.$bodyContent = this.bodyView.render().$el;
+                    this.bodyView.initState();
                     this.center();
 
                     this.once('remove', function () {
@@ -92,7 +88,7 @@
             clickButtonYes : function () {
                 var list = [];
                 _.map(this.$('input[type=checkbox]:checked'), function (input) {
-                    list.push(parseInt(input.valuem, 10));
+                    list.push(parseInt(input.value, 10));
                 });
                 RestoreContextModel.set('dataIDList', list);
             },
@@ -108,7 +104,7 @@
                     localRestoreAdvanceView = new LocalRestoreAdvanceView({
                         title : i18n.new_backuprestore.RESTORE_ADVANCE_TITLE,
                         disableX: true,
-                        width : '430px',
+                        width : '440px',
                         height : '130px'
 
                     });
