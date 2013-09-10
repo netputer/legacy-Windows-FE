@@ -75,16 +75,17 @@
             tab : 'video',
             order : 60,
             icon : 'video'
-        }, /*{
+        }, {
             label : i18n.misc.NAV_BACKUP_RESTORE,
             id : 20,
             root : true,
+            hide : true,
             module : 'backup-restore',
             tab : 'backup-restore',
             order : 60,
             count : -1,
             icon : 'backup'
-        }, */{
+        }, {
             label : i18n.app.APP_WASH,
             id : 19,
             count : -1,
