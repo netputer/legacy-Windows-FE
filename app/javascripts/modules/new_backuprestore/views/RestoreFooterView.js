@@ -7,7 +7,10 @@
         'doT',
         'ui/TemplateFactory',
         'Device',
+<<<<<<< HEAD
         'Account',
+=======
+>>>>>>> [Changes] Bugfix and polish ui
         'new_backuprestore/BackupRestoreService',
         'new_backuprestore/views/RemoteRestoreAdvanceView',
         'new_backuprestore/views/LocalRestoreAdvanceView',
@@ -19,7 +22,10 @@
         doT,
         TemplateFactory,
         Device,
+<<<<<<< HEAD
         Account,
+=======
+>>>>>>> [Changes] Bugfix and polish ui
         BackupRestoreService,
         RemoteRestoreAdvanceView,
         LocalRestoreAdvanceView,
@@ -150,13 +156,18 @@
                 this.listenTo(Device, 'change:isConnected', function () {
                     var isConnected = Device.get('isConnected');
                     this.$('.startrestore').prop('disabled', !isConnected);
+<<<<<<< HEAD
                     this.$('.advanced').toggle(isConnected);
+=======
+                    this.$('.advanced').prop('disabled', !isConnected);
+>>>>>>> [Changes] Bugfix and polish ui
                 });
 
                 this.listenTo(RestoreContextModel, 'change:dataIDList', function () {
                     var list = RestoreContextModel.get('dataIDList');
                     this.enableRestoreButton = (list.length !== 0);
                 });
+<<<<<<< HEAD
 
                 if (!this.isLocal) {
                     this.listenTo(Account, 'change:isLogin', function () {
@@ -164,6 +175,8 @@
                         this.$('.startrestore, .confirm').prop('disabled', !isLogin);
                     });
                 }
+=======
+>>>>>>> [Changes] Bugfix and polish ui
             },
             remove : function () {
                 RemoteFooterView.__super__.remove.apply(this, arguments);

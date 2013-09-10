@@ -215,7 +215,7 @@
 
                 WindowController.blockWindowAsync();
                 this.isProgressing = true;
-                this.setDomState(false);
+                this.setDomState(true);
 
                 log({
                     'event' : 'debug.backup.remote.start'
