@@ -273,7 +273,7 @@
 
                 return deferred.promise();
             },
-            manageSDCardAsync : function () {
+            manageSDCardAsync : function (path) {
                 var deferred = $.Deferred();
 
                 if (this.get('isInternet')) {
@@ -297,6 +297,9 @@
 
                         IO.requestAsync({
                             url  : CONFIG.actions.DEVICE_OPEN_SD_CARD,
+                            data : {
+                                path : path || ''
+                            },
                             success : function (resp) {
                                 if (resp.state_code === 200) {
                                     console.log('Device - Open SD card success.');
