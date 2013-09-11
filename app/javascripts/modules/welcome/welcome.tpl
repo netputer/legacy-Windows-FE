@@ -258,27 +258,6 @@
     </div>
 </script>
 
-<script type="text/x-ui-template" id="capacity">
-    <div class="w-welcome-capacity">
-        {{ var percent = parseInt((it.internalCapacity - it.internalFreeCapacity) / it.internalCapacity * 100, 10); }}
-        <div class="phone-capacity hbox{{? percent >= 90 }} outofspace{{?}}">
-            <div class="title">{{= i18n.misc.PHONE }}</div>
-            <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
-            <div class="ratio">
-                <span class="{{? percent >= 90 }}text-warning{{?}}">{{= StringUtil.readableSize(it.internalCapacity - it.internalFreeCapacity) }}</span> / {{= StringUtil.readableSize(it.internalCapacity) }}
-            </div>
-        </div>
-        {{ var percent =  parseInt((it.externalCapacity - it.externalFreeCapacity) / it.externalCapacity * 100, 10); }}
-        <div class="external-capacity hbox{{? percent >= 90 }} outofspace{{?}}">
-            <div class="title">{{= i18n.misc.SD_CARD }}</div>
-            <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
-            <div class="ratio">
-                <span class="{{? percent >= 90 }}text-warning{{?}}">{{= StringUtil.readableSize(it.externalCapacity - it.externalFreeCapacity) }}</span> / {{= StringUtil.readableSize(it.externalCapacity) }}
-            </div>
-        </div>
-    </div>
-</script>
-
 <script type="text/x-ui-template" id="file-tools">
     <button class="button-open-sd min">{{= i18n.welcome.TOOL_SD }}</button>
     <button class="button-backup min">{{= i18n.welcome.TOOL_BACKUP }}</button>
