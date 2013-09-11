@@ -203,7 +203,7 @@
 
                         confirm(i18n.new_backuprestore.CANCEL_RESTORE, function () {
 
-                            this.progressing = false;
+                            this.isProgressing = false;
                             this.offMessageHandler();
 
                             if (this.appHandler) {
@@ -211,10 +211,15 @@
                                 this.appHandler = undefined;
                             }
 
+                            if (this.downloadHandler) {
+                                window.clearTimeout(this.downloadHandler);
+                                this.downloadHandler = undefined;
+                            }
+
                             BackupRestoreService.restoreCancelAsync(this.sessionId);
                             this.trigger('__CANCEL');
 
-                        }, null, this);
+                        }, this);
                     } else {
                         this.trigger('__CANCEL');
                     }
@@ -306,6 +311,8 @@
                 }.bind(this)).fail(function (resp) {
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 1, !this.IsAppDataSelected);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
+                    BackupRestoreService.restoreCancelAsync(this.sessionId);
+                    WindowController.releaseWindowAsync();
                 }.bind(this));
 
                 var smsHandler = IO.Backend.Device.onmessage({
@@ -347,7 +354,7 @@
                 case BackupRestoreService.CONSTS.BR_STATUS.FINISHED:
                     this.updateNonAppItems(progress.item);
 
-                    this.progressing = false;
+                    this.isProgressing = false;
                     this.offMessageHandler();
 
                     if (RestoreContextModel.IsAppSelected || RestoreContextModel.IsAppDataSelected) {
@@ -360,7 +367,7 @@
                 case BackupRestoreService.CONSTS.BR_STATUS.ERROR:
                     this.updateNonAppItems(progress.item);
 
-                    this.progressing = false;
+                    this.isProgressing = false;
                     this.showErrorItem(progress);
                     break;
                 //case BackupRestoreService.CONSTS.BR_STATUS.READY:
@@ -370,10 +377,12 @@
 
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
                     alert(i18n.new_backuprestore.RESTORE_ABORT_TIP);
+                    WindowController.releaseWindowAsync();
                     break;
                 default:
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
                     alert(i18n.new_backuprestore.RESTORE_FAILED_TIP + progress.status);
+                    WindowController.releaseWindowAsync();
                     break;
                 }
             },
@@ -386,7 +395,7 @@
                 WindowController.blockWindowAsync();
 
                 this.stateTitle = i18n.new_backuprestore.RESTORING;
-                this.progressing = true;
+                this.isProgressing = true;
                 progressView.showProgress(CONFIG.enums.BR_TYPE_APP);
 
                 var update = function () {
@@ -405,6 +414,7 @@
                             }.bind(this)).fail(function (resp) {
                                 BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 7, this.userCancelled);
                                 BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
+                                WindowController.releaseWindowAsync();
                             });
                         }
                         value++;
@@ -436,6 +446,7 @@
 
                     alert(i18n.new_backuprestore.RESTORE_FAILED_TIP + progress.status);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
+                    WindowController.releaseWindowAsync();
                     break;
                 }
             },
@@ -460,7 +471,7 @@
             },
             retryRestore : function () {
 
-                this.progressing = true;
+                this.isProgressing = true;
                 BackupRestoreService.restoreRetryAsync(this.sessionId).done(function (resp) {
                     var progress = resp.body;
 
@@ -471,11 +482,12 @@
                     }
                 }.bind(this)).fail(function (resp) {
 
-                    this.progressing  = false;
+                    this.isProgressing  = false;
                     this.offMessageHandler();
 
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 3);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
+                    WindowController.releaseWindowAsync();
                 }.bind(this));
             },
             resumeRestore : function () {
@@ -483,11 +495,12 @@
                                                         RestoreContextModel.get('smsDupCount'),
                                                         RestoreContextModel.get('contactsDupCount')).fail(function (resp) {
 
-                    this.progressing  = false;
+                    this.isProgressing  = false;
                     this.offMessageHandler();
 
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 4);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
+                    WindowController.releaseWindowAsync();
                 }.bind(this));
             },
 
@@ -519,7 +532,7 @@
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
                 }.bind(this));
 
-                this.progressing = false;
+                this.isProgressing = false;
                 WindowController.releaseWindowAsync();
             },
 
@@ -560,7 +573,7 @@
                     return;
                 }
 
-                this.progressing = true;
+                this.isProgressing = true;
                 this.sessionId = _.uniqueId('restore.download_file_');
 
                 var version = RestoreContextModel.get('remoteVersion');
@@ -577,14 +590,15 @@
                     var now = new Date();
                     var time = now - timeBegin;
                     if (time  < 5000) {
-                        setTimeout(function () {
+                        this.downloadHandler = setTimeout(function () {
 
-                            this.progressing = false;
+                            this.isProgressing = false;
                             this.offMessageHandler();
                             downloadView.setProgressState(false);
 
                             this.showRestoreView();
                             footerView.setButtonState('progressing');
+
                             if (RestoreContextModel.IsNoneAppSelected) {
                                 this.startRestoreSmsAndContact();
                             } else {
@@ -602,11 +616,12 @@
 
                     log({ 'event' : 'debug.restore.remote.download.failed' });
 
-                    this.progressing = false;
+                    this.isProgressing = false;
                     this.offMessageHandler();
 
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 0, this.userCancelled);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
+                    WindowController.releaseWindowAsync();
                 }.bind(this));
 
                 this.progressHanlder = IO.Backend.Device.onmessage({

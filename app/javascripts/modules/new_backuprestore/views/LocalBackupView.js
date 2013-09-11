@@ -161,7 +161,7 @@
                             this.offMessageHandler();
                             BackupRestoreService.backupCancelAsync(this.sessionId);
                             this.trigger('__CANCEL');
-                        }, null, this);
+                        }, this);
                     } else {
                         this.trigger('__CANCEL');
                     }
@@ -291,11 +291,13 @@
                         this.offMessageHandler();
                         BackupRestoreService.logBackupContextModel(BackupContextModel, false);
                         alert(i18n.new_backuprestore.BACKUP_ABORT_TIP);
+                        WindowController.releaseWindowAsync();
                         break;
                     default:
                         this.offMessageHandler();
                         BackupRestoreService.logBackupContextModel(BackupContextModel, false);
                         alert(i18n.new_backuprestore.BACKUP_FAILED_TIP + data.status);
+                        WindowController.releaseWindowAsync();
                         break;
                     }
                 }, this);
@@ -312,6 +314,7 @@
 
                     BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 0, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
+                    WindowController.releaseWindowAsync();
 
                 }.bind(this));
             },
@@ -370,6 +373,7 @@
 
                     BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 1, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
+                    WindowController.releaseWindowAsync();
 
                 }.bind(this));
             },

@@ -138,11 +138,11 @@
                     if (this.isProgressing) {
 
                         confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
-                            this.progressing = false;
+                            this.isProgressing = false;
                             this.offMessageHandler();
                             BackupRestoreService.stopRemoteSyncAsync();
                             this.trigger('__CANCEL');
-                        }, null, this);
+                        }, this);
                     } else {
                         this.trigger('__CANCEL');
                     }
@@ -233,7 +233,6 @@
                     //this.setDomState(true);
 
                     this.showRemoteErrorView();
-
                 }.bind(this));
             },
             showRemoteErrorView : function () {
