@@ -51,6 +51,9 @@
                         'disabled' : false
                     });
                 });
+
+                var checked = this.$('input[type=checkbox]:checked');
+                this.trigger('__ENABLE_CONFIRM', checked.length > 0);
             },
             clickRestoreContent : function () {
                 var checked = this.$('input[type=checkbox]:checked');
@@ -76,12 +79,13 @@
                 this.on(UIHelper.EventsMapping.SHOW, function () {
                     this.bodyView = new BodyView();
                     this.$bodyContent = this.bodyView.render().$el;
-                    this.bodyView.initState();
-                    this.center();
 
                     this.listenTo(this.bodyView, '__ENABLE_CONFIRM', function (enable) {
                         this.$('.button_yes').prop('disabled', !enable);
                     });
+
+                    this.bodyView.initState();
+                    this.center();
 
                     this.once('remove', function () {
                         this.bodyView.remove();
