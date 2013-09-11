@@ -250,14 +250,14 @@
                                     this.set({
                                         internalSDCapacity : parseInt(info.total_size, 10),
                                         internalSDFreeCapacity : parseInt(info.available_size, 10),
-                                        internalSDPath : info.path
+                                        internalSDPath : info.path || ''
                                     });
                                     break;
                                 case 2:
                                     this.set({
                                         externalSDCapacity : parseInt(info.total_size, 10),
                                         externalSDFreeCapacity : parseInt(info.available_size, 10),
-                                        externalSDPath : info.path
+                                        externalSDPath : info.path || ''
                                     });
                                     break;
                                 }
