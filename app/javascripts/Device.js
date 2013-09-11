@@ -61,8 +61,10 @@
                 deviceFreeCapacity : 0,
                 internalSDCapacity : 0,
                 internalSDFreeCapacity : 0,
+                internalSDPath : '',
                 externalSDCapacity : 0,
-                externalSDFreeCapacity : 0
+                externalSDFreeCapacity : 0,
+                externalSDPath : ''
             },
             initialize : function () {
                 var listenBack = false;
@@ -247,13 +249,15 @@
                                 case 1:
                                     this.set({
                                         internalSDCapacity : parseInt(info.total_size, 10),
-                                        internalSDFreeCapacity : parseInt(info.available_size, 10)
+                                        internalSDFreeCapacity : parseInt(info.available_size, 10),
+                                        internalSDPath : info.path
                                     });
                                     break;
                                 case 2:
                                     this.set({
                                         externalSDCapacity : parseInt(info.total_size, 10),
-                                        externalSDFreeCapacity : parseInt(info.available_size, 10)
+                                        externalSDFreeCapacity : parseInt(info.available_size, 10),
+                                        externalSDPath : info.path
                                     });
                                     break;
                                 }
