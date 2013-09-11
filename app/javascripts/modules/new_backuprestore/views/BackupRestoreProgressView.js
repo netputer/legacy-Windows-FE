@@ -7,7 +7,8 @@
         'doT',
         'Configuration',
         'ui/TemplateFactory',
-        'new_backuprestore/models/BackupContextModel'
+        'new_backuprestore/models/BackupContextModel',
+        'new_backuprestore/models/RestoreContextModel'
     ], function (
         $,
         Backbone,
@@ -15,7 +16,8 @@
         doT,
         CONFIG,
         TemplateFactory,
-        BackupContextModel
+        BackupContextModel,
+        RestoreContextModel
     ) {
 
         console.log('BackupRestoreProgressView - File loaded.');
@@ -108,10 +110,9 @@
                 return this;
             },
             initState : function () {
-                this.listenTo(BackupContextModel, 'change:dataIDList', function () {
-                    var list = BackupContextModel.get('dataIDList');
-                    var content;
 
+                var toggleContent = function (list) {
+                    var content;
                     var hideList = _.difference(backupList, list);
                     _.map(hideList, function (item) {
                         content = this.getContent(item);
@@ -122,8 +123,13 @@
                         content = this.getContent(item);
                         content.show();
                     }, this);
+                }.bind(this);
 
-
+                this.listenTo(BackupContextModel, 'change:dataIDList', function () {
+                    toggleContent(BackupContextModel.get('dataIDList'));
+                });
+                this.listenTo(RestoreContextModel, 'change:dataIDList', function () {
+                    toggleContent(RestoreContextModel.get('dataIDList'));
                 });
             },
             getProgress : function (type) {

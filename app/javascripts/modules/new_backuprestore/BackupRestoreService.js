@@ -228,8 +228,11 @@
         };
 
 
-        BackupRestoreService.showAndRecordError = function (evt, resp, type) {
-            alert(this.getErrorMessage(resp.state_code));
+        BackupRestoreService.showAndRecordError = function (evt, resp, type, hide) {
+
+            if (!hide) {
+                alert(this.getErrorMessage(resp.state_code));
+            }
             this.recordError(evt, resp, type);
         };
 

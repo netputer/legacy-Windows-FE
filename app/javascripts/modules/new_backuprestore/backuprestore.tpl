@@ -263,7 +263,9 @@
 
 <script  type="text/x-ui-template" id="restore-remote-file-list-item">
     <div class="hbox text-bold name">
-        <input class="item-checker" type="radio" value="{{= it.timestamp}}" name="fileList"/>{{= it.time }}{{= it.deviceName }}
+        <input class="item-checker" type="radio" value="{{= it.timestamp}}" name="fileList"/>
+        <span class="time">{{= it.time }}</span>
+        <span class="device-name wc">{{= it.deviceName }}</span>
     </div>
     <div class="num-container hbox">
         <div class="contact-icon icon"/>

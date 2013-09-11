@@ -73,6 +73,7 @@
                 fileList.remove();
                 fileList = undefined;
 
+                restoreFileCollection.reset();
                 restoreFileCollection = undefined;
             },
             buildList : function () {
@@ -90,7 +91,8 @@
                         enableMutilselect : false,
                         itemHeight : 45,
                         listenToCollection : restoreFileCollection,
-                        loading : restoreFileCollection.loading || restoreFileCollection.syncing
+                        loading : restoreFileCollection.loading || restoreFileCollection.syncing,
+                        emptyTip : i18n.new_backuprestore.NO_REMOTE_BACKUP_FILE
                     });
                     this.$el.append(fileList.render().$el);
                 }
@@ -102,6 +104,8 @@
                     if (this.listLength === BackupRestoreService.CONSTS.DefaultSnapshot.Size) {
                         this.trigger('__DISPLAY_SHOW_MORE');
                     }
+
+                    fileList.toggleEmptyTip(restoreFileCollection.length === 0);
                 });
 
                 this.listenTo(fileList, 'select:change', function (selected) {
@@ -158,6 +162,7 @@
                     }
                 });
                 RestoreContextModel.set('dataIDList', list);
+                RestoreContextModel.set('originDataIDList', list);
             },
             getAll : function () {
                 return restoreFileCollection.getAll();
