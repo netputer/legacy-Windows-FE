@@ -253,10 +253,11 @@
 
                     this.listenTo(remoteErrorView, '__IGNORE', function () {
                         this.backupAllFinish();
+                        this.trigger('__CANCEL');
                     });
                 }
 
-                this.remoteErrorView.show();
+                remoteErrorView.show();
             },
             initProgressItems : function (brSpec) {
                 _.each(brSpec.item, function (item) {

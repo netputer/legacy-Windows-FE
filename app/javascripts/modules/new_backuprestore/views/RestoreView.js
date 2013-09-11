@@ -201,7 +201,7 @@
                 });
             },
             bindEvent : function () {
-                this.listenTo(footerView, '__CANCEL __RETURN_TO_START', function () {
+                this.listenTo(footerView, '__CANCEL', function () {
                     this.userCancelled = true;
                     if (this.isProgressing) {
 
@@ -286,6 +286,10 @@
 
                 this.listenTo(footerView, '__SHOW_MORE', function () {
                     fileListView.update();
+                });
+
+                this.listenTo(fileListView, '__CANCEL', function () {
+                    this.trigger('__CANCEL');
                 });
 
                 this.listenTo(fileListView, '__HIDE_SHOW_MORE', function () {
