@@ -11,6 +11,7 @@
         'Internationalization',
         'utilities/StringUtil',
         'IO',
+        'WindowController',
         'new_backuprestore/views/BaseView',
         'new_backuprestore/views/BackupRestoreProgressView',
         'new_backuprestore/views/BackupFooterView',
@@ -29,6 +30,7 @@
         i18n,
         StringUtil,
         IO,
+        WindowController,
         BaseView,
         BackupRestoreProgressView,
         BackupFooterView,
@@ -140,7 +142,7 @@
                             this.offMessageHandler();
                             BackupRestoreService.stopRemoteSyncAsync();
                             this.trigger('__CANCEL');
-                        }.bind(this));
+                        }, null, this);
                     } else {
                         this.trigger('__CANCEL');
                     }
@@ -189,6 +191,7 @@
             },
             startBackup : function () {
 
+                WindowController.blockWindowAsync();
                 this.isProgressing = true;
                 this.setDomState(false);
 
@@ -266,6 +269,9 @@
                 }, this);
 
                 BackupRestoreService.logBackupContextModel(BackupContextModel, true);
+
+                this.trigger('__SHOW_NOTIFIER', 'REMOTE_BACKUP_COMPLETE');
+                WindowController.releaseWindowAsync();
             }
         });
 

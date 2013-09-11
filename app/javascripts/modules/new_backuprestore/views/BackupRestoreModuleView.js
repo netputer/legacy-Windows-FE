@@ -1,6 +1,7 @@
 /*global define*/
 (function (window) {
     define([
+        'jquery',
         'backbone',
         'underscore',
         'doT',
@@ -12,9 +13,11 @@
         'new_backuprestore/views/LocalBackupView',
         'new_backuprestore/views/RemoteBackupView',
         'new_backuprestore/views/RestoreView',
+        'new_backuprestore/views/NotifierPanelView',
         'new_backuprestore/models/BackupContextModel',
         'new_backuprestore/models/RestoreContextModel'
     ], function (
+        $,
         Backbone,
         _,
         doT,
@@ -26,6 +29,7 @@
         LocalBackupView,
         RemoteBackupView,
         RestoreView,
+        NotifierPanelView,
         BackupContextModel,
         RestoreContextModel
     ) {
@@ -37,6 +41,7 @@
 
                 var rendered = false;
                 var views = {};
+                var hasShowStartView = false;
                 Object.defineProperties(this, {
                     rendered : {
                         set : function (value) {
@@ -53,25 +58,45 @@
                         get : function () {
                             return views;
                         }
+                    },
+                    hasShowStartView : {
+                        set : function (value) {
+                            hasShowStartView = value;
+                        },
+                        get : function () {
+                            return hasShowStartView;
+                        }
                     }
                 });
             },
             render : function () {
 
                 this.rendered = true;
-                return this;
-            },
-            removeViews : function () {
+                this.showStartView();
 
-                _.map(this.views, function (view) {
-                    view.remove();
-                });
-                this.views = {};
-                this.stopListening();
+                return this;
             },
             appendView : function (view) {
                 this.$el.append(view.render().$el);
                 view.initState();
+            },
+            showNotifierPanelView : function (type) {
+
+                if (window.SnapPea.CurrentModule === 'backup-restore') {
+                    return;
+                }
+
+                if (this.views.notifier) {
+                    this.views.notifier.show(type);
+                    return;
+                }
+
+                this.views.notifier = NotifierPanelView.getInstance({
+                    $host: $('.w-sidebar-menu li .backup').parent(),
+                    delay : true
+                });
+                this.views.notifier.zero();
+                this.views.notifier.show(type);
             },
             showStartView : function () {
 
@@ -127,6 +152,10 @@
                 this.listenTo(localBackupView, '__CANCEL __DONE', function () {
                     localBackupView.remove();
                     this.showStartView();
+                });
+
+                this.listenTo(localBackupView, '__SHOW_NOTIFIER', function (type) {
+                    this.showNotifierPanelView(type);
                 });
             },
             showRemoteBackupView : function () {
@@ -213,18 +242,6 @@
                             });
                         }, 0);
                     }
-
-                    Backbone.on('showModule', function (name) {
-                        if (name === 'backup-restore') {
-                            backupRestoreModuleView.showStartView();
-                        }
-                    });
-
-                    Backbone.on('hideModule', function (name) {
-                        if (name === 'backup-restore') {
-                            backupRestoreModuleView.removeViews();
-                        }
-                    });
                 }
 
                 return backupRestoreModuleView;

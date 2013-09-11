@@ -479,7 +479,7 @@
 
         .time {
             display: inline-block;
-            width: 100px
+            width: 101px;
         }
 
         .device-name {
@@ -635,5 +635,20 @@
         em {
             color: $textHighlight;
         }
+    }
+}
+
+.w-backuprestore-popup {
+    .bigTitle {
+        font-size: 14px;
+    }
+
+    .desc {
+        display: inline-block;
+        margin: 10px auto;
+    }
+
+    .show-file {
+        float: right;
     }
 }

@@ -11,6 +11,7 @@
         'IO',
         'Internationalization',
         'Configuration',
+        'WindowController',
         'utilities/StringUtil',
         'new_backuprestore/views/BaseView',
         'new_backuprestore/views/BackupRestoreProgressView',
@@ -33,6 +34,7 @@
         IO,
         i18n,
         CONFIG,
+        WindowController,
         StringUtil,
         BaseView,
         BackupRestoreProgressView,
@@ -212,7 +214,7 @@
                             BackupRestoreService.restoreCancelAsync(this.sessionId);
                             this.trigger('__CANCEL');
 
-                        }.bind(this));
+                        }, null, this);
                     } else {
                         this.trigger('__CANCEL');
                     }
@@ -286,6 +288,7 @@
             },
             startRestoreSmsAndContact : function () {
 
+                WindowController.blockWindowAsync();
                 this.sessionId = _.uniqueId('restore.nonapps_');
                 this.isProgressing = true;
                 footerView.setButtonState('progressing');
@@ -379,6 +382,8 @@
                 if (this.userCancelled) {
                     return;
                 }
+
+                WindowController.blockWindowAsync();
 
                 this.stateTitle = i18n.new_backuprestore.RESTORING;
                 this.progressing = true;
@@ -505,6 +510,7 @@
                     }
                     footerView.setButtonState('done');
 
+                    this.trigger('__SHOW_NOTIFIER', this.isLocal ? 'LOCAL_RESTORE_COMPLETE' : 'REMOTE_RESTORE_COMPLETE');
 
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, true, fileListView.getAll().length);
                 }.bind(this)).fail(function (resp) {
@@ -514,6 +520,7 @@
                 }.bind(this));
 
                 this.progressing = false;
+                WindowController.releaseWindowAsync();
             },
 
             updateNonAppItems : function (items) {

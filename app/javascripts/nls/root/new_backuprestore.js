@@ -115,7 +115,7 @@ define({
     RESTORE_DELETE_DATA_TIP_NO : '不删除，同时保留两份数据',
 
     RESTORE_UNKNOW_DEVICE : '未知设备',
-    RESTORE_DOWNLOAD_PROGRESSING : '正在从云端下载备份数据，请稍后...',
+    RESTORE_DOWNLOAD_PROGRESSING : '正在从云端下载备份数据，请稍候...',
 
     AUTO_BACKUP_TIP_TITLE : '还在手动备份？试试自动备份吧！',
     AUTO_BACKUP_TIP_DESC : '绑定手机后，备份手机再也不需要您亲自动手了！您是否要绑定手机并开启自动备份？',
@@ -203,6 +203,12 @@ define({
     INCLUDE_APP_DATA : '包含应用数据',
     CANCEL_RESTORE : '恢复正在进行，是否取消恢复？',
     NO_REMOTE_BACKUP_FILE : '您还没有备份过数据到云端',
+
+    LOCAL_BACKUP_COMPLETE : '<span class="bigTitle">备份完成</span><br/><span class="text-thirdly desc">您的手机数据已经成功备份到电脑</span><br/><span class="link show-file">查看备份文件</span>',
+    LOCAL_RESTORE_COMPLETE : '<span class="bigTitle">恢复完成</span><br/><span class="text-thirdly desc">您的数据已经成功恢复到手机/span>',
+    REMOTE_BACKUP_COMPLETE : '<span class="bigTitle">备份完成</span><br/><span class="text-thirdly desc">您的手机数据已经成功备份到云端</span>',
+    REMOTE_RESTORE_COMPLETE : '<span class="bigTitle">恢复完成</span><br/><span class="text-thirdly desc">您的数据已经成功恢复到手机</span>',
+
 
     ENABLE : '已开启',
     DISABLE : '未开启',
