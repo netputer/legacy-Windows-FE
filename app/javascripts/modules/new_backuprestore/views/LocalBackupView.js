@@ -100,15 +100,17 @@
 
                         var temp = function (type) {
                             var max = 100;
-                            var value = 1;
+                            var value = 0;
                             var handle = setInterval(function () {
-                                this.updateProgress(type, value += 2, max);
+                                if (value === 100) {
+                                    this.setContentState(type, true);
+                                    window.clearInterval(handle);
+                                    return;
+                                }
+                                this.updateProgress(type, ++value, max);
+
                             }.bind(this), 20);
 
-                            setTimeout(function () {
-                                this.setContentState(type, true);
-                                window.clearInterval(handle);
-                            }.bind(this), 2000);
                         }.bind(this);
                         temp(type);
 
