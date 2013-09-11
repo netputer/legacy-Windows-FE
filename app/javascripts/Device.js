@@ -239,6 +239,10 @@
                             console.log('Device - Get device capacity success.');
 
                             _.each(resp.body.storage_infos, function (info) {
+                                if (info.is_emulated === true) {
+                                    return;
+                                }
+
                                 switch (info.type) {
                                 case 0:
                                     this.set({
