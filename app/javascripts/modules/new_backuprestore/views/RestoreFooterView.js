@@ -41,14 +41,14 @@
                         set : function (value) {
                             var isConnected = Device.get('isConnected');
                             var isLogin = Account.get('isLogin');
-                            var disabled = !isConnected || !isLogin || !value;
-                            this.$('.startbackup').prop('disabled', disabled);
+                            var disabled = !value || !isConnected || (!this.isLocal && !isLogin);
+                            this.$('.startrestore').prop('disabled', disabled);
                         }
                     },
                     enableConfirmButton : {
                         set : function (value) {
                             var isLogin = Account.get('isLogin');
-                            var disabled = !isLogin || !value;
+                            var disabled = !value || (!this.isLocal && !isLogin);
                             this.$('.confirm').prop('disabled', disabled);
                         }
                     },

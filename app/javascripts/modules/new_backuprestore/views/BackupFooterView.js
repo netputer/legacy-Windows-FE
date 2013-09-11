@@ -41,7 +41,7 @@
                         set : function (value) {
                             var isConnected = Device.get('isConnected');
                             var isLogin = Account.get('isLogin');
-                            var disabled = !isConnected || !isLogin || !value;
+                            var disabled = !value || !isConnected || (!this.isLocal && !isLogin);
                             this.$('.startbackup').prop('disabled', disabled);
                         }
                     },

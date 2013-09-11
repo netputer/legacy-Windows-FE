@@ -7,6 +7,7 @@
         'doT',
         'Log',
         'Device',
+        'Account',
         'Configuration',
         'Internationalization',
         'ui/SmartList',
@@ -21,6 +22,7 @@
         doT,
         log,
         Device,
+        Account,
         CONFIG,
         i18n,
         SmartList,
@@ -140,9 +142,18 @@
 
                     var alertContext = (resp.state_code === 747) ? i18n.new_backuprestore.CUSTOM_RESOURCE_LOCKED : i18n.new_backuprestore.RESTORE_LIST_SNAPHOST_FAILED;
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
-                    alert(alertContext);
+                    alert(alertContext, function () {
 
-                    this.trigger('__RETURN_TO_START');
+                        if (resp.state_code === 747) {
+                            log({
+                                'event' : 'ui.click.reset_password',
+                                'type' : 'restore'
+                            });
+                            Account.resetAsync();
+                        }
+
+                        this.trigger('__CANCEL');
+                    }, this);
 
                 }.bind(this));
             },

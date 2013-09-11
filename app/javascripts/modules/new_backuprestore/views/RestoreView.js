@@ -201,7 +201,7 @@
                 });
             },
             bindEvent : function () {
-                this.listenTo(footerView, '__CANCEL __RETURN_TO_START', function () {
+                this.listenTo(footerView, '__CANCEL', function () {
                     this.userCancelled = true;
                     if (this.isProgressing) {
 
@@ -220,8 +220,9 @@
                                 this.downloadHandler = undefined;
                             }
 
-                            BackupRestoreService.restoreCancelAsync(this.sessionId);
-                            this.trigger('__CANCEL');
+                            BackupRestoreService.restoreCancelAsync(this.sessionId).done(function () {
+                                this.trigger('__CANCEL');
+                            }.bind(this));
 
                         }, this);
                     } else {
@@ -285,6 +286,10 @@
 
                 this.listenTo(footerView, '__SHOW_MORE', function () {
                     fileListView.update();
+                });
+
+                this.listenTo(fileListView, '__CANCEL', function () {
+                    this.trigger('__CANCEL');
                 });
 
                 this.listenTo(fileListView, '__HIDE_SHOW_MORE', function () {
@@ -593,24 +598,26 @@
 
                     var now = new Date();
                     var time = now - timeBegin;
+                    var handler = function () {
+                        this.isProgressing = false;
+                        this.offMessageHandler();
+                        downloadView.setProgressState(false);
+
+                        this.showRestoreView();
+                        footerView.setButtonState('progressing');
+
+                        if (RestoreContextModel.IsNoneAppSelected) {
+                            this.startRestoreSmsAndContact();
+                        } else {
+                            this.startRestoreApps();
+                        }
+                    }.bind(this);
+
                     if (time  < 5000) {
-                        this.downloadHandler = setTimeout(function () {
-
-                            this.isProgressing = false;
-                            this.offMessageHandler();
-                            downloadView.setProgressState(false);
-
-                            this.showRestoreView();
-                            footerView.setButtonState('progressing');
-
-                            if (RestoreContextModel.IsNoneAppSelected) {
-                                this.startRestoreSmsAndContact();
-                            } else {
-                                this.startRestoreApps();
-                            }
-
-                        }.bind(this), 5000 - time);
+                        this.downloadHandler = setTimeout(handler, 5000 - time);
                         downloadView.setProgressState(true);
+                    } else {
+                        handler();
                     }
 
                     log({ 'event' : 'debug.restore.remote.download.success' });

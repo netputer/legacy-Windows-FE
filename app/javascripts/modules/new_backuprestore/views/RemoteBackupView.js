@@ -143,8 +143,11 @@
                         confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
                             this.isProgressing = false;
                             this.offMessageHandler();
-                            BackupRestoreService.stopRemoteSyncAsync();
-                            this.trigger('__CANCEL');
+
+                            BackupRestoreService.stopRemoteSyncAsync().done(function () {
+                                this.trigger('__CANCEL');
+                            }.bind(this));
+
                         }, this);
                     } else {
                         this.trigger('__CANCEL');
@@ -190,7 +193,11 @@
             setDomState : function (isDone) {
                 footerView.setButtonState(isDone ? 'done' : 'progressing');
                 this.stateTitle = isDone ? i18n.new_backuprestore.BACKUP_REMOTE_COMPLATE_TITLE : i18n.new_backuprestore.BACKUPING;
-                this.bigTitle = isDone ? i18n.new_backuprestore.BACKUP_FINISH_LABEL : i18n.new_backuprestore.BACKUP_DEVICE_LOCAL_DESC;
+
+                if (isDone) {
+                    this.bigTitle = i18n.new_backuprestore.BACKUP_FINISH_LABEL;
+                }
+
             },
             startBackup : function () {
 
@@ -250,10 +257,11 @@
 
                     this.listenTo(remoteErrorView, '__IGNORE', function () {
                         this.backupAllFinish();
+                        this.trigger('__CANCEL');
                     });
                 }
 
-                this.remoteErrorView.show();
+                remoteErrorView.show();
             },
             initProgressItems : function (brSpec) {
                 _.each(brSpec.item, function (item) {
