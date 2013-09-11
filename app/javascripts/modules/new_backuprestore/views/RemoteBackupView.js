@@ -12,6 +12,7 @@
         'utilities/StringUtil',
         'IO',
         'WindowController',
+        'new_backuprestore/views/ConfirmWindowView',
         'new_backuprestore/views/BaseView',
         'new_backuprestore/views/BackupRestoreProgressView',
         'new_backuprestore/views/BackupFooterView',
@@ -31,6 +32,7 @@
         StringUtil,
         IO,
         WindowController,
+        ConfirmWindowView,
         BaseView,
         BackupRestoreProgressView,
         BackupFooterView,
@@ -43,6 +45,7 @@
         console.log('RemoteBackupView - File loaded');
 
         var remoteErrorView;
+        var confirm = ConfirmWindowView.confirm;
 
         var footerView;
         var FooterView = BackupFooterView.extend({

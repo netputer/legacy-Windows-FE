@@ -13,6 +13,7 @@
         'utilities/StringUtil',
         'WindowController',
         'new_backuprestore/BackupRestoreService',
+        'new_backuprestore/views/ConfirmWindowView',
         'new_backuprestore/views/BaseView',
         'new_backuprestore/views/BackupRestoreProgressView',
         'new_backuprestore/views/BackupFooterView',
@@ -34,6 +35,7 @@
         StringUtil,
         WindowController,
         BackupRestoreService,
+        ConfirmWindowView,
         BaseView,
         BackupRestoreProgressView,
         BackupFooterView,
@@ -46,6 +48,7 @@
 
         console.log('LocalBackupView - File loaded');
 
+        var confirm = ConfirmWindowView.confirm;
         var errorItemListView;
         var retryView;
 
@@ -351,7 +354,7 @@
                     var failed = data && data.failed && data.failed.length ? data.failed.length : 0;
 
                     this.offMessageHandler();
-                    this.progressing = false;
+                    this.isProgressing = false;
 
                     if (failed > 0) {
                         progressView.updateProgressStatus(CONFIG.enums.BR_TYPE_APP, BackupRestoreService.CONSTS.BR_PI_STATUS.ERROR, success, data.total);
@@ -412,7 +415,7 @@
                     var success = data && data.success && data.success.length ? data.success.length : 0;
                     var failed = data && data.failed && data.failed.length ? data.failed.length : 0;
 
-                    this.progressing = false;
+                    this.isProgressing = false;
                     this.offMessageHandler();
 
                     if (failed > 0) {
@@ -429,7 +432,7 @@
                         return;
                     }
 
-                    this.progressing = false;
+                    this.isProgressing = false;
                     this.offMessageHandler();
 
                     var errorList = [735, 736, 739];
@@ -458,7 +461,7 @@
                 }
 
                 this.offMessageHandler();
-                this.progressing = false;
+                this.isProgressing = false;
 
                 if (BackupContextModel.IsAppSelected) {
                     this.startBackupApps();

@@ -13,6 +13,7 @@
         'Configuration',
         'WindowController',
         'utilities/StringUtil',
+        'new_backuprestore/views/ConfirmWindowView',
         'new_backuprestore/views/BaseView',
         'new_backuprestore/views/BackupRestoreProgressView',
         'new_backuprestore/views/RestoreFooterView',
@@ -36,6 +37,7 @@
         CONFIG,
         WindowController,
         StringUtil,
+        ConfirmWindowView,
         BaseView,
         BackupRestoreProgressView,
         RestoreFooterView,
@@ -59,6 +61,8 @@
         var fileListView;
         var errorItemListView;
         var footerView;
+
+        var confirm = ConfirmWindowView.confirm;
 
         var downloadView;
         var DownloadView = Backbone.View.extend({
