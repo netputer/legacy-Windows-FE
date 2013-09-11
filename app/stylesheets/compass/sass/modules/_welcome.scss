@@ -1110,11 +1110,18 @@
 }
 
 .w-welcome-capacitybar {
+    box-sizing: border-box;
+    height: 0;
     left: 315px;
+    overflow: hidden;
     position: absolute;
     top: 415px;
-    box-sizing: border-box;
     -webkit-box-align: center;
+    -webkit-transition: height .5s linear;
+
+    &.show {
+        height: 16px;
+    }
 
     .icon {
         display: block;

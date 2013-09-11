@@ -39,27 +39,23 @@
             {{ var percent = parseInt((it.deviceCapacity - it.deviceFreeCapacity) / it.deviceCapacity * 100, 10); }}
             <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
-        {{? it.externalSDCapacity === 0 }}
-        <div class="info-sd-internal hbox">
-            <span class="icon sd"></span>
-            {{ var percent =  parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
+        {{? it.internalSDCapacity > 0 }}
+        <div class="info-sd-internal hbox" data-path="{{= it.internalSDPath }}">
+            <span class="icon sd{{? it.externalSDCapacity > 0 }}-internal{{?}}"></span>
+            {{ var percent = parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
             <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
-        {{??}}
-        <div class="info-sd-internal hbox">
-            <span class="icon sd-internal"></span>
-            {{ var percent =  parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
-            <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
-        </div>
-        <div class="info-sd-external hbox">
-            <span class="icon sd-external"></span>
-            {{ var percent =  parseInt((it.externalSDCapacity - it.externalSDFreeCapacity) / it.externalSDCapacity * 100, 10); }}
+        {{?}}
+        {{? it.externalSDCapacity > 0 }}
+        <div class="info-sd-external hbox" data-path="{{= it.externalSDPath }}">
+            <span class="icon sd{{? it.internalSDCapacity > 0 }}-external{{?}}"></span>
+            {{ var percent = parseInt((it.externalSDCapacity - it.externalSDFreeCapacity) / it.externalSDCapacity * 100, 10); }}
             <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
         {{?}}
     </div>
     <div class="action">
-        <button class="button-open-sd">{{= i18n.taskManager.MANAGE_SD }}</button>
+        <button class="button-open-sd">{{= i18n.misc.MANAGE_SD_CARD }}</button>
         <button class="button-change-location">{{= i18n.taskManager.CHANGE_INSTALL_LOCATION }}</button>
     </div>
 </script>
@@ -429,7 +425,7 @@
     {{
                             }
     }}
-    <span class="button-manage-sd link">{{= i18n.taskManager.MANAGE_SD }}</span>
+    <span class="button-manage-sd link">{{= i18n.misc.MANAGE_SD_CARD }}</span>
     <span class="button-delete link">{{= i18n.misc.DELETE }}</span>
     {{
                         } else if (it.message === 'INSTALL_FAILED_MALICIOUS_APK') {

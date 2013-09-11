@@ -43,11 +43,13 @@
                             deviceFreeCapacity : Device.get('deviceFreeCapacity'),
                             internalSDCapacity : Device.get('internalSDCapacity'),
                             internalSDFreeCapacity : Device.get('internalSDFreeCapacity'),
+                            internalSDPath : Device.get('internalSDPath'),
                             externalSDCapacity : Device.get('externalSDCapacity'),
-                            externalSDFreeCapacity : Device.get('externalSDFreeCapacity')
+                            externalSDFreeCapacity : Device.get('externalSDFreeCapacity'),
+                            externalSDPath : Device.get('externalSDPath')
                         };
 
-                        this.$el.html(this.template(data));
+                        this.$el.html(this.template(data)).addClass('show');
 
                         CapacityTipsView.getInstance({
                             $host : this.$('.info-device'),
@@ -56,23 +58,49 @@
                             free : data.deviceFreeCapacity
                         });
 
-                        CapacityTipsView.getInstance({
-                            $host : this.$('.info-sd-internal'),
-                            source : 'sdcard',
-                            total : data.internalSDCapacity,
-                            free : data.internalSDFreeCapacity
-                        });
+                        if (data.internalSDCapacity > 0) {
+                            CapacityTipsView.getInstance({
+                                $host : this.$('.info-sd-internal'),
+                                source : 'sdcard',
+                                total : data.internalSDCapacity,
+                                free : data.internalSDFreeCapacity
+                            });
+                        }
 
-                        CapacityTipsView.getInstance({
-                            $host : this.$('.info-sd-external'),
-                            source : 'sdcard',
-                            total : data.externalSDCapacity,
-                            free : data.externalSDFreeCapacity
-                        });
+                        if (data.externalSDCapacity > 0) {
+                            CapacityTipsView.getInstance({
+                                $host : this.$('.info-sd-external'),
+                                source : 'sdcard',
+                                total : data.externalSDCapacity,
+                                free : data.externalSDFreeCapacity
+                            });
+                        }
                     }.bind(this));
+                } else {
+                    this.$el.removeClass('show');
                 }
 
                 return this;
+            },
+            clickInternalSD : function (e) {
+                var path = $(e.currentTarget).data('path');
+                Device.manageSDCardAsync(path);
+
+                log({
+                    'event' : 'ui.click.welcome_internal_sd'
+                });
+            },
+            clickExternalSD : function (e) {
+                var path = $(e.currentTarget).data('path');
+                Device.manageSDCardAsync(path);
+
+                log({
+                    'event' : 'ui.click.welcome_external_sd'
+                });
+            },
+            events : {
+                'click .info-sd-internal' : 'clickInternalSD',
+                'click .info-sd-external' : 'clickExternalSD'
             }
         });
 

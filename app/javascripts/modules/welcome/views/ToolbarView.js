@@ -22,7 +22,6 @@
         //'backuprestore/BackupController',
         //'backuprestore/RestoreController',
         'welcome/views/DeviceView',
-        'welcome/views/CapacityView',
         'welcome/WelcomeService',
         'task/TaskService',
         'task/models/TaskModel'
@@ -48,7 +47,6 @@
         //BackupController,
         //RestoreController,
         DeviceView,
-        CapacityView,
         WelcomeService,
         TaskService,
         TaskModel
@@ -170,9 +168,7 @@
 
                 this.setButtonState();
                 this.renderBackupButtonPopup();
-                CapacityView.getInstance({
-                    $host : this.$('.button-open-sd')
-                });
+
                 return this;
             },
             renderBackupButtonPopup : function () {
