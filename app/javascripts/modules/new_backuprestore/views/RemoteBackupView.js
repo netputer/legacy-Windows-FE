@@ -143,8 +143,11 @@
                         confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
                             this.isProgressing = false;
                             this.offMessageHandler();
-                            BackupRestoreService.stopRemoteSyncAsync();
-                            this.trigger('__CANCEL');
+
+                            BackupRestoreService.stopRemoteSyncAsync().done(function () {
+                                this.trigger('__CANCEL');
+                            }.bind(this));
+
                         }, this);
                     } else {
                         this.trigger('__CANCEL');

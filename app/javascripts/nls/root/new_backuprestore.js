@@ -232,5 +232,5 @@ define({
     DONE : '完成',
     SWITCH_TASK_MODULE : '查看下载任务',
     SHOW_MORE : '显示更多',
-    WRITE_LOCAL_FILE_ERROR : "写入本地文件出错"
+    WRITE_LOCAL_FILE_ERROR : '写入本地文件出错'
 });

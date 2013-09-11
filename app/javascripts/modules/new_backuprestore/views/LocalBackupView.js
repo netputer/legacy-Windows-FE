@@ -162,8 +162,10 @@
                         confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
                             this.isProgressing = false;
                             this.offMessageHandler();
-                            BackupRestoreService.backupCancelAsync(this.sessionId);
-                            this.trigger('__CANCEL');
+
+                            BackupRestoreService.backupCancelAsync(this.sessionId).done(function () {
+                                this.trigger('__CANCEL');
+                            }.bind(this));
                         }, this);
                     } else {
                         this.trigger('__CANCEL');
@@ -227,7 +229,7 @@
                 if (deviceName !== undefined && deviceName.length > 0) {
                     deviceName = deviceName.replace(/ /g, '_').replace(new RegExp(this.invalidPattern, "g"), '_');
                 }
-                var curDate = StringUtil.formatDate('yyyy-MM-dd-HH-mm-', new Date().valueOf());
+                var curDate = StringUtil.formatDate('yyyy-MM-dd-HH-mm-ss', new Date().valueOf());
                 var fileName = curDate + deviceName;
                 BackupContextModel.set('fileName', fileName);
 

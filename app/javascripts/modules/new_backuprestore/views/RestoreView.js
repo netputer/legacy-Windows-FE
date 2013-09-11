@@ -220,8 +220,9 @@
                                 this.downloadHandler = undefined;
                             }
 
-                            BackupRestoreService.restoreCancelAsync(this.sessionId);
-                            this.trigger('__CANCEL');
+                            BackupRestoreService.restoreCancelAsync(this.sessionId).done(function () {
+                                this.trigger('__CANCEL');
+                            });
 
                         }, this);
                     } else {
