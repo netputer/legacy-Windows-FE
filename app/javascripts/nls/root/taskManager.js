@@ -12,7 +12,6 @@ define({
     CHANGE_INSTALL_LOCATION : '修改安装位置',
     MANAGE_APP : '管理应用',
     INSTALL_TO_DEVICE : '安装到内存',
-    MANAGE_SD : '管理 SD 卡',
     TASK_NAME : '任务名称',
     PROGRESS : '进度',
     RUNNING_COUNT : '{1} 项任务正在进行',

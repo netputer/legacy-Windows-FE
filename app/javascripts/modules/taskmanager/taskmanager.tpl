@@ -55,7 +55,7 @@
         {{?}}
     </div>
     <div class="action">
-        <button class="button-open-sd">{{= i18n.taskManager.MANAGE_SD }}</button>
+        <button class="button-open-sd">{{= i18n.misc.MANAGE_SD_CARD }}</button>
         <button class="button-change-location">{{= i18n.taskManager.CHANGE_INSTALL_LOCATION }}</button>
     </div>
 </script>
@@ -425,7 +425,7 @@
     {{
                             }
     }}
-    <span class="button-manage-sd link">{{= i18n.taskManager.MANAGE_SD }}</span>
+    <span class="button-manage-sd link">{{= i18n.misc.MANAGE_SD_CARD }}</span>
     <span class="button-delete link">{{= i18n.misc.DELETE }}</span>
     {{
                         } else if (it.message === 'INSTALL_FAILED_MALICIOUS_APK') {

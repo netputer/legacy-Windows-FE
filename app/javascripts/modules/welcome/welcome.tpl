@@ -194,7 +194,7 @@
         <span class="icon restore"></span>{{= i18n.welcome.TOOL_RECOVERY }}
     </button>
     <button class="w-icon-btn button-open-sd transparent min">
-        <span class="icon sd-white"></span>{{= i18n.welcome.TOOL_SD }}
+        <span class="icon sd-white"></span>{{= i18n.misc.MANAGE_SD_CARD }}
     </button>
     <button class="w-icon-btn button-set-wallpaper transparent min">
         <span class="icon wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
@@ -255,7 +255,7 @@
 </script>
 
 <script type="text/x-ui-template" id="file-tools">
-    <button class="button-open-sd min">{{= i18n.welcome.TOOL_SD }}</button>
+    <button class="button-open-sd min">{{= i18n.misc.MANAGE_SD_CARD }}</button>
     <button class="button-backup min">{{= i18n.welcome.TOOL_BACKUP }}</button>
     <span class="w-ui-buttongroup auto-backup-ctn">
         <button class="button-group-backup min">{{= i18n.welcome.TOOL_BACKUP }}</button>

@@ -389,7 +389,7 @@
                                     eventName : 'button_no'
                                 }],
                                 $bodyContent : i18n.misc.FTP_FIX,
-                                title : i18n.welcome.TOOL_SD
+                                title : i18n.misc.MANAGE_SD_CARD
                             });
 
                             alertWindow.on('button_yes', function () {
