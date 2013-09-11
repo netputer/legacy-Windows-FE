@@ -6,6 +6,7 @@
         'underscore',
         'doT',
         'Device',
+        'Account',
         'ui/TemplateFactory',
         'new_backuprestore/BackupRestoreService',
         'new_backuprestore/views/RemoteBackupAdvanceView',
@@ -17,6 +18,7 @@
         _,
         doT,
         Device,
+        Account,
         TemplateFactory,
         BackupRestoreService,
         RemoteBackupAdvanceView,
@@ -38,7 +40,9 @@
                     enableBackupButton : {
                         set : function (value) {
                             var isConnected = Device.get('isConnected');
-                            this.$('.startbackup, .advanced').prop('disabled', !isConnected && !value);
+                            var isLogin = Account.get('isLogin');
+                            var disabled = !isConnected || !isLogin || !value;
+                            this.$('.startbackup').prop('disabled', disabled);
                         }
                     },
                     isLocal : {
@@ -81,13 +85,20 @@
                 this.listenTo(Device, 'change:isConnected', function () {
                     var isConnected = Device.get('isConnected');
                     this.$('.startbackup').prop('disabled', !isConnected);
-                    this.$('.advanced').prop('disabled', !isConnected);
+                    this.$('.advanced').toggle(isConnected);
                 });
 
                 this.listenTo(BackupContextModel, 'change:dataIDList', function () {
                     var list = BackupContextModel.get('dataIDList');
                     this.enableBackupButton = (list.length !== 0);
                 });
+
+                if (!this.isLocal) {
+                    this.listenTo(Account, 'change:isLogin', function () {
+                        var isLogin = Account.get('isLogin');
+                        this.$('.startbackup').prop('disabled', !isLogin);
+                    });
+                }
             },
             remove : function () {
                 BackupFooterView.__super__.remove.apply(this, arguments);

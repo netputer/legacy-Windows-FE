@@ -11,6 +11,8 @@
         'Internationalization',
         'utilities/StringUtil',
         'IO',
+        'WindowController',
+        'new_backuprestore/views/ConfirmWindowView',
         'new_backuprestore/views/BaseView',
         'new_backuprestore/views/BackupRestoreProgressView',
         'new_backuprestore/views/BackupFooterView',
@@ -29,6 +31,8 @@
         i18n,
         StringUtil,
         IO,
+        WindowController,
+        ConfirmWindowView,
         BaseView,
         BackupRestoreProgressView,
         BackupFooterView,
@@ -41,6 +45,7 @@
         console.log('RemoteBackupView - File loaded');
 
         var remoteErrorView;
+        var confirm = ConfirmWindowView.confirm;
 
         var footerView;
         var FooterView = BackupFooterView.extend({
@@ -134,13 +139,16 @@
 
                     this.userCancelled = true;
                     if (this.isProgressing) {
-                        this.progressing = false;
-                        this.offMessageHandler();
-                        BackupRestoreService.stopRemoteSyncAsync();
-                        alert(i18n.new_backuprestore.CANCELED);
-                    }
 
-                    this.trigger('__CANCEL');
+                        confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
+                            this.isProgressing = false;
+                            this.offMessageHandler();
+                            BackupRestoreService.stopRemoteSyncAsync();
+                            this.trigger('__CANCEL');
+                        }, this);
+                    } else {
+                        this.trigger('__CANCEL');
+                    }
                 });
 
                 this.listenTo(footerView, '__START_BACKUP', function () {
@@ -186,8 +194,9 @@
             },
             startBackup : function () {
 
+                WindowController.blockWindowAsync();
                 this.isProgressing = true;
-                this.setDomState(true);
+                this.setDomState(false);
 
                 log({
                     'event' : 'debug.backup.remote.start'
@@ -227,7 +236,6 @@
                     //this.setDomState(true);
 
                     this.showRemoteErrorView();
-
                 }.bind(this));
             },
             showRemoteErrorView : function () {
@@ -263,6 +271,9 @@
                 }, this);
 
                 BackupRestoreService.logBackupContextModel(BackupContextModel, true);
+
+                this.trigger('__SHOW_NOTIFIER', 'REMOTE_BACKUP_COMPLETE');
+                WindowController.releaseWindowAsync();
             }
         });
 

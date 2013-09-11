@@ -11,7 +11,9 @@
         'Configuration',
         'Internationalization',
         'utilities/StringUtil',
+        'WindowController',
         'new_backuprestore/BackupRestoreService',
+        'new_backuprestore/views/ConfirmWindowView',
         'new_backuprestore/views/BaseView',
         'new_backuprestore/views/BackupRestoreProgressView',
         'new_backuprestore/views/BackupFooterView',
@@ -31,7 +33,9 @@
         CONFIG,
         i18n,
         StringUtil,
+        WindowController,
         BackupRestoreService,
+        ConfirmWindowView,
         BaseView,
         BackupRestoreProgressView,
         BackupFooterView,
@@ -44,6 +48,7 @@
 
         console.log('LocalBackupView - File loaded');
 
+        var confirm = ConfirmWindowView.confirm;
         var errorItemListView;
         var retryView;
 
@@ -153,12 +158,16 @@
 
                     this.userCancelled = true;
                     if (this.isProgressing) {
-                        this.isProgressing = false;
-                        this.offMessageHandler();
-                        BackupRestoreService.backupCancelAsync(this.sessionId);
-                        alert(i18n.new_backuprestore.CANCELED);
+
+                        confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
+                            this.isProgressing = false;
+                            this.offMessageHandler();
+                            BackupRestoreService.backupCancelAsync(this.sessionId);
+                            this.trigger('__CANCEL');
+                        }, this);
+                    } else {
+                        this.trigger('__CANCEL');
                     }
-                    this.trigger('__CANCEL');
                 });
 
                 this.listenTo(footerView, '__START_BACKUP', function () {
@@ -248,9 +257,14 @@
             setDomState : function (isDone) {
                 footerView.setButtonState(isDone ? 'done' : 'progressing');
                 this.stateTitle = isDone ? i18n.new_backuprestore.BACKUP_LOCAL_COMPLATE_TITLE : i18n.new_backuprestore.BACKUPING;
-                this.bigTitle = isDone ? i18n.new_backuprestore.BACKUP_FINISH_LABEL : i18n.new_backuprestore.BACKUP_DEVICE_LOCAL_DESC;
+
+                if (isDone) {
+                    this.bigTitle = i18n.new_backuprestore.BACKUP_FINISH_LABEL;
+                }
             },
             startBackup : function () {
+
+                WindowController.blockWindowAsync();
 
                 var filePath = BackupContextModel.fileFullPath;
                 var brSpec = BackupContextModel.GetBRSpec;
@@ -280,11 +294,13 @@
                         this.offMessageHandler();
                         BackupRestoreService.logBackupContextModel(BackupContextModel, false);
                         alert(i18n.new_backuprestore.BACKUP_ABORT_TIP);
+                        WindowController.releaseWindowAsync();
                         break;
                     default:
                         this.offMessageHandler();
                         BackupRestoreService.logBackupContextModel(BackupContextModel, false);
                         alert(i18n.new_backuprestore.BACKUP_FAILED_TIP + data.status);
+                        WindowController.releaseWindowAsync();
                         break;
                     }
                 }, this);
@@ -299,8 +315,9 @@
 
                 }.bind(this)).fail(function (resp) {
 
-                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 0);
+                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 0, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
+                    WindowController.releaseWindowAsync();
 
                 }.bind(this));
             },
@@ -309,6 +326,7 @@
                 if (this.userCancelled) {
                     return;
                 }
+                WindowController.blockWindowAsync();
 
                 progressView.showProgress(CONFIG.enums.BR_TYPE_APP);
                 if (BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP] === 0) {
@@ -336,7 +354,7 @@
                     var failed = data && data.failed && data.failed.length ? data.failed.length : 0;
 
                     this.offMessageHandler();
-                    this.progressing = false;
+                    this.isProgressing = false;
 
                     if (failed > 0) {
                         progressView.updateProgressStatus(CONFIG.enums.BR_TYPE_APP, BackupRestoreService.CONSTS.BR_PI_STATUS.ERROR, success, data.total);
@@ -356,8 +374,9 @@
                     this.offMessageHandler();
                     //this.setDomState(true);
 
-                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 1);
+                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 1, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
+                    WindowController.releaseWindowAsync();
 
                 }.bind(this));
             },
@@ -365,6 +384,7 @@
                 if (this.userCancelled) {
                     return;
                 }
+                WindowController.blockWindowAsync();
 
                 this.isProgressing = true;
                 this.sessionId = _.uniqueId('backup.session_id_');
@@ -395,7 +415,7 @@
                     var success = data && data.success && data.success.length ? data.success.length : 0;
                     var failed = data && data.failed && data.failed.length ? data.failed.length : 0;
 
-                    this.progressing = false;
+                    this.isProgressing = false;
                     this.offMessageHandler();
 
                     if (failed > 0) {
@@ -412,7 +432,7 @@
                         return;
                     }
 
-                    this.progressing = false;
+                    this.isProgressing = false;
                     this.offMessageHandler();
 
                     var errorList = [735, 736, 739];
@@ -441,7 +461,7 @@
                 }
 
                 this.offMessageHandler();
-                this.progressing = false;
+                this.isProgressing = false;
 
                 if (BackupContextModel.IsAppSelected) {
                     this.startBackupApps();
@@ -461,12 +481,18 @@
 
                 this.stateTitle = i18n.new_backuprestore.BACKUP_COMPRESSING;
                 BackupRestoreService.backupFinishAsync(BackupContextModel.fileFullPath).done(function (resp) {
+
                     this.setDomState(true);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, true);
+
+                    this.trigger('__SHOW_NOTIFIER', 'LOCAL_BACKUP_COMPLETE');
+
                 }.bind(this)).fail(function (resp) {
-                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 2);
+                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 2, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
                 }.bind(this));
+
+                WindowController.releaseWindowAsync();
             },
             showErrorListView : function (type) {
                 if (!errorItemListView) {
