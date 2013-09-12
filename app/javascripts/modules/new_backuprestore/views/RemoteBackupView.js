@@ -11,6 +11,7 @@
         'Internationalization',
         'utilities/StringUtil',
         'IO',
+        'Account',
         'WindowController',
         'new_backuprestore/views/ConfirmWindowView',
         'new_backuprestore/views/BaseView',
@@ -31,6 +32,7 @@
         i18n,
         StringUtil,
         IO,
+        Account,
         WindowController,
         ConfirmWindowView,
         BaseView,
@@ -58,6 +60,9 @@
                 case 'done':
                     this.$('.done').show();
                     this.$('.cancel').hide();
+                    var url = 'https://account.wandoujia.com/?auth=' + encodeURIComponent(Account.get('auth')) + '&callback=http%3A%2F%2Fwww.wandoujia.com%2Fcloud';
+                    this.$('.show-remote-file').show().prop('href', url);
+                    this.$('.advanced').hide();
                     break;
                 }
             }

@@ -55,15 +55,19 @@
         var footerView;
         var FooterView = BackupFooterView.extend({
             setButtonState : function (type) {
+                this.$('.startbackup').hide();
+                this.$('.advanced').hide();
+                var $done = this.$('.done').hide();
+                var $cancel = this.$('.cancel').hide();
+                var $showfile = this.$('.showfile').hide();
+
                 switch (type) {
                 case 'progressing':
-                    this.$('.startbackup').hide();
-                    this.$('.advanced').hide();
+                    $cancel.show();
                     break;
                 case 'done':
-                    this.$('.done').show();
-                    this.$('.cancel').hide();
-                    this.$('.showfile').show();
+                    $done.show();
+                    $showfile.show();
                     break;
                 }
             }
@@ -231,7 +235,7 @@
                 if (deviceName !== undefined && deviceName.length > 0) {
                     deviceName = deviceName.replace(/ /g, '_').replace(new RegExp(this.invalidPattern, "g"), '_');
                 }
-                var curDate = StringUtil.formatDate('yyyy-MM-dd-HH-mm-ss', new Date().valueOf());
+                var curDate = StringUtil.formatDate('yyyy-MM-dd-HH-mm-ss-', new Date().valueOf());
                 var fileName = curDate + deviceName;
                 BackupContextModel.set('fileName', fileName);
 
@@ -502,7 +506,7 @@
                 if (!errorItemListView) {
                     errorItemListView = ErrorItemListView.getInstance();
 
-                    errorItemListView.on('__RETYR', function () {
+                    errorItemListView.on('__RETRY', function () {
                         this.userCancelled = false;
 
                         if (type === CONFIG.enums.BR_TYPE_APP) {

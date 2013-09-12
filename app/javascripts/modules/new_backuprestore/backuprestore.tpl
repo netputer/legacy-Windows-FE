@@ -165,6 +165,7 @@
     <div class="left">
         <span class="link advanced">{{= i18n.new_backuprestore.ADVANCED}}</span>
         <span class="link showfile" style="display:none">{{= i18n.new_backuprestore.OPEN_BACKUP_FILE}}</span>
+        <a class="link show-remote-file" style="display:none" target="_default">{{= i18n.new_backuprestore.OPEN_BACKUP_FILE}}</a>
     </div>
     <div class="right hbox">
         <span class="link cancel">{{= i18n.new_backuprestore.CANCEL}}</span>
@@ -241,7 +242,7 @@
 </script>
 
 <script  type="text/x-ui-template" id="restore-file-list-item">
-    <div class="hbox text-bold name" title="{{= it.path}}">
+    <div class="hbox name" title="{{= it.path}}">
         <input class="item-checker" type="radio" value="{{= it.id}}"  name="fileList"/>{{= it.name}}
     </div>
     <div class="num-container hbox">
@@ -262,7 +263,7 @@
 </script>
 
 <script  type="text/x-ui-template" id="restore-remote-file-list-item">
-    <div class="hbox text-bold name">
+    <div class="hbox name">
         <input class="item-checker" type="radio" value="{{= it.timestamp}}" name="fileList"/>
         <span class="time">{{= it.time }}</span>
         <span class="device-name wc">{{= it.deviceName }}</span>
