@@ -457,14 +457,17 @@
 
                                 break;
                             case CONFIG.enums.MODEL_TYPE_PHOTO :
+                                if (FunctionSwitch.ENABLE_SHARE_SET_WALLPAPER){
     }}
     <button class="button-set-as-wallpaper primary">{{= i18n.taskManager.SET_AS_WALL_PAPER }}</button>
-    {{
+    {{                          }
                                 break;
                              case CONFIG.enums.MODEL_TYPE_MUSIC :
+                                if (FunctionSwitch.ENABLE_SHARE_SET_WALLPAPER){
     }}
     <button class="button-set-as-ringtong primary">{{= i18n.taskManager.SET_AS_RINGTONE }}</button>
     {{
+                                }
                             break;
                         }
                         break;
