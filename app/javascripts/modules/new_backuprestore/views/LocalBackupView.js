@@ -102,7 +102,7 @@
                 switch (status) {
                 case BackupRestoreService.CONSTS.BR_PI_STATUS.FINISHED:
 
-                    if (type !== CONFIG.enums.BR_TYPE_APP) {
+                    if ((type !== CONFIG.enums.BR_TYPE_APP) && (type !== CONFIG.enums.BR_TYPE_APP_DATA)) {
 
                         var temp = function (type) {
                             var max = 100;
