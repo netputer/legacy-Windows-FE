@@ -12,6 +12,7 @@
         'Internationalization',
         'Configuration',
         'WindowController',
+        'main/collections/PIMCollection',
         'utilities/StringUtil',
         'new_backuprestore/views/ConfirmWindowView',
         'new_backuprestore/views/BaseView',
@@ -36,6 +37,7 @@
         i18n,
         CONFIG,
         WindowController,
+        PIMCollection,
         StringUtil,
         ConfirmWindowView,
         BaseView,
@@ -207,25 +209,28 @@
 
                         confirm(i18n.new_backuprestore.CANCEL_RESTORE, function () {
 
-                            this.isProgressing = false;
-                            this.offMessageHandler();
-
-                            if (this.appHandler) {
-                                window.clearInterval(this.appHandler);
-                                this.appHandler = undefined;
-                            }
-
-                            if (this.downloadHandler) {
-                                window.clearTimeout(this.downloadHandler);
-                                this.downloadHandler = undefined;
-                            }
-
                             BackupRestoreService.restoreCancelAsync(this.sessionId).done(function () {
+
+                                this.isProgressing = false;
+                                this.offMessageHandler();
+
+                                if (this.appHandler) {
+                                    window.clearInterval(this.appHandler);
+                                    this.appHandler = undefined;
+                                }
+
+                                if (this.downloadHandler) {
+                                    window.clearTimeout(this.downloadHandler);
+                                    this.downloadHandler = undefined;
+                                }
+
+                                this.releaseWindow();
                                 this.trigger('__CANCEL');
                             }.bind(this));
 
                         }, this);
                     } else {
+                        this.releaseWindow();
                         this.trigger('__CANCEL');
                     }
                 });
@@ -244,7 +249,7 @@
                         this.showDownloadView();
                         this.download();
                     }
-
+                    PIMCollection.getInstance().get(20).set('loading', true);
                 });
 
                 this.listenTo(footerView, '__SHOW_FILE', function () {
@@ -321,7 +326,7 @@
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 1, !this.IsAppDataSelected);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
                     BackupRestoreService.restoreCancelAsync(this.sessionId);
-                    WindowController.releaseWindowAsync();
+                    this.releaseWindow();
                 }.bind(this));
 
                 var smsHandler = IO.Backend.Device.onmessage({
@@ -386,12 +391,12 @@
 
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
                     alert(i18n.new_backuprestore.RESTORE_ABORT_TIP);
-                    WindowController.releaseWindowAsync();
+                    this.releaseWindow();
                     break;
                 default:
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
                     alert(i18n.new_backuprestore.RESTORE_FAILED_TIP + progress.status);
-                    WindowController.releaseWindowAsync();
+                    this.releaseWindow();
                     break;
                 }
             },
@@ -423,7 +428,7 @@
                             }.bind(this)).fail(function (resp) {
                                 BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 7, this.userCancelled);
                                 BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
-                                WindowController.releaseWindowAsync();
+                                this.releaseWindow();
                             });
                         }
                         value++;
@@ -455,7 +460,7 @@
 
                     alert(i18n.new_backuprestore.RESTORE_FAILED_TIP + progress.status);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
-                    WindowController.releaseWindowAsync();
+                    this.releaseWindow();
                     break;
                 }
             },
@@ -464,7 +469,7 @@
                 if (!errorItemListView) {
                     errorItemListView = ErrorItemListView.getInstance();
 
-                    this.listenTo(errorItemListView, '__RETYR', function () {
+                    this.listenTo(errorItemListView, '__RETRY', function () {
                         this.userCancelled = false;
                         this.retryRestore();
                     });
@@ -496,7 +501,7 @@
 
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 3);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
-                    WindowController.releaseWindowAsync();
+                    this.releaseWindow();
                 }.bind(this));
             },
             resumeRestore : function () {
@@ -509,7 +514,7 @@
 
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 4);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
-                    WindowController.releaseWindowAsync();
+                    this.releaseWindow();
                 }.bind(this));
             },
 
@@ -532,8 +537,6 @@
                     }
                     footerView.setButtonState('done');
 
-                    this.trigger('__SHOW_NOTIFIER', this.isLocal ? 'LOCAL_RESTORE_COMPLETE' : 'REMOTE_RESTORE_COMPLETE');
-
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, true, fileListView.getAll().length);
                 }.bind(this)).fail(function (resp) {
 
@@ -542,7 +545,7 @@
                 }.bind(this));
 
                 this.isProgressing = false;
-                WindowController.releaseWindowAsync();
+                this.releaseWindow();
             },
 
             updateNonAppItems : function (items) {
@@ -632,7 +635,7 @@
 
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 0, this.userCancelled);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
-                    WindowController.releaseWindowAsync();
+                    this.releaseWindow();
                 }.bind(this));
 
                 this.progressHanlder = IO.Backend.Device.onmessage({
@@ -661,6 +664,10 @@
                     fileListView.remove();
                     fileListView = undefined;
                 }
+            },
+            releaseWindow : function () {
+                WindowController.releaseWindowAsync();
+                PIMCollection.getInstance().get(20).set('loading', false);
             }
 
         });

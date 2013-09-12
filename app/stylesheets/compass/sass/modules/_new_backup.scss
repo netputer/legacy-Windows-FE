@@ -149,6 +149,7 @@
         .info-panel {
             height: 40px;
             width: 210px;
+            -webkit-box-pack: center;
 
             &.last-backup-time {
                 margin-right: 5px;
@@ -177,7 +178,6 @@
 
             .icon {
                 height: 32px;
-                margin-left: 10px;
                 margin-right: 10px;
                 width: 40px;
             }

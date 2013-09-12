@@ -12,6 +12,7 @@
         'Internationalization',
         'utilities/StringUtil',
         'WindowController',
+        'main/collections/PIMCollection',
         'new_backuprestore/BackupRestoreService',
         'new_backuprestore/views/ConfirmWindowView',
         'new_backuprestore/views/BaseView',
@@ -34,6 +35,7 @@
         i18n,
         StringUtil,
         WindowController,
+        PIMCollection,
         BackupRestoreService,
         ConfirmWindowView,
         BaseView,
@@ -166,14 +168,18 @@
                     if (this.isProgressing) {
 
                         confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
-                            this.isProgressing = false;
-                            this.offMessageHandler();
 
                             BackupRestoreService.backupCancelAsync(this.sessionId).done(function () {
+
+                                this.isProgressing = false;
+                                this.offMessageHandler();
+                                this.releaseWindow();
                                 this.trigger('__CANCEL');
+
                             }.bind(this));
                         }, this);
                     } else {
+                        this.releaseWindow();
                         this.trigger('__CANCEL');
                     }
                 });
@@ -181,6 +187,7 @@
                 this.listenTo(footerView, '__START_BACKUP', function () {
                     this.setDomState(false);
                     this.startBackup();
+                    PIMCollection.getInstance().get(20).set('loading', true);
                 });
             },
             initState : function () {
@@ -302,13 +309,13 @@
                         this.offMessageHandler();
                         BackupRestoreService.logBackupContextModel(BackupContextModel, false);
                         alert(i18n.new_backuprestore.BACKUP_ABORT_TIP);
-                        WindowController.releaseWindowAsync();
+                        this.releaseWindow();
                         break;
                     default:
                         this.offMessageHandler();
                         BackupRestoreService.logBackupContextModel(BackupContextModel, false);
                         alert(i18n.new_backuprestore.BACKUP_FAILED_TIP + data.status);
-                        WindowController.releaseWindowAsync();
+                        this.releaseWindow();
                         break;
                     }
                 }, this);
@@ -325,7 +332,7 @@
 
                     BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 0, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
-                    WindowController.releaseWindowAsync();
+                    this.releaseWindow();
 
                 }.bind(this));
             },
@@ -384,7 +391,7 @@
 
                     BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 1, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
-                    WindowController.releaseWindowAsync();
+                    this.releaseWindow();
 
                 }.bind(this));
             },
@@ -493,14 +500,12 @@
                     this.setDomState(true);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, true);
 
-                    this.trigger('__SHOW_NOTIFIER', 'LOCAL_BACKUP_COMPLETE');
-
                 }.bind(this)).fail(function (resp) {
                     BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 2, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
                 }.bind(this));
 
-                WindowController.releaseWindowAsync();
+                this.releaseWindow();
             },
             showErrorListView : function (type) {
                 if (!errorItemListView) {
@@ -544,7 +549,7 @@
                 if (!retryView) {
                     retryView = ErrorRetryView.getBackupInstance();
 
-                    retryView.on('__RETYR', function () {
+                    retryView.on('__RETRY', function () {
 
                         this.userCancelled = false;
                         this.startBackupAppData();
@@ -558,6 +563,10 @@
 
                 retryView.content = BackupContextModel.get('appDataErrorMessage');
                 retryView.show();
+            },
+            releaseWindow : function () {
+                WindowController.releaseWindowAsync();
+                PIMCollection.getInstance().get(20).set('loading', false);
             }
         });
 

@@ -13,6 +13,7 @@
         'IO',
         'Account',
         'WindowController',
+        'main/collections/PIMCollection',
         'new_backuprestore/views/ConfirmWindowView',
         'new_backuprestore/views/BaseView',
         'new_backuprestore/views/BackupRestoreProgressView',
@@ -34,6 +35,7 @@
         IO,
         Account,
         WindowController,
+        PIMCollection,
         ConfirmWindowView,
         BaseView,
         BackupRestoreProgressView,
@@ -146,15 +148,19 @@
                     if (this.isProgressing) {
 
                         confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
-                            this.isProgressing = false;
-                            this.offMessageHandler();
 
                             BackupRestoreService.stopRemoteSyncAsync().done(function () {
+
+                                this.isProgressing = false;
+                                this.offMessageHandler();
+                                this.releaseWindow();
                                 this.trigger('__CANCEL');
+
                             }.bind(this));
 
                         }, this);
                     } else {
+                        this.releaseWindow();
                         this.trigger('__CANCEL');
                     }
                 });
@@ -162,6 +168,7 @@
                 this.listenTo(footerView, '__START_BACKUP', function () {
                     this.setDomState(false);
                     this.startBackup();
+                    PIMCollection.getInstance().get(20).set('loading', true);
                 });
             },
             initState : function () {
@@ -285,8 +292,11 @@
 
                 BackupRestoreService.logBackupContextModel(BackupContextModel, true);
 
-                this.trigger('__SHOW_NOTIFIER', 'REMOTE_BACKUP_COMPLETE');
+                this.releaseWindow();
+            },
+            releaseWindow : function () {
                 WindowController.releaseWindowAsync();
+                PIMCollection.getInstance().get(20).set('loading', false);
             }
         });
 

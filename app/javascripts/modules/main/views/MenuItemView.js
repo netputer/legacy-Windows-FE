@@ -50,6 +50,10 @@
                     }
                 });
 
+                this.model.on('change:loading', function (model, loading) {
+                    this.$('.w-ui-loading-small').toggle(loading);
+                }, this);
+
                 this.model.on('change:selected', function (model, selected) {
                     this.$el.toggleClass('selected', selected);
                     if (selected) {
