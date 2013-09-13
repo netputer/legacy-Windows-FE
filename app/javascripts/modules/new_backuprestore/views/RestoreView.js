@@ -549,7 +549,7 @@
             },
 
             updateNonAppItems : function (items) {
-                _.map(items, function (item) {
+                _.each(items, function (item) {
                     if (item.status !== BackupRestoreService.CONSTS.BR_PI_STATUS.READY) {
                         progressView.updateItem(item.type, item.status, item.finished_count, item.all_count);
                     }

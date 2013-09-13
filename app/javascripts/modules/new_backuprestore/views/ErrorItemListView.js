@@ -159,7 +159,7 @@
                 return this;
             },
             selectItemInfoByType : function (spec, type) {
-                _.map(spec.item, function (item) {
+                _.each(spec.item, function (item) {
                     if (item.type === type) {
                         return item;
                     }

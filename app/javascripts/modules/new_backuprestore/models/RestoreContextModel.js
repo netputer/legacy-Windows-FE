@@ -125,29 +125,31 @@
             },
             clearCache : function () {
 
-                this.set('restoreData', 0);
-                this.set('backupType', 0);
+                this.set({
+                    'restoreData': 0,
+                    'backupType': 0,
 
-                this.set('fileName', '');
-                this.set('dataIDList', []);
-                this.set('originDataIDList', []);
+                    'fileName': '',
+                    'dataIDList': [],
+                    'originDataIDList': [],
 
-                this.set('isAccountReady', false);
-                this.set('accountType', '');
-                this.set('accountName', '');
-                this.set('battery', -1);
+                    'isAccountReady': false,
+                    'accountType': '',
+                    'accountName': '',
+                    'battery': -1,
 
-                this.set('appPath', '');
-                this.set('errorItemList', []);
+                    'appPath': '',
+                    'errorItemList': [],
 
-                this.set('remoteVersion', '');
-                this.set('udid', '');
-                //this.set('snapshotList', []);
-                //this.set('snapshotInfoDict', {});
-                //this.set('sanpshotListLoadFinish', false);
+                    'remoteVersion': '',
+                    'udid': '',
+                    //'snapshotList': [],
+                    //'snapshotInfoDict': {},
+                    //'sanpshotListLoadFinish': false,
 
-                this.set('smsDupCount', 0);
-                this.set('contactsDupCount', 0);
+                    'smsDupCount': 0,
+                    'contactsDupCount': 0
+                });
             }
         });
 

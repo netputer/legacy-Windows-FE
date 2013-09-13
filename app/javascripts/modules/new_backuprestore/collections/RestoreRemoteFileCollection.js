@@ -88,7 +88,7 @@
 
                 $.when.apply(this, deferreds).done(function () {
 
-                    _.map(models, function (model) {
+                    _.each(models, function (model) {
                         this.add(model);
                     }, this);
                     this.trigger('refresh');

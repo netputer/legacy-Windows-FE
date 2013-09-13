@@ -58,7 +58,7 @@
                     'id' : shortFileName
                 };
 
-                _.map(data.info, function (item) {
+                _.each(data.info, function (item) {
                     info[item.type] = item.count;
                 });
 
@@ -85,7 +85,7 @@
 
                 $.when.apply(this, deferreds).done(function () {
 
-                    _.map(models, function (model) {
+                    _.each(models, function (model) {
                         this.add(model, {parse : true});
                     }, this);
                     this.trigger('refresh');
