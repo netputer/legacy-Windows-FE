@@ -113,7 +113,7 @@
                 this.$el.on('scroll', _.throttle(toggleShadow.bind(this), 50));
             },
             render : function () {
-                this.$el.append(new WelcomeItemView({}).render().$el)
+                this.$el.append(new WelcomeItemView().render().$el)
                     .append(doraemonMenuView.render().$el)
                     .append(pimMenuView.render().$el);
 
