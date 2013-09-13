@@ -41,15 +41,13 @@
                             deviceFreeCapacity : Device.get('deviceFreeCapacity'),
                             internalSDCapacity : Device.get('internalSDCapacity'),
                             internalSDFreeCapacity : Device.get('internalSDFreeCapacity'),
+                            internalSDPath : Device.get('internalSDPath'),
                             externalSDCapacity : Device.get('externalSDCapacity'),
-                            externalSDFreeCapacity : Device.get('externalSDFreeCapacity')
+                            externalSDFreeCapacity : Device.get('externalSDFreeCapacity'),
+                            externalSDPath : Device.get('externalSDPath')
                         };
 
-                        this.$el.html(this.template(data));
-
-                        // if (data.externalCapacity === 0) {
-                        //     this.$el.find('.info-sd').hide();
-                        // }
+                        this.$el.html(this.template(data)).addClass('show');
 
                         CapacityTipsView.getInstance({
                             $host : this.$('.info-device'),
@@ -58,21 +56,23 @@
                             free : data.deviceFreeCapacity
                         });
 
-                        CapacityTipsView.getInstance({
-                            $host : this.$('.info-sd-internal'),
-                            source : 'sdcard',
-                            total : data.internalSDCapacity,
-                            free : data.internalSDFreeCapacity
-                        });
+                        if (data.internalSDCapacity > 0) {
+                            CapacityTipsView.getInstance({
+                                $host : this.$('.info-sd-internal'),
+                                source : 'sdcard',
+                                total : data.internalSDCapacity,
+                                free : data.internalSDFreeCapacity
+                            });
+                        }
 
-                        CapacityTipsView.getInstance({
-                            $host : this.$('.info-sd-external'),
-                            source : 'sdcard',
-                            total : data.externalSDCapacity,
-                            free : data.externalSDFreeCapacity
-                        });
-
-                        this.$el.addClass('show');
+                        if (data.externalSDCapacity > 0) {
+                            CapacityTipsView.getInstance({
+                                $host : this.$('.info-sd-external'),
+                                source : 'sdcard',
+                                total : data.externalSDCapacity,
+                                free : data.externalSDFreeCapacity
+                            });
+                        }
                     }.bind(this));
                 } else {
                     this.$el.removeClass('show');
@@ -80,17 +80,18 @@
 
                 return this;
             },
-            openSD : function () {
+            openSD : function (path) {
                 var $btn = this.$('.button-open-sd').prop('disabled', true);
 
                 setTimeout(function () {
                     $btn.prop('disabled', false);
                 }.bind(this), 2000);
 
-                Device.manageSDCardAsync();
+                Device.manageSDCardAsync(path);
             },
-            clickInfoSD : function () {
-                this.openSD();
+            clickInfoSD : function (e) {
+                var path = $(e.currentTarget).data('path');
+                this.openSD(path);
 
                 log({
                     'event' : 'ui.click.task_info_sd'
@@ -111,7 +112,8 @@
                 });
             },
             events : {
-                'click .info-sd' : 'clickInfoSD',
+                'click .info-sd-internal' : 'clickInfoSD',
+                'click .info-sd-external' : 'clickInfoSD',
                 'click .button-open-sd' : 'clickButtonOpenSD',
                 'click .button-change-location' : 'clickButtonChangeLocation'
             }

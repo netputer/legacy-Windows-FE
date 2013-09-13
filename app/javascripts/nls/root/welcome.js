@@ -23,7 +23,6 @@ define({
 
     TOOL_BACKUP : '备份',
     TOOL_RECOVERY : '恢复',
-    TOOL_SD : 'SD 卡管理',
 
     MANAGE_SD_UNCONNECT : '很抱歉，您的手机连接已断开，无法启动文件管理。',
     MANAGE_SD_ERROR : '很抱歉，无法启动文件管理。',

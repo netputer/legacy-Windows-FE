@@ -1,6 +1,7 @@
 /*global define*/
 (function (window) {
     define([
+        'jquery',
         'backbone',
         'underscore',
         'doT',
@@ -15,6 +16,7 @@
         'new_backuprestore/models/BackupContextModel',
         'new_backuprestore/models/RestoreContextModel'
     ], function (
+        $,
         Backbone,
         _,
         doT,
@@ -37,6 +39,7 @@
 
                 var rendered = false;
                 var views = {};
+                var hasShowStartView = false;
                 Object.defineProperties(this, {
                     rendered : {
                         set : function (value) {
@@ -53,21 +56,23 @@
                         get : function () {
                             return views;
                         }
+                    },
+                    hasShowStartView : {
+                        set : function (value) {
+                            hasShowStartView = value;
+                        },
+                        get : function () {
+                            return hasShowStartView;
+                        }
                     }
                 });
             },
             render : function () {
 
                 this.rendered = true;
-                return this;
-            },
-            removeViews : function () {
+                this.showStartView();
 
-                _.map(this.views, function (view) {
-                    view.remove();
-                });
-                this.views = {};
-                this.stopListening();
+                return this;
             },
             appendView : function (view) {
                 this.$el.append(view.render().$el);
@@ -213,18 +218,6 @@
                             });
                         }, 0);
                     }
-
-                    Backbone.on('showModule', function (name) {
-                        if (name === 'backup-restore') {
-                            backupRestoreModuleView.showStartView();
-                        }
-                    });
-
-                    Backbone.on('hideModule', function (name) {
-                        if (name === 'backup-restore') {
-                            backupRestoreModuleView.removeViews();
-                        }
-                    });
                 }
 
                 return backupRestoreModuleView;

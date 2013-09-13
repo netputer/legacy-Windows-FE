@@ -43,8 +43,8 @@
                     this.trigger('closed');
                 }, this);
 
-                this.once('button-unbind', this.clickButtonUnbinding, this);
-                this.once('button-bind', this.clickButtonBinding, this);
+                this.on('button-unbind', this.clickButtonUnbinding, this);
+                this.on('button-bind', this.clickButtonBinding, this);
             },
             clickButtonBinding : function () {
                 IO.requestAsync(CONFIG.actions.WINDOW_DEVICE_BIND);

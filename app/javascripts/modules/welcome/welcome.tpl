@@ -194,7 +194,7 @@
         <span class="icon restore"></span>{{= i18n.welcome.TOOL_RECOVERY }}
     </button>
     <button class="w-icon-btn button-open-sd transparent min">
-        <span class="icon sd-white"></span>{{= i18n.welcome.TOOL_SD }}
+        <span class="icon sd-white"></span>{{= i18n.misc.MANAGE_SD_CARD }}
     </button>
     <button class="w-icon-btn button-set-wallpaper transparent min">
         <span class="icon wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
@@ -210,20 +210,16 @@
             {{ var percent = parseInt((it.deviceCapacity - it.deviceFreeCapacity) / it.deviceCapacity * 100, 10); }}
             <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
-        {{? it.externalSDCapacity === 0 }}
-        <div class="info-sd-internal hbox">
-            <span class="icon sd"></span>
+        {{? it.internalSDCapacity > 0 }}
+        <div class="info-sd-internal hbox" data-path="{{= it.internalSDPath }}">
+            <span class="icon sd{{? it.externalSDCapacity > 0 }}-internal{{?}}"></span>
             {{ var percent = parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
             <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
-        {{??}}
-        <div class="info-sd-internal hbox">
-            <span class="icon sd-internal"></span>
-            {{ var percent = parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
-            <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
-        </div>
-        <div class="info-sd-external hbox">
-            <span class="icon sd-external"></span>
+        {{?}}
+        {{? it.externalSDCapacity > 0 }}
+        <div class="info-sd-external hbox" data-path="{{= it.externalSDPath }}">
+            <span class="icon sd{{? it.internalSDCapacity > 0 }}-external{{?}}"></span>
             {{ var percent = parseInt((it.externalSDCapacity - it.externalSDFreeCapacity) / it.externalSDCapacity * 100, 10); }}
             <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
@@ -258,29 +254,8 @@
     </div>
 </script>
 
-<script type="text/x-ui-template" id="capacity">
-    <div class="w-welcome-capacity">
-        {{ var percent = parseInt((it.internalCapacity - it.internalFreeCapacity) / it.internalCapacity * 100, 10); }}
-        <div class="phone-capacity hbox{{? percent >= 90 }} outofspace{{?}}">
-            <div class="title">{{= i18n.misc.PHONE }}</div>
-            <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
-            <div class="ratio">
-                <span class="{{? percent >= 90 }}text-warning{{?}}">{{= StringUtil.readableSize(it.internalCapacity - it.internalFreeCapacity) }}</span> / {{= StringUtil.readableSize(it.internalCapacity) }}
-            </div>
-        </div>
-        {{ var percent =  parseInt((it.externalCapacity - it.externalFreeCapacity) / it.externalCapacity * 100, 10); }}
-        <div class="external-capacity hbox{{? percent >= 90 }} outofspace{{?}}">
-            <div class="title">{{= i18n.misc.SD_CARD }}</div>
-            <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
-            <div class="ratio">
-                <span class="{{? percent >= 90 }}text-warning{{?}}">{{= StringUtil.readableSize(it.externalCapacity - it.externalFreeCapacity) }}</span> / {{= StringUtil.readableSize(it.externalCapacity) }}
-            </div>
-        </div>
-    </div>
-</script>
-
 <script type="text/x-ui-template" id="file-tools">
-    <button class="button-open-sd min">{{= i18n.welcome.TOOL_SD }}</button>
+    <button class="button-open-sd min">{{= i18n.misc.MANAGE_SD_CARD }}</button>
     <button class="button-backup min">{{= i18n.welcome.TOOL_BACKUP }}</button>
     <span class="w-ui-buttongroup auto-backup-ctn">
         <button class="button-group-backup min">{{= i18n.welcome.TOOL_BACKUP }}</button>

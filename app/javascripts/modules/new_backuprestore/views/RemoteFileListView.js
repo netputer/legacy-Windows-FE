@@ -7,6 +7,7 @@
         'doT',
         'Log',
         'Device',
+        'Account',
         'Configuration',
         'Internationalization',
         'ui/SmartList',
@@ -21,6 +22,7 @@
         doT,
         log,
         Device,
+        Account,
         CONFIG,
         i18n,
         SmartList,
@@ -47,6 +49,7 @@
                 RemoteFileListView.__super__.initialize.apply(this, arguments);
 
                 var selectedId;
+                var listLength = 0;
                 Object.defineProperties(this, {
                     selectedId : {
                         set : function (value) {
@@ -54,6 +57,14 @@
                         },
                         get : function () {
                             return selectedId;
+                        }
+                    },
+                    listLength : {
+                        set : function (value) {
+                            listLength = value;
+                        },
+                        get : function () {
+                            return listLength;
                         }
                     }
                 });
@@ -64,6 +75,7 @@
                 fileList.remove();
                 fileList = undefined;
 
+                restoreFileCollection.reset();
                 restoreFileCollection = undefined;
             },
             buildList : function () {
@@ -89,6 +101,15 @@
                 this.listenTo(restoreFileCollection, 'refresh', function () {
                     fileList.switchSet('all');
                     fileList.loading = false;
+
+                    if (this.listLength === BackupRestoreService.CONSTS.DefaultSnapshot.Size) {
+                        this.trigger('__DISPLAY_SHOW_MORE');
+                    }
+
+                    if (restoreFileCollection.length === 0) {
+                        fileList.emptyTip = i18n.new_backuprestore.NO_REMOTE_BACKUP_FILE;
+                    }
+                    fileList.toggleEmptyTip(restoreFileCollection.length === 0);
                 });
 
                 this.listenTo(fileList, 'select:change', function (selected) {
@@ -114,11 +135,27 @@
                     var newList = JSON.parse(resp.body.value);
                     restoreFileCollection.updateAsync(newList);
 
+                    if (newList.length < BackupRestoreService.CONSTS.DefaultSnapshot.Size) {
+                        this.trigger('__HIDE_SHOW_MORE');
+                    }
+                    this.listLength = newList.length;
+
                 }.bind(this)).fail(function (resp) {
 
                     var alertContext = (resp.state_code === 747) ? i18n.new_backuprestore.CUSTOM_RESOURCE_LOCKED : i18n.new_backuprestore.RESTORE_LIST_SNAPHOST_FAILED;
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
-                    alert(alertContext);
+                    alert(alertContext, function () {
+
+                        if (resp.state_code === 747) {
+                            log({
+                                'event' : 'ui.click.reset_password',
+                                'type' : 'restore'
+                            });
+                            Account.resetAsync();
+                        }
+
+                        this.trigger('__CANCEL');
+                    }, this);
 
                 }.bind(this));
             },
@@ -138,6 +175,7 @@
                     }
                 });
                 RestoreContextModel.set('dataIDList', list);
+                RestoreContextModel.set('originDataIDList', list);
             },
             getAll : function () {
                 return restoreFileCollection.getAll();

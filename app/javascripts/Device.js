@@ -61,8 +61,10 @@
                 deviceFreeCapacity : 0,
                 internalSDCapacity : 0,
                 internalSDFreeCapacity : 0,
+                internalSDPath : '',
                 externalSDCapacity : 0,
-                externalSDFreeCapacity : 0
+                externalSDFreeCapacity : 0,
+                externalSDPath : ''
             },
             initialize : function () {
                 var listenBack = false;
@@ -237,6 +239,10 @@
                             console.log('Device - Get device capacity success.');
 
                             _.each(resp.body.storage_infos, function (info) {
+                                if (info.is_emulated === true) {
+                                    return;
+                                }
+
                                 switch (info.type) {
                                 case 0:
                                     this.set({
@@ -247,13 +253,15 @@
                                 case 1:
                                     this.set({
                                         internalSDCapacity : parseInt(info.total_size, 10),
-                                        internalSDFreeCapacity : parseInt(info.available_size, 10)
+                                        internalSDFreeCapacity : parseInt(info.available_size, 10),
+                                        internalSDPath : info.path || ''
                                     });
                                     break;
                                 case 2:
                                     this.set({
                                         externalSDCapacity : parseInt(info.total_size, 10),
-                                        externalSDFreeCapacity : parseInt(info.available_size, 10)
+                                        externalSDFreeCapacity : parseInt(info.available_size, 10),
+                                        externalSDPath : info.path || ''
                                     });
                                     break;
                                 }
@@ -269,7 +277,7 @@
 
                 return deferred.promise();
             },
-            manageSDCardAsync : function () {
+            manageSDCardAsync : function (path) {
                 var deferred = $.Deferred();
 
                 if (this.get('isInternet')) {
@@ -293,6 +301,9 @@
 
                         IO.requestAsync({
                             url  : CONFIG.actions.DEVICE_OPEN_SD_CARD,
+                            data : {
+                                path : path || ''
+                            },
                             success : function (resp) {
                                 if (resp.state_code === 200) {
                                     console.log('Device - Open SD card success.');
@@ -378,7 +389,7 @@
                                     eventName : 'button_no'
                                 }],
                                 $bodyContent : i18n.misc.FTP_FIX,
-                                title : i18n.welcome.TOOL_SD
+                                title : i18n.misc.MANAGE_SD_CARD
                             });
 
                             alertWindow.on('button_yes', function () {

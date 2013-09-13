@@ -17,7 +17,6 @@ define({
 
     TOOL_BACKUP : 'Backup',
     TOOL_RECOVERY : 'Restore',
-    TOOL_SD : 'SD Card',
 
     MANAGE_SD_UNCONNECT : 'Your device is not connected, unable to manage files',
     MANAGE_SD_ERROR : 'Oh no, unable to manage files',
