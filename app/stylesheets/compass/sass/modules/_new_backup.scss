@@ -460,6 +460,7 @@
     }
 }
 
+.w-backuprestore-download,
 .w-backuprestore-file-list {
     border-bottom: 3px #ccc solid;
     border-top: 3px #ccc solid;
@@ -467,9 +468,6 @@
 }
 
 .w-backuprestore-download {
-    border-bottom: 3px #ccc solid;
-    border-top: 3px #ccc solid;
-    height: 250px;
 
     -webkit-box-align: center;
     -webkit-box-pack: center;
