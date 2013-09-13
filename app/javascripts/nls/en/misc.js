@@ -224,5 +224,5 @@ define({
 
     AGENT_NOTIFI : 'Connected, enjoy the SnapPea service!',
     SEND_TO_PHONE : 'Send to phone',
-    DO_NOT_SEND_TO_PHONE : 'Don\'t send
+    DO_NOT_SEND_TO_PHONE : 'Don\'t send'
 });
