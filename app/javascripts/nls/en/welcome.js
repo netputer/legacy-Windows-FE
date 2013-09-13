@@ -60,9 +60,6 @@ define({
     GUIDE_REG_DESC : 'To turn on cloud albums you first have to register an account',
     GUIDE_REG_NOW : 'Register now',
     GUIDE_REG_ACCOUNT_PLACEHOLDER : 'Please use your phone number or email address',
-
-
-    /*acccount, xibaibai, and starter tips are not in SnapPea*/
     GUIDE_REG_ACCOUNT_WARN : '您输入的好像不是一个邮箱/手机号',
     GUIDE_REG_PASSWORD : '密码',
     GUIDE_REG_PASSWORD_PLACEHOLDER : '最少 6 位数字或字符',

@@ -24,9 +24,6 @@ define({
     CHANGE_LOG_EMPRY : 'No update information',
     SUGGESTION_REF : 'Recommendation based on <span class="button-navigate-to-ref-page">{1}</span>',
 
-
-    /*Xi bai bai NOT in SnapPea*/
-
     START_SCAN : '开洗',
     SCAN_TIP1 : '山寨应用有风险，广告应用很烦人！',
     SCAN_TIP2 : '豌豆洗白白会帮您找出这些应用，并协助您把它们更换成官方版或没有广告的版本。',
