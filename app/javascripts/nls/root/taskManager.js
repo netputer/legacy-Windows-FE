@@ -139,7 +139,6 @@ define({
     SCAN_PASS : '已通过安全扫描',
     SCAN_FAILED : '未通过安全扫描',
 
-
     SET_AS_WALL_PAPER : '设为手机壁纸',
     SET_AS_RINGTONE : '设为来电铃声',
     START_UNZIPPING : '开始解压',
@@ -169,7 +168,6 @@ define({
     SDCARD_MOUNT : '请不要挂载 SD 卡',
     NO_SDCARD : '没有插入 SD 卡，无法传输文件',
     DEVICE_NOT_FOUND : '设备没有连接，无法传输文件',
-
     DEVICE_NOT_FOUND_TIP : '请使用 USB 连接或 Wi-Fi 将手机连接到豌豆荚，未完成的任务将在手机连接后继续。',
     PUSHING_PHONE : '正在推送',
     PUSH_PHONE_FAILED : '发送失败，请稍后再试',

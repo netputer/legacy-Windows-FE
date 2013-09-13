@@ -81,7 +81,7 @@ define({
     SEND_WITH_SIM1 : 'Send from default SIM',
     SEND_WITH_SIM2 : 'Send from second SIM',
 
-    IMPORT_MESSAGE : 'Import Messages',
+    WINDOW_IMPORT_TITLE : 'Import Messages',
     IMPORT_FAILED : 'Failed to import messages',
     IMPORTING_SMS : 'Importing messages, please wait...',
     IMPORT_SMS_FINISH : 'Importing messages completed',
