@@ -10,7 +10,9 @@
         'Configuration',
         'doraemon/collections/ExtensionsCollection',
         'doraemon/views/MenuItemView',
-        'doraemon/views/GallerySwitchView'
+        'doraemon/views/GallerySwitchView',
+        'main/views/MenuItemView',
+        'main/collections/PIMCollection'
     ], function (
         Backbone,
         _,
@@ -19,11 +21,25 @@
         CONFIG,
         ExtensionsCollection,
         MenuItemView,
-        GallerySwitchView
+        GallerySwitchView,
+        PIMMenuItemView,
+        PIMCollection
     ) {
         console.log('DoraemonMenuView - File loaded.');
 
         var extensionsCollection;
+        var optimizeItemView;
+
+        var OptimizeItemView = Backbone.View.extend({
+            className : 'w-menu-doraemon w-sidebar-menu w-menu-optimize',
+            tagName : 'menu',
+            render : function () {
+                this.$el.html(PIMMenuItemView.getInstance({
+                    model : PIMCollection.getInstance().get(18)
+                }).render().$el);
+                return this;
+            }
+        });
 
         var DoraemonMenuView = Backbone.View.extend({
             className : 'w-menu-doraemon w-sidebar-menu',
@@ -47,6 +63,11 @@
                     GallerySwitchView.getInstance().$el.detach();
                 }
 
+                if (FunctionSwitch.ENABLE_OPTIMIZE) {
+                    optimizeItemView = optimizeItemView || new OptimizeItemView();
+                    optimizeItemView.$el.detach();
+                }
+
                 var fragment = document.createDocumentFragment();
                 extensionsCollection.each(function (extension) {
                     var menuItemView = MenuItemView.getInstance({
@@ -55,6 +76,10 @@
 
                     fragment.appendChild(menuItemView.render().$el[0]);
                 });
+
+                if (FunctionSwitch.ENABLE_OPTIMIZE) {
+                    fragment.appendChild(optimizeItemView.render().$el[0]);
+                }
 
                 if (FunctionSwitch.ENABLE_DORAEMON) {
                     fragment.appendChild(GallerySwitchView.getInstance().render().$el[0]);
