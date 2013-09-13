@@ -56,7 +56,6 @@ define({
     MERGE_VIDEO_SUCCESS : 'Merging mp4 videos completed',
     UNKNOWN_NAME : 'Unknown name',
 
-
     CACHE_SIZE : 'You\'ve saved: {1}',
     ADD_TASK_TIP : '{1} task added',
     FINISH_TASK_TIP : '{1} task completed',
@@ -64,7 +63,7 @@ define({
     DELETE_TASK : 'Delete task',
     CONTINUE_INSTALL : 'Resume install',
 
-    CAPACITY_TIPS : '{1}（{2} / {3}，剩余空间 {4}）',
+    CAPACITY_TIPS : '{1}（{2} / {3}，remaining space {4}）',
 
     /* Install failed reasons */
     INSTALL_FAILED_DEVICE_NOT_FOUND : 'Unable to install, no device connected',
@@ -140,9 +139,8 @@ define({
     SCAN_PASS : 'Safe! Passed security scan.',
     SCAN_FAILED : 'Failed security scan.',
 
-
     SET_AS_WALL_PAPER : 'Set as wallpaper',
-    SET_AS_RINGTONE : '设为来电铃声',
+    SET_AS_RINGTONE : 'Set as ringtone',
     START_UNZIPPING : 'Unzipping...',
     UNZIPING : 'Unzipping...',
     UNZIP_COMPLETE : 'Unzip completed',
@@ -151,18 +149,29 @@ define({
     HOW_TO_CONNECT : 'Connection help',
     EMPTY_LIST : 'No tasks in progress',
 
-    SET_AS_WALLPAPER_SUCCESS : '壁纸设置成功',
-    SET_AS_WALLPAPER_FAIL: '壁纸设置失败',
-    SET_AS_RINGTONE_SUCCESS : '铃声设置成功',
-    SET_AS_RINGTONE_FAIL : '铃声设置失败',
+    SET_AS_WALLPAPER_SUCCESS : 'Wallpaper is set!',
+    SET_AS_WALLPAPER_FAIL: 'Failed to set wallpaper',
+    SET_AS_RINGTONE_SUCCESS : 'Ringtone is set!',
+    SET_AS_RINGTONE_FAIL : 'Failed to set ringtone',
 
     WAITING_RESTORE_APP_DATA : 'Waiting to restore app data',
     PROCESSING_RESTORE_APP_DATA : 'Restoring app data...',
+    WAITING_UNZIP : 'Waiting to unzip...',
+
+    SEND_TO_PHONE : 'Send to phone',
+    DO_NOT_SEND_TO_PHONE : 'Don\'t send to phone',
+    SEND_TO_PHONE_HEAD : 'Phone isn\'t connected. Send content to your phone?',
+    SEND_TO_PHONE_CONTENT : 'Phone isn\'t connected, so we can\'t download to your phone. <br /> Send content to your phone?',
 
     MORE_MEMORY : 'Not enough internal storage space',
     NO_MORE_SDCARD : 'Not enough SD card space',
     SDCARD_MOUNT : 'Please don\'t remove SD card',
     NO_SDCARD : 'No SD card found, unable to transfer files',
     DEVICE_NOT_FOUND : 'Connect your device to transfer',
-    DEVICE_NOT_FOUND_TIP : 'Connect your device via USB or Wi-Fi, and SnapPea will finish these tasks'
+    DEVICE_NOT_FOUND_TIP : 'Connect your device via USB or Wi-Fi, and SnapPea will finish these tasks',
+    PUSHING_PHONE : 'Sending to phone...',
+    PUSH_PHONE_FAILED : 'Failed to send',
+    PUSH_PHONE_SUCCESS : 'Sent to phone',
+    RETRY_PUSH_PHONE : 'Send again',
+    CANCEL_PUSH_PHONE : 'Cancel send'
 });

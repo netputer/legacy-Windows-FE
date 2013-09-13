@@ -13,6 +13,7 @@ define({
     USB_APK_UPDATING : 'After SnapPea finishes updating on your phone, you can start managing your phone...',
     USB_INSTALL_FAILED_NO_MORE_SPACE : 'Failed to install SnapPea on your phone, storage space is insufficient.',
     USB_INSTALL_FAILED_INTERNAL_ERROR : 'Failed to install SnapPea on your phone, internal error on phone.',
+    PHTONE_DISCONNECTED : 'Phone disconnected',
 
     POSIBLE_REASON : 'Possible reason:',
 
@@ -213,8 +214,14 @@ define({
     CLOUD_BACKUP_OPEN : 'Turn on cloud backup',
     ACCOUNT : 'Account',
     NICKNAME : 'Nickname',
-    CLOUD_PHOTO_OPEN : '开启云相册同步',
+    CLOUD_PHOTO_OPEN : 'Turn on cloud photos',
     RESELECT_FILE_TEXT : 'Re-select file',
     SAVE : 'Save',
-    DONTSAVE : 'Don\'t save'
+    DONTSAVE : 'Don\'t save',
+    PHONE : 'Internal memory',
+    SD_CARD : 'SD Card',
+
+    AGENT_NOTIFI : 'Connected, enjoy the SnapPea service!',
+    SEND_TO_PHONE : 'Send to phone',
+    DO_NOT_SEND_TO_PHONE : 'Don\'t send'
 });
