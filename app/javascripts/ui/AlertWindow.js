@@ -41,7 +41,7 @@
         var alertWindow = new AlertWindow({
             buttons : [{
                 $button : $('<button>').html(i18n.ui.CONFIRM),
-                eventName : 'button_cancel'
+                eventName : 'button_yes'
             }],
             disableX : true,
             draggable : true,
