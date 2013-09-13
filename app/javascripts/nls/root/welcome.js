@@ -9,7 +9,6 @@ define({
     SCREEN_SHOT_CLIPBOARD_SUCCESS : '已将截图复制到剪贴板',
     SCREEN_SHOT_FAILD : '抱歉，截屏操作失败',
     SCREEN_SHOT_CANCELD : '截屏操作已取消',
-
     SCREEN_SHOT_TEXT : '截图',
     SCREEN_SHOT_SAVE_TO_FILE : '保存为文件',
     SCREEN_SHOT_SAVE_TO_CLIPBOARD : '复制到剪贴板',

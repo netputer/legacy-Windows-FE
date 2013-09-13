@@ -169,5 +169,9 @@ define({
     EXPORT_USING_VCARD : 'Export in vCard format',
 
     CONTACT_TIP_PART : '{1} contact(S) related to「{2}」',
+
+    EMPTY_PHONE_LIST : '您的手机相册中还没有图片呢',
+    EMPTY_LIBRARY_LIST : '您的图库中还没有图片呢',
+
     NAV_CONTACT_ALL : 'All Contacts'
 });
