@@ -169,7 +169,7 @@
                 RestoreContextModel.set('udid', data.udid);
 
                 var list = [];
-                _.map(restoreTypeList, function (type) {
+                _.each(restoreTypeList, function (type) {
                     if (data[type]) {
                         list.push(type);
                     }

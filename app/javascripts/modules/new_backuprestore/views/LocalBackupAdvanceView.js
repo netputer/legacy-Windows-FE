@@ -111,7 +111,7 @@
                     this.$('input[type=radio][value=2]').prop('disabled', !resp.body.value);
                 }.bind(this));
 
-                _.map(BackupContextModel.get('dataIDList'), function (item) {
+                _.each(BackupContextModel.get('dataIDList'), function (item) {
                     this.$('input[type=checkbox][value=' + item +  ']').prop('checked', true);
                 });
                 var checked = this.$('input[type=checkbox]:checked');
@@ -221,7 +221,7 @@
                 });
 
                 var list = [];
-                _.map(this.$('input[type=checkbox]:checked'), function (input) {
+                _.each(this.$('input[type=checkbox]:checked'), function (input) {
                     list.push(parseInt(input.value, 10));
                 });
 

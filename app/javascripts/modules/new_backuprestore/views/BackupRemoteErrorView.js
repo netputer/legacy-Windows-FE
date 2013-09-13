@@ -50,7 +50,7 @@
                 var msg = BackupRestoreService.getErrorMessage(code);
                 this.$('.content').html(msg);
 
-                _.map(result, function (current) {
+                _.each(result, function (current) {
                     var failedNum = current.total - current.success;
                     if (failedNum > 0) {
                         var brType = BackupRestoreService.GetBRTypeBy30x0x(current.data_type);
