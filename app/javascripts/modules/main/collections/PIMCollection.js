@@ -75,7 +75,7 @@
             tab : 'video',
             order : 60,
             icon : 'video'
-        }, /*{
+        /* }, {
             label : i18n.misc.NAV_BACKUP_RESTORE,
             id : 20,
             root : true,
@@ -84,8 +84,8 @@
             order : 60,
             count : -1,
             loading : false,
-            icon : 'backup'
-        }, */{
+            icon : 'backup' */
+        }, {
             label : i18n.app.APP_WASH,
             id : 19,
             count : -1,
