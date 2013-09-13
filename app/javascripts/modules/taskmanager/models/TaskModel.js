@@ -52,7 +52,8 @@
             'wdj://icon/app' : CONFIG.enums.TASK_DEFAULT_ICON_PATH_APP,
             'wdj://icon/video' : CONFIG.enums.TASK_DEFAULT_ICON_PATH_VIDEO,
             'wdj://icon/book' : CONFIG.enums.TASK_DEFAULT_ICON_PATH_BOOK,
-            'wdj://icon/file' : CONFIG.enums.TASK_DEFAULT_ICON_PATH_FILE
+            'wdj://icon/file' : CONFIG.enums.TASK_DEFAULT_ICON_PATH_FILE,
+            'wdj://icon/zip' : CONFIG.enums.TASK_DEFAULT_ICON_PATH_FILE
         };
 
         var TaskModel = Backbone.Model.extend({
