@@ -158,7 +158,7 @@ define({
     WAITING_UNZIP : 'Waiting to unzip...',
 
     SEND_TO_PHONE : 'Send to phone',
-    DO_NOT_SEND_TO_PHONE : 'Don\'t send to phone,',
+    DO_NOT_SEND_TO_PHONE : 'Don\'t send to phone',
     SEND_TO_PHONE_HEAD : 'Phone isn\'t connected. Send content to your phone?',
     SEND_TO_PHONE_CONTENT : 'Phone isn\'t connected, so we can\'t download to your phone. <br /> Send content to your phone?',
 
