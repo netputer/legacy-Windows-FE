@@ -1,9 +1,14 @@
 /*global define*/
 define({
+    CLOCK_DATE_FORMAT : 'MM dd ',
+    OPEN_FOLDER : 'Open folder',
+    TOP : 'Return to top',
+
+    WELCOME_PAGE_SHOT : 'Share phone & wallpaper to Sina Weibo',
+    WELCOME_PAGE_SHOT_FOR_FACEBOOK : 'Share phone & wallpaper to Facebook',
     SCREEN_SHOT_CLIPBOARD_SUCCESS : 'Copied to clipboard',
     SCREEN_SHOT_FAILD : 'Failed to mirror device',
     SCREEN_SHOT_CANCELD : 'Cancel mirroring device',
-
     SCREEN_SHOT_TEXT : 'Capture',
     SCREEN_SHOT_SAVE_TO_FILE : 'Save',
     SCREEN_SHOT_SAVE_TO_CLIPBOARD : 'Copy to clipboard',
@@ -50,11 +55,14 @@ define({
     GUIDE_BIND_NOW : 'Link phone now',
     GUIDE_BIND_DESC : 'After linking, SnapPea will auto-backup your contacts, messages, and photos. It makes it easy to restore and easy to connect. If this isn\'t your computer, don\'t link!',
     GUIDE_BIND_SUCCESS : 'Congrats, {1} phone is linked. SnapPea will auto-backup your <strong>contacts, messages, and photos</strong>',
-    GUIDE_CLOUD_BACKUP_SUCCESS : '恭喜，您已经成功开启云备份！只要您手机连上了电脑，豌豆荚就会自动备份您的 应用、联系人和短信了。',
+    GUIDE_CLOUD_BACKUP_SUCCESS : 'Congrats, you\'ve turned on cloud backup. When you connect your phone to your computer, SnapPea will now auto-backup your apps, contacts, and messages.',
     GUIDE_REG : 'Register for SnapPea',
     GUIDE_REG_DESC : 'To turn on cloud albums you first have to register an account',
     GUIDE_REG_NOW : 'Register now',
     GUIDE_REG_ACCOUNT_PLACEHOLDER : 'Please use your phone number or email address',
+
+
+    /*acccount, xibaibai, and starter tips are not in SnapPea*/
     GUIDE_REG_ACCOUNT_WARN : '您输入的好像不是一个邮箱/手机号',
     GUIDE_REG_PASSWORD : '密码',
     GUIDE_REG_PASSWORD_PLACEHOLDER : '最少 6 位数字或字符',
@@ -74,12 +82,36 @@ define({
     GUIDE_STARTER_TITLE : 'Must install apps',
     GUIDE_STARTER_TIP : 'Not many apps on your phone. You should try some of these star apps.',
     GUIDE_STARTER_APP_TIP : '{1} installations · {2}% positive reviews<br />{3}',
+    GUIDE_STARTER_GAME_TITLE : '必备游戏',
+    GUIDE_STARTER_GAME_TIP : '大家都在玩的热门游戏，您也装几个试试吧。',
     GUIDE_TIPS : 'Tips',
     GUIDE_TIPS_TIP : 'More tips about SnapPea!',
     GUIDE_TIPS_READ_ALL : 'OK, got it!',
     GUIDE_SUGGESTION : 'View more',
     GUIDE_SUGGESTION_TIP : 'There\'s more content for you to discover!',
     GUIDE_SUGGESTION_READ_ALL : 'I\'m done',
+    GUIDE_TEXT_COUNTER : '{1} / {2}',
 
-    GUIDE_TEXT_COUNTER : '{1} / {2}'
+    CARD_UPDATE_TITLE : 'Update apps',
+    CARD_UPDATE_ACTION : 'Update all',
+    CARD_UPDATE_DESC : '{1} and {2} others apps have updates。<span class="button-detail link">Details»</span>',
+    CARD_APP_TAG_LINE : '{1} · {2} people installed',
+    CARD_APP_FOOTER : '{1} · {2}',
+    CARD_XIBAIBAI_TITLE : '山寨软件',
+    CARD_XIBAIBAI_DESC : '山寨应用有风险！豌豆洗白白可以把他们更换成官方版或没有广告的版本。',
+    CARD_XIBAIBAI_ACTION : '洗一下',
+    CARD_CLOUD_PHOTO_TITLE : '要自动同步云相册吗？',
+    CARD_CLOUD_PHOTO_DESC : '开启云相册同步后，豌豆荚将自动把您云相册的图片同步到电脑，查看更方便。',
+    CARD_CLOUD_PHOTO_OPEN : '开启',
+    CARD_BACKUP_TITLE : 'No backup for 10 days,'
+    CARD_BACKUP_DESC : 'Back up your phone so that you don\'t lose your phone\'s data!',
+    CARD_BACKUP_ACTION : 'Backup',
+    CARD_TIPS_TITLE : 'About SnapPea\'s features',
+    CARD_TIPS_ACTION : 'View now',
+    CARD_WEIBO_TITLE : 'Follow SnapPea！',
+    CARD_WEIBO_DESC : 'Sina Weibo @豌豆荚 <span class="icon-verified"></span>',
+    CARD_WEIBO_ACTION : 'Follow',
+    CARD_WEIBO_ACTION_CLICKED : 'Following',
+    NO_MORE : 'No more here',
+    UPDATED : 'SnapPea was updated!'
 });

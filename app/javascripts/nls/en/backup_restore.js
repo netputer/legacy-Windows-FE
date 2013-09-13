@@ -98,9 +98,7 @@ define({
     APP_ERROR_LIST_TITLE : '{1} app(s) failed to backup。Ignore and continue to backup apps?',
     APP_DATA_ERROR_LIST_TITLE : '{1} apps failed to restore. Ignore?',
 
-    RESTORE_TYPE_LOCAL_TITLE : 'Backup from computer',
     RESTORE_TYPE_LOCAL_CONTENT : 'Backs up your device from the file stored on your computer',
-    RESTORE_TYPE_REMOTE_TITLE : 'Backup from cloud servers',
     RESTORE_TYPE_REMOTE_CONTENT : 'Backs up from the files stored on SnapPea\'s cloud servers',
     RESTORE_LIST_SNAPHOST_FAILED : 'Failed to load app list',
 
