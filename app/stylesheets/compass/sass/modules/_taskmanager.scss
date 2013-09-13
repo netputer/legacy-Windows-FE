@@ -402,13 +402,11 @@
         width: 16px;
         margin-right: 5px;
 
-        @each $icon in device, sd {
-            &.#{$icon} {
-                @include button-sprite(#{$icon});
-            }
+        &.device {
+            @include button-sprite(device);
         }
 
-        @each $icon in sd-internal, sd-external {
+        @each $icon in sd, sd-internal, sd-external {
             &.#{$icon} {
                 @include button-sprite(task-#{$icon});
             }

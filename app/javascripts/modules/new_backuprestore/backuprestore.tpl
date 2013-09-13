@@ -145,7 +145,7 @@
         </dd>
         <dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_FILE_NAME}}</dt>
         <dd>
-            <input type="text" class="file-name" name="file-name" value="{{= it.fileName }}"/>
+            <input type="text" class="file-name" name="file-name" value="{{= it.fileName }}" maxlength="100"/>
         </dd>
     </dl>
 </script>
@@ -165,6 +165,7 @@
     <div class="left">
         <span class="link advanced">{{= i18n.new_backuprestore.ADVANCED}}</span>
         <span class="link showfile" style="display:none">{{= i18n.new_backuprestore.OPEN_BACKUP_FILE}}</span>
+        <a class="link show-remote-file" style="display:none" target="_default">{{= i18n.new_backuprestore.OPEN_BACKUP_FILE}}</a>
     </div>
     <div class="right hbox">
         <span class="link cancel">{{= i18n.new_backuprestore.CANCEL}}</span>
@@ -230,7 +231,7 @@
         <span class="link advanced">{{= i18n.new_backuprestore.ADVANCED}}</span>
         <span class="link showfile">{{= i18n.new_backuprestore.OPEN_RESTORE_FILE}}</span>
         <span class="link taskmanager">{{= i18n.new_backuprestore.SWITCH_TASK_MODULE}}</span>
-        <span class="link showmore">{{= i18n.new_backuprestore.SHOW_MORE}}</span>
+        <span class="link showmore" style="display:none">{{= i18n.new_backuprestore.SHOW_MORE}}</span>
     </div>
     <div class="right hbox">
         <span class="link cancel">{{= i18n.new_backuprestore.CANCEL}}</span>
@@ -241,7 +242,7 @@
 </script>
 
 <script  type="text/x-ui-template" id="restore-file-list-item">
-    <div class="hbox text-bold name" title="{{= it.path}}">
+    <div class="hbox name" title="{{= it.path}}">
         <input class="item-checker" type="radio" value="{{= it.id}}"  name="fileList"/>{{= it.name}}
     </div>
     <div class="num-container hbox">
@@ -256,14 +257,16 @@
         <div class="app-icon icon"/>
         <span class="text-thirdly">{{= it[CONFIG.enums.BR_TYPE_APP] }}</span>
         {{? it[CONFIG.enums.BR_TYPE_APP_DATA] > 0}}
-            <div class="app-data-icon"/>
+            <div class="app-data-icon" data-title="{{= i18n.new_backuprestore.INCLUDE_APP_DATA}}"/>
         {{?}}
     </div>
 </script>
 
 <script  type="text/x-ui-template" id="restore-remote-file-list-item">
-    <div class="hbox text-bold name">
-        <input class="item-checker" type="radio" value="{{= it.timestamp}}" name="fileList"/>{{= it.time }}{{= it.deviceName }}
+    <div class="hbox name">
+        <input class="item-checker" type="radio" value="{{= it.timestamp}}" name="fileList"/>
+        <span class="time">{{= it.time }}</span>
+        <span class="device-name wc">{{= it.deviceName }}</span>
     </div>
     <div class="num-container hbox">
         <div class="contact-icon icon"/>
@@ -303,7 +306,7 @@
 </script>
 
 <script type="text/x-ui-template" id="backup-restore-download">
-    <progress class="progress" max="100" value="0"></progress>
+    <progress class="progress tiny" max="100" value="0"></progress>
 </script>
 
 </templates>

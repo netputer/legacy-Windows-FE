@@ -86,6 +86,10 @@
                     this.setLocalState();
                 }, this);
 
+                this.listenTo(Account, 'change:isLogin', function () {
+                    this.setRemoteState();
+                });
+
             },
             setRemoteState : function () {
 

@@ -82,6 +82,7 @@
                         deferred.resolve(resp);
 
                     }.bind(this));
+
                     return deferred.promise();
                 }, this);
 

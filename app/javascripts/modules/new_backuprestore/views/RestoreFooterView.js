@@ -6,6 +6,8 @@
         'underscore',
         'doT',
         'ui/TemplateFactory',
+        'Device',
+        'Account',
         'new_backuprestore/BackupRestoreService',
         'new_backuprestore/views/RemoteRestoreAdvanceView',
         'new_backuprestore/views/LocalRestoreAdvanceView',
@@ -16,6 +18,8 @@
         _,
         doT,
         TemplateFactory,
+        Device,
+        Account,
         BackupRestoreService,
         RemoteRestoreAdvanceView,
         LocalRestoreAdvanceView,
@@ -35,12 +39,17 @@
                 Object.defineProperties(this, {
                     enableRestoreButton : {
                         set : function (value) {
-                            this.$('.startrestore').prop('disabled', !value);
+                            var isConnected = Device.get('isConnected');
+                            var isLogin = Account.get('isLogin');
+                            var disabled = !value || !isConnected || (!this.isLocal && !isLogin);
+                            this.$('.startrestore').prop('disabled', disabled);
                         }
                     },
                     enableConfirmButton : {
                         set : function (value) {
-                            this.$('.confirm').prop('disabled', !value);
+                            var isLogin = Account.get('isLogin');
+                            var disabled = !value || (!this.isLocal && !isLogin);
+                            this.$('.confirm').prop('disabled', disabled);
                         }
                     },
                     isLocal : {
@@ -61,15 +70,12 @@
                 var $confirm = this.$('.confirm').hide();
                 var $done = this.$('.done').hide();
                 var $taskmanager = this.$('.taskmanager').hide();
-                var $showMore = this.$('.showmore').hide();
+                this.$('.showmore').hide();
 
                 switch (type) {
                 case 'selectFile':
                     if (this.isLocal) {
                         $showFile.show();
-                    }
-                    if (!this.isLocal) {
-                        $showMore.show();
                     }
                     $cancel.show();
                     $confirm.show();
@@ -93,6 +99,12 @@
                     $done.show();
                     break;
                 }
+            },
+            hideShowMoreBtn : function () {
+                this.$('.showmore').hide();
+            },
+            displayShowMoreBtn : function () {
+                this.$('.showmore').show();
             },
             clickBtnAdvanced : function () {
 
@@ -130,7 +142,28 @@
             },
             render : function () {
                 this.$el.html(this.template({}));
+
+                this.initState();
                 return this;
+            },
+            initState : function () {
+                this.listenTo(Device, 'change:isConnected', function () {
+                    var isConnected = Device.get('isConnected');
+                    this.$('.startrestore').prop('disabled', !isConnected);
+                    this.$('.advanced').toggle(isConnected);
+                });
+
+                this.listenTo(RestoreContextModel, 'change:dataIDList', function () {
+                    var list = RestoreContextModel.get('dataIDList');
+                    this.enableRestoreButton = (list.length !== 0);
+                });
+
+                if (!this.isLocal) {
+                    this.listenTo(Account, 'change:isLogin', function () {
+                        var isLogin = Account.get('isLogin');
+                        this.$('.startrestore, .confirm').prop('disabled', !isLogin);
+                    });
+                }
             },
             remove : function () {
                 RemoteFooterView.__super__.remove.apply(this, arguments);

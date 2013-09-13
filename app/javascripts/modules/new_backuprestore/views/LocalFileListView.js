@@ -61,6 +61,7 @@
                 fileList.remove();
                 fileList = undefined;
 
+                restoreFileCollection.reset();
                 restoreFileCollection = undefined;
             },
             buildList : function () {
@@ -125,6 +126,7 @@
                     }
                 });
                 RestoreContextModel.set('dataIDList', list);
+                RestoreContextModel.set('originDataIDList', list);
 
                 BackupRestoreService.getSupportAppDataAsync().done(function (resp) {
 

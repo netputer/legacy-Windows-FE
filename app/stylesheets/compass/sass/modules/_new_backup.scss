@@ -12,7 +12,7 @@
 }
 
 .w-backuprestore-start {
-    height: 550px;
+    height: 440px;
     width: 650px;
 
     .action-panel {
@@ -28,8 +28,10 @@
             width: 300px;
 
             &:hover {
-                .action-container {
+
+                .action-container, .icon, .info {
                     -webkit-transform: translate3d(0, -300px, 0);
+                    -webkit-transition-timing-function: ease-in;
                 }
             }
 
@@ -53,6 +55,7 @@
                 height: 96px;
                 margin: 80px auto 30px;
                 width: 144px;
+                -webkit-transition: all .2s;
             }
 
             .info {
@@ -64,6 +67,7 @@
                     font-size: 20px;
                     margin-bottom: 15px;
                 }
+                -webkit-transition: all .2s;
             }
 
             .action-container {
@@ -75,15 +79,24 @@
 
 
                 .action-button {
-                    background: #3baa24;
+                    background: #58b745;
                     cursor: pointer;
                     height: 135px;
                     -webkit-box-align: center;
+                    -webkit-transition: background .2s;
+
+                    &:hover {
+                        background: #3baa24;
+                    }
+
+                    &:active {
+                        background: #2f7c2f;
+                    }
 
                     .top {
 
                         margin-top: 40px;
-                        margin-bottom: 20px;
+                        margin-bottom: 10px;
                         width: 280px;
                         -webkit-box-align: center;
                         -webkit-box-pack: center;
@@ -102,6 +115,7 @@
 
                     .desc {
                         display: block;
+                        opacity: 0.6;
                         text-align: center;
                         width: 200px;
                     }
@@ -118,7 +132,7 @@
 
                 .action-backup-remote,
                 .action-restore-remote {
-                    margin-top: 5px;
+                    margin-top: 10px;
 
                     .action-icon {
                         @include backuprestore-sprite(cloudlight);
@@ -129,12 +143,13 @@
     }
 
     .info-panel {
-        height: 250px;
+        height: 140px;
         -webkit-box-align: center;
 
         .info-panel {
             height: 40px;
             width: 210px;
+            -webkit-box-pack: center;
 
             &.last-backup-time {
                 margin-right: 5px;
@@ -163,7 +178,6 @@
 
             .icon {
                 height: 32px;
-                margin-left: 10px;
                 margin-right: 10px;
                 width: 40px;
             }
@@ -190,7 +204,6 @@
     width: 650px;
 
     .top {
-        border-bottom: 1px $secondaryBtnBorderColor solid;
         height: 150px;
 
         .big-title {
@@ -203,9 +216,10 @@
 }
 
 .w-backuprestore-progress {
-    border-bottom: 1px $secondaryBtnBorderColor solid;
-    border-top: 1px $windowBorderColor solid;
+    border-bottom: 3px #ccc solid;
+    border-top: 3px #ccc solid;
     height: 250px;
+    -webkit-box-pack: center;
 
     .content-box {
         height: 250px;
@@ -234,8 +248,8 @@
         }
 
         progress {
-            margin-left: 40px;
-            width: 140px;
+            margin-left: 55px;
+            width: 115px;
 
             &.hide {
                 display: none;
@@ -302,7 +316,6 @@
 
 .w-backuprestore-footer {
     height: 150px;
-    border-top: 1px $windowBorderColor solid;
 
     .left {
         margin-top: 15px;
@@ -447,24 +460,63 @@
     }
 }
 
-.w-backuprestore-download,
 .w-backuprestore-file-list {
-    border-bottom: 1px $secondaryBtnBorderColor solid;
-    border-top: 1px $windowBorderColor solid;
+    border-bottom: 3px #ccc solid;
+    border-top: 3px #ccc solid;
     height: 250px;
+}
+
+.w-backuprestore-download {
+    border-bottom: 3px #ccc solid;
+    border-top: 3px #ccc solid;
+    height: 250px;
+
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+
+    progress {
+        width: 220px;
+    }
+}
+
+.w-backuprestore-file-list {
+
+    .w-ui-smartlist-body-ctn {
+
+        li {
+            border-top: 1px #eee solid;
+        }
+    }
+
+    .empty-tip {
+        color: $textGrey;
+    }
 }
 
 .w-backuprestore-file-item {
     height: 45px;
 
     .name {
+
+        color: black;
         width: 340px;
         -webkit-box-pack: start;
         -webkit-box-align: center;
 
         input {
-            margin-left: 20px;
-            margin-right: 20px;
+            margin-left: 5px;
+            margin-right: 10px;
+        }
+
+        .time {
+            display: inline-block;
+            width: 110px;
+        }
+
+        .device-name {
+            display: inline-block;
+            text-align: center;
+            width: 160px;
         }
     }
 
@@ -492,6 +544,8 @@
 
         .app-data-icon {
             height: 16px;
+            margin-left: 5px;
+            vertical-align: middle;
             width: 16px;
             @include backuprestore-sprite(data);
         }
@@ -555,9 +609,6 @@
         }
     }
 }
-
-
-
 
 .w-backup-auto-tip {
     .pic-ctn {

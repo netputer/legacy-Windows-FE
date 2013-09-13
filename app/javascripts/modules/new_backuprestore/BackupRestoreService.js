@@ -45,27 +45,28 @@
             AllDataTypes : [1, 2, 3],
 
             ErrorCodeToMessage : {
-                3 : i18n.backup_restore.SD_CARD_ERROR,
-                4 : i18n.backup_restore.SD_CARD_ERROR,
-                5 : i18n.backup_restore.SD_CARD_ERROR,
-                6 : i18n.backup_restore.SD_CARD_ERROR,
-                9 : i18n.backup_restore.SD_CARD_ERROR,
-                400 : i18n.backup_restore.FILE_DOWNLOAD_ERROR,
-                402 : i18n.backup_restore.CANCELED,
-                412 : i18n.backup_restore.SD_CARD_ERROR,
-                500 : i18n.backup_restore.RESTORE_CONNECTION_LOST,
-                709 : i18n.backup_restore.ERROR_WHEN_WRITE_ROM,
-                720 : i18n.backup_restore.RESTORE_INVLID_FILE,
-                723 : i18n.backup_restore.BACKUP_RESTORE_RUNING,
-                733 : i18n.backup_restore.BACKUP_TO_CLOUD_FAILED,
-                735 : i18n.backup_restore.BACKUP_APP_DATA_ERROR_DEVICE_INCOMPATIBLE,
-                736 : i18n.backup_restore.BACKUP_APP_DATA_ERROR_DEVICE_WIFI,
-                737 : i18n.backup_restore.BACKUP_APP_DATA_ERROR_ENCRYPT,
-                738 : i18n.backup_restore.BACKUP_APP_DATA_ERROR_CONNECT_ERROR,
-                739 : i18n.backup_restore.USER_CANCELED,
-                741 : i18n.backup_restore.CUSTOM_AUTH_FAILED_ERROR,
-                742 : i18n.backup_restore.CUSTOM_SERVER_UNAVALABEL_ERROR,
-                746 : i18n.backup_restore.CUSTOM_UNZIP_BACKUP_FILE_ERROR
+                3 : i18n.new_backuprestore.SD_CARD_ERROR,
+                4 : i18n.new_backuprestore.SD_CARD_ERROR,
+                5 : i18n.new_backuprestore.SD_CARD_ERROR,
+                6 : i18n.new_backuprestore.SD_CARD_ERROR,
+                9 : i18n.new_backuprestore.SD_CARD_ERROR,
+                400 : i18n.new_backuprestore.FILE_DOWNLOAD_ERROR,
+                402 : i18n.new_backuprestore.CANCELED,
+                412 : i18n.new_backuprestore.SD_CARD_ERROR,
+                500 : i18n.new_backuprestore.RESTORE_CONNECTION_LOST,
+                707 : i18n.new_backuprestore.WRITE_LOCAL_FILE_ERROR,
+                709 : i18n.new_backuprestore.ERROR_WHEN_WRITE_ROM,
+                720 : i18n.new_backuprestore.RESTORE_INVLID_FILE,
+                723 : i18n.new_backuprestore.BACKUP_RESTORE_RUNING,
+                733 : i18n.new_backuprestore.BACKUP_TO_CLOUD_FAILED,
+                735 : i18n.new_backuprestore.BACKUP_APP_DATA_ERROR_DEVICE_INCOMPATIBLE,
+                736 : i18n.new_backuprestore.BACKUP_APP_DATA_ERROR_DEVICE_WIFI,
+                737 : i18n.new_backuprestore.BACKUP_APP_DATA_ERROR_ENCRYPT,
+                738 : i18n.new_backuprestore.BACKUP_APP_DATA_ERROR_CONNECT_ERROR,
+                739 : i18n.new_backuprestore.USER_CANCELED,
+                741 : i18n.new_backuprestore.CUSTOM_AUTH_FAILED_ERROR,
+                742 : i18n.new_backuprestore.CUSTOM_SERVER_UNAVALABEL_ERROR,
+                746 : i18n.new_backuprestore.CUSTOM_UNZIP_BACKUP_FILE_ERROR
             },
 
             // Copy from proto
@@ -227,8 +228,11 @@
         };
 
 
-        BackupRestoreService.showAndRecordError = function (evt, resp, type) {
-            alert(this.getErrorMessage(resp.state_code));
+        BackupRestoreService.showAndRecordError = function (evt, resp, type, hide) {
+
+            if (!hide) {
+                alert(this.getErrorMessage(resp.state_code));
+            }
             this.recordError(evt, resp, type);
         };
 
@@ -258,7 +262,7 @@
                 'is_local' : context.IsLocal,
                 'data_id_list' : context.get('dataIDList').join(','),
                 'appt_type' : context.get('appType'),
-                'full_file_name' : context.GetFullFilePath,
+                'full_file_name' : context.fileFullPath,
                 'sms_error_num' : context.get('smsErrorList').length,
                 'contacts_error_num' : context.get('contactsErrorList').length,
                 'app_error_num' : context.get('appErrorList').length,

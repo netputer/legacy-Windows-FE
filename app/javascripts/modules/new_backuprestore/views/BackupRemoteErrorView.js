@@ -93,7 +93,7 @@
                 BackupRestoreService.logBackupContextModel(BackupContextModel, false);
 
                 this.remove();
-                this.trigger('__CANCEL');
+                this.trigger('__IGNORE');
             },
             clickButtonRetry : function () {
                 this.remove();

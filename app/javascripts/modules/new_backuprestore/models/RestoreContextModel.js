@@ -72,9 +72,12 @@
                     BrSpec : {
                         get : function () {
                             var data = this.get('restoreData');
+                            var noneApp = _.filter(this.get('dataIDList'), function (item) {
+                                return item !== CONFIG.enums.BR_TYPE_APP && item !== CONFIG.enums.BR_TYPE_APP_DATA;
+                            });
 
                             return {
-                                item : _.map(this.get('dataIDList'), function (type) {
+                                item : _.map(noneApp, function (type) {
                                     if (data[type]) {
                                         return {
                                             type : type,
@@ -100,6 +103,7 @@
 
                 // data type selected to restore
                 dataIDList : [],
+                originDataIDList: [],
 
                 isAccountReady : false,
                 accountType : '',
@@ -126,6 +130,7 @@
 
                 this.set('fileName', '');
                 this.set('dataIDList', []);
+                this.set('originDataIDList', []);
 
                 this.set('isAccountReady', false);
                 this.set('accountType', '');

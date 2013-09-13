@@ -38,23 +38,29 @@
             render : function () {
 
                 this.$el.html(this.template({}));
-
-                setTimeout(function () {
-                    this.initState();
-                }.bind(this), 0);
-
                 return this;
             },
             initState : function () {
 
                 $('input[type=checkbox]').prop('disabled', true);
 
-                _.map(RestoreContextModel.get('dataIDList'), function (item) {
+                var dataIDList = RestoreContextModel.get('dataIDList');
+                _.map(RestoreContextModel.get('originDataIDList'), function (item) {
                     $('input[type=checkbox][value=' + item +  ']').prop({
-                        'checked' : true,
+                        'checked' : _.contains(dataIDList, item),
                         'disabled' : false
                     });
                 });
+
+                var checked = this.$('input[type=checkbox]:checked');
+                this.trigger('__ENABLE_CONFIRM', checked.length > 0);
+            },
+            clickRestoreContent : function () {
+                var checked = this.$('input[type=checkbox]:checked');
+                this.trigger('__ENABLE_CONFIRM', checked.length > 0);
+            },
+            events : {
+                'click input[type=checkbox]' : 'clickRestoreContent'
             }
         });
 
@@ -73,6 +79,12 @@
                 this.on(UIHelper.EventsMapping.SHOW, function () {
                     this.bodyView = new BodyView();
                     this.$bodyContent = this.bodyView.render().$el;
+
+                    this.listenTo(this.bodyView, '__ENABLE_CONFIRM', function (enable) {
+                        this.$('.button_yes').prop('disabled', !enable);
+                    });
+
+                    this.bodyView.initState();
                     this.center();
 
                     this.once('remove', function () {

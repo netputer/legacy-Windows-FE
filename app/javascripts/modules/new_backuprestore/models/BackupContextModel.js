@@ -34,13 +34,18 @@
                             return this.get('filePath').length > 0 && this.get('fileName').length > 0;
                         }
                     },
-                    GetFullFilePath : {
+                    fileFullPath : {
                         get : function () {
                             var filePath = this.get('filePath');
                             if (filePath.length > 0 && filePath[filePath.length - 1] !== '\\') {
                                 filePath = filePath + '\\';
                             }
                             return filePath + this.get('fileName');
+                        }
+                    },
+                    fileFullName : {
+                        get : function () {
+                            return this.fileFullPath + '.zip';
                         }
                     },
                     GetBRSpec : {
@@ -89,8 +94,8 @@
                 // list of data numbers of all data type
                 dataNumList : {},
 
-                // 0 : wdapk, 1 : apk, 2 : auto
-                appType : 2,
+                // 0 : apk, 1 : wdapk, 2 : auto
+                appType : 0,
 
                 filePath : '',
                 fileName : '',
@@ -111,7 +116,7 @@
                 this.set('dataIDList', [CONFIG.enums.BR_TYPE_CONTACT, CONFIG.enums.BR_TYPE_SMS, CONFIG.enums.BR_TYPE_APP]);
                 this.set('dataNumList', {});
 
-                this.set('appType', 2);
+                this.set('appType', 0);
                 this.set('filePath', '');
                 this.set('fileName', '');
                 this.set('appPath', '');

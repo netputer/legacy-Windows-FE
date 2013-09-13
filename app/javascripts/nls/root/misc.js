@@ -221,6 +221,7 @@ define({
     DONTSAVE : '不保存',
     PHONE : '手机内存',
     SD_CARD : 'SD 卡',
+    MANAGE_SD_CARD : '管理 SD 卡',
 
     AGENT_NOTIFI : '连接成功，现在手机上的豌豆荚也可以用电脑上网，不耗费流量。',
     SEND_TO_PHONE : '发送到手机',

@@ -38,21 +38,16 @@
             render : function () {
 
                 this.$el.html(this.template({}));
-
-                setTimeout(function () {
-                    this.initState();
-                }.bind(this), 0);
-
                 return this;
             },
             initState : function () {
-
                 this.$('input[type=checkbox]').prop('disabled', true);
 
-                _.map(RestoreContextModel.get('dataIDList'), function (item) {
+                var dataIDList = RestoreContextModel.get('dataIDList');
+                _.map(RestoreContextModel.get('originDataIDList'), function (item) {
 
                     this.$('input[type=checkbox][value=' + item +  ']').prop({
-                        'checked' : true,
+                        'checked' :  _.contains(dataIDList, item),
                         'disabled' : false
                     });
 
@@ -63,6 +58,15 @@
                     }
                 }, this);
 
+                var checked = this.$('input[type=checkbox]:checked');
+                this.trigger('__ENABLE_CONFIRM', checked.length > 0);
+            },
+            clickRestoreContent : function () {
+                var checked = this.$('input[type=checkbox]:checked');
+                this.trigger('__ENABLE_CONFIRM', checked.length > 0);
+            },
+            events: {
+                'click input[type=checkbox]' : 'clickRestoreContent'
             }
         });
 
@@ -81,6 +85,12 @@
                 this.on(UIHelper.EventsMapping.SHOW, function () {
                     this.bodyView = new BodyView();
                     this.$bodyContent = this.bodyView.render().$el;
+
+                    this.listenTo(this.bodyView, '__ENABLE_CONFIRM', function (enable) {
+                        this.$('.button_yes').prop('disabled', !enable);
+                    });
+
+                    this.bodyView.initState();
                     this.center();
 
                     this.once('remove', function () {
@@ -92,7 +102,7 @@
             clickButtonYes : function () {
                 var list = [];
                 _.map(this.$('input[type=checkbox]:checked'), function (input) {
-                    list.push(parseInt(input.valuem, 10));
+                    list.push(parseInt(input.value, 10));
                 });
                 RestoreContextModel.set('dataIDList', list);
             },
@@ -108,7 +118,7 @@
                     localRestoreAdvanceView = new LocalRestoreAdvanceView({
                         title : i18n.new_backuprestore.RESTORE_ADVANCE_TITLE,
                         disableX: true,
-                        width : '430px',
+                        width : '440px',
                         height : '130px'
 
                     });

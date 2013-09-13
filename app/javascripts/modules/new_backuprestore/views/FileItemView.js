@@ -6,14 +6,16 @@
         'doT',
         'jquery',
         'ui/TemplateFactory',
-        'ui/BaseListItem'
+        'ui/BaseListItem',
+        'ui/PopupTip'
     ], function (
         Backbone,
         _,
         doT,
         $,
         TemplateFactory,
-        BaseListItem
+        BaseListItem,
+        PopupTip
     ) {
 
         var FileItemView = BaseListItem.extend({
@@ -21,6 +23,12 @@
             className : 'w-backuprestore-file-item hbox',
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
+
+                var tip = new PopupTip({
+                    $host : this.$('.app-data-icon')
+                });
+                tip.zero();
+
                 return this;
             }
         });
