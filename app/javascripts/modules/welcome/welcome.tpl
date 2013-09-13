@@ -131,6 +131,72 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="snappea-web">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">SnapPea Web</h1>
+        <p class="desc">Your photos, messages, contacts and apps from your browser</p>
+        <div class="btn-ctn hbox">
+            <a class="button-action" href="http://web.snappea.com/" target="_default">Try it now</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-ui-template" id="snappea-photos">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">SnapPea Photos Chrome Extension</h1>
+        <p class="desc">All your photos in just one click</p>
+        <div class="btn-ctn hbox">
+            <a class="button-action" href="https://chrome.google.com/webstore/detail/snappea-photos/epindigjbiphgfhnmlpcocaiafjgbabe" target="_default">Get it now</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-ui-template" id="snappea-onemobile">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">1Mobile</h1>
+        <p class="desc">Download free apps</p>
+        <div class="btn-ctn hbox">
+            <button class="button-action">{{= i18n.misc.OPEN }}</button>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-ui-template" id="snappea-facebook">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">SnapPea is on Facebook</h1>
+        <p class="desc">Like SnapPea to get tips & news!</p>
+        <div class="btn-ctn hbox">
+            <a class="button-action" href="https://www.facebook.com/SnapPeaInc" target="_default">Go to Facebook</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-ui-template" id="snappea-itunes">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">iTunes Movies</h1>
+        <p class="desc">Download free movie trailers</p>
+        <div class="btn-ctn hbox">
+            <button class="button-action">{{= i18n.misc.OPEN }}</button>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-ui-template" id="snappea-youtube">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">YouTube</h1>
+        <p class="desc">Download from PC, watch on your phone</p>
+        <div class="btn-ctn hbox">
+            <button class="button-action">{{= i18n.misc.OPEN }}</button>
+        </div>
+    </div>
+</script>
+
 <script type="text/x-ui-template" id="item-list-card">
     <div class="icon-ctn">
         <div class="text-primary title">{{! it.title }}</div>
