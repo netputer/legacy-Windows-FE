@@ -114,12 +114,12 @@
                 var toggleContent = function (list) {
                     var content;
                     var hideList = _.difference(backupList, list);
-                    _.map(hideList, function (item) {
+                    _.each(hideList, function (item) {
                         content = this.getContent(item);
                         content.hide();
                     }, this);
 
-                    _.map(list, function (item) {
+                    _.each(list, function (item) {
                         content = this.getContent(item);
                         content.show();
                     }, this);

@@ -44,7 +44,7 @@
                 this.$('input[type=checkbox]').prop('disabled', true);
 
                 var dataIDList = RestoreContextModel.get('dataIDList');
-                _.map(RestoreContextModel.get('originDataIDList'), function (item) {
+                _.each(RestoreContextModel.get('originDataIDList'), function (item) {
 
                     this.$('input[type=checkbox][value=' + item +  ']').prop({
                         'checked' :  _.contains(dataIDList, item),
@@ -101,7 +101,7 @@
             },
             clickButtonYes : function () {
                 var list = [];
-                _.map(this.$('input[type=checkbox]:checked'), function (input) {
+                _.each(this.$('input[type=checkbox]:checked'), function (input) {
                     list.push(parseInt(input.value, 10));
                 });
                 RestoreContextModel.set('dataIDList', list);
