@@ -102,5 +102,7 @@ define({
 
     COPY_SMS : 'Message successfully copied to the Clipboard',
 
-    UNREAD_DES : '{1} 条未读短信'
+    RETURN_ALL : 'All messages',
+    SEARCH_TIP : '{1} messages containing「{2}」',
+    UNREAD_DES : '{1} unread messages'
 });

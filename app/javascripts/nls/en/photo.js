@@ -16,8 +16,8 @@ define({
     GET_PHOTOS_ERROR : 'Failed to access picture',
     DELETE_PROGRESS_TEXT : 'Deleting pictures, please wait...',
     DELETE_SUCCESS_TEXT : 'Deleted {1} picture(s)',
-    EMPTY_PHONE_LIST : '<span>好像您的手机上还没有照片哦，</span></br><span>要不先去手机上拍几张照片？</span>',
-    EMPTY_LIBRARY_LIST : '<span>好像您手机上还没有图片哦，</span></br><span>要不去下几张好看的壁纸吧？</span></br><button class="button-download-pic primary grand">马上下载壁纸</button>',
+    EMPTY_PHONE_LIST : 'Import a picture here!',
+    EMPTY_LIBRARY_LIST : 'Import a picture here!',
     EMPTY_CLOUD_LIST : 'No photos in your cloud album yet',
     EXPORT_FAILED_TEXT : 'Export failed',
     SLIDES_STOP_TEXT : 'Pause',
@@ -37,5 +37,7 @@ define({
     PHOTO_SYNC : '<p>Do you want to automatically upload to your gallery？</p><p>Take a picture on your device, and it\'ll upload to: <a href="#" class="go-photo-sync">{1}</a> From there you can view or share your photos anytime!</p>',
     TIP_CLOSE_PHOTO_SYNC : 'Are you sure you want to turn off photo sync?',
     CLOSE_PHOTO_SYNC : 'Turn off photo sync',
-    EMPTY_TIP_PHOTO_CLOUD_NOT_LOGIN : '<span class="button-login link">Sign in to SnapPea</span> to view your cloud albums'
+    EMPTY_TIP_PHOTO_CLOUD_NOT_LOGIN : '<span class="button-login link">Sign in to SnapPea</span> to view your cloud albums',
+
+    CUSTOM_RESOURCE_LOCKED : 'SnapPea encountered a technical problem on August 25th, so account services are temporarily closed for 12 hours.'
 });
