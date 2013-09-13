@@ -20,7 +20,7 @@
                 eventName : 'button_yes'
             }, {
                 $button : $('<button>').html(i18n.ui.NO),
-                eventName : 'button_yes'
+                eventName : 'button_cancel'
             }],
             draggable : true,
             width : 360

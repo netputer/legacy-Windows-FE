@@ -120,7 +120,7 @@
                 RestoreContextModel.set('fileName', data.path);
 
                 var list = [];
-                _.map(restoreTypeList, function (type) {
+                _.each(restoreTypeList, function (type) {
                     if (data[type]) {
                         list.push(type);
                     }
