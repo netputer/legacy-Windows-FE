@@ -26,6 +26,20 @@
             <div class="count">{{= it.count }}</div>
         {{?}}
     {{?}}
+    {{? it.loading !== undefined }}
+        <div class="w-ui-loading-small" >
+            <div class="anima">
+                <div class="rotor rotor1"></div>
+                <div class="rotor rotor2"></div>
+                <div class="rotor rotor3"></div>
+                <div class="rotor rotor4"></div>
+                <div class="rotor rotor5"></div>
+                <div class="rotor rotor6"></div>
+                <div class="rotor rotor7"></div>
+                <div class="rotor rotor8"></div>
+            </div>
+        </div>
+    {{?}}
 </script>
 
 <script type="text/x-ui-template" id="menu-child-item">

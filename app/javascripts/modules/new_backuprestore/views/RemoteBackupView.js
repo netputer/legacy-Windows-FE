@@ -11,7 +11,9 @@
         'Internationalization',
         'utilities/StringUtil',
         'IO',
+        'Account',
         'WindowController',
+        'main/collections/PIMCollection',
         'new_backuprestore/views/ConfirmWindowView',
         'new_backuprestore/views/BaseView',
         'new_backuprestore/views/BackupRestoreProgressView',
@@ -31,7 +33,9 @@
         i18n,
         StringUtil,
         IO,
+        Account,
         WindowController,
+        PIMCollection,
         ConfirmWindowView,
         BaseView,
         BackupRestoreProgressView,
@@ -58,6 +62,9 @@
                 case 'done':
                     this.$('.done').show();
                     this.$('.cancel').hide();
+                    var url = 'https://account.wandoujia.com/?auth=' + encodeURIComponent(Account.get('auth')) + '&callback=http%3A%2F%2Fwww.wandoujia.com%2Fcloud';
+                    this.$('.show-remote-file').show().prop('href', url);
+                    this.$('.advanced').hide();
                     break;
                 }
             }
@@ -141,15 +148,19 @@
                     if (this.isProgressing) {
 
                         confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
-                            this.isProgressing = false;
-                            this.offMessageHandler();
 
                             BackupRestoreService.stopRemoteSyncAsync().done(function () {
+
+                                this.isProgressing = false;
+                                this.offMessageHandler();
+                                this.releaseWindow();
                                 this.trigger('__CANCEL');
+
                             }.bind(this));
 
                         }, this);
                     } else {
+                        this.releaseWindow();
                         this.trigger('__CANCEL');
                     }
                 });
@@ -157,6 +168,7 @@
                 this.listenTo(footerView, '__START_BACKUP', function () {
                     this.setDomState(false);
                     this.startBackup();
+                    PIMCollection.getInstance().get(20).set('loading', true);
                 });
             },
             initState : function () {
@@ -280,8 +292,11 @@
 
                 BackupRestoreService.logBackupContextModel(BackupContextModel, true);
 
-                this.trigger('__SHOW_NOTIFIER', 'REMOTE_BACKUP_COMPLETE');
+                this.releaseWindow();
+            },
+            releaseWindow : function () {
                 WindowController.releaseWindowAsync();
+                PIMCollection.getInstance().get(20).set('loading', false);
             }
         });
 

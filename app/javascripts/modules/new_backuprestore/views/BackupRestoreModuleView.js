@@ -13,7 +13,6 @@
         'new_backuprestore/views/LocalBackupView',
         'new_backuprestore/views/RemoteBackupView',
         'new_backuprestore/views/RestoreView',
-        'new_backuprestore/views/NotifierPanelView',
         'new_backuprestore/models/BackupContextModel',
         'new_backuprestore/models/RestoreContextModel'
     ], function (
@@ -29,7 +28,6 @@
         LocalBackupView,
         RemoteBackupView,
         RestoreView,
-        NotifierPanelView,
         BackupContextModel,
         RestoreContextModel
     ) {
@@ -79,24 +77,6 @@
             appendView : function (view) {
                 this.$el.append(view.render().$el);
                 view.initState();
-            },
-            showNotifierPanelView : function (type) {
-
-                if (window.SnapPea.CurrentModule === 'backup-restore') {
-                    return;
-                }
-
-                if (this.views.notifier) {
-                    this.views.notifier.show(type);
-                    return;
-                }
-
-                this.views.notifier = NotifierPanelView.getInstance({
-                    $host: $('.w-sidebar-menu li .backup').parent(),
-                    delay : true
-                });
-                this.views.notifier.zero();
-                this.views.notifier.show(type);
             },
             showStartView : function () {
 
@@ -152,10 +132,6 @@
                 this.listenTo(localBackupView, '__CANCEL __DONE', function () {
                     localBackupView.remove();
                     this.showStartView();
-                });
-
-                this.listenTo(localBackupView, '__SHOW_NOTIFIER', function (type) {
-                    this.showNotifierPanelView(type);
                 });
             },
             showRemoteBackupView : function () {

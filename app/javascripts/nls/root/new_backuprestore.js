@@ -198,17 +198,11 @@ define({
     RESTORE_CONTACT_COMPLATE : '联系人已经恢复到您的手机。',
     RESTORE_SMS_COMPLATE : '短信已经恢复到您的手机。',
     RESTORE_NONAPP_COMPLATE : '联系人和短信已经恢复到您的手机。',
-    RESTORE_APP_COMPLATE : '软件已经开始下载，下载完成后将自动安装到您的手机，期间请不要断开连接',
+    RESTORE_APP_COMPLATE : '软件已经开始安装，期间请不要断开连接。',
     RESTORING : '正在恢复数据，请不要断开连接。',
     INCLUDE_APP_DATA : '包含应用数据',
     CANCEL_RESTORE : '恢复正在进行，是否取消恢复？',
     NO_REMOTE_BACKUP_FILE : '您还没有备份过数据到云端',
-
-    LOCAL_BACKUP_COMPLETE : '<span class="bigTitle">备份完成</span><br/><span class="text-thirdly desc">您的手机数据已经成功备份到电脑</span><br/><span class="link show-file">查看备份文件</span>',
-    LOCAL_RESTORE_COMPLETE : '<span class="bigTitle">恢复完成</span><br/><span class="text-thirdly desc">您的数据已经成功恢复到手机/span>',
-    REMOTE_BACKUP_COMPLETE : '<span class="bigTitle">备份完成</span><br/><span class="text-thirdly desc">您的手机数据已经成功备份到云端</span>',
-    REMOTE_RESTORE_COMPLETE : '<span class="bigTitle">恢复完成</span><br/><span class="text-thirdly desc">您的数据已经成功恢复到手机</span>',
-
 
     ENABLE : '已开启',
     DISABLE : '未开启',

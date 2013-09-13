@@ -93,8 +93,7 @@
                         enableMutilselect : false,
                         itemHeight : 45,
                         listenToCollection : restoreFileCollection,
-                        loading : restoreFileCollection.loading || restoreFileCollection.syncing,
-                        emptyTip : i18n.new_backuprestore.NO_REMOTE_BACKUP_FILE
+                        loading : restoreFileCollection.loading || restoreFileCollection.syncing
                     });
                     this.$el.append(fileList.render().$el);
                 }
@@ -107,6 +106,9 @@
                         this.trigger('__DISPLAY_SHOW_MORE');
                     }
 
+                    if (restoreFileCollection.length === 0) {
+                        fileList.emptyTip = i18n.new_backuprestore.NO_REMOTE_BACKUP_FILE;
+                    }
                     fileList.toggleEmptyTip(restoreFileCollection.length === 0);
                 });
 
