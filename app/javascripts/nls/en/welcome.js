@@ -103,7 +103,7 @@ define({
     CARD_CLOUD_PHOTO_TITLE : '要自动同步云相册吗？',
     CARD_CLOUD_PHOTO_DESC : '开启云相册同步后，豌豆荚将自动把您云相册的图片同步到电脑，查看更方便。',
     CARD_CLOUD_PHOTO_OPEN : '开启',
-    CARD_BACKUP_TITLE : 'No backup for 10 days,'
+    CARD_BACKUP_TITLE : 'No backup for 10 days',
     CARD_BACKUP_DESC : 'Back up your phone so that you don\'t lose your phone\'s data!',
     CARD_BACKUP_ACTION : 'Backup',
     CARD_TIPS_TITLE : 'About SnapPea\'s features',
