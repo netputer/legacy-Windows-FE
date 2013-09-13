@@ -12,9 +12,9 @@ define({
     GROUP_ALL : 'All groups',
     GROUP_LOADING : 'Loading group info...',
 
-    ALERT_TIP_EXOPRT_OUTLOOK : '<p>Export completed! </p><p>Outlook CSV format only supports three phone numbers or email addresses. It doesn\'t accept chat or profile pictures.</p>',
-    ALERT_TIP_EXOPRT_WINDOWS_MAIL : '<p>Export completed! </p><p>Windows Mail CSV supports only two phone numbers, one fax, and  one e-mail address. It doesn\'t accept groups, chat, or profile pictures.</p>',
-    ALERT_TIP_EXOPRT_NOKIA : '<p>Export completed!</p><p>Nokia CSV supports only three phone numbers, two fax numbers, and email addresses. It doesn\'t accept groups, chat, or profile pictures.</p>',
+    ALERT_TIP_EXOPRT_OUTLOOK : '<p>Switch to vCard format? </p><p>Outlook CSV format only supports three phone numbers or email addresses. It doesn\'t accept chat or profile pictures.</p>',
+    ALERT_TIP_EXOPRT_WINDOWS_MAIL : '<p>Switch to vCard format? </p><p>Windows Mail CSV supports only two phone numbers, one fax, and  one e-mail address. It doesn\'t accept groups, chat, or profile pictures.</p>',
+    ALERT_TIP_EXOPRT_NOKIA : '<p>Switch to vCard format? </p><p>Nokia CSV supports only three phone numbers, two fax numbers, and email addresses. It doesn\'t accept groups, chat, or profile pictures.</p>',
     ALERT_TIP_EXOPRT_VCARD : 'Because the CSV format is prone to errors, SnapPea recommends you export contacts in the vCard format.',
     ALERT_TIP_MERGE_MANY_CONTACTS : 'Merging all your contacts can take a while. Continue?',
     ALERT_TIP_MERGE_CONTACTS : '<p> Merge {1} selected contacts? </p><p> {2} contacts will be deleted after merging</p>',
@@ -169,9 +169,5 @@ define({
     EXPORT_USING_VCARD : 'Export in vCard format',
 
     CONTACT_TIP_PART : '{1} contact(S) related to「{2}」',
-
-    EMPTY_PHONE_LIST : 'Oh? No photos in your phone\'s album',
-    EMPTY_LIBRARY_LIST : 'Oh? No pictures in your phone\'s gallery',
-
     NAV_CONTACT_ALL : 'All Contacts'
 });

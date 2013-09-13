@@ -13,6 +13,7 @@ define({
     USB_APK_UPDATING : 'After SnapPea finishes updating on your phone, you can start managing your phone...',
     USB_INSTALL_FAILED_NO_MORE_SPACE : 'Failed to install SnapPea on your phone, storage space is insufficient.',
     USB_INSTALL_FAILED_INTERNAL_ERROR : 'Failed to install SnapPea on your phone, internal error on phone.',
+    PHTONE_DISCONNECTED : 'Phone disconnected',
 
     POSIBLE_REASON : 'Possible reason:',
 
@@ -213,15 +214,15 @@ define({
     CLOUD_BACKUP_OPEN : 'Turn on cloud backup',
     ACCOUNT : 'Account',
     NICKNAME : 'Nickname',
-    CLOUD_PHOTO_OPEN : '开启云相册同步',
+    CLOUD_PHOTO_OPEN : 'Turn on cloud photos',
     RESELECT_FILE_TEXT : 'Re-select file',
     SAVE : 'Save',
     DONTSAVE : 'Don\'t save',
-    PHONE : '手机内存',
-    SD_CARD : 'SD 卡',
+    PHONE : 'Internal memory',
+    SD_CARD : 'SD Card',
     MANAGE_SD_CARD : '管理 SD 卡',
 
-    AGENT_NOTIFI : '连接成功，现在手机上的豌豆荚也可以用电脑上网，不耗费流量。',
-    SEND_TO_PHONE : '发送到手机',
-    DO_NOT_SEND_TO_PHONE : '不发送'
+    AGENT_NOTIFI : 'Connected, enjoy the SnapPea service!',
+    SEND_TO_PHONE : 'Send to phone',
+    DO_NOT_SEND_TO_PHONE : 'Don\'t send
 });
