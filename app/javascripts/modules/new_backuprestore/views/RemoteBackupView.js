@@ -158,7 +158,12 @@
 
                             }.bind(this));
 
+                        }, function () {
+                            this.userCancelled = false;
+                            footerView.toggleCancel(true);
                         }, this);
+
+                        footerView.toggleCancel(false);
                     } else {
                         this.releaseWindow();
                         this.trigger('__CANCEL');
@@ -236,6 +241,10 @@
 
                 BackupRestoreService.remoteManualBackupAsync(types, this.sessionId).done(function (resp) {
 
+                    if (this.userCancelled) {
+                        return;
+                    }
+
                     log({
                         'event' : 'debug.backup.remote.success'
                     });
@@ -246,6 +255,10 @@
                     this.backupAllFinish();
 
                 }.bind(this)).fail(function (resp) {
+
+                    if (this.userCancelled) {
+                        return;
+                    }
 
                     BackupContextModel.set('remoteErrorResult', resp.body.result);
                     BackupContextModel.set('remoteErrorCode', resp.state_code);

@@ -100,6 +100,9 @@
                     break;
                 }
             },
+            toggleCancel : function (show) {
+                this.$('.cancel').toggle(show);
+            },
             hideShowMoreBtn : function () {
                 this.$('.showmore').hide();
             },
