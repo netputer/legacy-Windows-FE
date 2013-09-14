@@ -19,6 +19,12 @@
         'welcome/views/TipsCardView',
         'welcome/views/WeiboCardView',
         'welcome/views/ChangelogCardView',
+        'welcome/views/SnapPeaWebCardView',
+        'welcome/views/SnapPeaPhotosCardView',
+        'welcome/views/OneMobileCardView',
+        'welcome/views/FacebookCardView',
+        'welcome/views/ITunesMoviesCardView',
+        'welcome/views/YouTubeCardView',
         'welcome/collections/FeedsCollection'
     ], function (
         Backbone,
@@ -39,6 +45,12 @@
         TipsCardView,
         WeiboCardView,
         ChangelogCardView,
+        SnapPeaWebCardView,
+        SnapPeaPhotosCardView,
+        OneMobileCardView,
+        FacebookCardView,
+        ITunesMoviesCardView,
+        YouTubeCardView,
         FeedsCollection
     ) {
         console.log('FeedListView - File loaded. ');
@@ -106,6 +118,24 @@
                             break;
                         case 99:
                             targetView = TipsCardView;
+                            break;
+                        case 100:
+                            targetView = SnapPeaWebCardView;
+                            break;
+                        case 101:
+                            targetView = SnapPeaPhotosCardView;
+                            break;
+                        case 102:
+                            targetView = OneMobileCardView;
+                            break;
+                        case 103:
+                            targetView = FacebookCardView;
+                            break;
+                        case 104:
+                            targetView = ITunesMoviesCardView;
+                            break;
+                        case 105:
+                            targetView = YouTubeCardView;
                             break;
                         }
                         if (targetView !== undefined) {
