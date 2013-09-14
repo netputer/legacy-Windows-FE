@@ -29,7 +29,9 @@
 
             &:hover {
 
-                .icon, .info, .action-container {
+                .icon,
+                .info,
+                .action-container {
                     top : -300px;
                     -webkit-transition-timing-function: ease-in;
                 }
