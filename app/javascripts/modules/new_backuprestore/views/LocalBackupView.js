@@ -177,7 +177,12 @@
                                 this.trigger('__CANCEL');
 
                             }.bind(this));
+                        }, function () {
+                            this.userCancelled = false;
+                            footerView.toggleCancel(true);
                         }, this);
+
+                        footerView.toggleCancel(false);
                     } else {
                         this.releaseWindow();
                         this.trigger('__CANCEL');
@@ -475,9 +480,6 @@
                 if (finishedNum < 2) {
                     return;
                 }
-
-                this.offMessageHandler();
-                this.isProgressing = false;
 
                 if (BackupContextModel.IsAppSelected) {
                     this.startBackupApps();

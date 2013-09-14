@@ -231,7 +231,12 @@
                                 this.trigger('__CANCEL');
                             }.bind(this));
 
+                        }, function () {
+                            this.userCancelled = false;
+                            footerView.toggleCancel(true);
                         }, this);
+
+                        footerView.toggleCancel(false);
                     } else {
                         this.releaseWindow();
                         this.trigger('__CANCEL');
@@ -267,10 +272,20 @@
                             });
                             this.showRestoreView();
 
+                        }.bind(this)).fail(function () {
+                            var message;
+                            if (this.isCsvFile(name)) {
+                                message = i18n.backup_restore.RESTORE_INVLID_CONTACTS_FILE;
+                            } else {
+                                message = BackupRestoreService.getErrorMessage(resp.state_code);
+                            }
+                            alert(message);
+
+                            BackupRestoreService.recordError('debug.restore.progress.error', resp, 5);
+                            BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
                         }.bind(this));
 
                     }.bind(this)).fail(function () {
-
                         alert(i18n.new_backuprestore.SET_RESTORE_FILE_FAILED);
                     });
                 });
@@ -328,6 +343,15 @@
                     this.startRestoreSmsAndContact();
                 }
 
+            },
+            isCsvFile : function (fileName) {
+                if (!fileName) {
+                    return false;
+                }
+
+                var csvExt = ".csv";
+                var index = fileName.lastIndexOf(".csv");
+                return (index > 0) && (index + csvExt.length === fileName.length);
             },
             startRestoreSmsAndContact : function () {
 
@@ -665,8 +689,13 @@
                 this.progressHanlder = IO.Backend.Device.onmessage({
                     'data.channel' : this.sessionId
                 }, function (data) {
+
+                    if (this.userCancelled) {
+                        return;
+                    }
                     downloadView.updateProgress(data, 100);
-                });
+
+                }.bind(this));
             },
             remove : function () {
                 RestoreView.__super__.remove.apply(this, arguments);
