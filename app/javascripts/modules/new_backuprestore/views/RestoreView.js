@@ -272,7 +272,7 @@
                             });
                             this.showRestoreView();
 
-                        }.bind(this)).fail(function () {
+                        }.bind(this)).fail(function (resp) {
                             var message;
                             if (this.isCsvFile(name)) {
                                 message = i18n.backup_restore.RESTORE_INVLID_CONTACTS_FILE;
