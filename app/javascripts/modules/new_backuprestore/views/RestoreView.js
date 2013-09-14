@@ -24,7 +24,8 @@
         'new_backuprestore/models/RestoreContextModel',
         'new_backuprestore/views/FileItemView',
         'new_backuprestore/views/LocalRestoreAdvanceView',
-        'new_backuprestore/views/ErrorItemListView'
+        'new_backuprestore/views/ErrorItemListView',
+        'new_backuprestore/views/RestoreChooseAccountView'
     ], function (
         $,
         Backbone,
@@ -49,7 +50,8 @@
         RestoreContextModel,
         FileItemView,
         LocalRestoreAdvanceView,
-        ErrorItemListView
+        ErrorItemListView,
+        RestoreChooseAccountView
     ) {
 
         console.log('RestoreView - File loaded');
@@ -65,6 +67,7 @@
         var footerView;
 
         var confirm = ConfirmWindowView.confirm;
+        var restoreChooseAccountView = RestoreChooseAccountView.getInstance();
 
         var downloadView;
         var DownloadView = Backbone.View.extend({
@@ -237,20 +240,15 @@
 
                 this.listenTo(footerView, '__START_RESTORE', function () {
 
-                    if (this.isLocal) {
-                        footerView.setButtonState('progressing');
-                        if (RestoreContextModel.IsNoneAppSelected) {
-                            this.startRestoreSmsAndContact();
-                        } else if (RestoreContextModel.IsAppSelected || RestoreContextModel.IsAppDataSelected) {
-                            this.startRestoreApps();
-                        }
+                    var battery = RestoreContextModel.get('battery');
+                    if (battery > 0 && battery < 20) {
+                        confirm(i18n.new_backuprestore.RESTORE_BATTERY_TIP, this.tryToStartRestore, this);
                     } else {
-                        footerView.setButtonState('downloading');
-                        this.showDownloadView();
-                        this.download();
+                        this.tryToStartRestore();
                     }
-                    PIMCollection.getInstance().get(20).set('loading', true);
                 });
+
+                this.listenTo(restoreChooseAccountView, '__START_RESTORE', this.startRestore);
 
                 this.listenTo(footerView, '__SHOW_FILE', function () {
 
@@ -304,6 +302,32 @@
                 this.listenTo(fileListView, '__DISPLAY_SHOW_MORE', function () {
                     footerView.displayShowMoreBtn();
                 });
+            },
+            startRestore : function () {
+
+                if (this.isLocal) {
+                    footerView.setButtonState('progressing');
+                    if (RestoreContextModel.IsNoneAppSelected) {
+                        this.startRestoreSmsAndContact();
+                    } else if (RestoreContextModel.IsAppSelected || RestoreContextModel.IsAppDataSelected) {
+                        this.startRestoreApps();
+                    }
+                } else {
+                    footerView.setButtonState('downloading');
+                    this.showDownloadView();
+                    this.download();
+                }
+                PIMCollection.getInstance().get(20).set('loading', true);
+
+            },
+            tryToStartRestore : function () {
+
+                if (RestoreContextModel.IsContactSelected && !RestoreContextModel.get('isAccountReady')) {
+                    restoreChooseAccountView.show();
+                } else {
+                    this.startRestoreSmsAndContact();
+                }
+
             },
             startRestoreSmsAndContact : function () {
 
@@ -384,9 +408,9 @@
                     this.isProgressing = false;
                     this.showErrorItem(progress);
                     break;
-                //case BackupRestoreService.CONSTS.BR_STATUS.READY:
-                //case BackupRestoreService.CONSTS.BR_STATUS.STOPPED:
-                //    break;
+                case BackupRestoreService.CONSTS.BR_STATUS.READY:
+                case BackupRestoreService.CONSTS.BR_STATUS.STOPPED:
+                    break;
                 case BackupRestoreService.CONSTS.BR_STATUS.ABORT:
 
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
@@ -649,6 +673,8 @@
 
                 footerView.remove();
                 footerView = undefined;
+
+                restoreChooseAccountView.remove();
 
                 if (progressView) {
                     progressView.remove();

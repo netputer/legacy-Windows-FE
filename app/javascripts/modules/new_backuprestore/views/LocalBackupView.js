@@ -294,9 +294,6 @@
                 }, function (data) {
 
                     //do nothing when
-                    //BackupRestoreService.CONSTS.BR_STATUS.READY
-                    //BackupRestoreService.CONSTS.BR_STATUS.PAUSED
-                    //BackupRestoreService.CONSTS.BR_STATUS.STOPPED:
                     switch (data.status) {
                     case BackupRestoreService.CONSTS.BR_STATUS.RUNNING:
                         this.updateContactAndSms(data.item);
@@ -310,6 +307,10 @@
                         BackupRestoreService.logBackupContextModel(BackupContextModel, false);
                         alert(i18n.new_backuprestore.BACKUP_ABORT_TIP);
                         this.releaseWindow();
+                        break;
+                    case BackupRestoreService.CONSTS.BR_STATUS.READY:
+                    case BackupRestoreService.CONSTS.BR_STATUS.PAUSED:
+                    case BackupRestoreService.CONSTS.BR_STATUS.STOPPED:
                         break;
                     default:
                         this.offMessageHandler();

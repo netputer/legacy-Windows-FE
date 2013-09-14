@@ -149,7 +149,6 @@
         .info-panel {
             height: 40px;
             width: 210px;
-            -webkit-box-pack: center;
 
             &.last-backup-time {
                 margin-right: 5px;
@@ -162,6 +161,7 @@
             &.auto-backup-local {
                 margin-left: 5px;
                 margin-right: 5px;
+                -webkit-box-pack: center;
 
                 .icon {
                     @include backuprestore-sprite(pc);
@@ -170,6 +170,7 @@
 
             &.auto-backup-remote{
                 margin-left: 5px;
+                -webkit-box-pack: end;
 
                 .icon {
                     @include backuprestore-sprite(cloud);
