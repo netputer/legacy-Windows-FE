@@ -4,12 +4,14 @@
         'backbone',
         'underscore',
         'Configuration',
+        'Environment',
         'Device',
         'Log'
     ], function (
         Backbone,
         _,
         CONFIG,
+        Environment,
         Device,
         log
     ) {
@@ -54,6 +56,7 @@
                     'totalFeedCursor' : this.data.totalFeedCursor,
                     'singleFeedCursor' : this.data.singleFeedCursor
                 });
+
                 return resp.feeds;
             },
             initialize : function () {
@@ -103,6 +106,10 @@
                                 reset : true
                             });
                         };
+                        if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
+                            this.snapPeaFetch();
+                            return;
+                        }
                         if (this.data.udid) {
                             doFetch.call(this);
                         } else {
@@ -113,6 +120,23 @@
                         }
                     }
                 }, this);
+            },
+            snapPeaFetch : function () {
+                this.set([
+                    { type : 100 },
+                    { type : 101 },
+                    { type : 102 },
+                    { type : 103 },
+                    { type : 104 },
+                    { type : 105 }
+                ]);
+
+                setTimeout(function () {
+                    this.loading = false;
+                    this.finish = true;
+
+                    this.trigger('refresh', this);
+                }.bind(this));
             }
         });
 
