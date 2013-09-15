@@ -4,7 +4,7 @@
         'i18n!nls/ui',
         'i18n!nls/misc',
         'i18n!nls/app',
-        'i18n!nls/common',
+        'i18n!nls/backup_restore',
         'i18n!nls/contact',
         'i18n!nls/music',
         'i18n!nls/photo',
@@ -14,14 +14,12 @@
         'i18n!nls/message',
         'i18n!nls/optimize',
         'i18n!nls/sync',
-
-        'i18n!nls/backup_restore',
         'i18n!nls/new_backuprestore'
     ], function (
         ui,
         misc,
         app,
-        common,
+        backup_restore,
         contact,
         music,
         photo,
@@ -31,8 +29,6 @@
         message,
         optimize,
         sync,
-
-        backup_restore,
         new_backuprestore
     ) {
         console.log('Internationalization - File loaded.');
@@ -41,7 +37,7 @@
             ui : ui,
             misc : misc,
             app : app,
-            common : common,
+            backup_restore : backup_restore,
             contact : contact,
             music : music,
             photo : photo,
@@ -51,8 +47,6 @@
             message : message,
             optimize : optimize,
             sync : sync,
-
-            backup_restore : backup_restore,
             new_backuprestore : new_backuprestore
         };
 
