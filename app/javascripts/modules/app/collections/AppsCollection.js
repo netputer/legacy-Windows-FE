@@ -401,13 +401,27 @@
             getAppsTags : function () {
                 var tags = [];
 
+                var count = {};
+
                 this.each(function (app) {
-                    if (app.get('web_info')) {
-                        tags = tags.concat(_.pluck(app.get('web_info').tags, 'tag'));
+                    if (app.get('web_info') && app.get('web_info').tags) {
+                        tags = tags.concat(_.map(app.get('web_info').tags, function (tag) {
+                            if (count[tag.tag]) {
+                                count[tag.tag]++;
+                            } else {
+                                count[tag.tag] = 1;
+                            }
+
+                            return tag.tag;
+                        }));
                     }
                 });
 
-                return _.uniq(tags);
+                tags = _.uniq(tags);
+
+                return tags.sort(function (a, b) {
+                    return count[b] - count[a];
+                });
             },
             getCategories : function () {
                 var cates = [];
