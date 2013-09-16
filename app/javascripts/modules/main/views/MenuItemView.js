@@ -50,8 +50,14 @@
                     }
                 });
 
-                this.model.on('change:loading', function (model, loading) {
-                    this.$('.w-ui-loading-small').toggle(loading);
+                this.model.on('change:syncing', function (model, syncing) {
+
+                    if (syncing) {
+                        this.$('.w-ui-syncing').css('display', 'inline-block');
+                    } else {
+                        this.$('.w-ui-syncing').css('display', 'none');
+                    }
+
                 }, this);
 
                 this.model.on('change:selected', function (model, selected) {

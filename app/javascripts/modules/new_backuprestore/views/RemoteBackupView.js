@@ -103,14 +103,35 @@
                 case BackupRestoreService.CONSTS.SYNC_PROGRESS.COMPLETED:
                     this.setContentState(type, true);
                     this.setProgressState(type, false);
+                    this.updateStatus(type, 0, 0, true);
                     break;
                 }
             }
         });
 
         var RemoteBackupView = BaseView.extend({
+            initialize : function () {
+                RemoteBackupView.__super__.initialize.apply(this, arguments);
+
+                var backupHandler;
+                Object.defineProperties(this, {
+                    backupHandler : {
+                        set : function (value) {
+                            backupHandler = value;
+                        },
+                        get : function () {
+                            return backupHandler;
+                        }
+                    }
+                });
+            },
+            offMessageHandler : function () {
+                if (this.backupHandler) {
+                    IO.Backend.Device.offmessage(this.backupHandler);
+                    this.backupHandler = undefined;
+                }
+            },
             remove : function () {
-                RemoteBackupView.__super__.remove.apply(this, arguments);
 
                 progressView.remove();
                 progressView = undefined;
@@ -122,6 +143,8 @@
                     remoteErrorView.remove();
                     remoteErrorView = undefined;
                 }
+
+                RemoteBackupView.__super__.remove.apply(this, arguments);
             },
             render : function () {
                 _.extend(this.events, RemoteBackupView.__super__.events);
@@ -137,50 +160,50 @@
 
                 return this;
             },
+            cancel : function () {
+                this.userCancelled = true;
+                if (this.isProgressing) {
+
+                    confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
+
+                        BackupRestoreService.stopRemoteSyncAsync().done(function () {
+
+                            log({
+                                event : 'ui.new_backuprestore.backup_time',
+                                timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
+                                isLocal : false,
+                                backupResult : 'cancel'
+                            });
+
+                            this.isProgressing = false;
+                            this.offMessageHandler();
+                            this.releaseWindow();
+                            this.trigger('__CANCEL');
+
+                        }.bind(this));
+
+                    }, function () {
+                        this.userCancelled = false;
+                        footerView.toggleCancel(true);
+                    }, this);
+
+                    footerView.toggleCancel(false);
+                } else {
+                    this.releaseWindow();
+                    this.trigger('__CANCEL');
+                }
+            },
             bindEvent : function () {
                 this.listenTo(footerView, '__DONE', function () {
                     this.trigger('__DONE');
                 });
 
-                this.listenTo(footerView, '__CANCEL', function () {
-
-                    this.userCancelled = true;
-                    if (this.isProgressing) {
-
-                        confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
-
-                            BackupRestoreService.stopRemoteSyncAsync().done(function () {
-
-                                this.isProgressing = false;
-                                this.offMessageHandler();
-                                this.releaseWindow();
-                                this.trigger('__CANCEL');
-
-                                log({
-                                    event : 'ui.new_backuprestore.backup_time',
-                                    timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
-                                    isLocal : false,
-                                    backupResult : 'cancel'
-                                });
-
-                            }.bind(this));
-
-                        }, function () {
-                            this.userCancelled = false;
-                            footerView.toggleCancel(true);
-                        }, this);
-
-                        footerView.toggleCancel(false);
-                    } else {
-                        this.releaseWindow();
-                        this.trigger('__CANCEL');
-                    }
-                });
+                this.listenTo(footerView, '__CANCEL', this.cancel);
 
                 this.listenTo(footerView, '__START_BACKUP', function () {
                     this.setDomState(false);
                     this.startBackup();
-                    PIMCollection.getInstance().get(20).set('loading', true);
+                    PIMCollection.getInstance().get(20).set('syncing', true);
 
                     BackupContextModel.set('startTime', new Date().getTime());
                 });
@@ -212,8 +235,7 @@
                         'event' : 'debug.backup.progress.error',
                         'type' : 4
                     });
-                    alert(i18n.new_backuprestore.PERMISSION_TIP);
-                    this.trigger('__TIME_OUT');
+                    alert(i18n.new_backuprestore.PERMISSION_TIP, this.cancel, this);
                 });
             },
             setDomState : function (isDone) {
@@ -227,20 +249,20 @@
             },
             startBackup : function () {
 
-                WindowController.blockWindowAsync();
-                this.isProgressing = true;
-                this.setDomState(false);
-
                 log({
                     'event' : 'debug.backup.remote.start'
                 });
+
+                WindowController.blockWindowAsync();
+                this.isProgressing = true;
+                this.setDomState(false);
 
                 var types = BackupContextModel.GetServerTypes;
                 this.sessionId = _.uniqueId('backup.nonapps_');
 
                 this.initProgressItems(BackupContextModel.GetBRSpec);
 
-                this.progressHandler = IO.Backend.Device.onmessage({
+                this.backupHandler = IO.Backend.Device.onmessage({
                     'data.channel' : this.sessionId
                 }, function (message) {
                     var type = BackupRestoreService.GetBRTypeBy30x0x(message.data_type);
@@ -258,9 +280,6 @@
                         'event' : 'debug.backup.remote.success'
                     });
 
-                    this.isProgressing = false;
-                    this.offMessageHandler();
-
                     this.backupAllFinish();
 
                 }.bind(this)).fail(function (resp) {
@@ -272,10 +291,6 @@
                     BackupContextModel.set('remoteErrorResult', resp.body.result);
                     BackupContextModel.set('remoteErrorCode', resp.state_code);
 
-                    this.isProgressing = false;
-                    this.offMessageHandler();
-                    //this.setDomState(true);
-
                     this.showRemoteErrorView();
                 }.bind(this));
             },
@@ -285,13 +300,13 @@
                     remoteErrorView = BackupRemoteErrorView.getInstance();
 
                     this.listenTo(remoteErrorView, '__RETRY', function () {
-                        this.userCancelled = false;
+                        this.offMessageHandler();
                         this.startBackup();
                     });
 
                     this.listenTo(remoteErrorView, '__IGNORE', function () {
                         this.backupAllFinish();
-                        this.trigger('__CANCEL');
+                        this.cancel();
                     });
                 }
 
@@ -307,14 +322,14 @@
             backupAllFinish : function () {
 
                 this.setDomState(true);
+                this.releaseWindow();
+                this.offMessageHandler();
 
                 _.each(BackupContextModel.get('dataIDList'), function (id) {
                     progressView.updateProgressStatus(id, BackupRestoreService.CONSTS.SYNC_PROGRESS.COMPLETED, true);
                 }, this);
 
                 BackupRestoreService.logBackupContextModel(BackupContextModel, true);
-
-                this.releaseWindow();
 
                 log({
                     event : 'ui.new_backuprestore.backup_time',
@@ -325,7 +340,7 @@
             },
             releaseWindow : function () {
                 WindowController.releaseWindowAsync();
-                PIMCollection.getInstance().get(20).set('loading', false);
+                PIMCollection.getInstance().get(20).set('syncing', false);
             }
         });
 
