@@ -6,6 +6,7 @@
         'underscore',
         'doT',
         'Device',
+        'Log',
         'Account',
         'ui/TemplateFactory',
         'new_backuprestore/BackupRestoreService',
@@ -18,6 +19,7 @@
         _,
         doT,
         Device,
+        log,
         Account,
         TemplateFactory,
         BackupRestoreService,
@@ -61,6 +63,11 @@
                     advanceView = this.isLocal ? LocalBackupAdvanceView.getInstance() : RemoteBackupAdvanceView.getInstance();
                 }
                 advanceView.show();
+
+                log({
+                    event : 'ui.click.new_backuprestore_backup_advance',
+                    isLocal : this.isLocal
+                });
             },
             clickBtnCancel : function () {
                 this.trigger('__CANCEL');
@@ -73,6 +80,10 @@
             },
             clickBtnShowFile : function () {
                 BackupRestoreService.showFileAsync(BackupContextModel.fileFullName);
+
+                log({
+                    event : 'ui.click.new_backuprestore_show_backup_file'
+                });
             },
             toggleCancel : function (show) {
                 this.$('.cancel').toggle(show);

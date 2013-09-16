@@ -109,7 +109,9 @@
 
                 remoteErrorResult : [],
                 remoteErrorCode : 0,
-                appDataErrorMessage : ''
+                appDataErrorMessage : '',
+
+                startTime : 0
             },
             clearCache : function () {
                 this.set({
@@ -128,7 +130,8 @@
                     'appErrorList': [],
                     'remoteErrorResult': [],
                     'remoteErrorCode': 0,
-                    'appDataErrorMessage': ''
+                    'appDataErrorMessage': '',
+                    'startTime' : 0
                 });
             }
         });

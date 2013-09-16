@@ -101,6 +101,12 @@
                     title.html(i18n.new_backuprestore.DISABLE);
                     action.html(i18n.new_backuprestore.DO_ENABLE);
                     remoteAction = 0;
+
+                    log({
+                        event : 'ui.click.new_backuprestore_remote_state',
+                        type : 'setting_remote_backup'
+                    });
+
                     return;
                 }
 
@@ -110,10 +116,21 @@
                         title.html(i18n.new_backuprestore.ENABLE);
                         action.html(i18n.new_backuprestore.DO_SETTING);
                         remoteAction = 1;
+
+                        log({
+                            event : 'ui.click.new_backuprestore_remote_state',
+                            type : 'setting_remote_backup'
+                        });
+
                     } else {
                         title.html(i18n.new_backuprestore.DISABLE);
                         action.html(i18n.new_backuprestore.DO_ENABLE);
                         remoteAction = 2;
+
+                        log({
+                            event : 'ui.click.new_backuprestore_remote_state',
+                            type : 'setting_remote_backup'
+                        });
                     }
 
                 }.bind(this));
@@ -129,6 +146,12 @@
                     title.html(i18n.new_backuprestore.DISABLE);
                     action.html(i18n.new_backuprestore.DO_ENABLE);
                     localAction = 0;
+
+                    log({
+                        event : 'ui.click.new_backuprestore_local_state',
+                        type : 'enable_auto_backup'
+                    });
+
                     return;
                 }
 
@@ -143,6 +166,12 @@
                         action.html(i18n.new_backuprestore.DO_ENABLE);
                         localAction = 2;
                     }
+
+
+                    log({
+                        event : 'ui.click.new_backuprestore_local_state',
+                        type : 'setting_auto_backup'
+                    });
 
                 }.bind(this));
             },
@@ -198,6 +227,10 @@
             },
             clickBackupLocal : function () {
                 this.trigger('__DO_ACTION', 'BACKUP_LOCAL');
+
+                log({
+                    event : 'ui.click.new_backuprestore_local_backup'
+                });
             },
             clickBackupRemote : function () {
 
@@ -218,9 +251,17 @@
                     backupLoginHandler = undefined;
 
                 }, this);
+
+                log({
+                    event : 'ui.click.new_backuprestore_remote_backup'
+                });
             },
             clickRestoreLocal : function () {
                 this.trigger('__DO_ACTION', 'RESTORE_LOCAL');
+
+                log({
+                    event : 'ui.click.new_backuprestore_local_restore'
+                });
             },
             clickRestoreRemote : function () {
 
@@ -241,6 +282,10 @@
                     restoreLoginHandler = undefined;
 
                 }, this);
+
+                log({
+                    event : 'ui.click.new_backuprestore_remote_restore'
+                });
             },
             events: {
                 'click .do-action.local': 'clickActionLocal',
