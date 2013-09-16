@@ -109,6 +109,6 @@ define({
     CARD_WEIBO_DESC : 'Sina Weibo @豌豆荚 <span class="icon-verified"></span>',
     CARD_WEIBO_ACTION : 'Follow',
     CARD_WEIBO_ACTION_CLICKED : 'Following',
-    NO_MORE : 'No more here',
+    NO_MORE : '',
     UPDATED : 'SnapPea was updated!'
 });
