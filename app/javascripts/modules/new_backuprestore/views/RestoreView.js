@@ -350,7 +350,7 @@
                 if (RestoreContextModel.IsContactSelected && !RestoreContextModel.get('isAccountReady')) {
                     restoreChooseAccountView.show();
                 } else {
-                    this.startRestoreSmsAndContact();
+                    this.startRestore();
                 }
 
             },
