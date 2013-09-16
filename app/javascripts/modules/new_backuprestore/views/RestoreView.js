@@ -229,6 +229,14 @@
 
                                 this.releaseWindow();
                                 this.trigger('__CANCEL');
+
+                                log({
+                                    event : 'ui.new_backuprestore.restore_time',
+                                    timeStamp : new Date().getTime() - RestoreContextModel.get('startTime'),
+                                    isLocal : this.isLocal,
+                                    restoreResult : 'cancel'
+                                });
+
                             }.bind(this));
 
                         }, function () {
@@ -251,6 +259,8 @@
                     } else {
                         this.tryToStartRestore();
                     }
+
+                    RestoreContextModel.set('startTime', new Date().getTime());
                 });
 
                 this.listenTo(restoreChooseAccountView, '__START_RESTORE', this.startRestore);
@@ -586,10 +596,26 @@
                     footerView.setButtonState('done');
 
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, true, fileListView.getAll().length);
+
+
+                    log({
+                        event : 'ui.new_backuprestore.restore_time',
+                        timeStamp : new Date().getTime() - RestoreContextModel.get('startTime'),
+                        isLocal : this.isLocal,
+                        restoreResult : 'finish'
+                    });
+
                 }.bind(this)).fail(function (resp) {
 
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 2, this.userCancelled);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
+
+                    log({
+                        event : 'ui.new_backuprestore.restore_time',
+                        timeStamp : new Date().getTime() - RestoreContextModel.get('startTime'),
+                        isLocal : this.isLocal,
+                        restoreResult : 'finish_fail'
+                    });
                 }.bind(this));
 
                 this.isProgressing = false;

@@ -156,6 +156,13 @@
                                 this.releaseWindow();
                                 this.trigger('__CANCEL');
 
+                                log({
+                                    event : 'ui.new_backuprestore.backup_time',
+                                    timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
+                                    isLocal : false,
+                                    backupResult : 'cancel'
+                                });
+
                             }.bind(this));
 
                         }, function () {
@@ -174,6 +181,8 @@
                     this.setDomState(false);
                     this.startBackup();
                     PIMCollection.getInstance().get(20).set('loading', true);
+
+                    BackupContextModel.set('startTime', new Date().getTime());
                 });
             },
             initState : function () {
@@ -306,6 +315,13 @@
                 BackupRestoreService.logBackupContextModel(BackupContextModel, true);
 
                 this.releaseWindow();
+
+                log({
+                    event : 'ui.new_backuprestore.backup_time',
+                    timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
+                    isLocal : false,
+                    backupResult : 'finish'
+                });
             },
             releaseWindow : function () {
                 WindowController.releaseWindowAsync();
