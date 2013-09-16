@@ -45,7 +45,7 @@
             },
             updateAsync : function (list) {
 
-                _.each(list, function (name) {
+                this.each(list, function (name) {
 
                     var path = name;
                     var shortFileName = path.substr(path.lastIndexOf('\\') + 1);
@@ -61,10 +61,10 @@
                         'id' : shortFileName
                     });
 
-                }, this);
+                });
                 this.trigger('refresh');
 
-                _.each(this.models, function (model) {
+                this.each(this.models, function (model) {
 
                     BackupRestoreService.readRestoreFileAsync(model.get('path')).done(function (resp) {
 
@@ -76,7 +76,7 @@
                         model.set(info);
                     });
 
-                }, this);
+                });
 
             },
             getAll : function () {
