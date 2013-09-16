@@ -132,3 +132,19 @@
         -webkit-mask-box-image: -webkit-linear-gradient(left, transparent 0%, rgba(0,0,0,0.8) 50%, transparent 100%);
     }
 }
+
+.w-ui-syncing {
+    display: none;
+    height: 16px;
+    position : relative;
+    right : 10px;
+    top: 3px;
+    width: 16px;
+    @include nav-sprite(syncing);
+    -webkit-animation: sync-rotate 1s linear infinite;
+}
+
+@-webkit-keyframes sync-rotate {
+  from {-webkit-transform:rotate(0deg);}
+  to {-webkit-transform:rotate(360deg);}
+}

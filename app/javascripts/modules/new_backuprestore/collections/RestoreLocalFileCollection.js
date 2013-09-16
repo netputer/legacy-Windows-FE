@@ -43,54 +43,41 @@
                     }
                 });
             },
-            parse : function (data) {
-
-                var path = data.path;
-                var shortFileName = path.substr(path.lastIndexOf('\\') + 1);
-                var zip_index = shortFileName.lastIndexOf('.zip');
-                if (zip_index > 0) {
-                    shortFileName = shortFileName.substr(0, zip_index);
-                }
-
-                var info = {
-                    'path' : path,
-                    'name' : shortFileName,
-                    'id' : shortFileName
-                };
-
-                _.each(data.info, function (item) {
-                    info[item.type] = item.count;
-                });
-
-                return info;
-            },
             updateAsync : function (list) {
 
-                var models = [];
-                var deferreds = _.map(list, function (name) {
+                _.each(list, function (name) {
 
-                    var deferred = $.Deferred();
-                    BackupRestoreService.readRestoreFileAsync(name).done(function (resp) {
+                    var path = name;
+                    var shortFileName = path.substr(path.lastIndexOf('\\') + 1);
+                    var zip_index = shortFileName.lastIndexOf('.zip');
+                    if (zip_index > 0) {
+                        shortFileName = shortFileName.substr(0, zip_index);
+                    }
 
-                        models.push({
-                            info : resp.body.item,
-                            path : name
+
+                    this.add({
+                        'path' : path,
+                        'name' : shortFileName,
+                        'id' : shortFileName
+                    });
+
+                }, this);
+                this.trigger('refresh');
+
+                _.each(this.models, function (model) {
+
+                    BackupRestoreService.readRestoreFileAsync(model.get('path')).done(function (resp) {
+
+                        var info = {};
+                        _.each(resp.body.item, function (item) {
+                            info[item.type] = item.count;
                         });
 
-                        deferred.resolve(resp);
-                    }.bind(this));
+                        model.set(info);
+                    });
 
-                    return deferred.promise();
                 }, this);
 
-                $.when.apply(this, deferreds).done(function () {
-
-                    _.each(models, function (model) {
-                        this.add(model, {parse : true});
-                    }, this);
-                    this.trigger('refresh');
-
-                }.bind(this));
             },
             getAll : function () {
                 return this.models;

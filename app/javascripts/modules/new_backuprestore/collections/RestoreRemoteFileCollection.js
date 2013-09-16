@@ -48,52 +48,37 @@
                 });
             },
             updateAsync : function (list) {
-                var models = [];
 
                 if (list.length === 0) {
                     this.trigger('refresh');
                     return;
                 }
 
-                var deferreds = _.map(list, function (item) {
+                _.each(list, function (item) {
+                    this.add({
+                        version : item.version,
+                        udid : item.udid,
+                        deviceName : item.deviceName,
+                        timestamp: item.timestamp,
+                        id : String(item.timestamp),
+                        type : item.type
+                    });
+                }, this);
+                this.trigger('refresh');
 
-                    var version = item.version;
-                    var udid = item.udid;
-                    var deviceName = item.deviceName;
-                    var timestamp = item.timestamp;
+                _.each(this.models, function (model) {
+                    var version = model.get('version');
+                    var udid = model.get('udid');
 
-                    var deferred = $.Deferred();
                     BackupRestoreService.remoteSnapshotInfoAllTypesAsync(version, udid).done(function (resp) {
 
-                        var info = {
-                            version : version,
-                            udid : udid,
-                            deviceName : deviceName,
-                            timestamp: timestamp,
-                            id : String(timestamp)
-
-                        };
                         _.each(JSON.parse(resp.body.value), function (item) {
                             var brType = BackupRestoreService.getServerTypeFromBRType(item.type);
-                            info[brType] = item.count;
+                            model.set(brType, item.count);
                         });
 
-                        models.push(info);
-                        deferred.resolve(resp);
-
-                    }.bind(this));
-
-                    return deferred.promise();
-                }, this);
-
-                $.when.apply(this, deferreds).done(function () {
-
-                    _.each(models, function (model) {
-                        this.add(model);
-                    }, this);
-                    this.trigger('refresh');
-
-                }.bind(this));
+                    });
+                });
             },
             getAll : function () {
                 var models = this.models.sort(function (a, b) {

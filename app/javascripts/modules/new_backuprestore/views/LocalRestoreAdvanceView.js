@@ -61,12 +61,16 @@
                 var checked = this.$('input[type=checkbox]:checked');
                 this.trigger('__ENABLE_CONFIRM', checked.length > 0);
             },
+//            clickApp : function () {
+//
+//            },
             clickRestoreContent : function () {
                 var checked = this.$('input[type=checkbox]:checked');
                 this.trigger('__ENABLE_CONFIRM', checked.length > 0);
             },
             events: {
-                'click input[type=checkbox]' : 'clickRestoreContent'
+                'click input[type=checkbox]' : 'clickRestoreContent'//,
+               // 'click input[type=checkbox][value=8]' : 'clickApp'
             }
         });
 

@@ -26,6 +26,11 @@
             <div class="count">{{= it.count }}</div>
         {{?}}
     {{?}}
+    {{? it.syncing !== undefined }}
+        <div class="w-ui-syncing" >
+
+        </div>
+    {{?}}
     {{? it.loading !== undefined }}
         <div class="w-ui-loading-small" >
             <div class="anima">

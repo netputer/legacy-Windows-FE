@@ -6,6 +6,7 @@
         'underscore',
         'doT',
         'Configuration',
+        'Internationalization',
         'ui/TemplateFactory',
         'new_backuprestore/models/BackupContextModel',
         'new_backuprestore/models/RestoreContextModel'
@@ -15,6 +16,7 @@
         _,
         doT,
         CONFIG,
+        i18n,
         TemplateFactory,
         BackupContextModel,
         RestoreContextModel
@@ -39,6 +41,7 @@
                 var $sms;
                 var $app;
 
+                var isBackup = true;
                 var selectAppData = false;
                 Object.defineProperties(this, {
                     $contact : {
@@ -80,16 +83,35 @@
                             $app.find('.count').text(value);
                         }
                     },
+                    isBackup : {
+                        set : function (value) {
+                            isBackup = value;
+                        },
+                        get : function () {
+                            return isBackup;
+                        }
+                    },
                     selectAppData : {
                         set : function (value) {
+                            this.$('.app-only').toggle(!value);
+                            this.$('.app-and-data').toggle(value);
+                            this.$('.beta').toggle(value);
+
                             if (value) {
-                                this.$('.app-only').hide();
-                                this.$('.app-and-data').show();
-                                this.$('.beta').show();
+
+                                if (this.isBackup) {
+                                    this.app = BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP_DATA] + BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP];
+                                } else {
+                                    this.app = RestoreContextModel.get('restoreData')[CONFIG.enums.BR_TYPE_APP_DATA] + RestoreContextModel.get('restoreData')[CONFIG.enums.BR_TYPE_APP];
+                                }
+
                             } else {
-                                this.$('.app-only').show();
-                                this.$('.app-and-data').hide();
-                                this.$('.beta').hide();
+
+                                if (this.isBackup) {
+                                    this.app = BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP];
+                                } else {
+                                    this.app = RestoreContextModel.get('restoreData')[CONFIG.enums.BR_TYPE_APP];
+                                }
                             }
                         },
                         get : function () {
@@ -166,6 +188,35 @@
                 }
 
                 return $content;
+            },
+            getStatus : function (type) {
+                var $status;
+
+                switch (type) {
+                case CONFIG.enums.BR_TYPE_CONTACT:
+                    $status = this.$contact.find('.status');
+                    break;
+                case CONFIG.enums.BR_TYPE_SMS:
+                    $status = this.$sms.find('.status');
+                    break;
+                case CONFIG.enums.BR_TYPE_APP:
+                case CONFIG.enums.BR_TYPE_APP_DATA:
+                    $status = this.$app.find('.status');
+                    break;
+                }
+
+                return $status;
+            },
+            updateStatus : function (type, value, max, isDone) {
+                var $status = this.getStatus(type);
+                if ($status) {
+
+                    if (isDone) {
+                        $status.text(i18n.new_backuprestore.PROGRESS_DONE);
+                        return;
+                    }
+                    $status.text(value + ' / ' + max);
+                }
             },
             showProgress : function (type) {
                 var $progress = this.getProgress(type);
