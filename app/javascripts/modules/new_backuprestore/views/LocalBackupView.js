@@ -176,6 +176,13 @@
                                 this.releaseWindow();
                                 this.trigger('__CANCEL');
 
+                                log({
+                                    event : 'ui.new_backuprestore.backup_time',
+                                    timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
+                                    isLocal : true,
+                                    backupResult : 'cancel'
+                                });
+
                             }.bind(this));
                         }, function () {
                             this.userCancelled = false;
@@ -193,6 +200,8 @@
                     this.setDomState(false);
                     this.startBackup();
                     PIMCollection.getInstance().get(20).set('loading', true);
+
+                    BackupContextModel.set('startTime', new Date().getTime());
                 });
             },
             initState : function () {
@@ -503,9 +512,25 @@
                     this.setDomState(true);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, true);
 
+                    log({
+                        event : 'ui.new_backuprestore.backup_time',
+                        timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
+                        isLocal : true,
+                        backupResult : 'finish'
+                    });
+
                 }.bind(this)).fail(function (resp) {
+
                     BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 2, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
+
+                    log({
+                        event : 'ui.new_backuprestore.backup_time',
+                        timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
+                        isLocal : true,
+                        backupResult : 'finish_fail'
+                    });
+
                 }.bind(this));
 
                 this.releaseWindow();

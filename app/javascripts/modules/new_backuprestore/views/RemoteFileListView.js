@@ -143,6 +143,7 @@
                 }.bind(this)).fail(function (resp) {
 
                     var alertContext = (resp.state_code === 747) ? i18n.new_backuprestore.CUSTOM_RESOURCE_LOCKED : i18n.new_backuprestore.RESTORE_LIST_SNAPHOST_FAILED;
+                    BackupRestoreService.recordError('debug.restore.progress.error', resp);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
                     alert(alertContext, function () {
 

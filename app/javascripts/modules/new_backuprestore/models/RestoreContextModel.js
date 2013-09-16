@@ -121,7 +121,8 @@
                 //sanpshotListLoadFinish : false,
 
                 smsDupCount: 0,
-                contactsDupCount: 0
+                contactsDupCount: 0,
+                stratTime : 0
             },
             clearCache : function () {
 
@@ -148,7 +149,9 @@
                     //'sanpshotListLoadFinish': false,
 
                     'smsDupCount': 0,
-                    'contactsDupCount': 0
+                    'contactsDupCount': 0,
+
+                    'stratTime' : 0
                 });
             }
         });
