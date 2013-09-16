@@ -74,6 +74,9 @@
             clickBtnShowFile : function () {
                 BackupRestoreService.showFileAsync(BackupContextModel.fileFullName);
             },
+            toggleCancel : function (show) {
+                this.$('.cancel').toggle(show);
+            },
             render : function () {
                 this.$el.html(this.template({}));
 

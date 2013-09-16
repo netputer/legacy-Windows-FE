@@ -24,7 +24,8 @@
         'new_backuprestore/models/RestoreContextModel',
         'new_backuprestore/views/FileItemView',
         'new_backuprestore/views/LocalRestoreAdvanceView',
-        'new_backuprestore/views/ErrorItemListView'
+        'new_backuprestore/views/ErrorItemListView',
+        'new_backuprestore/views/RestoreChooseAccountView'
     ], function (
         $,
         Backbone,
@@ -49,7 +50,8 @@
         RestoreContextModel,
         FileItemView,
         LocalRestoreAdvanceView,
-        ErrorItemListView
+        ErrorItemListView,
+        RestoreChooseAccountView
     ) {
 
         console.log('RestoreView - File loaded');
@@ -65,6 +67,7 @@
         var footerView;
 
         var confirm = ConfirmWindowView.confirm;
+        var restoreChooseAccountView = RestoreChooseAccountView.getInstance();
 
         var downloadView;
         var DownloadView = Backbone.View.extend({
@@ -228,7 +231,12 @@
                                 this.trigger('__CANCEL');
                             }.bind(this));
 
+                        }, function () {
+                            this.userCancelled = false;
+                            footerView.toggleCancel(true);
                         }, this);
+
+                        footerView.toggleCancel(false);
                     } else {
                         this.releaseWindow();
                         this.trigger('__CANCEL');
@@ -237,20 +245,15 @@
 
                 this.listenTo(footerView, '__START_RESTORE', function () {
 
-                    if (this.isLocal) {
-                        footerView.setButtonState('progressing');
-                        if (RestoreContextModel.IsNoneAppSelected) {
-                            this.startRestoreSmsAndContact();
-                        } else if (RestoreContextModel.IsAppSelected || RestoreContextModel.IsAppDataSelected) {
-                            this.startRestoreApps();
-                        }
+                    var battery = RestoreContextModel.get('battery');
+                    if (battery > 0 && battery < 20) {
+                        confirm(i18n.new_backuprestore.RESTORE_BATTERY_TIP, this.tryToStartRestore, this);
                     } else {
-                        footerView.setButtonState('downloading');
-                        this.showDownloadView();
-                        this.download();
+                        this.tryToStartRestore();
                     }
-                    PIMCollection.getInstance().get(20).set('loading', true);
                 });
+
+                this.listenTo(restoreChooseAccountView, '__START_RESTORE', this.startRestore);
 
                 this.listenTo(footerView, '__SHOW_FILE', function () {
 
@@ -269,10 +272,20 @@
                             });
                             this.showRestoreView();
 
+                        }.bind(this)).fail(function (resp) {
+                            var message;
+                            if (this.isCsvFile(name)) {
+                                message = i18n.backup_restore.RESTORE_INVLID_CONTACTS_FILE;
+                            } else {
+                                message = BackupRestoreService.getErrorMessage(resp.state_code);
+                            }
+                            alert(message);
+
+                            BackupRestoreService.recordError('debug.restore.progress.error', resp, 5);
+                            BackupRestoreService.logRestoreContextModel(RestoreContextModel, false);
                         }.bind(this));
 
                     }.bind(this)).fail(function () {
-
                         alert(i18n.new_backuprestore.SET_RESTORE_FILE_FAILED);
                     });
                 });
@@ -304,6 +317,41 @@
                 this.listenTo(fileListView, '__DISPLAY_SHOW_MORE', function () {
                     footerView.displayShowMoreBtn();
                 });
+            },
+            startRestore : function () {
+
+                if (this.isLocal) {
+                    footerView.setButtonState('progressing');
+                    if (RestoreContextModel.IsNoneAppSelected) {
+                        this.startRestoreSmsAndContact();
+                    } else if (RestoreContextModel.IsAppSelected || RestoreContextModel.IsAppDataSelected) {
+                        this.startRestoreApps();
+                    }
+                } else {
+                    footerView.setButtonState('downloading');
+                    this.showDownloadView();
+                    this.download();
+                }
+                PIMCollection.getInstance().get(20).set('loading', true);
+
+            },
+            tryToStartRestore : function () {
+
+                if (RestoreContextModel.IsContactSelected && !RestoreContextModel.get('isAccountReady')) {
+                    restoreChooseAccountView.show();
+                } else {
+                    this.startRestoreSmsAndContact();
+                }
+
+            },
+            isCsvFile : function (fileName) {
+                if (!fileName) {
+                    return false;
+                }
+
+                var csvExt = ".csv";
+                var index = fileName.lastIndexOf(".csv");
+                return (index > 0) && (index + csvExt.length === fileName.length);
             },
             startRestoreSmsAndContact : function () {
 
@@ -384,9 +432,9 @@
                     this.isProgressing = false;
                     this.showErrorItem(progress);
                     break;
-                //case BackupRestoreService.CONSTS.BR_STATUS.READY:
-                //case BackupRestoreService.CONSTS.BR_STATUS.STOPPED:
-                //    break;
+                case BackupRestoreService.CONSTS.BR_STATUS.READY:
+                case BackupRestoreService.CONSTS.BR_STATUS.STOPPED:
+                    break;
                 case BackupRestoreService.CONSTS.BR_STATUS.ABORT:
 
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
@@ -641,14 +689,21 @@
                 this.progressHanlder = IO.Backend.Device.onmessage({
                     'data.channel' : this.sessionId
                 }, function (data) {
+
+                    if (this.userCancelled) {
+                        return;
+                    }
                     downloadView.updateProgress(data, 100);
-                });
+
+                }.bind(this));
             },
             remove : function () {
                 RestoreView.__super__.remove.apply(this, arguments);
 
                 footerView.remove();
                 footerView = undefined;
+
+                restoreChooseAccountView.remove();
 
                 if (progressView) {
                     progressView.remove();

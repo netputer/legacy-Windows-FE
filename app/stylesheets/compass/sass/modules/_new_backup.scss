@@ -29,8 +29,10 @@
 
             &:hover {
 
-                .action-container, .icon, .info {
-                    -webkit-transform: translate3d(0, -300px, 0);
+                .icon,
+                .info,
+                .action-container {
+                    top : -300px;
                     -webkit-transition-timing-function: ease-in;
                 }
             }
@@ -54,12 +56,14 @@
             .icon {
                 height: 96px;
                 margin: 80px auto 30px;
+                position: relative;
                 width: 144px;
                 -webkit-transition: all .2s;
             }
 
             .info {
                 height: 94px;
+                position: relative;
                 text-align: center;
 
                 .title {
@@ -149,7 +153,6 @@
         .info-panel {
             height: 40px;
             width: 210px;
-            -webkit-box-pack: center;
 
             &.last-backup-time {
                 margin-right: 5px;
@@ -162,6 +165,7 @@
             &.auto-backup-local {
                 margin-left: 5px;
                 margin-right: 5px;
+                -webkit-box-pack: center;
 
                 .icon {
                     @include backuprestore-sprite(pc);
@@ -170,6 +174,7 @@
 
             &.auto-backup-remote{
                 margin-left: 5px;
+                -webkit-box-pack: end;
 
                 .icon {
                     @include backuprestore-sprite(cloud);
@@ -508,12 +513,12 @@
 
         .time {
             display: inline-block;
-            width: 110px;
+            width: 120px;
         }
 
         .device-name {
             display: inline-block;
-            text-align: center;
+            text-align: left;
             width: 160px;
         }
     }

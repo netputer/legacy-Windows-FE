@@ -926,7 +926,7 @@
 
         BackupRestoreService.getErrorMessage = function (state_code) {
             var message = BackupRestoreService.CONSTS.ErrorCodeToMessage[state_code];
-            message = message || (i18n.backup_restore.UNKNOW_ERROR + state_code);
+            message = message || (i18n.new_backuprestore.UNKNOW_ERROR + state_code);
             return message.toString();
         };
 

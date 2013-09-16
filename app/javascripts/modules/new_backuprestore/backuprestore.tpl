@@ -309,4 +309,9 @@
     <progress class="progress tiny" max="100" value="0"></progress>
 </script>
 
+<script type="text/x-ui-template" id="choose-account">
+    <p>{{= i18n.new_backuprestore.RESTORE_CHOOSE_ACCOUNT_TIP }}</p>
+    <div class="account-ctn"></div>
+</script>
+
 </templates>
