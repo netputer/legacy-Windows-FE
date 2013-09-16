@@ -54,7 +54,7 @@
                     return;
                 }
 
-                _.each(list, function (item) {
+                this.each(list, function (item) {
                     this.add({
                         version : item.version,
                         udid : item.udid,
@@ -63,10 +63,10 @@
                         id : String(item.timestamp),
                         type : item.type
                     });
-                }, this);
+                });
                 this.trigger('refresh');
 
-                _.each(this.models, function (model) {
+                this.each(this.models, function (model) {
                     var version = model.get('version');
                     var udid = model.get('udid');
 
