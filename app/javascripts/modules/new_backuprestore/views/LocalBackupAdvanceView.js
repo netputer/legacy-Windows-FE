@@ -152,10 +152,7 @@
             },
             clickApp : function (evt) {
                 var checked = evt.target.checked;
-                this.selectAppData = checked;
-                if (!checked) {
-                    this.$('input[type=checkbox][name=appdata]').prop('checked', checked);
-                }
+                this.$('input[type=checkbox][name=appdata]').prop('checked', checked && this.selectAppData);
             },
             clickBackupContent : function () {
                 var checked = this.$('input[type=checkbox]:checked');
