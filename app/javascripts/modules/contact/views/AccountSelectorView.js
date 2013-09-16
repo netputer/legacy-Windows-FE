@@ -130,7 +130,6 @@
                 }
 
                 var isChecked = false;
-
                 accountCollection.each(function (account) {
                     if (this.displayReadOnly
                             || (!this.displayReadOnly && !account.get('read_only'))) {

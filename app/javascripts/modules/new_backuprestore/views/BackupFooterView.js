@@ -99,6 +99,7 @@
                         this.$('.startbackup').prop('disabled', !isLogin);
                     });
                 }
+
             },
             remove : function () {
                 BackupFooterView.__super__.remove.apply(this, arguments);

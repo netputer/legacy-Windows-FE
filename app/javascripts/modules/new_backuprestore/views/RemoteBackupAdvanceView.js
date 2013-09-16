@@ -41,7 +41,7 @@
                 return this;
             },
             initState : function () {
-                _.map(BackupContextModel.get('dataIDList'), function (item) {
+                _.each(BackupContextModel.get('dataIDList'), function (item) {
                     $('input[type=checkbox][value=' + item +  ']').prop('checked', true);
                 });
 
@@ -88,7 +88,7 @@
             },
             clickButtonYes : function () {
                 var list = [];
-                _.map(this.$('input[type=checkbox]:checked'), function (input) {
+                _.each(this.$('input[type=checkbox]:checked'), function (input) {
                     list.push(parseInt(input.value, 10));
                 });
                 BackupContextModel.set('dataIDList', list);

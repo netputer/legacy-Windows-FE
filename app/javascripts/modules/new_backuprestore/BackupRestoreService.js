@@ -54,6 +54,7 @@
                 402 : i18n.new_backuprestore.CANCELED,
                 412 : i18n.new_backuprestore.SD_CARD_ERROR,
                 500 : i18n.new_backuprestore.RESTORE_CONNECTION_LOST,
+                705 : i18n.new_backuprestore.COMPRASS_FILE_ERROR,
                 707 : i18n.new_backuprestore.WRITE_LOCAL_FILE_ERROR,
                 709 : i18n.new_backuprestore.ERROR_WHEN_WRITE_ROM,
                 720 : i18n.new_backuprestore.RESTORE_INVLID_FILE,

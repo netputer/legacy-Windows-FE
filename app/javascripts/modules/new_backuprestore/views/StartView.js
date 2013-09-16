@@ -47,7 +47,7 @@
             remove : function () {
                 StartView.__super__.remove.apply(this, arguments);
 
-                _.map([loginHandler, changeStateHandler, backupLoginHandler, restoreLoginHandler], function (handler) {
+                _.each([loginHandler, changeStateHandler, backupLoginHandler, restoreLoginHandler], function (handler) {
 
                     if (handler) {
                         IO.Backend.Device.offmessage(handler);

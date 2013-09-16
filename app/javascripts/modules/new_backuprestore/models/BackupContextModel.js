@@ -112,21 +112,24 @@
                 appDataErrorMessage : ''
             },
             clearCache : function () {
-                this.set('backupType', 0);
-                this.set('dataIDList', [CONFIG.enums.BR_TYPE_CONTACT, CONFIG.enums.BR_TYPE_SMS, CONFIG.enums.BR_TYPE_APP]);
-                this.set('dataNumList', {});
+                this.set({
 
-                this.set('appType', 0);
-                this.set('filePath', '');
-                this.set('fileName', '');
-                this.set('appPath', '');
+                    'backupType': 0,
+                    'dataIDList': [CONFIG.enums.BR_TYPE_CONTACT, CONFIG.enums.BR_TYPE_SMS, CONFIG.enums.BR_TYPE_APP],
+                    'dataNumList': {},
 
-                this.set('smsErrorList', []);
-                this.set('contactsErrorList', []);
-                this.set('appErrorList', []);
-                this.set('remoteErrorResult', []);
-                this.set('remoteErrorCode', 0);
-                this.set('appDataErrorMessage', '');
+                    'appType': 0,
+                    'filePath': '',
+                    'fileName': '',
+                    'appPath': '',
+
+                    'smsErrorList': [],
+                    'contactsErrorList': [],
+                    'appErrorList': [],
+                    'remoteErrorResult': [],
+                    'remoteErrorCode': 0,
+                    'appDataErrorMessage': ''
+                });
             }
         });
 
