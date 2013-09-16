@@ -124,11 +124,11 @@
             snapPeaFetch : function () {
                 this.set([
                     { type : 100 },
-                    { type : 101 },
                     { type : 102 },
                     { type : 103 },
-                    { type : 104 },
-                    { type : 105 }
+                    { type : 101 }
+                    // { type : 104 }
+                    // { type : 105 }
                 ]);
 
                 setTimeout(function () {
