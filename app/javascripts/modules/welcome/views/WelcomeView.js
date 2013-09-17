@@ -14,6 +14,7 @@
         'Internationalization',
         'Device',
         'Log',
+        'Environment',
         'welcome/views/ClockView',
         'welcome/views/DeviceView',
         'welcome/views/ToolbarView',
@@ -35,6 +36,7 @@
         i18n,
         Device,
         log,
+        Environment,
         ClockView,
         DeviceView,
         ToolbarView,
@@ -236,7 +238,14 @@
             },
             loadBackgroundAsync : function () {
                 var deferred = $.Deferred();
-                IO.requestAsync(CONFIG.actions.WELCOME_BACKGROUND).done(deferred.resolve).fail(deferred.reject);
+                IO.requestAsync({
+                    url : CONFIG.actions.WELCOME_BACKGROUND,
+                    data : {
+                        source : Environment.get('source')
+                    },
+                    success : deferred.resolve,
+                    error : deferred.reject
+                });
 
                 return deferred.promise();
             },
