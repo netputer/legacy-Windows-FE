@@ -368,6 +368,7 @@
                     this.showDownloadView();
                     this.download();
                 }
+                $('.w-menu-pim .w-ui-syncing').data('title', i18n.new_backuprestore.NAV_RESTORING);
                 PIMCollection.getInstance().get(20).set('syncing', true);
 
             },

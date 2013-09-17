@@ -203,6 +203,7 @@
                 this.listenTo(footerView, '__START_BACKUP', function () {
                     this.setDomState(false);
                     this.startBackup();
+                    $('.w-menu-pim .w-ui-syncing').data('title', i18n.new_backuprestore.NAV_BACKUPING);
                     PIMCollection.getInstance().get(20).set('syncing', true);
 
                     BackupContextModel.set('startTime', new Date().getTime());
