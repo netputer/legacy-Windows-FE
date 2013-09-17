@@ -197,18 +197,35 @@
                     }
                 });
 
-                var result = [];
+                var result = [],
+                    categoryModel;
 
-                _.each(group, function (element, index) {
-                    if (group[index] && group[index].length > 0) {
-                        var categoryModel = new AppModel({
-                            id : index,
-                            updateCategory : index
-                        });
+                if (group.recommended && group.recommended.length > 0) {
+                    categoryModel = new AppModel({
+                        id : 'recommended',
+                        updateCategory : 'recommended'
+                    });
 
-                        result = result.concat(categoryModel, group[index]);
-                    }
-                });
+                    result = result.concat(categoryModel, group.recommended);
+                }
+
+                if (group.warning && group.warning.length > 0) {
+                    categoryModel = new AppModel({
+                        id : 'warning',
+                        updateCategory : 'warning'
+                    });
+
+                    result = result.concat(categoryModel, group.warning);
+                }
+
+                if (group.notRecommended && group.notRecommended.length > 0) {
+                    categoryModel = new AppModel({
+                        id : 'notRecommended',
+                        updateCategory : 'notRecommended'
+                    });
+
+                    result = result.concat(categoryModel, group.notRecommended);
+                }
 
                 return result;
             },
