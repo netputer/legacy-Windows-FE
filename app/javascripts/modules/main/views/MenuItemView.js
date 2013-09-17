@@ -50,11 +50,17 @@
                     }
                 });
 
-                this.model.on('change:loading', function (model, loading) {
-                    this.$('.w-ui-loading-small').toggle(loading);
-                }, this);
+                this.listenTo(this.model, 'change:syncing', function (model, syncing) {
 
-                this.model.on('change:selected', function (model, selected) {
+                    if (syncing) {
+                        this.$('.w-ui-syncing').css('display', 'inline-block');
+                    } else {
+                        this.$('.w-ui-syncing').css('display', 'none');
+                    }
+
+                });
+
+                this.listenTo(this.model, 'change:selected', function (model, selected) {
                     this.$el.toggleClass('selected', selected);
                     if (selected) {
                         pimCollection.each(function (item) {
@@ -65,13 +71,13 @@
                             }
                         });
                     }
-                }, this);
+                });
 
-                this.model.on('change:hide', function (model, hide) {
+                this.listenTo(this.model, 'change:hide', function (model, hide) {
                     this.$el.toggle(!hide);
-                }, this);
+                });
 
-                this.model.on('change:count', function (model, count) {
+                this.listenTo(this.model, 'change:count', function (model, count) {
                     this.$('.count').html(count);
 
                     var $count = this.$('.count');
@@ -85,7 +91,7 @@
                         $count.toggle(count > 0);
                         $count.data('title', StringUtil.format(i18n.message.UNREAD_DES, count));
                     }
-                }, this);
+                });
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));

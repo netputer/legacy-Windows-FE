@@ -7,6 +7,7 @@
         'doT',
         'ui/TemplateFactory',
         'Device',
+        'Log',
         'Account',
         'new_backuprestore/BackupRestoreService',
         'new_backuprestore/views/RemoteRestoreAdvanceView',
@@ -19,6 +20,7 @@
         doT,
         TemplateFactory,
         Device,
+        log,
         Account,
         BackupRestoreService,
         RemoteRestoreAdvanceView,
@@ -115,6 +117,11 @@
                     advanceView = this.isLocal ? LocalRestoreAdvanceView.getInstance() : RemoteRestoreAdvanceView.getInstance();
                 }
                 advanceView.show();
+
+                log({
+                    event : 'ui.click.new_backuprestore_restore_advance',
+                    isLocal : this.isLocal
+                });
             },
             clickBtnCancel : function () {
                 this.trigger('__CANCEL');
@@ -133,6 +140,10 @@
                 }, 2000);
 
                 this.trigger('__SHOW_FILE');
+
+                log({
+                    event : 'ui.click.new_backuprestore_show_remote_file'
+                });
             },
             clickBtnTaskManager : function () {
                 this.trigger('__TASK_MANAGER');

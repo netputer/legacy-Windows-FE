@@ -83,7 +83,7 @@
             tab : 'backup-restore',
             order : 60,
             count : -1,
-            loading : false,
+            syncing : false,
             icon : 'backup'
         }, {
             label : i18n.app.APP_WASH,

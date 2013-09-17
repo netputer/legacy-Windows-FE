@@ -124,11 +124,6 @@
                 this.appendView(localBackupView);
                 this.views.localBackup = localBackupView;
 
-                this.listenTo(localBackupView, '__TIME_OUT', function () {
-                    localBackupView.remove();
-                    this.showStartView();
-                });
-
                 this.listenTo(localBackupView, '__CANCEL __DONE', function () {
                     localBackupView.remove();
                     this.showStartView();
@@ -143,11 +138,6 @@
                 var remoteBackupView = RemoteBackupView.getInstance();
                 this.appendView(remoteBackupView);
                 this.views.remoteBackup = remoteBackupView;
-
-                this.listenTo(remoteBackupView, '__TIME_OUT', function () {
-                    remoteBackupView.remove();
-                    this.showStartView();
-                });
 
                 this.listenTo(remoteBackupView, '__CANCEL __DONE', function () {
                     remoteBackupView.remove();

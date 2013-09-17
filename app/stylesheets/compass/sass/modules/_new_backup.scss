@@ -240,7 +240,7 @@
             color: #ccc;
             height: 48px;
             margin-bottom: 30px;
-            margin-top: 90px;
+            margin-top: 70px;
             width: 210px;
             -webkit-box-align: center;
             -webkit-box-pack: center;
@@ -253,16 +253,20 @@
         }
 
         progress {
-            margin-left: 55px;
-            width: 115px;
+            margin-left: 45px;
+            width: 125px;
 
             &.hide {
                 display: none;
             }
         }
 
-        .error {
-            color: $textHighlight;
+        .status {
+            display: block;
+            font-size: 14px;
+            padding-top: 10px;
+            text-align: center;
+            width: 208px;
         }
     }
 
