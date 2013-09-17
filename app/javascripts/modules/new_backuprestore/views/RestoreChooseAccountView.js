@@ -90,7 +90,7 @@
                 }];
             },
             setViewTitle : function () {
-                this.title = RestoreContextModel.IsLocal ? i18n.new_backuprestore.RESTORE_TITLE_LOCAL : i18n.new_backuprestore.RESTORE_TITLE_REMOTE;
+                this.title = RestoreContextModel.isLocal ? i18n.new_backuprestore.RESTORE_TITLE_LOCAL : i18n.new_backuprestore.RESTORE_TITLE_REMOTE;
             },
             clickButtonNext : function () {
                 bodyView.setAccountInfo();

@@ -82,7 +82,7 @@
                 //case CONFIG.enums.BR_TYPE_CONTACT:
                 //case CONFIG.enums.BR_TYPE_SMS:
                 //case CONFIG.enums.BR_TYPE_APP:
-                //    if (BackupContextModel.IsAppDataSelected) {
+                //    if (BackupContextModel.isAppDataSelected) {
                 //        current_count = current_count / all_count * 100 / 2;
                 //        all_count = 100;
                 //    }
@@ -258,10 +258,10 @@
                 this.isProgressing = true;
                 this.setDomState(false);
 
-                var types = BackupContextModel.GetServerTypes;
+                var types = BackupContextModel.serverTypes;
                 this.sessionId = _.uniqueId('backup.nonapps_');
 
-                this.initProgressItems(BackupContextModel.GetBRSpec);
+                this.initProgressItems(BackupContextModel.brSpec);
 
                 this.backupHandler = IO.Backend.Device.onmessage({
                     'data.channel' : this.sessionId

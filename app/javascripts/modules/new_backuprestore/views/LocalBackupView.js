@@ -81,7 +81,7 @@
 
                 switch (type) {
                 case CONFIG.enums.BR_TYPE_APP:
-                    if (BackupContextModel.IsAppDataSelected) {
+                    if (BackupContextModel.isAppDataSelected) {
                         //current_count = current_count / all_count * 100 / 2;
                         //all_count = 100;
                         all_count = BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP_DATA] + BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP];
@@ -129,7 +129,7 @@
                         }.bind(this);
                         temp(type);
 
-                    } else if ((type === CONFIG.enums.BR_TYPE_APP && !BackupContextModel.IsAppDataSelected) || type === CONFIG.enums.BR_TYPE_APP_DATA) {
+                    } else if ((type === CONFIG.enums.BR_TYPE_APP && !BackupContextModel.isAppDataSelected) || type === CONFIG.enums.BR_TYPE_APP_DATA) {
                         this.setContentState(type, true);
                         this.setProgressState(type, false);
                         this.updateStatus(type, current_count, all_count, true);
@@ -319,7 +319,7 @@
                 BackupContextModel.set('fileName', fileName);
 
                 this.listenTo(BackupContextModel, 'change:dataIDList', function (value) {
-                    progressView.selectAppData = BackupContextModel.IsAppDataSelected;
+                    progressView.selectAppData = BackupContextModel.isAppDataSelected;
                 });
             },
             remove: function () {
@@ -355,7 +355,7 @@
                 WindowController.blockWindowAsync();
 
                 var filePath = BackupContextModel.fileFullPath;
-                var brSpec = BackupContextModel.GetBRSpec;
+                var brSpec = BackupContextModel.brSpec;
                 var finishedNum = 0;
 
                 this.isProgressing = true;
@@ -455,7 +455,7 @@
                         this.showErrorListView(CONFIG.enums.BR_TYPE_APP);
                     } else {
                         progressView.updateProgressStatus(CONFIG.enums.BR_TYPE_APP, BackupRestoreService.CONSTS.BR_PI_STATUS.FINISHED, success, data.total);
-                        if (BackupContextModel.IsAppDataSelected) {
+                        if (BackupContextModel.isAppDataSelected) {
                             this.startBackupAppData();
                         } else {
                             this.backupAllFinish();
@@ -555,7 +555,7 @@
                     return;
                 }
 
-                if (BackupContextModel.IsAppSelected) {
+                if (BackupContextModel.isAppSelected) {
                     this.startBackupApps();
                 } else {
                     this.backupAllFinish();
