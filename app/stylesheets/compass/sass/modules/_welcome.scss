@@ -842,58 +842,6 @@
     }
 }
 
-.w-welcome-capacity {
-    .phone-capacity,
-    .external-capacity {
-        -webkit-box-align: center;
-
-        .title {
-            margin-right: 5px;
-            width: 48px;
-        }
-    }
-
-    progress {
-        height: 4px;
-
-        &::-webkit-progress-bar {
-            background-color: #666;
-            border-radius: 2px;
-            box-shadow: none;
-            display: block;
-            height: 4px;
-        }
-
-        &::-webkit-progress-value {
-            background-color: #c9c9c9;
-            background-image: none;
-            border-radius: 2px;
-            display: block;
-            height: 4px;
-            min-width: 10px;
-        }
-
-        &.highlight {
-            &::-webkit-progress-bar {
-                background-color: #ef362c;
-            }
-
-            &::-webkit-progress-value {
-                background-color: #ffc0b8;
-            }
-        }
-    }
-
-    .progress {
-        margin-right: 10px;
-        width: 100px;
-    }
-
-    .ratio {
-        font-size: 10px;
-    }
-}
-
 .w-welcome-guide-frame {
     background-color: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .1);
@@ -1151,7 +1099,7 @@
 .w-welcome-capacitybar {
     box-sizing: border-box;
     height: 0;
-    left: 315px;
+    left: 317px;
     overflow: hidden;
     position: absolute;
     top: 415px;
@@ -1214,5 +1162,11 @@
                 }
             }
         }
+    }
+}
+
+@media (max-width: 991px) {
+    .w-welcome-capacitybar {
+        top: 431px;
     }
 }
