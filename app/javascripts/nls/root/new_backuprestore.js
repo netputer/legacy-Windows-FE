@@ -228,5 +228,9 @@ define({
     SHOW_MORE : '显示更多',
     WRITE_LOCAL_FILE_ERROR : '写入本地文件出错',
     COMPRASS_FILE_ERROR : '压缩文件失败',
-    PROGRESS_DONE : '已完成'
+    PROGRESS_DONE : '已完成',
+    NAV_AUTO_BACKUPING : '正在进行自动备份',
+    NAV_BACKUPING : '正在进行备份',
+    NAV_RESTORING : '正在进行恢复'
+
 });

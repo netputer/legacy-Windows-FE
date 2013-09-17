@@ -222,7 +222,7 @@
 
                     BackupRestoreService.getSupportAppDataAsync().done(function (resp) {
                         if (resp.body.value) {
-                            progressView.selectAppData = RestoreContextModel.IsAppDataSelected;
+                            progressView.selectAppData = RestoreContextModel.isAppDataSelected;
                         }
                     });
                 });
@@ -358,9 +358,9 @@
 
                 if (this.isLocal) {
                     footerView.setButtonState('progressing');
-                    if (RestoreContextModel.IsNoneAppSelected) {
+                    if (RestoreContextModel.isNoneAppSelected) {
                         this.startRestoreSmsAndContact();
-                    } else if (RestoreContextModel.IsAppSelected || RestoreContextModel.IsAppDataSelected) {
+                    } else if (RestoreContextModel.isAppSelected || RestoreContextModel.isAppDataSelected) {
                         this.startRestoreApps();
                     }
                 } else {
@@ -368,12 +368,13 @@
                     this.showDownloadView();
                     this.download();
                 }
+                $('.w-menu-pim .w-ui-syncing').data('title', i18n.new_backuprestore.NAV_RESTORING);
                 PIMCollection.getInstance().get(20).set('syncing', true);
 
             },
             tryToStartRestore : function () {
 
-                if (RestoreContextModel.IsContactSelected && !RestoreContextModel.get('isAccountReady')) {
+                if (RestoreContextModel.isContactSelected && !RestoreContextModel.get('isAccountReady')) {
                     restoreChooseAccountView.show();
                 } else {
                     this.startRestore();
@@ -400,9 +401,9 @@
                 var filePath = RestoreContextModel.get('fileName');
                 var accountType = RestoreContextModel.get('accountType');
                 var accountName = RestoreContextModel.get('accountName');
-                var brSpec = RestoreContextModel.BrSpec;
+                var brSpec = RestoreContextModel.brSpec;
 
-                this.initProgressItems(brSpec);
+                this.initProgressItems(RestoreContextModel.allBrSpec);
 
                 BackupRestoreService.restoreStartNonAppsAsync(filePath, this.sessionId, accountType, accountName, brSpec).done(function (resp) {
                     RestoreContextModel.set('appPath', resp.body.value);
@@ -463,7 +464,7 @@
                     this.isProgressing = false;
                     this.offMessageHandler();
 
-                    if (RestoreContextModel.IsAppSelected || RestoreContextModel.IsAppDataSelected) {
+                    if (RestoreContextModel.isAppSelected || RestoreContextModel.isAppDataSelected) {
                         this.startRestoreApps();
                     } else {
                         this.restoreAllFinish();
@@ -517,7 +518,7 @@
                             window.clearInterval(this.appHandler);
 
                             var filePath = RestoreContextModel.get('fileName');
-                            BackupRestoreService.restoreStartAppsAsync(filePath, RestoreContextModel.IsAppDataSelected).done(function () {
+                            BackupRestoreService.restoreStartAppsAsync(filePath, RestoreContextModel.isAppDataSelected).done(function () {
                                 this.restoreAllFinish();
                                 progressView.setContentState(CONFIG.enums.BR_TYPE_APP, true);
                                 progressView.setProgressState(CONFIG.enums.BR_TYPE_APP, false);
@@ -623,16 +624,16 @@
                 BackupRestoreService.restoreFinishAsync(RestoreContextModel.get('fileName')).done(function (resp) {
 
                     this.BigTitle = i18n.new_backuprestore.RESTORE_FINISH_LABEL;
-                    if (RestoreContextModel.IsSmsSelected && RestoreContextModel.IsContactSelected) {
+                    if (RestoreContextModel.isSmsSelected && RestoreContextModel.isContactSelected) {
                         this.stateTitle = i18n.new_backuprestore.RESTORE_NONAPP_COMPLATE;
-                    } else if (RestoreContextModel.IsContactSelected) {
+                    } else if (RestoreContextModel.isContactSelected) {
                         this.stateTitle = i18n.new_backuprestore.RESTORE_CONTACT_COMPLATE;
 
-                    } else if (RestoreContextModel.IsSmsSelected) {
+                    } else if (RestoreContextModel.isSmsSelected) {
                         this.stateTitle = i18n.new_backuprestore.RESTORE_SMS_COMPLATE;
                     }
 
-                    if (RestoreContextModel.IsAppSelected) {
+                    if (RestoreContextModel.isAppSelected) {
                         this.stateTitle.append(i18n.new_backuprestore.RESTORE_APP_COMPLATE);
                     }
                     footerView.setButtonState('done');
@@ -686,7 +687,7 @@
                 progressView.app = data[CONFIG.enums.BR_TYPE_APP];
                 progressView.$el.show();
 
-                progressView.selectAppData = RestoreContextModel.IsAppDataSelected;
+                progressView.selectAppData = RestoreContextModel.isAppDataSelected;
 
                 footerView.setButtonState('ready');
             },
@@ -707,7 +708,7 @@
 
                 var version = RestoreContextModel.get('remoteVersion');
                 var udid = RestoreContextModel.get('udid');
-                var types = RestoreContextModel.GetServerTypes;
+                var types = RestoreContextModel.serverTypes;
 
                 log({ 'event' : 'debug.restore.remote.download.start' });
 
@@ -726,7 +727,7 @@
                         this.showRestoreView();
                         footerView.setButtonState('progressing');
 
-                        if (RestoreContextModel.IsNoneAppSelected) {
+                        if (RestoreContextModel.isNoneAppSelected) {
                             this.startRestoreSmsAndContact();
                         } else {
                             this.startRestoreApps();

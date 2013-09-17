@@ -16,39 +16,39 @@
         var RestoreContextModel = Backbone.Model.extend({
             initialize : function () {
                 Object.defineProperties(this, {
-                    IsLocal : {
+                    isLocal : {
                         get : function () {
                             return this.get('backupType') === 0;
                         }
                     },
-                    IsAppSelected : {
+                    isAppSelected : {
                         get : function () {
                             return this.get('dataIDList').indexOf(CONFIG.enums.BR_TYPE_APP) >= 0;
                         }
                     },
-                    IsAppDataSelected : {
+                    isAppDataSelected : {
                         get : function () {
                             return this.get('dataIDList').indexOf(CONFIG.enums.BR_TYPE_APP_DATA) >= 0;
                         }
                     },
-                    IsContactSelected : {
+                    isContactSelected : {
                         get : function () {
                             return this.get('dataIDList').indexOf(CONFIG.enums.BR_TYPE_CONTACT) >= 0;
                         }
                     },
-                    IsSmsSelected : {
+                    isSmsSelected : {
                         get : function () {
                             return this.get('dataIDList').indexOf(CONFIG.enums.BR_TYPE_SMS) >= 0;
                         }
                     },
-                    IsNoneAppSelected : {
+                    isNoneAppSelected : {
                         get : function () {
                             return this.get('dataIDList').indexOf(CONFIG.enums.BR_TYPE_CONTACT) >= 0 ||
                                    this.get('dataIDList').indexOf(CONFIG.enums.BR_TYPE_SMS) >= 0 ||
                                    this.get('dataIDList').indexOf(CONFIG.enums.BR_TYPE_CALLLOG) >= 0;
                         }
                     },
-                    GetServerTypes : {
+                    serverTypes : {
                         get : function () {
                             var types = [];
                             _.each(this.get('dataIDList'), function (id) {
@@ -69,9 +69,30 @@
                             return types;
                         }
                     },
-                    BrSpec : {
+                    brSpec : {
                         get : function () {
                             var data = this.get('restoreData');
+                            var noneApp = _.filter(this.get('dataIDList'), function (item) {
+                                return item !== CONFIG.enums.BR_TYPE_APP && item !== CONFIG.enums.BR_TYPE_APP_DATA;
+                            });
+
+                            return {
+                                item : _.map(noneApp, function (type) {
+                                    if (data[type]) {
+                                        return {
+                                            type : type,
+                                            count : data[type]
+                                        };
+                                    }
+                                }),
+                                type : 2
+                            };
+                        }
+                    },
+                    allBrSpec : {
+                        get : function () {
+                            var data = this.get('restoreData');
+
                             return {
                                 item : _.map(this.get('dataIDList'), function (type) {
                                     if (data[type]) {
@@ -85,6 +106,7 @@
                             };
                         }
                     }
+
                 });
             },
             defaults : {

@@ -167,7 +167,7 @@
                 return null;
             },
             fillItemListWithContacts : function () {
-                var itemInfo = this.selectItemInfoByType(RestoreContextModel.GetBRSpec, CONFIG.enums.BR_TYPE_CONTACT);
+                var itemInfo = this.selectItemInfoByType(RestoreContextModel.brSpec, CONFIG.enums.BR_TYPE_CONTACT);
                 var list = RestoreContextModel.get('errorItemList');
 
                 this.typeName = i18n.new_backuprestore.CONTACT;
@@ -177,7 +177,7 @@
                 this.render();
             },
             fillItemListWithSms : function () {
-                var itemInfo = this.selectItemInfoByType(RestoreContextModel.GetBRSpec, CONFIG.enums.BR_TYPE_SMS);
+                var itemInfo = this.selectItemInfoByType(RestoreContextModel.brSpec, CONFIG.enums.BR_TYPE_SMS);
                 var list = RestoreContextModel.get('errorItemList');
 
                 this.typeName = i18n.new_backuprestore.SMS;

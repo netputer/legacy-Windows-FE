@@ -14,22 +14,22 @@
         var BackupContextModel = Backbone.Model.extend({
             initialize : function () {
                 Object.defineProperties(this, {
-                    IsLocal : {
+                    isLocal : {
                         get : function () {
                             return this.get('backupType') === 0;
                         }
                     },
-                    IsAppSelected : {
+                    isAppSelected : {
                         get : function () {
                             return this.get('dataIDList').indexOf(CONFIG.enums.BR_TYPE_APP) >= 0;
                         }
                     },
-                    IsAppDataSelected : {
+                    isAppDataSelected : {
                         get : function () {
                             return this.get('dataIDList').indexOf(CONFIG.enums.BR_TYPE_APP_DATA) >= 0;
                         }
                     },
-                    IsFileNameReady : {
+                    isFileNameReady : {
                         get : function () {
                             return this.get('filePath').length > 0 && this.get('fileName').length > 0;
                         }
@@ -48,7 +48,7 @@
                             return this.fileFullPath + '.zip';
                         }
                     },
-                    GetBRSpec : {
+                    brSpec : {
                         get : function () {
                             var numList = this.get('dataNumList');
                             return {
@@ -62,7 +62,7 @@
                             };
                         }
                     },
-                    GetServerTypes : {
+                    serverTypes : {
                         get : function () {
                             var types = [];
                             _.each(this.get('dataIDList'), function (id) {
