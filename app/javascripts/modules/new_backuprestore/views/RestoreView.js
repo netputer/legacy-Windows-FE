@@ -402,7 +402,7 @@
                 var accountName = RestoreContextModel.get('accountName');
                 var brSpec = RestoreContextModel.BrSpec;
 
-                this.initProgressItems(brSpec);
+                this.initProgressItems(RestoreContextModel.BrAllSpec);
 
                 BackupRestoreService.restoreStartNonAppsAsync(filePath, this.sessionId, accountType, accountName, brSpec).done(function (resp) {
                     RestoreContextModel.set('appPath', resp.body.value);

@@ -72,6 +72,27 @@
                     BrSpec : {
                         get : function () {
                             var data = this.get('restoreData');
+                            var noneApp = _.filter(this.get('dataIDList'), function (item) {
+                                return item !== CONFIG.enums.BR_TYPE_APP && item !== CONFIG.enums.BR_TYPE_APP_DATA;
+                            });
+
+                            return {
+                                item : _.map(noneApp, function (type) {
+                                    if (data[type]) {
+                                        return {
+                                            type : type,
+                                            count : data[type]
+                                        };
+                                    }
+                                }),
+                                type : 2
+                            };
+                        }
+                    },
+                    BrAllSpec : {
+                        get : function () {
+                            var data = this.get('restoreData');
+
                             return {
                                 item : _.map(this.get('dataIDList'), function (type) {
                                     if (data[type]) {
@@ -85,6 +106,7 @@
                             };
                         }
                     }
+
                 });
             },
             defaults : {
