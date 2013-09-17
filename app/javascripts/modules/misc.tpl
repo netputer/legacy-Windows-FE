@@ -27,23 +27,7 @@
         {{?}}
     {{?}}
     {{? it.syncing !== undefined }}
-        <div class="w-ui-syncing" >
-
-        </div>
-    {{?}}
-    {{? it.loading !== undefined }}
-        <div class="w-ui-loading-small" >
-            <div class="anima">
-                <div class="rotor rotor1"></div>
-                <div class="rotor rotor2"></div>
-                <div class="rotor rotor3"></div>
-                <div class="rotor rotor4"></div>
-                <div class="rotor rotor5"></div>
-                <div class="rotor rotor6"></div>
-                <div class="rotor rotor7"></div>
-                <div class="rotor rotor8"></div>
-            </div>
-        </div>
+        <div class="w-ui-syncing" data-title="{{= i18n.new_backuprestore.NAV_AUTO_BACKUPING}}"/>
     {{?}}
 </script>
 
