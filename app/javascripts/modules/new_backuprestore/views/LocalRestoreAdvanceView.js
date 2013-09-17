@@ -35,6 +35,20 @@
         var BodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('new_backuprestore', 'local-restore-advance')),
             className : "w-backuprestore-local-restore-advance hbox",
+            initialize : function () {
+                BodyView.__super__.initialize.apply(this, arguments);
+                var selectAppData = false;
+                Object.defineProperties(this, {
+                    selectAppData : {
+                        set : function (value) {
+                            selectAppData = value;
+                        },
+                        get : function () {
+                            return selectAppData;
+                        }
+                    }
+                });
+            },
             render : function () {
 
                 this.$el.html(this.template({}));
@@ -54,6 +68,7 @@
                     if (item === CONFIG.enums.BR_TYPE_APP_DATA) {
                         BackupRestoreService.getSupportAppDataAsync().done(function (resp) {
                             this.$('input[type=checkbox][value=10]').prop('disabled', !resp.body.value);
+                            this.selectAppData = resp.body.value;
                         }.bind(this));
                     }
                 }, this);
@@ -61,12 +76,26 @@
                 var checked = this.$('input[type=checkbox]:checked');
                 this.trigger('__ENABLE_CONFIRM', checked.length > 0);
             },
+            clickAppData : function (evt) {
+                var checked = evt.target.checked;
+                this.selectAppData = checked;
+
+                if (checked) {
+                    this.$('input[type=checkbox][name=app]').prop('checked', checked);
+                }
+            },
+            clickApp : function (evt) {
+                var checked = evt.target.checked;
+                this.$('input[type=checkbox][name=appdata]').prop('checked', checked && this.selectAppData);
+            },
             clickRestoreContent : function () {
                 var checked = this.$('input[type=checkbox]:checked');
                 this.trigger('__ENABLE_CONFIRM', checked.length > 0);
             },
             events: {
-                'click input[type=checkbox]' : 'clickRestoreContent'
+                'click input[type=checkbox]' : 'clickRestoreContent',
+                'click input[type=checkbox][name=app]' : 'clickApp',
+                'click input[type=checkbox][name=appdata]' : 'clickAppData'
             }
         });
 

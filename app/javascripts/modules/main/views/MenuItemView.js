@@ -8,9 +8,11 @@
         'ui/PopupTip',
         'ui/TemplateFactory',
         'utilities/StringUtil',
+        'Configuration',
         'Internationalization',
         'Log',
         'Device',
+        'IO',
         'main/collections/PIMCollection',
         'app/collections/AppsCollection'
     ], function (
@@ -21,9 +23,11 @@
         PopupTip,
         TemplateFactory,
         StringUtil,
+        CONFIG,
         i18n,
         log,
         Device,
+        IO,
         PIMCollection,
         AppsCollection
     ) {
@@ -50,11 +54,31 @@
                     }
                 });
 
-                this.model.on('change:loading', function (model, loading) {
-                    this.$('.w-ui-loading-small').toggle(loading);
+                IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.AUTO_BACKUP_START
+                }, function (message) {
+                    this.$('.w-ui-syncing').data('title', i18n.new_backuprestore.NAV_AUTO_BACKUPING).css('display', 'inline-block');
                 }, this);
 
-                this.model.on('change:selected', function (model, selected) {
+
+                IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.AUTO_BACKUP_COMPLETE
+                }, function (message) {
+                    this.$('.w-ui-syncing').css('display', 'none');
+                }, this);
+
+
+                this.listenTo(this.model, 'change:syncing', function (model, syncing) {
+
+                    if (syncing) {
+                        this.$('.w-ui-syncing').css('display', 'inline-block');
+                    } else {
+                        this.$('.w-ui-syncing').css('display', 'none');
+                    }
+
+                });
+
+                this.listenTo(this.model, 'change:selected', function (model, selected) {
                     this.$el.toggleClass('selected', selected);
                     if (selected) {
                         pimCollection.each(function (item) {
@@ -65,13 +89,13 @@
                             }
                         });
                     }
-                }, this);
+                });
 
-                this.model.on('change:hide', function (model, hide) {
+                this.listenTo(this.model, 'change:hide', function (model, hide) {
                     this.$el.toggle(!hide);
-                }, this);
+                });
 
-                this.model.on('change:count', function (model, count) {
+                this.listenTo(this.model, 'change:count', function (model, count) {
                     this.$('.count').html(count);
 
                     var $count = this.$('.count');
@@ -85,7 +109,7 @@
                         $count.toggle(count > 0);
                         $count.data('title', StringUtil.format(i18n.message.UNREAD_DES, count));
                     }
-                }, this);
+                });
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));

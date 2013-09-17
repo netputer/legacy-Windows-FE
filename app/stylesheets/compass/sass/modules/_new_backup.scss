@@ -253,16 +253,20 @@
         }
 
         progress {
-            margin-left: 55px;
-            width: 115px;
+            margin-left: 45px;
+            width: 125px;
 
             &.hide {
                 display: none;
             }
         }
 
-        .error {
-            color: $textHighlight;
+        .status {
+            display: block;
+            font-size: 12px;
+            padding-top: 10px;
+            text-align: center;
+            width: 208px;
         }
     }
 

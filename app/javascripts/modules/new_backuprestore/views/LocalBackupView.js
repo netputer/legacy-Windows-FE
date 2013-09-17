@@ -82,19 +82,23 @@
                 switch (type) {
                 case CONFIG.enums.BR_TYPE_APP:
                     if (BackupContextModel.IsAppDataSelected) {
-                        current_count = current_count / all_count * 100 / 2;
-                        all_count = 100;
+                        //current_count = current_count / all_count * 100 / 2;
+                        //all_count = 100;
+                        all_count = BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP_DATA] + BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP];
                     }
                     break;
                 case CONFIG.enums.BR_TYPE_APP_DATA:
-                    current_count = current_count / all_count * 100 / 2 + 50;
-                    all_count = 100;
+                    //current_count = current_count / all_count * 100 / 2 + 50;
+                    //all_count = 100;
+                    current_count += BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP];
+                    all_count = BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP] + BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP_DATA];
                     break;
                 }
 
                 if (type === CONFIG.enums.BR_TYPE_APP || type === CONFIG.enums.BR_TYPE_APP_DATA) {
                     if (current_count >= 0 && all_count >= 0) {
                         this.updateProgress(type, current_count, all_count);
+                        this.updateStatus(type, current_count, all_count);
                     }
                 }
 
@@ -105,15 +109,20 @@
                     if ((type !== CONFIG.enums.BR_TYPE_APP) && (type !== CONFIG.enums.BR_TYPE_APP_DATA)) {
 
                         var temp = function (type) {
-                            var max = 100;
                             var value = 0;
+                            var all = all_count;
+                            var step = parseInt(all / 100, 10) || 2;
                             var handle = setInterval(function () {
-                                if (value === 100) {
+                                if (value >= all) {
                                     this.setContentState(type, true);
+                                    this.setProgressState(type, false);
+                                    this.updateStatus(type, value, all, true);
                                     window.clearInterval(handle);
                                     return;
                                 }
-                                this.updateProgress(type, ++value, max);
+                                value += step;
+                                this.updateProgress(type, value, all);
+                                this.updateStatus(type, value, all);
 
                             }.bind(this), 20);
 
@@ -123,6 +132,7 @@
                     } else if ((type === CONFIG.enums.BR_TYPE_APP && !BackupContextModel.IsAppDataSelected) || type === CONFIG.enums.BR_TYPE_APP_DATA) {
                         this.setContentState(type, true);
                         this.setProgressState(type, false);
+                        this.updateStatus(type, current_count, all_count, true);
                     }
                     break;
                 case BackupRestoreService.CONSTS.BR_PI_STATUS.ERROR:
@@ -143,10 +153,41 @@
 
         var LocalBackupView = BaseView.extend({
             invalidPattern : '[/\\\\:?*"<>|]',
+            initialize : function () {
+                LocalBackupView.__super__.initialize.apply(this, arguments);
+
+                var nonAppHandler;
+                var appHandler;
+                var appDataHandler;
+                Object.defineProperties(this, {
+                    nonAppHandler : {
+                        set : function (value) {
+                            nonAppHandler = value;
+                        },
+                        get : function () {
+                            return nonAppHandler;
+                        }
+                    },
+                    appHandler : {
+                        set : function (value) {
+                            appHandler = value;
+                        },
+                        get : function () {
+                            return appHandler;
+                        }
+                    },
+                    appDataHandler : {
+                        set : function (value) {
+                            appDataHandler = value;
+                        },
+                        get : function () {
+                            return appDataHandler;
+                        }
+                    }
+                });
+            },
             render : function () {
 
-                _.extend(this.events, LocalBackupView.__super__.events);
-                this.delegateEvents();
                 LocalBackupView.__super__.render.call(this);
 
                 progressView = new ProgressView();
@@ -157,49 +198,67 @@
 
                 return this;
             },
+            cancel : function () {
+                this.userCancelled = true;
+                if (this.isProgressing) {
+
+                    confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
+
+                        BackupRestoreService.backupCancelAsync(this.sessionId).done(function () {
+
+                            this.isProgressing = false;
+                            this.offMessageHandler();
+                            this.releaseWindow();
+                            this.trigger('__CANCEL');
+
+                            log({
+                                event : 'ui.new_backuprestore.backup_time',
+                                timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
+                                isLocal : true,
+                                backupResult : 'cancel'
+                            });
+
+                        }.bind(this));
+                    }, function () {
+                        this.userCancelled = false;
+                        footerView.toggleCancel(true);
+                    }, this);
+
+                    footerView.toggleCancel(false);
+                } else {
+                    this.releaseWindow();
+                    this.trigger('__CANCEL');
+                }
+            },
+            offMessageHandler : function () {
+                if (this.nonAppHandler) {
+                    IO.Backend.Device.offmessage(this.nonAppHandler);
+                    this.nonAppHandler = undefined;
+                }
+
+                if (this.appHandler) {
+                    IO.Backend.Device.offmessage(this.appHandler);
+                    this.appHandler = undefined;
+                }
+
+                if (this.appDataHandler) {
+                    IO.Backend.Device.offmessage(this.appDataHandler);
+                    this.appDataHandler = undefined;
+                }
+            },
             bindEvent : function () {
                 this.listenTo(footerView, '__DONE', function () {
                     this.trigger('__DONE');
                 });
 
-                this.listenTo(footerView, '__CANCEL', function () {
-
-                    this.userCancelled = true;
-                    if (this.isProgressing) {
-
-                        confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
-
-                            BackupRestoreService.backupCancelAsync(this.sessionId).done(function () {
-
-                                this.isProgressing = false;
-                                this.offMessageHandler();
-                                this.releaseWindow();
-                                this.trigger('__CANCEL');
-
-                                log({
-                                    event : 'ui.new_backuprestore.backup_time',
-                                    timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
-                                    isLocal : true,
-                                    backupResult : 'cancel'
-                                });
-
-                            }.bind(this));
-                        }, function () {
-                            this.userCancelled = false;
-                            footerView.toggleCancel(true);
-                        }, this);
-
-                        footerView.toggleCancel(false);
-                    } else {
-                        this.releaseWindow();
-                        this.trigger('__CANCEL');
-                    }
-                });
+                this.listenTo(footerView, '__CANCEL', this.cancel);
 
                 this.listenTo(footerView, '__START_BACKUP', function () {
                     this.setDomState(false);
                     this.startBackup();
-                    PIMCollection.getInstance().get(20).set('loading', true);
+
+                    $('.w-menu-pim .w-ui-syncing').data('title', i18n.new_backuprestore.NAV_BACKUPING);
+                    PIMCollection.getInstance().get(20).set('syncing', true);
 
                     BackupContextModel.set('startTime', new Date().getTime());
                 });
@@ -227,12 +286,11 @@
 
                 }.bind(this)).fail(function (resp) {
 
-                    alert(i18n.new_backuprestore.PERMISSION_TIP);
                     log({
                         'event' : 'debug.backup.progress.error',
                         'type' : 4
                     });
-                    this.trigger('__TIME_OUT');
+                    alert(i18n.new_backuprestore.PERMISSION_TIP, this.cancel, this);
 
                 }.bind(this)));
 
@@ -244,7 +302,7 @@
                 }.bind(this)).fail(function () {
 
                     BackupRestoreService.showAndRecordError(i18n.new_backuprestore.GET_FILE_PATH_FAILED, 0);
-                    this.trigger('__TIME_OUT');
+                    this.cancel();
 
                 }.bind(this)));
 
@@ -265,7 +323,6 @@
                 });
             },
             remove: function () {
-                LocalBackupView.__super__.remove.apply(this, arguments);
 
                 progressView.remove();
                 progressView = undefined;
@@ -282,6 +339,8 @@
                     retryView.remove();
                     retryView = undefined;
                 }
+
+                LocalBackupView.__super__.remove.apply(this, arguments);
             },
             setDomState : function (isDone) {
                 footerView.setButtonState(isDone ? 'done' : 'progressing');
@@ -303,7 +362,7 @@
                 this.sessionId = _.uniqueId('backup.session_id_');
                 this.setDomState(false);
 
-                this.progressHandler = IO.Backend.Device.onmessage({
+                this.nonAppHandler = IO.Backend.Device.onmessage({
                     'data.channel' : this.sessionId
                 }, function (data) {
 
@@ -317,20 +376,18 @@
                         this.backupSmsAndContactFinish(finishedNum);
                         break;
                     case BackupRestoreService.CONSTS.BR_STATUS.ABORT:
-                        this.offMessageHandler();
+                        this.isProgressing = false;
                         BackupRestoreService.logBackupContextModel(BackupContextModel, false);
-                        alert(i18n.new_backuprestore.BACKUP_ABORT_TIP);
-                        this.releaseWindow();
+                        alert(i18n.new_backuprestore.BACKUP_ABORT_TIP, this.cancel, this);
                         break;
                     case BackupRestoreService.CONSTS.BR_STATUS.READY:
                     case BackupRestoreService.CONSTS.BR_STATUS.PAUSED:
                     case BackupRestoreService.CONSTS.BR_STATUS.STOPPED:
                         break;
                     default:
-                        this.offMessageHandler();
+                        this.isProgressing = false;
                         BackupRestoreService.logBackupContextModel(BackupContextModel, false);
-                        alert(i18n.new_backuprestore.BACKUP_FAILED_TIP + data.status);
-                        this.releaseWindow();
+                        alert(i18n.new_backuprestore.BACKUP_FAILED_TIP + data.status, this.cancel, this);
                         break;
                     }
                 }, this);
@@ -345,9 +402,15 @@
 
                 }.bind(this)).fail(function (resp) {
 
+                    if (this.userCancelled) {
+                        return;
+                    }
+
                     BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 0, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
-                    this.releaseWindow();
+
+                    this.isProgressing = false;
+                    this.cancel();
 
                 }.bind(this));
             },
@@ -371,7 +434,7 @@
                 var exportDir = BackupContextModel.get('appPath');
                 var fileType = BackupContextModel.get('appType');
 
-                this.progressHandler = IO.Backend.Device.onmessage({
+                this.appHandler = IO.Backend.Device.onmessage({
                     'data.channel' : this.sessionId
                 }, function (data) {
                     progressView.updateProgressStatus(CONFIG.enums.BR_TYPE_APP, BackupRestoreService.CONSTS.BR_PI_STATUS.RUNNING, data.current, data.total);
@@ -400,13 +463,15 @@
                     }
                 }.bind(this)).fail(function (resp) {
 
-                    this.isProgressing = false;
-                    this.offMessageHandler();
-                    //this.setDomState(true);
+                    if (this.userCancelled) {
+                        return;
+                    }
 
                     BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 1, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
-                    this.releaseWindow();
+
+                    this.isProgressing = false;
+                    this.cancel();
 
                 }.bind(this));
             },
@@ -423,7 +488,7 @@
                 var exportDir = BackupContextModel.get('appPath');
                 var tipView = BackupAppDataTipView.getInstance();
 
-                this.progressHandler = IO.Backend.Device.onmessage({
+                this.appDataHandler = IO.Backend.Device.onmessage({
                     'data.channel' : this.sessionId
                 }, function (data) {
                     if (data.message === CONFIG.enums.BACKUP_APP_DATA_MESSAGE_NEED_USER) {
@@ -510,6 +575,7 @@
                 BackupRestoreService.backupFinishAsync(BackupContextModel.fileFullPath).done(function (resp) {
 
                     this.setDomState(true);
+                    this.releaseWindow();
                     BackupRestoreService.logBackupContextModel(BackupContextModel, true);
 
                     log({
@@ -521,6 +587,10 @@
 
                 }.bind(this)).fail(function (resp) {
 
+                    if (this.userCancelled) {
+                        return;
+                    }
+
                     BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 2, this.userCancelled);
                     BackupRestoreService.logBackupContextModel(BackupContextModel, false);
 
@@ -531,9 +601,10 @@
                         backupResult : 'finish_fail'
                     });
 
-                }.bind(this));
+                    this.isProgressing = false;
+                    this.cancel();
 
-                this.releaseWindow();
+                }.bind(this));
             },
             showErrorListView : function (type) {
                 if (!errorItemListView) {
@@ -554,17 +625,15 @@
                         this.backupAllFinish();
 
                         var length = 0;
-                        //var desc = '';
                         if (type === CONFIG.enums.BR_TYPE_APP_DATA) {
                             length = BackupContextModel.get('appDataErrorList').length;
-                        //    desc = length + '个应用程序数据备份失败';
                         } else {
                             length = BackupContextModel.get('appErrorList').length;
                             progressView.app = BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP] - length;
-                         //   desc = length + '个应用程序备份失败';
                         }
                         progressView.updateProgress(CONFIG.enums.BR_TYPE_APP_DATA, 100, 100);
                         progressView.setContentState(CONFIG.enums.BR_TYPE_APP_DATA, true);
+                        progressView.updateStatus(CONFIG.enums.BR_TYPE_APP, 100, 100, true);
                         //var error = this.$('.app-error').html(desc);
                     }, this);
                 }
@@ -594,7 +663,7 @@
             },
             releaseWindow : function () {
                 WindowController.releaseWindowAsync();
-                PIMCollection.getInstance().get(20).set('loading', false);
+                PIMCollection.getInstance().get(20).set('syncing', false);
             }
         });
 

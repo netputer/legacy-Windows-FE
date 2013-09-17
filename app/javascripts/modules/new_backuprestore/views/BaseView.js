@@ -26,7 +26,6 @@
 
                 var isProgressing = false;
                 var isUserCancelled = false;
-                var progressHandler;
                 var sessionId;
                 Object.defineProperties(this, {
                     bigTitle : {
@@ -53,14 +52,6 @@
                             return isProgressing;
                         }
                     },
-                    progressHandler : {
-                        set : function (value) {
-                            progressHandler = value;
-                        },
-                        get : function () {
-                            return progressHandler;
-                        }
-                    },
                     isUserCancelled : {
                         set : function (value) {
                             isUserCancelled = value;
@@ -83,16 +74,10 @@
                 this.$el.html(this.template({}));
                 return this;
             },
-            offMessageHandler : function () {
-                if (this.progressHandler) {
-                    IO.Backend.Device.offmessage(this.progressHandler);
-                }
-                this.progressHandler = undefined;
-            },
             initAttrsState : function () {
                 this.userCancelled = false;
                 this.isProgressing = false;
-                this.progressHandler = null;
+                this.progressHandler = undefined;
                 this.sessionId = '';
             }
         });

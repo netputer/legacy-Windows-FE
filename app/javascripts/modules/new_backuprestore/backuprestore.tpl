@@ -96,8 +96,8 @@
             <br/>
             <span class="count"></span>
         </div>
-        <progress class="tiny progress" max="100" value="0" style="display:none"></progress>
-        <span class="error"></span>
+        <progress class="tiny progress running" max="100" value="0" style="display:none"></progress>
+        <span class="status text-thirdly"></span>
     </div>
     <div class="content-box sms vbox">
         <div class="title-box hbox">
@@ -106,8 +106,8 @@
             <br/>
             <span class="count"></span>
         </div>
-        <progress class="tiny progress" max="100" value="0" style="display:none"></progress>
-        <span class="error"></span>
+        <progress class="tiny progress running" max="100" value="0" style="display:none"></progress>
+        <span class="status text-thirdly"></span>
     </div>
     <div class="content-box app vbox">
         <div class="title-box hbox">
@@ -117,8 +117,8 @@
             <br/>
             <span class="count"></span>
         </div>
-        <progress class="tiny progress" max="100" value="0" style="display:none"></progress>
-        <span class="error"></span>
+        <progress class="tiny progress running" max="100" value="0" style="display:none"></progress>
+        <span class="status text-thirdly"></span>
     </div>
 </script>
 
