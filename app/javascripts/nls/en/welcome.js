@@ -101,8 +101,8 @@ define({
     CARD_WEIBO_DESC : '新浪微博 @豌豆荚 <span class="icon-verified"></span>',
     CARD_WEIBO_ACTION : '关注',
     CARD_WEIBO_ACTION_CLICKED : '已关注',
-    NO_MORE_1 : '哇，你来到了 Android 世界的尽头。',
-    NO_MORE_2 : '啊哦，今天的应用被你收割完了，明天再来看看？',
-    NO_MORE_3 : '欢迎来到应用海的海底探险，让我们回到海面吧。',
+    NO_MORE_1 : '',
+    NO_MORE_2 : '',
+    NO_MORE_3 : '',
     UPDATED : '豌豆荚升级啦~'
 });
