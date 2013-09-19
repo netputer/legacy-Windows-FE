@@ -95,7 +95,7 @@
                 dataNumList : {},
 
                 // 0 : apk, 1 : wdapk, 2 : auto
-                appType : 0,
+                appType : 2,
 
                 filePath : '',
                 fileName : '',
@@ -120,7 +120,7 @@
                     'dataIDList': [CONFIG.enums.BR_TYPE_CONTACT, CONFIG.enums.BR_TYPE_SMS, CONFIG.enums.BR_TYPE_APP],
                     'dataNumList': {},
 
-                    'appType': 0,
+                    'appType': 2,
                     'filePath': '',
                     'fileName': '',
                     'appPath': '',
