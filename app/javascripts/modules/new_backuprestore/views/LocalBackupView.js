@@ -108,26 +108,33 @@
 
                     if ((type !== CONFIG.enums.BR_TYPE_APP) && (type !== CONFIG.enums.BR_TYPE_APP_DATA)) {
 
-                        var temp = function (type) {
-                            var value = 0;
-                            var all = all_count;
-                            var step = parseInt(all / 100, 10) || 2;
-                            var handle = setInterval(function () {
-                                if (value >= all) {
-                                    this.setContentState(type, true);
-                                    this.setProgressState(type, false);
-                                    this.updateStatus(type, value, all, true);
-                                    window.clearInterval(handle);
-                                    return;
-                                }
-                                value += step;
-                                this.updateProgress(type, value, all);
-                                this.updateStatus(type, value, all);
+                        if (all_count === 0) {
+                            this.setContentState(type, true);
+                            this.setProgressState(type, false);
+                            this.updateProgress(type, 100, 100);
+                            this.updateStatus(type, 100, 100, true);
+                        } else {
+                            var temp = function (type) {
+                                var value = 0;
+                                var all = all_count;
+                                var step = parseInt(all / 100, 10) || 2;
+                                var handle = setInterval(function () {
+                                    if (value >= all) {
+                                        this.setContentState(type, true);
+                                        this.setProgressState(type, false);
+                                        this.updateStatus(type, value, all, true);
+                                        window.clearInterval(handle);
+                                        return;
+                                    }
+                                    value += step;
+                                    this.updateProgress(type, value, all);
+                                    this.updateStatus(type, value, all);
 
-                            }.bind(this), 20);
+                                }.bind(this), 20);
 
-                        }.bind(this);
-                        temp(type);
+                            }.bind(this);
+                            temp(type);
+                        }
 
                     } else if ((type === CONFIG.enums.BR_TYPE_APP && !BackupContextModel.isAppDataSelected) || type === CONFIG.enums.BR_TYPE_APP_DATA) {
                         this.setContentState(type, true);
