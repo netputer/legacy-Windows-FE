@@ -85,7 +85,7 @@
             }
         }
 
-        @each $icon in contact, sms, app, music, photo, video, optimize, wash, backup {
+        @each $icon in contact, sms, app, music, photo, video, wash, backup {
             .icon.#{$icon} {
                 @include nav-sprite(nav-#{$icon});
             }
@@ -104,7 +104,7 @@
         }
 
         .icon {
-            &.welcome{
+            &.welcome {
                 @include nav-sprite(nav-home);
             }
         }

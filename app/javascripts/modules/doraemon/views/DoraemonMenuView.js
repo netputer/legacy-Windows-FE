@@ -5,6 +5,8 @@
     define([
         'backbone',
         'underscore',
+        'doT',
+        'ui/TemplateFactory',
         'Internationalization',
         'FunctionSwitch',
         'Configuration',
@@ -16,6 +18,8 @@
     ], function (
         Backbone,
         _,
+        doT,
+        TemplateFactory,
         i18n,
         FunctionSwitch,
         CONFIG,
@@ -30,16 +34,7 @@
         var extensionsCollection;
         var optimizeItemView;
 
-        var OptimizeItemView = Backbone.View.extend({
-            className : 'w-menu-doraemon w-sidebar-menu w-menu-optimize',
-            tagName : 'menu',
-            render : function () {
-                this.$el.html(PIMMenuItemView.getInstance({
-                    model : PIMCollection.getInstance().get(18)
-                }).render().$el);
-                return this;
-            }
-        });
+        var OptimizeItemView = PIMMenuItemView.getClass();
 
         var DoraemonMenuView = Backbone.View.extend({
             className : 'w-menu-doraemon w-sidebar-menu',
@@ -53,7 +48,11 @@
                     var menuItemView = MenuItemView.getInstance({
                         model : extension
                     });
-                    GallerySwitchView.getInstance().$el.before(menuItemView.render().$el);
+                    if (optimizeItemView) {
+                        optimizeItemView.$el.before(menuItemView.render().$el);
+                    } else {
+                        GallerySwitchView.getInstance().$el.before(menuItemView.render().$el);
+                    }
                     menuItemView.$el[0].scrollIntoView();
                     menuItemView.highlight();
                 });
@@ -64,7 +63,9 @@
                 }
 
                 if (FunctionSwitch.ENABLE_OPTIMIZE) {
-                    optimizeItemView = optimizeItemView || new OptimizeItemView();
+                    optimizeItemView = optimizeItemView || new OptimizeItemView({
+                        model : PIMCollection.getInstance().get(18)
+                    });
                     optimizeItemView.$el.detach();
                 }
 

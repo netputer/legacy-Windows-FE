@@ -184,7 +184,7 @@
             tab : 'optimize',
             count : -1,
             order : 80,
-            icon : 'optimize'
+            icon : 'nav-optimize'
         }];
 
         var MenuModel = Backbone.Model.extend({

@@ -195,6 +195,9 @@
         var factory = _.extend({
             getInstance : function (args) {
                 return new MenuItemView(args);
+            },
+            getClass : function () {
+                return MenuItemView;
             }
         });
 
