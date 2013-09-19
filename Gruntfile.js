@@ -50,9 +50,12 @@ module.exports = function (grunt) {
             },
             source : {
                 options : {
+                    almond : true,
                     appDir : '<%= path.app %>/javascripts',
                     dir :　'<%= path.dist %>/javascripts',
                     optimize : 'uglify',
+                    baseUrl : './',
+                    mainConfigFile : '<%= path.app %>/javascripts/RequireConfig.js',
                     uglify : {
                         toplevel : true,
                         ascii_only : false,
@@ -60,7 +63,23 @@ module.exports = function (grunt) {
                     },
                     preserveLicenseComments : true,
                     useStrict : false,
-                    wrap : true
+                    wrap : true,
+                    modules : [{
+                        name : 'RequireConfig',
+                        include : ['jquery', 'underscore', 'backbone', 'doT', 'text', 'i18n']
+                    }, {
+                        name : 'SnapPea',
+                        include : ['SnapPea'],
+                        exclude : ['RequireConfig']
+                    }, {
+                        name : 'photo/PhotoModule',
+                        include : ['photo/PhotoModule'],
+                        exclude : ['RequireConfig']
+                    }, {
+                        name : 'welcome/guide/views/GuideView',
+                        include : ['welcome/guide/views/GuideView'],
+                        exclude : ['RequireConfig']
+                    }]
                 }
             }
 
@@ -86,13 +105,7 @@ module.exports = function (grunt) {
         },
         clean : {
             dist : ['.tmp', '<%= path.dist %>/*'],
-            server : '.tmp',
-            useless : [
-                '<%= path.dist %>/usb-debug-new.html',
-                '<%= path.dist %>/images/usb-debug-new',
-                '<%= path.dist %>/images/usb-debug-new*.*',
-                '<%= path.dist %>/javascripts/usb-debug-new'
-            ]
+            server : '.tmp'
         },
         useminPrepare : {
             html : ['<%= path.app %>/index.html', '<%= path.app %>/javascripts/modules/photo/photo.html'],
@@ -136,7 +149,6 @@ module.exports = function (grunt) {
                     src : [
                         'images/{,*/}*.{webp,gif,png,jpg,jpeg}',
                         'stylesheets/{,*/}*.{css,ttf}',
-                        'javascripts/{,*/}*/{,*/}*.{js,coffee}',
                         'bower_components/requirejs-text/text.js',
                         'bower_components/jquery/jquery.js',
                         'bower_components/dot/doT.js',
@@ -159,7 +171,6 @@ module.exports = function (grunt) {
                 exclude: [
                     'app/javascripts/utilities/MD5.js',
                     'app/javascripts/ui/Panel.js',
-                    'app/javascripts/usb-debug-new/usb-debug-new.js',
                     'app/javascripts/modules/contact/collections/ContactsCollection.js',
                     'app/javascripts/modules/message/views/MessageSenderView.js',
                     'app/javascripts/ui/Button.js'
@@ -207,9 +218,8 @@ module.exports = function (grunt) {
         'htmlmin',
         'concat',
         'uglify',
-        'requirejs:dist',
-        'usemin',
-        'clean:useless'
+        // 'requirejs:dist',
+        'usemin'
     ]);
 
     grunt.registerTask('test', function () {

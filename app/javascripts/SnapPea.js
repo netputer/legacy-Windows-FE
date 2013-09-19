@@ -39,46 +39,6 @@
 (function (window) {
     'use strict';
 
-    // require([
-    //     'underscore',
-    //     'jquery',
-    //     'doT',
-    //     'ui/TemplateFactory',
-    //     'utilities/QueryString',
-    //     'utilities/BrowserSniffer'
-    // ], function (
-    //     _,
-    //     $,
-    //     doT,
-    //     TemplateFactory,
-    //     QueryString,
-    //     BrowserSniffer
-    // ) {
-    //     // Disable `console` object under release mode
-    //     if (BrowserSniffer.is('wandoujia') && QueryString.get('debug') !== 'true') {
-    //         var originalConsole = window.console;
-
-    //         var emptFunc = function () {};
-
-    //         window.console = {
-    //             debug : emptFunc,
-    //             log : emptFunc,
-    //             time : emptFunc,
-    //             timeEnd : emptFunc,
-    //             dir : emptFunc,
-    //             error : emptFunc
-    //         };
-
-    //         window.whosYourDaddy = function () {
-    //             window.console = originalConsole;
-    //         };
-    //     }
-
-    //     // Hack for XP can't render Microsoft Yahei clearly
-    //     if (BrowserSniffer.sysIs('WindowsXP')) {
-    //         $('head').append(doT.template(TemplateFactory.get('misc', 'font-style-xp'))({}));
-    //     }
-    // });
     require([
         'jquery',
         'backbone',

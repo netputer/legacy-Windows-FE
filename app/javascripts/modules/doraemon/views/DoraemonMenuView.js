@@ -5,25 +5,35 @@
     define([
         'backbone',
         'underscore',
+        'doT',
+        'ui/TemplateFactory',
         'Internationalization',
         'FunctionSwitch',
         'Configuration',
         'doraemon/collections/ExtensionsCollection',
         'doraemon/views/MenuItemView',
-        'doraemon/views/GallerySwitchView'
+        'doraemon/views/GallerySwitchView',
+        'main/views/MenuItemView',
+        'main/collections/PIMCollection'
     ], function (
         Backbone,
         _,
+        doT,
+        TemplateFactory,
         i18n,
         FunctionSwitch,
         CONFIG,
         ExtensionsCollection,
         MenuItemView,
-        GallerySwitchView
+        GallerySwitchView,
+        PIMMenuItemView,
+        PIMCollection
     ) {
         console.log('DoraemonMenuView - File loaded.');
 
         var extensionsCollection;
+        var optimizeItemView;
+        var OptimizeItemView = PIMMenuItemView.getClass();
 
         var DoraemonMenuView = Backbone.View.extend({
             className : 'w-menu-doraemon w-sidebar-menu',
@@ -37,7 +47,11 @@
                     var menuItemView = MenuItemView.getInstance({
                         model : extension
                     });
-                    GallerySwitchView.getInstance().$el.before(menuItemView.render().$el);
+                    if (optimizeItemView) {
+                        optimizeItemView.$el.before(menuItemView.render().$el);
+                    } else {
+                        GallerySwitchView.getInstance().$el.before(menuItemView.render().$el);
+                    }
                     menuItemView.$el[0].scrollIntoView();
                     menuItemView.highlight();
                 });
@@ -45,6 +59,14 @@
             buildList : function (extensionsCollection) {
                 if (FunctionSwitch.ENABLE_DORAEMON) {
                     GallerySwitchView.getInstance().$el.detach();
+                }
+
+                if (FunctionSwitch.ENABLE_OPTIMIZE) {
+                    optimizeItemView = optimizeItemView || new OptimizeItemView({
+                        model : PIMCollection.getInstance().get(18)
+                    });
+
+                    optimizeItemView.$el.detach();
                 }
 
                 var fragment = document.createDocumentFragment();
@@ -55,6 +77,10 @@
 
                     fragment.appendChild(menuItemView.render().$el[0]);
                 });
+
+                if (FunctionSwitch.ENABLE_OPTIMIZE) {
+                    fragment.appendChild(optimizeItemView.render().$el[0]);
+                }
 
                 if (FunctionSwitch.ENABLE_DORAEMON) {
                     fragment.appendChild(GallerySwitchView.getInstance().render().$el[0]);

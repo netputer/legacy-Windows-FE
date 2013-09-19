@@ -23,7 +23,7 @@
             render : function () {
                 var rootItems = pimCollection.getRootItems();
                 _.each(rootItems, function (item) {
-                    if (item.id !== 0) {
+                    if (item.id !== 0 && item.id !== 18) {
                         var menuItemView = MenuItemView.getInstance({
                             model : item
                         });

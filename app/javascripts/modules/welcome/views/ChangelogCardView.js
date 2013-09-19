@@ -33,6 +33,19 @@
             template : doT.template(TemplateFactory.get('welcome', 'changelog')),
             className : FeedCardView.getClass().prototype.className + ' changelog hide',
             latestVersion : Settings.get('latestVersion'),
+            initialize : function () {
+                var resp = {};
+                Object.defineProperties(this, {
+                    resp : {
+                        set : function (value) {
+                            resp = value;
+                        },
+                        get : function () {
+                            return resp;
+                        }
+                    }
+                });
+            },
             render : function () {
                 var show = this.latestVersion !== Environment.get('backendVersion');
                 if (show) {
@@ -49,13 +62,17 @@
                             } catch (e) {
                                 resp = {};
                             }
+
+                            this.resp = resp;
+
                             if (resp.subtitle && resp.icon) {
                                 this.$el.removeClass('hide');
 
                                 this.$el.html(this.template({
                                     title : resp.title,
                                     subtitle : resp.subtitle,
-                                    icon : resp.icon
+                                    icon : resp.icon,
+                                    blog : resp.blog
                                 }));
 
                                 Settings.set('latestVersion', Environment.get('backendVersion'));
@@ -73,10 +90,8 @@
                 return this;
             },
             clickButtonAction : function () {
-                var url = 'http://www.wandoujia.com/history/?format=html&from=client&new={1}&old={2}';
-
                 $('<a>').attr({
-                    href : formatString(url, Environment.get('backendVersion'), this.latestVersion),
+                    href : this.resp.blog,
                     target : '_default'
                 })[0].click();
 

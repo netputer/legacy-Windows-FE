@@ -246,7 +246,7 @@
                     $title.html(i18n.app.RECOMMENDATION_DEFAULT);
                 }
 
-                setTimeout(showTip.bind(this), 0);
+                showTip.call(this);
 
                 return this;
             },

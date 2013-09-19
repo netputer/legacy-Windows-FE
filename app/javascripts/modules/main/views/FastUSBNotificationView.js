@@ -97,10 +97,13 @@
                 this.$el.toggleClass('loading', data > 0)
                     .toggleClass('error', data < 0);
 
-                if (parseInt(data, 10) === 1000) {
+                data = parseInt(data, 10);
+                if (data === 1000) {
                     this.$el.css({
                         visibility : 'hidden'
                     });
+                } else if (data === 1) {
+                    this.$el.slideUp();
                 } else {
                     this.$el.css({
                         visibility : 'visible'
