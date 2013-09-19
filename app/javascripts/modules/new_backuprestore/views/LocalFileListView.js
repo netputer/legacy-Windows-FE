@@ -109,10 +109,10 @@
             parse: function (data) {
                 var path = data.path;
                 var shortFileName = path.substr(path.lastIndexOf('\\') + 1);
-                var zip_index = shortFileName.lastIndexOf('.zip');
+                var zipIndex = shortFileName.lastIndexOf('.zip');
 
-                if (zip_index > 0) {
-                    shortFileName = shortFileName.substr(0, zip_index);
+                if (zipIndex > 0) {
+                    shortFileName = shortFileName.substr(0, zipIndex);
                 }
 
                 var info = {
