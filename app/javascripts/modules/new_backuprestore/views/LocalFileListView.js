@@ -106,11 +106,32 @@
                     restoreFileCollection.updateAsync(resp.body.back_file);
                 });
             },
+            parse: function (data) {
+                var path = data.path;
+                var shortFileName = path.substr(path.lastIndexOf('\\') + 1);
+                var zip_index = shortFileName.lastIndexOf('.zip');
+
+                if (zip_index > 0) {
+                    shortFileName = shortFileName.substr(0, zip_index);
+                }
+
+                var info = {
+                    'path' : path,
+                    'name' : shortFileName,
+                    'id' : shortFileName
+                };
+
+                _.each(data.info, function (item) {
+                    info[item.type] = item.count;
+                });
+
+                return info;
+            },
             setRestoreData : function (info) {
 
                 var data;
                 if (info) {
-                    data = restoreFileCollection.parse(info);
+                    data = this.parse(info);
                 } else {
                     var model = restoreFileCollection.get(this.selectedId);
                     data = model.toJSON();

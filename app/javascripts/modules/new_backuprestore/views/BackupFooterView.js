@@ -85,6 +85,11 @@
                     event : 'ui.click.new_backuprestore_show_backup_file'
                 });
             },
+            clickRemoteFile : function () {
+                log({
+                    event : 'ui.click.new_backuprestore_show_remote_file'
+                });
+            },
             toggleCancel : function (show) {
                 this.$('.cancel').toggle(show);
             },
@@ -127,7 +132,8 @@
                 'click .cancel' : 'clickBtnCancel',
                 'click .startbackup' : 'clickBtnStartBackup',
                 'click .done' : 'clickBtnDone',
-                'click .showfile' : 'clickBtnShowFile'
+                'click .showfile' : 'clickBtnShowFile',
+                'click .show-remote-file' : 'clickRemoteFile'
             }
         });
 
