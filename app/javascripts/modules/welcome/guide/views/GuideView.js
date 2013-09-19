@@ -1,6 +1,6 @@
 /*global define*/
 (function (window) {
-    define([
+    require([
         'backbone',
         'jquery',
         'doT',
@@ -35,6 +35,7 @@
         DoraSuggestionView,
         queryString
     ) {
+
         var GuideView = Backbone.View.extend({
             className : 'w-guide-ctn vbox',
             template : doT.template(TemplateFactory.get('guide', 'main')),
@@ -61,32 +62,22 @@
 
                 this.regCardAsync(StarterView.getInstance({
                     type : 0
-                }))
-                    .then(function () {
-                        return this.regCardAsync(StarterView.getInstance({
-                            type : 1
-                        }));
-                    }.bind(this))
-                    // .then(function () {
-                    //     return this.regCardAsync(BindView.getInstance());
-                    // }.bind(this))
-                    .then(function () {
-                        return this.regCardAsync(CloudBackupView.getInstance());
-                    }.bind(this))
-                    .then(function () {
-                        return this.regCardAsync(XibaibaiView.getInstance());
-                    }.bind(this))
-                    // .then(function () {
-                    //     return this.regCardAsync(DoraSuggestionView.getInstance());
-                    // }.bind(this))
-                    .then(function () {
-                        return this.regCardAsync(TipsView.getInstance());
-                    }.bind(this))
-                    .then(function () {
-                        this.totalCards = this.cardQueue.length;
-                        IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY);
-                        this.run();
-                    }.bind(this));
+                })).then(function () {
+                    return this.regCardAsync(StarterView.getInstance({
+                        type : 1
+                    }));
+                }.bind(this)).then(function () {
+                    return this.regCardAsync(CloudBackupView.getInstance());
+                }.bind(this)).then(function () {
+                    return this.regCardAsync(XibaibaiView.getInstance());
+                }.bind(this)).then(function () {
+                    return this.regCardAsync(TipsView.getInstance());
+                }.bind(this)).then(function () {
+                    console.log(5);
+                    this.totalCards = this.cardQueue.length;
+                    IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY);
+                    this.run();
+                }.bind(this));
 
                 return this;
             },

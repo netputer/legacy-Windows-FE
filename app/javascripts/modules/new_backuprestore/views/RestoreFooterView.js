@@ -142,7 +142,7 @@
                 this.trigger('__SHOW_FILE');
 
                 log({
-                    event : 'ui.click.new_backuprestore_show_remote_file'
+                    event : 'ui.click.new_backuprestore_choose_backup_file'
                 });
             },
             clickBtnTaskManager : function () {

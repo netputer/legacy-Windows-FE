@@ -12,7 +12,7 @@
         font-size: 13px;
         height: 40px;
 
-        @each $icon in dor-18, dor-223, dor-235, dor-258, dor-255 , dor-256, dor-254 {
+        @each $icon in dor-18, dor-223, dor-235, dor-258, dor-255 , dor-256, dor-254, nav-optimize {
             & .#{$icon} {
                 @include nav-sprite(#{$icon});
             }

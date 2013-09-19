@@ -1016,6 +1016,7 @@
             margin-right: 5px;
 
             &:hover {
+                color: $textPrimary;
                 text-decoration: underline;
             }
         }
@@ -1025,6 +1026,7 @@
         height: 74px;
 
         .banner {
+            cursor: pointer;
             width: 190px;
         }
     }

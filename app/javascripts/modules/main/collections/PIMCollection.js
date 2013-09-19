@@ -182,10 +182,9 @@
             root : true,
             module : 'optimize',
             tab : 'optimize',
-            hide : !FunctionSwitch.ENABLE_OPTIMIZE,
             count : -1,
             order : 80,
-            icon : 'optimize'
+            icon : 'nav-optimize'
         }];
 
         var MenuModel = Backbone.Model.extend({

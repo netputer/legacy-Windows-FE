@@ -19,6 +19,11 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="gallery-optimize">
+    <div class="icon nav-optimize"></div>
+    {{= it.label }}
+</script>
+
 <script type="text/x-ui-template" id="extension-item">
     <label class="input item-checker-wrap">
         <input class="item-checker" type="checkbox" value="{{= it.id }}">

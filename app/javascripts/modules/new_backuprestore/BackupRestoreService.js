@@ -237,6 +237,15 @@
             this.recordError(evt, resp, type);
         };
 
+        BackupRestoreService.recordError = function (evt, resp, type) {
+            log({
+                'event' : evt,
+                'state_code' : resp.state_code || -1,
+                'state_line' : resp.state_line || '',
+                'type' : type
+            });
+        };
+
 
         BackupRestoreService.backupStartNonAppsAsync = function (filePath, sessionID, brSpec) {
             var deferred = $.Deferred();
@@ -928,15 +937,6 @@
             var message = BackupRestoreService.CONSTS.ErrorCodeToMessage[state_code];
             message = message || (i18n.new_backuprestore.UNKNOW_ERROR + state_code);
             return message.toString();
-        };
-
-        BackupRestoreService.recordError = function (evt, resp, type) {
-            log({
-                'event' : evt,
-                'state_code' : resp.state_code || -1,
-                'state_line' : resp.state_line || '',
-                'type' : type
-            });
         };
 
         BackupRestoreService.getAppDataCountAsync = function () {
