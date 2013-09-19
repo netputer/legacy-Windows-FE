@@ -273,14 +273,13 @@
 
                 BackupRestoreService.remoteManualBackupAsync(types, this.sessionId).done(function (resp) {
 
-                    if (this.userCancelled) {
-                        return;
-                    }
-
                     log({
                         'event' : 'debug.backup.remote.success'
                     });
 
+                    if (this.userCancelled) {
+                        return;
+                    }
                     this.backupAllFinish();
 
                 }.bind(this)).fail(function (resp) {
