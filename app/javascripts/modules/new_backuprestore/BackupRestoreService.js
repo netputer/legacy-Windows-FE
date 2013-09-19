@@ -260,7 +260,7 @@
         BackupRestoreService.logBackupContextModel = function (context, isSuccess) {
             log({
                 'event' : 'debug.backup.context.' + (isSuccess ? 'success' : 'failed'),
-                'is_local' : context.IsLocal,
+                'is_local' : context.isLocal,
                 'data_id_list' : context.get('dataIDList').join(','),
                 'appt_type' : context.get('appType'),
                 'full_file_name' : context.fileFullPath,
@@ -275,7 +275,7 @@
         BackupRestoreService.logRestoreContextModel = function (context, isSuccess, backupFilelength, snapshotList) {
             log({
                 'event' : 'restore.context.' + (isSuccess ? 'success' : 'failed'),
-                'is_local' : context.IsLocal,
+                'is_local' : context.isLocal,
                 'backup_file_list' : backupFilelength || 0,
                 'full_file_name' : context.get('fileName'),
                 'data_id_list' : context.get('dataIDList').join(','),
