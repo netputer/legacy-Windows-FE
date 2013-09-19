@@ -108,7 +108,12 @@
                 this.$('input[type=radio][value=' + defaultBackupType + ']').prop('checked', true);
 
                 BackupRestoreService.getIsWdapkReadyAsync().done(function (resp) {
-                    this.$('input[type=radio][value=2]').prop('disabled', !resp.body.value);
+
+                    if (!resp.body.value) {
+                        this.$('input[type=radio][value=2]').prop('disabled', true);
+                        this.$('input[type=radio][value=0]').prop('checked', true);
+                    }
+
                 }.bind(this));
 
                 _.each(BackupContextModel.get('dataIDList'), function (item) {

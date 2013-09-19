@@ -313,6 +313,14 @@
 
                 }.bind(this)));
 
+                initDone.push(BackupRestoreService.getIsWdapkReadyAsync().done(function (resp) {
+
+                    if (!resp.body.value) {
+                        BackupContextModel.set('appType', 0);
+                    }
+
+                }.bind(this)));
+
                 $.when.apply(this, initDone).done(function () {
                     footerView.enableBackupButton = true;
                 });
