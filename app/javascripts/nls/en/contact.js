@@ -168,10 +168,10 @@ define({
 
     EXPORT_USING_VCARD : 'Export in vCard format',
 
-    CONTACT_TIP_PART : '{1} 个与「{2}」有关的联系人',
+    CONTACT_TIP_PART : '{1} contact(S) related to「{2}」',
 
-    EMPTY_PHONE_LIST : 'Import a picture here!',
-    EMPTY_LIBRARY_LIST : 'Import a picture here!',
+    EMPTY_PHONE_LIST : 'Oh? No photos in your phone\'s album',
+    EMPTY_LIBRARY_LIST : 'Oh? No pictures in your phone\'s gallery',
 
     NAV_CONTACT_ALL : 'All Contacts'
 });
