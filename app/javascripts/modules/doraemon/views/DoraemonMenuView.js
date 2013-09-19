@@ -33,7 +33,6 @@
 
         var extensionsCollection;
         var optimizeItemView;
-
         var OptimizeItemView = PIMMenuItemView.getClass();
 
         var DoraemonMenuView = Backbone.View.extend({
@@ -66,6 +65,7 @@
                     optimizeItemView = optimizeItemView || new OptimizeItemView({
                         model : PIMCollection.getInstance().get(18)
                     });
+
                     optimizeItemView.$el.detach();
                 }
 
