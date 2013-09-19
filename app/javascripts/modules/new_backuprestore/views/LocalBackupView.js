@@ -319,7 +319,7 @@
                         BackupContextModel.set('appType', 0);
                     }
 
-                }.bind(this)));
+                }));
 
                 $.when.apply(this, initDone).done(function () {
                     footerView.enableBackupButton = true;
