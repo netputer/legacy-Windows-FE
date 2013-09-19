@@ -213,17 +213,17 @@
 
                         BackupRestoreService.backupCancelAsync(this.sessionId).done(function () {
 
-                            this.isProgressing = false;
-                            this.offMessageHandler();
-                            this.releaseWindow();
-                            this.trigger('__CANCEL');
-
                             log({
                                 event : 'ui.new_backuprestore.backup_time',
                                 timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
                                 isLocal : true,
                                 backupResult : 'cancel'
                             });
+
+                            this.isProgressing = false;
+                            this.offMessageHandler();
+                            this.releaseWindow();
+                            this.trigger('__CANCEL');
 
                         }.bind(this));
                     }, function () {
@@ -317,7 +317,6 @@
                     footerView.enableBackupButton = true;
                 });
 
-
                 if (deviceName !== undefined && deviceName.length > 0) {
                     deviceName = deviceName.replace(/ /g, '_').replace(new RegExp(this.invalidPattern, "g"), '_');
                 }
@@ -409,12 +408,12 @@
 
                 }.bind(this)).fail(function (resp) {
 
+                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 0, this.userCancelled);
+                    BackupRestoreService.logBackupContextModel(BackupContextModel, false);
+
                     if (this.userCancelled) {
                         return;
                     }
-
-                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 0, this.userCancelled);
-                    BackupRestoreService.logBackupContextModel(BackupContextModel, false);
 
                     this.isProgressing = false;
                     this.cancel();
@@ -470,12 +469,12 @@
                     }
                 }.bind(this)).fail(function (resp) {
 
+                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 1, this.userCancelled);
+                    BackupRestoreService.logBackupContextModel(BackupContextModel, false);
+
                     if (this.userCancelled) {
                         return;
                     }
-
-                    BackupRestoreService.showAndRecordError('debug.backup.progress.error', resp, 1, this.userCancelled);
-                    BackupRestoreService.logBackupContextModel(BackupContextModel, false);
 
                     this.isProgressing = false;
                     this.cancel();
@@ -483,9 +482,11 @@
                 }.bind(this));
             },
             startBackupAppData : function () {
+
                 if (this.userCancelled) {
                     return;
                 }
+
                 WindowController.blockWindowAsync();
 
                 this.isProgressing = true;

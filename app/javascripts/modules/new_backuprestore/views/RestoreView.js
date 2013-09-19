@@ -409,13 +409,13 @@
                     RestoreContextModel.set('appPath', resp.body.value);
                 }.bind(this)).fail(function (resp) {
 
-                    if (this.userCancelled) {
-                        return;
-                    }
-
                     BackupRestoreService.showAndRecordError('debug.restore.progress.error', resp, 1);
                     BackupRestoreService.logRestoreContextModel(RestoreContextModel, false, fileListView.getAll().length);
                     BackupRestoreService.restoreCancelAsync(this.sessionId);
+
+                    if (this.userCancelled) {
+                        return;
+                    }
 
                     this.isProgressing = false;
                     this.cancel();
@@ -529,7 +529,6 @@
 
                                 this.isProgressing = false;
                                 this.cancel();
-
                             });
                         }
                         value++;
