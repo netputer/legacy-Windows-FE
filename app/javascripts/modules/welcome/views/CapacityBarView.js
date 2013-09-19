@@ -33,6 +33,9 @@
             template : doT.template(TemplateFactory.get('welcome', 'capacitybar')),
             initialize : function () {
                 this.listenTo(Device, 'change:isConnected', this.render);
+                this.listenTo(Device, 'change:screenshot', function (Device, screenshot) {
+                    this.$el.toggleClass('left', screenshot.rotation === 1 || screenshot.rotation === 3);
+                });
                 this.listenTo(Backbone, 'switchModule', this.render);
             },
             render : function () {
@@ -49,7 +52,9 @@
                             externalSDPath : Device.get('externalSDPath')
                         };
 
-                        this.$el.html(this.template(data)).addClass('show');
+                        this.$el.html(this.template(data))
+                            .addClass('show')
+                            .toggleClass('left', Device.get('screenshot').rotation === 1 || Device.get('screenshot').rotation === 3);
 
                         CapacityTipsView.getInstance({
                             $host : this.$('.info-device'),
