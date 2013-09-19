@@ -34,20 +34,20 @@
             className : 'w-app-hot',
             initialize : function () {
                 var appsCollection = AppsCollection.getInstance();
-                this.listenTo(appsCollection, 'refresh', this.renderCategories);
+                this.listenTo(appsCollection, 'refresh', this.renderTags);
             },
-            renderCategories : function () {
+            renderTags : function () {
                 var appsCollection = AppsCollection.getInstance();
 
-                var cates = appsCollection.getCategories();
+                var tags = appsCollection.getAppsTags().slice(0, 15);
 
                 var fragment = document.createDocumentFragment();
-                _.each(cates, function (cate) {
+                _.each(tags, function (tag) {
                     fragment.appendChild($('<li>')
                         .addClass('tag text-secondary')
-                        .html(cate.name)
-                        .data('alias', cate.alias)[0]);
+                        .html(tag)[0]);
                 }, this);
+
                 this.$('.tags-ctn').html(fragment);
             },
             getSpecialAsync : function () {
@@ -73,7 +73,7 @@
             render : function () {
                 this.$el.html(this.template({}));
 
-                this.renderCategories();
+                this.renderTags();
 
                 this.getSpecialAsync().done(function (resp) {
                     console.log(resp);
@@ -85,9 +85,9 @@
                 return this;
             },
             clickTag : function (evt) {
-                var basePath = 'http://apps.wandoujia.com/category/{1}?pos=w/manage';
+                var basePath = 'http://apps.wandoujia.com/tag/{1}?pos=w/manage';
 
-                var alias = $(evt.currentTarget).data('alias');
+                var alias = $(evt.currentTarget).html();
                 BrowserModuleView.getInstance().navigateTo(formatString(basePath, alias));
 
                 log({
