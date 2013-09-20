@@ -31,7 +31,7 @@
             className : 'w-task-capacity hbox',
             template : doT.template(TemplateFactory.get('taskManager', 'capacity')),
             initialize : function () {
-                this.listenTo(Device, 'change', this.render);
+                this.listenTo(Device, 'change:isConnected change:isMounted', this.render);
             },
             render : function () {
                 if (Device.get('isConnected')) {
