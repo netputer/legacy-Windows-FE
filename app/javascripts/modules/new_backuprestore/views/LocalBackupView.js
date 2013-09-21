@@ -614,7 +614,9 @@
                         event : 'ui.new_backuprestore.backup_time',
                         timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
                         isLocal : true,
-                        backupResult : 'finish_fail'
+                        backupResult : 'finish_fail',
+                        fileFullPath : BackupContextModel.get('fileFullName'),
+                        fileFullPathFromNative : resp.body.value
                     });
 
                     this.isProgressing = false;
