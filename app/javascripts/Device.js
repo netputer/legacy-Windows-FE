@@ -238,6 +238,17 @@
                         if (resp.state_code === 200) {
                             console.log('Device - Get device capacity success.');
 
+                            this.set({
+                                deviceCapacity : 0,
+                                deviceFreeCapacity : 0,
+                                internalSDCapacity : 0,
+                                internalSDFreeCapacity : 0,
+                                internalSDPath : '',
+                                externalSDCapacity : 0,
+                                externalSDFreeCapacity : 0,
+                                externalSDPath : ''
+                            });
+
                             _.each(resp.body.storage_infos, function (info) {
                                 if (info.is_emulated === true) {
                                     return;
