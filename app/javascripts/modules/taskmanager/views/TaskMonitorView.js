@@ -344,6 +344,9 @@
             toggleListView : function (show) {
                 if (taskModuleView.show || (show !== undefined && !show)) {
                     taskModuleView.slideOut();
+                    Backbone.trigger('taskManager:toggle', {
+                        status : 'close'
+                    });
                 } else {
                     if (taskModuleView.rendered) {
                         if (!$('.w-main .module-ctn').children().last()[0].contains(taskModuleView.$el[0])) {
@@ -353,6 +356,9 @@
                         $('.w-main .module-ctn').append(taskModuleView.render().$el);
                     }
                     taskModuleView.slideIn();
+                    Backbone.trigger('taskManager:toggle', {
+                        status : 'open'
+                    });
                 }
             },
             clickView : function (evt) {

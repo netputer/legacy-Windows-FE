@@ -32,11 +32,15 @@
             className : 'w-welcome-capacitybar hbox',
             template : doT.template(TemplateFactory.get('welcome', 'capacitybar')),
             initialize : function () {
-                this.listenTo(Device, 'change:isConnected', this.render);
+                this.listenTo(Device, 'change:isConnected change:isMounted', _.debounce(this.render.bind(this), 200));
+                this.listenTo(Backbone, 'switchModule', function (data) {
+                    if (data.module === 'welcome') {
+                        this.render();
+                    }
+                });
                 this.listenTo(Device, 'change:screenshot', function (Device, screenshot) {
                     this.$el.toggleClass('left', screenshot.rotation === 1 || screenshot.rotation === 3);
                 });
-                this.listenTo(Backbone, 'switchModule', this.render);
             },
             render : function () {
                 if (Device.get('isConnected')) {
