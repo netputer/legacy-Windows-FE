@@ -47,10 +47,10 @@
         var router = function (message) {
             _.each(this.callbackList, function (item) {
                 if (item.filter(message)) {
-                    item.callback.call(item.context, JSON.parse(message.data.data));
-                    // ParserFactory.addTask(message.data.data, function (evt) {
-                    //     item.callback.call(item.context, evt.data);
-                    // });
+                    // item.callback.call(item.context, JSON.parse(message.data.data));
+                    ParserFactory.addTask(message.data.data, function (evt) {
+                        item.callback.call(item.context, evt.data);
+                    });
                 }
             });
         };
