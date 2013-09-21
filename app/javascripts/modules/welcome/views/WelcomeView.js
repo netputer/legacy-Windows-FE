@@ -62,13 +62,15 @@
             template : doT.template(TemplateFactory.get('welcome', 'welcome')),
             className : 'w-welcome-ctn',
             initialize : function () {
-                var scrollHandler = _.throttle(function (evt) {
-                    var target = evt.target;
-                    this.moveComponents(target.scrollTop);
-                    if (target.scrollHeight - (target.scrollTop + target.offsetHeight) < 400) {
-                        feedListView.loadNextPage();
-                    }
-                }.bind(this), 50);
+                var scrollHandler = function (evt) {
+                    window.requestAnimationFrame(function () {
+                        var target = evt.target;
+                        this.moveComponents(target.scrollTop);
+                        if (target.scrollHeight - (target.scrollTop + target.offsetHeight) < 400) {
+                            feedListView.loadNextPage();
+                        }
+                    }.bind(this));
+                }.bind(this);
 
                 var loading = false;
 
