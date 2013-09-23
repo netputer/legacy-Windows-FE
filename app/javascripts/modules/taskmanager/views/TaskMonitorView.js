@@ -265,7 +265,6 @@
                 $('body').append($anima);
             }, 10 * 1000),
             showMessage : function (tasksCollection) {
-
                 this.$('.item').hide();
 
                 if (tasksCollection.activeCount > 0) {
@@ -344,6 +343,7 @@
             toggleListView : function (show) {
                 if (taskModuleView.show || (show !== undefined && !show)) {
                     taskModuleView.slideOut();
+
                     Backbone.trigger('taskManager:toggle', {
                         status : 'close'
                     });
@@ -355,7 +355,9 @@
                     } else {
                         $('.w-main .module-ctn').append(taskModuleView.render().$el);
                     }
+
                     taskModuleView.slideIn();
+
                     Backbone.trigger('taskManager:toggle', {
                         status : 'open'
                     });

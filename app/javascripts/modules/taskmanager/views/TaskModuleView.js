@@ -163,30 +163,12 @@
                 return this;
             },
             slideIn : function () {
-                if (!this.show && !this.$el.hasClass('w-task-module-fade-in')) {
-                    var showHandler = function () {
-                        this.$el.removeClass('w-task-module-fade-in');
-                        this.show = true;
-                    }.bind(this);
-
-                    this.$('.w-task-mask').css('background-color', 'rgba(0, 0, 0, .4)');
-                    this.$el.one('webkitAnimationEnd', showHandler)
-                            .css('visibility', 'visible')
-                            .addClass('w-task-module-fade-in');
-                }
+                this.show = true;
+                this.$el.toggleClass('hide', !this.show);
             },
             slideOut : function () {
-                if (this.show && !this.$el.hasClass('w-task-module-fade-out')) {
-                    var hideHandler = function () {
-                        this.show = false;
-                        this.$el.css({
-                            visibility : 'hidden'
-                        }).removeClass('w-task-module-fade-out');
-                    }.bind(this);
-                    this.$('.w-task-mask').css('background-color', 'rgba(0, 0, 0, 0)');
-                    this.$el.one('webkitAnimationEnd', hideHandler)
-                            .addClass('w-task-module-fade-out');
-                }
+                this.show = false;
+                this.$el.toggleClass('hide', !this.show);
             },
             clickButtonClose : function () {
                 this.slideOut();
