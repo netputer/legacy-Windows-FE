@@ -18,28 +18,19 @@
             }
         }
 
-        .button-ctn {
-            left: 53px;
-            position: relative;
+        .button-management {
+            @include nav-sprite(manage);
+            height: 16px;
+            margin-right: 10px;
+            opacity: .5;
+            width: 16px;
 
-            .button-management {
-                @include nav-sprite(manage);
-                    height: 16px;
-                    opacity: .5;
-                    width: 16px;
+            &:hover {
+                opacity: .7;
+            }
 
-                &.white {
-                    @include nav-sprite(manage-white);
-                    display: none;
-                }
-
-                &:hover {
-                    opacity: .7;
-                }
-
-                &:active {
-                    opacity: .85;
-                }
+            &:active {
+                opacity: .85;
             }
         }
 
