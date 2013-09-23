@@ -111,13 +111,9 @@
                         this.set([]);
                         this.trigger('refresh', this);
                     }
-                });
-
-                this.listenTo(appsCollection, 'add remove', _.debounce(function () {
+                }).listenTo(appsCollection, 'add remove', _.debounce(function () {
                     this.trigger('update');
-                }));
-
-                this.on('sort', function () {
+                })).on('sort', function () {
                     this.models = this.models.sort(function (a, b) {
                         var flag;
                         if (a.get('update') === b.get('update')) {

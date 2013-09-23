@@ -88,7 +88,7 @@
                     break;
                 case 'app':
                     if (SnapPea.CurrentTab === 'web') {
-                        canReload = false;
+                        canReload = Account.get('isLogin');
                     } else {
                         canReload = Device.get('isConnected');
                     }
