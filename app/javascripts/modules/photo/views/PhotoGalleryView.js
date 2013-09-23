@@ -138,22 +138,10 @@
                 if ($targetTab.length > 0) {
                     var $pointer = this.$('.pointer');
 
-                    var oldTransition = $pointer.css('-webkit-transition');
-
-                    $pointer.css({
-                        '-webkit-transition' : 'none'
-                    });
-
                     this.$('.pointer').css({
                         left : $targetTab[0].offsetLeft,
                         width : $targetTab[0].offsetWidth
                     });
-
-                    setTimeout(function () {
-                        $pointer.css({
-                            '-webkit-transition' : oldTransition
-                        });
-                    }, 0);
                 }
             },
             hideTabs : function (phone, lib, cloud) {

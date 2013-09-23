@@ -3,7 +3,7 @@
     define(['underscore', 'WorkerPoll', 'Configuration'], function (_, WorkerPoll, CONFIG) {
         console.log('ParserFactory - File loaded.');
 
-        var POOL_SIZE = 10;
+        var POOL_SIZE = 3;
         var WORKER_PATH = CONFIG.BASE_PATH + 'workers/jsonparser.js';
 
         var ParserFactory = new WorkerPoll(WORKER_PATH, POOL_SIZE);

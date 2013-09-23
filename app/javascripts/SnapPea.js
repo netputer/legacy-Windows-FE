@@ -71,7 +71,6 @@
         'IframeMessageListener',
         'PerformanceTracker',
         'main/views/BindingDeviceWindowView',
-
         'backuprestore/BackupController',
         'new_backuprestore/views/BackupRestoreModuleView'
     ], function (
@@ -112,10 +111,6 @@
     ) {
         window.SnapPea = window.SnapPea || {};
 
-        // Backbone.history.start({
-        //     pushState : false
-        // });
-
         var mainView = MainView.getInstance();
         mainView.regModule('welcome', WelcomeModuleView);
 
@@ -132,8 +127,6 @@
         mainView.regModule('optimize', OptimizeModuleView);
         mainView.regModule('app-wash', AppWashModuleView);
         mainView.regModule('gallery', GalleryView);
-
-        //TODO
         mainView.regModule('backup-restore', BackupRestoreModuleView);
 
         var init = function () {
