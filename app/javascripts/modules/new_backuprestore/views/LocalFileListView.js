@@ -152,11 +152,11 @@
                 BackupRestoreService.getSupportAppDataAsync().done(function (resp) {
 
                     if (!resp.body.value) {
-                        var list = RestoreContextModel.get('dataIDList');
-                        list = _.filter(list, function (type) {
+                        var idList = RestoreContextModel.get('dataIDList');
+                        idList = _.filter(idList, function (type) {
                             return type !== CONFIG.enums.BR_TYPE_APP_DATA;
                         });
-                        RestoreContextModel.set('dataIDList', list);
+                        RestoreContextModel.set('dataIDList', idList);
                     }
                 });
             },

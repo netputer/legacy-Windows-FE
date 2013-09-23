@@ -84,7 +84,8 @@
             order : 60,
             count : -1,
             syncing : false,
-            icon : 'backup'
+            icon : 'backup',
+            hide : -1
         }, {
             label : i18n.app.APP_WASH,
             id : 19,

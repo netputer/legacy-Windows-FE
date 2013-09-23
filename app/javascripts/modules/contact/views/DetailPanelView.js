@@ -169,10 +169,10 @@
 
             menuButton.on('select', function (data) {
                 data.value = parseInt(data.value, 10);
-                var targetCate = _.find(source, function (item) {
+                var targetInfo = _.find(source, function (item) {
                     return item.value === data.value;
                 });
-                if (_.isEqual(targetCate, source[source.length - 1])) {
+                if (_.isEqual(targetInfo, source[source.length - 1])) {
                     var customInfoWindowView = CustomInfoWindowView.getInstance();
                     customInfoWindowView.show();
                     var yesHandler  = function () {
@@ -653,15 +653,15 @@
                 var data = _.map($inputs, function (input) {
                     var $input = $(input);
                     var id = $input.data('id');
-                    var value = $input.val();
+                    var inputValue = $input.val();
                     var sourceType = $input.data('type');
-                    if (!id && !value) {
+                    if (!id && !inputValue) {
                         return;
                     }
 
                     var obj = {
                         id : id || '',
-                        value : value || ''
+                        value : inputValue || ''
                     };
 
                     if (!_.isUndefined(sourceType)) {
