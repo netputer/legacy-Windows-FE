@@ -393,6 +393,10 @@
 
                 BackupRestoreService.restoreCancelAsync(restoreSessionID);
                 alert(i18n.backup_restore.CANCELED);
+
+                log({
+                    event : 'ui.click.btn_restore_progress_cancel'
+                });
             },
             events : {
                 'click .button-next' : 'clickButtonNext',

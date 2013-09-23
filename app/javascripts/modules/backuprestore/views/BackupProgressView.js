@@ -6,6 +6,7 @@
         'doT',
         'jquery',
         'Device',
+        'Log',
         'Internationalization',
         'Configuration',
         'ui/Panel',
@@ -23,6 +24,7 @@
         doT,
         $,
         Device,
+        log,
         i18n,
         CONFIG,
         Panel,
@@ -407,6 +409,10 @@
                 userCancelled = true;
                 BackupRestoreService.backupCancelAsync(backupSessionID);
                 alert(i18n.backup_restore.CANCELED);
+
+                log({
+                    event : 'ui.click.btn_backup_progress_cancel'
+                });
             },
             clickButtonFinish : function () {
                 userCancelled = true;
