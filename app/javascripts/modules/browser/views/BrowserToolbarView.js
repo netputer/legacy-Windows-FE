@@ -11,7 +11,6 @@
         'Account',
         'FunctionSwitch',
         'Log',
-        'IOBackendDevice',
         'Internationalization',
         'Configuration',
         'browser/views/BrowserMenuView',
@@ -31,7 +30,6 @@
         Account,
         FunctionSwitch,
         log,
-        IO,
         i18n,
         CONFIG,
         BrowserMenuView,
@@ -64,16 +62,15 @@
 
                 extensionsCollection = ExtensionsCollection.getInstance();
 
-                this.listenTo(extensionsCollection, 'refresh add remove', _.debounce(this.setButtonState));
-                this.listenTo(FunctionSwitch, 'change', this.setButtonState);
-                this.listenTo(this.model, 'change:extension', this.render);
+                this.listenTo(extensionsCollection, 'refresh add remove', _.debounce(this.setButtonState))
+                    .listenTo(FunctionSwitch, 'change', this.setButtonState)
+                    .listenTo(this.model, 'change:extension', this.render);
 
                 if (this.options.hasOwnProperty('$iframe')) {
                     this.$iframe = this.options.$iframe;
                 }
             },
             remove : function () {
-                IO.Backend.Device.offmessage(this.historyChangeHandler);
                 this.menuView.remove();
                 BrowserToolbarView.__super__.remove.call(this);
             },
@@ -116,8 +113,8 @@
                     $iframe : this.$iframe
                 });
 
-                this.$el.prepend(this.menuView.render().$el);
-                this.$el.append("<div class='w-browser-menu-pointer'></div>");
+                this.$el.prepend(this.menuView.render().$el)
+                    .append("<div class='w-browser-menu-pointer'></div>");
 
                 this.listenTo(this.menuView, 'select', function (url) {
                     this.$iframe[0].src = url;
