@@ -221,9 +221,9 @@
                 this.loading = true;
 
                 var fileName = RestoreContextModel.get('fileName');
-                var info = RestoreContextModel.get('backupFileInfoDict')[fileName];
-                if (info !== undefined) {
-                    this.fillInfoData(info);
+                var infoDict = RestoreContextModel.get('backupFileInfoDict')[fileName];
+                if (infoDict !== undefined) {
+                    this.fillInfoData(infoDict);
                     return;
                 }
 
@@ -253,9 +253,9 @@
                 this.loading = true;
 
                 var version = RestoreContextModel.get('remoteVersion');
-                var info = RestoreContextModel.get('snapshotInfoDict')[version];
-                if (info !== undefined) {
-                    this.fillInfoData(info);
+                var infoDict = RestoreContextModel.get('snapshotInfoDict')[version];
+                if (infoDict !== undefined) {
+                    this.fillInfoData(infoDict);
                     return;
                 }
 
