@@ -18,7 +18,7 @@
     "grunt-rev": "latest",
     "grunt-autoprefixer": "latest",
     "grunt-usemin": "latest",
-    "grunt-jslint": "latest",
+    "grunt-jslint": "~1.0.0-fix-travis",
     "grunt-concurrent": "latest",
     "qunit-reporter-junit":"latest",
     "grunt-contrib-qunit": "latest",
