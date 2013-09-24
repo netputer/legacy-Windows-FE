@@ -262,12 +262,13 @@
 
                 this.listenTo(footerView, '__START_BACKUP', function () {
                     this.setDomState(false);
-                    this.startBackup();
+                    this.showProgress();
 
                     $('.w-menu-pim .w-ui-syncing').data('title', i18n.new_backuprestore.NAV_BACKUPING);
                     PIMCollection.getInstance().get(20).set('syncing', true);
-
                     BackupContextModel.set('startTime', new Date().getTime());
+
+                    this.startBackup();
                 });
             },
             initState : function () {
@@ -435,7 +436,6 @@
                 }
                 WindowController.blockWindowAsync();
 
-                progressView.showProgress(CONFIG.enums.BR_TYPE_APP);
                 if (BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP] === 0) {
                     progressView.updateProgressStatus(CONFIG.enums.BR_TYPE_APP, BackupRestoreService.CONSTS.BR_PI_STATUS.FINISHED, 100, 100);
                     this.backupAllFinish();
@@ -577,11 +577,16 @@
                     this.backupAllFinish();
                 }
             },
+            showProgress : function () {
+                var brSpec = BackupContextModel.brSpec;
+                _.each(brSpec.item, function (item) {
+                    progressView.showProgress(item.type);
+                });
+            },
             updateContactAndSms : function (item) {
 
                 item = item[0];
                 if (item && item.status !== BackupRestoreService.CONSTS.BR_PI_STATUS.READY) {
-                    progressView.showProgress(item.type);
                     progressView.updateProgressStatus(item.type, item.status, item.finished_count, item.all_count);
                 }
             },
