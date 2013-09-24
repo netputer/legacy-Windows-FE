@@ -35,19 +35,6 @@ module.exports = function (grunt) {
             }
         },
         requirejs : {
-            dist : {
-                options : {
-                    optimize : 'uglify',
-                    uglify : {
-                        toplevel : true,
-                        ascii_only : false,
-                        beautify : false
-                    },
-                    preserveLicenseComments : true,
-                    useStrict : false,
-                    wrap : true
-                }
-            },
             source : {
                 options : {
                     almond : true,
@@ -194,7 +181,6 @@ module.exports = function (grunt) {
         'htmlmin',
         'concat',
         'uglify',
-        // 'requirejs:dist',
         'usemin'
     ]);
 
