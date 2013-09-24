@@ -227,7 +227,7 @@
                 }
 
                 this.$el.animate({
-                    scrollTop: guideView.$el.offset().top - 65
+                    scrollTop : guideView.$el.offset().top - 65
                 }, 1000);
 
                 Settings.set('user_guide_first_shown', true, true);
