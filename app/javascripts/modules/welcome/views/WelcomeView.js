@@ -90,6 +90,30 @@
                         }
                     }
                 });
+
+                this.listenTo(Backbone, 'welcome:showTips', function () {
+                    this.$('.top').after(guideView.render(true).$el);
+                    setTimeout(this.switchToGuide.bind(this));
+                });
+
+                if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                    if (!Settings.get('user_guide_shown')) {
+                        var handlerReady = IO.Backend.Device.onmessage({
+                            'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
+                        }, function () {
+                            this.switchToGuide();
+                            IO.Backend.Device.offmessage(handlerReady);
+                        }, this);
+                    }
+
+                    IO.Backend.Device.onmessage({
+                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
+                    }, this.switchToBillboard, this);
+
+                    IO.Backend.Device.onmessage({
+                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY
+                    }, this.switchToBillboard, this);
+                }
             },
             moveComponents : function (scrollTop) {
                 scrollTop = scrollTop >= 400 ? 400 : scrollTop;
@@ -144,36 +168,38 @@
                 feedListView = FeedListView.getInstance();
 
                 this.listenTo(toolbarView, 'top', this.scrollTopAnimation);
-                var $top = this.$('.top').append(deviceView.render().$el)
-                    .append(clockView.render().$el);
 
-                if (FunctionSwitch.ENABLE_USER_GUIDE) {
-                    guideView = GuideView.getInstance();
-                    $top.after(guideView.render().$el);
-                }
+                setTimeout(function () {
+                    var $top = this.$('.top').append(deviceView.render().$el)
+                                .append(clockView.render().$el);
 
-                // this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
-
-                this.$el.append(toolbarView.render().$el)
-                    .on('scroll', this.scrollHandler);
-
-                this.$el.append(capacityBarView.render().$el);
-
-                var feedsCollection = FeedsCollection.getInstance();
-                var noticeArray = [
-                    i18n.welcome.NO_MORE_1,
-                    i18n.welcome.NO_MORE_2,
-                    i18n.welcome.NO_MORE_3
-                ];
-
-                this.loading = feedsCollection.loading;
-                this.listenTo(feedsCollection, 'update refresh', function () {
-                    this.loading = feedsCollection.loading;
-                    if (feedsCollection.finish) {
-                        var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
-                        this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
+                    if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                        guideView = GuideView.getInstance();
+                        $top.after(guideView.render().$el);
                     }
-                });
+
+                    this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
+
+                    var feedsCollection = FeedsCollection.getInstance();
+                    var noticeArray = [
+                        i18n.welcome.NO_MORE_1,
+                        i18n.welcome.NO_MORE_2,
+                        i18n.welcome.NO_MORE_3
+                    ];
+
+                    this.loading = feedsCollection.loading;
+                    this.listenTo(feedsCollection, 'update refresh', function () {
+                        this.loading = feedsCollection.loading;
+                        if (feedsCollection.finish) {
+                            var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
+                            this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
+                        }
+                    });
+
+                    this.$el.append(toolbarView.render().$el)
+                        .append(capacityBarView.render().$el)
+                        .on('scroll', this.scrollHandler);
+                }.bind(this), 1000);
 
                 this.showBackground();
 
@@ -187,32 +213,6 @@
                 } else {
                     connectionType = 'disconnected';
                 }
-
-                if (FunctionSwitch.ENABLE_USER_GUIDE) {
-                    if (!Settings.get('user_guide_shown')) {
-                        var handlerReady = IO.Backend.Device.onmessage({
-                            'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
-                        }, function () {
-                            this.switchToGuide();
-                            IO.Backend.Device.offmessage(handlerReady);
-                        }, this);
-                    }
-
-                    IO.Backend.Device.onmessage({
-                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
-                    }, this.switchToBillboard, this);
-
-                    IO.Backend.Device.onmessage({
-                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY
-                    }, this.switchToBillboard, this);
-
-                    this.listenTo(Backbone, 'welcome:showTips', function () {
-                        this.$('.top').after(guideView.render(true).$el);
-                        setTimeout(this.switchToGuide.bind(this));
-                    });
-                }
-
-                this.$el.on('click', '.back-to-top', this.scrollTopAnimation.bind(this));
 
                 log({
                     'event' : 'debug.show.welcome',
@@ -250,7 +250,7 @@
             },
             scrollTopAnimation : function () {
                 this.$el.animate({
-                    scrollTop: 0
+                    scrollTop : 0
                 }, 1000);
             },
             deviceViewAnimationAsync : function () {
@@ -297,6 +297,7 @@
                         deferred.resolve();
                     }
                 }.bind(this));
+
                 return deferred.promise();
             },
             loadImageAsync : function (url) {
@@ -379,6 +380,12 @@
                 }.bind(this)).fail(deferred.reject);
 
                 return deferred.promise();
+            },
+            clickBackToTop : function () {
+                this.scrollTopAnimation();
+            },
+            events : {
+                'click .back-to-top' : 'clickBackToTop'
             }
         });
 
