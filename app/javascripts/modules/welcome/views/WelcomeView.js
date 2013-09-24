@@ -152,7 +152,7 @@
                     $top.after(guideView.render().$el);
                 }
 
-                this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
+                // this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
 
                 this.$el.append(toolbarView.render().$el)
                     .on('scroll', this.scrollHandler);

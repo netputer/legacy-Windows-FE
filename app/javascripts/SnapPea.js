@@ -35,8 +35,8 @@
  * @weibo @赵望野
  */
 
-/*global define*/
-(function (window){
+/*global require*/
+(function (window) {
     'use strict';
 
     require([
