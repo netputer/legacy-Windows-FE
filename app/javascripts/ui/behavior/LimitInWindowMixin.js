@@ -77,7 +77,7 @@
             }
 
             this.$el.css({
-                '-webkit-transform' : 'translate3d(' + Math.max(0, leftOffset) + 'px, ' + topOffset + 'px, 0)'
+                '-webkit-transform' : 'translate3d(' + Math.max(0, Math.round(leftOffset)) + 'px, ' + Math.round(topOffset) + 'px, 0)'
             });
         };
 
@@ -173,7 +173,7 @@
             }
 
             this.$el.css({
-                '-webkit-transform' : 'translate3d(' + leftOffset + 'px, ' + topOffset + 'px, 0)'
+                '-webkit-transform' : 'translate3d(' + Math.round(leftOffset) + 'px, ' + Math.round(topOffset) + 'px, 0)'
             });
         };
 
