@@ -396,7 +396,7 @@
                 this.sessionId = _.uniqueId('restore.nonapps_');
                 this.isProgressing = true;
                 footerView.setButtonState('progressing');
-                this.stateTitle = i18n.new_backuprestore.RESTORING;
+                this.stateTitle = this.isLocal ? i18n.new_backuprestore.RESTORING_FROM_LOCAL : i18n.new_backuprestore.RESTORING_FROM_REMOTE;
 
                 var filePath = RestoreContextModel.get('fileName');
                 var accountType = RestoreContextModel.get('accountType');
@@ -504,7 +504,7 @@
 
                 WindowController.blockWindowAsync();
 
-                this.stateTitle = i18n.new_backuprestore.RESTORING;
+                this.stateTitle = this.isLocal ? i18n.new_backuprestore.RESTORING_FROM_LOCAL : i18n.new_backuprestore.RESTORING_FROM_REMOTE;
                 this.isProgressing = true;
                 progressView.showProgress(CONFIG.enums.BR_TYPE_APP);
 

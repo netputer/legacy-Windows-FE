@@ -113,14 +113,26 @@
                 });
 
                 this.listenTo(fileList, 'select:change', function (selected) {
+
                     if (selected.length > 0) {
                         this.selectedId = selected[0];
-                        this.setRestoreData();
+
+                        var model = restoreFileCollection.get(this.selectedId);
+                        if (model.get('isReady')) {
+                            this.setRestoreData();
+                            this.trigger('selected', true);
+                        } else {
+                            this.listenTo(model, 'change:isReady', function () {
+                                if (this.selectedId === model.id) {
+                                    this.setRestoreData();
+                                    this.trigger('selected', true);
+                                }
+                            });
+                        }
                     } else {
                         this.selectedId = null;
+                        this.trigger('selected', false);
                     }
-
-                    this.trigger('selected', selected.length > 0);
                 });
 
                 this.update();
