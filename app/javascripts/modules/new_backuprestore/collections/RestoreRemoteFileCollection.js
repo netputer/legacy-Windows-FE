@@ -20,9 +20,9 @@
 
         var FileModel = Backbone.Model.extend({
             defaults : {
-                1: '...',
-                3: '...',
-                8: '...',
+                1 : '...',
+                3 : '...',
+                8 : '...',
                 10 : 0,
                 version : '',
                 udid : '',
