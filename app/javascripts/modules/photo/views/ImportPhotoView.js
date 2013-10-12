@@ -181,7 +181,10 @@
                     var progressHandler = IO.Backend.Device.onmessage({
                         'data.channel' : sessionId
                     }, function (msg) {
-                        this.updatePhoto(msg.photo);
+
+                        if (msg.total > 0) {
+                            this.updatePhoto(msg.photo);
+                        }
 
                         if (msg.current === msg.total) {
                             IO.Backend.Device.offmessage(progressHandler);
