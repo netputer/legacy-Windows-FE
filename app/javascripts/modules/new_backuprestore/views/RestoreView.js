@@ -242,6 +242,11 @@
                     IO.Backend.Device.offmessage(this.resotreSmsAndContact);
                     this.resotreSmsAndContact = undefined;
                 }
+
+                if (this.progressHanlder) {
+                    IO.Backend.Device.offmessage(this.progressHanlder);
+                    this.progressHanlder = undefined;
+                }
             },
             cancel : function () {
                 this.userCancelled = true;
