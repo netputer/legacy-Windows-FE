@@ -50,6 +50,9 @@
 
         console.log('LocalBackupView - File loaded');
 
+        var isContactUiRunning = false;
+        var isSmsUiRunning = false;
+
         var confirm = ConfirmWindowView.confirm;
         var errorItemListView;
         var retryView;
@@ -124,6 +127,13 @@
                                         this.setProgressState(type, false);
                                         this.updateStatus(type, value, all, true);
                                         window.clearInterval(handle);
+
+                                        if (type === CONFIG.enums.BR_TYPE_CONTACT) {
+                                            isContactUiRunning = false;
+                                        } else if (type === CONFIG.enums.BR_TYPE_SMS) {
+                                            isSmsUiRunning = false;
+                                        }
+
                                         return;
                                     }
                                     value += step;
@@ -134,6 +144,12 @@
 
                             }.bind(this);
                             temp(type);
+
+                            if (type === CONFIG.enums.BR_TYPE_CONTACT) {
+                                isContactUiRunning = true;
+                            } else if (type === CONFIG.enums.BR_TYPE_SMS) {
+                                isSmsUiRunning = true;
+                            }
                         }
 
                     } else if ((type === CONFIG.enums.BR_TYPE_APP && !BackupContextModel.isAppDataSelected) || type === CONFIG.enums.BR_TYPE_APP_DATA) {
@@ -166,6 +182,7 @@
                 var nonAppHandler;
                 var appHandler;
                 var appDataHandler;
+                var watingUiHandler;
                 Object.defineProperties(this, {
                     nonAppHandler : {
                         set : function (value) {
@@ -190,6 +207,14 @@
                         get : function () {
                             return appDataHandler;
                         }
+                    },
+                    watingUiHandler : {
+                        set : function (value) {
+                            watingUiHandler = value;
+                        },
+                        get : function () {
+                            return watingUiHandler;
+                        }
                     }
                 });
             },
@@ -207,7 +232,7 @@
             },
             cancel : function () {
                 this.userCancelled = true;
-                if (this.isProgressing) {
+                if (this.isProgressing || isContactUiRunning || isSmsUiRunning) {
 
                     confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
 
@@ -251,6 +276,11 @@
                 if (this.appDataHandler) {
                     IO.Backend.Device.offmessage(this.appDataHandler);
                     this.appDataHandler = undefined;
+                }
+
+                if (this.watingUiHandler) {
+                    window.clearInterval(this.watingUiHandler);
+                    this.watingUiHandler = undefined;
                 }
             },
             bindEvent : function () {
@@ -359,7 +389,7 @@
             },
             setDomState : function (isDone) {
                 footerView.setButtonState(isDone ? 'done' : 'progressing');
-                this.stateTitle = isDone ? i18n.new_backuprestore.BACKUP_LOCAL_COMPLATE_TITLE : i18n.new_backuprestore.BACKUPING;
+                this.stateTitle = isDone ? i18n.new_backuprestore.BACKUP_LOCAL_COMPLATE_TITLE : i18n.new_backuprestore.BACKUPING_TO_LOCAL;
 
                 if (isDone) {
                     this.bigTitle = i18n.new_backuprestore.BACKUP_FINISH_LABEL;
@@ -591,14 +621,28 @@
                 }
             },
             backupAllFinish : function () {
+                if (!isContactUiRunning && !isSmsUiRunning) {
+                    this.compressFile();
+                } else {
+
+                    this.watingUiHandler = setInterval(function () {
+
+                        if (!isContactUiRunning && !isSmsUiRunning) {
+                            window.clearInterval(this.watingUiHandler);
+                            this.compressFile();
+                        }
+                    }.bind(this), 20);
+                }
+            },
+            compressFile : function () {
 
                 this.stateTitle = i18n.new_backuprestore.BACKUP_COMPRESSING;
                 BackupRestoreService.backupFinishAsync(BackupContextModel.fileFullPath).done(function (resp) {
 
                     this.setDomState(true);
                     this.releaseWindow();
-                    BackupRestoreService.logBackupContextModel(BackupContextModel, true);
 
+                    BackupRestoreService.logBackupContextModel(BackupContextModel, true);
                     log({
                         event : 'ui.new_backuprestore.backup_time',
                         timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),

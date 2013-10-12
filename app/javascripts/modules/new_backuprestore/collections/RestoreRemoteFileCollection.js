@@ -20,14 +20,15 @@
 
         var FileModel = Backbone.Model.extend({
             defaults : {
-                1: 0,
-                3: 0,
-                8: 0,
+                1 : '...',
+                3 : '...',
+                8 : '...',
                 10 : 0,
                 version : '',
                 udid : '',
                 deviceName : '',
-                timestamp : ''
+                timestamp : '',
+                isReady : false
             }
         });
 
@@ -77,6 +78,7 @@
                             model.set(brType, item.count);
                         });
 
+                        model.set('isReady', true);
                     });
                 });
             },

@@ -242,6 +242,11 @@
                     IO.Backend.Device.offmessage(this.resotreSmsAndContact);
                     this.resotreSmsAndContact = undefined;
                 }
+
+                if (this.progressHanlder) {
+                    IO.Backend.Device.offmessage(this.progressHanlder);
+                    this.progressHanlder = undefined;
+                }
             },
             cancel : function () {
                 this.userCancelled = true;
@@ -396,7 +401,7 @@
                 this.sessionId = _.uniqueId('restore.nonapps_');
                 this.isProgressing = true;
                 footerView.setButtonState('progressing');
-                this.stateTitle = i18n.new_backuprestore.RESTORING;
+                this.stateTitle = this.isLocal ? i18n.new_backuprestore.RESTORING_FROM_LOCAL : i18n.new_backuprestore.RESTORING_FROM_REMOTE;
 
                 var filePath = RestoreContextModel.get('fileName');
                 var accountType = RestoreContextModel.get('accountType');
@@ -504,7 +509,7 @@
 
                 WindowController.blockWindowAsync();
 
-                this.stateTitle = i18n.new_backuprestore.RESTORING;
+                this.stateTitle = this.isLocal ? i18n.new_backuprestore.RESTORING_FROM_LOCAL : i18n.new_backuprestore.RESTORING_FROM_REMOTE;
                 this.isProgressing = true;
                 progressView.showProgress(CONFIG.enums.BR_TYPE_APP);
 
@@ -714,7 +719,14 @@
                 var timeBegin = new Date();
                 BackupRestoreService.remoteSnapshotFileAsync(version, udid, types, this.sessionId).done(function (resp) {
 
-                    RestoreContextModel.set('fileName', resp.body.value);
+                    var path = resp.body.value;
+                    var sessionId = resp.body.key;
+
+                    if (this.sessionId !== sessionId || this.userCancelled) {
+                        return;
+                    }
+
+                    RestoreContextModel.set('fileName', path);
 
                     var now = new Date();
                     var time = now - timeBegin;

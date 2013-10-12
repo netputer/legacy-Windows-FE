@@ -241,7 +241,7 @@
             },
             setDomState : function (isDone) {
                 footerView.setButtonState(isDone ? 'done' : 'progressing');
-                this.stateTitle = isDone ? i18n.new_backuprestore.BACKUP_REMOTE_COMPLATE_TITLE : i18n.new_backuprestore.BACKUPING;
+                this.stateTitle = isDone ? i18n.new_backuprestore.BACKUP_REMOTE_COMPLATE_TITLE : i18n.new_backuprestore.BACKUPING_TO_REMOTE;
 
                 if (isDone) {
                     this.bigTitle = i18n.new_backuprestore.BACKUP_FINISH_LABEL;
