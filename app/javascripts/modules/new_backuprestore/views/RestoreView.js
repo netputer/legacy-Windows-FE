@@ -719,7 +719,14 @@
                 var timeBegin = new Date();
                 BackupRestoreService.remoteSnapshotFileAsync(version, udid, types, this.sessionId).done(function (resp) {
 
-                    RestoreContextModel.set('fileName', resp.body.value);
+                    var path = resp.body.value;
+                    var sessionId = resp.body.key;
+
+                    if (this.sessionId !== sessionId || this.userCancelled) {
+                        return;
+                    }
+
+                    RestoreContextModel.set('fileName', path);
 
                     var now = new Date();
                     var time = now - timeBegin;
