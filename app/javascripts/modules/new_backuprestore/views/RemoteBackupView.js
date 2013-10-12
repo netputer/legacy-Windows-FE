@@ -305,6 +305,7 @@
                     });
 
                     this.listenTo(remoteErrorView, '__IGNORE', function () {
+                        this.isProgressing = false;
                         this.backupAllFinish();
                         this.cancel();
                     });
