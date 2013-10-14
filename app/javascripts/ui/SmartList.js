@@ -30,8 +30,6 @@
         console.log('SmartList - File loaded.');
 
         var setTimeout = window.setTimeout;
-        var setInterval = window.setInterval;
-        var clearInterval = window.clearInterval;
 
         var EventsMapping = UIHelper.EventsMapping;
 

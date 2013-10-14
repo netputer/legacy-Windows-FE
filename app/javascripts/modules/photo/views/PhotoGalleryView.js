@@ -136,8 +136,6 @@
             relocatePointer : function () {
                 var $targetTab =  this.$('.tab li.selected');
                 if ($targetTab.length > 0) {
-                    var $pointer = this.$('.pointer');
-
                     this.$('.pointer').css({
                         left : $targetTab[0].offsetLeft,
                         width : $targetTab[0].offsetWidth
