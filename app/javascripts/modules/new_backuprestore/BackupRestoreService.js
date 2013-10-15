@@ -101,13 +101,10 @@
         BackupRestoreService.getLastBackupTimeAsync = function (type) {
             var deferred = $.Deferred();
 
-            if (!type) {
-                type = 'undefined';
-            }
             IO.requestAsync({
                 url : CONFIG.actions.GET_LAST_BACKUP_TIME,
                 data : {
-                    type : type
+                    type : type || 0
                 },
                 success : function (resp) {
                     if (resp.state_code === 200) {
