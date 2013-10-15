@@ -3,11 +3,11 @@
     define([
         'underscore',
         'utilities/FilterFunction',
-        'ParserFactory'
+        'utilities/JSONParser'
     ], function (
         _,
         FilterFunction,
-        ParserFactory
+        JSONParser
     ) {
         console.log('MessageRouterMixin - File loaded.');
 
@@ -47,9 +47,8 @@
         var router = function (message) {
             _.each(this.callbackList, function (item) {
                 if (item.filter(message)) {
-                    // item.callback.call(item.context, JSON.parse(message.data.data));
-                    ParserFactory.addTask(message.data.data, function (evt) {
-                        item.callback.call(item.context, evt.data);
+                    JSONParser.parse(message.data.data, function (data) {
+                        item.callback.call(item.context, data);
                     });
                 }
             });
