@@ -414,6 +414,7 @@
 
                 SIDEBAR_UPDATED : 'sidebar.list',
                 SIDEBAR_PREVIEW : 'sidebar.preview',
+                SIDEBAR_GALLERY : 'sidebar.gallery',
                 SIDEBAR_STAR : 'sidebar.star',
                 SIDEBAR_ITEM_UPDATED : 'sidebar.updated',
 
