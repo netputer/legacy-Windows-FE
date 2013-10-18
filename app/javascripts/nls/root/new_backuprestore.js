@@ -10,6 +10,7 @@ define({
     BACKUP_TITLE_REMOTE : '备份到云端',
     RESTORE_TITLE_LOCAL : '从电脑恢复',
     RESTORE_TITLE_REMOTE : '从云端恢复',
+    BACKUP_TITLE : '备份数据',
     RESTORE_TITLE : '恢复数据',
     START_BACKUP : '开始备份',
     START_RESTORE : '开始恢复',
