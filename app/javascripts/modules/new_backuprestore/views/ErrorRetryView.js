@@ -96,12 +96,16 @@
                 return this;
             },
             clickBtnRetry : function () {
+                this.once('remove', function () {
+                    this.trigger('__RETRY');
+                });
                 this.remove();
-                this.trigger('__RETRY');
             },
             clickBtnIgnore : function () {
+                this.once('remove', function () {
+                    this.trigger('__IGNORE');
+                });
                 this.remove();
-                this.trigger('__IGNORE');
             },
             events : {
                 'click .button-retry' : 'clickBtnRetry',

@@ -10,6 +10,7 @@ define({
     BACKUP_TITLE_REMOTE : 'Backup to cloud server',
     RESTORE_TITLE_LOCAL : 'Restore from computer',
     RESTORE_TITLE_REMOTE : 'Restore from cloud server',
+    BACKUP_TITLE : 'Backup Data',
     RESTORE_TITLE : 'Restore Data',
     START_BACKUP : 'Start backup',
     START_RESTORE : 'Start restore',

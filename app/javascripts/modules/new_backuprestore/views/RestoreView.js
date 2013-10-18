@@ -263,6 +263,18 @@
                                 restoreResult : 'cancel'
                             });
 
+                        }).fail(function (resp) {
+
+                            log({
+                                event : 'ui.new_backuprestore.restore_time',
+                                timeStamp : new Date().getTime() - RestoreContextModel.get('startTime'),
+                                isLocal : this.isLocal,
+                                restoreResult : 'cancel',
+                                res : resp.state_line
+                            });
+
+                        }).always(function () {
+
                             this.isProgressing = false;
                             this.offMessageHandler();
                             this.releaseWindow();
