@@ -220,7 +220,7 @@ define({
     DONTSAVE : 'Don\'t save',
     PHONE : 'Internal memory',
     SD_CARD : 'SD Card',
-    MANAGE_SD_CARD : '管理 SD 卡',
+    MANAGE_SD_CARD : 'Manage SD Card',
 
     AGENT_NOTIFI : 'Connected, enjoy the SnapPea service!',
     SEND_TO_PHONE : 'Send to phone',
