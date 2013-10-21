@@ -137,14 +137,16 @@
                 clockView = ClockView.getInstance();
                 toolbarView = ToolbarView.getInstance();
                 capacityBarView = CapacityBarView.getInstance();
-                guideView = GuideView.getInstance();
                 feedListView = FeedListView.getInstance();
 
                 this.listenTo(toolbarView, 'top', this.scrollTopAnimation);
+                var $top = this.$('.top').append(deviceView.render().$el)
+                    .append(clockView.render().$el);
 
-                this.$('.top').append(deviceView.render().$el)
-                    .append(clockView.render().$el)
-                    .after(guideView.render().$el);
+                if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                    guideView = GuideView.getInstance();
+                    $top.after(guideView.render().$el);
+                }
 
                 this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
 
@@ -199,12 +201,12 @@
                     IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY
                     }, this.switchToBillboard, this);
-                }
 
-                this.listenTo(Backbone, 'welcome:showTips', function () {
-                    this.$('.top').after(guideView.render(true).$el);
-                    setTimeout(this.switchToGuide.bind(this));
-                });
+                    this.listenTo(Backbone, 'welcome:showTips', function () {
+                        this.$('.top').after(guideView.render(true).$el);
+                        setTimeout(this.switchToGuide.bind(this));
+                    });
+                }
 
                 this.$el.on('click', '.back-to-top', this.scrollTopAnimation.bind(this));
 
