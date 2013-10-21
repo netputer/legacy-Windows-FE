@@ -63,7 +63,7 @@
         var currentTab = 'all';
 
         var LABEL_MAPPING = {
-            all : i18n.misc.NAV_CONTACT_ALL,
+            all : i18n.contact.NAV_CONTACT_ALL,
             hasnumber : i18n.misc.NAV_CONTACT_HAS_PHONE,
             starred : i18n.misc.NAV_CONTACT_STARRED
         };
