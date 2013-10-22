@@ -1,17 +1,11 @@
 {
-  "name": "qrcode.js",
-  "version": "0.0.0",
+  "name": "jquery-qrcode",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/chilijung/qrcodejs.git"
   },
   "dependencies": {
     "jquery": "~1.7.1"
-  },
-  "gitHead": "024dc5681b0cb01d39b944a11c817cb6d4722116",
-  "readme": "# QRCode.js\nQRCode.js is javascript library for making QRCode. QRCode.js supports Cross-browser with HTML5 Canvas and table tag in DOM.\nQRCode.js has no dependencies.\n\n## Basic Usages\n```\n<div id=\"qrcode\"></div>\n<script type=\"text/javascript\">\nnew QRCode(document.getElementById(\"qrcode\"), \"http://jindo.dev.naver.com/collie\");\n</script>\n```\n\nor with some options\n\n```\nvar qrcode = new QRCode(\"test\", {\n\ttext: \"http://jindo.dev.naver.com/collie\",\n\twidth: 128,\n\theight: 128,\n\tcolorDark : \"#000000\",\n\tcolorLight : \"#ffffff\",\n\tcorrectLevel : QRCode.CorrectLevel.H\n});\n```\n\nand you can use some methods\n\n```\nqrcode.clear(); // clear the code.\nqrcode.makeCode(\"http://naver.com\"); // make another code.\n```\n\n## Browser Compatibility\nIE6~10, Chrome, Firefox, Safari, Opera, Mobile Safari, Android, Windows Mobile, ETC.\n\n## License\nMIT License\n\n## Contact\ntwitter @davidshimjs",
-  "readmeFilename": "README.md",
-  "_id": "jquery-qrcode@1.0.2",
-  "description": "QRCode.js is javascript library for making QRCode. QRCode.js supports Cross-browser with HTML5 Canvas and table tag in DOM. QRCode.js has no dependencies.",
-  "commit": "024dc5681b0cb01d39b944a11c817cb6d4722116"
+  }
 }
