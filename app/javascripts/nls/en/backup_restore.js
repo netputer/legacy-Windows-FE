@@ -53,6 +53,7 @@ define({
     SAVE_LOCATION_LABEL : 'Backups folder: ',
     OPEN_BACKUP_FILE : 'Open backups folder',
     PRIVACY_TIP : 'SnapPea doesn\'t encrypt backup files stored on your computer, please keep them safe.',
+    MOBILE_TIP : '您可以在电脑或手机上恢复这些数据。',
     BACKUPING : 'Backing up, please don\'t disconnect your device',
     BACKUP_FINISH_LABEL : 'Backup completed',
     RESTORE_FINISH_LABEL : 'Restore completed',
@@ -98,9 +99,7 @@ define({
     APP_ERROR_LIST_TITLE : '{1} app(s) failed to backup。Ignore and continue to backup apps?',
     APP_DATA_ERROR_LIST_TITLE : '{1} apps failed to restore. Ignore?',
 
-    RESTORE_TYPE_LOCAL_TITLE : 'Backup from computer',
     RESTORE_TYPE_LOCAL_CONTENT : 'Backs up your device from the file stored on your computer',
-    RESTORE_TYPE_REMOTE_TITLE : 'Backup from cloud servers',
     RESTORE_TYPE_REMOTE_CONTENT : 'Backs up from the files stored on SnapPea\'s cloud servers',
     RESTORE_LIST_SNAPHOST_FAILED : 'Failed to load app list',
 
@@ -149,6 +148,7 @@ define({
     CUSTOM_AUTH_FAILED_ERROR :　'Login data expired. Please logout and login again.',
     CUSTOM_SERVER_UNAVALABEL_ERROR :　'Sorry, our servers are busy. Please wait a little while and try again.',
     RESTORE_APP_DATA_ERROR : 'Failed to restore app data',
+    CUSTOM_UNZIP_BACKUP_FILE_ERROR : 'Sorry, failed to decompress and restore some apps.',
 
     AUTO_BACKUP_COMPLETE_FINISH : 'Auto-backup completed!',
     AUTO_BACKUP_COMPLETE_FINISH_TIP : 'Backups are not encrypted, please make sure to store them securely.',
@@ -165,10 +165,7 @@ define({
     BACKUP_APP_DATA_UNSUPPORT : 'Your device is not supported at present',
     BACKUP_APP_DATA_NON_USB : 'Please connect via USB',
 
-    CUSTOM_UNZIP_BACKUP_FILE_ERROR : 'Sorry, failed to decompress and restore some apps.',
-
-    /*NOT in SnapPea*/
-
     SYNC_PHOTO_PUSH_NOTIFY_TITLE : '您需要自动下载云相册图片到电脑吗？',
-    SYNC_PHOTO_PUSH_NOTIFY_CONTENT : '您手机上的照片已同步到云端。在电脑上开启云相册同步后，豌豆荚将自动将您云相册的图片下载到电脑，查看图片更方便。'
+    SYNC_PHOTO_PUSH_NOTIFY_CONTENT : '您手机上的照片已同步到云端。在电脑上开启云相册同步后，豌豆荚将自动将您云相册的图片下载到电脑，查看图片更方便。',
+    CUSTOM_RESOURCE_LOCKED : '豌豆荚在 8 月 25 日碰到技术故障，当天我们暂时关闭了豌豆荚的账号服务，12 个小时后账号服务修复完成。但为了您的信息安全考虑，目前通过旧的密码将不能使用云恢复、云相册等功能。请您立即修改密码，以便正常使用豌豆荚。'
 });

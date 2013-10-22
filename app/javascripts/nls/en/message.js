@@ -81,7 +81,7 @@ define({
     SEND_WITH_SIM1 : 'Send from default SIM',
     SEND_WITH_SIM2 : 'Send from second SIM',
 
-    IMPORT_MESSAGE : 'Import Messages',
+    WINDOW_IMPORT_TITLE : 'Import Messages',
     IMPORT_FAILED : 'Failed to import messages',
     IMPORTING_SMS : 'Importing messages, please wait...',
     IMPORT_SMS_FINISH : 'Importing messages completed',
@@ -102,5 +102,7 @@ define({
 
     COPY_SMS : 'Message successfully copied to the Clipboard',
 
-    UNREAD_DES : '{1} 条未读短信'
+    RETURN_ALL : 'All messages',
+    SEARCH_TIP : '{1} messages containing「{2}」',
+    UNREAD_DES : '{1} unread messages'
 });
