@@ -169,8 +169,8 @@ define({
     DEVICE_NOT_FOUND : 'Connect your device to transfer',
     DEVICE_NOT_FOUND_TIP : 'Connect your device via USB or Wi-Fi, and SnapPea will finish these tasks',
 
-    RETRY_INSTALL : '重新安装',
-    RETRY_PUSH_VIDEO : '重新传输',
+    RETRY_INSTALL : 'Retry',
+    RETRY_PUSH_VIDEO : 'Retry',
 
     PUSHING_PHONE : 'Sending to phone...',
     PUSH_PHONE_FAILED : 'Failed to send',
