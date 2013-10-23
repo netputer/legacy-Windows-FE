@@ -672,3 +672,38 @@
         }
     }
 }
+
+.w-backup-auto-tip {
+    .pic-ctn {
+        height: 161px;
+        margin-top: 15px;
+        margin-left: 15px;
+        width: 95px;
+    }
+
+    .pic-local-ctn {
+        @include sprite-sprite(auto-backup-local);
+    }
+
+    .pic-remote-ctn {
+        @include sprite-sprite(auto-backup-remote);
+    }
+
+    .content-ctn {
+        margin-left: 25px;
+        margin-top: 15px;
+        -webkit-box-flex: 1;
+
+        .title {
+            font-size: 18px;
+        }
+
+        .desc {
+            width: 340px;
+
+            em {
+                color: $textPrimary;
+            }
+        }
+    }
+}

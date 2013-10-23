@@ -7,6 +7,7 @@
         'doT',
         'Log',
         'Device',
+        'FunctionSwitch',
         'task/views/TaskMonitorView',
         'new_backuprestore/BackupRestoreService',
         'new_backuprestore/views/StartView',
@@ -14,7 +15,9 @@
         'new_backuprestore/views/RemoteBackupView',
         'new_backuprestore/views/RestoreView',
         'new_backuprestore/models/BackupContextModel',
-        'new_backuprestore/models/RestoreContextModel'
+        'new_backuprestore/models/RestoreContextModel',
+        'new_backuprestore/views/BackupAutoTipView',
+        'main/views/BindingDeviceWindowView'
     ], function (
         $,
         Backbone,
@@ -22,6 +25,7 @@
         doT,
         log,
         Device,
+        FunctionSwitch,
         TaskMonitorView,
         BackupRestoreService,
         StartView,
@@ -29,9 +33,14 @@
         RemoteBackupView,
         RestoreView,
         BackupContextModel,
-        RestoreContextModel
+        RestoreContextModel,
+        BackupAutoTipView,
+        BindingDeviceWindowView
     ) {
         console.log('BackupRestoreModuleView - File loaded');
+
+        var backupAutoTipLocalView;
+        var backupAutoTipRemoteView;
 
         var BackupRestoreModuleView = Backbone.View.extend({
             className : 'w-backuprestore-module-main module-main vbox',
@@ -128,6 +137,22 @@
                     localBackupView.remove();
                     this.showStartView();
                 });
+
+                this.listenTo(localBackupView, '__DONE', function () {
+                    if (!backupAutoTipLocalView) {
+                        backupAutoTipLocalView = BackupAutoTipView.getLocalInstance();
+
+                        this.listenTo(backupAutoTipLocalView, '__YES', function () {
+                            BindingDeviceWindowView.getInstance().loadContentAndShow();
+                        });
+                    }
+
+                    if (!Device.get('isAutoBackup')) {
+                        if (FunctionSwitch.ENABLE_AUTOBACKUP_POPUP) {
+                            backupAutoTipLocalView.show();
+                        }
+                    }
+                });
             },
             showRemoteBackupView : function () {
                 if (this.views.remoteBackup) {
@@ -142,6 +167,27 @@
                 this.listenTo(remoteBackupView, '__CANCEL __DONE', function () {
                     remoteBackupView.remove();
                     this.showStartView();
+                });
+
+                this.listenTo(remoteBackupView, '__DONE', function () {
+
+                    if (!backupAutoTipRemoteView) {
+                        backupAutoTipRemoteView = BackupAutoTipView.getRemoteInstance();
+
+                        this.listenTo(backupAutoTipRemoteView, '__YES', function () {
+                            BackupRestoreService.setRemoteAutoBackupSwitchAsync().done(function () {
+
+                                this.views.start.setRemoteState();
+
+                            }.bind(this));
+                        });
+                    }
+
+                    BackupRestoreService.getRemoteAutoBackupSwitchAsync().done(function (resp) {
+                        if (!resp.body.value) {
+                            backupAutoTipRemoteView.show();
+                        }
+                    });
                 });
             },
             showRestoreView : function (isLocal) {

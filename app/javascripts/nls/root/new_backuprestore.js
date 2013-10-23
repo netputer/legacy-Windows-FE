@@ -95,6 +95,12 @@ define({
     BACKUP_GUIDE_NOW : '马上备份',
 
     RESTORE_BATTERY_TIP : '您的手机电量已不足 20%，继续恢复有可能导致手机电量耗尽造成数据丢失，建议充电后再进行恢复。您确认要继续恢复数据吗？',
+    AUTO_BACKUP_TIP_TITLE : '还在手动备份？试试自动备份吧！',
+    AUTO_BACKUP_TIP_DESC : '绑定手机后，备份手机再也不需要您亲自动手了！您是否要绑定手机并开启自动备份？',
+    AUTO_BACKUP_YES : '开启自动备份',
+    AUTO_BACKUP_NO : '暂不开启',
+    AUTO_BACKUP_REMOTE_TIP_TITLE : '电脑数据容易丢，试试自动云备份吧！',
+    AUTO_BACKUP_REMOTE_TIP_DESC : '自动将您的 <em>联系人/短信/应用</em> 备份到云端，不需要再手动备份。开启后同时也会在手机上生效。您是否要开启云备份？',
 
     BACKUP : '备份',
     BACKUP_DES : '将您的手机数据存储电脑或云端',
