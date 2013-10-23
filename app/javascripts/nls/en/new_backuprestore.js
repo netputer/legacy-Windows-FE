@@ -94,6 +94,8 @@ define({
     BACKUP_GUIDE_CONTENT : 'SnapPea reminds you to backup up your phone to prevent data loss. You can backup contacts, messages, photos, and apps.',
     BACKUP_GUIDE_NOW : 'Backup now',
 
+    RESTORE_BATTERY_TIP : 'Your device\'s batter power is less than 20%. If your device shuts down, your backup may be incomplete. We recommend that charge your device and then restore. Continue anyway?',
+
     BACKUP : '备份',
     BACKUP_DES : '将您的手机数据存储电脑或云端',
     BACKUP_TO_LOCAL : '备份到电脑',

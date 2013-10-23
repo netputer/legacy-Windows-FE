@@ -94,6 +94,8 @@ define({
     BACKUP_GUIDE_CONTENT : '豌豆荚提醒您，定期备份手机防止重要数据丢失。您可以使用豌豆荚备份联系人、短信、应用和照片。',
     BACKUP_GUIDE_NOW : '马上备份',
 
+    RESTORE_BATTERY_TIP : '您的手机电量已不足 20%，继续恢复有可能导致手机电量耗尽造成数据丢失，建议充电后再进行恢复。您确认要继续恢复数据吗？',
+
     BACKUP : '备份',
     BACKUP_DES : '将您的手机数据存储电脑或云端',
     BACKUP_TO_LOCAL : '备份到电脑',
