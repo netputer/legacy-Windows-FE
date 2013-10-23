@@ -245,12 +245,25 @@
                                 backupResult : 'cancel'
                             });
 
+                        }).fail(function (resp) {
+
+                            log({
+                                event : 'ui.new_backuprestore.backup_time',
+                                timeStamp : new Date().getTime() - BackupContextModel.get('startTime'),
+                                isLocal : true,
+                                backupResult : 'cancel',
+                                res : resp.state_line
+                            });
+
+                        }).always(function () {
+
                             this.isProgressing = false;
                             this.offMessageHandler();
                             this.releaseWindow();
                             this.trigger('__CANCEL');
 
                         }.bind(this));
+
                     }, function () {
                         this.userCancelled = false;
                         footerView.toggleCancel(true);

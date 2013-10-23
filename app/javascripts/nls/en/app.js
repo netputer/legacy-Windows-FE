@@ -4,7 +4,7 @@ define({
     LATEST_LABEL : 'Latest:',
     DISLIKE : 'Wrong guess',
     UPDATE_ALL : 'One-click update',
-    UPDATE_RECOMMENDED : '全部升级',
+    UPDATE_RECOMMENDED : 'Update all',
     UPDATE : 'Update',
     UPDATING : 'Update',
     COULD_UPDATE_TO : 'Update available',
@@ -120,7 +120,7 @@ define({
     MOVE_TO_DEVICE : 'Move {1} apps to internal storage?',
     UPGRADE_TIP_TEXT : 'Update {1} app(s)?',
 
-    NON_USER_APPS_TEXT : '<div><span>嗯？看起来您的手机什么都没有装哦，</span></br><span>要不要去下几个好玩的游戏？</span></br><button class="primary button-download-game grand">马上下载游戏</button></div>',
+    NON_USER_APPS_TEXT : '<div>Oh? You haven\'t installed any apps on your phone yet.</div>',
     NON_SYSTEM_APPS_TEXT : 'Your device doesn\'t have any system apps installed',
     NON_UPGRADE_APPS_TEXT : 'All your apps are up-to-date. Yay! ',
     UPGRADE_TIP : 'We currently can\'t update apps for your device, but we\'re working on it...',
@@ -135,7 +135,7 @@ define({
     UNINSTALL : 'Uninstall',
     VERSION : 'Version: ',
     LATEST_VERSION : 'Latest version: ',
-    LATEST_VERSION_SIZE : '新版大小：',
+    LATEST_VERSION_SIZE : 'Version size: ',
     SIZE : 'Size: ',
     PERMISSON : 'Permissions: ',
     MORE : 'More',
@@ -184,11 +184,11 @@ define({
     RECOMMEND_LIST_EMPTY : 'Oh snap, no recs today',
     GET_RECOMMEND_ERROR : 'Oh no, no recs',
 
-    RETURN_ALL : '全部应用',
-    SEARCH_TIP_PART : '{1} 个与「{2}」有关的应用',
+    RETURN_ALL : 'All apps',
+    SEARCH_TIP_PART : '{1} apps related to「{2}」',
 
-    UPDATE_CATEGORY_RECOMMENDED : '来自豌豆荚的升级',
-    UPDATE_CATEGORY_WARNING : '来自其它市场的升级',
+    UPDATE_FROM_SNAPPEA : 'Update from SnapPea',
+    UPDATE_FROM_OTHERS : 'Update from another app store',
     UPDATE_CATEGORY_NOT_RECOMMENDED : '需谨慎的升级',
     NOT_RECOMMENDED_REASON : '谨慎升级的理由：',
 

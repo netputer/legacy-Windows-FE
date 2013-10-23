@@ -6,6 +6,7 @@
         'doT',
         'Device',
         'Log',
+        'IO',
         'ui/TemplateFactory',
         'Internationalization',
         'Account',
@@ -17,6 +18,7 @@
         doT,
         Device,
         log,
+        IO,
         TemplateFactory,
         i18n,
         Account,
@@ -85,6 +87,14 @@
                 }
                 return gallerySwitchView;
             }
+        });
+
+        IO.Backend.Device.onmessage({
+            'data.channel' : CONFIG.events.SIDEBAR_GALLERY
+        }, function (data) {
+            Backbone.trigger('switchModule', {
+                module : 'gallery'
+            });
         });
 
         return factory;
