@@ -95,6 +95,12 @@ define({
     BACKUP_GUIDE_NOW : 'Backup now',
 
     RESTORE_BATTERY_TIP : 'Your device\'s batter power is less than 20%. If your device shuts down, your backup may be incomplete. We recommend that charge your device and then restore. Continue anyway?',
+    AUTO_BACKUP_TIP_TITLE : 'Still backing up manually? Try our auto-backup!',
+    AUTO_BACKUP_TIP_DESC : 'Link your device and we\'ll take care of backups automatically. Link and auto-backup your device?',
+    AUTO_BACKUP_YES : "Activate auto-backup",
+    AUTO_BACKUP_NO : "Don't activate",
+    AUTO_BACKUP_REMOTE_TIP_TITLE : 'Don\'t lose your data. Activate cloud-backup!',
+    AUTO_BACKUP_REMOTE_TIP_DESC : 'Connect your device and we\'ll backup your <em>Contacts / Messages / Apps</em> to the cloud. Backup to the cloud?',
 
     BACKUP : '备份',
     BACKUP_DES : '将您的手机数据存储电脑或云端',

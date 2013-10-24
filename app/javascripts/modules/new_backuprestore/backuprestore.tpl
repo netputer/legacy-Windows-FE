@@ -314,4 +314,20 @@
     <div class="account-ctn"></div>
 </script>
 
+<script type="text/template" id="backup-local-auto-tip">
+    <div class="pic-local-ctn pic-ctn"></div>
+    <div class="content-ctn">
+        <p class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_TIP_TITLE }}</p>
+        <p class="desc text-secondary">{{= i18n.new_backuprestore.AUTO_BACKUP_TIP_DESC }}</p>
+    </div>
+</script>
+
+<script type="text/template" id="backup-remote-auto-tip">
+    <div class="pic-remote-ctn pic-ctn"></div>
+    <div class="content-ctn">
+        <p class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_REMOTE_TIP_TITLE }}</p>
+        <p class="desc text-secondary">{{= i18n.new_backuprestore.AUTO_BACKUP_REMOTE_TIP_DESC }}</p>
+    </div>
+</script>
+
 </templates>
