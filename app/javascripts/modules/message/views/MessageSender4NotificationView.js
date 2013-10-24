@@ -10,7 +10,7 @@
         'ui/TemplateFactory',
         'message/views/QuickSenderView',
         'message/models/MessageModel',
-        'backuprestore/BackupRestoreService'
+        'message/MessageService'
     ], function (
         doT,
         _,
@@ -21,7 +21,7 @@
         TemplateFactory,
         QuickSenderView,
         MessageModel,
-        BackupRestoreService
+        MessageService
     ) {
         console.log('MessageSender4NotificationView - File loaded.');
 
@@ -76,6 +76,7 @@
                                 channel : CONFIG.events.MESSAGE_CLOSE_MESSAGE_NOTIFICATION
                             }
                         });
+                        MessageService.closeAllNotificationAsync();
                     } else if (this.nextList.length > 0) {
                         this.markAsRead();
                         this.nextMessage(true);
@@ -146,7 +147,7 @@
             deleteMessage : function () {
                 this.$('.button-delete').removeClass('link');
                 this.model.deleteMessageAsync().done(function () {
-                    BackupRestoreService.closeAllNotificationAsync();
+                    MessageService.closeAllNotificationAsync();
                 }).always(function () {
                     this.$('.button-delete').addClass('link');
                 });
