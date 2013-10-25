@@ -216,6 +216,23 @@
             return deferred.promise();
         };
 
+        MessageService.closeAllNotificationAsync = function () {
+            var deferred = $.Deferred();
+
+            IO.requestAsync({
+                url : CONFIG.actions.CLOSE_ALL_NOTIFICATION,
+                success : function (resp) {
+                    if (resp.state_code === 200) {
+                        deferred.resolve(resp);
+                    } else {
+                        deferred.reject(resp);
+                    }
+                }
+            });
+
+            return deferred.promise();
+        };
+
         return MessageService;
     });
 }(this));
