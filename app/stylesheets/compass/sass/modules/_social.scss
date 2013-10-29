@@ -9,7 +9,18 @@
  ********************************************************************************/
 
 .w-social-platform-selector {
-    .social-platform {
+
+  input[type="checkbox"] {
+
+      background-color: transparent;
+
+      &:enabled:checked,
+      &:enabled:checked:hover {
+          background-color: transparent;
+      }
+  }
+
+  .social-platform {
         border: none;
         cursor: pointer;
         height: 16px;
@@ -23,7 +34,7 @@
         &[data-type="sina"] {
             @include sprite-sprite(sina-off);
 
-        &:checked,
+            &:checked,
             &:checked:hover{
                 @include sprite-sprite(sina);
             }
