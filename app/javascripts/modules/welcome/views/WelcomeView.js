@@ -15,6 +15,7 @@
         'Device',
         'Log',
         'Environment',
+        'utilities/QueryString',
         'welcome/views/ClockView',
         'welcome/views/DeviceView',
         'welcome/views/ToolbarView',
@@ -38,6 +39,7 @@
         Device,
         log,
         Environment,
+        QueryString,
         ClockView,
         DeviceView,
         ToolbarView,
@@ -342,10 +344,20 @@
 
                 this.loadBackgroundAsync().done(function (resp) {
                     var bg = resp[0];
-                    if (bg.type === 0) {
-                        toolbarView.wallpaperUrl = bg.url;
+                    var url;
 
-                        this.renderWallpaperInCanvasAsync(bg.url, 'new').done(function ($canvas) {
+                    if (bg.type === 0) {
+                        url = bg.url;
+                    } else {
+                        url = QueryString.get('backgroundImg', bg.url);
+                    }
+
+                    if (url) {
+                        toolbarView.wallpaperUrl = url;
+                    }
+
+                    if (bg.type === 0) {
+                        this.renderWallpaperInCanvasAsync(url, 'new').done(function ($canvas) {
                             deferred.resolve();
 
                             // Cache wallpaper
@@ -356,10 +368,12 @@
                                 });
                             }, 5000);
                         });
+
                     } else {
                         this.$('.bg').prepend($('<iframe>').attr('src', bg.url).addClass('content new'));
                         this.$('.content').one('load', deferred.resolve);
                     }
+
                 }.bind(this)).fail(deferred.reject);
 
                 return deferred.promise();
