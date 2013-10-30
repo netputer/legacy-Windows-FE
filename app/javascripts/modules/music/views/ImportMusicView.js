@@ -131,11 +131,16 @@
 
                 var tip = StringUtil.format(i18n.misc.SELECTOR_DESCRIPTION_TEXT, musicList.selected.length, musicList.currentModels.length);
 
+                var remain;
                 if (Device.get('hasEmulatedSD')) {
-                    tip += StringUtil.format(i18n.misc.DEVICE_CAPACITY_REMAIN, StringUtil.readableSize(Math.max(Device.get('internalFreeCapacity') - selectedSize, 0)));
+                    remain = Math.max(Device.get('internalFreeCapacity') - selectedSize, 0);
+                    tip += StringUtil.format(i18n.misc.DEVICE_CAPACITY_REMAIN, StringUtil.readableSize(remain));
                 } else {
-                    tip += StringUtil.format(i18n.misc.SD_CAPACITY_REMAIN, StringUtil.readableSize(Math.max(Device.get('externalFreeCapacity') - selectedSize, 0)));
+                    remain = Math.max(Device.get('externalFreeCapacity') - selectedSize, 0);
+                    tip += StringUtil.format(i18n.misc.SD_CAPACITY_REMAIN, StringUtil.readableSize(remain));
                 }
+
+                this.trigger('__NO_SPACE', !remain);
 
                 this.$('footer').html(tip);
             },
@@ -166,6 +171,10 @@
                     this.$bodyContent = bodyView.$el;
 
                     bodyView.setFooterContent();
+
+                    this.listenTo(bodyView, '__NO_SPACE', function (disabled) {
+                        this.$('.button-yes').prop("disabled", disabled);
+                    });
                 }, this);
 
                 this.on('button_yes', this.importMusicView, this);
