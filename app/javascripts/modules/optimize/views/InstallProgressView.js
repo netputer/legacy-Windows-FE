@@ -49,8 +49,7 @@
                             this.$('progress').addClass('running');
                         }
 
-                        if (task.get('type') === CONFIG.enums.TASK_TYPE_INSTALL
-                                && task.get('state') === CONFIG.enums.TASK_STATE_SUCCESS) {
+                        if (task.get('type') === CONFIG.enums.TASK_TYPE_INSTALL && task.get('state') === CONFIG.enums.TASK_STATE_SUCCESS) {
                             tasksCollection.off('refresh', refreshHandler);
                             this.trigger('remove');
                         } else if (task.get('state') === CONFIG.enums.TASK_STATE_FAILD) {

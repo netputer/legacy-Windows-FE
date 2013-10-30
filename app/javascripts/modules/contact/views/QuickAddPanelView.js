@@ -59,9 +59,7 @@
                 var $inputs = this.$('input');
 
                 var $input;
-                if (!$inputs[0].value.trim()
-                        && !$inputs[1].value.trim()
-                        && !$inputs[2].value.trim()) {
+                if (!$inputs[0].value.trim() && !$inputs[1].value.trim() && !$inputs[2].value.trim()) {
                     $($inputs[0]).focus();
                     return false;
                 }

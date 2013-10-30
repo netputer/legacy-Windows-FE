@@ -121,8 +121,8 @@
                 return packageNames.indexOf(model.get('app').packageName) < 0;
             }));
 
-            if (originalLegth === 0
-                    && modelsPool.length > 0) {
+            if (originalLegth === 0 &&
+                    modelsPool.length > 0) {
                 this.buildList();
             }
         };

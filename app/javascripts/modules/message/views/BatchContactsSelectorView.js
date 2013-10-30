@@ -96,8 +96,7 @@
                     this.stopListening(this.groupSelectorView, 'select', groupSelectHandler);
                     this.contactList.toggleEmptyTip(this.contactList.currentModels.length === 0);
 
-                    if (data.value !== this.groupSelectorView.accountId
-                            || data.value === 'all') {
+                    if (data.value !== this.groupSelectorView.accountId || data.value === 'all') {
                         this.groupSelectorView.update(data.value, 'all');
                     } else {
                         this.groupSelectorView.update(data.value, this.groupSelectorView.groupId);

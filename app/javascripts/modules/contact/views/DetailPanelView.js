@@ -525,8 +525,7 @@
 
                 threads4ContactCollection.trigger('update');
 
-                if (this.model.get('phone')
-                        && _.compact(_.pluck(this.model.get('phone'), 'number')).length > 0) {
+                if (this.model.get('phone') && _.compact(_.pluck(this.model.get('phone'), 'number')).length > 0) {
                     if (!quickSenderView) {
                         quickSenderView = MessageSender4ThreadsPanelView.getInstance({
                             model : this.model

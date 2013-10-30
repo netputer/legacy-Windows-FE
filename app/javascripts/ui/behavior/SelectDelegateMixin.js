@@ -80,8 +80,7 @@
                     this.trigger('select:partial');
                 }
 
-                if (!_.isEqual(originalSelected, selected)
-                        || originalSetName !== currentSetName) {
+                if (!_.isEqual(originalSelected, selected) || originalSetName !== currentSetName) {
                     this.trigger('select:change', selected);
                 }
             }, that);

@@ -36,7 +36,7 @@
  */
 
 /*global define*/
-(function (window) {
+(function (window){
     'use strict';
 
     require([
