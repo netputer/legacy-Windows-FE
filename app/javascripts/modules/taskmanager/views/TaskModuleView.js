@@ -137,7 +137,11 @@
                 IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.WEB_NAVIGATE
                 }, function (msg) {
-                    this.slideOut();
+
+                    if (msg.type !== CONFIG.enums.NAVIGATE_TYPE_TASK_MANAGER ) {
+                        this.slideOut();
+                    }
+
                 }, this);
 
                 IO.Backend.Device.onmessage({
