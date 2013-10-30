@@ -86,7 +86,7 @@
                 IO.requestAsync({
                     url : Config.actions.SMS_LOAD_BACKUP,
                     success : function (resp) {
-                        if (resp.state_line === 200) {
+                        if (resp.state_code === 200) {
                             deferred.resolve(resp);
                         } else {
                             deferred.reject(resp);
