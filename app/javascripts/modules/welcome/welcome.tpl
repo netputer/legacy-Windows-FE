@@ -34,7 +34,7 @@
             <div class="info">
                 <h1 class="title link button-navigate wc" title="{{! it.title }}">{{! it.title }}</h1>
                 <span class="cate text-thirdly">
-                    {{= StringUtil.format(i18n.welcome.CARD_APP_TAG_LINE, it.categories[0].name, it.installedCountStr) }}
+                    {{= StringUtil.format(i18n.welcome.CARD_APP_TAG_LINE, it.categories[0] ? it.categories[0].name : '', it.installedCountStr) }}
                 </span>
             </div>
             <button class="button-action"></button>
