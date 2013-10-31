@@ -173,6 +173,8 @@
 }
 
 .w-task-anima {
+    bottom: 0;
+    display: none;
     height: 80px;
     left: 50px;
     pointer-events: none;
@@ -180,36 +182,35 @@
     width: 80px;
 
     &.start-download-anima {
+        @include sprite-sprite(new-download);
+        display: block;
         -webkit-animation: {
             name: newTask;
             duration: 2s;
+            fill-mode: forwards;
             iteration-count: 1;
         }
-    }
-
-    &.start-download-anima {
-        @include sprite-sprite(new-download);
+        -webkit-transform: translate3d(0, -180px, 0);
     }
 }
 
 @-webkit-keyframes newTask {
     0% {
-        bottom: 180px;
-        display: block;
         opacity: 0;
+        -webkit-transform: translate3d(0, -180px, 0);
     }
     33% {
-        bottom: 40px;
         opacity: 1;
+        -webkit-transform: translate3d(0, -40px, 0);
+
     }
     66% {
-        bottom: 40px;
         opacity: 1;
+        -webkit-transform: translate3d(0, -40px, 0);
     }
     100% {
-        bottom: 40px;
-        display: none;
         opacity: 0;
+        -webkit-transform: translate3d(0, -40px, 0);
     }
 }
 
