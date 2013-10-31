@@ -524,7 +524,7 @@ progress {
 
     &.disabled {
         &::-webkit-progress-value {
-            background-image: $headerGradient;
+            background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #f1f1f1), color-stop(0.05,#f9f9f9), color-stop(1, #ccc));
         }
     }
 }
