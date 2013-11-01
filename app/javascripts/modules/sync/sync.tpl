@@ -25,6 +25,19 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="server-notify">
+    <div class="hbox wrap cf">
+        <div class="pic-ctn"></div>
+        <div class="content-ctn">
+            <h2 class="header-text">{{= it.title }}</h2>
+            <p class="content text-secondary">{{= it.desc }}</p>
+        </div>
+    </div>
+    <div class="hbox footer-ctn">
+        <span class="link button-open">{{= i18n.misc.LEARN_MORE }}</span>
+    </div>
+</script>
+
 <script type="text/x-ui-template" id="download-photo-notify">
     <div class="hbox wrap cf">
         <div class="pic-ctn"></div>
