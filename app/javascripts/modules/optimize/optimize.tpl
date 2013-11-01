@@ -11,7 +11,7 @@
         <div class="monitor vbox">
             <div class="button-ctn vbox">
                 <button class="button-scan"></button>
-                <div class="wifi-tip text-secondary">{{= i18n.optimize.WIFI_TIP }}</div>
+                <div class="wifi-tip text-secondary"></div>
             </div>
         </div>
         <div class="vendor hbox">
