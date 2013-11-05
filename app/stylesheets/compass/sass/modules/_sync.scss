@@ -2,11 +2,11 @@
 
 .w-sync-photosync-ctn {
     margin-right: 10px;
-    
+
     .split {
         margin: 0 5px;
     }
-    
+
     .link + .link {
         margin-left: 5px;
     }
@@ -52,7 +52,7 @@
         @include sprite-sprite(cloud);
         height: 64px;
         width: 64px;
-    }    
+    }
 }
 
 .w-sync-account-guide-body {

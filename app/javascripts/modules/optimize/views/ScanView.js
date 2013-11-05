@@ -357,7 +357,11 @@
                     this.$('.button-scan').prop({
                         disabled : disable
                     });
-                    this.$('.wifi-tip').toggle(disable);
+                    if (disable) {
+                        this.$('.wifi-tip').html(i18n.optimize.WIFI_TIP);
+                    } else {
+                        this.$('.wifi-tip').html(i18n.optimize.INSTALL_DES);
+                    }
                 }, this);
             },
             checkState : function () {
@@ -365,20 +369,12 @@
                     var state = resp.body.value;
                     switch (state) {
                     case 1:
-                        confirm(i18n.optimize.INSTALL_DES, function () {
-                            this.installAPK();
-                            log({
-                                'event' : 'ui.click.install.confirm',
-                                'type' : 'install',
-                                'actions' : 'yes'
-                            });
-                        }, function () {
-                            log({
-                                'event' : 'ui.click.install.confirm',
-                                'type' : 'install',
-                                'actions' : 'cancel'
-                            });
-                        }, this);
+                        this.installAPK();
+                        log({
+                            'event' : 'ui.click.install.confirm',
+                            'type' : 'install',
+                            'actions' : 'yes'
+                        });
                         break;
                     case 2:
                         confirm(i18n.optimize.UPDATE_DES, function () {
@@ -522,8 +518,12 @@
                 });
 
                 setTimeout(function () {
-                    this.$('.wifi-tip').toggle(!Device.get('isConnected') ||
-                                                !Device.get('isUSB'));
+                    var disable = !Device.get('isConnected') || !Device.get('isUSB');
+                    if (disable) {
+                        this.$('.wifi-tip').html(i18n.optimize.WIFI_TIP);
+                    } else {
+                        this.$('.wifi-tip').html(i18n.optimize.INSTALL_DES);
+                    }
                 }.bind(this), 0);
 
                 return this;
