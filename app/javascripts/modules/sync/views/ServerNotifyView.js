@@ -45,7 +45,7 @@
 
                 if (this.options.icon !== '') {
                     this.$('.pic-ctn').css({
-                        'background-image' : 'url(' + this.options.icon + ')',
+                        'background-image' : 'url(' + this.options.icon + ')'
                     });
                 }
 
