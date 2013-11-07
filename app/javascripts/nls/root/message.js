@@ -78,8 +78,10 @@ define({
 
     SEND : '发送',
     BATCH_CONVERSATION_TITLE : '选择了 {1} 组短信',
-    SEND_WITH_SIM1 : '使用默认 SIM 卡发送',
-    SEND_WITH_SIM2 : '使用第二张 SIM 卡发送',
+    SEND_WITH_SPEC_SIM : '（卡 {1}）：{2}',
+    MUTIL_SIM_SELECT : '使用 {1} 号发送（卡 {2}）',
+    MUTIL_SIM_SELECT_HAS_NUM : '用{1}号 {2} 发送',
+    MUTIL_SIM_SUPPORT : '由「多趣短信」提供双卡技术支持',
 
     WINDOW_IMPORT_TITLE : '导入短信',
     IMPORT_FAILED : '导入短信失败。',

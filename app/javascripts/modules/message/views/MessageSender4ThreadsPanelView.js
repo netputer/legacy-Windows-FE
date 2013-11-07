@@ -194,6 +194,7 @@
 
                 parseAddresses.call(this, this.model, this.options.defaultNumber);
 
+                this.buildButton();
                 return this;
             },
             focusInputContent : function () {

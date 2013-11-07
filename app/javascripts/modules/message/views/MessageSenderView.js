@@ -15,6 +15,7 @@
         'ui/Panel',
         'ui/AlertWindow',
         'ui/PopupPanel',
+        'ui/MenuButton',
         'utilities/StringUtil',
         'message/MessageService',
         'message/views/ContactSuggestionView',
@@ -36,6 +37,7 @@
         Panel,
         AlertWindow,
         PopupPanel,
+        MenuButton,
         StringUtil,
         MessageService,
         ContactSuggestionView,
@@ -75,6 +77,8 @@
         var receiverList = [];
 
         var contactSuggestionView;
+
+        var serviceBtn;
 
         var SenderBodyView = Backbone.View.extend({
             className : 'w-message-sender-window',
@@ -380,10 +384,12 @@
                 var $sendBtn = $('<button>').html(i18n.message.SEND).addClass('button-send primary');
 
                 Device.on('change:isConnected', function (Device) {
-                    $sendBtn.prop({
+                    this.$el.find('.button-send').prop({
                         disabled : !Device.get('isConnected')
                     });
-                });
+
+                    serviceBtn.$el.prop('disabled', !Device.get('isConnected'));
+                }, this);
 
                 this.buttons = [{
                     $button : $sendBtn,
@@ -393,14 +399,30 @@
                     eventName : EventsMapping.BUTTON_CANCEL
                 }];
 
-                this.buildButton();
-
                 this.on(EventsMapping.SHOW, function () {
+                    this.buildButton();
+                    
                     senderBodyView = new SenderBodyView();
 
                     this.$bodyContent = senderBodyView.render().$el;
 
                     this.center();
+
+                    this.once(EventsMapping.REMOVE, function () {
+                        senderBodyView.remove();
+                        senderBodyView = undefined;
+
+                        contactsSelector.remove();
+                        contactsSelector = undefined;
+
+                        contactSuggestionView.remove();
+                        contactSuggestionView = undefined;
+
+                        if (serviceBtn) {
+                            serviceBtn.remove();
+                            serviceBtn = undefined;
+                        }
+                    }, this);
                 }, this);
 
                 contactsSelector = BatchContactsSelectorView.getInstance();
@@ -449,41 +471,45 @@
             },
             buildButton : function () {
                 MessageService.getServiceCenterAsync().done(function (resp) {
-                    var serviceCenter = resp.body.value || [];
+                    this.$('.w-ui-window-footer-monitor').addClass('text-thirdly').html(i18n.message.MUTIL_SIM_SUPPORT);
+
+                    var serviceCenter = resp.body.sim || [];
 
                     if (serviceCenter.length > 0) {
                         this.buttons.shift();
 
-                        var $sendBtn1 = $('<button>').html(i18n.message.SEND_WITH_SIM1).addClass('button-send-sim1 primary');
-                        var $sendBtn2 = $('<button>').html(i18n.message.SEND_WITH_SIM2).addClass('button-send-sim2 primary');
+                        var $sendBtnGroup = $('<span>').addClass('w-ui-buttongroup button-send-group');
+                        var $sendBtn = $('<button>').addClass('primary button-send').html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, 1, resp.body.sim[0].sim_name));
 
-                        this.buttons.unshift({
-                            $button : $sendBtn2,
-                            eventName : 'button_send_sim_2'
-                        });
+                        var items = [];
 
-                        this.buttons.unshift({
-                            $button : $sendBtn1,
-                            eventName : 'button_send_sim_1'
-                        });
-
-                        Device.on('change:isConnected', function (Device) {
-                            $sendBtn1.prop({
-                                disabled : !Device.get('isConnected')
-                            });
-                            $sendBtn2.prop({
-                                disabled : !Device.get('isConnected')
+                        _.each(resp.body.sim, function (service, i) {
+                            items.push({
+                                type : 'radio',
+                                name : 'service-center-send-window',
+                                label : service.sim_phone_number ?
+                                            StringUtil.format(i18n.message.MUTIL_SIM_SELECT_HAS_NUM, service.sim_name, service.sim_phone_number) :
+                                            StringUtil.format(i18n.message.MUTIL_SIM_SELECT, service.sim_name, i + 1),
+                                value : i,
+                                checked : i === 0
                             });
                         });
 
-                        this.on('button_send_sim_1', function () {
-                            this.serviceCenter = null;
-                            this.sendMessage();
-                        }, this);
+                        this.serviceCenter = resp.body.sim[0].sim_id;
 
-                        this.on('button_send_sim_2', function () {
-                            this.serviceCenter = serviceCenter[0];
-                            this.sendMessage();
+                        serviceBtn = new MenuButton({
+                            items : items
+                        });
+
+                        $sendBtnGroup.append($sendBtn).append(serviceBtn.render().$el.addClass('primary toggle'));
+
+                        this.buttons.unshift({
+                            $button : $sendBtnGroup
+                        });
+
+                        serviceBtn.on('select', function (item) {
+                            this.serviceCenter = resp.body.sim[item.value].sim_id;
+                            $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, resp.body.sim[item.value].sim_name));
                         }, this);
 
                         this.buttons = this.buttons;
@@ -569,18 +595,13 @@
             }
         });
 
-        var messageSenderView;
-
         var factory = _.extend({
             getInstance : function () {
-                if (!messageSenderView) {
-                    messageSenderView = new MessageSenderView({
-                        draggable : true,
-                        title : i18n.message.SEND_MESSAGE,
-                        width : 480
-                    });
-                }
-                return messageSenderView;
+                return new MessageSenderView({
+                    draggable : true,
+                    title : i18n.message.SEND_MESSAGE,
+                    width : 480
+                });
             },
             getClass : function () {
                 return MessageSenderView;
