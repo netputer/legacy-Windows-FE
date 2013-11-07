@@ -34,15 +34,16 @@
                 return this;
             },
             clickBtnGetLink : function () {
+
+                this.trigger('ios.show.send_sms');
                 log({
                     event: 'ui.click.ios_download_sms',
                     from : 'notification'
                 });
-                this.trigger('ios.show.send_sms');
             },
             clickGoTo : function () {
                 log({
-                    event: 'ui.click.ios_download_link',
+                    event : 'ui.click.ios_download_link',
                     from : 'notification'
                 });
             },
@@ -56,7 +57,6 @@
             template : doT.template(TemplateFactory.get('photo', 'ios-sms-send')),
             className : 'w-ios-advertisement-send',
             initialize : function () {
-                SendView.__super__.initialize.apply(this, arguments);
 
                 var state = 'disable';
                 Object.defineProperties(this, {
@@ -127,10 +127,6 @@
             },
             clickBtnSend : function () {
 
-                log({
-                    event: 'ui.click.ios_download_send_sms'
-                });
-
                 var num = $.trim($('.phone-number').val());
                 $.ajax(CONFIG.enums.SMS_GATE, {
                     data : {
@@ -138,10 +134,14 @@
                         action : 'send',
                         phone : num
                     },
-                    dataType: "jsonp"
+                    dataType : 'jsonp'
                 });
 
                 this.sendButtonState = 'countdown';
+
+                log({
+                    event : 'ui.click.ios_download_send_sms'
+                });
             },
             events : {
                 'click .button-send' : 'clickBtnSend',

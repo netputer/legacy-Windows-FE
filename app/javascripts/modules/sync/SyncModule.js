@@ -114,11 +114,11 @@
                                 url : CONFIG.BASE_PATH + 'modules/sync/ios_advertisement.html?panel=getlink',
                                 title : i18n.sync.IOS_ADVERTISMENT,
                                 onclose : function () {
+                                    Settings.set('ios.banner.isclosed', true);
                                     log({
                                         event: 'ui.click.ios_download_close',
                                         from : 'notification'
                                     });
-                                    Settings.set('ios.banner.isclosed', true);
                                 }
                             });
                             notification.show();

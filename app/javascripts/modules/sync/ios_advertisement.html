@@ -9,7 +9,7 @@
             require.config({
                 baseUrl : '../../'
             });
-           require(['EnvironmentConfig'], function () {
+            require(['EnvironmentConfig'], function () {
                 require([
                     'jquery',
                     'utilities/QueryString',
@@ -34,7 +34,7 @@
                     } else {
                         $('body').append(sendView.render().$el);
                     }
-                 });
+                });
             });
         </script>
     </head>
