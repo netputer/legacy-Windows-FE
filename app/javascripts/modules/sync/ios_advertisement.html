@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html style="height:auto">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Ios Advertisement</title>
+        <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css" />
+        <script type="text/javascript" src="../../../bower_components/requirejs/require.js"></script>
+        <script type="text/javascript" language="JavaScript">
+            require.config({
+                baseUrl : '../../'
+            });
+           require(['EnvironmentConfig'], function () {
+                require([
+                    'jquery',
+                    'utilities/QueryString',
+                    'sync/views/SyncIosSmsView'
+                ], function (
+                    $,
+                    QueryString,
+                    SyncIosSmsView
+                ) {
+
+                    var sendView = SyncIosSmsView.getSendView();
+                    var getLinkView = SyncIosSmsView.getLinkView();
+
+                    var panel = QueryString.get('panel');
+                    if (panel === 'getlink') {
+                        getLinkView.on('ios.show.send_sms', function () {
+                            $('body').append(sendView.render().$el);
+                            getLinkView.$el.hide();
+                            sendView.$el.show();
+                        });
+                        $('body').append(getLinkView .render().$el);
+                    } else {
+                        $('body').append(sendView.render().$el);
+                    }
+                 });
+            });
+        </script>
+    </head>
+    <body class='w-ios-advertisement'></body>
+</html>
+
+

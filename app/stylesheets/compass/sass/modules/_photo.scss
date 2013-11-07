@@ -13,6 +13,65 @@
     -webkit-box-flex: 1;
 }
 
+.w-photo-ios-banner-ctn {
+
+    box-shadow: 0 1px 2px 0px rgba(0,0,0,0.09);
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 3px;
+    height: 220px;
+    margin: 20px auto;
+    position: relative;
+    width: 704px;
+
+    .banner {
+        @include ios-sprite(bg);
+        height: ios-sprite-height(bg);
+        margin: 10px;
+        width: ios-sprite-width(bg);
+
+        .button-close {
+            @include ios-sprite(close);
+            cursor: pointer;
+            float: right;
+            height: ios-sprite-height(close);
+            width: ios-sprite-width(close);
+
+            &:hover {
+                @include ios-sprite(close-hover);
+            }
+        }
+
+        .button-download {
+            @include ios-sprite(download);
+            cursor: pointer;
+            height: ios-sprite-height(download);
+            left: 455px;
+            position: absolute;
+            top: 40px;
+            width: ios-sprite-width(download);
+
+            &:hover {
+                @include ios-sprite(download-hover);
+            }
+        }
+
+        .button-sms {
+            @include ios-sprite(sms);
+            cursor: pointer;
+            height: ios-sprite-height(sms);
+            left: 455px;
+            position: absolute;
+            top: 105px;
+            width: ios-sprite-width(sms);
+
+            &:hover {
+                @include ios-sprite(sms-hover);
+            }
+        }
+    }
+}
+
 .w-media-gallery {
     &.cloud {
         .w-photo-item {
@@ -32,6 +91,10 @@
                 }
             }
         }
+    }
+
+    &.with-banner {
+        top : 278px;
     }
 
     .empty-tip {

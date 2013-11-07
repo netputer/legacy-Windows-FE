@@ -145,3 +145,54 @@
         }
     }
 }
+
+.w-ios-advertisement {
+    width: 350px;
+    height: 145px;
+
+    .w-ios-advertisement-get-link {
+       margin-top: 20px;
+
+        .icon {
+            @include ios-sprite(icon);
+            height: ios-sprite-height(icon);
+            left: 20px;
+            position: absolute;
+            width: ios-sprite-width(icon);
+        }
+
+        .container {
+            height : 145px;
+            margin-left: 85px;
+            width : 265px;
+
+            .desc {
+                display: block;
+                margin-top: 5px;
+                margin-bottom : 15px;
+            }
+
+            .goto {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .w-ios-advertisement-send {
+        .desc {
+            display: block;
+            margin-top: 20px;
+            margin-left: 40px;
+        }
+
+        .phone-number {
+            height :25px;
+            margin: 10px 20px 0px 40px;
+            width : 130px;
+        }
+
+        .button-send {
+            margin-top: 10px;
+        }
+    }
+}
