@@ -25,12 +25,26 @@
             template : doT.template(TemplateFactory.get('misc', 'adb-notif')),
             className : 'w-device-usb-detect',
             initialize : function () {
+
+                var isLoadInfo = false;
+                Object.defineProperties(this, {
+                    isLoadInfo : {
+                        get : function () {
+                            return isLoadInfo;
+                        },
+                        set : function (value) {
+                            isLoadInfo = value;
+                        }
+                    }
+                });
+
                 IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.DEVICE_USB_DETECT
                 }, this.stateHandler, this);
 
                 this.listenTo(Device, 'change:isFastADB', function (Device, isFastADB) {
-                    if (isFastADB) {
+
+                    if (isFastADB && !this.isLoadInfo && window.SnapPea.CurrentModule !== 'welcome') {
                         this.$el.slideDown();
                     } else {
                         this.$el.slideUp();
@@ -89,8 +103,10 @@
                 } else {
                     if (data > 0) {
                         this.$('.tip').html(i18n.misc.USB_LOADING_INFO);
+                        this.isLoadInfo = true;
                     } else {
                         this.$('.tip').html(i18n.misc.USB_LOADING_INFO_FAILED);
+                        this.isLoadInfo = false;
                     }
                 }
 

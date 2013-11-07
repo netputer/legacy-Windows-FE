@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html style="height:auto">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Notify</title>
+        <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css" />
+        <script type="text/javascript" src="../../../bower_components/requirejs/require.js"></script>
+        <script type="text/javascript" language="JavaScript">
+            require.config({
+                baseUrl : '../../'
+            });
+
+            require(['EnvironmentConfig'], function () {
+                require([
+                    'jquery',
+                    'utilities/QueryString',
+                    'sync/views/ServerNotifyView'
+                ], function (
+                    $,
+                    QueryString,
+                    ServerNotifyView
+                ) {
+                    var notify = ServerNotifyView.getInstance({
+                        title : QueryString.get('title'),
+                        desc : QueryString.get('desc'),
+                        icon : QueryString.get('icon'),
+                        redirect_url : QueryString.get('redirect_url')
+                    });
+                    $('body').append(notify.render().$el);
+                });
+            });
+        </script>
+        <body class="w-notification-body"></body>
+</html>
