@@ -3,20 +3,26 @@
     define([
         'backbone',
         'underscore',
+        'jquery',
         'IO',
         'Internationalization',
         'Device',
         'ui/UIHelper',
         'ui/AlertWindow',
+        'ui/MenuButton',
+        'utilities/StringUtil',
         'message/MessageService'
     ], function (
         Backbone,
         _,
+        $,
         IO,
         i18n,
         Device,
         UIHelper,
         AlertWindow,
+        MenuButton,
+        StringUtil,
         MessageService
     ) {
         console.log('QuickSenderView - File loaded. ');
@@ -48,6 +54,49 @@
                     enableTip = this.options.enableTip;
                 }
             },
+            buildButton : function () {
+                MessageService.getServiceCenterAsync().done(function (resp) {
+                    var serviceCenter = resp.body.sim || [];
+
+                    if (serviceCenter.length > 0) {
+                        this.$el.addClass('dual-sim');
+
+                        var $sendBtnGroup = $('<span>').addClass('w-ui-buttongroup button-send-group');
+                        var $sendBtn = $('<button>').addClass('primary button-send').html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, 1, resp.body.sim[0].sim_name));
+
+                        var items = [];
+
+                        _.each(resp.body.sim, function (service, i) {
+                            items.push({
+                                type : 'radio',
+                                name : 'service-center-send-window',
+                                label : service.sim_phone_number ?
+                                            StringUtil.format(i18n.message.MUTIL_SIM_SELECT_HAS_NUM, service.sim_name, service.sim_phone_number) :
+                                            StringUtil.format(i18n.message.MUTIL_SIM_SELECT, service.sim_name, i + 1),
+                                value : i,
+                                checked : i === 0
+                            });
+                        });
+
+                        this.serviceCenter = resp.body.sim[0].sim_id;
+
+                        this.serviceBtn = new MenuButton({
+                            items : items
+                        });
+
+
+                        $sendBtnGroup.append($sendBtn).append(this.serviceBtn.render().$el.addClass('primary toggle'));
+                        this.$('.button-send').replaceWith($sendBtnGroup);
+
+                        this.serviceBtn.on('select', function (item) {
+                            this.serviceCenter = resp.body.sim[item.value].sim_id;
+                            $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, resp.body.sim[item.value].sim_name));
+                        }, this);
+
+                        this.buttons = this.buttons;
+                    }
+                }.bind(this));
+            },
             disabled : function (disabled) {
                 disabled = disabled === undefined ? true : disabled;
 
@@ -67,7 +116,7 @@
                     } else {
                         var sendHandler = function () {
                             this.disabled();
-                            MessageService.sendMessageAsync(this.addresses, content).done(function () {
+                            MessageService.sendMessageAsync(this.addresses, content, this.serviceCenter).done(function () {
                                 this.trigger('sendSuccess');
 
                                 $content.prop({

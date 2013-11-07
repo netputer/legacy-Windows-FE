@@ -163,40 +163,16 @@ module.exports = function (grunt) {
         qunit: {
             files : ['test/index.html']
         },
-        jslint : {
-            sources : {
-                src : [
-                    'app/javascripts/**/*.js'
-                ],
-                exclude: [
-                    'app/javascripts/utilities/MD5.js',
-                    'app/javascripts/ui/Panel.js',
+        jshint : {
+            all : ['app/javascripts/**/*.js'],
+            options : {
+                ignores : [
                     'app/javascripts/modules/contact/collections/ContactsCollection.js',
-                    'app/javascripts/modules/message/views/MessageSenderView.js',
-                    'app/javascripts/ui/Button.js'
-                ],
-                directives : {
-                    sloppy : true,
-                    vars : true,
-                    nomen : true,
-                    devel : true,
-                    browser : true,
-                    indent : 4,
-                    unparam: true,
-                    plusplus : true,
-                    todo : true,
-                    bitwise :  true,
-                    stupid : true,
-                    evil : true,
-                    regexp : true,
-                    ass : true,
-                    predef: [
-                        'define', 'require'
-                    ]
-                },
-                options : {
-                    errorsOnly : true // only display errors
-                }
+                    'app/javascripts/modules/music/views/MusicModuleView.js',
+                    'app/javascripts/modules/photo/views/PhotoModuleView.js',
+                    'app/javascripts/modules/video/views/VideoModuleView.js',
+                    'app/javascripts/utilities/FilterFunction.js'
+                ]
             }
         }
     });
@@ -224,7 +200,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', function () {
         // grunt.option('force', true);
-        grunt.task.run('jslint');
+        grunt.task.run('jshint:all');
         grunt.task.run('build');
     });
 };

@@ -116,6 +116,11 @@
                 }
             },
             navigate : function (msg) {
+                Backbone.trigger('switchModule', {
+                    module : 'app',
+                    tab : 'all'
+                });
+
                 var appsCollection = AppsCollection.getInstance();
 
                 var highlightSearch = function () {

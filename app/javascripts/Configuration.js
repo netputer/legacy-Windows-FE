@@ -148,7 +148,7 @@
                 SMS_SYNC : 'wdj://sms/sync.json',
                 SMS_RESEND : 'wdj://sms/resend.json',
                 SMS_CONVERSATION_MARK_AS_READ : 'wdj://sms/mark_conversation_read.json',
-                SMS_GET_SERVICE_CENTER : 'wdj://sms/services.json',
+                SMS_GET_SERVICE_CENTER : 'wdj://sms/get_siminfo.json',
                 SMS_IMPORT : 'wdj://sms/import.json',
                 SMS_EXPORT : 'wdj://sms/export.json',
                 SMS_BATCH_RESEND : 'wdj://sms/batch_resend.json',

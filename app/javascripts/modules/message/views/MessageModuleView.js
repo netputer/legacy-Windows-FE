@@ -46,8 +46,6 @@
 
         var conversationsListView;
 
-        var messageSenderView;
-
         var MessageModuleView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('message', 'message-main')),
             className : 'w-message-module-main module-main vbox',
@@ -204,7 +202,7 @@
                 }
             },
             sendMessage : function (data) {
-                messageSenderView = messageSenderView || MessageSenderView.getInstance();
+                var messageSenderView = MessageSenderView.getInstance();
                 var receivers = data.receivers || [];
                 var content = data.content || '';
                 var source = data.source || 'unknown';

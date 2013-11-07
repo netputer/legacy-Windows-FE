@@ -131,8 +131,7 @@
 
                 var isChecked = false;
                 accountCollection.each(function (account) {
-                    if (this.displayReadOnly
-                            || (!this.displayReadOnly && !account.get('read_only'))) {
+                    if (this.displayReadOnly || (!this.displayReadOnly && !account.get('read_only'))) {
                         var label = account.get('displayName') + ' (';
 
                         if (this.hasNumber) {

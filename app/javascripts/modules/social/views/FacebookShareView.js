@@ -203,8 +203,7 @@
             },
             clickExitOauth : function () {
                 SocialData.getTokenAsync(function (resp) {
-                    var source = CONIFG.enums.FACEBOOK_LOGOUT_URI + '?next=' + CONIFG.enums.FACEBOOK_REDIRECT_URI
-                                                                         + '&access_token=' + resp.body.value;
+                    var source = CONIFG.enums.FACEBOOK_LOGOUT_URI + '?next=' + CONIFG.enums.FACEBOOK_REDIRECT_URI + '&access_token=' + resp.body.value;
                     var logoutFrame = $('<iframe/>').attr('src', source).appendTo(this.$el).hide();
 
                     logoutFrame.on('load', function () {

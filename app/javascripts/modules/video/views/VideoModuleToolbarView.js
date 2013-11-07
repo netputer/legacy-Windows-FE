@@ -48,10 +48,10 @@
                 });
 
                 this.$('.button-delete, .button-export').prop({
-                    disabled : videosCollection.length === 0
-                                || videosCollection.getSelectedVideo().length === 0
-                                || !Device.get('isConnected')
-                                || !Device.get('hasSDCard')
+                    disabled : videosCollection.length === 0 ||
+                                    videosCollection.getSelectedVideo().length === 0 ||
+                                    !Device.get('isConnected') ||
+                                    !Device.get('hasSDCard')
                 });
             },
             render : function () {

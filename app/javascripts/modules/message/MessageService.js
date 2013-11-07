@@ -35,23 +35,29 @@
 
         var MessageService = _.extend({}, Backbone.Events);
 
+        var serviceCenterResp;
+
         MessageService.getServiceCenterAsync = function () {
             var deferred = $.Deferred();
 
-            IO.requestAsync({
-                url : CONFIG.actions.SMS_GET_SERVICE_CENTER,
-                success : function (resp) {
-                    if (resp.state_code === 200) {
-                        console.log('MessageService - Get SMS service center success.');
+            if (serviceCenterResp !== undefined) {
+                deferred.resolve(serviceCenterResp);
+            } else {
+                IO.requestAsync({
+                    url : CONFIG.actions.SMS_GET_SERVICE_CENTER,
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('MessageService - Get SMS service center success.');
+                            serviceCenterResp = resp;
+                            deferred.resolve(resp);
+                        } else {
+                            console.error('MessageService - Get SMS service center faild. Error info: ' + resp.state_line);
 
-                        deferred.resolve(resp);
-                    } else {
-                        console.error('MessageService - Get SMS service center faild. Error info: ' + resp.state_line);
-
-                        deferred.reject(resp);
+                            deferred.reject(resp);
+                        }
                     }
-                }
-            });
+                });
+            }
 
             return deferred.promise();
         };
@@ -78,7 +84,7 @@
                             value : addresses
                         },
                         body : body,
-                        service_center : serviceCenter
+                        sim_id : serviceCenter
                     },
                     success : callback
                 });
@@ -92,7 +98,7 @@
                     data : {
                         address : addresses,
                         body : body,
-                        service_center : serviceCenter
+                        sim_id : serviceCenter
                     },
                     success : callback
                 });

@@ -380,11 +380,11 @@
         .batch-send-tip,
         .multi-sim-tip {
             position: relative;
-            -webkit-box-align: center;
 
             .tip {
                 @include sprite-sprite(help);
                 cursor: help;
+                display: inline-block;
                 height: 15px;
                 margin-left: 5px;
                 width: 15px;
@@ -435,6 +435,16 @@
                 display: block;
                 margin-bottom: 3px;
                 width: 100%;
+            }
+        }
+    }
+
+    &.dual-sim {
+        .sender-ctn {
+            .count-ctn {
+                .button-send {
+                    width: auto;
+                }
             }
         }
     }

@@ -60,8 +60,8 @@
                 }
             });
 
-            var tipText = appsSuggestMove.length !== apps.length
-                            ? i18n.app.APPS_TRANSFER_TIP_TEXT : StringUtil.format(i18n.app.MOVE_TO_SD_CARD, apps.length);
+            var tipText = appsSuggestMove.length !== apps.length ?
+                            i18n.app.APPS_TRANSFER_TIP_TEXT : StringUtil.format(i18n.app.MOVE_TO_SD_CARD, apps.length);
 
             confirm(tipText, function () {
                 var session;
@@ -125,8 +125,8 @@
         AppService.batchMoveToSDCardAsync = function (ids) {
             var deferred = $.Deferred();
 
-            if (Device.get('productId') === 'xiaomi-m1'
-                    && Device.get('SDKVersion') === 10) {
+            if (Device.get('productId') === 'xiaomi-m1' &&
+                    Device.get('SDKVersion') === 10) {
                 alert(i18n.app.XIAOMI_SD_DISABLE);
                 return;
             }
@@ -599,7 +599,7 @@
             var callback = function (resp) {
                 var failed = resp.body.failed;
 
-                if (failed && failed.length > 0) {
+                if (failed && failed.length > 0){
 
                     var retryWindowView = RetryWindowView.getInstance({
                         failedApps : failed,
