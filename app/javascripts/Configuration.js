@@ -676,7 +676,7 @@
 
                 SMS_GATE : 'http://www.wandoujia.com/sms',
                 IOS_APP_URL : 'https://itunes.apple.com/cn/app/wan-dou-jia-yun-xiang-ce/id700821148?mt=8',
-                IOS_SHOW_ADVERTISEMENT : 'http://photosync.wandoujia.com/ios/occur'
+                IOS_SHOW_ADVERTISEMENT : 'http://sync.wandoujia.com/ios/occur'
 
             }
         };
