@@ -4,6 +4,7 @@
         'backbone',
         'doT',
         'underscore',
+        'jquery',
         'ui/TemplateFactory',
         'contact/models/ContactModel',
         'contact/collections/ContactsCollection',
@@ -15,6 +16,7 @@
         Backbone,
         doT,
         _,
+        $,
         TemplateFactory,
         ContactModel,
         ContactsCollection,
@@ -102,7 +104,9 @@
                     });
                 }
             },
-            navigate : function (msg) {
+            navigateAsync : function (msg) {
+                var deferred = $.Deferred();
+
                 Backbone.trigger('switchModule', {
                     module : 'contact',
                     tab : 'all'
@@ -112,6 +116,8 @@
                     contactModuleToolbarView.restoreFilter();
                     contactsListView.highlight(msg);
                     contactModuleToolbarView.toggleSelectorWrap();
+
+                    deferred.resolve();
                 };
 
                 if (!contactsCollection.loading && !contactsCollection.syncing) {
@@ -121,6 +127,8 @@
                         highlight();
                     });
                 }
+
+                return deferred.promise();
             },
             createNew : function (model) {
                 Backbone.trigger('switchModule', {
