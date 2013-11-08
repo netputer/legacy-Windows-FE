@@ -19,7 +19,8 @@
         'backuprestore/BackupController',
         'main/views/FastUSBNotificationView',
         'main/collections/PIMCollection',
-        'main/views/AgentNotifiPopup'
+        'main/views/AgentNotifiPopup',
+        'app/AppService'
     ], function (
         Backbone,
         doT,
@@ -37,7 +38,8 @@
         BackupController,
         FastUSBNotificationView,
         PIMCollection,
-        AgentNotifiPopup
+        AgentNotifiPopup,
+        AppService
     ) {
         console.log('Wandoujia 2.0 launched.');
 
@@ -58,7 +60,7 @@
                 this.getModule('contact').navigateGroup(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_CONTACT:
-                this.getModule('contact').navigate(msg);
+                this.getModule('contact').navigateAsync(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_GROUP_SMS:
                 this.getModule('message').navigateGroup(msg);
@@ -128,6 +130,14 @@
                 Backbone.trigger('switchModule', {
                     module : target.get('module'),
                     tab : target.get('tab')
+                });
+                break;
+            case CONFIG.enums.NAVIGATE_TYPE_UNINSTALL_APP:
+                AppService.uninstallAppsAsync([msg.id]);
+                break;
+            case CONFIG.enums.NAVIGATE_TYPE_CALL:
+                this.getModule('contact').navigateAsync(msg).done(function () {
+                    $('.button-dial').eq(0).click();
                 });
                 break;
             }

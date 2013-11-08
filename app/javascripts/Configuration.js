@@ -486,6 +486,8 @@
                 NAVIGATE_TYPE_APP_WASH : 'wash',
                 NAVIGATE_TYPE_TASK_MANAGER : 'task_manager',
                 NAVIGATE_TYPE_PIM_MODULE : 'pim_module',
+                NAVIGATE_TYPE_UNINSTALL_APP : 'remove_app',
+                NAVIGATE_TYPE_CALL : 'make_call',
 
                 /* Update ignore states */
                 UPDATE_IGNORE_NONE : 'none',
