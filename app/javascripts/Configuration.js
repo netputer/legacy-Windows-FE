@@ -34,7 +34,7 @@
                 WINDOW_DEVICE_BIND : 'wdj://window/bind_device.json',
                 WINDOW_DEVICE_UNBIND : 'wdj://window/unbind_device.json',
                 WINDOW_DEVICE_NEED_BIND : 'wdj://window/need_bind.json',
-
+                MODULE_CHANGE : 'wdj://sidebar/module_change.json',
                 RECORD_CURRENT_BACKUP_TIME : 'wdj://window/record_backup_time.json',
                 WINDOW_OPEN_PRIVACY_SETTING : 'wdj://window/open_privacy_setting.json',
                 DEVICE_USB_REDETECT : 'wdj://window/usb_redetect.json',

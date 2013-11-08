@@ -258,6 +258,17 @@
 
                 updateNativeToolbarState();
             });
+
+            var target = PIMCollection.getInstance().find(function (module) {
+                return module.get('module') === data.module && module.get('root');
+            });
+
+            IO.requestAsync({
+                url : CONFIG.actions.MODULE_CHANGE,
+                data : {
+                    module : target !== undefined ? target.id : -1
+                }
+            });
         });
 
         window.externalCall('', 'navigation', JSON.stringify({
