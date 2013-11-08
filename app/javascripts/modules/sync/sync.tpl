@@ -125,4 +125,22 @@
         <label class="guide-option"><input type="checkbox" checked="true" disabled />{{= i18n.sync.SOCIAL_PLATFORM_OPTION }}</label>
     </div>
 </script>
+
+<script type="text/x-ui-template" id="ios-sms-get-link">
+    <div class="icon"></div>
+    <div class="container">
+        <h2>{{= i18n.sync.IOS_ADVERTISMENT_TITLE}}</h2>
+        <span class="desc text-secondary">{{= i18n.sync.IOS_ADVERTISMENT_DESC}}</span>
+        <div class="footer">
+            <button class="button-getlink primary">{{= i18n.sync.IOS_ADVERTISMENT_GET_LINK}}</button>
+            <a class="goto" target="_default" href="{{= CONFIG.enums.IOS_APP_URL}}">{{= i18n.sync.IOS_ADVERTISMENT_GOTO_LINK}}</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-ui-template" id="ios-sms-send">
+    <span class="desc">{{= i18n.sync.IOS_ADVERTISMENT_SEND_DESC }}</span>
+    <input type="text" class="phone-number" placeholder="{{= i18n.sync.IOS_ADVERTISMENT_PLACE_HOLDER }}"/>
+    <button class="button-send primary" disabled>{{= i18n.sync.IOS_ADVERTISMENT_SEND }}</button>
+</script>
 </templates>

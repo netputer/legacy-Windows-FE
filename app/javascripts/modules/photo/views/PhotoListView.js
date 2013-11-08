@@ -75,6 +75,11 @@
                                 this.$('> .w-ui-loading').hide();
                             }
                         }
+                    },
+                    withBanner : {
+                        set : function (value) {
+                            this.$el.toggleClass('with-banner', value);
+                        }
                     }
                 });
                 this.listenTo(this.collection, 'refresh', function (collection) {

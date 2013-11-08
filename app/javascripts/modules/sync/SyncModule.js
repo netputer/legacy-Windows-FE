@@ -1,22 +1,30 @@
 /*global define*/
 (function (window) {
     define([
+        'jquery',
         'underscore',
         'Configuration',
         'Device',
         'IOBackendDevice',
         'FunctionSwitch',
+        'Settings',
         'Environment',
+        'Log',
+        'Internationalization',
         'ui/Notification',
         'backuprestore/BackupRestoreService',
         'welcome/WelcomeService'
     ], function (
+        $,
         _,
         CONFIG,
         Device,
         IO,
         FunctionSwitch,
+        Settings,
         Environment,
+        log,
+        i18n,
         Notification,
         BackupRestoreService,
         WelcomeService
@@ -89,6 +97,36 @@
                 showNotifiyWindow.call(this);
             });
         }
+
+        IO.Backend.Device.onmessage({
+            'data.channel' : CONFIG.events.DOWNLOAD_PHOTO_COMPLETE
+        }, function () {
+            if (!Settings.get('ios.banner.isclosed')) {
+                $.ajax({
+                    url : CONFIG.enums.IOS_SHOW_ADVERTISEMENT,
+                    data : {
+                        pcid : Environment.get('pcId')
+                    },
+                    success : function (resp) {
+                        if (resp.type) {
+                            var notification = new Notification({
+                                type : 'html',
+                                url : CONFIG.BASE_PATH + 'modules/sync/ios_advertisement.html?panel=getlink',
+                                title : i18n.sync.IOS_ADVERTISMENT,
+                                onclose : function () {
+                                    Settings.set('ios.banner.isclosed', true);
+                                    log({
+                                        event: 'ui.click.ios_download_close',
+                                        from : 'notification'
+                                    });
+                                }
+                            });
+                            notification.show();
+                        }
+                    }
+                });
+            }
+        });
 
         return SyncModule;
     });

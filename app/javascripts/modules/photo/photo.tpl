@@ -148,4 +148,13 @@
         <div class="pointer"></div>
     </header>
 </script>
+
+<script type="text/x-ui-template" id="ios-banner">
+    <div class="banner">
+        <div class="button-close"></div>
+        <a class="button-download" href="{{= CONFIG.enums.IOS_APP_URL}}" target="_default"></a>
+        <div class="button-sms"></div>
+    </div>
+</script>
+
 </templates>
