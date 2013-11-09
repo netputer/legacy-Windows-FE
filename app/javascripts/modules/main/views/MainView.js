@@ -54,13 +54,26 @@
                 this.getModule('app').navigateGroup(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_APP:
-                this.getModule('app').navigate(msg);
+                if (msg.action === CONFIG.enums.NAVIGATE_TYPE_UNINSTALL_APP) {
+                    AppService.uninstallAppsAsync([msg.id]);
+                } else {
+                    this.getModule('app').navigate(msg);
+                }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_GROUP_CONTACT:
                 this.getModule('contact').navigateGroup(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_CONTACT:
-                this.getModule('contact').navigateAsync(msg);
+                if (msg.action === CONFIG.enums.NAVIGATE_TYPE_CALL) {
+                    this.getModule('contact').navigateAsync(msg).done(function () {
+                        var dialEle = $('.button-dial')[0];
+                        if (dialEle) {
+                            dialEle.click();
+                        }
+                    });
+                } else {
+                    this.getModule('contact').navigateAsync(msg);
+                }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_GROUP_SMS:
                 this.getModule('message').navigateGroup(msg);
@@ -130,14 +143,6 @@
                 Backbone.trigger('switchModule', {
                     module : target.get('module'),
                     tab : target.get('tab')
-                });
-                break;
-            case CONFIG.enums.NAVIGATE_TYPE_UNINSTALL_APP:
-                AppService.uninstallAppsAsync([msg.id]);
-                break;
-            case CONFIG.enums.NAVIGATE_TYPE_CALL:
-                this.getModule('contact').navigateAsync(msg).done(function () {
-                    $('.button-dial').eq(0).click();
                 });
                 break;
             }
