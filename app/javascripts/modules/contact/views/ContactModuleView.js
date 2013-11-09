@@ -117,7 +117,9 @@
                     contactsListView.highlight(msg);
                     contactModuleToolbarView.toggleSelectorWrap();
 
-                    deferred.resolve();
+                    setTimeout(function () {
+                        deferred.resolve();
+                    });
                 };
 
                 if (!contactsCollection.loading && !contactsCollection.syncing) {

@@ -471,11 +471,11 @@
             },
             buildButton : function () {
                 MessageService.getServiceCenterAsync().done(function (resp) {
-                    this.$('.w-ui-window-footer-monitor').addClass('text-thirdly').html(i18n.message.MUTIL_SIM_SUPPORT);
-
                     var serviceCenter = resp.body.sim || [];
 
                     if (serviceCenter.length > 0) {
+                        this.$('.w-ui-window-footer-monitor').addClass('text-thirdly').html(i18n.message.MUTIL_SIM_SUPPORT);
+
                         this.buttons.shift();
 
                         var $sendBtnGroup = $('<span>').addClass('w-ui-buttongroup button-send-group');
