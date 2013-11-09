@@ -447,7 +447,9 @@
                 CUSTOM_IFRAME_PHOTO_EXPORT : 'iframe.photo.export',
                 CUSTOM_IFRAME_PHOTO_SYNC_ALERT : 'iframe.photo.sync.alert',
                 CUSTOM_IFRAME_PHOTO_RENDERED : 'iframe.photo.rendered',
-                CUSTOM_IFRAME_PHOTO_SELECT_TAB : 'iframe.photo.select.tab'
+                CUSTOM_IFRAME_PHOTO_SELECT_TAB : 'iframe.photo.select.tab',
+
+                SHOW_IOS_ADVERTISMENT : 'ios.show.advertismnet'
             },
             enums : {
                 /*Environment locale*/
@@ -670,7 +672,12 @@
 
                 APP_WASH_AUTH_KEY : 'gpo3uybFexlfH0NJWaZPjFtLFkEPkCHl',
 
-                SINFGLE_MESSAGE_CHAR_NUMBER : 140
+                SINFGLE_MESSAGE_CHAR_NUMBER : 140,
+
+                SMS_GATE : 'http://www.wandoujia.com/sms',
+                IOS_APP_URL : 'https://itunes.apple.com/cn/app/wan-dou-jia-yun-xiang-ce/id700821148?mt=8',
+                IOS_SHOW_ADVERTISEMENT : 'http://sync.wandoujia.com/ios/occur'
+
             }
         };
 

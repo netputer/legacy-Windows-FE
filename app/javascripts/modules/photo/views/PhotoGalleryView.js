@@ -11,10 +11,13 @@
         'Log',
         'IOBackendDevice',
         'Configuration',
+        'Environment',
+        'Settings',
         'photo/collections/PhonePhotoCollection',
         'photo/collections/LibraryPhotoCollection',
         'photo/collections/CloudPhotoCollection',
-        'photo/views/PhotoListView'
+        'photo/views/PhotoListView',
+        'photo/views/PhotoIosView'
     ], function (
         _,
         Backbone,
@@ -26,10 +29,13 @@
         log,
         IO,
         CONFIG,
+        Environment,
+        Settings,
         PhonePhotoCollection,
         LibraryPhotoCollection,
         CloudPhotoCollection,
-        PhotoListView
+        PhotoListView,
+        PhotoIosView
     ) {
         console.log('PhotoGalleryView - File loaded. ');
 
@@ -171,6 +177,10 @@
                     width : $targetTab[0].offsetWidth
                 });
 
+                if (this.iosView) {
+                    this.iosView.$el.hide();
+                }
+
                 switch (tab) {
                 case 'phone':
                     this.hideTabs(false, true, true);
@@ -202,6 +212,34 @@
                     break;
                 case 'cloud':
                     this.hideTabs(true, true, false);
+
+                    if (!Settings.get('ios.banner.isclosed')) {
+                        $.ajax({
+                            url : CONFIG.enums.IOS_SHOW_ADVERTISEMENT,
+                            data : {
+                                pcid : Environment.get('pcId')
+                            },
+                            success : function (resp) {
+                                if (resp.type) {
+                                    if (!this.iosView) {
+                                        this.iosView = PhotoIosView.getInstance();
+
+                                        this.listenTo(this.iosView, 'ios.banner.close', function () {
+                                            this.iosView = undefined;
+                                            this.cloudPhotoView.withBanner = false;
+                                        });
+
+                                        this.$el.append(this.iosView.render().$el);
+                                    } else {
+                                        this.iosView.$el.show();
+                                    }
+
+                                    this.cloudPhotoView.withBanner = true;
+                                }
+                            }.bind(this)
+                        });
+                    }
+
                     if (!this.cloudPhotoView) {
                         this.cloudPhotoView = PhotoListView.getInstance({
                             collection : this.cloudPhotoCollection,
@@ -213,6 +251,7 @@
                     } else {
                         this.cloudPhotoView.$el.removeClass('w-layout-hidden');
                     }
+                    this.cloudPhotoView.withBanner = false;
                     break;
                 }
             },
