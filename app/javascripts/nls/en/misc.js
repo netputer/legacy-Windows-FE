@@ -28,7 +28,6 @@ define({
     IMPORT : 'Import',
     EXPORT : 'Export',
     REFRESH : 'Refresh',
-    RETRY : 'Retry',
     HOME_PAGE : 'Home',
     REPORT_PROBLEM : 'Report a problem',
     REPORT_TIP : 'Woah, is this site not working right? Report it and the hard-working SnapPeas will fix it.',
@@ -225,5 +224,8 @@ define({
 
     AGENT_NOTIFI : 'Connected, enjoy the SnapPea service!',
     SEND_TO_PHONE : 'Send to phone',
-    DO_NOT_SEND_TO_PHONE : 'Don\'t send'
+    DO_NOT_SEND_TO_PHONE : 'Don\'t send',
+
+    RETRY : 'Retry',
+    OPEN_EXPORT_FOLDER : '打开导出文件夹'
 });

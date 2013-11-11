@@ -28,7 +28,6 @@ define({
     IMPORT : '导入',
     EXPORT : '导出',
     REFRESH : '刷新',
-    RETRY : '重试',
     HOME_PAGE : '首页',
     REPORT_PROBLEM : '提交错误报告',
     REPORT_TIP : '如果您发现下载内容站出现显示错乱或内容无法下载等问题，请将错误报告提交给我们，这将帮助我们尽快解决问题，让该内容站恢复到可用状态。',
@@ -227,5 +226,8 @@ define({
     AGENT_NOTIFI : '连接成功，现在手机上的豌豆荚也可以用电脑上网，不耗费流量。',
     SEND_TO_PHONE : '发送到手机',
     DO_NOT_SEND_TO_PHONE : '不发送',
-    LEARN_MORE : '了解更多'
+    LEARN_MORE : '了解更多',
+
+    RETRY : '重试',
+    OPEN_EXPORT_FOLDER : '打开导出文件夹'
 });
