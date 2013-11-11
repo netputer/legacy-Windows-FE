@@ -28,6 +28,7 @@ define({
     IMPORT : '导入',
     EXPORT : '导出',
     REFRESH : '刷新',
+    RETRY : '重试',
     HOME_PAGE : '首页',
     REPORT_PROBLEM : '提交错误报告',
     REPORT_TIP : '如果您发现下载内容站出现显示错乱或内容无法下载等问题，请将错误报告提交给我们，这将帮助我们尽快解决问题，让该内容站恢复到可用状态。',

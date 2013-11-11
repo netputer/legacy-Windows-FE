@@ -28,6 +28,7 @@ define({
     IMPORT : 'Import',
     EXPORT : 'Export',
     REFRESH : 'Refresh',
+    RETRY : 'Retry',
     HOME_PAGE : 'Home',
     REPORT_PROBLEM : 'Report a problem',
     REPORT_TIP : 'Woah, is this site not working right? Report it and the hard-working SnapPeas will fix it.',
