@@ -62,6 +62,8 @@
         var pimCollection;
         var sortMenu;
 
+        var searchResult = [];
+
         var loadingHandler = function () {
             this.loading = appList.listenToCollection.loading || appList.listenToCollection.syncing;
         };
@@ -265,7 +267,9 @@
                     appList.switchSet('web', webAppsCollection.getAll);
                     break;
                 case 'search':
-                    appList.switchSet('search', appsCollection.getByKeyword);
+                    appList.switchSet('search', function () {
+                        return searchResult;
+                    });
                     break;
                 }
             },
@@ -273,18 +277,27 @@
                 this.$('.button-return, .search-tip').hide();
                 this.$('menu, .sort, .pointer').show();
             },
-            showAppsByKeyword : function () {
-                this.switchListDataSet('search');
-                var apps = appsCollection.getByKeyword();
-                if (apps.length > 0) {
-                    appList.scrollTo(apps[0]);
-                }
+            showAppsByKeyword : function (keyword) {
+                appsCollection.searchAppAsync(keyword).done(function (resp) {
 
-                this.$('menu, .sort, .pointer').hide();
+                    var result = resp.body.result;
+                    searchResult = [];
+                    searchResult = _.map(result, function (app) {
+                        return appsCollection.get(app.id);
+                    });
 
-                this.$('.button-return').show();
-                var tip = StringUtil.format(i18n.app.SEARCH_TIP_PART, apps.length, appsCollection.keyword);
-                this.$('.search-tip').html(tip).css('display', '-webkit-box');
+                    this.switchListDataSet('search');
+
+                    if (searchResult.length > 0) {
+                        appList.scrollTo(searchResult[0]);
+                    }
+
+                    this.$('menu, .sort, .pointer').hide();
+
+                    this.$('.button-return').show();
+                    var tip = StringUtil.format(i18n.app.SEARCH_TIP_PART, searchResult.length, keyword);
+                    this.$('.search-tip').html(tip).css('display', '-webkit-box');
+                }.bind(this));
             },
             showContextMenu : function (selected) {
                 var appContextMenu = AppContextMenu.getInstance({

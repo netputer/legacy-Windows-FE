@@ -81,16 +81,7 @@
                 var loading = false;
                 var loadingUpdateInfo = false;
                 var syncing = false;
-                var keyword = "";
                 Object.defineProperties(this, {
-                    keyword : {
-                        set : function (value) {
-                            keyword = value;
-                        },
-                        get : function () {
-                            return keyword;
-                        }
-                    },
                     loading : {
                         set : function (value) {
                             loading = value;
@@ -254,12 +245,6 @@
                     is_blocked : true
                 });
             },
-            getByKeyword : function () {
-                var reg = new RegExp(this.keyword, 'i');
-                return this.filter(function (model) {
-                    return reg.test(model.get('base_info').name);
-                });
-            },
             uninstallAppsAsync : function (ids, session) {
                 var deferred = $.Deferred();
 
@@ -356,6 +341,26 @@
                             deferred.reject(resp);
                         }
                     }.bind(this)
+                });
+
+                return deferred.promise();
+            },
+            searchAppAsync : function (keyword) {
+                var deferred = $.Deferred();
+                IO.requestAsync({
+                    url : CONFIG.actions.APP_SEARCH,
+                    data : {
+                        query : keyword
+                    },
+                    success : function (resp) {
+                        if(resp.state_code === 200) {
+                            console.log('AppsCollection - Search success');
+                            deferred.resolve(resp);
+                        } else {
+                            console.log('AppsCollection - Search success');
+                            deferred.reject(resp);
+                        }
+                    }
                 });
 
                 return deferred.promise();

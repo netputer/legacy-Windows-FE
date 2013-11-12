@@ -44,6 +44,9 @@
         var currentAccountId = 'all';
         var currentGroupId = 'all';
 
+        var searchResult = [];
+        var searchKeyword = '';
+
         var ContactsListView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('contact', 'list-ctn')),
             className : 'w-contact-list vbox',
@@ -172,8 +175,9 @@
                     contactsList.switchSet('hasnumber', getter);
                     break;
                 case 'search':
-                    getter = contactsCollection.getByKeyWord;
-                    contactsList.switchSet('search', getter);
+                    contactsList.switchSet('search', function () {
+                        return searchResult;
+                    });
                     break;
                 }
                 this.updateHeader();
@@ -284,7 +288,7 @@
                 if (this.list.currentSetName === 'search') {
                     this.$('.button-return').show();
 
-                    headerText = StringUtil.format(i18n.contact.CONTACT_TIP_PART, contactsCollection.getByKeyWord().length, contactsCollection.keyword);
+                    headerText = StringUtil.format(i18n.contact.CONTACT_TIP_PART, searchResult.length, searchKeyword);
                     this.$('.count-tip').html(headerText);
                 } else {
                     this.$('.button-return').hide();
@@ -323,8 +327,18 @@
                 this.refresh('all');
                 this.trigger('__RETURN_DEFAULT');
             },
-            showContactsByKeyword : function () {
-                this.refresh('search');
+            showContactsByKeyword : function (keyword) {
+                searchKeyword = keyword;
+                contactsCollection.searchContactsAsync(keyword).done(function (resp) {
+                    var value = resp.body.result;
+                    searchResult = [];
+
+                    searchResult = _.map(value, function (contact) {
+                        return contactsCollection.get(contact.id);
+                    });
+
+                    this.refresh('search');
+                }.bind(this));
             },
             events: {
                 'click .button-return' : 'clickButtonReturn'

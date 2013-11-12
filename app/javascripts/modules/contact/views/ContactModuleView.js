@@ -88,8 +88,7 @@
                 });
 
                 var search = function () {
-                    contactsCollection.keyword = msg.keyword;
-                    contactsListView.showContactsByKeyword();
+                    contactsListView.showContactsByKeyword(msg.keyword);
                     contactModuleToolbarView.toggleSelectorWrap();
 
                     contactsListView.once('__RETURN_DEFAULT', function () {
