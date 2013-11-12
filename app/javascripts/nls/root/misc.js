@@ -226,5 +226,8 @@ define({
     AGENT_NOTIFI : '连接成功，现在手机上的豌豆荚也可以用电脑上网，不耗费流量。',
     SEND_TO_PHONE : '发送到手机',
     DO_NOT_SEND_TO_PHONE : '不发送',
-    LEARN_MORE : '了解更多'
+    LEARN_MORE : '了解更多',
+
+    RETRY : '重试',
+    OPEN_EXPORT_FOLDER : '打开导出文件夹'
 });
