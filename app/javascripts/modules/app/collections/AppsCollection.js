@@ -81,25 +81,7 @@
                 var loading = false;
                 var loadingUpdateInfo = false;
                 var syncing = false;
-                var keyword = "";
-                var modelsByKeywordIds = [];
                 Object.defineProperties(this, {
-                    keyword : {
-                        set : function (value) {
-                            keyword = value;
-                        },
-                        get : function () {
-                            return keyword;
-                        }
-                    },
-                    modelsByKeywordIds : {
-                        set : function (value) {
-                            modelsByKeywordIds = value;
-                        },
-                        get : function () {
-                            return modelsByKeywordIds;
-                        }
-                    },
                     loading : {
                         set : function (value) {
                             loading = value;
@@ -263,11 +245,6 @@
                     is_blocked : true
                 });
             },
-            getByKeyword : function () {
-                return _.map(this.modelsByKeywordIds, function (id) {
-                    return this.get(id);
-                }, this);
-            },
             uninstallAppsAsync : function (ids, session) {
                 var deferred = $.Deferred();
 
@@ -368,31 +345,22 @@
 
                 return deferred.promise();
             },
-            searchAppAsync : function () {
+            searchAppAsync : function (keyword) {
                 var deferred = $.Deferred();
                 IO.requestAsync({
                     url : CONFIG.actions.APP_SEARCH,
                     data : {
-                        query : this.keyword
+                        query : keyword
                     },
                     success : function (resp) {
                         if(resp.state_code === 200) {
                             console.log('AppsCollection - Search success');
-
-                            var value = resp.body.result;
-                            if (value.legth === 0) {
-                                this.modelsByKeywordIds = [];
-                            } else {
-                                this.modelsByKeywordIds = _.map(value, function (app) {
-                                    return app.id;
-                                });
-                            }
                             deferred.resolve(resp);
                         } else {
                             console.log('AppsCollection - Search success');
                             deferred.reject(resp);
                         }
-                    }.bind(this)
+                    }
                 });
 
                 return deferred.promise();

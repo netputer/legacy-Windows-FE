@@ -81,25 +81,7 @@
             initialize : function () {
                 var loading = false;
                 var syncing = false;
-                var keyword = "";
-                var modelsByKeywordIds = [];
                 Object.defineProperties(this, {
-                    keyword : {
-                        set : function (value) {
-                            keyword = value;
-                        },
-                        get : function () {
-                            return keyword;
-                        }
-                    },
-                    modelsByKeywordIds : {
-                        set : function (value) {
-                            modelsByKeywordIds = value;
-                        },
-                        get : function () {
-                            return modelsByKeywordIds;
-                        }
-                    },
                     loading : {
                         set : function (value) {
                             loading = value;
@@ -369,34 +351,24 @@
 
                 return deferred.promise();
             },
-            searchContactsAsync : function () {
+            searchContactsAsync : function (keyword) {
 
                 var deferred = $.Deferred();
                 IO.requestAsync({
                     url : CONFIG.actions.CONTACT_SEARCH,
                     data : {
-                        query : this.keyword
+                        query : keyword
                     },
                     success : function (resp) {
                         if (resp.state_code === 200) {
                             console.log('ContactsCollection - Search success');
 
-                            var value = resp.body.result;
-                            if (value.length === 0) {
-                                this.modelsByKeywordIds = [];
-                            } else {
-                                this.modelsByKeywordIds = _.map(value, function (contact) {
-                                    return contact.id;
-                                });
-                            }
-
                             deferred.resolve(resp);
                         } else {
                             console.error('ConversationsCollection - Search failed. Error info: ' + resp.state_code);
-                            this.modelsByKeywordIds = [];
                             deferred.reject(resp);
                         }
-                    }.bind(this)
+                    }
                 });
 
                 return deferred.promise();
@@ -638,11 +610,6 @@
             },
             getAll : function () {
                 return this.models;
-            },
-            getByKeyWord: function () {
-                return _.map(this.modelsByKeywordIds, function (id) {
-                    return this.get(id);
-                }, this);
             }
         });
 
