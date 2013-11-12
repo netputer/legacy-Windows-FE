@@ -135,6 +135,7 @@
                 APP_GET_APP_DATA_COUNT : 'wdj://apps/app_data_count.json',
                 APP_GET_APP_DETAIL : 'wdj://apps/apk_detail.json',
                 APP_GET_IS_WDAPK_READY : 'wdj://apps/is_wdapk_ready.json',
+                APP_SEARCH : 'wdj://apps/search.json',
                 IS_SUPPORT_APP_DATA : 'wdj://apps/is_support_app_data.json',
 
                 // SMS and Calllog Module

@@ -274,17 +274,20 @@
                 this.$('menu, .sort, .pointer').show();
             },
             showAppsByKeyword : function () {
-                this.switchListDataSet('search');
-                var apps = appsCollection.getByKeyword();
-                if (apps.length > 0) {
-                    appList.scrollTo(apps[0]);
-                }
+                appsCollection.searchAppAsync().done(function () {
 
-                this.$('menu, .sort, .pointer').hide();
+                    this.switchListDataSet('search');
+                    var apps = appsCollection.getByKeyword();
+                    if (apps.length > 0) {
+                        appList.scrollTo(apps[0]);
+                    }
 
-                this.$('.button-return').show();
-                var tip = StringUtil.format(i18n.app.SEARCH_TIP_PART, apps.length, appsCollection.keyword);
-                this.$('.search-tip').html(tip).css('display', '-webkit-box');
+                    this.$('menu, .sort, .pointer').hide();
+
+                    this.$('.button-return').show();
+                    var tip = StringUtil.format(i18n.app.SEARCH_TIP_PART, apps.length, appsCollection.keyword);
+                    this.$('.search-tip').html(tip).css('display', '-webkit-box');
+                }.bind(this));
             },
             showContextMenu : function (selected) {
                 var appContextMenu = AppContextMenu.getInstance({

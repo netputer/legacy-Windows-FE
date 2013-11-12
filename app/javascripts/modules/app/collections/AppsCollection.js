@@ -82,6 +82,7 @@
                 var loadingUpdateInfo = false;
                 var syncing = false;
                 var keyword = "";
+                var modelsByKeywordIds = [];
                 Object.defineProperties(this, {
                     keyword : {
                         set : function (value) {
@@ -89,6 +90,14 @@
                         },
                         get : function () {
                             return keyword;
+                        }
+                    },
+                    modelsByKeywordIds : {
+                        set : function (value) {
+                            modelsByKeywordIds = value;
+                        },
+                        get : function () {
+                            return modelsByKeywordIds;
                         }
                     },
                     loading : {
@@ -255,10 +264,9 @@
                 });
             },
             getByKeyword : function () {
-                var reg = new RegExp(this.keyword, 'i');
-                return this.filter(function (model) {
-                    return reg.test(model.get('base_info').name);
-                });
+                return _.map(this.modelsByKeywordIds, function (id) {
+                    return this.get(id);
+                }, this);
             },
             uninstallAppsAsync : function (ids, session) {
                 var deferred = $.Deferred();
@@ -353,6 +361,35 @@
                         } else {
                             console.error('AppsCollection - Move apps failed. Error info: ' + resp.state_line);
 
+                            deferred.reject(resp);
+                        }
+                    }.bind(this)
+                });
+
+                return deferred.promise();
+            },
+            searchAppAsync : function () {
+                var deferred = $.Deferred();
+                IO.requestAsync({
+                    url : CONFIG.actions.APP_SEARCH,
+                    data : {
+                        query : this.keyword
+                    },
+                    success : function (resp) {
+                        if(resp.state_code === 200) {
+                            console.log('AppsCollection - Search success');
+
+                            var value = resp.body.result;
+                            if (value.legth === 0) {
+                                this.modelsByKeywordIds = [];
+                            } else {
+                                this.modelsByKeywordIds = _.map(value, function (app) {
+                                    return app.id;
+                                });
+                            }
+                            deferred.resolve(resp);
+                        } else {
+                            console.log('AppsCollection - Search success');
                             deferred.reject(resp);
                         }
                     }.bind(this)

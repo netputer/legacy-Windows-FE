@@ -324,7 +324,9 @@
                 this.trigger('__RETURN_DEFAULT');
             },
             showContactsByKeyword : function () {
-                this.refresh('search');
+                contactsCollection.searchContactsAsync().done(function () {
+                    this.refresh('search');
+                }.bind(this));
             },
             events: {
                 'click .button-return' : 'clickButtonReturn'

@@ -82,6 +82,7 @@
                 var loading = false;
                 var syncing = false;
                 var keyword = "";
+                var modelsByKeywordIds = [];
                 Object.defineProperties(this, {
                     keyword : {
                         set : function (value) {
@@ -89,6 +90,14 @@
                         },
                         get : function () {
                             return keyword;
+                        }
+                    },
+                    modelsByKeywordIds : {
+                        set : function (value) {
+                            modelsByKeywordIds = value;
+                        },
+                        get : function () {
+                            return modelsByKeywordIds;
                         }
                     },
                     loading : {
@@ -360,6 +369,38 @@
 
                 return deferred.promise();
             },
+            searchContactsAsync : function () {
+
+                var deferred = $.Deferred();
+                IO.requestAsync({
+                    url : CONFIG.actions.CONTACT_SEARCH,
+                    data : {
+                        query : this.keyword
+                    },
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('ContactsCollection - Search success');
+
+                            var value = resp.body.result;
+                            if (value.length === 0) {
+                                this.modelsByKeywordIds = [];
+                            } else {
+                                this.modelsByKeywordIds = _.map(value, function (contact) {
+                                    return contact.id;
+                                });
+                            }
+
+                            deferred.resolve(resp);
+                        } else {
+                            console.error('ConversationsCollection - Search failed. Error info: ' + resp.state_code);
+                            this.modelsByKeywordIds = [];
+                            deferred.reject(resp);
+                        }
+                    }.bind(this)
+                });
+
+                return deferred.promise();
+            },
             getContactsByGroupId : function (groupId) {
                 var filter;
                 if (UNGROUP_REG.test(groupId)) {
@@ -599,26 +640,9 @@
                 return this.models;
             },
             getByKeyWord: function () {
-                var reg = new RegExp(this.keyword, 'i');
-                return this.filter(function (model) {
-                    var prefix = model.get('name').prefix;
-                    var name = model.get('displayName');
-
-                    if (!(reg.test(name) || reg.test(prefix))) {
-
-                        var match = false;
-                        var phones = model.get('phone') || [];
-                        _.every(phones, function (phone) {
-                            match = reg.test(phone.number);
-                            return !match;
-                        });
-
-                        return match;
-                    }
-
-                    return true;
-                });
-
+                return _.map(this.modelsByKeywordIds, function (id) {
+                    return this.get(id);
+                }, this);
             }
         });
 
