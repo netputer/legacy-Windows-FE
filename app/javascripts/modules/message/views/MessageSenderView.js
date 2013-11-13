@@ -383,12 +383,14 @@
 
                 var $sendBtn = $('<button>').html(i18n.message.SEND).addClass('button-send primary');
 
-                Device.on('change:isConnected', function (Device) {
+                Device.on('change:isConnected', function (Device, isConnected) {
                     this.$el.find('.button-send').prop({
-                        disabled : !Device.get('isConnected')
+                        disabled : !isConnected
                     });
 
-                    serviceBtn.$el.prop('disabled', !Device.get('isConnected'));
+                    if (serviceBtn) {
+                        serviceBtn.$el.prop('disabled', !isConnected);
+                    }
                 }, this);
 
                 this.buttons = [{
@@ -401,7 +403,7 @@
 
                 this.on(EventsMapping.SHOW, function () {
                     this.buildButton();
-                    
+
                     senderBodyView = new SenderBodyView();
 
                     this.$bodyContent = senderBodyView.render().$el;
