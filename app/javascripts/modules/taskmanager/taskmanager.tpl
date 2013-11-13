@@ -406,7 +406,7 @@
                         if(it.forceRestart) {
     }}
     <button class="button-force-restart secondary">{{= i18n.taskManager.UNINSTALL_THEN_INSTALL }}</button>
-    <span class="button-delete link">{{= i18n.misc.RETRY }}</span>
+    <span class="button-retry link">{{= i18n.misc.RETRY }}</span>
     {{
                         } else if (it.message === 'NO_MORE_MEMORY') {
                             if (it.category === CONFIG.enums.MODEL_TYPE_APPLICATION) {
@@ -416,7 +416,7 @@
     {{
                             }
     }}
-    <span class="button-delete link">{{= i18n.misc.RETRY }}</span>
+    <span class="button-retry link">{{= i18n.misc.RETRY }}</span>
     {{
                         } else if (it.message === 'NO_MORE_SDCARD') {
                             if (it.category === CONFIG.enums.MODEL_TYPE_APPLICATION) {
