@@ -72,7 +72,23 @@
                 cancelUrl : CONFIG.actions.VIDEO_CANCEL,
                 total : ids.length,
                 successText : i18n.video.EXPORT_SUCCESS_TEXT,
-                delay : true
+                delay : true,
+                oncomplate : function () {
+                    var path = exportPath;
+                    this.buttons = [{
+                        $button : $('<button>').addClass('primary').html(i18n.misc.OPEN_EXPORT_FOLDER).on('click', function () {
+                            IO.requestAsync({
+                                url : CONFIG.actions.OPEN_FOLDER,
+                                data : {
+                                    folder_path : path
+                                }
+                            });
+                        })
+                    },{
+                        $button : $('<button>').html(i18n.ui.CANCEL),
+                        eventName : 'button_cancel'
+                    }];
+                }
             });
 
             if (!exportPath) {
@@ -118,21 +134,6 @@
 
                     alertWindow.show();
                 } else {
-                    var path = exportPath;
-                    batchActionWindow.buttons = [{
-                        $button : $('<button>').addClass('primary').html(i18n.misc.OPEN_EXPORT_FOLDER).on('click', function () {
-                            IO.requestAsync({
-                                url : CONFIG.actions.OPEN_FOLDER,
-                                data : {
-                                    folder_path : path
-                                }
-                            });
-                        })
-                    },{
-                        $button : $('<button>').html(i18n.ui.CANCEL),
-                        eventName : 'button_cancel'
-                    }];
-
                     exportPath = null;
                     deferred.resolve(resp);
                 }
