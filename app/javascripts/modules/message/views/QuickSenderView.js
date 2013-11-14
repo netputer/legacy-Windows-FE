@@ -78,6 +78,13 @@
                             });
                         });
 
+                        items.push({
+                            type : 'normal',
+                            name : 'duoqu',
+                            label : i18n.message.MUTIL_SIM_SUPPORT_LINK,
+                            value : 'duoqu'
+                        });
+
                         this.serviceCenter = resp.body.sim[0].sim_id;
 
                         this.serviceBtn = new MenuButton({

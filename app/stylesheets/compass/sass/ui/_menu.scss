@@ -195,6 +195,13 @@
         div.normal,
         div.link {
             padding-left: 21px;
+
+            &:hover {
+                a,
+                .link {
+                    color: #fff;
+                }
+            }
         }
 
         div.link {
