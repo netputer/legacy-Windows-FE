@@ -118,6 +118,21 @@
 
                     alertWindow.show();
                 } else {
+                    var path = exportPath;
+                    batchActionWindow.buttons = [{
+                        $button : $('<button>').addClass('primary').html(i18n.misc.OPEN_EXPORT_FOLDER).on('click', function () {
+                            IO.requestAsync({
+                                url : CONFIG.actions.OPEN_FOLDER,
+                                data : {
+                                    folder_path : path
+                                }
+                            });
+                        })
+                    },{
+                        $button : $('<button>').html(i18n.ui.CANCEL),
+                        eventName : 'button_cancel'
+                    }];
+
                     exportPath = null;
                     deferred.resolve(resp);
                 }

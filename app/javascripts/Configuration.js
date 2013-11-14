@@ -20,6 +20,7 @@
                 SHOW_FILE : 'wdj://window/show_file.json',
                 SELECT_CONTACT_PHOTO : 'wdj://window/select_contact_photo_file.json',
                 OPEN_FILE : 'wdj://window/open_file.json',
+                OPEN_FOLDER : 'wdj://window/open_folder.json',
                 PUBLISH_EVENT : 'wdj://window/publish.json',
                 UPDATE_NOTIFICATION_TITLE : 'wdj://window/update_notification.json',
                 CLOSE_ALL_NOTIFICATION : 'wdj://window/close_all_notification.json',
@@ -134,6 +135,7 @@
                 APP_GET_APP_DATA_COUNT : 'wdj://apps/app_data_count.json',
                 APP_GET_APP_DETAIL : 'wdj://apps/apk_detail.json',
                 APP_GET_IS_WDAPK_READY : 'wdj://apps/is_wdapk_ready.json',
+                APP_SEARCH : 'wdj://apps/search.json',
                 IS_SUPPORT_APP_DATA : 'wdj://apps/is_support_app_data.json',
 
                 // SMS and Calllog Module

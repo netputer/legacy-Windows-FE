@@ -100,8 +100,7 @@
                 });
 
                 var filterSearch = function () {
-                    AppsCollection.getInstance().keyword = msg.keyword;
-                    appListView.showAppsByKeyword();
+                    appListView.showAppsByKeyword(msg.keyword);
                 };
 
                 if (appListView) {
