@@ -3,6 +3,7 @@
 define({
     WELCOME : '手机体检，快速优化您的手机',
     LAST_TIME_TIP : '上次体检在 <span class="text-warning">{1}</span> 小时前，建议您定期体检，保持手机健康',
+    LAST_DAY_TIP : '上次体检在 <span class="text-warning">{1}</span> 天前，建议您定期体检，保持手机健康',
     NEVER_TIP : '您还未进行过体检，建议您定期体检，保持手机健康',
     SCANNING : '正在对您的手机进行扫描，请稍候...',
     SCAN_TIP　: '正在检测第 {1} 项：扫描应用 {2}',
@@ -32,5 +33,4 @@ define({
     INSTALL_CANCEL : '安装已取消。',
     WIFI_TIP : '请使用 USB 数据线方式连接手机',
     SCAN_FAILED : '扫描失败',
-    OPTIMIZE_ERROR : '优化出错，请检查您的手机上是否正确安装了腾讯手机管家。'
 });

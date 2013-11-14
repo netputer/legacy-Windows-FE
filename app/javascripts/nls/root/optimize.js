@@ -2,6 +2,7 @@
 define({
     WELCOME : '手机体检，快速优化您的手机',
     LAST_TIME_TIP : '上次体检在 <span class="text-warning">{1}</span> 小时前，建议您定期体检，保持手机健康',
+    LAST_DAY_TIP : '上次体检在 <span class="text-warning">{1}</span> 天前，建议您定期体检，保持手机健康',
     NEVER_TIP : '您还未进行过体检，建议您定期体检，保持手机健康',
     SCANNING : '正在对您的手机进行扫描，请稍候...',
     SCAN_TIP　: '正在检测第 {1} 项：扫描应用 {2}',
