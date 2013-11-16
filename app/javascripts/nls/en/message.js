@@ -104,5 +104,7 @@ define({
 
     RETURN_ALL : 'All messages',
     SEARCH_TIP : '{1} messages containing「{2}」',
-    UNREAD_DES : '{1} unread messages'
+    UNREAD_DES : '{1} unread messages',
+
+    IMPORT_MSM_ANDROID_4_4 : '由于安卓系统的限制，为了您短信可以正常导入，请您在手机上把豌豆荚设置为默认的短信应用。'
 });
