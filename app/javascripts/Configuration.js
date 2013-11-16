@@ -682,7 +682,7 @@
 
 
                 //SDK Version
-                ANDROID_4_4 : 9
+                ANDROID_4_4 : 19
             }
         };
 
