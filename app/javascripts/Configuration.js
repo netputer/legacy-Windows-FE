@@ -670,7 +670,7 @@
                 SINFGLE_MESSAGE_CHAR_NUMBER : 140,
 
                 //SDK Version
-                ANDROID_4_4 : 9
+                ANDROID_4_4 : 19
             }
         };
 
