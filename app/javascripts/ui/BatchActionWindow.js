@@ -73,7 +73,6 @@
                             return blockWindow;
                         }
                     }
-
                 });
 
                 this.height = 140;
@@ -101,10 +100,12 @@
                         this.addButton($('<button>').addClass('button-yes').html(i18n.ui.CONFIRM), EventsMapping.BUTTON_YES);
 
                         this.delay = 3000;
-
                         this.initAutoClose();
-
                         this.countDown();
+
+                        if (this.options.oncomplate) {
+                            this.options.oncomplate.apply(this);
+                        }
                     }
                 }, this);
 

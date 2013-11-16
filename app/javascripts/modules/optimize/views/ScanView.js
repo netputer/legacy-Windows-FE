@@ -509,8 +509,14 @@
                 var lastScanDate = Settings.get('tx-last-time');
 
                 var diff = new Date().getTime() - parseInt(lastScanDate, 10);
-                diff = Math.round(diff / 1000 / 3600 * 100) / 100;
-                this.$('.tip').html(lastScanDate ? StringUtil.format(i18n.optimize.LAST_TIME_TIP, diff) : i18n.optimize.NEVER_TIP);
+                diff = Math.round(diff / 1000 / 3600);
+
+                if (diff >= 24) {
+                    diff = Math.round(diff / 24);
+                    this.$('.tip').html(lastScanDate ? StringUtil.format(i18n.optimize.LAST_DAY_TIP, diff) : i18n.optimize.NEVER_TIP);
+                } else {
+                    this.$('.tip').html(lastScanDate ? StringUtil.format(i18n.optimize.LAST_TIME_TIP, diff) : i18n.optimize.NEVER_TIP);
+                }
 
                 this.$('.button-scan').prop({
                     disabled : !Device.get('isConnected') ||

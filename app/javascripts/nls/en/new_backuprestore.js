@@ -171,6 +171,7 @@ define({
     NAV_BACKUPING : '备份正在进行',
     NAV_RESTORING : '恢复正在进行',
     CUSTOM_UNZIP_BACKUP_FILE_ERROR : 'Sorry, failed to decompress and restore some apps.',
+    RESTORE_SMS_ANDROID_4_4 : '由于安卓系统的限制，为了您短信可以正常恢复，请您在手机上把豌豆荚设置为默认的短信应用。',
 
     /*NOT in SnapPea*/
 
