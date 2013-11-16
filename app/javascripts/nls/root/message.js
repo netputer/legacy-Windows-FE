@@ -107,5 +107,7 @@ define({
 
     RETURN_ALL : '全部短消息',
     SEARCH_TIP : '{1} 个包含「{2}」的短消息',
-    UNREAD_DES : '{1} 条未读短信'
+    UNREAD_DES : '{1} 条未读短信',
+
+    IMPORT_MSM_ANDROID_4_4 : '由于安卓系统的限制，为了您的短信可以正常导入，请您在手机上把豌豆荚设置为默认的短信应用。'
 });

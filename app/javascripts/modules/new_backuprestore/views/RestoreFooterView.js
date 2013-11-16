@@ -9,6 +9,8 @@
         'Device',
         'Log',
         'Account',
+        'Configuration',
+        'ui/AlertWindow',
         'new_backuprestore/BackupRestoreService',
         'new_backuprestore/views/RemoteRestoreAdvanceView',
         'new_backuprestore/views/LocalRestoreAdvanceView',
@@ -22,6 +24,8 @@
         Device,
         log,
         Account,
+        CONFIG,
+        AlertWindow,
         BackupRestoreService,
         RemoteRestoreAdvanceView,
         LocalRestoreAdvanceView,
@@ -30,6 +34,7 @@
 
         console.log('RemoteFooterView - File loaded.');
 
+        var alert = window.alert;
         var advanceView;
         var RemoteFooterView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('new_backuprestore', 'restore-footer')),
@@ -127,7 +132,13 @@
                 this.trigger('__CANCEL');
             },
             clickBtnStartRestore : function () {
-                this.trigger('__START_RESTORE');
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4 && RestoreContextModel.isSmsSelected) {
+                    alert(i18n.new_backuprestore.RESTORE_SMS_ANDROID_4_4, function () {
+                        this.trigger('__START_RESTORE');
+                    }, this);
+                } else {
+                    this.trigger('__START_RESTORE');
+                }
             },
             clickBtnDone : function () {
                 this.trigger('__DONE');

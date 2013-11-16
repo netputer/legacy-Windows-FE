@@ -65,6 +65,7 @@
 
             var videosCollection = VideosCollection.getInstance();
 
+            var tmpExportPath = exportPath;
             var session = _.uniqueId('video_export_');
             var batchActionWindow = new BatchActionWindow({
                 session : session,
@@ -74,13 +75,12 @@
                 successText : i18n.video.EXPORT_SUCCESS_TEXT,
                 delay : true,
                 oncomplate : function () {
-                    var path = exportPath;
                     this.buttons = [{
                         $button : $('<button>').addClass('primary').html(i18n.misc.OPEN_EXPORT_FOLDER).on('click', function () {
                             IO.requestAsync({
                                 url : CONFIG.actions.OPEN_FOLDER,
                                 data : {
-                                    folder_path : path
+                                    folder_path : tmpExportPath
                                 }
                             });
                         })
@@ -96,6 +96,7 @@
                     'data.channel' : session
                 }, function (data) {
                     if (!exportPath) {
+                        tmpExportPath = data.info;
                         exportPath = data.info;
                         IO.Backend.Device.offmessage(handler);
                     }
