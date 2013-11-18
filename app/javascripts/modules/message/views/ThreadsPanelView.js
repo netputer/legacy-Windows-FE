@@ -59,7 +59,9 @@
                     isBatch : true,
                     contactId : -1,
                     contactIcon : CONFIG.enums.CONTACT_DEFAULT_ICON,
-                    contactName : collection.toJSON(),
+                    contactName : _.uniq(collection.toJSON(), function (contact) {
+                        return contact.phone_number;
+                    }),
                     phoneNumber : phoneNumbers,
                     failedCount : collection.failedCount
                 };
