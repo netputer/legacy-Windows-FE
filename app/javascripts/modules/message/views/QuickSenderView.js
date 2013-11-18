@@ -96,8 +96,11 @@
                         this.$('.button-send').replaceWith($sendBtnGroup);
 
                         this.serviceBtn.on('select', function (item) {
-                            this.serviceCenter = resp.body.sim[item.value].sim_id;
-                            $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, resp.body.sim[item.value].sim_name));
+                            var sim = resp.body.sim[item.value];
+                            if (sim) {
+                                this.serviceCenter = sim.sim_id;
+                                $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, resp.body.sim[item.value].sim_name));
+                            }
                         }, this);
 
                         this.buttons = this.buttons;

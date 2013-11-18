@@ -82,7 +82,7 @@ define({
     MUTIL_SIM_SELECT : '使用 {1} 号发送（卡 {2}）',
     MUTIL_SIM_SELECT_HAS_NUM : '用{1}号 {2} 发送',
     MUTIL_SIM_SUPPORT : '由「多趣短信」提供双卡技术支持',
-    MUTIL_SIM_SUPPORT_LINK : '由<a href="#" target="_default">「多趣短信」</a>提供双卡技术支持',
+    MUTIL_SIM_SUPPORT_LINK : '由<a href="http://apps.wandoujia.com/apps/cn.com.xy.duoqu?pos=w/search/list//%E5%A4%9A%E8%B6%A3%E7%9F%AD%E4%BF%A1/2" target="_default">「多趣短信」</a>提供双卡技术支持',
 
     WINDOW_IMPORT_TITLE : '导入短信',
     IMPORT_FAILED : '导入短信失败。',

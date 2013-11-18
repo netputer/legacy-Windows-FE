@@ -8,8 +8,10 @@
         'ui/TemplateFactory',
         'ui/MenuButton',
         'ui/MouseState',
+        'ui/PopupPanel',
         'Internationalization',
-        'message/views/QuickSenderView'
+        'message/views/QuickSenderView',
+        'message/MessageService'
     ], function (
         doT,
         _,
@@ -18,14 +20,17 @@
         TemplateFactory,
         MenuButton,
         MouseState,
+        PopupPanel,
         i18n,
-        QuickSenderView
+        QuickSenderView,
+        MessageService
     ) {
         console.log('MessageSender4ThreadsPanelView - File loaded.');
 
         var setInterval = window.setInterval;
         var clearInterval = window.clearInterval;
         var setTimeout = window.setTimeout;
+        var duoquPanel;
 
         var adjustHeight = function () {
             var maxHeight = 400;
@@ -186,7 +191,7 @@
 
                 this.$el.html(this.template({}));
 
-                this.$('.count-down').hide();
+                this.$('.count-down-container').hide();
 
                 setTimeout(function () {
                     this.disabledSender(!Device.get('isConnected'));
@@ -195,6 +200,34 @@
                 parseAddresses.call(this, this.model, this.options.defaultNumber);
 
                 this.buildButton();
+
+                MessageService.getServiceCenterAsync().done(function (resp) {
+                    var serviceCenter = resp.body.sim || [];
+                    if (serviceCenter.length > 0) {
+                        var $duoqu = this.$('.duoqu').show();
+
+                        if (duoquPanel === undefined) {
+                            duoquPanel = new PopupPanel({
+                                $host : $duoqu,
+                                $content :  i18n.message.MUTIL_SIM_SUPPORT_LINK,
+                                alignToHost : false,
+                                popIn : true,
+                                autoClose : 2000
+                            });
+                            duoquPanel.destoryBlurToHideMixin();
+
+                            this.once('remove', function () {
+                                duoquPanel.remove();
+                                duoquPanel = undefined;
+                            });
+
+                            $duoqu.hover(function () {
+                                duoquPanel.show();
+                            });
+                        }
+                    }
+                }.bind(this));
+
                 return this;
             },
             focusInputContent : function () {
@@ -203,11 +236,11 @@
                 }
                 this.isFocused = true;
                 var $input = this.$('.input-content');
-                var $countDown = this.$('.count-down');
+                var $countDownContainer = this.$('.count-down-container');
 
                 var inputIntervalDelegate = setInterval(function () {
                     if ($input.val().length !== 0) {
-                        $countDown.show();
+                        $countDownContainer.show();
                         $input.css('min-height', '38px');
                         clearInterval(inputIntervalDelegate);
                     }
@@ -220,7 +253,7 @@
                 var blurHandler = function () {
                     $input.css('min-height', '20px');
                     $input.css('height', '20px');
-                    $countDown.hide();
+                    $countDownContainer.hide();
 
                     clearInterval(intervalDelegate);
                     clearInterval(inputIntervalDelegate);

@@ -119,7 +119,10 @@
     <div class="sender-ctn hbox">
         <textarea class="input-content" autofocus="true"></textarea>
         <div class="count-ctn">
-            <div class="count-down text-thirdly"></div>
+            <div class="count-down-container">
+                <div class="count-down text-thirdly"></div>
+                <div class="duoqu"></div>
+            </div>
             <button class="button-send primary">{{= i18n.message.SEND_SMS }}</button>
         </div>
     </div>
