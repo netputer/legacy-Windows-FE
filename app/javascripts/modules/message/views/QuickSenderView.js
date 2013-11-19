@@ -11,6 +11,7 @@
         'ui/UIHelper',
         'ui/AlertWindow',
         'ui/MenuButton',
+        'ui/PopupPanel',
         'utilities/StringUtil',
         'message/MessageService'
     ], function (
@@ -24,6 +25,7 @@
         UIHelper,
         AlertWindow,
         MenuButton,
+        PopupPanel,
         StringUtil,
         MessageService
     ) {
@@ -37,6 +39,7 @@
         var QuickSenderView = Backbone.View.extend({
             initialize : function () {
                 var enableTip = true;
+                var duoquPanel;
                 Object.defineProperties(this, {
                     enableTip : {
                         set : function (value) {
@@ -44,6 +47,14 @@
                         },
                         get : function () {
                             return enableTip;
+                        }
+                    },
+                    duoquPanel : {
+                        set : function (value) {
+                            duoquPanel = value;
+                        },
+                        get : function () {
+                            return duoquPanel;
                         }
                     }
                 });
@@ -91,7 +102,7 @@
                             value : 'duoqu',
                             action : function () {
                                 log({
-                                    'event' : 'ui.click.duoqu'
+                                    'event' : 'ui.click.message_duoqu'
                                 });
                             }
                         });
@@ -114,6 +125,29 @@
                         }, this);
 
                         this.buttons = this.buttons;
+
+                        var $duoqu = this.$('.duoqu').show();
+
+                        this.duoquPanel = new PopupPanel({
+                            $host : $duoqu,
+                            $content :  i18n.message.MUTIL_SIM_SUPPORT_LINK,
+                            alignToHost : false,
+                            popIn : true,
+                            autoClose : 2000
+                        });
+
+                        this.listenToOnce(this.duoquPanel, 'show', function () {
+                            this.duoquPanel.$('a').one('click', function () {
+                                log({
+                                    'event' : 'ui.click.duoqu'
+                                });
+                            });
+                        });
+
+                        this.once('remove', function () {
+                            this.duoquPanel.remove();
+                            this.duoquPanel = undefined;
+                        }.bind(this));
                     }
                 }.bind(this));
             },
@@ -163,6 +197,9 @@
             clickButtonSend : function () {
                 this.sendMessage();
             },
+            mouseoverDuoqu : function () {
+                this.duoquPanel.show();
+            },
             keydownInputContent : function (evt) {
                 if (evt.ctrlKey && evt.keyCode === KeyMapping.ENTER) {
                     this.sendMessage();
@@ -174,7 +211,8 @@
             },
             events : {
                 'click .button-send' : 'clickButtonSend',
-                'keydown .input-content' : 'keydownInputContent'
+                'keydown .input-content' : 'keydownInputContent',
+                'mouseover .duoqu' : 'mouseoverDuoqu'
             }
         });
 
