@@ -440,17 +440,20 @@
             selectTab : function (tab) {
                 this.$('.tab li.selected').removeClass('selected');
                 var $targetTab = this.$('.tab li[data-tab="' + tab + '"]');
-                $targetTab.addClass('selected');
 
-                this.$('.pointer').css({
-                    left : $targetTab[0].offsetLeft,
-                    width : $targetTab[0].offsetWidth
-                });
+                if ($targetTab.length > 0) {
+                    $targetTab.addClass('selected');
 
-                log({
-                    'event' : 'ui.click.app.tab',
-                    'tab' : tab
-                });
+                    this.$('.pointer').css({
+                        left : $targetTab[0].offsetLeft,
+                        width : $targetTab[0].offsetWidth
+                    });
+
+                    log({
+                        'event' : 'ui.click.app.tab',
+                        'tab' : tab
+                    });
+                }
 
                 if (tab === 'web') {
                     log({
