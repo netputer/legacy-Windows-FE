@@ -4,6 +4,7 @@
         'doT',
         'underscore',
         'Device',
+        'Log',
         'utilities/StringUtil',
         'ui/TemplateFactory',
         'ui/MenuButton',
@@ -16,6 +17,7 @@
         doT,
         _,
         Device,
+        log,
         StringUtil,
         TemplateFactory,
         MenuButton,
@@ -214,7 +216,12 @@
                                 popIn : true,
                                 autoClose : 2000
                             });
-                            duoquPanel.destoryBlurToHideMixin();
+                            duoquPanel.$el.on('click', function () {
+                                duoquPanel.hide();
+                                log({
+                                    'event' : 'ui.click.duoqu'
+                                });
+                            });
 
                             this.once('remove', function () {
                                 duoquPanel.remove();

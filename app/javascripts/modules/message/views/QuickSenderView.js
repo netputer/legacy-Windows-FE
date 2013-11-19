@@ -7,6 +7,7 @@
         'IO',
         'Internationalization',
         'Device',
+        'Log',
         'ui/UIHelper',
         'ui/AlertWindow',
         'ui/MenuButton',
@@ -19,6 +20,7 @@
         IO,
         i18n,
         Device,
+        log,
         UIHelper,
         AlertWindow,
         MenuButton,
@@ -79,10 +81,19 @@
                         });
 
                         items.push({
-                            type : 'normal',
+                            type : 'hr'
+                        });
+
+                        items.push({
+                            type : 'link',
                             name : 'duoqu',
                             label : i18n.message.MUTIL_SIM_SUPPORT_LINK,
-                            value : 'duoqu'
+                            value : 'duoqu',
+                            action : function () {
+                                log({
+                                    'event' : 'ui.click.duoqu'
+                                });
+                            }
                         });
 
                         this.serviceCenter = resp.body.sim[0].sim_id;
@@ -91,7 +102,6 @@
                             items : items
                         });
 
-
                         $sendBtnGroup.append($sendBtn).append(this.serviceBtn.render().$el.addClass('primary toggle'));
                         this.$('.button-send').replaceWith($sendBtnGroup);
 
@@ -99,7 +109,7 @@
                             var sim = resp.body.sim[item.value];
                             if (sim) {
                                 this.serviceCenter = sim.sim_id;
-                                $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, resp.body.sim[item.value].sim_name));
+                                $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, sim.sim_name));
                             }
                         }, this);
 
