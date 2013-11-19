@@ -144,13 +144,6 @@
             }
         });
 
-        var notification = new Notification({
-            type : 'html',
-            url : CONFIG.BASE_PATH + 'modules/app/app_notification_update.html' + Environment.get('search'),
-            title : StringUtil.format(i18n.message.MESSAGE_FROM)
-        });
-        notification.show();
-
         var messageModuleView;
 
         var factory = _.extend({
