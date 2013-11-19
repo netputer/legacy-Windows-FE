@@ -197,9 +197,6 @@
             clickButtonSend : function () {
                 this.sendMessage();
             },
-            mouseoverDuoqu : function () {
-                this.duoquPanel.show();
-            },
             keydownInputContent : function (evt) {
                 if (evt.ctrlKey && evt.keyCode === KeyMapping.ENTER) {
                     this.sendMessage();
@@ -211,8 +208,7 @@
             },
             events : {
                 'click .button-send' : 'clickButtonSend',
-                'keydown .input-content' : 'keydownInputContent',
-                'mouseover .duoqu' : 'mouseoverDuoqu'
+                'keydown .input-content' : 'keydownInputContent'
             }
         });
 
