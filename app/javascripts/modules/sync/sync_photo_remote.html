@@ -10,7 +10,7 @@
                 baseUrl : '../../'
             });
 
-            require(['EnvironmentConfig'], function () {
+            require(['RequireConfig'], function () {
                 require(['jquery', 'utilities/QueryString', 'utilities/FormatString', 'IO', 'Configuration', 'Log'], function ($, QueryString, FormatString, IO, CONFIG, log) {
                     var auth = QueryString.get('auth');
                     var source = QueryString.get('source');

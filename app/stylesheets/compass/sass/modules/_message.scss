@@ -28,9 +28,10 @@
 
     .button-return {
         color: #333;
-        position: absolute;
         display: none;
+        position: absolute;
         text-shadow: none;
+        top: -2px;
 
         &:enabled:hover:not(.active):not(:active),
         &:enabled:focus {
