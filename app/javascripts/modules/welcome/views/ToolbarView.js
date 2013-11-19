@@ -16,6 +16,7 @@
         'ui/TemplateFactory',
         //'ui/AlertWindow',
         'ui/PopupPanel',
+        'ui/PopupTip',
         'ui/Panel',
         'ui/ToastBox',
         'utilities/StringUtil',
@@ -41,6 +42,7 @@
         TemplateFactory,
         //AlertWindow,
         PopupPanel,
+        PopupTip,
         Panel,
         ToastBox,
         StringUtil,
@@ -59,6 +61,8 @@
 
         var settingMenu;
         var deviceView;
+
+        var tips = [];
 
         var ToolbarView = Backbone.View.extend({
             className : 'w-welcome-toolbar hbox',
@@ -137,6 +141,23 @@
                 this.listenTo(Device, 'change:isConnected change:canScreenshot', this.setButtonState);
 
                 deviceView.on('capture', this.clickButtonScreenShot, this);
+
+                this.listenTo(Device, 'change:isFastADB', function (Device, isFastADB) {
+                    if (isFastADB) {
+                        tips = _.map(['button-screen-shot', 'button-open-sd', 'button-set-wallpaper'], function (className) {
+                            return new PopupTip({
+                                $host : this.$('.' + className)
+                            });
+                        });
+                    } else {
+                        _.each(tips, function (tip) {
+                            tip.remove();
+                            tip.destoryBlurToHideMixin();
+                        });
+
+                        tips = [];
+                    }
+                });
 
                 var wallpaperUrl;
 
@@ -225,6 +246,7 @@
                 }
             },
             screenShotAsync : function () {
+
                 var deferred = $.Deferred();
 
                 Device.getScreenshotAsync().done(function () {
@@ -266,6 +288,11 @@
                 }
             },
             clickButtonOpenSD : function () {
+
+                if (Device.get('isFastADB')) {
+                    return;
+                }
+
                 var $btn = this.$('.button-open-sd').prop('disabled', true);
                 setTimeout(function () {
                     $btn.prop('disabled', false);
@@ -312,6 +339,11 @@
                 });
             },
             clickButtonScreenShot : function () {
+
+                if (Device.get('isFastADB')) {
+                    return;
+                }
+
                 deviceView.loading = true;
                 deviceView.fade = true;
                 this.screenShotAsync().always(function () {
@@ -325,6 +357,7 @@
                 });
             },
             setAsWallpaperAsync : function (id) {
+
                 var deferred = $.Deferred();
 
                 IO.requestAsync({
@@ -344,6 +377,7 @@
                 return deferred.promise();
             },
             clickButtonSetWallpaper : function () {
+
                 var model = new TaskModel();
 
                 var path = this.wallpaperUrl.split('/');

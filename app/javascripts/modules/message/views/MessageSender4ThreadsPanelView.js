@@ -9,7 +9,8 @@
         'ui/MenuButton',
         'ui/MouseState',
         'Internationalization',
-        'message/views/QuickSenderView'
+        'message/views/QuickSenderView',
+        'message/MessageService'
     ], function (
         doT,
         _,
@@ -19,7 +20,8 @@
         MenuButton,
         MouseState,
         i18n,
-        QuickSenderView
+        QuickSenderView,
+        MessageService
     ) {
         console.log('MessageSender4ThreadsPanelView - File loaded.');
 
@@ -186,7 +188,7 @@
 
                 this.$el.html(this.template({}));
 
-                this.$('.count-down').hide();
+                this.$('.count-down-container').hide();
 
                 setTimeout(function () {
                     this.disabledSender(!Device.get('isConnected'));
@@ -195,6 +197,7 @@
                 parseAddresses.call(this, this.model, this.options.defaultNumber);
 
                 this.buildButton();
+
                 return this;
             },
             focusInputContent : function () {
@@ -203,11 +206,11 @@
                 }
                 this.isFocused = true;
                 var $input = this.$('.input-content');
-                var $countDown = this.$('.count-down');
+                var $countDownContainer = this.$('.count-down-container');
 
                 var inputIntervalDelegate = setInterval(function () {
                     if ($input.val().length !== 0) {
-                        $countDown.show();
+                        $countDownContainer.show();
                         $input.css('min-height', '38px');
                         clearInterval(inputIntervalDelegate);
                     }
@@ -220,7 +223,7 @@
                 var blurHandler = function () {
                     $input.css('min-height', '20px');
                     $input.css('height', '20px');
-                    $countDown.hide();
+                    $countDownContainer.hide();
 
                     clearInterval(intervalDelegate);
                     clearInterval(inputIntervalDelegate);

@@ -432,11 +432,26 @@
                 width: 100%;
             }
 
-            .count-down {
+            .count-down-container {
                 display: block;
                 margin-bottom: 3px;
                 width: 100%;
+
+
+                .count-down {
+                    display: block;
+                    float: left;
+                }
+
+                .duoqu {
+                    @include sprite-sprite(duoqu);
+                    display: none;
+                    float: right;
+                    height: 21px;
+                    width: 21px;
+                }
             }
+
         }
     }
 

@@ -10,6 +10,7 @@
         'Configuration',
         'FunctionSwitch',
         'IO',
+        'Log',
         'ui/UIHelper',
         'ui/TemplateFactory',
         'ui/Panel',
@@ -32,6 +33,7 @@
         CONFIG,
         FunctionSwitch,
         IO,
+        log,
         UIHelper,
         TemplateFactory,
         Panel,
@@ -476,7 +478,6 @@
                     var serviceCenter = resp.body.sim || [];
 
                     if (serviceCenter.length > 0) {
-                        this.$('.w-ui-window-footer-monitor').addClass('text-thirdly').html(i18n.message.MUTIL_SIM_SUPPORT);
 
                         this.buttons.shift();
 
@@ -497,11 +498,28 @@
                             });
                         });
 
+                        items.push({
+                            type : 'hr'
+                        });
+
+                        items.push({
+                            type : 'link',
+                            name : 'duoqu',
+                            label : i18n.message.MUTIL_SIM_SUPPORT_LINK,
+                            value : 'duoqu',
+                            action : function () {
+                                log({
+                                    'event' : 'ui.click.duoqu'
+                                });
+                            }
+                        });
+
                         this.serviceCenter = resp.body.sim[0].sim_id;
 
                         serviceBtn = new MenuButton({
                             items : items
                         });
+                        serviceBtn.menu.alignToHost = false;
 
                         $sendBtnGroup.append($sendBtn).append(serviceBtn.render().$el.addClass('primary toggle'));
 
@@ -510,8 +528,12 @@
                         });
 
                         serviceBtn.on('select', function (item) {
-                            this.serviceCenter = resp.body.sim[item.value].sim_id;
-                            $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, resp.body.sim[item.value].sim_name));
+
+                            var sim = resp.body.sim[item.value];
+                            if (sim) {
+                                this.serviceCenter = sim.sim_id;
+                                $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, sim.sim_name));
+                            }
                         }, this);
 
                         this.buttons = this.buttons;

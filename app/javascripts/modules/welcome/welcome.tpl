@@ -249,7 +249,7 @@
 
 <script type="text/x-ui-template" id="toolbar">
     <span class="w-ui-buttongroup screen-shot-setting">
-        <button class="w-icon-btn transparent min button-screen-shot">
+        <button class="w-icon-btn transparent min button-screen-shot" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
             <span class="icon screenshot"></span>{{= i18n.welcome.SCREEN_SHOT_TEXT }}
         </button>
     </span>
@@ -259,10 +259,10 @@
     <button class="w-icon-btn button-restore transparent min">
         <span class="icon restore"></span>{{= i18n.welcome.TOOL_RECOVERY }}
     </button>
-    <button class="w-icon-btn button-open-sd transparent min">
+    <button class="w-icon-btn button-open-sd transparent min" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
         <span class="icon sd-white"></span>{{= i18n.misc.MANAGE_SD_CARD }}
     </button>
-    <button class="w-icon-btn button-set-wallpaper transparent min">
+    <button class="w-icon-btn button-set-wallpaper transparent min" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
         <span class="icon wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
     </button>
     <div class='spliter'></div>

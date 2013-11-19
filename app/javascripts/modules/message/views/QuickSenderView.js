@@ -7,9 +7,11 @@
         'IO',
         'Internationalization',
         'Device',
+        'Log',
         'ui/UIHelper',
         'ui/AlertWindow',
         'ui/MenuButton',
+        'ui/PopupPanel',
         'utilities/StringUtil',
         'message/MessageService'
     ], function (
@@ -19,9 +21,11 @@
         IO,
         i18n,
         Device,
+        log,
         UIHelper,
         AlertWindow,
         MenuButton,
+        PopupPanel,
         StringUtil,
         MessageService
     ) {
@@ -35,6 +39,7 @@
         var QuickSenderView = Backbone.View.extend({
             initialize : function () {
                 var enableTip = true;
+                var duoquPanel;
                 Object.defineProperties(this, {
                     enableTip : {
                         set : function (value) {
@@ -42,6 +47,14 @@
                         },
                         get : function () {
                             return enableTip;
+                        }
+                    },
+                    duoquPanel : {
+                        set : function (value) {
+                            duoquPanel = value;
+                        },
+                        get : function () {
+                            return duoquPanel;
                         }
                     }
                 });
@@ -79,10 +92,19 @@
                         });
 
                         items.push({
-                            type : 'normal',
+                            type : 'hr'
+                        });
+
+                        items.push({
+                            type : 'link',
                             name : 'duoqu',
                             label : i18n.message.MUTIL_SIM_SUPPORT_LINK,
-                            value : 'duoqu'
+                            value : 'duoqu',
+                            action : function () {
+                                log({
+                                    'event' : 'ui.click.message_duoqu'
+                                });
+                            }
                         });
 
                         this.serviceCenter = resp.body.sim[0].sim_id;
@@ -91,16 +113,41 @@
                             items : items
                         });
 
-
                         $sendBtnGroup.append($sendBtn).append(this.serviceBtn.render().$el.addClass('primary toggle'));
                         this.$('.button-send').replaceWith($sendBtnGroup);
 
                         this.serviceBtn.on('select', function (item) {
-                            this.serviceCenter = resp.body.sim[item.value].sim_id;
-                            $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, resp.body.sim[item.value].sim_name));
+                            var sim = resp.body.sim[item.value];
+                            if (sim) {
+                                this.serviceCenter = sim.sim_id;
+                                $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, sim.sim_name));
+                            }
                         }, this);
 
                         this.buttons = this.buttons;
+
+                        var $duoqu = this.$('.duoqu').show();
+
+                        this.duoquPanel = new PopupPanel({
+                            $host : $duoqu,
+                            $content :  i18n.message.MUTIL_SIM_SUPPORT_LINK,
+                            alignToHost : false,
+                            popIn : true,
+                            autoClose : 2000
+                        });
+
+                        this.listenToOnce(this.duoquPanel, 'show', function () {
+                            this.duoquPanel.$('a').one('click', function () {
+                                log({
+                                    'event' : 'ui.click.duoqu'
+                                });
+                            });
+                        });
+
+                        this.once('remove', function () {
+                            this.duoquPanel.remove();
+                            this.duoquPanel = undefined;
+                        }.bind(this));
                     }
                 }.bind(this));
             },
