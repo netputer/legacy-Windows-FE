@@ -27,7 +27,7 @@
         console.log('PhotoIosSmsView - File loaded');
 
         var LinkView = Backbone.View.extend({
-            template : doT.template(TemplateFactory.get('photo', 'ios-sms-get-link')),
+            template : doT.template(TemplateFactory.get('sync', 'ios-sms-get-link')),
             className : 'w-ios-advertisement-get-link',
             render : function () {
                 this.$el.html(this.template({}));
@@ -54,7 +54,7 @@
         });
 
         var SendView = Backbone.View.extend({
-            template : doT.template(TemplateFactory.get('photo', 'ios-sms-send')),
+            template : doT.template(TemplateFactory.get('sync', 'ios-sms-send')),
             className : 'w-ios-advertisement-send',
             initialize : function () {
 
