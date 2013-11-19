@@ -44,7 +44,11 @@
 
                 this.listenTo(Device, 'change:isFastADB', function (Device, isFastADB) {
 
-                    if (isFastADB && !this.isLoadInfo && window.SnapPea.CurrentModule !== 'welcome') {
+                    if (isFastADB){
+                        if (this.isLoadInfo && window.SnapPea.CurrentModule === 'welcome') {
+                            return;
+                        }
+
                         this.$el.slideDown();
                     } else {
                         this.$el.slideUp();
@@ -98,6 +102,7 @@
 
                 var text = wording[data];
 
+                this.isLoadInfo = false;
                 if (text) {
                     this.$('.tip').html(text);
                 } else {
@@ -106,7 +111,6 @@
                         this.isLoadInfo = true;
                     } else {
                         this.$('.tip').html(i18n.misc.USB_LOADING_INFO_FAILED);
-                        this.isLoadInfo = false;
                     }
                 }
 
@@ -114,16 +118,20 @@
                     .toggleClass('error', data < 0);
 
                 data = parseInt(data, 10);
-                if (data === 1000) {
-                    this.$el.css({
-                        visibility : 'hidden'
-                    });
-                } else if (data === 1) {
-                    this.$el.slideUp();
-                } else {
+                if (data === 1) {
+                     this.$el.slideUp();
+                }
+
+                if (text) {
                     this.$el.css({
                         visibility : 'visible'
                     });
+                } else {
+                    if (window.SnapPea.CurrentModule === 'welcome') {
+                        this.$el.css({
+                            visibility : 'hidden'
+                        });
+                    }
                 }
             },
             clickButtonRetry : function () {

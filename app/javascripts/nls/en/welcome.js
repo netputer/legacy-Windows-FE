@@ -112,5 +112,7 @@ define({
     NO_MORE_1 : '',
     NO_MORE_2 : '',
     NO_MORE_3 : '',
-    UPDATED : 'SnapPea was updated!'
+    UPDATED : 'SnapPea was updated!',
+
+    READING_INFO_WARNING : '正在更新信息，请稍后再试'
 });

@@ -47,8 +47,9 @@
                     enableRestoreButton : {
                         set : function (value) {
                             var isConnected = Device.get('isConnected');
+                            var isFastADB = Device.get('isFastADB');
                             var isLogin = Account.get('isLogin');
-                            var disabled = !value || !isConnected || (!this.isLocal && !isLogin);
+                            var disabled = !value || !isConnected || isFastADB || (!this.isLocal && !isLogin);
                             this.$('.startrestore').prop('disabled', disabled);
                         }
                     },
