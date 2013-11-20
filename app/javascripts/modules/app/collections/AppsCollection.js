@@ -164,11 +164,9 @@
                     return app.isUpdatable;
                 }) : [];
             },
-            getUpdatableAppsWithoutIllegal : function () {
-                var update = this.getUpdatableApps();
-
-                return update.filter(function (app) {
-                    return app.isLegalToUpdate;
+            getUpdatableAppsWithoutNotRecommended : function () {
+                return _.filter(this.getUpdatableApps(), function (app) {
+                    return app.get('upgrade_info').recommendedType !== CONFIG.enums.UPDATE_NOT_RECOMMEND;
                 });
             },
             getUpdatableAppsWithCategory : function () {
@@ -176,14 +174,11 @@
 
                 var group = _.groupBy(update, function (app) {
                     switch (app.get('upgrade_info').recommendedType) {
-                    case 'STRONG_RECOMMEND':
-                        app.set('recommendedType', 'recommended');
+                    case CONFIG.enums.UPDATE_RECOMMEND:
                         return 'recommended';
-                    case 'WARNNING':
-                        app.set('recommendedType', 'warning');
+                    case CONFIG.enums.UPDATE_WARNING:
                         return 'warning';
-                    case 'NOT_RECOMMEND':
-                        app.set('recommendedType', 'notRecommended');
+                    case CONFIG.enums.UPDATE_NOT_RECOMMEND:
                         return 'notRecommended';
                     }
                 });
@@ -222,7 +217,7 @@
             },
             getUpdatableAppsByType : function (type) {
                 return _.filter(this.getUpdatableApps(), function (app) {
-                    return app.get('recommendedType') === type;
+                    return app.get('upgrade_info').recommendedType === type;
                 });
             },
             getSuggestMoveApps : function () {
