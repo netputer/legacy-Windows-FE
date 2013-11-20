@@ -32,7 +32,7 @@
             className : 'w-welcome-capacitybar hbox',
             template : doT.template(TemplateFactory.get('welcome', 'capacitybar')),
             initialize : function () {
-                this.listenTo(Device, 'change:isConnected change:isMounted', _.debounce(this.render.bind(this), 200));
+                this.listenTo(Device, 'change:isConnected change:isMounted change:hasSDCard change:hasEmulatedSD', _.debounce(this.render.bind(this), 200));
                 this.listenTo(Backbone, 'switchModule', function (data) {
                     if (data.module === 'welcome') {
                         this.render();

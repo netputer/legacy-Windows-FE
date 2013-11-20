@@ -343,7 +343,18 @@
                 this.ctnHeight = this.$('.w-ui-smartlist-body-ctn').height();
 
                 if (topModel !== undefined) {
-                    supplyItems.call(this, this.currentModels.indexOf(topModel));
+                    var index = 0;
+
+                    _.find(this.currentModels, function (model, i) {
+                        if (model.id === topModel.id) {
+                            index = i;
+                            return true;
+                        }
+
+                        return false;
+                    });
+
+                    supplyItems.call(this, index);
                 } else {
                     supplyItems.call(this);
                 }
