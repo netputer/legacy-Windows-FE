@@ -261,7 +261,7 @@
         <strong>{{= i18n.app.UPDATE_CATEGORY_RECOMMENDED }}</strong>
     </div>
     <div class="update hbox">
-        <button class="button-update min" data-type="{{= it.updateCategory }}">{{= i18n.app.UPDATE_RECOMMENDED }}</button>
+        <button class="button-update min" data-type="{{= CONFIG.enums.UPDATE_RECOMMEND }}">{{= i18n.app.UPDATE_RECOMMENDED }}</button>
     </div>
     {{?? it.updateCategory === 'warning' }}
     <div class="info hbox">

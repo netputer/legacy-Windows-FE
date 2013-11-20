@@ -680,9 +680,13 @@
                 IOS_APP_URL : 'https://itunes.apple.com/cn/app/wan-dou-jia-yun-xiang-ce/id700821148?mt=8',
                 IOS_SHOW_ADVERTISEMENT : 'http://photosync.wandoujia.com/ios/occur',
 
-
                 //SDK Version
-                ANDROID_4_4 : 19
+                ANDROID_4_4 : 19,
+
+                // Update Recommend Type
+                UPDATE_RECOMMEND : 'STRONG_RECOMMEND',
+                UPDATE_WARNING : 'WARNNING',
+                UPDATE_NOT_RECOMMEND : 'NOT_RECOMMEND'
             }
         };
 

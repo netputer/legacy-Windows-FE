@@ -216,6 +216,7 @@
                     });
 
                     appList.listenTo(Backbone, 'app:selectApps', appList.addSelect);
+                    appList.listenTo(Backbone, 'app:unSelectApps', appList.removeSelect);
 
                     this.listenTo(appList, 'switchSet', this.toggleEmptyTip)
                         .listenTo(appList, 'contextMenu', this.showContextMenu)
