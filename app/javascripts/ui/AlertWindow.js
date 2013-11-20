@@ -72,7 +72,7 @@
         window.alert = alert;
 
         var confirmWindow = new AlertWindow({
-            buttonSet : ButtonSetMixin.BUTTON_SET.YES_NO,
+            buttonSet : ButtonSetMixin.BUTTON_SET.YES_CANCEL,
             draggable : true,
             width : 360
         });
