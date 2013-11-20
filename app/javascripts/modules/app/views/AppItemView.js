@@ -175,9 +175,11 @@
                     });
                 } else {
                     var models = AppsCollection.getInstance().getUpdatableAppsByType($currentButton.data('type'));
+                    var ids = _.pluck(models, 'id');
+
+                    Backbone.trigger('app:selectApps', ids);
 
                     confirm(StringUtil.format(i18n.app.UPGRADE_TIP_TEXT, models.length), function () {
-                        Backbone.trigger('app:selectApps', _.pluck(models, 'id'));
 
                         var updateApps = _.map(models, function (model) {
                             model.set({
@@ -202,6 +204,8 @@
                         log({
                             'event' : 'ui.click.app.button.recommended_update'
                         });
+                    }, function () {
+                        Backbone.trigger('app:unSelectApps', ids);
                     });
                 }
             },
