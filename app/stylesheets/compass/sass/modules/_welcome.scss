@@ -692,7 +692,7 @@
     @each $card in web, photos, onemobile, facebook, itunes, youtube {
         &.snappea-#{$card} {
             .icon-ctn {
-                @include sprite-sprite(snappea-#{$card});
+                @include snappea-sprite(snappea-#{$card});
             }
         }
     }
