@@ -38,9 +38,15 @@
         }
     }
 
-    &.error .error {
-        display: block;
-        top: 25%;
+    &.error{
+        .error {
+            display: block;
+            top: 50%;
+        }
+
+        .w-video-item-button {
+            display: none;
+        }
     }
 }
 
