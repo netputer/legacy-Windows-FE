@@ -86,21 +86,6 @@
                     }
                 });
 
-                if (this.get('group')) {
-                    this.set({
-                        group : _.sortBy(this.get('group'), function (group) {
-                            return parseInt(group.group_row_id, 10);
-                        })
-                    });
-                }
-
-                if (this.get('photo') && this.get('photo')[0] && this.get('photo')[0].data) {
-                    this.set({
-                        avatar : 'file:///' + this.get('photo')[0].data,
-                        avatarSmall : 'file:///' + this.get('photo')[0].data
-                    });
-                }
-
                 if (this.get('name')) {
                     var name = this.get('name');
 
