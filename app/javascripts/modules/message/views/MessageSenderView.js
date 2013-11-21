@@ -123,7 +123,6 @@
                 if (contact instanceof Array) {
                     var fragment = document.createDocumentFragment();
                     _.each(contact, function (con) {
-
                         var model = con.id ? contactMultiNumbersCollection.get(con.id) : con;
                         if (receiverList.indexOf(model.get('phoneNumber')) < 0) {
                             receiverList.push(model.get('phoneNumber'));
@@ -600,6 +599,9 @@
                         sendHandler.call(this);
                     }
                 }
+            },
+            addContactById : function (id) {
+                senderBodyView.addContact(contactMultiNumbersCollection.get(id));
             },
             clickButtonSend : function () {
                 this.sendMessage();
