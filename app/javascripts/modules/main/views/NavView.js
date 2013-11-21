@@ -113,36 +113,55 @@
                 this.$el.on('scroll', _.throttle(toggleShadow.bind(this), 50));
             },
             render : function () {
-                this.$el.append(new WelcomeItemView().render().$el)
-                    .append(doraemonMenuView.render().$el)
+                if (!Environment.get('internetBar')) {
+                    this.$el.append(new WelcomeItemView().render().$el);
+                }
+                this.$el.append(doraemonMenuView.render().$el)
                     .append(pimMenuView.render().$el);
 
                 setTimeout(function () {
-                    if (!redirectExtId) {
-                        if (Environment.get('deviceId') === 'Default') {
-                            Backbone.trigger('switchModule', {
-                                module : 'welcome',
-                                tab : 'welcome'
-                            });
-                        } else {
-                            var defaultModuleModel = pimCollection.get(defaultModule);
-                            if (defaultModule !== undefined && defaultModuleModel) {
-                                Backbone.trigger('switchModule', {
-                                    module : defaultModuleModel.get('module'),
-                                    tab : defaultModuleModel.get('tab')
-                                });
-                            } else {
+                    if (!Environment.get('internetBar')) {
+                        if (!redirectExtId) {
+                            if (Environment.get('deviceId') === 'Default') {
                                 Backbone.trigger('switchModule', {
                                     module : 'welcome',
                                     tab : 'welcome'
                                 });
+                            } else {
+                                var defaultModuleModel = pimCollection.get(defaultModule);
+                                if (defaultModule !== undefined && defaultModuleModel) {
+                                    Backbone.trigger('switchModule', {
+                                        module : defaultModuleModel.get('module'),
+                                        tab : defaultModuleModel.get('tab')
+                                    });
+                                } else {
+                                    Backbone.trigger('switchModule', {
+                                        module : 'welcome',
+                                        tab : 'welcome'
+                                    });
+                                }
                             }
+                        } else {
+                            Backbone.trigger('switchModule', {
+                                module : 'welcome',
+                                tab : 'welcome'
+                            });
                         }
                     } else {
-                        Backbone.trigger('switchModule', {
-                            module : 'welcome',
-                            tab : 'welcome'
-                        });
+                        var selectDefault = function () {
+                            extensionsCollection.at(0).set('selected', true);
+                        };
+                        if (extensionsCollection.length > 0) {
+                            selectDefault.call(this);
+                        } else {
+                            var refreshHandler = function () {
+                                if (extensionsCollection.length > 0) {
+                                    selectDefault.call(this);
+                                    extensionsCollection.off('refresh', refreshHandler);
+                                }
+                            };
+                            extensionsCollection.on('refresh', refreshHandler, this);
+                        }
                     }
 
                     toggleShadow.call(this);
