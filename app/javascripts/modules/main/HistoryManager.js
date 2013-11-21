@@ -252,6 +252,11 @@
                 }
                 delete data.silent;
                 delete data.ignore;
+
+                if (data.tab) {
+                    data.tab += '';
+                }
+
                 if (!_.isEqual(backStack[backStack.length - 1], data)) {
                     backStack.push(data);
                 }
