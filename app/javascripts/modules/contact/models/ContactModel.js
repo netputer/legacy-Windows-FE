@@ -85,22 +85,6 @@
                         }
                     }
                 });
-
-                if (this.get('name')) {
-                    var name = this.get('name');
-
-                    if (name.display_name) {
-                        this.set({
-                            displayName : this.get('name').display_name
-                        });
-                    }
-
-                    name.prefix = (name.prefix !== 'þþþþþþþþ' && name.prefix !== '~') ? name.prefix : '';
-
-                    this.set({
-                        name : name
-                    });
-                }
             },
             toggleStarAsync : function () {
                 var deferred = $.Deferred();
