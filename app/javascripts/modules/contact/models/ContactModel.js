@@ -25,6 +25,32 @@
                 isNew : false,
                 group : []
             },
+            parse : function (contact) {
+                if (contact.group) {
+                    contact.group = _.sortBy(contact.group, function (group) {
+                        return parseInt(group.group_row_id, 10);
+                    });
+                }
+
+                if (contact.photo && contact.photo[0] && contact.photo[0].data) {
+                    contact.avatar = 'file:///' + contact.photo[0].data;
+                    contact.avatarSmall = 'file:///' + contact.photo[0].data;
+                }
+
+                if (contact.name) {
+                    var name = contact.name;
+
+                    if (name.display_name) {
+                        contact.displayName = contact.name.display_name;
+                    }
+
+                    name.prefix = (name.prefix !== 'þþþþþþþþ' && name.prefix !== '~') ? name.prefix : '';
+
+                    contact.name = name;
+                }
+
+                return contact;
+            },
             initialize : function () {
                 Object.defineProperties(this, {
                     hasPhoneNumber : {
