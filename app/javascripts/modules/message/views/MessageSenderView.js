@@ -82,6 +82,8 @@
 
         var serviceBtn;
 
+        var selectedSIM;
+
         var SenderBodyView = Backbone.View.extend({
             className : 'w-message-sender-window',
             template : doT.template(TemplateFactory.get('message', 'message-sender')),
@@ -493,7 +495,7 @@
                                             StringUtil.format(i18n.message.MUTIL_SIM_SELECT_HAS_NUM, service.sim_name, service.sim_phone_number) :
                                             StringUtil.format(i18n.message.MUTIL_SIM_SELECT, service.sim_name, i + 1),
                                 value : i,
-                                checked : i === 0
+                                checked : selectedSIM ? service.sim_id === selectedSIM  : i === 0
                             });
                         });
 
@@ -513,7 +515,7 @@
                             }
                         });
 
-                        this.serviceCenter = resp.body.sim[0].sim_id;
+                        this.serviceCenter = selectedSIM || resp.body.sim[0].sim_id;
 
                         serviceBtn = new MenuButton({
                             items : items
@@ -527,10 +529,9 @@
                         });
 
                         serviceBtn.on('select', function (item) {
-
                             var sim = resp.body.sim[item.value];
                             if (sim) {
-                                this.serviceCenter = sim.sim_id;
+                                this.serviceCenter = selectedSIM = sim.sim_id;
                                 $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, sim.sim_name));
                             }
                         }, this);
