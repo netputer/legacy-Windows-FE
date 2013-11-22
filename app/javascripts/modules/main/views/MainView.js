@@ -65,8 +65,11 @@
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_CONTACT:
                 if (msg.action === CONFIG.enums.NAVIGATE_TYPE_CALL) {
-                    this.getModule('contact').navigateAsync(msg).done(function () {
-                        var dialEle = $('.button-dial')[0];
+                    var data = msg.id.split('|');
+                    this.getModule('contact').navigateAsync({
+                        id : data[0]
+                    }).done(function () {
+                        var dialEle = $('.button-dial[data-phone-number="' + data[1] + '"]')[0];
                         if (dialEle) {
                             dialEle.click();
                         }
