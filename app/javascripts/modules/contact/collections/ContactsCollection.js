@@ -50,34 +50,6 @@
                 }
 
                 return _.filter(resp.body.contact, function (contact) {
-                    if (contact.visible) {
-                        if (contact.group) {
-                            contact.group = _.sortBy(contact.group, function (group) {
-                                return parseInt(group.group_row_id, 10);
-                            });
-                        }
-
-                        if (contact.photo && contact.photo[0] && contact.photo[0].data) {
-                            contact.avatar = 'file:///' + contact.photo[0].data;
-                            contact.avatarSmall = 'file:///' + contact.photo[0].data;
-                        }
-
-                        if (contact.name) {
-                            var name = contact.name;
-
-                            if (name.display_name) {
-                                contact.displayName = contact.name.display_name;
-                            }
-
-                            name.prefix = (name.prefix !== 'þþþþþþþþ' && name.prefix !== '~') ? name.prefix : '';
-
-                            contact.name = name;
-                        }
-
-                        return true;
-                    } else {
-                        return false;
-                    }
                     return contact.visible === true;
                 });
             },
@@ -253,7 +225,9 @@
                             model.clear({
                                 silent : true
                             });
-                            model.set(new ContactModel(resp.body).toJSON());
+                            model.set(new ContactModel(resp.body).toJSON(), {
+                                parse : true
+                            });
                             this.trigger('refresh', this);
 
                             deferred.resolve(resp);
@@ -300,7 +274,7 @@
                     success : function (resp) {
                         if (resp.state_code === 200) {
                             console.log('ContactsCollection - Add success. ');
-                            this.add(resp.body);
+                            this.add(ContactModel.prototype.parse.call(this, resp.body));
                             this.trigger('refresh', this);
 
                             deferred.resolve(resp);
