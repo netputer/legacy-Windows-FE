@@ -426,7 +426,7 @@
                             }
     }}
     <span class="button-manage-sd link">{{= i18n.misc.MANAGE_SD_CARD }}</span>
-    <span class="button-delete link">{{= i18n.misc.DELETE }}</span>
+    <span class="button-retry link">{{= i18n.misc.RETRY }}</span>
     {{
                         } else if (it.message === 'INSTALL_FAILED_MALICIOUS_APK') {
     }}
