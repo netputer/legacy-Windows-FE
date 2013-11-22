@@ -143,6 +143,10 @@
             },
             clickBtnDone : function () {
                 this.trigger('__DONE');
+
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4 && RestoreContextModel.isSmsSelected) {
+                    alert(i18n.new_backuprestore.RESTORE_SMS_COMPLATE_ANDROID_4_4);
+                }
             },
             clickBtnShowFile : function (evt) {
 
