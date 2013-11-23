@@ -200,9 +200,9 @@
             {{? it.type === CONFIG.enums.SMS_TYPE_RECEIVE }}
             <button class="button-reply transparent" title="{{= i18n.message.FORWARD }}"></button>
             <button class="button-copy transparent" title="{{= i18n.message.COPY }}"></button>
-            <button class="button-delete transparent" title="{{= i18n.misc.DELETE }}"></button>
+            <button class="button-delete transparent" title="{{= i18n.misc.DELETE }}" data-title="{{= i18n.message.NOT_SUPPORT_DELETE_4_4}}"></button>
             {{??}}
-            <button class="button-delete transparent" title="{{= i18n.misc.DELETE }}"></button>
+            <button class="button-delete transparent" title="{{= i18n.misc.DELETE }}" data-title="{{= i18n.message.NOT_SUPPORT_DELETE_4_4}}"></button>
             <button class="button-copy transparent" title="{{= i18n.message.COPY }}"></button>
             <button class="button-reply transparent" title="{{= i18n.message.FORWARD }}"></button>
             {{?}}
