@@ -134,9 +134,7 @@
             },
             clickBtnStartRestore : function () {
                 if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4 && RestoreContextModel.isSmsSelected) {
-                    alert(i18n.new_backuprestore.RESTORE_SMS_ANDROID_4_4, function () {
-                        this.trigger('__START_RESTORE');
-                    }, this);
+                    alert(i18n.new_backuprestore.RESTORE_SMS_DISABLE_ANDROID_4_4);
                 } else {
                     this.trigger('__START_RESTORE');
                 }
