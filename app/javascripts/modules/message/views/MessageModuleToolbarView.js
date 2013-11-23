@@ -51,14 +51,14 @@
                 Device.on('change:isConnected', this.setButtonState, this);
                 conversationsCollection = ConversationsCollection.getInstance();
                 conversationsCollection.on('refresh', this.setButtonState, this);
-
-                this.once('remmove', function () {
-                    _.each(tips, function (tip) {
-                        tip.remove();
-                    });
-
-                    tips = [];
+            },
+            remove : function () {
+                MessageModuleToolbarView.__super__.remove.apply(this, arguments);
+                _.each(tips, function (tip) {
+                    tip.remove();
                 });
+
+                tips = [];
             },
             render : function () {
                 this.$el.html(this.template({}));
