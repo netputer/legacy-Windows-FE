@@ -171,6 +171,7 @@ define({
     NAV_BACKUPING : '备份正在进行',
     NAV_RESTORING : '恢复正在进行',
     CUSTOM_UNZIP_BACKUP_FILE_ERROR : 'Sorry, failed to decompress and restore some apps.',
+    RESTORE_SMS_DISABLE_ANDROID_4_4 : '豌豆荚暂时不支持在 Android 4.4 上恢复短信。我们正在努力解决这个问题，谢谢您的理解和支持。',
     RESTORE_SMS_ANDROID_4_4 : '由于 Android 4.4 系统的限制，为保证您能正常收发短信，请您在「设置」> 「更多」>「默认短信应用」中将「豌豆荚USB连接传输服务」设为默认短信程序。',
     RESTORE_SMS_COMPLATE_ANDROID_4_4 : '备份完成，为保证您能正常收发短信，请您在「设置」> 「更多」>「默认短信应用」中将原有的短信程序恢复为默认。',
 
