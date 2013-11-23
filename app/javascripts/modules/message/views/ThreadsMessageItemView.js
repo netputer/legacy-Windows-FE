@@ -52,6 +52,9 @@
                 var tip;
                 Object.defineProperties(this, {
                     tip : {
+                        get : function () {
+                            return tip;
+                        },
                         set : function (value) {
                             tip = value;
                         }
@@ -66,13 +69,13 @@
 
                 this.$el.toggleClass('from-me', this.model.get('type') !== CONFIG.enums.SMS_TYPE_RECEIVE)
                         .toggleClass('text-bold', !this.model.isRead);
-
-                this.once('remove', function () {
-                    if (tip) {
-                        tip.remove();
-                        tip = undefined;
-                    }
-                });
+            },
+            remove : function () {
+                ThreadsMessageItemView.__super__.remove.apply(this, arguments);
+                if (this.tip) {
+                    this.tip.remove();
+                    this.tip = undefined;
+                }
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
