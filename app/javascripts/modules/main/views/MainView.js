@@ -65,8 +65,11 @@
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_CONTACT:
                 if (msg.action === CONFIG.enums.NAVIGATE_TYPE_CALL) {
-                    this.getModule('contact').navigateAsync(msg).done(function () {
-                        var dialEle = $('.button-dial')[0];
+                    var data = msg.id.split('|');
+                    this.getModule('contact').navigateAsync({
+                        id : data[0]
+                    }).done(function () {
+                        var dialEle = $('.button-dial[data-phone-number="' + data[1] + '"]')[0];
                         if (dialEle) {
                             dialEle.click();
                         }
@@ -82,7 +85,7 @@
                 this.getModule('message').navigate(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_SEND_SMS:
-                this.getModule('message').sendMessage(msg.id);
+                this.getModule('message').sendMessageByContactId(msg.id);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_PAGE:
                 this.getModule('browser').navigate(msg.id, false);

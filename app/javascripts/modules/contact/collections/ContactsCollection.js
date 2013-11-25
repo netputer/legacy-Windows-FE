@@ -225,7 +225,9 @@
                             model.clear({
                                 silent : true
                             });
-                            model.set(new ContactModel(resp.body).toJSON());
+                            model.set(new ContactModel(resp.body).toJSON(), {
+                                parse : true
+                            });
                             this.trigger('refresh', this);
 
                             deferred.resolve(resp);
@@ -272,7 +274,7 @@
                     success : function (resp) {
                         if (resp.state_code === 200) {
                             console.log('ContactsCollection - Add success. ');
-                            this.add(resp.body);
+                            this.add(ContactModel.prototype.parse.call(this, resp.body));
                             this.trigger('refresh', this);
 
                             deferred.resolve(resp);

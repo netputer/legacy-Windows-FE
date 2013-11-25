@@ -138,9 +138,9 @@
 
                     ContactsCollection.getInstance().addNewContactAsync(this.generateData()).done(function () {
                         this.$('.new-contact')[0].reset();
-                        this.showHint(i18n.misc.SAVE_SUCCESS);
+                        this.showHint(i18n.contact.SAVE_SUCCESS);
                     }.bind(this)).fail(function () {
-                        this.showHint(i18n.misc.SAVE_FAILED);
+                        this.showHint(i18n.contact.SAVE_FAILED);
                     }.bind(this)).always(function () {
                         this.running = false;
                     }.bind(this));

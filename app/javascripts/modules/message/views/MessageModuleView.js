@@ -201,6 +201,13 @@
                     }, 10);
                 }
             },
+            sendMessageByContactId : function (id) {
+                var messageSenderView = MessageSenderView.getInstance();
+
+                messageSenderView.once('show', function () {
+                    messageSenderView.addContactById(id);
+                }).show();
+            },
             sendMessage : function (data) {
                 var messageSenderView = MessageSenderView.getInstance();
                 var receivers = data.receivers || [];

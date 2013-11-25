@@ -24,10 +24,20 @@
         var ScreenControlView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('welcome', 'device-tools')),
             className : 'w-welcome-screen-control-ctn',
+            initialize : function () {
+                this.listenTo(Device, 'change:isFastADB', function (Device, isFastADB) {
+                    this.setButtonsState(isFastADB);
+                });
+            },
             render : function () {
                 this.$el.html(this.template({}));
 
                 return this;
+            },
+            setButtonsState : function (disabled) {
+                _.each(['button-capture', 'button-fullscreen', 'button-refresh', 'button-play', 'button-pause'], function (className) {
+                    $('.' + className).prop('disabled', disabled);
+                });
             },
             clickButtonCapture : function () {
                 this.options.deviceView.trigger('capture');
