@@ -250,7 +250,8 @@
                             });
 
                             _.each(resp.body.storage_infos, function (info) {
-                                if (info.is_emulated === true) {
+                                if (info.is_emulated === true &&
+                                        parseInt(info.total_size, 10) === this.get('deviceCapacity')) {
                                     return;
                                 }
 
