@@ -8,6 +8,7 @@
         'ui/TemplateFactory',
         'ui/AlertWindow',
         'ui/ToastBox',
+        'ui/PopupTip',
         'Internationalization',
         'Configuration',
         'message/views/MessageSenderView'
@@ -19,6 +20,7 @@
         TemplateFactory,
         AlertWindow,
         ToastBox,
+        PopupTip,
         i18n,
         CONFIG,
         MessageSenderView
@@ -46,6 +48,19 @@
             template : doT.template(TemplateFactory.get('message', 'threads-item-message')),
             className : 'hbox',
             initialize : function () {
+
+                var tip;
+                Object.defineProperties(this, {
+                    tip : {
+                        get : function () {
+                            return tip;
+                        },
+                        set : function (value) {
+                            tip = value;
+                        }
+                    }
+                });
+
                 this.listenTo(this.model, 'change:read', changeHandler);
                 this.listenTo(this.model, 'change:type change:body', this.render);
                 this.listenTo(this.model, 'remove', this.remove);
@@ -54,6 +69,13 @@
 
                 this.$el.toggleClass('from-me', this.model.get('type') !== CONFIG.enums.SMS_TYPE_RECEIVE)
                         .toggleClass('text-bold', !this.model.isRead);
+            },
+            remove : function () {
+                ThreadsMessageItemView.__super__.remove.apply(this, arguments);
+                if (this.tip) {
+                    this.tip.remove();
+                    this.tip = undefined;
+                }
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
@@ -67,6 +89,13 @@
                         }
                     }.bind(this), 3000);
                 }
+
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                    this.tip =  new PopupTip({
+                        $host : this.$('.button-delete').removeAttr('title')
+                    });
+                }
+
                 return this;
             },
             clickItem : function () {
@@ -88,6 +117,11 @@
                 });
             },
             clickButtonDelete : function () {
+
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                    return;
+                }
+
                 this.model.deleteMessageAsync().done(this.remove.bind(this)).fail(function () {
                     alert(i18n.message.DELETE_FAILD);
                 });

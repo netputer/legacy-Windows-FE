@@ -200,9 +200,9 @@
             {{? it.type === CONFIG.enums.SMS_TYPE_RECEIVE }}
             <button class="button-reply transparent" title="{{= i18n.message.FORWARD }}"></button>
             <button class="button-copy transparent" title="{{= i18n.message.COPY }}"></button>
-            <button class="button-delete transparent" title="{{= i18n.misc.DELETE }}"></button>
+            <button class="button-delete transparent" title="{{= i18n.misc.DELETE }}" data-title="{{= i18n.message.NOT_SUPPORT_DELETE_4_4}}"></button>
             {{??}}
-            <button class="button-delete transparent" title="{{= i18n.misc.DELETE }}"></button>
+            <button class="button-delete transparent" title="{{= i18n.misc.DELETE }}" data-title="{{= i18n.message.NOT_SUPPORT_DELETE_4_4}}"></button>
             <button class="button-copy transparent" title="{{= i18n.message.COPY }}"></button>
             <button class="button-reply transparent" title="{{= i18n.message.FORWARD }}"></button>
             {{?}}
@@ -313,17 +313,17 @@
     <button class="w-icon-btn primary button-send min">
         <span class="icon add"></span>{{= i18n.message.SEND_SMS }}
     </button>
-    <button class="w-icon-btn button-delete min">
+    <button class="w-icon-btn button-delete min" data-title="{{= i18n.message.NOT_SUPPORT_DELETE_4_4}}">
         <span class="icon delete"></span>{{= i18n.misc.DELETE }}
     </button>
-    <button class="w-icon-btn button-mark-as-read min">
+    <button class="w-icon-btn button-mark-as-read min" data-title="{{= i18n.message.NOT_SUPPORT_MARK_AS_READ_4_4}}">
         <span class="icon mark-as-read"></span>{{= i18n.message.MARK_AS_READ }}
     </button>
     <div class="split"></div>
-    <button class="w-icon-btn button-import min">
+    <button class="w-icon-btn button-import min" data-title="{{= i18n.message.NOT_SUPPORT_IMPORT_4_4}}">
         <span class="icon import"></span>{{= i18n.misc.IMPORT }}
     </button>
-    <button class="w-icon-btn button-export min">
+    <button class="w-icon-btn button-export min" data-title="{{= i18n.message.NOT_SUPPORT_EXPORT_4_4}}">
         <span class="icon export"></span>{{= i18n.misc.EXPORT }}
     </button>
 </script>

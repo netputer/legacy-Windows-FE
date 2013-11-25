@@ -9,6 +9,7 @@
         'Configuration',
         'ui/AlertWindow',
         'ui/Toolbar',
+        'ui/PopupTip',
         'ui/TemplateFactory',
         'message/MessageService',
         'message/collections/ConversationsCollection',
@@ -26,6 +27,7 @@
         CONFIG,
         AlertWindow,
         Toolbar,
+        PopupTip,
         TemplateFactory,
         MessageService,
         ConversationsCollection,
@@ -42,12 +44,21 @@
         var conversationsListView;
         var conversationsCollection;
 
+        var tips = [];
         var MessageModuleToolbarView = Toolbar.extend({
             template : doT.template(TemplateFactory.get('message', 'toolbar')),
             initialize : function () {
                 Device.on('change:isConnected', this.setButtonState, this);
                 conversationsCollection = ConversationsCollection.getInstance();
                 conversationsCollection.on('refresh', this.setButtonState, this);
+            },
+            remove : function () {
+                MessageModuleToolbarView.__super__.remove.apply(this, arguments);
+                _.each(tips, function (tip) {
+                    tip.remove();
+                });
+
+                tips = [];
             },
             render : function () {
                 this.$el.html(this.template({}));
@@ -59,6 +70,14 @@
                 conversationsListView.on('select:change', this.setButtonState, this);
 
                 this.setButtonState();
+
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                    _.each(['button-import', 'button-delete', 'button-export', 'button-mark-as-read'], function (className) {
+                        tips.push(new PopupTip({
+                            $host : this.$('.' + className)
+                        }));
+                    }, this);
+                }
 
                 return this;
             },
@@ -93,26 +112,40 @@
                 });
             },
             clickButtonDelete : function () {
+
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                    return;
+                }
+
                 conversationsListView.deleteSelectedAsync();
             },
             clickButtonMarkAsRead : function () {
+
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                    return;
+                }
+
                 conversationsListView.markAsReadAsync();
             },
             clickButtonImport : function () {
+
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                    return;
+                }
 
                 var startImport = function () {
                     MessageService.getSmsHasBackupAsync().done(function (resp) {
                         ImportController.start(resp.body.value);
                     });
                 };
-
-                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
-                    alert(i18n.message.IMPORT_MSM_ANDROID_4_4, startImport);
-                } else {
-                    startImport();
-                }
+                startImport();
             },
             clickButtonExport : function () {
+
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                    return;
+                }
+
                 var ids = conversationsListView.selected;
                 var coversationTotalCount = 0;
                 var coversationMmsCount = 0;
