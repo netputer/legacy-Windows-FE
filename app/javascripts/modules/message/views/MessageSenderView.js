@@ -495,7 +495,7 @@
                                             StringUtil.format(i18n.message.MUTIL_SIM_SELECT_HAS_NUM, service.sim_name, service.sim_phone_number) :
                                             StringUtil.format(i18n.message.MUTIL_SIM_SELECT, service.sim_name, i + 1),
                                 value : i,
-                                checked : selectedSIM ? service.sim_id === selectedSIM  : i === 0
+                                checked : selectedSIM ? service.sim_id === selectedSIM : i === 0
                             });
                         });
 
