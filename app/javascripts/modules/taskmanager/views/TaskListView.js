@@ -57,9 +57,7 @@
 
                 taskList.listenTo(tasksCollection, 'refresh', function (tasksCollection) {
                     this.switchSet('default', tasksCollection.getAll);
-                });
-
-                taskList.listenTo(tasksCollection, 'update', function () {
+                }).listenTo(tasksCollection, 'update', function () {
                     this.loading = true;
 
                     tasksCollection.once('refresh', function () {
@@ -69,8 +67,8 @@
 
                 this.$el.append(taskList.render().$el);
 
-                this.listenTo(taskList, 'select:change', this.selectChangeHandler);
-                this.listenTo(taskList, 'contextMenu', this.showContextMenu);
+                this.listenTo(taskList, 'select:change', this.selectChangeHandler)
+                    .listenTo(taskList, 'contextMenu', this.showContextMenu);
             },
             selectChangeHandler : function (selected) {
                 this.trigger('select:change', selected);

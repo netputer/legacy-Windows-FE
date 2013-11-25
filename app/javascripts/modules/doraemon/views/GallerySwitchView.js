@@ -10,8 +10,7 @@
         'ui/TemplateFactory',
         'Internationalization',
         'Account',
-        'Configuration',
-        'WindowController'
+        'Configuration'
     ], function (
         Backbone,
         _,
@@ -22,8 +21,7 @@
         TemplateFactory,
         i18n,
         Account,
-        CONFIG,
-        WincowController
+        CONFIG
     ) {
         console.log('GallerySwitchView - File loaded.');
 

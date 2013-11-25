@@ -8,14 +8,21 @@
  * TaskManager Module Main
  ********************************************************************************/
 .w-task-module-main {
+    background-color: rgba(0, 0, 0, .7);
     overflow: hidden;
     -webkit-transform: translate3d(0, 0, 0);
+    -webkit-transition: background-color .5s;
 
     .ctn {
         background-color: #fff;
         box-shadow: 1px 0 10px rgba(0, 0, 0, .2);
         overflow: visible;
         position: relative;
+        -webkit-animation: {
+            duration: .5s;
+            name: module-slide-in;
+            fill-mode: forwards;
+        }
         -webkit-box-flex: 1;
 
         .w-ui-toolbar {
@@ -27,33 +34,23 @@
                 top: 50%;
             }
         }
-
-        .w-task-mask {
-            left: 100%;
-            position: absolute;
-            top: 0;
-            height: 100%;
-            width: 100%;
-            -webkit-transition: background-color, .5s;
-        }
     }
 
-    &.w-task-module-fade-in {
-        .ctn {
-            -webkit-animation: module-fade-in .5s;
-            -webkit-animation-fill-mode: forwards;
-        }
-    }
+    &.hide {
+        background-color: transparent;
+        pointer-events: none;
 
-    &.w-task-module-fade-out {
         .ctn {
-            -webkit-animation: module-fade-out .5s;
-            -webkit-animation-fill-mode: forwards;
+            -webkit-animation: {
+                duration: .5s;
+                fill-mode: forwards;
+                name: module-slide-out;
+            }
         }
     }
 }
 
-@-webkit-keyframes module-fade-in {
+@-webkit-keyframes module-slide-in {
     0% {
         -webkit-transform: translate3d(-100%, 0, 0);
     }
@@ -62,7 +59,7 @@
     }
 }
 
-@-webkit-keyframes module-fade-out {
+@-webkit-keyframes module-slide-out {
     0% {
         -webkit-transform: translate3d(0, 0, 0);
     }

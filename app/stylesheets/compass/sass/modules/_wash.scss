@@ -164,6 +164,7 @@
             margin: 5px 10px 15px;
             position: relative;
             width: 345px;
+            -webkit-perspective: 500;
 
             .front,
             .back {
@@ -178,9 +179,12 @@
                 position: absolute;
                 top: 0;
                 width: inherit;
-                -webkit-backface-visibility: hidden;
-                -webkit-transition: all .4s ease-in-out;
-                -webkit-transform-style: preserve-3d;
+                -webkit: {
+                    backface-visibility: hidden;
+                    perspective-origin: 50% 50%;
+                    transition: all .4s ease-in-out;
+                    transform-style: preserve-3d;
+                }
 
                 .button-ctn {
                     margin: 0 20px 15px;

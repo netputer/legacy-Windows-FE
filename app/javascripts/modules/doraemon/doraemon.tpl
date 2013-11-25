@@ -12,11 +12,8 @@
 
 <script type="text/x-ui-template" id="gallery-switch">
     <div class="icon category"></div>
-    {{= it.name }}
-    <div class="button-ctn">
-        <div class="button-management" data-title="{{= i18n.misc.MANGEMENT }}"></div>
-        <div class="button-management white" data-title="{{= i18n.misc.MANGEMENT }}"></div>
-    </div>
+    <div class="label">{{= it.name }}</div>
+    <div class="button-management" data-title="{{= i18n.misc.MANGEMENT }}"></div>
 </script>
 
 <script type="text/x-ui-template" id="gallery-optimize">

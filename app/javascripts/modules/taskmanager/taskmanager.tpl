@@ -1,8 +1,6 @@
 <templates>
 <script type="text/x-ui-template" id="main">
-    <div class="ctn vbox">
-        <div class="w-task-mask"></div>
-    </div>
+    <div class="ctn vbox"></div>
 </script>
 
 <script type="text/x-ui-template" id="task-list">

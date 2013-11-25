@@ -30,8 +30,6 @@
         console.log('SmartList - File loaded.');
 
         var setTimeout = window.setTimeout;
-        var setInterval = window.setInterval;
-        var clearInterval = window.clearInterval;
 
         var EventsMapping = UIHelper.EventsMapping;
 
@@ -129,9 +127,11 @@
                 var emptyTip = '';
                 var loading = false;
                 var renderQueue = [];
-                var scrollHandler = _.throttle(function (evt) {
-                    this.buildQueue(evt.target.scrollTop);
-                }.bind(this), 20);
+                var scrollHandler = function (evt) {
+                    window.requestAnimationFrame(function () {
+                        this.build(evt.target.scrollTop);
+                    }.bind(this));
+                }.bind(this);
                 var enableContextMenu = false;
                 var selectable = true;
                 var listenToCollection;
@@ -475,12 +475,12 @@
                 }
 
                 if (!this.renderDelegate && this.renderQueue.length > 0) {
-                    this.renderDelegate = setInterval(function () {
+                    this.renderDelegate = window.requestAnimationFrame(function () {
                         if (this.renderQueue.length > 0) {
                             var target = this.renderQueue.shift();
                             this.build(target);
                         } else {
-                            clearInterval(this.renderDelegate);
+                            window.cancelAnimationFrame(this.renderDelegate);
                             this.renderDelegate = undefined;
                         }
                     }.bind(this), 15);
