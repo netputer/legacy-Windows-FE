@@ -14,12 +14,35 @@
         console.log('CloudPhotoCollection - File loaded. ');
 
         var CloudPhotoCollection = PhotoCollection.getClass().extend({
-            data : {
-                photo_type : CONFIG.enums.PHOTO_CLOUD_TYPE
-            },
+            url : CONFIG.actions.PHOTO_CLOUD_SHOW,
             getThumbsAsync : function (ids) {
                 // thumbnails of cloud photo already got on show, need not to get them again
                 return;
+            },
+            syncAsync : function () {
+                var deferred = $.Deferred();
+
+                this.syncing = true;
+                this.trigger('syncStart');
+
+                IO.requestAsync({
+                    url : CONFIG.actions.PHOTO_CLOUD_SYNC,
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('PhotoCollection - Photo sync success.');
+
+                            deferred.resolve(resp);
+                        } else {
+                            console.error('PhotoCollection - Cloud Photo sync failed. Error info: ' + resp.state_line);
+
+                            this.syncing = false;
+                            this.trigger('syncEnd');
+                            deferred.reject(resp);
+                        }
+                    }.bind(this)
+                });
+
+                return deferred.promise();
             }
         });
 
