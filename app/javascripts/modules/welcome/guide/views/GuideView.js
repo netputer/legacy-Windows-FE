@@ -15,7 +15,6 @@
         'guide/views/XibaibaiView',
         'guide/views/StarterView',
         'guide/views/TipsView',
-        'guide/views/DoraSuggestionView',
         'utilities/QueryString'
     ], function (
         Backbone,
@@ -32,7 +31,6 @@
         XibaibaiView,
         StarterView,
         TipsView,
-        DoraSuggestionView,
         queryString
     ) {
 
