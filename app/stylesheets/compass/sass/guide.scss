@@ -345,26 +345,3 @@
         }
     }
 }
-
-.w-guide-suggestion {
-    .stage {
-        overflow-y: auto;
-
-        .item-ctn {
-            margin-top: 15px;
-
-            .item {
-                cursor: pointer;
-                margin-bottom: 5px;
-            }
-
-            @each $item in app, game, video, music, picture {
-                .item-#{$item} {
-                    @include guide-sprite(banner-#{$item});
-                    height: guide-sprite-height(banner-#{$item});
-                    width: guide-sprite-width(banner-#{$item});
-                }
-            }
-        }
-    }
-}
