@@ -7,7 +7,7 @@
         'Configuration',
         'BackendSocket',
         'MessageRouterMixin',
-        'ParserFactory'
+        'utilities/JSONParser'
     ], function (
         $,
         _,
@@ -15,7 +15,7 @@
         CONFIG,
         BackendSocket,
         MessageRouterMixin,
-        ParserFactory
+        JSONParser
     ) {
         console.log('IO - File loaded.');
 
@@ -48,27 +48,15 @@
             options.data = options.data || {};
 
             var done = function (resp) {
-                resp = JSON.parse(resp);
-                resp.state_line = resp.state_line || resp.state_code;
+                JSONParser.parse(resp, function (data) {
+                    console.log('IO - Callback message for \'' + originalURL + '\'', data);
 
-                console.log('IO - Callback message for \'' + originalURL + '\'', resp);
+                    if (typeof options.success === 'function') {
+                        options.success.call(window, data);
+                    }
 
-                if (typeof options.success === 'function') {
-                    options.success.call(window, resp);
-                }
-
-                deferred.resolve(resp);
-                // ParserFactory.addTask(resp, function (evt) {
-                //     resp = evt.data;
-
-                //     console.log('IO - Callback message for \'' + originalURL + '\'', resp);
-
-                //     if (typeof options.success === 'function') {
-                //         options.success.call(window, resp);
-                //     }
-
-                //     deferred.resolve(resp);
-                // });
+                    deferred.resolve(data);
+                });
             };
 
             switch (options.type.toLowerCase()) {

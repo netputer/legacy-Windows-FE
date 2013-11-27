@@ -101,9 +101,10 @@
 
     // This timer ensures that layout is not continuously called as window is being dragged.
     Wookmark.prototype.onResize = function() {
-      clearTimeout(this.resizeTimer);
+      // clearTimeout(this.resizeTimer);
       this.itemHeightsDirty = this.flexibleWidth != 0;
-      this.resizeTimer = setTimeout(this.layout, this.resizeDelay);
+      // this.resizeTimer = setTimeout(this.layout, this.resizeDelay);
+      window.requestAnimationFrame(this.layout.bind(this));
     };
 
     // Marks the items heights as dirty and does a relayout

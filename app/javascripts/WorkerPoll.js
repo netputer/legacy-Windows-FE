@@ -15,11 +15,13 @@
         var hasWaitingTask = function (timestamp) {
             var i;
             var length = this.runningTasks.length;
+
             for (i = 0; i < length; i++) {
                 if (this.runningTasks[i] < timestamp) {
                     return true;
                 }
             }
+
             return false;
         };
 
@@ -31,6 +33,7 @@
             var i;
             var length = this.waitingResponse.length;
             var item;
+
             for (i = 0; i < length; i++) {
                 item = this.waitingResponse[i];
                 if (!hasWaitingTask.call(this, item.timestamp)) {
@@ -88,6 +91,7 @@
                         });
                     } else {
                         callback.call(context || window, evt);
+
                         resolveWaitingResponse.call(this, timestamp);
                     }
 
@@ -96,6 +100,7 @@
                     worker.removeEventListener('message', handler);
 
                     this.workerQueue.push(worker);
+
                     if (this.taskQueue.length > 0) {
                         var task = this.taskQueue.shift();
                         this.runTask(task.message, task.callback, task.context, task.timestamp);

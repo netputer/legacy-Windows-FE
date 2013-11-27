@@ -52,22 +52,10 @@
                 if ($targetTab.length > 0) {
                     var $pointer = this.$el.parent().find('.w-browser-menu-pointer').show();
 
-                    var oldTransition = $pointer.css('-webkit-transition');
-
-                    $pointer.css({
-                        '-webkit-transition' : 'none'
-                    });
-
                     $pointer.css({
                         left : $targetTab[0].offsetLeft,
                         width : $targetTab[0].offsetWidth
                     });
-
-                    setTimeout(function () {
-                        $pointer.css({
-                            '-webkit-transition' : oldTransition
-                        });
-                    }, 0);
                 }
             },
             render : function () {

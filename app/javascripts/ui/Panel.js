@@ -35,7 +35,7 @@
 
         var Panel = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('ui', 'window')),
-            className : 'w-ui-window w-layout-hide vbox',
+            className : 'w-ui-window vbox',
             initialize : function () {
                 Behaviors.ModalMixin.mixin(this);
                 Behaviors.ButtonSetMixin.mixin(this);
@@ -224,24 +224,22 @@
                 if (!this.rendered) {
                     this.render();
                 }
-                this.$el.on('click', 'button', this.buttonClickHandler);
+                this.$el.on('click', 'button', this.buttonClickHandler).removeClass('show');
                 this.listenTo(WindowState, 'resize', this.resizeHandler);
-
-                this.$el.addClass('w-layout-hide');
 
                 setTimeout(this.center.bind(this), 0);
 
                 this.trigger(EventsMapping.SHOW);
             },
             hide : function () {
-                this.$el.addClass('w-layout-hide');
+                this.$el.removeClass('show');
 
                 this.$el.off('click', this.buttonClickHandler);
 
                 this.trigger(EventsMapping.HIDE);
             },
             remove : function () {
-                if (this.rendered && !this.$el.hasClass('w-layout-hide')) {
+                if (this.rendered && this.$el.hasClass('show')) {
                     var transitionEndHandler = function () {
                         this.$el.remove();
                         this.stopListening();
@@ -266,7 +264,7 @@
                     top : WindowState.scrollTop + Math.max(0, (WindowState.height - wrapperHeight) / 2)
                 };
 
-                this.$el.removeClass('w-layout-hide');
+                this.$el.addClass('show');
             },
             addButton : function ($button, eventName) {
                 this.buttons.push({
