@@ -20,8 +20,8 @@
         position: relative;
         -webkit-animation: {
             duration: .5s;
-            name: module-slide-in;
             fill-mode: forwards;
+            name: module-slide-in;
         }
         -webkit-box-flex: 1;
 
@@ -43,8 +43,8 @@
         .ctn {
             -webkit-animation: {
                 duration: .5s;
-                fill-mode: forwards;
                 name: module-slide-out;
+                fill-mode: forwards;
             }
         }
     }
