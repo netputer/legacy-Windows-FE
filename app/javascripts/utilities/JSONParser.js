@@ -1,14 +1,14 @@
 /*global define*/
 (function (window) {
     define([
-        'Configuration'
+        'text!workers/jsonparser.js'
     ], function (
-        CONFIG
+        jsonparser
     ) {
         var queue = [];
         var running = false;
 
-        var worker = new window.Worker(CONFIG.BASE_PATH + 'workers/jsonparser.js');
+        var worker = new window.Worker(window.URL.createObjectURL(new Blob([jsonparser])));
 
         var JSONParser = {};
 

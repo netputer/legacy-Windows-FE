@@ -84,7 +84,7 @@
                             value : addresses
                         },
                         body : body,
-                        sim_id : serviceCenter
+                        sim_id : serviceCenter || ''
                     },
                     success : callback
                 });
@@ -98,7 +98,7 @@
                     data : {
                         address : addresses,
                         body : body,
-                        sim_id : serviceCenter
+                        sim_id : serviceCenter || ''
                     },
                     success : callback
                 });
