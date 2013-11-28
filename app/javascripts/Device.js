@@ -618,6 +618,8 @@
                         .toggleClass('disconnected', !isConnected);
         });
 
+        $('body').addClass('disconnected');
+
         window.Device = device;
 
         return device;
