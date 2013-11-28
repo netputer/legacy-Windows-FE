@@ -10,6 +10,7 @@
         'ui/AlertWindow',
         'ui/Toolbar',
         'ui/TemplateFactory',
+        'FunctionSwitch',
         'message/MessageService',
         'message/collections/ConversationsCollection',
         'message/views/MessageSenderView',
@@ -27,6 +28,7 @@
         AlertWindow,
         Toolbar,
         TemplateFactory,
+        FunctionSwitch,
         MessageService,
         ConversationsCollection,
         MessageSenderView,
@@ -50,7 +52,14 @@
                 conversationsCollection.on('refresh', this.setButtonState, this);
             },
             render : function () {
-                this.$el.html(this.template({}));
+
+                var showAction = true;
+                if (!FunctionSwitch.IS_CHINESE_VERSION && Device.get('SDKVersion') >= Configuration.enums.ANDROID_4_4) {
+                    showAction = false;
+                }
+                this.$el.html(this.template({
+                    'showAction' : showAction
+                }));
 
                 conversationsListView = ConversationsListView.getInstance({
                     $observer : this.$('.check-select-all')
