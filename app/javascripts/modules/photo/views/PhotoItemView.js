@@ -7,6 +7,7 @@
         'backbone',
         'doT',
         'Configuration',
+        'Device',
         'IframeMessageWorker',
         'ui/TemplateFactory',
         'ui/WindowState',
@@ -17,6 +18,7 @@
         Backbone,
         doT,
         CONFIG,
+        Device,
         IframeMessageWorker,
         TemplateFactory,
         WindowState,
@@ -117,6 +119,14 @@
                 if (this.options.template) {
                     this.template = this.options.template;
                 }
+
+                if (this.model.get('display_name').indexOf('IMG') > -1) {
+                    console.error(this.model.toJSON());
+                }
+
+                this.listenTo(Device, 'change:isConnected change:hasSDCard', function () {
+                    this.$el.toggleClass('hasOriginalPic', this.model.get('originalPic') !== '');
+                });
             },
             selectItem : function (type, position) {
                 if (this.model.collection.data.photo_type === type) {
@@ -242,6 +252,7 @@
             },
             clickButtonInfo : function (evt) {
                 evt.stopPropagation();
+                console.error(this.model.toJSON());
             },
             events : {
                 'mousedown' : 'mousedownItem',
