@@ -667,7 +667,10 @@
 
                 APP_WASH_AUTH_KEY : 'gpo3uybFexlfH0NJWaZPjFtLFkEPkCHl',
 
-                SINFGLE_MESSAGE_CHAR_NUMBER : 140
+                SINFGLE_MESSAGE_CHAR_NUMBER : 140,
+
+                //SDK Version
+                ANDROID_4_4 : 9
             }
         };
 

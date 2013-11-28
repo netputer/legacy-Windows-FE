@@ -149,6 +149,7 @@ define({
     CUSTOM_SERVER_UNAVALABEL_ERROR :　'很抱歉，辛勤的豌豆荚服务器太累了，请稍后再试。 <a target="_default" href="http://wandoujia.zendesk.com/entries/22604406#QuestionA">帮助</a>',
     RESTORE_APP_DATA_ERROR : '应用数据恢复失败。',
     CUSTOM_UNZIP_BACKUP_FILE_ERROR : '很抱歉，解压缩失败，部分应用未能恢复。',
+    IMPORT_MSM_ANDROID_4_4 : '由于安卓系统的限制，为了您短信可以正常导入，请您在手机上把豌豆荚设置为默认的短信应用。',
 
     AUTO_BACKUP_COMPLETE_FINISH : '自动备份完成！',
     AUTO_BACKUP_COMPLETE_FINISH_TIP : '备份数据未加密，请确保您使用的是自己的手机和电脑。',

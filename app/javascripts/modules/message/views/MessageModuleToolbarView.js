@@ -6,6 +6,8 @@
         'Internationalization',
         'Device',
         'Log',
+        'Configuration',
+        'ui/AlertWindow',
         'ui/Toolbar',
         'ui/TemplateFactory',
         'message/MessageService',
@@ -21,6 +23,8 @@
         i18n,
         Device,
         log,
+        Configuration,
+        AlertWindow,
         Toolbar,
         TemplateFactory,
         MessageService,
@@ -95,9 +99,17 @@
                 conversationsListView.markAsReadAsync();
             },
             clickButtonImport : function () {
-                MessageService.getSmsHasBackupAsync().done(function (resp) {
-                    ImportController.start(resp.body.value);
-                });
+                var startImport = function () {
+                    MessageService.getSmsHasBackupAsync().done(function (resp) {
+                        ImportController.start(resp.body.value);
+                    });
+                };
+
+                if (Device.get('SDKVersion') >= Configuration.enums.ANDROID_4_4) {
+                    alert(i18n.message.IMPORT_MSM_ANDROID_4_4, startImport);
+                } else {
+                    startImport();
+                }
             },
             clickButtonExport : function () {
                 var ids = conversationsListView.selected;
