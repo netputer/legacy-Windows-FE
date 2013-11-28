@@ -268,10 +268,19 @@
                 log({'event' : 'debug.restore.folder_empty'});
             },
             tryToStartRestore : function () {
-                if (RestoreContextModel.IsContactSelected && !RestoreContextModel.get('isAccountReady')) {
-                    restoreChooseAccountView.show();
+
+                var start = function () {
+                    if (RestoreContextModel.IsContactSelected && !RestoreContextModel.get('isAccountReady')) {
+                        restoreChooseAccountView.show();
+                    } else {
+                        this.startRestoreSmsAndContact();
+                    }
+                };
+
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                    alert(i18n.message.IMPORT_MSM_ANDROID_4_4, start, this);
                 } else {
-                    this.startRestoreSmsAndContact();
+                    start();
                 }
             },
             startRestoreRemote : function () {

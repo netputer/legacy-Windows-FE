@@ -6,8 +6,11 @@
         'Internationalization',
         'Device',
         'Log',
+        'Configuration',
+        'ui/AlertWindow',
         'ui/Toolbar',
         'ui/TemplateFactory',
+        'FunctionSwitch',
         'message/MessageService',
         'message/collections/ConversationsCollection',
         'message/views/MessageSenderView',
@@ -21,8 +24,11 @@
         i18n,
         Device,
         log,
+        Configuration,
+        AlertWindow,
         Toolbar,
         TemplateFactory,
+        FunctionSwitch,
         MessageService,
         ConversationsCollection,
         MessageSenderView,
@@ -46,7 +52,14 @@
                 conversationsCollection.on('refresh', this.setButtonState, this);
             },
             render : function () {
-                this.$el.html(this.template({}));
+
+                var showAction = true;
+                if (!FunctionSwitch.IS_CHINESE_VERSION && Device.get('SDKVersion') >= Configuration.enums.ANDROID_4_4) {
+                    showAction = false;
+                }
+                this.$el.html(this.template({
+                    'showAction' : showAction
+                }));
 
                 conversationsListView = ConversationsListView.getInstance({
                     $observer : this.$('.check-select-all')
@@ -95,9 +108,17 @@
                 conversationsListView.markAsReadAsync();
             },
             clickButtonImport : function () {
-                MessageService.getSmsHasBackupAsync().done(function (resp) {
-                    ImportController.start(resp.body.value);
-                });
+                var startImport = function () {
+                    MessageService.getSmsHasBackupAsync().done(function (resp) {
+                        ImportController.start(resp.body.value);
+                    });
+                };
+
+                if (Device.get('SDKVersion') >= Configuration.enums.ANDROID_4_4) {
+                    alert(i18n.message.IMPORT_MSM_ANDROID_4_4, startImport);
+                } else {
+                    startImport();
+                }
             },
             clickButtonExport : function () {
                 var ids = conversationsListView.selected;

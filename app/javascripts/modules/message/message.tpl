@@ -310,6 +310,7 @@
     <button class="w-icon-btn primary button-send min">
         <span class="icon add"></span>{{= i18n.message.SEND_SMS }}
     </button>
+    {{? it.showAction }}
     <button class="w-icon-btn button-delete min">
         <span class="icon delete"></span>{{= i18n.misc.DELETE }}
     </button>
@@ -317,6 +318,7 @@
         <span class="icon mark-as-read"></span>{{= i18n.message.MARK_AS_READ }}
     </button>
     <div class="split"></div>
+    {{?}}
     <button class="w-icon-btn button-import min">
         <span class="icon import"></span>{{= i18n.misc.IMPORT }}
     </button>

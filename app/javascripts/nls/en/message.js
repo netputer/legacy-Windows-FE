@@ -104,5 +104,7 @@ define({
 
     RETURN_ALL : 'All messages',
     SEARCH_TIP : '{1} messages containing「{2}」',
-    UNREAD_DES : '{1} unread messages'
+    UNREAD_DES : '{1} unread messages',
+
+    IMPORT_MSM_ANDROID_4_4 : 'In order to import text messages, the Android OS requires you to temporarily set SnapPea as your default messaging app.'
 });

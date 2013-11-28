@@ -149,6 +149,7 @@ define({
     CUSTOM_SERVER_UNAVALABEL_ERROR :　'Sorry, our servers are busy. Please wait a little while and try again.',
     RESTORE_APP_DATA_ERROR : 'Failed to restore app data',
     CUSTOM_UNZIP_BACKUP_FILE_ERROR : 'Sorry, failed to decompress and restore some apps.',
+    RESTORE_SMS_ANDROID_4_4 : 'In order to restore text messages, the Android OS requires you to temporarily set SnapPea as your default messaging app.',
 
     AUTO_BACKUP_COMPLETE_FINISH : 'Auto-backup completed!',
     AUTO_BACKUP_COMPLETE_FINISH_TIP : 'Backups are not encrypted, please make sure to store them securely.',
