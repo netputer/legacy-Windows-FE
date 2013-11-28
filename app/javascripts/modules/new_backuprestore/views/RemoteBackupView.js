@@ -161,10 +161,13 @@
                 return this;
             },
             cancel : function () {
-                this.userCancelled = true;
                 if (this.isProgressing) {
-
                     confirm(i18n.new_backuprestore.CANCEL_BACKUP, function () {
+                        this.userCancelled = true;
+                        this.isProgressing = false;
+                        this.offMessageHandler();
+                        this.releaseWindow();
+                        this.trigger('__CANCEL');
 
                         BackupRestoreService.stopRemoteSyncAsync().done(function () {
 
@@ -185,14 +188,7 @@
                                 res : resp.state_line
                             });
 
-                        }).always(function () {
-
-                            this.isProgressing = false;
-                            this.offMessageHandler();
-                            this.releaseWindow();
-                            this.trigger('__CANCEL');
-
-                        }.bind(this));
+                        });
 
                     }, function () {
                         this.userCancelled = false;
@@ -289,21 +285,20 @@
                         'event' : 'debug.backup.remote.success'
                     });
 
-                    if (this.userCancelled) {
-                        return;
+                    if (this.isProgressing) {
+                        this.backupAllFinish();
                     }
-                    this.backupAllFinish();
 
                 }.bind(this)).fail(function (resp) {
-
-                    if (this.userCancelled) {
-                        return;
-                    }
 
                     BackupContextModel.set('remoteErrorResult', resp.body.result);
                     BackupContextModel.set('remoteErrorCode', resp.state_code);
 
-                    this.showRemoteErrorView();
+                    if (this.isProgressing) {
+                        this.isProgressing = false;
+                        this.showRemoteErrorView();
+                    }
+
                 }.bind(this));
             },
             showRemoteErrorView : function () {
