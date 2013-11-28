@@ -618,7 +618,8 @@
                         .toggleClass('disconnected', !isConnected);
         });
 
-        $('body').addClass('disconnected');
+        $('body').toggleClass('connected', Device.get('isConnected'))
+                    .toggleClass('disconnected', !Device.get('isConnected'));
 
         window.Device = device;
 
