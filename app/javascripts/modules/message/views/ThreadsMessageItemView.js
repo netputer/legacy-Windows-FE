@@ -10,6 +10,7 @@
         'ui/ToastBox',
         'Internationalization',
         'Configuration',
+        'FunctionSwitch',
         'message/views/MessageSenderView'
     ], function (
         Backbone,
@@ -21,6 +22,7 @@
         ToastBox,
         i18n,
         CONFIG,
+        FunctionSwitch,
         MessageSenderView
     ) {
         console.log('ThreadsMessageItemView - File loaded.');
@@ -56,7 +58,13 @@
                         .toggleClass('text-bold', !this.model.isRead);
             },
             render : function () {
-                this.$el.html(this.template(this.model.toJSON()));
+                var showDelete = true;
+                if (!FunctionSwitch.IS_CHINESE_VERSION && Device.get('SDKVersion') >= CONFIG.enums.Android_4_4) {
+                    showDelete = false;
+                }
+                this.$el.html(this.template(this.model.toJSON({
+                    'showDelete' : showDelete
+                })));
 
                 connectedHandler.call(this, Device, Device.get('isConnected'));
 
