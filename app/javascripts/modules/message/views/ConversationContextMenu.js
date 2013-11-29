@@ -9,6 +9,7 @@
         'Internationalization',
         'Device',
         'Log',
+        'Configuration',
         'message/collections/ConversationsCollection',
         'message/MessageService',
         'message/ExportController',
@@ -22,6 +23,7 @@
         i18n,
         Device,
         log,
+        CONFIG,
         ConversationsCollection,
         MessageService,
         ExportController,
@@ -125,7 +127,9 @@
             addItems : function () {
                 var selected = this.options.selected;
 
-                this.items = [
+                this.items = [];
+                if (Device.get('SDKVersion') < CONFIG.enums.ANDROID_4_4) {
+                    this.items = [
                     {
                         type : 'normal',
                         name : 'delete',
@@ -142,14 +146,16 @@
                                     !Device.get('isConnected')
                     }, {
                         type : 'hr'
-                    }, {
-                        type : 'normal',
-                        name : 'export',
-                        value : 'export',
-                        label : i18n.misc.EXPORT,
-                        disabled : false
-                    }
-                ];
+                    }];
+                }
+
+                this.items.push({
+                    type : 'normal',
+                    name : 'export',
+                    value : 'export',
+                    label : i18n.misc.EXPORT,
+                    disabled : false
+                });
             }
         });
 
