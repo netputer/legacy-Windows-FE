@@ -201,7 +201,7 @@
                         name : 'default',
                         getter : conversationsCollection.getAll
                     }],
-                    enableContextMenu : true,
+                    enableContextMenu : Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4 ? false :  true,
                     keepSelect : false,
                     $observer : this.options.$observer,
                     itemHeight : 45,
