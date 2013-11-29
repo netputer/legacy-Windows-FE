@@ -125,9 +125,9 @@
                         case 101:
                             targetView = SnapPeaPhotosCardView;
                             break;
-                        case 102:
-                            targetView = OneMobileCardView;
-                            break;
+                        //case 102:
+                        //    targetView = OneMobileCardView;
+                        //    break;
                         case 103:
                             targetView = FacebookCardView;
                             break;
