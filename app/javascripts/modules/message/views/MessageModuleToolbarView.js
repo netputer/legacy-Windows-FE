@@ -142,10 +142,6 @@
             },
             clickButtonExport : function () {
 
-                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
-                    return;
-                }
-
                 var ids = conversationsListView.selected;
                 var coversationTotalCount = 0;
                 var coversationMmsCount = 0;
