@@ -127,35 +127,29 @@
             addItems : function () {
                 var selected = this.options.selected;
 
-                this.items = [];
-                if (Device.get('SDKVersion') < CONFIG.enums.ANDROID_4_4) {
-                    this.items = [
-                    {
-                        type : 'normal',
-                        name : 'delete',
-                        value : 'delete',
-                        label : i18n.misc.DELETE,
-                        disabled : selected.length === 0 ||
-                                    !Device.get('isConnected')
-                    }, {
-                        type : 'normal',
-                        name : 'markAsRead',
-                        value : 'markAsRead',
-                        label : i18n.message.MARK_AS_READ,
-                        disabled : unreadInSelected(selected) === 0 ||
-                                    !Device.get('isConnected')
-                    }, {
-                        type : 'hr'
-                    }];
-                }
-
-                this.items.push({
+                this.items = [{
+                    type : 'normal',
+                    name : 'delete',
+                    value : 'delete',
+                    label : i18n.misc.DELETE,
+                    disabled : selected.length === 0 ||
+                                !Device.get('isConnected')
+                }, {
+                    type : 'normal',
+                    name : 'markAsRead',
+                    value : 'markAsRead',
+                    label : i18n.message.MARK_AS_READ,
+                    disabled : unreadInSelected(selected) === 0 ||
+                                !Device.get('isConnected')
+                }, {
+                    type : 'hr'
+                }, {
                     type : 'normal',
                     name : 'export',
                     value : 'export',
                     label : i18n.misc.EXPORT,
                     disabled : false
-                });
+                }];
             }
         });
 
