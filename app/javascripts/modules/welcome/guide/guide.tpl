@@ -163,20 +163,5 @@
         <button class="primary button-action">{{= it.action }}</button>
     </nav>
 </script>
-
-<script type="text/x-ui-template" id="suggestion">
-    <div class="stage text-secondary vbox">
-        <h1>{{= i18n.welcome.GUIDE_SUGGESTION }}</h1>
-        <p>{{= i18n.welcome.GUIDE_SUGGESTION_TIP }}</p>
-        <ul class="item-ctn">
-        {{~ it.items : item}}
-        <li class="item button-open item-{{= item.name }}" data-id="{{= item.extensionId }}"></li>
-        {{~}}
-        </ul>
-    </div>
-    <nav class="control hbox">
-        <div class="text-counter text-thirdly"></div>
-        <button class="primary button-skip">{{= it.action }}</button>
-    </nav>
-</script>
 </templates>
+

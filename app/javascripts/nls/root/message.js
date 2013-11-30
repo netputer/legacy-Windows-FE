@@ -109,5 +109,9 @@ define({
     SEARCH_TIP : '{1} 个包含「{2}」的短消息',
     UNREAD_DES : '{1} 条未读短信',
 
-    IMPORT_MSM_ANDROID_4_4 : '由于安卓系统的限制，为了您的短信可以正常导入，请您在手机上把豌豆荚设置为默认的短信应用。'
+    NOT_SUPPORT_DELETE_4_4 : '豌豆荚暂时不支持在 Android 4.4 上删除短信',
+    NOT_SUPPORT_MARK_AS_READ_4_4 : '豌豆荚暂时不支持在 Android 4.4 上将短信标记已读',
+    NOT_SUPPORT_IMPORT_4_4 : '豌豆荚暂时不支持在 Android 4.4 上导入短信',
+    NOT_SUPPORT_EXPORT_4_4 : '豌豆荚暂时不支持在 Android 4.4 上导出短信'
+
 });

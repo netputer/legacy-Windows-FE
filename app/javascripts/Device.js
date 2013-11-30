@@ -250,7 +250,8 @@
                             });
 
                             _.each(resp.body.storage_infos, function (info) {
-                                if (info.is_emulated === true) {
+                                if (info.is_emulated === true &&
+                                        parseInt(info.total_size, 10) === this.get('deviceCapacity')) {
                                     return;
                                 }
 
@@ -616,6 +617,9 @@
             $('body').toggleClass('connected', isConnected)
                         .toggleClass('disconnected', !isConnected);
         });
+
+        $('body').toggleClass('connected', device.get('isConnected'))
+                    .toggleClass('disconnected', !device.get('isConnected'));
 
         window.Device = device;
 

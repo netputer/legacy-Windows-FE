@@ -7,6 +7,7 @@
         'backbone',
         'doT',
         'Configuration',
+        'Device',
         'IframeMessageWorker',
         'ui/TemplateFactory',
         'ui/WindowState',
@@ -17,6 +18,7 @@
         Backbone,
         doT,
         CONFIG,
+        Device,
         IframeMessageWorker,
         TemplateFactory,
         WindowState,
@@ -117,6 +119,10 @@
                 if (this.options.template) {
                     this.template = this.options.template;
                 }
+
+                this.listenTo(Device, 'change:isConnected change:hasSDCard', function () {
+                    this.$el.toggleClass('hasOriginalPic', this.model.get('originalPic') !== '');
+                });
             },
             selectItem : function (type, position) {
                 if (this.model.collection.data.photo_type === type) {
