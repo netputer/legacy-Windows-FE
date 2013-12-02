@@ -1,4 +1,4 @@
-bind/*global define*/
+/*global define*/
 define({
     NAME : 'Name:',
     DATE : 'Date:',
