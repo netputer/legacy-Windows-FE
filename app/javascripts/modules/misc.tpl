@@ -36,43 +36,6 @@
     <div class="count">{{= it.count }}</div>
 </script>
 
-<script type="text/x-ui-template" id="binding-devie">
-    <div class="w-misc-device-binding">
-        <h1>{{= i18n.misc.BINDING_TITLE }}</h1>
-        <p class="text-secondary">{{= i18n.misc.BINDING_DES }}</p>
-        <ul>
-            <li class="hbox">
-                <div class="icon backup"></div>
-                <div class="des">
-                    <h2>{{= i18n.misc.BINDING_AUTOBACKUP }}</h2>
-                    <div class="text-thirdly">{{= i18n.misc.BINDING_AUTOBACKUP_DES }}</div>
-                </div>
-            </li>
-            <li class="hbox">
-                <div class="icon contact"></div>
-                <div class="des">
-                    <h2>{{= i18n.misc.BINDING_ACCOUNT }}</h2>
-                    <div class="text-thirdly">{{= i18n.misc.BINDING_ACCOUNT_DES }}</div>
-                </div>
-            </li>
-            <li class="hbox">
-                <div class="icon connect"></div>
-                <div class="des">
-                    <h2>{{= i18n.misc.BINDING_CONNECT }}</h2>
-                    <div class="text-thirdly">{{= i18n.misc.BINDING_CONNECT_DES }}</div>
-                </div>
-            </li>
-            <li class="hbox">
-                <div class="icon update"></div>
-                <div class="des">
-                    <h2>{{= i18n.misc.BINDING_UPDATE }}</h2>
-                    <div class="text-thirdly">{{= i18n.misc.BINDING_UPDATE_DES }}</div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</script>
-
 <script type="text/x-ui-template" id="binding-devie-i18n">
     <div class="w-misc-device-binding">
         <h1>{{= i18n.misc.BINDING_TITLE }}</h1>
@@ -158,5 +121,30 @@
         <div class="tip">{{= i18n.misc.AGENT_NOTIFI }}</div>
         <div class="button-close"></div>
     </div>
+</script>
+
+<script type="text/x-ui-template" id="binding-devie-cloud">
+    <div class="w-misc-device-binding-cloud cf">
+    <div class="main-ctn hbox">
+        <div class="pic-ctn icon-device"></div>
+        <div class="content-ctn">
+            <span class="header-text">{{= i18n.misc.BIND_CLOUD_HEADER }}</span>
+            <div class="content-text-first hbox">
+                <div class="icon-check"></div>
+                <div class="desc-text">
+                    <p>{{= i18n.misc.BIND_CLOUD_TEXT_FIRST_LINE }}</p>
+                    <p>{{= i18n.misc.BIND_CLOUD_TEXT_SECOND_LINE }}</p>
+                </div>
+            </div>
+            <div class="content-text hbox">
+                <div class="icon-check"></div>
+                <div class="desc-text">
+                    {{= i18n.misc.BIND_CLOUD_WIFI}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="arrow-bg"></div>
+</div>
 </script>
 </templates>

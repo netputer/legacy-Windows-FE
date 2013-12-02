@@ -32,12 +32,10 @@
                 BindingDeviceWindowView.__super__.initialize.apply(this, arguments);
 
                 this.once('show', function () {
-                    this.$('.w-ui-window-footer-monitor').append($('<span>').html(i18n.misc.BINDING_WARNING).addClass('text-secondary'));
-
                     log({
                         'event' : 'offline.window.show'
                     });
-                }, this);
+                });
 
                 this.once('remove', function () {
                     this.trigger('closed');
@@ -64,26 +62,19 @@
                     'event' : 'offline.window.no'
                 });
             },
-            loadContentAndShow : function () {
-                // locd local english bind device window version
+            render : function () {
+                BindingDeviceWindowView.__super__.render.call(this, arguments);
+
                 if (Environment.get('locale') !== CONFIG.enums.LOCALE_DEFAULT &&
                         Environment.get('locale') !== CONFIG.enums.LOCALE_ZH_CN) {
                     this.$bodyContent = $(doT.template(TemplateFactory.get('misc', 'binding-devie-i18n'))({}));
-                    this.show();
-                    return;
+
+                } else {
+                    this.$bodyContent = $(doT.template(TemplateFactory.get('misc', 'binding-devie-cloud'))({}));
                 }
 
-                IO.requestAsync({
-                    url : 'http://www.wandoujia.com/cloud/bind_auto.html',
-                    success : function (resp) {
-                        this.$bodyContent = $('<div>').html(resp);
-                        this.show();
-                    }.bind(this),
-                    error : function () {
-                        this.$bodyContent = $(doT.template(TemplateFactory.get('misc', 'binding-devie'))({}));
-                        this.show();
-                    }.bind(this)
-                });
+                this.$('.w-ui-window-footer-monitor').append($('<span>').html(i18n.misc.BINDING_WARNING).addClass('text-secondary'));
+                return this;
             },
             checkAsync : function () {
                 var deferred = $.Deferred();
@@ -94,7 +85,7 @@
                             if (!resp.body.value) {
                                 this.trigger('closed');
                             } else {
-                                this.loadContentAndShow();
+                                this.show();
                             }
                             deferred.resolve(resp);
                         }.bind(this)).fail(deferred.reject);
@@ -124,8 +115,7 @@
                     }, {
                         $button : $('<button>').html(i18n.misc.UNBIND),
                         eventName : 'button-unbind'
-                    }],
-                    disableX : true
+                    }]
                 });
             }
         });

@@ -205,7 +205,7 @@
 
                 backupAutoTipLocalView.on('_NEXT_STEP', function () {
                     backupAutoTipLocalView.remove();
-                    BindingDeviceWindowView.getInstance().loadContentAndShow();
+                    BindingDeviceWindowView.getInstance().show();
                 }, this);
 
                 backupRemoteProgressView.on('_BACKUP_FINISH', function () {

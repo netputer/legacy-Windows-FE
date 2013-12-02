@@ -323,7 +323,7 @@
     <button class="w-icon-btn button-import min" data-title="{{= i18n.message.NOT_SUPPORT_IMPORT_4_4}}">
         <span class="icon import"></span>{{= i18n.misc.IMPORT }}
     </button>
-    <button class="w-icon-btn button-export min" data-title="{{= i18n.message.NOT_SUPPORT_EXPORT_4_4}}">
+    <button class="w-icon-btn button-export min">
         <span class="icon export"></span>{{= i18n.misc.EXPORT }}
     </button>
 </script>
