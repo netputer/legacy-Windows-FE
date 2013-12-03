@@ -172,33 +172,36 @@
                 setTimeout(function () {
                     var $top = this.$('.top').append(deviceView.render().$el)
                                 .append(clockView.render().$el);
+                    this.loading = true;
 
-                    if (FunctionSwitch.ENABLE_USER_GUIDE) {
-                        guideView = GuideView.getInstance();
-                        $top.after(guideView.render().$el);
-                    }
-
-                    this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
-
-                    var feedsCollection = FeedsCollection.getInstance();
-                    var noticeArray = [
-                        i18n.welcome.NO_MORE_1,
-                        i18n.welcome.NO_MORE_2,
-                        i18n.welcome.NO_MORE_3
-                    ];
-
-                    this.loading = feedsCollection.loading;
-                    this.listenTo(feedsCollection, 'update refresh', function () {
-                        this.loading = feedsCollection.loading;
-                        if (feedsCollection.finish) {
-                            var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
-                            this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
+                    deviceView.$el.one('webkitTransitionEnd', function () {
+                        if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                            guideView = GuideView.getInstance();
+                            $top.after(guideView.render().$el);
                         }
-                    });
 
-                    this.$el.append(toolbarView.render().$el)
-                        .append(capacityBarView.render().$el)
-                        .on('scroll', this.scrollHandler);
+                        this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
+
+                        var feedsCollection = FeedsCollection.getInstance();
+                        var noticeArray = [
+                            i18n.welcome.NO_MORE_1,
+                            i18n.welcome.NO_MORE_2,
+                            i18n.welcome.NO_MORE_3
+                        ];
+
+                        this.loading = feedsCollection.loading;
+                        this.listenTo(feedsCollection, 'update refresh', function () {
+                            this.loading = feedsCollection.loading;
+                            if (feedsCollection.finish) {
+                                var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
+                                this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
+                            }
+                        });
+
+                        this.$el.append(toolbarView.render().$el)
+                            .append(capacityBarView.render().$el)
+                            .on('scroll', this.scrollHandler);
+                    }.bind(this));
                 }.bind(this), 1000);
 
                 this.showBackground();
@@ -369,7 +372,7 @@
                                     key : 'wallpaper',
                                     value : $canvas[0].toDataURL()
                                 });
-                            }, 5000);
+                            }, 10000);
                         });
 
                     } else {

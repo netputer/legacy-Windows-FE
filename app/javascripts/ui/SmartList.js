@@ -127,7 +127,15 @@
                 var emptyTip = '';
                 var loading = false;
                 var renderQueue = [];
+
+                var removeScrollingClass = _.debounce(function () {
+                    this.$el.removeClass('scrolling');
+                }.bind(this), 200);
                 var scrollHandler = function (evt) {
+                    if (!this.$el.hasClass('scrolling')) {
+                        this.$el.addClass('scrolling');
+                    }
+                    removeScrollingClass.call(this);
                     window.requestAnimationFrame(function () {
                         this.build(evt.target.scrollTop);
                     }.bind(this));

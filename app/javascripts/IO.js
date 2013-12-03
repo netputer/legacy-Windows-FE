@@ -144,9 +144,9 @@
                 var params = {
                     url : model.url,
                     type : methodMap[method],
-                    contentType : 'application/json',
+                    // contentType : model.contentType || 'application/json',
                     data : model.data || {},
-                    dataType : 'json',
+                    // dataType : model.dataType || 'json',
                     processData : true,
                     success : options.success,
                     error : options.error,
