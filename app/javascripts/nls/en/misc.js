@@ -93,6 +93,7 @@ define({
     NAV_PIC_CLOUD : 'Cloud photos',
     NAV_VIDEO : 'Videos',
     NAV_SHOW_GALLERY : 'Add extensions',
+    NAV_BACKUP_RESTORE : '备份和恢复',
 
     ADD_COLLECT : 'Save extension',
     MOVE_UP : 'Up',
@@ -106,22 +107,6 @@ define({
     POPULARITY : 'Popularity',
     GALLERY_EMPTY_LIST : 'No extensions saved. Add one!',
     REST_EXTENTION : 'Restore default extensions',
-
-    ILLEGAL_LOGOUT : 'Sorry, you can only cancel your account when your device is connected.',
-    BIND : 'Link',
-    UNBIND : 'Don\'t link',
-    BINDING_DEVICE : 'Link device',
-    BINDING_TITLE : 'Link current device?',
-    BINDING_DES : 'Linking your device lets you:',
-    BINDING_AUTOBACKUP : 'Auto-backup data',
-    BINDING_AUTOBACKUP_DES : '<span class="text-warning">Contacts, Messages, and Pictures</span> will auto-backup to your computer',
-    BINDING_ACCOUNT : 'Remember my SnapPea account',
-    BINDING_ACCOUNT_DES : 'Your login will be remembered.',
-    BINDING_CONNECT : 'Auto-connect device',
-    BINDING_CONNECT_DES : 'Launch SnapPea and your device will auto-connect',
-    BINDING_UPDATE : 'App update notices',
-    BINDING_UPDATE_DES : 'When you have apps to update, SnapPea will let you know',
-    BINDING_WARNING : 'If this isn\'t your computer, don\'t link!',
 
     FTP_FIX : 'SnapPea will restore your FTP settings to let you browse your device\'s SD card. Do you want to restore?',
     FIX : 'Restore',
@@ -170,7 +155,6 @@ define({
     SHARE_CONTENT_TYPE_APP : 'App',
     FACEBOOK_MESSAGE_FROM : ' From my {1}.',
 
-
     SHARE_BINDED : 'Already linked',
     SHARE_TO_SINA : 'Linked to Sina Weibo',
     SHARE_TO_QQ : 'Linked to Tencent Weibo',
@@ -186,7 +170,6 @@ define({
 
     CANCEL_IMPORT_TEXT : 'Import canceled',
     CANCEL_EXPORT_TEXT : 'Export canceled',
-
 
     SD_CAPACITY_TIP : 'Your SD card is almost full!',
     PHONE_CAPACITY_TIP : 'Not enough internal storage space',
@@ -225,7 +208,21 @@ define({
     AGENT_NOTIFI : 'Connected, enjoy the SnapPea service!',
     SEND_TO_PHONE : 'Send to phone',
     DO_NOT_SEND_TO_PHONE : 'Don\'t send',
+    /*LEARN_MORE : '了解更多',*/
 
     RETRY : 'Retry',
-    OPEN_EXPORT_FOLDER : '打开导出文件夹'
+    OPEN_EXPORT_FOLDER : '打开导出文件夹',
+
+    ILLEGAL_LOGOUT : 'Sorry, you can only cancel your account when your device is connected.',
+
+    BIND : 'Link',
+    UNBIND : 'Don\'t link',
+    BINDING_DEVICE : 'Link device',
+    BINDING_TITLE : 'Link current device?',
+    BINDING_DES : 'Linking your device lets you:',
+    BINDING_AUTOBACKUP : 'Auto-backup data',
+    BINDING_AUTOBACKUP_DES : '<span class="text-warning">Contacts, Messages, and Pictures</span> will auto-backup to your computer',
+    BINDING_CONNECT : 'Auto-connect device',
+    BINDING_CONNECT_DES : 'Launch SnapPea and your device will auto-connect',
+    BINDING_WARNING : 'If this isn\'t your computer, don\'t link!'
 });

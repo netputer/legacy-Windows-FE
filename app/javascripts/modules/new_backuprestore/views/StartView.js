@@ -182,7 +182,7 @@
                     if (!this.bindingDeviceWindowView) {
                         this.bindingDeviceWindowView = BindingDeviceWindowView.getInstance();
                     }
-                    this.bindingDeviceWindowView.loadContentAndShow();
+                    this.bindingDeviceWindowView.show();
                     break;
                 case 1:
                     BackupRestoreService.openWindowSettingsAsync();

@@ -143,7 +143,7 @@
                         backupAutoTipLocalView = BackupAutoTipView.getLocalInstance();
 
                         this.listenTo(backupAutoTipLocalView, '__YES', function () {
-                            BindingDeviceWindowView.getInstance().loadContentAndShow();
+                            BindingDeviceWindowView.getInstance().show();
                         });
                     }
 

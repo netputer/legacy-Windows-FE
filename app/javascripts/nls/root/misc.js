@@ -108,22 +108,6 @@ define({
     GALLERY_EMPTY_LIST : '什么也没有收藏',
     REST_EXTENTION : '恢复默认收藏',
 
-    ILLEGAL_LOGOUT : '很抱歉，对于绑定的手机，只有在手机连接的时候才可以注销账号。',
-    BIND : '绑定',
-    UNBIND : '不绑定',
-    BINDING_DEVICE : '绑定手机',
-    BINDING_TITLE : '是否需要绑定当前连接的手机？',
-    BINDING_DES : '绑定手机会让您使用豌豆荚更便捷。绑定包含下列操作：',
-    BINDING_AUTOBACKUP : '自动备份手机数据',
-    BINDING_AUTOBACKUP_DES : '将手机中的 <span class="text-warning">联系人、短信、照片、应用</span> 自动备份到电脑。',
-    BINDING_ACCOUNT : '记住豌豆荚账号',
-    BINDING_ACCOUNT_DES : '手机上的登录状态在连接电脑后被记住，不需要再次手动登录豌豆荚。',
-    BINDING_CONNECT : '自动连接手机',
-    BINDING_CONNECT_DES : '启动豌豆荚时，自动尝试通过 USB 或者 Wi-Fi 连接您的手机，无需您再手动连接。',
-    BINDING_UPDATE : '应用升级提醒',
-    BINDING_UPDATE_DES : '当您手机上的应用可以升级时，弹出提示框提示升级。',
-    BINDING_WARNING : '如果您使用的不是自己的电脑和手机，请不要绑定！',
-
     FTP_FIX : '豌豆荚检测到您的系统默认 FTP 关联程序异常，可能无法正常使用 SD 卡管理功能。是否需要修复后再打开？',
     FIX : '修复',
     FIX_FAILED : '修复失败',
@@ -177,7 +161,6 @@ define({
     SHARE_TO_QZONE : '绑定Qzone',
     SHARE_TO_RENREN : '绑定人人网',
 
-
     TODAY : '今天',
     YESTODAY : '昨天',
 
@@ -187,7 +170,6 @@ define({
 
     CANCEL_IMPORT_TEXT : '导入操作已被取消',
     CANCEL_EXPORT_TEXT : '导出操作已被取消',
-
 
     SD_CAPACITY_TIP : '您的 SD 卡快满了！',
     PHONE_CAPACITY_TIP : '手机空间不够了！',
@@ -229,5 +211,15 @@ define({
     LEARN_MORE : '了解更多',
 
     RETRY : '重试',
-    OPEN_EXPORT_FOLDER : '打开导出文件夹'
+    OPEN_EXPORT_FOLDER : '打开导出文件夹',
+
+    ILLEGAL_LOGOUT : '很抱歉，对于绑定的手机，只有在手机连接的时候才可以注销账号。',
+    BIND : '绑定',
+    UNBIND : '不绑定',
+    BINDING_DEVICE : '绑定手机',
+    BINDING_WARNING : '如果您使用的不是自己的电脑和手机，请不要绑定！',
+    BIND_CLOUD_HEADER : '绑定自己的手机，让管理更便捷。',
+    BIND_CLOUD_TEXT_FIRST_LINE  : '绑定后豌豆荚会帮助您自动备份手机的',
+    BIND_CLOUD_TEXT_SECOND_LINE  : '联系人、短信、照片、应用，方便您随时恢复。',
+    BIND_CLOUD_WIFI : 'Wi - Fi 下自动连接手机。无需手动操作。',
 });

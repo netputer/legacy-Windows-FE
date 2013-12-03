@@ -190,3 +190,69 @@
         top: 5px;
     }
 }
+
+.w-misc-device-binding-cloud{
+
+    .arrow-bg {
+        @include misc-sprite(binding-arrow);
+        height: 22px;
+        margin: 10px auto 0;
+        width: 445px;
+    }
+
+    .icon-check {
+        @include misc-sprite(binding-check);
+        height: 27px;
+        width: 26px;
+    }
+
+    .content-ctn {
+
+        .content-text {
+            margin-top: 15px;
+
+            .desc-text {
+                line-height: 27px;
+                margin-left: 10px;
+            }
+
+        }
+
+        .content-text-first {
+            margin-top: 15px;
+
+            .icon-check {
+                margin-top: 4px;
+            }
+
+            .desc-text {
+                margin-top: 2px;
+            }
+
+            .desc-text p {
+                margin-left: 10px;
+                margin-top: -4px;
+            }
+        }
+    }
+
+    .icon-device {
+        @include misc-sprite(binding-device);
+        height: 161px;
+        width: 94px;
+    }
+
+    .header-text {
+       font-size: 18px;
+    }
+
+    .pic-ctn {
+        margin-left: 10px;
+        margin-right: 35px;
+    }
+
+    .main-ctn {
+        padding-top: 10px;
+        width: 445px;
+    }
+}

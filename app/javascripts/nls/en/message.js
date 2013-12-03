@@ -106,8 +106,8 @@ define({
     SEARCH_TIP : '{1} messages containing「{2}」',
     UNREAD_DES : '{1} unread messages',
 
+    //Not in Snappea
     NOT_SUPPORT_DELETE_4_4 : '豌豆荚暂时不支持在 Android 4.4 上删除短信',
     NOT_SUPPORT_MARK_AS_READ_4_4 : '豌豆荚暂时不支持在 Android 4.4 上将短信标记已读',
-    NOT_SUPPORT_IMPORT_4_4 : '豌豆荚暂时不支持在 Android 4.4 上导入短信',
-    NOT_SUPPORT_EXPORT_4_4 : '豌豆荚暂时不支持在 Android 4.4 上导出短信'
+    NOT_SUPPORT_IMPORT_4_4 : '豌豆荚暂时不支持在 Android 4.4 上导入短信'
 });
