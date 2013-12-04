@@ -51,7 +51,7 @@
                 this.getModule('browser').navigate('http://apps.wandoujia.com/apps/' + msg.id +'?pos=w/search');
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_MARKET_SEARCH:
-                this.getModule('browser').navigate('http://apps.wandoujia.com/search?key=' + msg.keyword +'?pos=w/search');
+                this.getModule('browser').navigate('http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_GROUP_APP:
                 this.getModule('app').navigateGroup(msg);
