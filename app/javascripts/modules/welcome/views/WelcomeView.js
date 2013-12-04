@@ -175,7 +175,8 @@
                     this.loading = true;
 
                     deviceView.$el.one('webkitTransitionEnd', function () {
-                        if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                        if (FunctionSwitch.ENABLE_USER_GUIDE &&
+                                !Settings.get('user_guide_shown')) {
                             guideView = GuideView.getInstance();
                             $top.after(guideView.render().$el);
                         }
