@@ -174,8 +174,9 @@
                                 .append(clockView.render().$el);
                     this.loading = true;
 
-                    deviceView.$el.one('webkitTransitionEnd', function () {
-                        if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                    deviceView.$el.one('webkitAnimationEnd', function () {
+                        if (FunctionSwitch.ENABLE_USER_GUIDE &&
+                                !Settings.get('user_guide_shown')) {
                             guideView = GuideView.getInstance();
                             $top.after(guideView.render().$el);
                         }
