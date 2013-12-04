@@ -190,6 +190,10 @@
                 this.setButtonState();
                 this.renderBackupButtonPopup();
 
+                if (!!this.wallpaperUrl) {
+                    this.$('.button-set-wallpaper').show();
+                }
+
                 return this;
             },
             renderBackupButtonPopup : function () {
@@ -246,7 +250,6 @@
                 }
             },
             screenShotAsync : function () {
-
                 var deferred = $.Deferred();
 
                 Device.getScreenshotAsync().done(function () {
@@ -288,7 +291,6 @@
                 }
             },
             clickButtonOpenSD : function () {
-
                 if (Device.get('isFastADB')) {
                     return;
                 }
@@ -339,7 +341,6 @@
                 });
             },
             clickButtonScreenShot : function () {
-
                 if (Device.get('isFastADB')) {
                     return;
                 }
@@ -357,7 +358,6 @@
                 });
             },
             setAsWallpaperAsync : function (id) {
-
                 var deferred = $.Deferred();
 
                 IO.requestAsync({
@@ -377,7 +377,6 @@
                 return deferred.promise();
             },
             clickButtonSetWallpaper : function () {
-
                 var model = new TaskModel();
 
                 var path = this.wallpaperUrl.split('/');
