@@ -315,6 +315,7 @@
 
                 this.bindEvent();
                 this.initAttrsState();
+
                 var deviceName =  Device.get('deviceName');
                 this.bigTitle = StringUtil.format(i18n.new_backuprestore.BACKUP_DEVICE_TITLE, deviceName);
                 this.stateTitle = i18n.new_backuprestore.BACKUP_DEVICE_LOCAL_DESC;
@@ -362,16 +363,19 @@
 
                 }));
 
-                $.when.apply(this, initDone).done(function () {
-                    footerView.enableBackupButton = true;
-                });
-
                 if (deviceName !== undefined && deviceName.length > 0) {
                     deviceName = deviceName.replace(/ /g, '_').replace(new RegExp(this.invalidPattern, "g"), '_');
                 }
                 var curDate = StringUtil.formatDate('yyyy-MM-dd-HH-mm-ss-', new Date().valueOf());
                 var fileName = curDate + deviceName;
-                BackupContextModel.set('fileName', fileName);
+                initDone.push(BackupRestoreService.formatFileName(fileName).done(function (resp) {
+                    var fileName = resp.body.value;
+                    BackupContextModel.set('fileName', fileName);
+                }));
+
+                $.when.apply(this, initDone).done(function () {
+                    footerView.enableBackupButton = true;
+                });
 
                 this.listenTo(BackupContextModel, 'change:dataIDList', function (value) {
                     progressView.selectAppData = BackupContextModel.isAppDataSelected;

@@ -93,6 +93,7 @@ define({
     EXPORT_FAILED : '导出短信失败。',
     EXPORTING_SMS : '正在导出短信，请稍候...',
     EXPORT_SMS_FINISH : '短信导出完成',
+    EXPORT_SMS_CANCEL : '您已取消短信导出操作',
     IMPORT_SELECT_FILE : '选择包含短信的 .CSV 文件',
     INVALID_FILE : '无效的 .csv 文件',
     SELECT_MESSAGE : '请选择要导出的短信',
