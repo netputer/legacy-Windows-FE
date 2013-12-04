@@ -77,6 +77,7 @@ define({
     ALERT_TIP_EXPORT_MMS : '您选择的会话中包含彩信，这些彩信不会被导出。',
 
     SEND : '发送',
+    NEW_SMS : '发短信',
     BATCH_CONVERSATION_TITLE : '选择了 {1} 组短信',
     SEND_WITH_SPEC_SIM : '（卡 {1}）：{2}',
     MUTIL_SIM_SELECT : '使用 {1} 号发送（卡 {2}）',

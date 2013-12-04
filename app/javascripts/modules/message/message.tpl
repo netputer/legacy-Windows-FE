@@ -311,7 +311,7 @@
 <script type="text/x-ui-template" id="toolbar">
     <input type="checkbox" class="check-select-all" />
     <button class="w-icon-btn primary button-send min">
-        <span class="icon add"></span>{{= i18n.message.SEND_SMS }}
+        <span class="icon add"></span>{{= i18n.message.NEW_SMS }}
     </button>
     <button class="w-icon-btn button-delete min" data-title="{{= i18n.message.NOT_SUPPORT_DELETE_4_4}}">
         <span class="icon delete"></span>{{= i18n.misc.DELETE }}

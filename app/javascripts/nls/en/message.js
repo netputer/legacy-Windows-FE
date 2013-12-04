@@ -77,6 +77,7 @@ define({
     ALERT_TIP_EXPORT_MMS : 'Export will not include MMS messages',
 
     SEND : 'Send',
+    NEW_SMS : 'Write',
     BATCH_CONVERSATION_TITLE : 'All messages from {1} selected',
     SEND_WITH_SIM1 : 'Send from default SIM',
     SEND_WITH_SIM2 : 'Send from second SIM',
