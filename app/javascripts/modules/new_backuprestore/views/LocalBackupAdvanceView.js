@@ -8,6 +8,7 @@
         'Device',
         'Log',
         'Configuration',
+        'FunctionSwitch',
         'Internationalization',
         'utilities/StringUtil',
         'ui/TemplateFactory',
@@ -24,6 +25,7 @@
         Device,
         log,
         CONFIG,
+        FunctionSwitch,
         i18n,
         StringUtil,
         TemplateFactory,
@@ -125,7 +127,7 @@
                 this.$('input[type=radio][value=' + BackupContextModel.get('appType') +  ']').prop('checked', true);
             },
             clickSetFilePath : function () {
-                BackupRestoreService.setSettingPathAsync(false).done(function (resp) {
+                BackupRestoreService.setSettingPathAsync(!FunctionSwitch.IS_CHINESE_VERSION).done(function (resp) {
 
                     if (resp.state_code === 402) {
                         return;
