@@ -207,8 +207,6 @@
                 PHOTO_CANCEL : 'wdj://photo/cancel.json',
                 PHOTO_IMPORT : 'wdj://photo/import.json',
                 PHOTO_EXPORT : 'wdj://photo/export.json',
-                PHOTO_CLOUD_SHOW : 'wdj://photo/show_cloud.json',
-                PHOTO_CLOUD_SYNC : 'wdj://photo/sync_cloud.json',
                 PHOTO_SHOW : 'wdj://photo/show.json',
                 PHOTO_SYNC : 'wdj://photo/sync.json',
                 PHOTO_CLOUD_THUMBNAIL : 'wdj://photo/cloud_thumbnail.json',
@@ -471,6 +469,7 @@
 
                 /* Web navigate types */
                 NAVIGATE_TYPE_MARKET : 'market',
+                NAVIGATE_TYPE_MARKET_SEARCH : 'group_market',
                 NAVIGATE_TYPE_GROUP_APP : 'group_app',
                 NAVIGATE_TYPE_APP : 'app',
                 NAVIGATE_TYPE_GROUP_CONTACT : 'group_contacts',
@@ -494,6 +493,8 @@
                 NAVIGATE_TYPE_PIM_MODULE : 'pim_module',
                 NAVIGATE_TYPE_UNINSTALL_APP : 'remove_app',
                 NAVIGATE_TYPE_CALL : 'make_call',
+                NAVIGATE_TYPE_VIDEO : 'video',
+                NAVIGATE_TYPE_VIDEO_SEARCH : 'group_video',
 
                 /* Update ignore states */
                 UPDATE_IGNORE_NONE : 'none',
