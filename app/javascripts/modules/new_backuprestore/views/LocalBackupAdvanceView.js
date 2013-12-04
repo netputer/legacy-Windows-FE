@@ -206,7 +206,7 @@
                     return;
                 }
 
-                BackupRestoreService.checkFileAsync(BackupContextModel.fileFullPath).done(function (resp) {
+                BackupRestoreService.checkFileAsync(this.bodyView.getFileName()).done(function (resp) {
                     var status_code = parseInt(resp.body.value, 10);
                     if (status_code === 1) {
                         confirm(i18n.new_backuprestore.OVERWIRTE_EXISTS_FILE_TIP, function () {
