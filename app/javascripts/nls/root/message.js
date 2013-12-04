@@ -77,6 +77,7 @@ define({
     ALERT_TIP_EXPORT_MMS : '您选择的会话中包含彩信，这些彩信不会被导出。',
 
     SEND : '发送',
+    NEW_SMS : '发短信',
     BATCH_CONVERSATION_TITLE : '选择了 {1} 组短信',
     SEND_WITH_SPEC_SIM : '（卡 {1}）：{2}',
     MUTIL_SIM_SELECT : '使用 {1} 号发送（卡 {2}）',
@@ -93,6 +94,7 @@ define({
     EXPORT_FAILED : '导出短信失败。',
     EXPORTING_SMS : '正在导出短信，请稍候...',
     EXPORT_SMS_FINISH : '短信导出完成',
+    EXPORT_SMS_CANCEL : '您已取消短信导出操作',
     IMPORT_SELECT_FILE : '选择包含短信的 .CSV 文件',
     INVALID_FILE : '无效的 .csv 文件',
     SELECT_MESSAGE : '请选择要导出的短信',

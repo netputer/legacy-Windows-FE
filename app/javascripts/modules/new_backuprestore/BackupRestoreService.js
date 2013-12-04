@@ -987,6 +987,26 @@
             return deferred.promise();
         };
 
+        BackupRestoreService.formatFileName = function (fileName) {
+            var deferred = $.Deferred();
+
+            IO.requestAsync({
+                url : CONFIG.actions.FORMAT_BACKUP_FILE_NAME,
+                data : {
+                    file_name : fileName
+                },
+                success : function (resp) {
+                    if (resp.state_code === 200) {
+                        deferred.resolve(resp);
+                    } else {
+                        deferred.reject(resp);
+                    }
+                }
+            });
+
+            return deferred.promise();
+        };
+
         return BackupRestoreService;
     });
 }(this));
