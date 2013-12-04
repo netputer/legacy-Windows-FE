@@ -54,7 +54,7 @@
         var addHeader = function (collection) {
             var modelValues = {};
             if (collection.isBatch) {
-               var phoneNumbers = _.pluck(collection.toJSON(), 'phone_number');
+                var phoneNumbers = _.pluck(collection.toJSON(), 'phone_number');
                 modelValues = {
                     isBatch : true,
                     contactId : -1,
