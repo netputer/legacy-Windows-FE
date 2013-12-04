@@ -91,6 +91,7 @@ define({
     EXPORTING_SMS : 'Exporting messages, please wait...',
     EXPORT_SMS_FINISH : 'Exporting messages completed',
     IMPORT_SELECT_FILE : 'Select .csv files to import',
+    EXPORT_SMS_CANCEL : '您已取消短信导出操作',
     INVALID_FILE : 'Invalid .csv file',
     SELECT_MESSAGE : 'Select messages to export',
     NO_CONVERSATION : 'You haven\'t received any messages yet',
