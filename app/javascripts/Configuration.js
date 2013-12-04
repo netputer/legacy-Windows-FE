@@ -45,7 +45,7 @@
 
                 //BACKUPRESTORE
                 GET_LAST_BACKUP_TIME : 'wdj://window/get_latest_backup_time.json',
-
+                FORMAT_BACKUP_FILE_NAME : 'wdj://window/format_file_name.json',
 
                 DEVICE_GET_WALLPAPER : 'wdj://device/wallpaper.json',
                 DEVICE_GET_DEVICE_STATE : 'wdj://device/state.json',

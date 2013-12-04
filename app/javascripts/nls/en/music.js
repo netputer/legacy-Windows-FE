@@ -67,5 +67,5 @@ define({
     CONFIRM_IMPORT : 'You\'ve selected to import {1} of music to your device. Importing that much music at once will take an estimated {2} . <br/>Do you want to continue?',
     CAN_NOT_IMPORT_UNDER_WIFI : 'Connect via USB to import iTunes music',
 
-    MUSIC_EMPTY_TEXT_WANXIAODOU : 'Oh？No songs on your phone. '
+    MUSIC_EMPTY_TEXT_WANXIAODOU : 'Oh? No songs on your phone. '
 });
