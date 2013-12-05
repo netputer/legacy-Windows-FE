@@ -92,6 +92,7 @@
 
                 this.$el.html(this.template({}));
 
+                this.buildButton();
                 this.$('.button-send').prop({
                     disabled : !Device.get('isConnected')
                 });
