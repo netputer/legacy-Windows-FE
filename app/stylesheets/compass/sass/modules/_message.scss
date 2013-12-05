@@ -519,6 +519,12 @@
         margin-bottom: 10px;
     }
 
+    .w-ui-buttongroup {
+        .hbox {
+            margin-bottom: 0;
+        }
+    }
+
     .navigate {
         text-align: right;
         -webkit-box-flex: 1;
