@@ -487,9 +487,9 @@
                         var $sendBtn = $('<button>').addClass('primary button-send');
 
                         if (isDifferentService) {
-                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, serviceCenter[0].sim_name));
+                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, selectedSIM && serviceCenter[0].sim_id !== selectedSIM ? serviceCenter[1].sim_name : serviceCenter[0].sim_name));
                         } else {
-                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, 1));
+                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, selectedSIM && serviceCenter[0].sim_id !== selectedSIM ? 2 : 1));
                         }
 
                         var items = [];
