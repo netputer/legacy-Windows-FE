@@ -6,6 +6,7 @@
         'ui/Menu',
         'ui/behavior/ClickToHideMixin',
         'ui/AlertWindow',
+        'ui/ToastBox',
         'Internationalization',
         'Device',
         'Log',
@@ -20,6 +21,7 @@
         Menu,
         ClickToHideMixin,
         AlertWindow,
+        ToastBox,
         i18n,
         Device,
         log,
@@ -72,6 +74,17 @@
                 }, this);
             },
             deleteConversations : function () {
+
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                    var box = new ToastBox({
+                        $content : i18n.message.DELET_TIP_4_4
+                    });
+                    box.once('remove', function () {
+                        box = undefined;
+                    });
+                    box.show();
+                }
+
                 MessageService.deleteConversationAsync(this.options.selected);
 
                 log({
@@ -80,6 +93,17 @@
                 });
             },
             markAsReadConversations : function () {
+
+                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                    var box = new ToastBox({
+                        $content : i18n.message.MARK_AS_READ_TIP_4_4
+                    });
+                    box.once('remove', function () {
+                        box = undefined;
+                    });
+                    box.show();
+                }
+
                 MessageService.markAsReadAsync(this.options.selected);
 
                 log({
@@ -127,35 +151,29 @@
             addItems : function () {
                 var selected = this.options.selected;
 
-                this.items = [];
-                if (Device.get('SDKVersion') < CONFIG.enums.ANDROID_4_4) {
-                    this.items = [
-                    {
-                        type : 'normal',
-                        name : 'delete',
-                        value : 'delete',
-                        label : i18n.misc.DELETE,
-                        disabled : selected.length === 0 ||
-                                    !Device.get('isConnected')
-                    }, {
-                        type : 'normal',
-                        name : 'markAsRead',
-                        value : 'markAsRead',
-                        label : i18n.message.MARK_AS_READ,
-                        disabled : unreadInSelected(selected) === 0 ||
-                                    !Device.get('isConnected')
-                    }, {
-                        type : 'hr'
-                    }];
-                }
-
-                this.items.push({
+                this.items = [{
+                    type : 'normal',
+                    name : 'delete',
+                    value : 'delete',
+                    label : i18n.misc.DELETE,
+                    disabled : selected.length === 0 ||
+                                !Device.get('isConnected')
+                }, {
+                    type : 'normal',
+                    name : 'markAsRead',
+                    value : 'markAsRead',
+                    label : i18n.message.MARK_AS_READ,
+                    disabled : unreadInSelected(selected) === 0 ||
+                                !Device.get('isConnected')
+                }, {
+                    type : 'hr'
+                },{
                     type : 'normal',
                     name : 'export',
                     value : 'export',
                     label : i18n.misc.EXPORT,
                     disabled : false
-                });
+                }];
             }
         });
 

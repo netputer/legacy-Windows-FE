@@ -337,7 +337,11 @@
                 WELCOME_BACKGROUND : 'http://apps.wandoujia.com/startpage/api/v1/background',
                 WELCOME_FEEDS : 'http://apps.wandoujia.com/startpage/api/v1/feeds',
                 WELCOME_SINGLE_FEED : 'http://apps.wandoujia.com/startpage/api/v1/feed',
-                WELCOME_CHANGELOG : 'http://m.cfg.wandoujia.com/windows/index.php'
+                WELCOME_CHANGELOG : 'http://m.cfg.wandoujia.com/windows/index.php',
+
+                //4.4 support
+                APPLY_DEFAULT_APP : 'wdj://restore/apply_default_app.json',
+                RECOVER_DEFAULT_APP : 'wdj://restore/recover_default_app.json'
             },
             events : {
                 // Backend events - History
@@ -688,7 +692,7 @@
                 // Update Recommend Type
                 UPDATE_RECOMMEND : 'STRONG_RECOMMEND',
                 UPDATE_WARNING : 'WARNNING',
-                UPDATE_NOT_RECOMMEND : 'NOT_RECOMMEND'
+                UPDATE_NOT_RECOMMEND : 'NOT_RECOMMEND',
             }
         };
 

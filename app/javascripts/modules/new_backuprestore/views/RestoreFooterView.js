@@ -35,6 +35,7 @@
         console.log('RemoteFooterView - File loaded.');
 
         var alert = window.alert;
+        var confirm = window.confirm;
         var advanceView;
         var RemoteFooterView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('new_backuprestore', 'restore-footer')),
@@ -132,19 +133,36 @@
             clickBtnCancel : function () {
                 this.trigger('__CANCEL');
             },
+            checkDefault : function () {
+                BackupRestoreService.applyDefaultApp().done(function (resp){
+                    var isDefault = resp.body.value;
+                    if (isDefault) {
+                        this.trigger('__START_RESTORE');
+                    } else {
+                        confirm(i18n.new_backuprestore.RESTORE_ANDROID_4_4, function (){
+                            setTimeout(function () {
+                                this.checkDefault();
+                            }.bind(this), 500);
+                        }, this);
+                    }
+                }.bind(this));
+            },
             clickBtnStartRestore : function () {
                 if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4 && RestoreContextModel.isSmsSelected) {
-                    alert(i18n.new_backuprestore.RESTORE_SMS_DISABLE_ANDROID_4_4);
+                    this.checkDefault();
                 } else {
                     this.trigger('__START_RESTORE');
                 }
             },
             clickBtnDone : function () {
-                this.trigger('__DONE');
 
                 if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4 && RestoreContextModel.isSmsSelected) {
-                    alert(i18n.new_backuprestore.RESTORE_SMS_COMPLATE_ANDROID_4_4);
+                    alert(i18n.new_backuprestore.RECOVER_DEAFULT_4_4, function () {
+                        BackupRestoreService.recoverDefaultApp();
+                    });
                 }
+
+                this.trigger('__DONE');
             },
             clickBtnShowFile : function (evt) {
 

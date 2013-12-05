@@ -111,8 +111,9 @@ define({
     SEARCH_TIP : '{1} 个包含「{2}」的短消息',
     UNREAD_DES : '{1} 条未读短信',
 
-    NOT_SUPPORT_DELETE_4_4 : '豌豆荚暂时不支持在 Android 4.4 上删除短信',
-    NOT_SUPPORT_MARK_AS_READ_4_4 : '豌豆荚暂时不支持在 Android 4.4 上将短信标记已读',
-    NOT_SUPPORT_IMPORT_4_4 : '豌豆荚暂时不支持在 Android 4.4 上导入短信'
+    APPLY_DEFAULT_4_4 : '您使用的是最新最酷的 Android 4.4 版本，此版本导入短信需要您确认豌豆荚为默认短信应用，请在弹出的对话框中选择「是」。导入结束后豌豆荚会帮您改回原来的设置。',
+    RECOVER_DEAFULT_4_4 : '为保证您正常收发短信，请您在手机上还原默认短信应用。',
+    DELET_TIP_4_4 : '删除功能需要您在手机上设置豌豆荚为默认短信应用',
+    MARK_AS_READ_TIP_4_4 : '设为已读功能需要您在手机上设置豌豆荚为默认短信应用'
 
 });

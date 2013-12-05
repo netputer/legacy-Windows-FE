@@ -90,12 +90,6 @@
                     }.bind(this), 3000);
                 }
 
-                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
-                    this.tip =  new PopupTip({
-                        $host : this.$('.button-delete').removeAttr('title')
-                    });
-                }
-
                 return this;
             },
             clickItem : function () {
@@ -119,7 +113,13 @@
             clickButtonDelete : function () {
 
                 if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
-                    return;
+                    var box = new ToastBox({
+                        $content : i18n.message.DELET_TIP_4_4
+                    });
+                    box.once('remove', function () {
+                        box = undefined;
+                    });
+                    box.show();
                 }
 
                 this.model.deleteMessageAsync().done(this.remove.bind(this)).fail(function () {
