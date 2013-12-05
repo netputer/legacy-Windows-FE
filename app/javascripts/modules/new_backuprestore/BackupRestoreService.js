@@ -11,7 +11,7 @@
         'Internationalization',
         'Log',
         'utilities/StringUtil',
-        'ui/AlertWindow'
+        'new_backuprestore/views/AlertWindowView'
     ], function (
         Backbone,
         _,
@@ -23,11 +23,11 @@
         i18n,
         log,
         StringUtil,
-        AlertWindow
+        AlertWindowView
     ) {
         console.log('BackupRestoreService - File loaded.');
 
-        var alert = window.alert;
+        var alert = AlertWindowView.alert;
         var BackupRestoreService = _.extend({}, Backbone.Events);
 
         // ---------------------------- consts -------------------------------
@@ -228,8 +228,10 @@
 
         BackupRestoreService.showAndRecordError = function (evt, resp, type, hide) {
 
+            var typeList = [2, 5];
+
             if (!hide) {
-                alert(this.getErrorMessage(resp.state_code));
+                alert(this.getErrorMessage(resp.state_code), _.indexOf(typeList, type));
             }
             this.recordError(evt, resp, type);
         };
