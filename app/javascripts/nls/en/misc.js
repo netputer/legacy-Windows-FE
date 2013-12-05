@@ -13,6 +13,7 @@ define({
     USB_APK_UPDATING : 'After SnapPea finishes updating on your phone, you can start managing your phone...',
     USB_INSTALL_FAILED_NO_MORE_SPACE : 'Failed to install SnapPea on your phone, storage space is insufficient.',
     USB_INSTALL_FAILED_INTERNAL_ERROR : 'Failed to install SnapPea on your phone, internal error on phone.',
+    USB_INSTALL_ALLOW : '链接手机时，需要您在手机上允许安装豌豆荚才能正常连接',
     PHTONE_DISCONNECTED : 'Phone disconnected',
 
     POSIBLE_REASON : 'Possible reason:',

@@ -34,6 +34,13 @@
                         },
                         set : function (value) {
                             isLoadInfo = value;
+                            if (window.SnapPea.CurrentModule !== 'welcome') {
+                                return;
+                            }
+
+                            this.$el.css({
+                                visibility : value ? 'hidden' : 'visible'
+                            });
                         }
                     }
                 });
@@ -42,21 +49,8 @@
                     'data.channel' : CONFIG.events.DEVICE_USB_DETECT
                 }, this.stateHandler, this);
 
-                this.listenTo(Device, 'change:isFastADB', function (Device, isFastADB) {
-
-                    if (isFastADB){
-                        if (this.isLoadInfo && window.SnapPea.CurrentModule === 'welcome') {
-                            return;
-                        }
-
-                        this.$el.slideDown();
-                    } else {
-                        this.$el.slideUp();
-                    }
-                });
-
                 this.listenTo(Backbone, 'switchModule', function (data) {
-                    if (data.module === 'doraemon' || data.module === 'browser' || data.module === 'gallery') {
+                    if (data.module === 'doraemon' || data.module === 'browser' || data.module === 'gallery' || (this.isLoadInfo && data.module === 'welcome')) {
                         this.$el.css({
                             visibility : 'hidden'
                         });
@@ -89,6 +83,16 @@
                 return this;
             },
             stateHandler : function (data) {
+
+                data = parseInt(data, 10);
+                if (data === 1) {
+                     this.$el.slideUp();
+                     return;
+                }
+
+                this.$el.toggleClass('loading', data > 0)
+                    .toggleClass('error', data < 0);
+
                 var wording = {
                     '17' : i18n.misc.USB_APK_INSTALLING,
                     '18' : i18n.misc.USB_APK_UPDATING,
@@ -97,9 +101,9 @@
                     '-21' : i18n.misc.USB_UPDATE_FAILED,
                     '-26' : i18n.misc.USB_ROM_TOO_OLD,
                     '-27' : i18n.misc.USB_INSTALL_FAILED_NO_MORE_SPACE,
-                    '-31' : i18n.misc.USB_INSTALL_FAILED_INTERNAL_ERROR
+                    '-31' : i18n.misc.USB_INSTALL_FAILED_INTERNAL_ERROR,
+                    '-33' : i18n.misc.USB_INSTALL_ALLOW
                 };
-
                 var text = wording[data];
 
                 this.isLoadInfo = false;
@@ -113,26 +117,7 @@
                         this.$('.tip').html(i18n.misc.USB_LOADING_INFO_FAILED);
                     }
                 }
-
-                this.$el.toggleClass('loading', data > 0)
-                    .toggleClass('error', data < 0);
-
-                data = parseInt(data, 10);
-                if (data === 1) {
-                     this.$el.slideUp();
-                }
-
-                if (text) {
-                    this.$el.css({
-                        visibility : 'visible'
-                    });
-                } else {
-                    if (window.SnapPea.CurrentModule === 'welcome') {
-                        this.$el.css({
-                            visibility : 'hidden'
-                        });
-                    }
-                }
+                this.$el.slideDown();
             },
             clickButtonRetry : function () {
                 IO.requestAsync(CONFIG.actions.DEVICE_USB_REDETECT);
