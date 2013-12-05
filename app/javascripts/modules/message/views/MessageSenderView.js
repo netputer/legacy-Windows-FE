@@ -479,15 +479,22 @@
                     var serviceCenter = resp.body.sim || [];
 
                     if (serviceCenter.length > 0) {
+                        var isDifferentService = serviceCenter[0].sim_name && serviceCenter[1].sim_name && serviceCenter[0].sim_name !== serviceCenter[1].sim_name;
 
                         this.buttons.shift();
 
                         var $sendBtnGroup = $('<span>').addClass('w-ui-buttongroup button-send-group');
-                        var $sendBtn = $('<button>').addClass('primary button-send').html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, 1, resp.body.sim[0].sim_name));
+                        var $sendBtn = $('<button>').addClass('primary button-send');
+
+                        if (isDifferentService) {
+                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, serviceCenter[0].sim_name));
+                        } else {
+                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, 1));
+                        }
 
                         var items = [];
 
-                        _.each(resp.body.sim, function (service, i) {
+                        _.each(serviceCenter, function (service, i) {
                             items.push({
                                 type : 'radio',
                                 name : 'service-center-send-window',
@@ -515,7 +522,7 @@
                             }
                         });
 
-                        this.serviceCenter = selectedSIM || resp.body.sim[0].sim_id;
+                        this.serviceCenter = selectedSIM || serviceCenter[0].sim_id;
 
                         serviceBtn = new MenuButton({
                             items : items
@@ -529,10 +536,16 @@
                         });
 
                         serviceBtn.on('select', function (item) {
-                            var sim = resp.body.sim[item.value];
+                            var sim = serviceCenter[item.value];
+
                             if (sim) {
                                 this.serviceCenter = selectedSIM = sim.sim_id;
-                                $sendBtn.html(i18n.message.SEND + StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1, sim.sim_name));
+
+                                if (isDifferentService) {
+                                    $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, sim.sim_name));
+                                } else {
+                                    $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1));
+                                }
                             }
                         }, this);
 
