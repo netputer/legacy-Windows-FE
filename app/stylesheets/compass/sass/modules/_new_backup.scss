@@ -707,3 +707,22 @@
         }
     }
 }
+
+.w-ui-alert-window {
+    .w-ui-window-footer-monitor {
+        .qq-link {
+            display: block;
+
+            .icon {
+                @include backuprestore-sprite(qq);
+                display: inline-block;
+                height: 16px;
+                margin-left: 5px;
+                margin-top: 4px;
+                overflow: hidden;
+                vertical-align: top;
+                width: 16px;
+            }
+        }
+    }
+}

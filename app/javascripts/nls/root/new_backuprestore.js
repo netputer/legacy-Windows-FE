@@ -171,12 +171,13 @@ define({
     NAV_BACKUPING : '备份正在进行',
     NAV_RESTORING : '恢复正在进行',
     CUSTOM_UNZIP_BACKUP_FILE_ERROR : '很抱歉，解压缩失败，部分应用未能恢复。',
+    QQ : '<a class="qq-link" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA3NzExM184NDAzMl80MDA2NTI4NzA1XzJf" target="_default">联系豌豆帮忙解决一下<span class="icon"/></a>',
 
     CUSTOM_RESOURCE_LOCKED : '豌豆荚在 8 月 25 日碰到技术故障，当天我们暂时关闭了豌豆荚的账号服务，12 个小时后账号服务修复完成。但为了您的信息安全考虑，目前通过旧的密码将不能使用云恢复、云相册等功能。请您立即修改密码，以便正常使用豌豆荚。',
     SYNC_PHOTO_PUSH_NOTIFY_TITLE : '您需要自动下载云相册图片到电脑吗？',
     SYNC_PHOTO_PUSH_NOTIFY_CONTENT : '您手机上的照片已同步到云端。在电脑上开启云相册同步后，豌豆荚将自动将您云相册的图片下载到电脑，查看图片更方便。',
 
-    RESTORE_SMS_DISABLE_ANDROID_4_4 : '豌豆荚暂时不支持在 Android 4.4 上恢复短信。我们正在努力解决这个问题，谢谢您的理解和支持。',
-    RESTORE_SMS_ANDROID_4_4 : '由于 Android 4.4 系统的限制，为保证您能正常收发短信，请您在「设置」> 「更多」>「默认短信应用」中将「豌豆荚USB连接传输服务」设为默认短信程序。',
-    RESTORE_SMS_COMPLATE_ANDROID_4_4 : '备份完成，为保证您能正常收发短信，请您在「设置」> 「更多」>「默认短信应用」中将原有的短信程序恢复为默认。'
+
+    RESTORE_ANDROID_4_4 : '您使用的是最新最酷的 Android 4.4 版本，此版本恢复短信需要您确认豌豆荚为默认短信应用，请在弹出的对话框中选择「是」。恢复结束后豌豆荚会帮您改回原来的设置。',
+    RECOVER_DEAFULT_4_4 : '为保证您正常收发短信，请您在手机上还原默认短信应用。'
 });

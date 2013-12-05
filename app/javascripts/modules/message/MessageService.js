@@ -239,6 +239,40 @@
             return deferred.promise();
         };
 
+        MessageService.applyDefaultApp = function () {
+            var deferred = $.Deferred();
+
+            IO.requestAsync({
+                url : CONFIG.actions.APPLY_DEFAULT_APP,
+                success : function (resp) {
+                    if (resp.state_code === 200) {
+                        deferred.resolve(resp);
+                    } else {
+                        deferred.reject(resp);
+                    }
+                }
+            });
+
+            return deferred.promise();
+        };
+
+        MessageService.recoverDefaultApp = function () {
+            var deferred = $.Deferred();
+
+            IO.requestAsync({
+                url : CONFIG.actions.RECOVER_DEFAULT_APP,
+                success : function (resp) {
+                    if (resp.state_code === 200) {
+                        deferred.resolve(resp);
+                    } else {
+                        deferred.reject(resp);
+                    }
+                }
+            });
+
+            return deferred.promise();
+        };
+
         return MessageService;
     });
 }(this));
