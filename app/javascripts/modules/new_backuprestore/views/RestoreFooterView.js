@@ -139,10 +139,8 @@
                     if (isDefault) {
                         this.trigger('__START_RESTORE');
                     } else {
-                        confirm(i18n.new_backuprestore.RESTORE_ANDROID_4_4, function (){
-                            setTimeout(function () {
-                                this.checkDefault();
-                            }.bind(this), 500);
+                        confirm(i18n.new_backuprestore.RESTORE_ANDROID_4_4, function () {
+                            setTimeout(this.checkDefault.bind(this), 500);
                         }, this);
                     }
                 }.bind(this));
@@ -157,9 +155,7 @@
             clickBtnDone : function () {
 
                 if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4 && RestoreContextModel.isSmsSelected) {
-                    alert(i18n.new_backuprestore.RECOVER_DEAFULT_4_4, function () {
-                        BackupRestoreService.recoverDefaultApp();
-                    });
+                    alert(i18n.new_backuprestore.RECOVER_DEAFULT_4_4, BackupRestoreService.recoverDefaultApp);
                 }
 
                 this.trigger('__DONE');

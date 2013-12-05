@@ -45,18 +45,14 @@
                 }
             },
             checkDefault : function () {
-                MessageService.applyDefaultApp().done(function (resp){
+                MessageService.applyDefaultApp().done(function (resp) {
                     var isDefault = resp.body.value;
                     if (isDefault) {
                         importProgressView.importSms();
                     } else {
-                        confirm(i18n.message.APPLY_DEFAULT_4_4, function (){
-                            setTimeout(function () {
-                                this.checkDefault();
-                            }.bind(this), 500);
-                        }, function () {
-                            importProgressView.remove();
-                        }, this);
+                        confirm(i18n.message.APPLY_DEFAULT_4_4, function () {
+                            setTimeout(this.checkDefault.bind(this), 500);
+                        }, importProgressView.remove.bind(this), this);
                     }
                 }.bind(this));
             },
@@ -130,9 +126,7 @@
                 }, this);
 
                 importProgressView.on('_IMPORT_SMS_FINISH', function () {
-                    alert(i18n.message.RECOVER_DEAFULT_4_4, function () {
-                        MessageService.recoverDefaultApp();
-                    });
+                    alert(i18n.message.RECOVER_DEAFULT_4_4, MessageService.recoverDefaultApp);
                 });
             },
             showNextAndRemoveCurrent : function (currentView, targetView) {
