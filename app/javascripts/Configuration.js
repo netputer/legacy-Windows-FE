@@ -692,7 +692,7 @@
                 // Update Recommend Type
                 UPDATE_RECOMMEND : 'STRONG_RECOMMEND',
                 UPDATE_WARNING : 'WARNNING',
-                UPDATE_NOT_RECOMMEND : 'NOT_RECOMMEND',
+                UPDATE_NOT_RECOMMEND : 'NOT_RECOMMEND'
             }
         };
 
