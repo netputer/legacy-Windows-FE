@@ -122,6 +122,7 @@
                 this.$('.button-cancel').show();
             },
             clickFinishBtn : function () {
+                this.trigger('_IMPORT_SMS_FINISH');
                 this.remove();
             },
             clickCancelBtn : function () {

@@ -9,7 +9,7 @@
         'Configuration',
         'ui/AlertWindow',
         'ui/Toolbar',
-        'ui/PopupTip',
+        'ui/ToastBox',
         'ui/TemplateFactory',
         'message/MessageService',
         'message/collections/ConversationsCollection',
@@ -27,7 +27,7 @@
         CONFIG,
         AlertWindow,
         Toolbar,
-        PopupTip,
+        ToastBox,
         TemplateFactory,
         MessageService,
         ConversationsCollection,
@@ -70,15 +70,6 @@
                 conversationsListView.on('select:change', this.setButtonState, this);
 
                 this.setButtonState();
-
-                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
-                    _.each(['button-import', 'button-delete', 'button-export', 'button-mark-as-read'], function (className) {
-                        tips.push(new PopupTip({
-                            $host : this.$('.' + className)
-                        }));
-                    }, this);
-                }
-
                 return this;
             },
             setButtonState : function () {
@@ -114,31 +105,34 @@
             clickButtonDelete : function () {
 
                 if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
-                    return;
+                    var box = new ToastBox({
+                        $content : i18n.message.DELET_TIP_4_4
+                    });
+                    box.once('remove', function () {
+                        box = undefined;
+                    });
+                    box.show();
                 }
-
                 conversationsListView.deleteSelectedAsync();
             },
             clickButtonMarkAsRead : function () {
 
                 if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
-                    return;
+                    var box = new ToastBox({
+                        $content : i18n.message.MARK_AS_READ_TIP_4_4
+                    });
+                    box.once('remove', function () {
+                        box = undefined;
+                    });
+                    box.show();
                 }
-
                 conversationsListView.markAsReadAsync();
             },
             clickButtonImport : function () {
 
-                if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
-                    return;
-                }
-
-                var startImport = function () {
-                    MessageService.getSmsHasBackupAsync().done(function (resp) {
-                        ImportController.start(resp.body.value);
-                    });
-                };
-                startImport();
+                MessageService.getSmsHasBackupAsync().done(function (resp) {
+                    ImportController.start(resp.body.value);
+                });
             },
             clickButtonExport : function () {
 
