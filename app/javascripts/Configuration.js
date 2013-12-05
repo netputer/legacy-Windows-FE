@@ -207,6 +207,8 @@
                 PHOTO_CANCEL : 'wdj://photo/cancel.json',
                 PHOTO_IMPORT : 'wdj://photo/import.json',
                 PHOTO_EXPORT : 'wdj://photo/export.json',
+                PHOTO_CLOUD_SHOW : 'wdj://photo/show_cloud.json',
+                PHOTO_CLOUD_SYNC : 'wdj://photo/sync_cloud.json',
                 PHOTO_SHOW : 'wdj://photo/show.json',
                 PHOTO_SYNC : 'wdj://photo/sync.json',
                 PHOTO_CLOUD_THUMBNAIL : 'wdj://photo/cloud_thumbnail.json',
