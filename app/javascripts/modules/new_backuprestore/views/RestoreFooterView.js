@@ -143,7 +143,9 @@
                             setTimeout(this.checkDefault.bind(this), 500);
                         }, this);
                     }
-                }.bind(this));
+                }.bind(this)).fail(function (resp) {
+                    alert(i18n.new_backuprestore.UPDATA_USB_PROXY_4_4);
+                });
             },
             clickBtnStartRestore : function () {
                 if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4 && RestoreContextModel.isSmsSelected) {

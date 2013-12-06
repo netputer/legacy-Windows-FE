@@ -52,9 +52,11 @@
                     } else {
                         confirm(i18n.message.APPLY_DEFAULT_4_4, function () {
                             setTimeout(this.checkDefault.bind(this), 500);
-                        }, importProgressView.remove, this);
+                        }, importProgressView.remove.bind(importProgressView), this);
                     }
-                }.bind(this));
+                }.bind(this)).fail(function (resp) {
+                    alert(i18n.message.UPDATA_USB_PROXY_4_4, importProgressView.remove.bind(importProgressView));
+                });
             },
             buildEvents: function () {
                 importSelectFileView.off('_SWITCH_BUTTON');
