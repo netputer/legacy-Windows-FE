@@ -242,7 +242,7 @@
 </script>
 
 <script  type="text/x-ui-template" id="restore-file-list-item">
-    <div class="hbox name" title="{{= it.path}}">
+    <div class="hbox name wc" title="{{= it.path}}">
         <input class="item-checker" type="radio" value="{{= it.id}}"  name="fileList"/>{{= it.name}}
     </div>
     <div class="num-container hbox">
@@ -263,7 +263,7 @@
 </script>
 
 <script  type="text/x-ui-template" id="restore-remote-file-list-item">
-    <div class="hbox name">
+    <div class="hbox name wc">
         <input class="item-checker" type="radio" value="{{= it.timestamp}}" name="fileList"/>
         <span class="time">{{= it.time }}</span>
         <span class="device-name wc">{{= it.deviceName }}</span>
