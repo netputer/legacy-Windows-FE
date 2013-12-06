@@ -104,8 +104,7 @@
 
                 this.listenTo(Device, 'change:isConnected', function () {
                     var isConnected = Device.get('isConnected');
-                    this.$('.startbackup').prop('disabled', !isConnected);
-                    this.$('.advanced').toggle(isConnected);
+                    this.$('.startbackup, .advanced').prop('disabled', !isConnected);
                 });
 
                 this.listenTo(BackupContextModel, 'change:dataIDList', function () {
