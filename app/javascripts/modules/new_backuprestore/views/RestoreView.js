@@ -249,6 +249,14 @@
                 }
             },
             cancel : function () {
+
+                var showTip = function () {
+                    if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4 && RestoreContextModel.isSmsSelected) {
+                        alert(i18n.new_backuprestore.RECOVER_DEAFULT_4_4);
+                        BackupRestoreService.recoverDefaultApp();
+                    }
+                };
+
                 if (this.isProgressing) {
                     confirm(i18n.new_backuprestore.CANCEL_RESTORE, function () {
 
@@ -258,9 +266,7 @@
                         this.releaseWindow();
                         this.trigger('__CANCEL');
 
-                        if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4 && RestoreContextModel.isSmsSelected) {
-                            alert(i18n.new_backuprestore.RESTORE_SMS_COMPLATE_ANDROID_4_4);
-                        }
+                        showTip();
 
                         BackupRestoreService.restoreCancelAsync(this.sessionId).done(function () {
                             log({
@@ -286,6 +292,7 @@
 
                     footerView.toggleCancel(false);
                 } else {
+                    showTip();
                     this.releaseWindow();
                     this.trigger('__CANCEL');
                 }
