@@ -51,6 +51,7 @@ define({
     SELECT_COUNTACTS_TO_EXPORT : '请选择要导出的联系人',
     CURRENT_SELECT : '当前选中的联系人',
     CONTACT_HAS_NUMBER : '有电话号码的联系人',
+    EXPORT_CANTACT_CANCEL : '您已取消联系人导出操作',
     GROUP : '分组',
 
     MANAGE_GROUP : '管理分组...',

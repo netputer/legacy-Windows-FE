@@ -182,7 +182,7 @@
                     success : function () {
 
                         WindowController.releaseWindowAsync();
-                        alert(i18n.message.EXPORT_SMS_CANCEL);
+                        alert(i18n.contact.EXPORT_CANTACT_CANCEL);
                         this.trigger('_CANCEL');
                         IO.Backend.Device.offmessage(progressHandler);
                     }.bind(this)
