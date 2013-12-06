@@ -172,37 +172,37 @@
                 setTimeout(function () {
                     var $top = this.$('.top').append(deviceView.render().$el)
                                 .append(clockView.render().$el);
-                    this.loading = true;
+                    // this.loading = true;
 
-                    deviceView.$el.one('webkitAnimationEnd', function () {
-                        if (FunctionSwitch.ENABLE_USER_GUIDE &&
-                                !Settings.get('user_guide_shown')) {
-                            guideView = GuideView.getInstance();
-                            $top.after(guideView.render().$el);
-                        }
+                    // deviceView.$el.one('webkitAnimationEnd', function () {
+                    if (FunctionSwitch.ENABLE_USER_GUIDE &&
+                            !Settings.get('user_guide_shown')) {
+                        guideView = GuideView.getInstance();
+                        $top.after(guideView.render().$el);
+                    }
 
-                        this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
+                    this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
 
-                        var feedsCollection = FeedsCollection.getInstance();
-                        var noticeArray = [
-                            i18n.welcome.NO_MORE_1,
-                            i18n.welcome.NO_MORE_2,
-                            i18n.welcome.NO_MORE_3
-                        ];
+                    var feedsCollection = FeedsCollection.getInstance();
+                    var noticeArray = [
+                        i18n.welcome.NO_MORE_1,
+                        i18n.welcome.NO_MORE_2,
+                        i18n.welcome.NO_MORE_3
+                    ];
 
+                    this.loading = feedsCollection.loading;
+                    this.listenTo(feedsCollection, 'update refresh', function () {
                         this.loading = feedsCollection.loading;
-                        this.listenTo(feedsCollection, 'update refresh', function () {
-                            this.loading = feedsCollection.loading;
-                            if (feedsCollection.finish) {
-                                var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
-                                this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
-                            }
-                        });
+                        if (feedsCollection.finish) {
+                            var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
+                            this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
+                        }
+                    });
 
-                        this.$el.append(toolbarView.render().$el)
-                            .append(capacityBarView.render().$el)
-                            .on('scroll', this.scrollHandler);
-                    }.bind(this));
+                    this.$el.append(toolbarView.render().$el)
+                        .append(capacityBarView.render().$el)
+                        .on('scroll', this.scrollHandler);
+                    // }.bind(this));
                 }.bind(this), 1000);
 
                 this.showBackground();
