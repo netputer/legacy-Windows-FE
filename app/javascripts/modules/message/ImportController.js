@@ -126,8 +126,10 @@
                 }, this);
 
                 importProgressView.on('_IMPORT_SMS_FINISH', function () {
-                    MessageService.recoverDefaultApp();
-                    alert(i18n.message.RECOVER_DEAFULT_4_4);
+                    if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                        MessageService.recoverDefaultApp();
+                        alert(i18n.message.RECOVER_DEAFULT_4_4);
+                    }
                 });
             },
             showNextAndRemoveCurrent : function (currentView, targetView) {
