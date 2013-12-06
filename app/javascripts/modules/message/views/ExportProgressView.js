@@ -163,7 +163,7 @@
                         session : this.lastSessionId
                     }
                 }).done(function (resp) {
-                    alert(i18n.ui.CANCEL_EXPORT_TEXT);
+                    alert(i18n.message.EXPORT_SMS_CANCEL);
                     conversationsCollection.syncAsync();
                 }).always(function () {
                     WindowController.releaseWindowAsync();
