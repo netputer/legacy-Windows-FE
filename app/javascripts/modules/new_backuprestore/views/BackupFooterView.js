@@ -105,21 +105,18 @@
                 var startBtn = this.$('.startbackup');
                 var advancedBtn = this.$('.advanced');
 
-                if (Device.get('isConnected')) {
-                    advancedBtn.removeAttr('disabled');
-                } else {
-                    advancedBtn.attr('disabled', 'true');
-                }
+                var setState = function (Device, isConnected) {
 
-                this.listenTo(Device, 'change:isConnected', function (Device, isConnected) {
                     startBtn.prop('disabled', !isConnected);
                     if (isConnected) {
                         advancedBtn.removeAttr('disabled');
                     } else {
                         advancedBtn.attr('disabled', 'true');
                     }
-                });
+                };
+                setState(Device, Device.get('isConnected'));
 
+                this.listenTo(Device, 'change:isConnected', setState);
                 this.listenTo(BackupContextModel, 'change:dataIDList', function () {
                     var list = BackupContextModel.get('dataIDList');
                     this.enableBackupButton = (list.length !== 0);
