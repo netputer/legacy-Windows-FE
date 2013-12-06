@@ -712,6 +712,7 @@
                 var version = RestoreContextModel.get('remoteVersion');
                 var udid = RestoreContextModel.get('udid');
                 var types = RestoreContextModel.serverTypes;
+                this.isProgressing = true;
 
                 log({ 'event' : 'debug.restore.remote.download.start' });
 
