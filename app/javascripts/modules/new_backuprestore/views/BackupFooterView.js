@@ -102,9 +102,22 @@
             },
             initState : function () {
 
-                this.listenTo(Device, 'change:isConnected', function () {
-                    var isConnected = Device.get('isConnected');
-                    this.$('.startbackup, .advanced').prop('disabled', !isConnected);
+                var startBtn = this.$('.startbackup');
+                var advancedBtn = this.$('.advanced');
+
+                if (Device.get('isConnected')) {
+                    advancedBtn.removeAttr('disabled');
+                } else {
+                    advancedBtn.attr('disabled', 'true');
+                }
+
+                this.listenTo(Device, 'change:isConnected', function (Device, isConnected) {
+                    startBtn.prop('disabled', !isConnected);
+                    if (isConnected) {
+                        advancedBtn.removeAttr('disabled');
+                    } else {
+                        advancedBtn.attr('disabled', 'true');
+                    }
                 });
 
                 this.listenTo(BackupContextModel, 'change:dataIDList', function () {
@@ -115,7 +128,7 @@
                 if (!this.isLocal) {
                     this.listenTo(Account, 'change:isLogin', function () {
                         var isLogin = Account.get('isLogin');
-                        this.$('.startbackup').prop('disabled', !isLogin);
+                        startBtn.prop('disabled', !isLogin);
                     });
                 }
 
