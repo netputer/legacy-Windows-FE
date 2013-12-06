@@ -49,6 +49,12 @@
                     'data.channel' : CONFIG.events.DEVICE_USB_DETECT
                 }, this.stateHandler, this);
 
+                this.listenTo(Device, 'change:isFastADB', function (Device, isFastADB) {
+                    if (!isFastADB) {
+                        this.$el.slideUp();
+                    }
+                });
+
                 this.listenTo(Backbone, 'switchModule', function (data) {
                     if (data.module === 'doraemon' || data.module === 'browser' || data.module === 'gallery' || (this.isLoadInfo && data.module === 'welcome')) {
                         this.$el.css({

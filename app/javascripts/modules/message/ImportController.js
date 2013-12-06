@@ -52,7 +52,7 @@
                     } else {
                         confirm(i18n.message.APPLY_DEFAULT_4_4, function () {
                             setTimeout(this.checkDefault.bind(this), 500);
-                        }, importProgressView.remove.bind(this), this);
+                        }, importProgressView.remove, this);
                     }
                 }.bind(this));
             },
@@ -126,7 +126,8 @@
                 }, this);
 
                 importProgressView.on('_IMPORT_SMS_FINISH', function () {
-                    alert(i18n.message.RECOVER_DEAFULT_4_4, MessageService.recoverDefaultApp);
+                    MessageService.recoverDefaultApp();
+                    alert(i18n.message.RECOVER_DEAFULT_4_4);
                 });
             },
             showNextAndRemoveCurrent : function (currentView, targetView) {
