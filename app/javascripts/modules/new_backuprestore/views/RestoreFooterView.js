@@ -139,7 +139,7 @@
                     if (isDefault) {
                         this.trigger('__START_RESTORE');
                     } else {
-                        alert(i18n.new_backuprestore.RESTORE_ANDROID_4_4, function () {
+                        confirm(i18n.new_backuprestore.RESTORE_ANDROID_4_4, function () {
                             setTimeout(this.checkDefault.bind(this), 500);
                         }, this);
                     }
