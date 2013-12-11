@@ -19,7 +19,7 @@
         'welcome/views/ClockView',
         'welcome/views/DeviceView',
         'welcome/views/ToolbarView',
-        'welcome/views/GuideView',
+        // 'welcome/views/GuideView',
         'welcome/views/FeedListView',
         'welcome/collections/FeedsCollection',
         'welcome/views/TipsCardView',
@@ -43,7 +43,7 @@
         ClockView,
         DeviceView,
         ToolbarView,
-        GuideView,
+        // GuideView,
         FeedListView,
         FeedsCollection,
         TipsCardView,
@@ -55,7 +55,7 @@
         var clockView;
         var toolbarView;
         var capacityBarView;
-        var guideView;
+        // var guideView;
         var feedListView;
 
         var WelcomeView = Backbone.View.extend({
@@ -91,29 +91,29 @@
                     }
                 });
 
-                this.listenTo(Backbone, 'welcome:showTips', function () {
-                    this.$('.top').after(guideView.render(true).$el);
-                    setTimeout(this.switchToGuide.bind(this));
-                });
+                // this.listenTo(Backbone, 'welcome:showTips', function () {
+                //     this.$('.top').after(guideView.render(true).$el);
+                //     setTimeout(this.switchToGuide.bind(this));
+                // });
 
-                if (FunctionSwitch.ENABLE_USER_GUIDE) {
-                    if (!Settings.get('user_guide_shown')) {
-                        var handlerReady = IO.Backend.Device.onmessage({
-                            'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
-                        }, function () {
-                            this.switchToGuide();
-                            IO.Backend.Device.offmessage(handlerReady);
-                        }, this);
-                    }
+                // if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                //     if (!Settings.get('user_guide_shown')) {
+                //         var handlerReady = IO.Backend.Device.onmessage({
+                //             'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
+                //         }, function () {
+                //             this.switchToGuide();
+                //             IO.Backend.Device.offmessage(handlerReady);
+                //         }, this);
+                //     }
 
-                    IO.Backend.Device.onmessage({
-                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
-                    }, this.switchToBillboard, this);
+                //     IO.Backend.Device.onmessage({
+                //         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
+                //     }, this.switchToBillboard, this);
 
-                    IO.Backend.Device.onmessage({
-                        'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY
-                    }, this.switchToBillboard, this);
-                }
+                //     IO.Backend.Device.onmessage({
+                //         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY
+                //     }, this.switchToBillboard, this);
+                // }
             },
             moveComponents : function (scrollTop) {
                 scrollTop = scrollTop >= 400 ? 400 : scrollTop;
@@ -170,16 +170,16 @@
                 this.listenTo(toolbarView, 'top', this.scrollTopAnimation);
 
                 setTimeout(function () {
-                    var $top = this.$('.top').append(deviceView.render().$el)
+                    this.$('.top').append(deviceView.render().$el)
                                 .append(clockView.render().$el);
                     // this.loading = true;
 
                     // deviceView.$el.one('webkitAnimationEnd', function () {
-                    if (FunctionSwitch.ENABLE_USER_GUIDE &&
-                            !Settings.get('user_guide_shown')) {
-                        guideView = GuideView.getInstance();
-                        $top.after(guideView.render().$el);
-                    }
+                    // if (FunctionSwitch.ENABLE_USER_GUIDE &&
+                    //         !Settings.get('user_guide_shown')) {
+                    //     guideView = GuideView.getInstance();
+                    //     $top.after(guideView.render().$el);
+                    // }
 
                     this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
 
@@ -225,33 +225,33 @@
 
                 return this;
             },
-            scrollToGuide : function () {
-                if (Settings.get('user_guide_first_shown')) {
-                    return;
-                }
+            // scrollToGuide : function () {
+            //     if (Settings.get('user_guide_first_shown')) {
+            //         return;
+            //     }
 
-                this.$el.animate({
-                    scrollTop : guideView.$el.offset().top - 65
-                }, 1000);
+            //     this.$el.animate({
+            //         scrollTop : guideView.$el.offset().top - 65
+            //     }, 1000);
 
-                Settings.set('user_guide_first_shown', true, true);
-            },
-            switchToGuide : function () {
-                guideView.$el.show().css('height', '360px').one('webkitTransitionEnd', this.scrollToGuide.bind(this));
+            //     Settings.set('user_guide_first_shown', true, true);
+            // },
+            // switchToGuide : function () {
+            //     guideView.$el.show().css('height', '360px').one('webkitTransitionEnd', this.scrollToGuide.bind(this));
 
-                this.$('.feed-ctn').find('.tips').toggleClass('hide', true);
-                feedListView.initLayout();
-            },
-            switchToBillboard : function () {
-                if (guideView.$el.css('height') === '0px') {
-                    guideView.remove();
-                } else {
-                    guideView.$el.css('height', 0).one('webkitTransitionEnd', guideView.remove.bind(guideView));
-                }
+            //     this.$('.feed-ctn').find('.tips').toggleClass('hide', true);
+            //     feedListView.initLayout();
+            // },
+            // switchToBillboard : function () {
+            //     if (guideView.$el.css('height') === '0px') {
+            //         guideView.remove();
+            //     } else {
+            //         guideView.$el.css('height', 0).one('webkitTransitionEnd', guideView.remove.bind(guideView));
+            //     }
 
-                this.$('.feed-ctn .tips').toggleClass('hide', false);
-                feedListView.initLayout();
-            },
+            //     this.$('.feed-ctn .tips').toggleClass('hide', false);
+            //     feedListView.initLayout();
+            // },
             scrollTopAnimation : function () {
                 this.$el.animate({
                     scrollTop : 0
