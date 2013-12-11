@@ -13,7 +13,7 @@
 <script type="text/x-ui-template" id="gallery-switch">
     <div class="icon category"></div>
     <div class="label">{{= it.name }}</div>
-    <div class="button-management icon-setting" data-title="{{= i18n.misc.MANGEMENT }}"></div>
+    <div class="button-management icomoon-setting" data-title="{{= i18n.misc.MANGEMENT }}"></div>
 </script>
 
 <script type="text/x-ui-template" id="gallery-optimize">

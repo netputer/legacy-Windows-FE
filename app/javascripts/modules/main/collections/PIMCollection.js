@@ -32,7 +32,7 @@
             root : true,
             count : -1,
             order : 20,
-            icon : 'icon-nav-contact'
+            icon : 'icomoon-nav-contact'
         }, {
             label : i18n.misc.NAV_SMS,
             module : 'message',
@@ -41,7 +41,7 @@
             root : true,
             count : 0,
             order : 30,
-            icon : 'icon-nav-sms'
+            icon : 'icomoon-nav-sms'
         }, {
             label : i18n.misc.NAV_APP,
             module : 'app',
@@ -49,7 +49,7 @@
             id : 3,
             root : true,
             order : 10,
-            icon : 'icon-nav-app'
+            icon : 'icomoon-nav-app'
         }, {
             label : i18n.misc.NAV_MUSIC,
             id : 4,
@@ -57,14 +57,14 @@
             module : 'music',
             tab : 'music',
             order : 40,
-            icon : 'icon-nav-music'
+            icon : 'icomoon-nav-music'
         }, {
             label : i18n.misc.NAV_PIC,
             id : 5,
             root : true,
             count : -1,
             order : 50,
-            icon : 'icon-nav-photo',
+            icon : 'icomoon-nav-photo',
             module : 'photo',
             tab : 'phone'
         }, {
@@ -74,7 +74,7 @@
             module : 'video',
             tab : 'video',
             order : 60,
-            icon : 'icon-nav-video'
+            icon : 'icomoon-nav-video'
         }, {
             label : i18n.misc.NAV_BACKUP_RESTORE,
             id : 20,
@@ -93,7 +93,7 @@
             module : 'app-wash',
             tab : 'app-wash',
             order : 90,
-            icon : 'icon-nav-wash',
+            icon : 'icomoon-nav-wash',
             hide : !FunctionSwitch.ENABLE_APP_WASH
         }, {
             label : i18n.misc.NAV_CONTACT_ALL,
