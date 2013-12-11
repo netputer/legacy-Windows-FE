@@ -2,13 +2,13 @@
 <script type="text/x-ui-template" id="toolbar">
     <input type="checkbox" class="check-select-all" />
     <button class="w-icon-btn primary button-add-music min">
-        <span class="icon add"></span>{{= i18n.music.ADD_LOCAL_MUSIC_TEXT }}
+        <span class="icomoon-add-circle"></span>{{= i18n.music.ADD_LOCAL_MUSIC_TEXT }}
     </button>
     <button class="w-icon-btn button-delete min">
-        <span class="icon delete"></span>{{= i18n.misc.DELETE }}
+        <span class="icomoon-delete"></span>{{= i18n.misc.DELETE }}
     </button>
     <button class="w-icon-btn button-export min">
-        <span class="icon export"></span>{{= i18n.misc.EXPORT }}
+        <span class="icomoon-export"></span>{{= i18n.misc.EXPORT }}
     </button>
     <div class="itunes-wrap">
         <button class="w-icon-btn button-itunes min">
