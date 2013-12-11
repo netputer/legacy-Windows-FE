@@ -33,15 +33,15 @@
             count : -1,
             order : 20,
             icon : 'contact'
-        }, {
-            label : i18n.misc.NAV_SMS,
-            module : 'message',
-            tab : 'all',
-            id : 2,
-            root : true,
-            count : 0,
-            order : 30,
-            icon : 'sms'
+        // }, {
+        //     label : i18n.misc.NAV_SMS,
+        //     module : 'message',
+        //     tab : 'all',
+        //     id : 2,
+        //     root : true,
+        //     count : 0,
+        //     order : 30,
+        //     icon : 'sms'
         }, {
             label : i18n.misc.NAV_APP,
             module : 'app',
@@ -85,16 +85,16 @@
             count : -1,
             syncing : false,
             icon : 'backup'
-        }, {
-            label : i18n.app.APP_WASH,
-            id : 19,
-            count : -1,
-            root : true,
-            module : 'app-wash',
-            tab : 'app-wash',
-            order : 90,
-            icon : 'wash',
-            hide : !FunctionSwitch.ENABLE_APP_WASH
+        // }, {
+        //     label : i18n.app.APP_WASH,
+        //     id : 19,
+        //     count : -1,
+        //     root : true,
+        //     module : 'app-wash',
+        //     tab : 'app-wash',
+        //     order : 90,
+        //     icon : 'wash',
+        //     hide : !FunctionSwitch.ENABLE_APP_WASH
         }, {
             label : i18n.misc.NAV_CONTACT_ALL,
             id : 7,
