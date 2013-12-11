@@ -265,7 +265,7 @@
             }
 
             .button-dislike {
-                @include button-close;
+                // @include button-close;
                 display: none;
                 position: absolute;
                 right: 0;
@@ -283,6 +283,7 @@
                 }
 
                 .button-dislike {
+                    // @TODO: color
                     margin-top: 10px;
                     display: block;
                 }
@@ -802,6 +803,7 @@
             }
         }
 
+        // @TODO
         .button-like.checked {
             .icon {
                 @include sprite-sprite(liked);
