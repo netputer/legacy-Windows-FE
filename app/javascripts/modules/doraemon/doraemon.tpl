@@ -44,17 +44,17 @@
 <script type="text/x-ui-template" id="toolbar">
     <input type="checkbox" class="check-select-all" />
     <button class="w-icon-btn button-gallery primary min">
-        <span class="icon add"></span>{{= i18n.misc.ADD_COLLECT }}
+        <span class="icomoon icomoon-add-circle"></span>{{= i18n.misc.ADD_COLLECT }}
     </button>
     <button class="w-icon-btn button-up min">
-        <span class="icon up"></span>{{= i18n.misc.MOVE_UP }}
+        <span class="icomoon icomoon-up"></span>{{= i18n.misc.MOVE_UP }}
     </button>
     <button class="w-icon-btn button-down min">
-        <span class="icon move-down"></span>{{= i18n.misc.MOVE_DOWN }}
+        <span class="icomoon icomoon-down"></span>{{= i18n.misc.MOVE_DOWN }}
     </button>
     <div class="split"></div>
     <button class="w-icon-btn button-unstar min">
-        <span class="icon delete"></span>{{= i18n.misc.REMOVE_COLLECT }}
+        <span class="icomoon icomoon-delete"></span>{{= i18n.misc.REMOVE_COLLECT }}
     </button>
     <div class="flex-right hbox">
         <div class="debug-wrap hbox">
@@ -63,7 +63,7 @@
         </div>
         <div class="split"></div>
         <button class="w-icon-btn button-reset min">
-            <span class="icon reset"></span>
+            <span class="icomoon icomoon-refresh"></span>
             {{= i18n.misc.REST_EXTENTION }}
         </button>
     </div>
@@ -156,7 +156,7 @@
         <div class="split"></div>
         <div class="label text-secondary">{{= i18n.misc.DEVELOPER_LABEL }}</div>
         <button class="w-icon-btn browser-nav button-reload" title="{{= i18n.misc.RELOAD_EXTENTION }}">
-            <span class="icon reload"></span>
+            <span class="icomoon icomoon-refresh"></span>
         </button>
     </span>
     {{?}}
