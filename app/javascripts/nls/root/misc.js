@@ -74,7 +74,7 @@ define({
     ADD_FILE : '添加文件',
     ADD_FOLDER : '添加文件夹',
 
-    NAV_WELCOME_TO_WDJ : '欢迎使用豌豆荚',
+    NAV_WELCOME_TO_WDJ : '苏宁门店手机助手',
     NAV_OPTIMIZE : '手机体检',
     NAV_CONTACT : '通讯录管理',
     NAV_CONTACT_ALL : '全部联系人',
