@@ -379,7 +379,7 @@
         }
 
         .button-delete {
-            @include button-sprite(delete);
+            // @include button-sprite(delete);
             cursor: default;
             display: inline-block;
             height: 16px;
@@ -387,12 +387,14 @@
             vertical-align: middle;
             width: 16px;
 
+            // @TODO
+
             &:hover {
-                @include button-sprite(delete-hover);
+                // @include button-sprite(delete-hover);
             }
 
             &:active {
-                @include button-sprite(delete-active);
+                // @include button-sprite(delete-active);
             }
         }
     }

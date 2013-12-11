@@ -132,16 +132,17 @@
             }
 
             .button-play {
-                @include sprite-sprite(play-audio);
+                // @include sprite-sprite(play-audio);
                 display: none;
             }
 
             .error {
+                // @TODO different color from .button-play
                 @include sprite-sprite(play-error);
             }
 
             .button-stop {
-                @include sprite-sprite(stop-audio);
+                // @include sprite-sprite(stop-audio);
             }
         }
     }

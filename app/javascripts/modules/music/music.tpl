@@ -12,7 +12,7 @@
     </button>
     <div class="itunes-wrap">
         <button class="w-icon-btn button-itunes min">
-            <span class="icon itunes"></span>{{= i18n.music.ITUNES_IMPORT }}
+            <span class="icomoon icomoon-itunes"></span>{{= i18n.music.ITUNES_IMPORT }}
         </button>
     </div>
 </script>
@@ -41,14 +41,14 @@
     <div class="title wc" title="{{! it.title }}">{{! it.title }}</div>
     <div class="play">
         {{? it.playing }}
-        <div class="button-stop" title="{{= i18n.misc.STOP }}"></div>
+        <div class="button-stop icomoon icomoon-stop" title="{{= i18n.misc.STOP }}"></div>
         <div class="playing"></div>
         {{?? it.loading }}
         <div class="loading"></div>
         {{?? it.error }}
         <div class="error" title="{{= i18n.music.MUSIC_CANNOT_PLAY_TEXT }}"></div>
         {{??}}
-        <div class="button-play" title="{{= i18n.misc.PLAY }}"></div>
+        <div class="button-play icomoon icomoon-sound" title="{{= i18n.misc.PLAY }}"></div>
         {{?}}
     </div>
     <div class="artist text-secondary wc" title="{{! it.artist }}">{{! it.artist }}</div>
