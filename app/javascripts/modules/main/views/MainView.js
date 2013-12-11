@@ -48,7 +48,11 @@
         var navigateHandler = function (msg) {
             switch (msg.type) {
             case CONFIG.enums.NAVIGATE_TYPE_MARKET:
-                this.getModule('browser').navigate('http://apps.wandoujia.com/apps/' + msg.id +'?pos=w/search');
+                if (msg.id) {
+                    this.getModule('browser').navigate('http://apps.wandoujia.com/apps/' + msg.id +'?pos=w/search');
+                } else {
+                    this.getModule('browser').navigate('http://apps.wandoujia.com/');
+                }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_MARKET_SEARCH:
                 this.getModule('browser').navigate('http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword);
