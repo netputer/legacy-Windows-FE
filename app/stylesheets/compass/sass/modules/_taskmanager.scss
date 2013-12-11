@@ -27,7 +27,8 @@
 
         .w-ui-toolbar {
             .button-close {
-                @include button-close;
+                // @include button-close;
+                // TODO: hover
                 margin-top: -8px;
                 position: absolute;
                 right: 10px;
