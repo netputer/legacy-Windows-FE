@@ -248,20 +248,20 @@
 <script type="text/x-ui-template" id="toolbar">
     <span class="w-ui-buttongroup screen-shot-setting">
         <button class="w-icon-btn transparent min button-screen-shot" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
-            <span class="icon screenshot"></span>{{= i18n.welcome.SCREEN_SHOT_TEXT }}
+            <span class="icomoon-screenshot"></span>{{= i18n.welcome.SCREEN_SHOT_TEXT }}
         </button>
     </span>
     <button class="w-icon-btn button-backup transparent min">
-        <span class="icon backup"></span>{{= i18n.welcome.TOOL_BACKUP }}
+        <span class="icomoon-backup"></span>{{= i18n.welcome.TOOL_BACKUP }}
     </button>
     <button class="w-icon-btn button-restore transparent min">
-        <span class="icon restore"></span>{{= i18n.welcome.TOOL_RECOVERY }}
+        <span class="icomoon-restore"></span>{{= i18n.welcome.TOOL_RECOVERY }}
     </button>
     <button class="w-icon-btn button-open-sd transparent min" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
-        <span class="icon sd-white"></span>{{= i18n.misc.MANAGE_SD_CARD }}
+        <span class="icomoon-sd"></span>{{= i18n.misc.MANAGE_SD_CARD }}
     </button>
     <button class="w-icon-btn button-set-wallpaper transparent min" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
-        <span class="icon wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
+        <span class="icomoon-wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
     </button>
     <div class='spliter'></div>
     <button class="button-top transparent min">{{= i18n.welcome.TOP }}</button>
@@ -270,20 +270,20 @@
 <script type="text/x-ui-template" id="capacitybar">
     <div class="info hbox">
         <div class="info-device hbox">
-            <span class="icon device"></span>
+            <span class="icomoon-device"></span>
             {{ var percent = parseInt((it.deviceCapacity - it.deviceFreeCapacity) / it.deviceCapacity * 100, 10); }}
             <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
         {{? it.internalSDCapacity > 0 }}
         <div class="info-sd-internal hbox" data-path="{{= it.internalSDPath }}">
-            <span class="icon sd{{? it.externalSDCapacity > 0 }}-internal{{?}}"></span>
+            <span class="icomoon-sd{{? it.externalSDCapacity > 0 }}-first{{?}}"></span>
             {{ var percent = parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
             <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
         {{?}}
         {{? it.externalSDCapacity > 0 }}
         <div class="info-sd-external hbox" data-path="{{= it.externalSDPath }}">
-            <span class="icon sd{{? it.internalSDCapacity > 0 }}-external{{?}}"></span>
+            <span class="icomoon-sd{{? it.internalSDCapacity > 0 }}-second{{?}}"></span>
             {{ var percent = parseInt((it.externalSDCapacity - it.externalSDFreeCapacity) / it.externalSDCapacity * 100, 10); }}
             <progress class="progress{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
@@ -294,25 +294,25 @@
 <script type="text/x-ui-template" id="device-tools">
     <div class="btn-ctn">
         <button class="w-icon-btn transparent min button-capture">
-            <span class="icon capture"></span>
+            <span class="icomoon-screenshot"></span>
             {{= i18n.welcome.SCREEN_SHOT_TEXT }}
         </button>
     </div>
     <div class="btn-ctn">
         <button class="w-icon-btn transparent min button-refresh">
-            <span class="icon refresh"></span>
+            <span class="icomoon-refresh"></span>
             {{= i18n.misc.REFRESH }}
         </button>
     </div>
     <div class="btn-ctn">
         <button class="w-icon-btn transparent min button-play">
-            <span class="icon play"></span>
+            <span class="icomoon-play"></span>
             <span class="label">{{= i18n.misc.PLAY }}</span>
         </button>
     </div>
     <div class="btn-ctn">
         <button class="w-icon-btn transparent min button-fullscreen">
-            <span class="icon fullscreen"></span>
+            <span class="icomoon-fullscreen"></span>
             {{= i18n.welcome.FULLSCREEN_BTN_TEXT }}
         </button>
     </div>
