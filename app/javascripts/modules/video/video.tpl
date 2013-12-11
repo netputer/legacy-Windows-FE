@@ -71,13 +71,13 @@
 <script type="text/x-ui-template" id="toolbar">
     <input type="checkbox" class="check-select-all" />
     <button class="w-icon-btn primary button-import min">
-        <span class="icomoon-add-circle"></span>{{= i18n.video.ADD_LOCAL_VIDEO_TEXT }}
+        <span class="icomoon icomoon-add-circle"></span>{{= i18n.video.ADD_LOCAL_VIDEO_TEXT }}
     </button>
     <button class="w-icon-btn button-delete min">
-        <span class="icomoon-delete"></span>{{= i18n.misc.DELETE }}
+        <span class="icomoon icomoon-delete"></span>{{= i18n.misc.DELETE }}
     </button>
     <button class="w-icon-btn button-export min">
-        <span class="icomoon-export"></span>{{= i18n.misc.EXPORT }}
+        <span class="icomoon icomoon-export"></span>{{= i18n.misc.EXPORT }}
     </button>
 </script>
 </templates>

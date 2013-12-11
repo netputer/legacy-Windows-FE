@@ -86,7 +86,7 @@
                     }]
                 });
 
-                settingButton.render().$el.addClass('w-icon-btn hbox min').prepend($('<span>').addClass('icomoon-ringtone'));
+                settingButton.render().$el.addClass('w-icon-btn hbox min').prepend($('<span>').addClass('icomoon icomoon-ringtone'));
 
                 settingButton.on('select', function (data) {
                     var type = parseInt(data.value, 10);

@@ -392,7 +392,7 @@
 
 <script type="text/x-ui-template" id="quick-add">
     <h3 class="legend">
-        <span class="icomoon-add" />{{= i18n.contact.QUICK_ADD_CONTACT }}
+        <span class="icomoon icomoon-add" />{{= i18n.contact.QUICK_ADD_CONTACT }}
     </h3>
     <form class="new-contact" onsubmit="javascript: return false;">
         <dl class="cf">
@@ -433,20 +433,20 @@
 <script type="text/x-ui-template" id="toolbar">
     <input type="checkbox" class="check-select-all" />
     <button class="w-icon-btn primary button-new min">
-        <span class="icomoon-add-circle"></span>{{= i18n.contact.BUTTON_ADD_CONTACT_LABEL }}
+        <span class="icomoon icomoon-add-circle"></span>{{= i18n.contact.BUTTON_ADD_CONTACT_LABEL }}
     </button>
     <button class="w-icon-btn button-delete min">
-        <span class="icomoon-delete"></span>{{= i18n.misc.DELETE }}
+        <span class="icomoon icomoon-delete"></span>{{= i18n.misc.DELETE }}
     </button>
     <button class="w-icon-btn button-merge min">
-        <span class="icomoon-merge"></span>{{= i18n.contact.MERGE }}
+        <span class="icomoon icomoon-merge"></span>{{= i18n.contact.MERGE }}
     </button>
     <div class="split"></div>
     <button class="w-icon-btn button-import min">
-        <span class="icomoon-import"></span>{{= i18n.misc.IMPORT }}
+        <span class="icomoon icomoon-import"></span>{{= i18n.misc.IMPORT }}
     </button>
     <button class="w-icon-btn button-export min">
-        <span class="icomoon-export"></span>{{= i18n.misc.EXPORT }}
+        <span class="icomoon icomoon-export"></span>{{= i18n.misc.EXPORT }}
     </button>
     <div class="selector-wrap hbox">
         {{? Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||

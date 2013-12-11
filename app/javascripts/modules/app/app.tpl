@@ -3,7 +3,7 @@
     <div class="notifier-ctn">
         <div class="update-all">
             <button class="w-icon-btn button-update-all">
-                <span class="icomoon-up-circle"></span>
+                <span class="icomoon icomoon-up-circle"></span>
                 <span class="label"></span>
             </button>
             <div class="des text-thirdly"></div>
@@ -43,7 +43,7 @@
         </div>
     </div>
     <button class="button-install primary min">{{= i18n.app.INSTALL }}</button>
-    <div class="button-dislike icomoon-no" data-title="{{= i18n.app.DISLIKE }}"></div>
+    <div class="button-dislike icomoon icomoon-no" data-title="{{= i18n.app.DISLIKE }}"></div>
 </script>
 
 <script type="text/x-ui-template" id="application-commentary">
@@ -63,11 +63,11 @@
     </div>
     <div class="btn-ctn">
         <span class="w-ui-buttongroup">
-            <button class="w-icon-btn button-like min" data-title="{{= i18n.app.LIKE }}"><span class="icomoon-like"></span></button>
-            <button class="w-icon-btn button-dislike min" data-title="{{= i18n.app.UNLIKE }}"><span class="icomoon-dislike"></span></button>
+            <button class="w-icon-btn button-like min" data-title="{{= i18n.app.LIKE }}"><span class="icomoon icomoon-like"></span></button>
+            <button class="w-icon-btn button-dislike min" data-title="{{= i18n.app.UNLIKE }}"><span class="icomoon icomoon-dislike"></span></button>
         </span>
-        <button class="w-icon-btn button-comment min"><span class="icomoon-comment"></span>{{= i18n.app.COMMENTARY }}</button>
-        <button class="w-icon-btn button-share min"><span class="icomoon-share"></span>{{= i18n.misc.SHARE}}</button>
+        <button class="w-icon-btn button-comment min"><span class="icomoon icomoon-comment"></span>{{= i18n.app.COMMENTARY }}</button>
+        <button class="w-icon-btn button-share min"><span class="icomoon icomoon-share"></span>{{= i18n.misc.SHARE}}</button>
     </div>
     <div class="input-ctn">
         <textarea placeholder="{{= StringUtil.format(i18n.app.COMMENTARY_PLACEHOLDER, it.base_info.name) }}" class="input-content"></textarea>
@@ -415,23 +415,23 @@
 <script type="text/x-ui-template" id="toolbar">
     <input type="checkbox" class="check-select-all" />
     <button class="w-icon-btn primary button-install min">
-        <span class="icomoon-add-circle"></span>{{= i18n.app.BUTTON_ADD_APP_LABEL }}
+        <span class="icomoon icomoon-add-circle"></span>{{= i18n.app.BUTTON_ADD_APP_LABEL }}
     </button>
     <button class="w-icon-btn button-update min">
-        <span class="icomoon-up-circle"></span>{{= i18n.app.UPDATE }}
+        <span class="icomoon icomoon-up-circle"></span>{{= i18n.app.UPDATE }}
     </button>
     <button class="w-icon-btn button-uninstall min">
-        <span class="icomoon-delete"></span>{{= i18n.app.UNINSTALL }}
+        <span class="icomoon icomoon-delete"></span>{{= i18n.app.UNINSTALL }}
     </button>
     <button class="w-icon-btn button-export min">
-        <span class="icomoon-export"></span>{{= i18n.misc.EXPORT }}
+        <span class="icomoon icomoon-export"></span>{{= i18n.misc.EXPORT }}
     </button>
     <div class="split"></div>
     <button class="w-icon-btn button-move-to-sd-card min">
-        <span class="icomoon-sd"></span>{{= i18n.app.BUTTON_TRANSFER_LABEL }}
+        <span class="icomoon icomoon-sd"></span>{{= i18n.app.BUTTON_TRANSFER_LABEL }}
     </button>
     <button class="w-icon-btn button-move-to-device min">
-        <span class="icomoon-device"></span>{{= i18n.app.BUTTON_MOVE_TO_DEVICE_LABEL }}
+        <span class="icomoon icomoon-device"></span>{{= i18n.app.BUTTON_MOVE_TO_DEVICE_LABEL }}
     </button>
 </script>
 

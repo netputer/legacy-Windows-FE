@@ -15,38 +15,38 @@
 <script type="text/x-ui-template" id="toolbar">
     <input type="checkbox" class="check-select-all" />
     <button class="w-icon-btn button-pause min">
-        <span class="icomoon-pause"></span>{{= i18n.misc.PAUSE }}
+        <span class="icomoon icomoon-pause"></span>{{= i18n.misc.PAUSE }}
     </button>
     <button class="w-icon-btn button-continue min">
-        <span class="icomoon-play"></span>{{= i18n.ui.CONTINUE }}
+        <span class="icomoon icomoon-play"></span>{{= i18n.ui.CONTINUE }}
     </button>
     <button class="w-icon-btn button-delete min">
-        <span class="icomoon-delete"></span>{{= i18n.misc.DELETE }}
+        <span class="icomoon icomoon-delete"></span>{{= i18n.misc.DELETE }}
     </button>
     <div class="split"></div>
     <button class="w-icon-btn button-open-folder min">
-        <span class="icomoon-folder"></span>{{= i18n.taskManager.OPEN_DOWNLOAD_FOLDER }}
+        <span class="icomoon icomoon-folder"></span>{{= i18n.taskManager.OPEN_DOWNLOAD_FOLDER }}
     </button>
-    <div class="button-close icomoon-no"></div>
+    <div class="button-close icomoon icomoon-no"></div>
 </script>
 
 <script type="text/x-ui-template" id="capacity">
     <div class="info hbox">
         <div class="info-device hbox">
-            <span class="icomoon-device"></span>
+            <span class="icomoon icomoon-device"></span>
             {{ var percent = parseInt((it.deviceCapacity - it.deviceFreeCapacity) / it.deviceCapacity * 100, 10); }}
             <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
         {{? it.internalSDCapacity > 0 }}
         <div class="info-sd-internal hbox" data-path="{{= it.internalSDPath }}">
-            <span class="icomoon-sd{{? it.externalSDCapacity > 0 }}-first{{?}}"></span>
+            <span class="icomoon icomoon-sd{{? it.externalSDCapacity > 0 }}-first{{?}}"></span>
             {{ var percent = parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
             <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
         {{?}}
         {{? it.externalSDCapacity > 0 }}
         <div class="info-sd-external hbox" data-path="{{= it.externalSDPath }}">
-            <span class="icomoon-sd{{? it.internalSDCapacity > 0 }}-second{{?}}"></span>
+            <span class="icomoon icomoon-sd{{? it.internalSDCapacity > 0 }}-second{{?}}"></span>
             {{ var percent = parseInt((it.externalSDCapacity - it.externalSDFreeCapacity) / it.externalSDCapacity * 100, 10); }}
             <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
