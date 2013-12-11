@@ -130,10 +130,12 @@
             }
 
             &.faild {
+                // @TODO
                 @include sprite-sprite(error);
             }
 
             &.sending {
+                // @TODO
                 @include sprite-sprite(sending);
             }
         }
@@ -383,6 +385,7 @@
             position: relative;
 
             .tip {
+                // @TODO
                 @include sprite-sprite(help);
                 cursor: help;
                 display: inline-block;
@@ -696,11 +699,13 @@
             width: 16px;
 
             &.faild {
+                // @TODO
                 @include sprite-sprite(error);
                 margin-right: 3px;
             }
 
             &.sending {
+                // @TODO
                 @include sprite-sprite(sending);
             }
         }
