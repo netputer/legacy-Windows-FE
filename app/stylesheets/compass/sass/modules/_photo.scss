@@ -114,13 +114,14 @@
 
     .control {
         .button-share {
-            @include sprite-sprite(photo-share-small);
+            // @include sprite-sprite(photo-share-small);
             height: 15px;
             margin-right: 5px;
             width: 15px;
 
             &:hover {
-                @include sprite-sprite(photo-share-small-hover);
+                // @TODO
+                // @include sprite-sprite(photo-share-small-hover);
             }
         }
     }

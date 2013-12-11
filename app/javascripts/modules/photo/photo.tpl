@@ -4,8 +4,8 @@
     <div class="control hbox">
         <input type="checkbox" class="check-item dark">
         <div class="placeholder"></div>
-        <div class="button-share"></div>
-        <div class="button-info"></div>
+        <div class="button-share icomoon-share"></div>
+        <div class="button-info icomoon-info"></div>
     </div>
     <div class="error text-thirdly">
         {{= i18n.photo.GET_PHOTOS_ERROR }}
@@ -100,17 +100,17 @@
 <script type="text/x-ui-template" id="toolbar">
     <input type="checkbox" class="check-select-all" />
     <button class="w-icon-btn primary button-import min">
-        <span class="icon add"></span>{{= i18n.photo.ADD_LAOCEL_PHOTO_LABEL }}
+        <span class="icomoon-add-circle"></span>{{= i18n.photo.ADD_LAOCEL_PHOTO_LABEL }}
     </button>
     <button class="w-icon-btn button-delete min">
-        <span class="icon delete"></span>{{= i18n.misc.DELETE }}
+        <span class="icomoon-delete"></span>{{= i18n.misc.DELETE }}
     </button>
     <button class="w-icon-btn button-export min">
-        <span class="icon export"></span>{{= i18n.misc.EXPORT }}
+        <span class="icomoon-export"></span>{{= i18n.misc.EXPORT }}
     </button>
     <div class="split"></div>
     <button class="w-icon-btn button-fullscreen min">
-        <span class="icon fullscreen"></span>{{= i18n.photo.SLIDE_PLAY_TEXT }}
+        <span class="icomoon-fullscreen"></span>{{= i18n.photo.SLIDE_PLAY_TEXT }}
     </button>
 </script>
 

@@ -153,12 +153,13 @@
         }
 
         .button-info {
-            @include sprite-sprite(photo-info);
+            // @include sprite-sprite(photo-info);
             height: 15px;
             width: 15px;
 
             &:hover {
-                @include sprite-sprite(photo-info-hover);
+                // @TODO
+                // @include sprite-sprite(photo-info-hover);
             }
         }
     }
