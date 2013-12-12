@@ -32,9 +32,25 @@
             template : doT.template(TemplateFactory.get('taskManager', 'capacity')),
             initialize : function () {
                 this.listenTo(Device, 'change:isConnected change:isMounted', _.debounce(this.render.bind(this), 200));
+
+                var capacityInterval;
+
                 this.listenTo(Backbone, 'taskManager:toggle', function (data) {
-                    if (data.status === 'open') {
+                    switch (data.status) {
+                    case 'open':
                         this.render();
+                        capacityInterval = setInterval(this.render.bind(this), 15000);
+                        break;
+
+                    case 'close':
+                        clearInterval(capacityInterval);
+                        break;
+                    }
+                });
+
+                this.listenTo(Backbone, 'switchModule', function (data) {
+                    if (data.module !== 'task') {
+                        clearInterval(capacityInterval);
                     }
                 });
             },
