@@ -31,7 +31,7 @@ define({
     ROTATE_LEFT : '向左转',
     PREV : '上一张',
     SLIDE_SHOW : '自动播放',
-    SET_AS_WALLPAPER : '设置为手机壁纸',
+    SET_AS_WALLPAPER : '设为手机壁纸',
     UPLOADING_PHOTOS : '云相册同步中',
     PHOTO_BACKUP_AUTO : '云相册同步完成',
     PHOTO_SYNC : '<p>是否在这台电脑上开启云相册同步？</p><p>开启云相册同步后，您的豌豆荚账号下的手机照片会同步到您的 <a href="{1}" target="_default">私人云相册</a> 中保存，同时也会同步到您的这台电脑上。</p><p>如果您使用的不是自己的电脑，请不要选择开启。</p>',
