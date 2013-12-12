@@ -106,6 +106,8 @@ define({
     CARD_TIPS_ACTION : '马上查看',
     CARD_WEIBO_TITLE : '豌豆荚求关注！',
     CARD_WEIBO_DESC : '新浪微博 @豌豆荚 <span class="icon-verified"></span>',
+    CARD_TIEBA_TITLE : '豌豆荚贴吧求关注！',
+    CARD_TIEBA_DESC : '贴吧神兽，来和萌豆豆聊聊天',
     CARD_WEIBO_ACTION : '关注',
     CARD_WEIBO_ACTION_CLICKED : '已关注',
     NO_MORE_1 : '哇，你来到了 Android 世界的尽头。',

@@ -18,6 +18,7 @@
         'welcome/views/BackupCardView',
         'welcome/views/TipsCardView',
         'welcome/views/WeiboCardView',
+        'welcome/views/TiebaCardView',
         'welcome/views/ChangelogCardView',
         'welcome/views/SnapPeaWebCardView',
         'welcome/views/SnapPeaPhotosCardView',
@@ -44,6 +45,7 @@
         BackupCardView,
         TipsCardView,
         WeiboCardView,
+        TiebaCardView,
         ChangelogCardView,
         SnapPeaWebCardView,
         SnapPeaPhotosCardView,
@@ -60,8 +62,8 @@
             className : 'feed-ctn',
             initFeeds : function () {
                 var collection = FeedsCollection.getInstance();
-
                 var fisrtScreen = true;
+                var randomDisplaySocialCard = _.random(1);
 
                 collection.on('refresh', function (collection) {
                     var fragment = document.createDocumentFragment();
@@ -109,8 +111,15 @@
                             targetView = BackupCardView;
                             break;
                         case 34:
-                            if (!Settings.get('welcome_feed_weibo')) {
+                            if (!Settings.get('welcome_feed_weibo') &&
+                                    (Settings.get('welcome_feed_tieba') || !randomDisplaySocialCard)) {
                                 targetView = WeiboCardView;
+                            }
+                            break;
+                        case 35:
+                            if (!Settings.get('welcome_feed_tieba') &&
+                                    (Settings.get('welcome_feed_weibo') || randomDisplaySocialCard)) {
+                                targetView = TiebaCardView;
                             }
                             break;
                         case 98:

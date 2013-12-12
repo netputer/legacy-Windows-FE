@@ -107,6 +107,18 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="tieba">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">{{= i18n.welcome.CARD_TIEBA_TITLE }}</h1>
+        <p class="desc">{{= i18n.welcome.CARD_TIEBA_DESC }}</p>
+        <div class="btn-ctn hbox">
+            <a class="button-action" href="http://tieba.baidu.com/f?ie=utf-8&kw=%E8%B1%8C%E8%B1%86%E8%8D%9A" target="_default">{{= i18n.welcome.CARD_WEIBO_ACTION }}</a>
+            <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
+        </div>
+    </div>
+</script>
+
 <script type="text/x-ui-template" id="changelog">
     <div class="icon-ctn">
         {{? it.icon }}
