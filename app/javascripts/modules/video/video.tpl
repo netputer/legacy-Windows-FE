@@ -19,11 +19,11 @@
     <div class="control hbox">
         <input type="checkbox" class="check-item dark">
         <div class="placeholder"></div>
-        <div class="button-info"></div>
+        <div class="button-info icomoon icomoon-info"></div>
     </div>
     <div class="error text-thirdly">
         {{= i18n.video.GET_VIDEO_ERROR }}
-        <div class="button-retry" title="{{= i18n.ui.RETRY }}"></div>
+        <div class="button-retry icomoon icomoon-refresh" title="{{= i18n.ui.RETRY }}"></div>
     </div>
 </script>
 

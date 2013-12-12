@@ -46,7 +46,7 @@
         {{?? it.loading }}
         <div class="loading"></div>
         {{?? it.error }}
-        <div class="error" title="{{= i18n.music.MUSIC_CANNOT_PLAY_TEXT }}"></div>
+        <div class="error icomoon icomoon-sound" title="{{= i18n.music.MUSIC_CANNOT_PLAY_TEXT }}"></div>
         {{??}}
         <div class="button-play icomoon icomoon-sound" title="{{= i18n.misc.PLAY }}"></div>
         {{?}}

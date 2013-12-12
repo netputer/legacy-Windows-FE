@@ -9,7 +9,7 @@
     </div>
     <div class="error text-thirdly">
         {{= i18n.photo.GET_PHOTOS_ERROR }}
-        <div class="button-retry" title="{{= i18n.ui.RETRY }}"></div>
+        <div class="button-retry icomoon icomoon-refresh" title="{{= i18n.ui.RETRY }}"></div>
     </div>
 </script>
 
