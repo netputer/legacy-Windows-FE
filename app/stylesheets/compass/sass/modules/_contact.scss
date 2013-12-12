@@ -110,14 +110,17 @@
     .legend {
         margin: 20px 0 20px 20px;
 
-        .icon {
-            @include sprite-sprite(cross);
-            display: inline-block;
-            height: 12px;
-            margin-bottom: -1px;
-            margin-right: 10px;
-            width: 12px;
+        // .icon {
+        //     @include sprite-sprite(cross); // @TODO: DELETE
+        //     display: inline-block;
+        //     height: 12px;
+        //     margin-bottom: -1px;
+        //     margin-right: 10px;
+        //     width: 12px;
+        // }
 
+        .icomoon {
+            color: $textActive;
         }
     }
 
@@ -379,7 +382,8 @@
         }
 
         .button-delete {
-            // @include button-sprite(delete);
+            // @include button-sprite(delete); // @TODO: DELETE
+            color: #888;
             cursor: default;
             display: inline-block;
             height: 16px;
@@ -387,14 +391,14 @@
             vertical-align: middle;
             width: 16px;
 
-            // @TODO
-
             &:hover {
-                // @include button-sprite(delete-hover);
+                // @include button-sprite(delete-hover); // @TODO: DELETE
+                color: #95c60e;
             }
 
             &:active {
-                // @include button-sprite(delete-active);
+                // @include button-sprite(delete-active); // @TODO: DELETE
+                color: $textActive;
             }
         }
     }

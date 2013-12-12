@@ -33,6 +33,10 @@
     position: absolute;
     right: 0;
     width: 218px;
+
+    .icomoon {
+        color: #888;
+    }
 }
 
 .w-app-detail-panel {
@@ -266,10 +270,22 @@
 
             .button-dislike {
                 // @include button-close;
+                border-radius: 8px;
                 display: none;
+                margin-right: 2px;
                 position: absolute;
                 right: 0;
                 top: 0;
+
+                &:hover {
+                    background-color: #888;
+                    color: #fff;
+                }
+
+                &:active {
+                    background-color: #666;
+                    color: #fff;
+                }
             }
 
             .button-navigate-to-ref-page:hover {
@@ -283,7 +299,6 @@
                 }
 
                 .button-dislike {
-                    // @TODO: color
                     margin-top: 10px;
                     display: block;
                 }
@@ -807,18 +822,23 @@
             .icon {
                 margin-right: 0;
             }
+
+            &.checked {
+                .icomoon {
+                    color: #fff;
+                }
+            }
         }
 
-        // @TODO
         .button-like.checked {
             .icon {
-                @include sprite-sprite(liked);
+                // @include sprite-sprite(liked); // @TODO: DELETE
             }
         }
 
         .button-dislike.checked {
             .icon {
-                @include sprite-sprite(disliked);
+                // @include sprite-sprite(disliked); // @TODO: DELETE
             }
         }
     }

@@ -13,6 +13,24 @@
     width: 100%;
     -webkit-box-align: center;
 
+    .w-icon-btn {
+        .icomoon {
+            color: #888;
+        }
+
+        &.primary {
+            .icomoon {
+                color: #fff;
+            }
+        }
+
+        &:hover:not(.primary):not([disabled]) {
+            .icomoon {
+                color: $textActive;
+            }
+        }
+    }
+
     button {
         &:not(.primary) {
             background: transparent;

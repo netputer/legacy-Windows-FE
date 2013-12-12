@@ -132,17 +132,35 @@
             }
 
             .button-play {
-                // @include sprite-sprite(play-audio);
+                // @include sprite-sprite(play-audio); // @TODO: DELETE
+                color: #888;
                 display: none;
+
+                &:hover {
+                    color: #95c60e;
+                }
+
+                &:active {
+                    color: $textActive;
+                }
             }
 
             .error {
-                // @TODO different color from .button-play
-                @include sprite-sprite(play-error);
+                // @include sprite-sprite(play-error); // @TODO: DELETE
+                color: #888;
             }
 
             .button-stop {
-                // @include sprite-sprite(stop-audio);
+                // @include sprite-sprite(stop-audio); // @TODO: DELETE
+                color: #888;
+
+                &:hover {
+                    color: #95c60e;
+                }
+
+                &:active {
+                    color: $textActive;
+                }
             }
         }
     }
@@ -193,17 +211,19 @@
                 color: $textActive;
             }
 
-            &:enabled:not(.active):not(:active):hover .icon {
-                &.ring {
-                    @include button-sprite(ring-hover);
-                }
+            &:enabled:not(.active):not(:active):hover .icomoon {
+                // &.ring {
+                //     @include button-sprite(ring-hover); // @TODO: DELETE
+                // }
+                color: #95c60e;
             }
 
-            &:enabled:active .icon,
-            &.active .icon {
-                &.ring {
-                    @include button-sprite(ring-active);
-                }
+            &:enabled:active .icomoon,
+            &.active .icomoon {
+                // &.ring {
+                //     @include button-sprite(ring-active); // @TODO: DELETE
+                // }
+                color: $textActive;
             }
 
             &:not(.active) {
