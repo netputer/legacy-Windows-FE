@@ -76,13 +76,7 @@
                     'event' : 'ui.click.change_download_folder'
                 });
 
-                IO.requestAsync(CONFIG.actions.SAVE_SCREENSHOT).done(function (resp) {
-                    var collection = TasksCollection.getInstance();
-                    var ids = _.pluck(_.filter(collection.getFailedTasks(), function (task) {
-                        return task.get('message') === 'NO_SPACE';
-                    }), 'id');
-                    collection.startTasksAsync(ids);
-                });
+                IO.requestAsync(CONFIG.actions.SAVE_SCREENSHOT);
             },
             clickCleanBtn : function () {
 

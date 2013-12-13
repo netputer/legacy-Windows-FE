@@ -24,6 +24,8 @@
 
             if (!listenToAllDevices) {
                 route['data.deviceId'] = Environment.get('deviceId');
+            } else {
+                route['data.deviceId'] = '';
             }
 
             if (Environment.get('deviceId') === 'Default') {

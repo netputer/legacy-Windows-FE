@@ -373,6 +373,7 @@
                 TASK_STATUS_CHANGE : 'jobs.status_changed',
                 TASK_SHOW_PUSH_WINDOW : 'web.show_pushwindow',
                 TASK_JOB_FILE_ERROR : 'jobs.file_error',
+                TASK_DOWNLOAD_DIR_CHANGED : 'download.dir_changed',
 
                 // Backend events - Contact module
                 CONTACT_UPDATED : 'contacts.updated',

@@ -44,7 +44,6 @@
             className : 'action',
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
-
                 return this;
             },
             clickButtonStart : function (evt) {
@@ -67,13 +66,7 @@
             },
             clickButtonChangePath : function (evt) {
                 evt.stopPropagation();
-                IO.requestAsync(CONFIG.actions.SAVE_SCREENSHOT).done(function (resp) {
-                    var collection = TasksCollection.getInstance();
-                    var ids = _.pluck(_.filter(collection.getFailedTasks(), function (task) {
-                        return task.get('message') === 'NO_SPACE';
-                    }), 'id');
-                    collection.startTasksAsync(ids);
-                });
+                IO.requestAsync(CONFIG.actions.SAVE_SCREENSHOT);
             },
             clickButtonRetry : function (evt) {
                 evt.stopPropagation();
