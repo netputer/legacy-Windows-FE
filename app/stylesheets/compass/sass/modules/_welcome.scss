@@ -705,22 +705,10 @@
         }
     }
 
-    &.weibo {
+    &.weibo,
+    &.tieba {
         background-color: #fff;
         -webkit-box-align: center;
-
-        .icon-ctn {
-            @include sprite-sprite(weibo-follow);
-        }
-
-        .icon-verified {
-            @include sprite-sprite(weibo-verified);
-            display: inline-block;
-            height: sprite-sprite-height(weibo-verified);
-            position: relative;
-            top: 1px;
-            width: sprite-sprite-width(weibo-verified);
-        }
 
         .info-ctn {
             .title {
@@ -750,11 +738,32 @@
                 }
             }
         }
+    }
+
+    &.weibo {
+        .icon-ctn {
+            @include sprite-sprite(weibo-follow);
+        }
+
+        .icon-verified {
+            @include sprite-sprite(weibo-verified);
+            display: inline-block;
+            height: sprite-sprite-height(weibo-verified);
+            position: relative;
+            top: 1px;
+            width: sprite-sprite-width(weibo-verified);
+        }
 
         &.following {
             .icon-ctn {
                 @include sprite-sprite(weibo-following);
             }
+        }
+    }
+
+    &.tieba {
+        .icon-ctn {
+            @include sprite-sprite(weibo-following);
         }
     }
 }
@@ -1206,11 +1215,5 @@
                 }
             }
         }
-    }
-}
-
-@media (max-width: 991px) {
-    .w-welcome-capacitybar {
-        top: 431px;
     }
 }

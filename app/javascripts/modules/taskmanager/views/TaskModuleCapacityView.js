@@ -27,14 +27,50 @@
     ) {
         console.log('TaskModuleCapacityView - File loaded.');
 
+        var isOpened = false;
+
         var TaskModuleCapacityView = Backbone.View.extend({
             className : 'w-task-capacity hbox',
             template : doT.template(TemplateFactory.get('taskManager', 'capacity')),
+            capacityTimeout : undefined,
+            checkCapacityAsync : function () {
+                var deferred = $.Deferred();
+
+                Device.getCapacityAsync().done(deferred.resolve).fail(deferred.reject).always(function () {
+                    setTimeout(function () {
+                        if (isOpened) {
+                            this.checkCapacityAsync();
+                        }
+                    }.bind(this), 3000);
+                }.bind(this));
+
+                return deferred.promise();
+            },
             initialize : function () {
                 this.listenTo(Device, 'change:isConnected change:isMounted', _.debounce(this.render.bind(this), 200));
-                this.listenTo(Backbone, 'taskManager:toggle', function (data) {
-                    if (data.status === 'open') {
+
+                this.listenTo(Device, 'change:deviceFreeCapacity change:internalSDFreeCapacity change:externalSDFreeCapacity', _.debounce(function (changeModel) {
+                    if (isOpened) {
                         this.render();
+                    }
+                }.bind(this), 1000));
+
+                this.listenTo(Backbone, 'taskManager:toggle', function (data) {
+                    switch (data.status) {
+                    case 'open':
+                        isOpened = true;
+                        this.checkCapacityAsync();
+                        break;
+
+                    case 'close':
+                        isOpened = false;
+                        break;
+                    }
+                });
+
+                this.listenTo(Backbone, 'switchModule', function (data) {
+                    if (data.module !== 'task') {
+                        isOpened = false;
                     }
                 });
             },

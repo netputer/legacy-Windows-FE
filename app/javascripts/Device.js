@@ -238,7 +238,7 @@
                         if (resp.state_code === 200) {
                             console.log('Device - Get device capacity success.');
 
-                            this.set({
+                            var data = {
                                 deviceCapacity : 0,
                                 deviceFreeCapacity : 0,
                                 internalSDCapacity : 0,
@@ -247,38 +247,33 @@
                                 externalSDCapacity : 0,
                                 externalSDFreeCapacity : 0,
                                 externalSDPath : ''
-                            });
+                            };
 
                             _.each(resp.body.storage_infos, function (info) {
                                 if (info.is_emulated === true &&
-                                        parseInt(info.total_size, 10) === this.get('deviceCapacity')) {
+                                        parseInt(info.total_size, 10) === data.deviceCapacity) {
                                     return;
                                 }
 
                                 switch (info.type) {
                                 case 0:
-                                    this.set({
-                                        deviceCapacity : parseInt(info.total_size, 10),
-                                        deviceFreeCapacity : parseInt(info.available_size, 10)
-                                    });
+                                    data.deviceCapacity = parseInt(info.total_size, 10);
+                                    data.deviceFreeCapacity = parseInt(info.available_size, 10);
                                     break;
                                 case 1:
-                                    this.set({
-                                        internalSDCapacity : parseInt(info.total_size, 10),
-                                        internalSDFreeCapacity : parseInt(info.available_size, 10),
-                                        internalSDPath : info.path || ''
-                                    });
+                                    data.internalSDCapacity = parseInt(info.total_size, 10);
+                                    data.internalSDFreeCapacity = parseInt(info.available_size, 10);
+                                    data.internalSDPath = info.path || '';
                                     break;
                                 case 2:
-                                    this.set({
-                                        externalSDCapacity : parseInt(info.total_size, 10),
-                                        externalSDFreeCapacity : parseInt(info.available_size, 10),
-                                        externalSDPath : info.path || ''
-                                    });
+                                    data.externalSDCapacity = parseInt(info.total_size, 10);
+                                    data.externalSDFreeCapacity = parseInt(info.available_size, 10);
+                                    data.externalSDPath = info.path || '';
                                     break;
                                 }
                             }, this);
 
+                            this.set(data);
                             deferred.resolve(resp);
                         } else {
                             console.error('Device - Get device capacity failed. Error info: ' + resp.state_line);
