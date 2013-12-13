@@ -22,7 +22,7 @@ define({
     UNKNOWN : '未知',
     CONFIRM_DELETE : '确定要删除这个任务吗？',
     CONFIRM_DELETE_BATCH : '确定要删除选中的任务吗？',
-    DELET_APK_ALSO : '同时把下载文件移到回收站',
+    DELET_APK_ALSO : '同时删除文件',
     DELETE_TITLE : '删除下载任务',
     RUNNING_COUNT_TIP : '{1} 项进行中',
     ERROR_COUNT_TIP : '{1} 项失败',
@@ -175,5 +175,11 @@ define({
     CANCEL_PUSH_PHONE : '取消发送',
 
     RETRY_INSTALL : '重新安装',
-    RETRY_PUSH_VIDEO : '重新传输'
+    RETRY_PUSH_VIDEO : '重新传输',
+
+    DISK_NO_SPACE_TITLE : '硬盘空间不足',
+    DISK_NO_SPACE_CHANGE_FOLDER : '修改下载文件夹',
+    DISK_NO_SPACE_CLEAN_FOLDER : '清理下载文件夹',
+    DISK_NO_SPACE_DESC : '<span class="title text-bold">您的硬盘空间已满</span><br />请修改下载文件夹位置后，再重新下载。',
+    DISK_NO_SPACE_CAN_NOT_USE_DESC : '<span class="title text-bold">目前的下载位置不可用</span><br />请修改下载文件夹位置后，再重新下载。'
 });

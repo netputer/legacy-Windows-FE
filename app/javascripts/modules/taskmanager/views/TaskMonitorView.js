@@ -16,6 +16,7 @@
         'task/views/TaskDashboardView',
         'task/views/TaskNotifierPanelView',
         'task/views/TaskModuleView',
+        'task/views/TaskChangeStoragePathView',
         'task/EventProcessor'
     ], function (
         Backbone,
@@ -33,12 +34,14 @@
         TaskDashboardView,
         TaskNotifierPanelView,
         TaskModuleView,
+        TaskChangeStoragePathView,
         EventProcessor
     ) {
         console.log('TaskMonitorView - File loaded. ');
 
         var tasksCollection;
         var taskModuleView;
+        var taskChangePathView;
 
         var MonitorItem = Backbone.View.extend({
             className : 'w-task-monitor-item item',
@@ -255,6 +258,18 @@
                     }
                 };
                 this.listenTo(tasksCollection, 'refresh', notEnoughSpaceHandler);
+
+                IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.TASK_JOB_FILE_ERROR
+                }, function (data) {
+
+                    if (!taskChangePathView) {
+                        taskChangePathView = TaskChangeStoragePathView.getInstance();
+                    }
+                    taskChangePathView.show();
+                    taskChangePathView.type = data.type;
+
+                }, this);
             },
             addNewTaskAnima : _.throttle(function () {
                 var $anima = $('<div>').addClass('w-task-anima start-download-anima');

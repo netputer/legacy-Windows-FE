@@ -668,4 +668,11 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="disk_nospace_panel">
+    <div>
+        <div class="icon"></div>
+        <div class="desc"></div>
+    </div>
+</script>
+
 </templates>
