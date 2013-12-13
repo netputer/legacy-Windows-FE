@@ -372,6 +372,7 @@
                 TASK_DUPLICATED : 'jobs.duplicated',
                 TASK_STATUS_CHANGE : 'jobs.status_changed',
                 TASK_SHOW_PUSH_WINDOW : 'web.show_pushwindow',
+                TASK_JOB_FILE_ERROR : 'jobs.file_error',
 
                 // Backend events - Contact module
                 CONTACT_UPDATED : 'contacts.updated',

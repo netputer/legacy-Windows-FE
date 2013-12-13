@@ -176,5 +176,12 @@ define({
     PUSH_PHONE_FAILED : 'Failed to send',
     PUSH_PHONE_SUCCESS : 'Sent to phone',
     RETRY_PUSH_PHONE : 'Send again',
-    CANCEL_PUSH_PHONE : 'Cancel send'
+    CANCEL_PUSH_PHONE : 'Cancel send',
+
+
+    DISK_NO_SPACE_TITLE : '硬盘空间不足',
+    DISK_NO_SPACE_CHANGE_FOLDER : '修改下载文件夹',
+    DISK_NO_SPACE_CLEAN_FOLDER : '清理下载文件夹',
+    DISK_NO_SPACE_DESC : '您的硬盘空间已满。<br />请修改下载文件夹位置后，再重新下载。',
+    DISK_NO_SPACE_CAN_NOT_USE_DESC : '目前的下载位置不可用。<br />请修改下载文件夹位置后，再重新下载。'
 });

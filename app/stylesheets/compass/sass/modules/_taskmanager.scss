@@ -428,3 +428,27 @@
         }
     }
 }
+
+/********************************************************************************
+ * TaskManager no space panel
+ ********************************************************************************/
+ .w-task-no-space {
+    .icon {
+        @include sprite-sprite(no-space);
+        display: inline-block;
+        height: sprite-sprite-height(no-space);
+        margin-left: 10px;
+        width: sprite-sprite-width(no-space);
+    }
+
+    .desc {
+        display: inline-block;
+        margin-left: 20px;
+        vertical-align: top;
+
+        .title {
+            font-size: 14px;
+            line-height: 1.5em;
+        }
+    }
+}
