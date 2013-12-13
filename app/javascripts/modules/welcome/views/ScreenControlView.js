@@ -60,9 +60,9 @@
                 this.$('.button-play')
                     .removeClass('button-play')
                     .addClass('button-pause')
-                    .find('span')
-                    .removeClass('play')
-                    .addClass('stop');
+                    .find('.icomoon')
+                    .removeClass('icomoon-play')
+                    .addClass('icomoon-pause');
 
                 this.$('.button-pause .label').html(i18n.misc.PAUSE);
 
@@ -75,11 +75,10 @@
             clickButtonPause : function () {
                 this.$('.button-pause')
                     .removeClass('button-pause')
-                    .addClass('play-black')
                     .addClass('button-play')
-                    .find('span')
-                    .removeClass('stop')
-                    .addClass('play');
+                    .find('.icomoon')
+                    .removeClass('icomoon-pause')
+                    .addClass('icomoon-play');
 
                 this.$('.button-play .label').html(i18n.misc.PLAY);
 
