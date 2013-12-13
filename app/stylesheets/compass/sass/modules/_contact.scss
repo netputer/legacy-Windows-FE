@@ -393,7 +393,7 @@
 
             &:hover {
                 // @include button-sprite(delete-hover); // @TODO: DELETE
-                color: #95c60e;
+                color: $standardColor;
             }
 
             &:active {

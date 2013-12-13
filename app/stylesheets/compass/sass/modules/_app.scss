@@ -33,10 +33,6 @@
     position: absolute;
     right: 0;
     width: 218px;
-
-    .icomoon {
-        color: #888;
-    }
 }
 
 .w-app-detail-panel {
@@ -825,7 +821,7 @@
 
             &.checked {
                 .icomoon {
-                    color: #fff;
+                    color: inherit;
                 }
             }
         }

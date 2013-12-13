@@ -28,11 +28,21 @@
         .w-ui-toolbar {
             .button-close {
                 // @include button-close;
-                // TODO: hover
+                border-radius: 8px;
                 margin-top: -8px;
                 position: absolute;
                 right: 10px;
                 top: 50%;
+
+                &:hover {
+                    background-color: #888;
+                    color: #fff;
+                }
+
+                &:active {
+                    background-color: #666;
+                    color: #fff;
+                }
             }
         }
     }
@@ -395,6 +405,10 @@
         height: 36px;
     }
 
+    .icomoon {
+        color: #888;
+    }
+
     .icon {
         display: block;
         height: 16px;
@@ -402,12 +416,12 @@
         margin-right: 5px;
 
         &.device {
-            @include button-sprite(device);
+            // @include button-sprite(device); // @TODO: DELETE
         }
 
         @each $icon in sd, sd-internal, sd-external {
             &.#{$icon} {
-                @include button-sprite(task-#{$icon});
+                // @include button-sprite(task-#{$icon}); // @TODO: DELETE
             }
         }
     }

@@ -14,10 +14,6 @@
     -webkit-box-align: center;
 
     .w-icon-btn {
-        .icomoon {
-            color: #888;
-        }
-
         &.primary {
             .icomoon {
                 color: #fff;
@@ -25,6 +21,12 @@
         }
 
         &:hover:not(.primary):not([disabled]) {
+            .icomoon {
+                color: $standardColor;
+            }
+        }
+
+        &:active:not(.primary):not([disabled]) {
             .icomoon {
                 color: $textActive;
             }
@@ -69,14 +71,14 @@
              move-down, reset {
             &:enabled:not(.active):not(:active):hover .icon {
                 &.#{$icon} {
-                    @include button-sprite(#{$icon}-hover);
+                    @include button-sprite(#{$icon}-hover); // @TODO: DELETE
                 }
             }
 
             &:enabled:active .icon,
             &.active .icon {
                 &.#{$icon} {
-                    @include button-sprite(#{$icon}-active);
+                    @include button-sprite(#{$icon}-active); // @TODO: DELETE
                 }
             }
         }
