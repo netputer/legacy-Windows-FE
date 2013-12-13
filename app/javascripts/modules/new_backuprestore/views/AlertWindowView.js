@@ -50,6 +50,8 @@
 
             if (showQQ) {
                 alertWindow.$('.w-ui-window-footer-monitor').empty().append(i18n.new_backuprestore.QQ);
+            } else {
+                alertWindow.$('.w-ui-window-footer-monitor').empty();
             }
         };
 
