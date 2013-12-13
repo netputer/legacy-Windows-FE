@@ -48,6 +48,7 @@
                 var $bodyContent;
                 var height;
                 var width;
+                var isShow = false;
 
                 var buttons = [];
                 var buttonClickHandler = function (evt) {
@@ -161,6 +162,14 @@
                         get : function () {
                             return disableFooter;
                         }
+                    },
+                    isShow : {
+                        set : function (value) {
+                            isShow = value;
+                        },
+                        get : function () {
+                            return isShow;
+                        }
                     }
                 });
 
@@ -229,6 +238,7 @@
 
                 setTimeout(this.center.bind(this), 0);
 
+                this.isShow = true;
                 this.trigger(EventsMapping.SHOW);
             },
             hide : function () {
@@ -236,6 +246,7 @@
 
                 this.$el.off('click', this.buttonClickHandler);
 
+                this.isShow = false;
                 this.trigger(EventsMapping.HIDE);
             },
             remove : function () {

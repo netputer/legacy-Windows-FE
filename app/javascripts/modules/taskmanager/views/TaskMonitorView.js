@@ -266,10 +266,24 @@
                     if (!taskChangePathView) {
                         taskChangePathView = TaskChangeStoragePathView.getInstance();
                     }
-                    taskChangePathView.show();
-                    taskChangePathView.type = data.type;
+
+                    if (!taskChangePathView.isShow) {
+                        taskChangePathView.show();
+                        taskChangePathView.type = data.type;
+                    }
 
                 }, this);
+
+                IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.TASK_DOWNLOAD_DIR_CHANGED
+                }, function () {
+                    var collection = TasksCollection.getInstance();
+                    var ids = _.pluck(_.filter(collection.getFailedTasks(), function (task) {
+                        return task.get('message') === 'NO_SPACE';
+                    }), 'id');
+                    collection.startTasksAsync(ids);
+
+                }, true, this);
             },
             addNewTaskAnima : _.throttle(function () {
                 var $anima = $('<div>').addClass('w-task-anima start-download-anima');
