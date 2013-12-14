@@ -143,18 +143,14 @@ button.w-icon-btn {
     }
 
     .icon {
-        // @TODO: DELETE
         display: inline-block;
         height: 16px;
         margin: -2px 3px 0 0;
         vertical-align: middle;
         width: 16px;
 
-        @each $icon in add-grey, pause, start, delete, open-folder,
-             add, mark-as-read, refresh, import, export,
-             update, up, down, star, sd, device, merge, ring, itunes,
-             comment, share, like, dislike, reload, fullscreen,
-             move-down, reset, return {
+        @each $icon in star, return {
+            // @TODO: NEED DESIGN
             &.#{$icon} {
                 @include button-sprite(#{$icon});
             }
