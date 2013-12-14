@@ -471,26 +471,14 @@
         -webkit-box-align: center;
 
         .star-img {
-            @include button-sprite(star);
+            @include button-star;
             height: 15px;
             width: 15px;
-
-            &:hover {
-                @include button-sprite(star-hover);
-            }
         }
 
         &.starred {
             .star-img {
-                @include button-sprite(starred);
-
-                &:hover {
-                    @include button-sprite(starred-hover);
-                }
-
-                &:active {
-                    @include button-sprite(starred-active);
-                }
+                @include button-starred;
             }
         }
 
