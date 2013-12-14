@@ -409,23 +409,6 @@
         color: #888;
     }
 
-    .icon {
-        display: block;
-        height: 16px;
-        width: 16px;
-        margin-right: 5px;
-
-        &.device {
-            // @include button-sprite(device); // @TODO: DELETE
-        }
-
-        @each $icon in sd, sd-internal, sd-external {
-            &.#{$icon} {
-                // @include button-sprite(task-#{$icon}); // @TODO: DELETE
-            }
-        }
-    }
-
     .info {
         -webkit-box-flex: 1;
 
