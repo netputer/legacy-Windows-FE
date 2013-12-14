@@ -270,6 +270,7 @@
         }
 
         .button-email {
+            // @TODO: NEED DESIGN
             @include sprite-sprite(mail);
             cursor: pointer;
             display: inline-block;
@@ -288,6 +289,7 @@
         }
 
         .button-dial {
+            // @TODO: NEED DESIGN
             @include sprite-sprite(dial);
             cursor: pointer;
             display: inline-block;
