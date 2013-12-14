@@ -116,7 +116,6 @@
         width: 100%;
 
         .button-retry {
-            // @include button-sprite(refresh); // @TODO: DELETE
             display: inline-block;
             height: 16px;
             margin: -2px 0 0 5px;
@@ -125,12 +124,10 @@
             width: 16px;
 
             &:hover {
-                // @include button-sprite(refresh-hover); // @TODO: DELETE
                 color: $standardColor;
             }
 
             &:active {
-                // @include button-sprite(refresh-active); // @TODO: DELETE
                 color: $textActive;
             }
         }
@@ -155,13 +152,11 @@
         }
 
         .button-info {
-            // @include sprite-sprite(photo-info); // @TODO: DELETE
             color: #999;
             height: 15px;
             width: 15px;
 
             &:hover {
-                // @include sprite-sprite(photo-info-hover); // @TODO: DELETE
                 color: #ccc;
             }
         }
