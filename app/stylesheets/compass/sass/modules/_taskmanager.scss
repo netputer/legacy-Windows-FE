@@ -27,22 +27,11 @@
 
         .w-ui-toolbar {
             .button-close {
-                // @include button-close;
-                border-radius: 8px;
+                @include button-close;
                 margin-top: -8px;
                 position: absolute;
                 right: 10px;
                 top: 50%;
-
-                &:hover {
-                    background-color: #888;
-                    color: #fff;
-                }
-
-                &:active {
-                    background-color: #666;
-                    color: #fff;
-                }
             }
         }
     }

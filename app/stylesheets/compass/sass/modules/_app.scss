@@ -265,23 +265,12 @@
             }
 
             .button-dislike {
-                // @include button-close;
-                border-radius: 8px;
+                @include button-close;
                 display: none;
                 margin-right: 2px;
                 position: absolute;
                 right: 0;
                 top: 0;
-
-                &:hover {
-                    background-color: #888;
-                    color: #fff;
-                }
-
-                &:active {
-                    background-color: #666;
-                    color: #fff;
-                }
             }
 
             .button-navigate-to-ref-page:hover {
