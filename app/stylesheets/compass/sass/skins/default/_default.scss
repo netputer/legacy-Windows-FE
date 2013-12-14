@@ -67,6 +67,36 @@ $headerGradient: -webkit-gradient(linear, left top, left bottom, color-stop(0, #
     }
 }
 
+@mixin button-star {
+    @extend .icomoon;
+    @extend .icomoon-star-empty;
+
+    color: #888; // @TODO: NEED CONFIRM
+
+    &:hover {
+        color: #000; // @TODO: NEED CONFIRM
+    }
+
+    &:active {
+        color: #000; // @TODO: NEED CONFIRM
+    }
+}
+
+@mixin button-starred {
+    @extend .icomoon;
+    @extend .icomoon-star-full;
+
+    color: #ffb62a; // @TODO: NEED CONFIRM
+
+    &:hover {
+        color: #f89719; // @TODO: NEED CONFIRM
+    }
+
+    &:active {
+        color: #e07e02; // @TODO: NEED CONFIRM
+    }
+}
+
 @mixin yellow-panel {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#f8edcc), to(#fffbd7));
     height: 36px;

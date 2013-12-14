@@ -63,22 +63,6 @@
         &.primary + button.min {
             margin-left: 5px;
         }
-
-        @each $icon in star {
-            // @TODO: NEED DESIGN
-            &:enabled:not(.active):not(:active):hover .icon {
-                &.#{$icon} {
-                    @include button-sprite(#{$icon}-hover);
-                }
-            }
-
-            &:enabled:active .icon,
-            &.active .icon {
-                &.#{$icon} {
-                    @include button-sprite(#{$icon}-active);
-                }
-            }
-        }
     }
 
     .w-ui-button.w-ui-menubutton {

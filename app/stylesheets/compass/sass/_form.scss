@@ -149,7 +149,7 @@ button.w-icon-btn {
         vertical-align: middle;
         width: 16px;
 
-        @each $icon in star, return {
+        @each $icon in return {
             // @TODO: NEED DESIGN
             &.#{$icon} {
                 @include button-sprite(#{$icon});
