@@ -825,18 +825,6 @@
                 }
             }
         }
-
-        .button-like.checked {
-            .icon {
-                // @include sprite-sprite(liked); // @TODO: DELETE
-            }
-        }
-
-        .button-dislike.checked {
-            .icon {
-                // @include sprite-sprite(disliked); // @TODO: DELETE
-            }
-        }
     }
 
     .input-ctn {
