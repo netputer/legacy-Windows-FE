@@ -110,15 +110,6 @@
     .legend {
         margin: 20px 0 20px 20px;
 
-        // .icon {
-        //     @include sprite-sprite(cross); // @TODO: DELETE
-        //     display: inline-block;
-        //     height: 12px;
-        //     margin-bottom: -1px;
-        //     margin-right: 10px;
-        //     width: 12px;
-        // }
-
         .icomoon {
             color: $textActive;
         }
@@ -382,7 +373,6 @@
         }
 
         .button-delete {
-            // @include button-sprite(delete); // @TODO: DELETE
             color: #888;
             cursor: default;
             display: inline-block;
@@ -392,12 +382,10 @@
             width: 16px;
 
             &:hover {
-                // @include button-sprite(delete-hover); // @TODO: DELETE
                 color: $standardColor;
             }
 
             &:active {
-                // @include button-sprite(delete-active); // @TODO: DELETE
                 color: $textActive;
             }
         }
