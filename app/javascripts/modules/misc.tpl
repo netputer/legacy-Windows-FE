@@ -71,9 +71,9 @@
 </script>
 
 <script type="text/x-ui-template" id="adb-notif">
-    <div class="hbox ctn">
-        <div class="icon"></div>
-        <div class="text-secondary tip">{{= i18n.misc.USB_LOADING_INFO }}</div>
+    <div class="hbox ctn text-secondary">
+        <div class="icomoon icomoon-device"></div>
+        <div class="tip">{{= i18n.misc.USB_LOADING_INFO }}</div>
         <div class="loading">
             {{= TemplateFactory.get('ui', 'loading-horizental-transparent') }}
         </div>
