@@ -138,6 +138,8 @@ button {
  * Image Button
  ********************************************************************************/
 button.w-icon-btn {
+    -webkit-transition: color .2s linear;
+
     .icomoon {
         color: #888;
     }
