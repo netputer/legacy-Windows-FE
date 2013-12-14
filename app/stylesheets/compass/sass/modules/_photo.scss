@@ -113,14 +113,12 @@
 
     .control {
         .button-share {
-            // @include sprite-sprite(photo-share-small); // @TODO: DELETE
             color: #999;
             height: 15px;
             margin-right: 5px;
             width: 15px;
 
             &:hover {
-                // @include sprite-sprite(photo-share-small-hover); // @TODO: DELETE
                 color: #ccc;
             }
         }
