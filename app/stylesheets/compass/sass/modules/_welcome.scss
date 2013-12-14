@@ -781,44 +781,6 @@
     .btn-ctn + .btn-ctn {
         margin-top: 10px;
     }
-
-    button {
-        .icon.capture {
-            @include button-sprite(screenshot);
-        }
-
-        &:enabled:not(.active):not(:active):hover .icon {
-            &.capture {
-                @include button-sprite(screenshot-hover);
-            }
-        }
-
-        &:enabled:active .icon,
-        &.active .icon {
-            &.capture {
-                @include button-sprite(screenshot-active);
-            }
-        }
-
-        @each $icon in refresh, play, stop, fullscreen {
-            .icon.#{$icon} {
-                @include button-sprite(#{$icon}-light);
-            }
-
-            &:enabled:not(.active):not(:active):hover .icon {
-                &.#{$icon} {
-                    @include button-sprite(#{$icon}-light-hover);
-                }
-            }
-
-            &:enabled:active .icon,
-            &.active .icon {
-                &.#{$icon} {
-                    @include button-sprite(#{$icon}-light-active);
-                }
-            }
-        }
-    }
 }
 
 .w-welcome-billboard {
@@ -949,25 +911,6 @@
         font-size: 13px;
         font-weight: bold;
 
-        @each $icon in backup, restore, sd-white, screenshot, wallpaper {
-            .icon.#{$icon} {
-                @include button-sprite(#{$icon});
-            }
-
-            &:enabled:not(.active):not(:active):hover .icon {
-                &.#{$icon} {
-                    @include button-sprite(#{$icon}-hover);
-                }
-            }
-
-            &:enabled:active .icon,
-            &.active .icon {
-                &.#{$icon} {
-                    @include button-sprite(#{$icon}-active);
-                }
-            }
-        }
-
         .transparent {
             color: #fff;
         }
@@ -1010,26 +953,6 @@
             font-size: 12px;
             font-weight: normal;
             text-shadow: 0 1px 0 #fff;
-
-            @each $icon in backup, restore, sd-white, screenshot, wallpaper {
-                .icon.#{$icon} {
-                    @include button-sprite(#{$icon}-light);
-                }
-
-                &:enabled:not(.active):not(:active):hover .icon {
-                    &.#{$icon} {
-                        @include button-sprite(#{$icon}-light-hover);
-                    }
-                }
-
-                &:enabled:active .icon,
-                &.active .icon {
-                    &.#{$icon} {
-                        @include button-sprite(#{$icon}-light-active);
-                    }
-                }
-            }
-
 
             &:enabled:hover:not(.active):not(:active),
             &:enabled:focus {
@@ -1158,20 +1081,6 @@
     &.left {
         top: 462px;
         left: 36px;
-    }
-
-    .icon {
-        display: block;
-        height: 16px;
-        margin-right: 3px;
-        opacity: .5;
-        width: 16px;
-
-        @each $icon in device, sd, sd-internal, sd-external {
-            &.#{$icon} {
-                @include button-sprite(capacity-#{$icon});
-            }
-        }
     }
 
     .icomoon {
