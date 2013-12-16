@@ -206,6 +206,7 @@
 
                 messageSenderView.once('show', function () {
                     messageSenderView.addContactById(id);
+                    messageSenderView.$el.find('textarea').focus();
                 }).show();
             },
             sendMessage : function (data) {
