@@ -386,6 +386,10 @@
         .multi-sim-tip {
             position: relative;
 
+            .link {
+                vertical-align: middle;
+            }
+
             .tip {
                 // @TODO: NEED DESIGN
                 @include sprite-sprite(help);
@@ -393,6 +397,7 @@
                 display: inline-block;
                 height: 15px;
                 margin-left: 5px;
+                vertical-align: middle;
                 width: 15px;
             }
         }
