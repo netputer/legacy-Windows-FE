@@ -57,12 +57,12 @@ $headerGradient: -webkit-gradient(linear, left top, left bottom, color-stop(0, #
     width: 16px;
 
     &:hover {
-        background-color: #888; // @TODO: NEED CONFIRM
+        background-color: #888;
         color: #fff;
     }
 
     &:active {
-        background-color: #666; // @TODO: NEED CONFIRM
+        background-color: #666;
         color: #fff;
     }
 }
@@ -71,14 +71,14 @@ $headerGradient: -webkit-gradient(linear, left top, left bottom, color-stop(0, #
     @extend .icomoon;
     @extend .icomoon-star-empty;
 
-    color: #888; // @TODO: NEED CONFIRM
+    color: #ccc;
 
     &:hover {
-        color: #000; // @TODO: NEED CONFIRM
+        color: #888;
     }
 
     &:active {
-        color: #000; // @TODO: NEED CONFIRM
+        color: #666;
     }
 }
 
@@ -86,14 +86,14 @@ $headerGradient: -webkit-gradient(linear, left top, left bottom, color-stop(0, #
     @extend .icomoon;
     @extend .icomoon-star-full;
 
-    color: #ffb62a; // @TODO: NEED CONFIRM
+    color: #ffb629;
 
     &:hover {
-        color: #f89719; // @TODO: NEED CONFIRM
+        color: #f89719;
     }
 
     &:active {
-        color: #e07e02; // @TODO: NEED CONFIRM
+        color: #df7e00;
     }
 }
 
