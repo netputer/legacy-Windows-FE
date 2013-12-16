@@ -112,12 +112,19 @@
                     case 'BACKUP_REMOTE':
                         this.showRemoteBackupView();
                         BackupRestoreService.recordCurrentBackupAsync();
+                        BackupContextModel.set('backupType', 1);
                         break;
                     case 'RESTORE_LOCAL':
                     case 'RESTORE_REMOTE':
                         this.syncContactAccounts();
                         this.queryBatteryInfo();
-                        this.showRestoreView(type === 'RESTORE_LOCAL');
+
+                        var isLocal = (type === 'RESTORE_LOCAL');
+                        this.showRestoreView(isLocal);
+
+                        if (!isLocal) {
+                            RestoreContextModel.set('backupType', 1);
+                        }
                         break;
                     }
                 });
