@@ -7,6 +7,7 @@
         'jquery',
         'wookmark',
         'Settings',
+        'Configuration',
         'utilities/StringUtil',
         'app/collections/AppsCollection',
         'welcome/views/UpdateCardView',
@@ -34,6 +35,7 @@
         $,
         wookmark,
         Settings,
+        CONFIG,
         StringUtil,
         AppsCollection,
         UpdateCardView,
@@ -111,14 +113,14 @@
                             targetView = BackupCardView;
                             break;
                         case 34:
-                            if (!Settings.get('welcome_feed_weibo') &&
-                                    (Settings.get('welcome_feed_tieba') || !randomDisplaySocialCard)) {
+                            if (Settings.get('welcome_feed_tieba') ||
+                                    randomDisplaySocialCard === CONFIG.enums.WELCOME_WEIBO_CARD) {
                                 targetView = WeiboCardView;
                             }
                             break;
                         case 35:
-                            if (!Settings.get('welcome_feed_tieba') &&
-                                    (Settings.get('welcome_feed_weibo') || randomDisplaySocialCard)) {
+                            if (Settings.get('welcome_feed_weibo') ||
+                                    randomDisplaySocialCard === CONFIG.enums.WELCOME_TIEBA_CARD) {
                                 targetView = TiebaCardView;
                             }
                             break;

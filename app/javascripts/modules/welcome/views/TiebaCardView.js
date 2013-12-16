@@ -23,14 +23,26 @@
     ) {
         var TiebaCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'tieba')),
-            className : FeedCardView.getClass().prototype.className + ' tieba',
+            className : FeedCardView.getClass().prototype.className + ' tieba hide',
             render : function () {
                 this.$el.html(this.template({}));
 
-                log({
-                    'event' : 'ui.show.welcome_card',
-                    'type' : this.model.get('type')
-                });
+                var count = Settings.get('welcome_count_tieba') || 0;
+
+                if (!Settings.get('welcome_feed_tieba') &&
+                        count < 5) {
+                    this.$el.removeClass('hide');
+                    this.options.parentView.initLayout();
+
+                    Settings.set('welcome_count_tieba', count + 1, true);
+
+                    log({
+                        'event' : 'ui.show.welcome_card',
+                        'type' : this.model.get('type')
+                    });
+                } else {
+                    this.hide();
+                }
 
                 return this;
             },
@@ -39,7 +51,7 @@
             },
             clickButtonAction : function () {
                 setTimeout(function () {
-                    this.$el.addClass('following').find('.button-action').attr({
+                    this.$el.find('.button-action').attr({
                         disabled : true
                     }).text(i18n.welcome.CARD_WEIBO_ACTION_CLICKED);
                 }.bind(this), 500);
@@ -50,7 +62,7 @@
                     'event' : 'ui.click.welcome_card_action',
                     'type' : this.model.get('type'),
                     'index' : this.getIndex(),
-                    'action' : 'weibo'
+                    'action' : 'tieba'
                 });
             },
             clickButtonIgnore : function () {
