@@ -478,79 +478,81 @@
                 MessageService.getServiceCenterAsync().done(function (resp) {
                     var serviceCenter = resp.body.sim || [];
 
-                    if (serviceCenter.length > 0) {
-                        var isDifferentService = serviceCenter[0].sim_name && serviceCenter[1].sim_name && serviceCenter[0].sim_name !== serviceCenter[1].sim_name;
-
-                        this.buttons.shift();
-
-                        var $sendBtnGroup = $('<span>').addClass('w-ui-buttongroup button-send-group');
-                        var $sendBtn = $('<button>').addClass('primary button-send');
-
-                        if (isDifferentService) {
-                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, selectedSIM && serviceCenter[0].sim_id !== selectedSIM ? serviceCenter[1].sim_name : serviceCenter[0].sim_name));
-                        } else {
-                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, selectedSIM && serviceCenter[0].sim_id !== selectedSIM ? 2 : 1));
-                        }
-
-                        var items = [];
-
-                        _.each(serviceCenter, function (service, i) {
-                            items.push({
-                                type : 'radio',
-                                name : 'service-center-send-window',
-                                label : service.sim_phone_number ?
-                                            StringUtil.format(i18n.message.MUTIL_SIM_SELECT_HAS_NUM, service.sim_name, service.sim_phone_number) :
-                                            StringUtil.format(i18n.message.MUTIL_SIM_SELECT, service.sim_name, i + 1),
-                                value : i,
-                                checked : selectedSIM ? service.sim_id === selectedSIM  : i === 0
-                            });
-                        });
-
-                        items.push({
-                            type : 'hr'
-                        });
-
-                        items.push({
-                            type : 'link',
-                            name : 'duoqu',
-                            label : i18n.message.MUTIL_SIM_SUPPORT_LINK,
-                            value : 'duoqu',
-                            action : function () {
-                                log({
-                                    'event' : 'ui.click.duoqu'
-                                });
-                            }
-                        });
-
-                        this.serviceCenter = selectedSIM || serviceCenter[0].sim_id;
-
-                        serviceBtn = new MenuButton({
-                            items : items
-                        });
-                        serviceBtn.menu.alignToHost = false;
-
-                        $sendBtnGroup.append($sendBtn).append(serviceBtn.render().$el.addClass('primary toggle'));
-
-                        this.buttons.unshift({
-                            $button : $sendBtnGroup
-                        });
-
-                        serviceBtn.on('select', function (item) {
-                            var sim = serviceCenter[item.value];
-
-                            if (sim) {
-                                this.serviceCenter = selectedSIM = sim.sim_id;
-
-                                if (isDifferentService) {
-                                    $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, sim.sim_name));
-                                } else {
-                                    $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1));
-                                }
-                            }
-                        }, this);
-
-                        this.buttons = this.buttons;
+                    if (serviceCenter.length === 0) {
+                        return;
                     }
+
+                    var isDifferentService = serviceCenter[0].sim_name && serviceCenter[1].sim_name && serviceCenter[0].sim_name !== serviceCenter[1].sim_name;
+
+                    this.buttons.shift();
+
+                    var $sendBtnGroup = $('<span>').addClass('w-ui-buttongroup button-send-group');
+                    var $sendBtn = $('<button>').addClass('primary button-send');
+
+                    if (isDifferentService) {
+                        $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, selectedSIM && serviceCenter[0].sim_id !== selectedSIM ? serviceCenter[1].sim_name : serviceCenter[0].sim_name));
+                    } else {
+                        $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, selectedSIM && serviceCenter[0].sim_id !== selectedSIM ? 2 : 1));
+                    }
+
+                    var items = [];
+
+                    _.each(serviceCenter, function (service, i) {
+                        items.push({
+                            type : 'radio',
+                            name : 'service-center-send-window',
+                            label : service.sim_phone_number ?
+                                        StringUtil.format(i18n.message.MUTIL_SIM_SELECT_HAS_NUM, service.sim_name, service.sim_phone_number) :
+                                        StringUtil.format(i18n.message.MUTIL_SIM_SELECT, service.sim_name, i + 1),
+                            value : i,
+                            checked : selectedSIM ? service.sim_id === selectedSIM  : i === 0
+                        });
+                    });
+
+                    items.push({
+                        type : 'hr'
+                    });
+
+                    items.push({
+                        type : 'link',
+                        name : 'duoqu',
+                        label : i18n.message.MUTIL_SIM_SUPPORT_LINK,
+                        value : 'duoqu',
+                        action : function () {
+                            log({
+                                'event' : 'ui.click.duoqu'
+                            });
+                        }
+                    });
+
+                    this.serviceCenter = selectedSIM || serviceCenter[0].sim_id;
+
+                    serviceBtn = new MenuButton({
+                        items : items
+                    });
+                    serviceBtn.menu.alignToHost = false;
+
+                    $sendBtnGroup.append($sendBtn).append(serviceBtn.render().$el.addClass('primary toggle'));
+
+                    this.buttons.unshift({
+                        $button : $sendBtnGroup
+                    });
+
+                    serviceBtn.on('select', function (item) {
+                        var sim = serviceCenter[item.value];
+
+                        if (sim) {
+                            this.serviceCenter = selectedSIM = sim.sim_id;
+
+                            if (isDifferentService) {
+                                $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, sim.sim_name));
+                            } else {
+                                $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, parseInt(item.value, 10) + 1));
+                            }
+                        }
+                    }, this);
+
+                    this.buttons = this.buttons;
                 }.bind(this));
             },
             render : function () {
