@@ -176,6 +176,15 @@
 .w-icon-btn.browser-nav {
     min-width: 16px;
 
+    .star {
+        @include button-star;
+
+        &.starred {
+            @include button-starred;
+        }
+    }
+
+
     &:not(.primary).min {
         padding: 2px 8px;
 
@@ -183,28 +192,6 @@
             height: 16px;
             margin-right: 0;
             width: 16px;
-
-            &.star {
-                &.starred {
-                    @include button-sprite(starred);
-                }
-            }
-        }
-
-        &:enabled:hover .icon {
-            &.star {
-                &.starred {
-                    @include button-sprite(starred-hover);
-                }
-            }
-        }
-
-        &:enabled:active .icon {
-            &.star {
-                &.starred {
-                    @include button-sprite(starred-active);
-                }
-            }
         }
 
         .label {

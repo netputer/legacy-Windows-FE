@@ -47,17 +47,53 @@ $windowBorderColor: #aaa;
 $headerGradient: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(0.05, #f9f9f9), color-stop(1, #ededed));
 
 @mixin button-close {
-    @include sprite-sprite(close);
+    @extend .icomoon;
+    @extend .icomoon-no;
+
+    border-radius: 8px;
+    color: #888;
     cursor: default;
     height: 16px;
     width: 16px;
 
     &:hover {
-        @include sprite-sprite(close-hover);
+        background-color: #888; // @TODO: NEED CONFIRM
+        color: #fff;
     }
 
     &:active {
-        @include sprite-sprite(close-active);
+        background-color: #666; // @TODO: NEED CONFIRM
+        color: #fff;
+    }
+}
+
+@mixin button-star {
+    @extend .icomoon;
+    @extend .icomoon-star-empty;
+
+    color: #888; // @TODO: NEED CONFIRM
+
+    &:hover {
+        color: #000; // @TODO: NEED CONFIRM
+    }
+
+    &:active {
+        color: #000; // @TODO: NEED CONFIRM
+    }
+}
+
+@mixin button-starred {
+    @extend .icomoon;
+    @extend .icomoon-star-full;
+
+    color: #ffb62a; // @TODO: NEED CONFIRM
+
+    &:hover {
+        color: #f89719; // @TODO: NEED CONFIRM
+    }
+
+    &:active {
+        color: #e07e02; // @TODO: NEED CONFIRM
     }
 }
 

@@ -138,6 +138,12 @@ button {
  * Image Button
  ********************************************************************************/
 button.w-icon-btn {
+    -webkit-transition: color .2s linear;
+
+    .icomoon {
+        color: #888;
+    }
+
     .icon {
         display: inline-block;
         height: 16px;
@@ -145,11 +151,8 @@ button.w-icon-btn {
         vertical-align: middle;
         width: 16px;
 
-        @each $icon in add-grey, pause, start, delete, open-folder,
-             add, mark-as-read, refresh, import, export,
-             update, up, down, star, sd, device, merge, ring, itunes,
-             comment, share, like, dislike, reload, fullscreen,
-             move-down, reset, return {
+        @each $icon in return {
+            // @TODO: NEED DESIGN
             &.#{$icon} {
                 @include button-sprite(#{$icon});
             }

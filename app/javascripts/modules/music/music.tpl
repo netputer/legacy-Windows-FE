@@ -2,17 +2,17 @@
 <script type="text/x-ui-template" id="toolbar">
     <input type="checkbox" class="check-select-all" />
     <button class="w-icon-btn primary button-add-music min">
-        <span class="icon add"></span>{{= i18n.music.ADD_LOCAL_MUSIC_TEXT }}
+        <span class="icomoon icomoon-add-circle"></span>{{= i18n.music.ADD_LOCAL_MUSIC_TEXT }}
     </button>
     <button class="w-icon-btn button-delete min">
-        <span class="icon delete"></span>{{= i18n.misc.DELETE }}
+        <span class="icomoon icomoon-delete"></span>{{= i18n.misc.DELETE }}
     </button>
     <button class="w-icon-btn button-export min">
-        <span class="icon export"></span>{{= i18n.misc.EXPORT }}
+        <span class="icomoon icomoon-export"></span>{{= i18n.misc.EXPORT }}
     </button>
     <div class="itunes-wrap">
         <button class="w-icon-btn button-itunes min">
-            <span class="icon itunes"></span>{{= i18n.music.ITUNES_IMPORT }}
+            <span class="icomoon icomoon-itunes"></span>{{= i18n.music.ITUNES_IMPORT }}
         </button>
     </div>
 </script>
@@ -41,14 +41,14 @@
     <div class="title wc" title="{{! it.title }}">{{! it.title }}</div>
     <div class="play">
         {{? it.playing }}
-        <div class="button-stop" title="{{= i18n.misc.STOP }}"></div>
+        <div class="button-stop icomoon icomoon-stop" title="{{= i18n.misc.STOP }}"></div>
         <div class="playing"></div>
         {{?? it.loading }}
         <div class="loading"></div>
         {{?? it.error }}
-        <div class="error" title="{{= i18n.music.MUSIC_CANNOT_PLAY_TEXT }}"></div>
+        <div class="error icomoon icomoon-sound" title="{{= i18n.music.MUSIC_CANNOT_PLAY_TEXT }}"></div>
         {{??}}
-        <div class="button-play" title="{{= i18n.misc.PLAY }}"></div>
+        <div class="button-play icomoon icomoon-sound" title="{{= i18n.misc.PLAY }}"></div>
         {{?}}
     </div>
     <div class="artist text-secondary wc" title="{{! it.artist }}">{{! it.artist }}</div>

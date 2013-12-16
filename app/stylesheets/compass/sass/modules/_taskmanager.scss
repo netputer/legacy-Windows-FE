@@ -98,11 +98,11 @@
                 width: 16px;
 
                 &.add {
-                    @include sprite-sprite(add-task);
+                    @include sprite-sprite(add-task); // icomoon-add
                 }
 
                 &.finish {
-                    @include sprite-sprite(pass);
+                    @include sprite-sprite(pass); // icomoon-yes-circle
                 }
             }
 
@@ -115,7 +115,7 @@
             display: block;
 
             .icon {
-                @include button-sprite(down);
+                @include button-sprite(down); // icomoon-down-circle
             }
         }
 
@@ -134,7 +134,7 @@
                 }
 
                 .icon {
-                    @include sprite-sprite(down-wrap);
+                    @include sprite-sprite(down-wrap); // icomoon-down-circle
                     margin: 0;
                     position: absolute;
                     top: -2px;
@@ -144,7 +144,7 @@
 
         &.error {
             .icon {
-                @include sprite-sprite(error);
+                @include sprite-sprite(error); // @TODO: NEED DESIGN
             }
 
             .desc {
@@ -154,7 +154,7 @@
 
         &.push {
             .icon {
-                @include sprite-sprite(push);
+                @include sprite-sprite(push); // icomoon-right-circle
             }
         }
     }
@@ -394,21 +394,8 @@
         height: 36px;
     }
 
-    .icon {
-        display: block;
-        height: 16px;
-        width: 16px;
-        margin-right: 5px;
-
-        &.device {
-            @include button-sprite(device);
-        }
-
-        @each $icon in sd, sd-internal, sd-external {
-            &.#{$icon} {
-                @include button-sprite(task-#{$icon});
-            }
-        }
+    .icomoon {
+        color: #888;
     }
 
     .info {

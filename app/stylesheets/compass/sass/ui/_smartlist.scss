@@ -23,6 +23,8 @@
         cursor: pointer;
 
         .sort-icon {
+            @extend .icomoon;
+
             display: inline-block;
             height: 12px;
             margin: 0 0 4px 2px;
@@ -32,13 +34,13 @@
 
         &.asc {
             .sort-icon {
-                @include sprite-sprite(asc);
+                @extend .icomoon-down;
             }
         }
 
         &.desc {
             .sort-icon {
-                @include sprite-sprite(desc);
+                @extend .icomoon-up;
             }
         }
 

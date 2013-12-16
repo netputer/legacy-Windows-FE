@@ -116,7 +116,6 @@
         width: 100%;
 
         .button-retry {
-            @include button-sprite(refresh);
             display: inline-block;
             height: 16px;
             margin: -2px 0 0 5px;
@@ -125,11 +124,11 @@
             width: 16px;
 
             &:hover {
-                @include button-sprite(refresh-hover);
+                color: $standardColor;
             }
 
             &:active {
-                @include button-sprite(refresh-active);
+                color: $textActive;
             }
         }
     }
@@ -153,12 +152,12 @@
         }
 
         .button-info {
-            @include sprite-sprite(photo-info);
+            color: #999;
             height: 15px;
             width: 15px;
 
             &:hover {
-                @include sprite-sprite(photo-info-hover);
+                color: #ccc;
             }
         }
     }

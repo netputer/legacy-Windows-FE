@@ -267,6 +267,7 @@
             .button-dislike {
                 @include button-close;
                 display: none;
+                margin-right: 2px;
                 position: absolute;
                 right: 0;
                 top: 0;
@@ -793,6 +794,12 @@
             padding: 2px 8px;
         }
 
+        .w-ui-buttongroup {
+            .icomoon {
+                margin-right: 0;
+            }
+        }
+
         .button-like,
         .button-dislike {
             min-width: 0;
@@ -800,17 +807,11 @@
             .icon {
                 margin-right: 0;
             }
-        }
 
-        .button-like.checked {
-            .icon {
-                @include sprite-sprite(liked);
-            }
-        }
-
-        .button-dislike.checked {
-            .icon {
-                @include sprite-sprite(disliked);
+            &.checked {
+                .icomoon {
+                    color: inherit;
+                }
             }
         }
     }

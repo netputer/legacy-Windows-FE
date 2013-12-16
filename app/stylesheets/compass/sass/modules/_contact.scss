@@ -110,14 +110,8 @@
     .legend {
         margin: 20px 0 20px 20px;
 
-        .icon {
-            @include sprite-sprite(cross);
-            display: inline-block;
-            height: 12px;
-            margin-bottom: -1px;
-            margin-right: 10px;
-            width: 12px;
-
+        .icomoon {
+            color: $textActive;
         }
     }
 
@@ -276,6 +270,7 @@
         }
 
         .button-email {
+            // @TODO: NEED DESIGN
             @include sprite-sprite(mail);
             cursor: pointer;
             display: inline-block;
@@ -294,6 +289,7 @@
         }
 
         .button-dial {
+            // @TODO: NEED DESIGN
             @include sprite-sprite(dial);
             cursor: pointer;
             display: inline-block;
@@ -379,7 +375,7 @@
         }
 
         .button-delete {
-            @include button-sprite(delete);
+            color: #888;
             cursor: default;
             display: inline-block;
             height: 16px;
@@ -388,11 +384,11 @@
             width: 16px;
 
             &:hover {
-                @include button-sprite(delete-hover);
+                color: $standardColor;
             }
 
             &:active {
-                @include button-sprite(delete-active);
+                color: $textActive;
             }
         }
     }
@@ -477,26 +473,14 @@
         -webkit-box-align: center;
 
         .star-img {
-            @include button-sprite(star);
+            @include button-star;
             height: 15px;
             width: 15px;
-
-            &:hover {
-                @include button-sprite(star-hover);
-            }
         }
 
         &.starred {
             .star-img {
-                @include button-sprite(starred);
-
-                &:hover {
-                    @include button-sprite(starred-hover);
-                }
-
-                &:active {
-                    @include button-sprite(starred-active);
-                }
+                @include button-starred;
             }
         }
 

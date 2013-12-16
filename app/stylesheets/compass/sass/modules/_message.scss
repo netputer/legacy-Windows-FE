@@ -130,10 +130,12 @@
             }
 
             &.faild {
+                // @TODO: NEED DESIGN
                 @include sprite-sprite(error);
             }
 
             &.sending {
+                // @TODO: NEED DESIGN
                 @include sprite-sprite(sending);
             }
         }
@@ -353,6 +355,8 @@
             line-height: 18px;
             width: 80px;
         }
+
+
     }
 
     .body {
@@ -383,6 +387,7 @@
             position: relative;
 
             .tip {
+                // @TODO: NEED DESIGN
                 @include sprite-sprite(help);
                 cursor: help;
                 display: inline-block;
@@ -660,6 +665,7 @@
                 width: 16px;
 
                 @each $icon in delete, reply, copy {
+                    // @TODO: NEED DESIGN
                     &.button-#{$icon} {
                         @include button-sprite(#{$icon});
 
@@ -696,11 +702,13 @@
             width: 16px;
 
             &.faild {
+                // @TODO: NEED DESIGN
                 @include sprite-sprite(error);
                 margin-right: 3px;
             }
 
             &.sending {
+                // @TODO: NEED DESIGN
                 @include sprite-sprite(sending);
             }
         }

@@ -105,13 +105,6 @@
         -webkit-box-align: center;
         -webkit-box-pack: center;
 
-        .icon {
-            @include button-sprite(device);
-            height: 16px;
-            margin-right: 5px;
-            width: 16px;
-        }
-
         .tip {
             margin-right: 10px;
             text-shadow: 0 1px 0 #fff;

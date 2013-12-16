@@ -132,16 +132,32 @@
             }
 
             .button-play {
-                @include sprite-sprite(play-audio);
+                color: #888;
                 display: none;
+
+                &:hover {
+                    color: $standardColor;
+                }
+
+                &:active {
+                    color: $textActive;
+                }
             }
 
             .error {
-                @include sprite-sprite(play-error);
+                color: #888;
             }
 
             .button-stop {
-                @include sprite-sprite(stop-audio);
+                color: #888;
+
+                &:hover {
+                    color: $standardColor;
+                }
+
+                &:active {
+                    color: $textActive;
+                }
             }
         }
     }
@@ -192,17 +208,13 @@
                 color: $textActive;
             }
 
-            &:enabled:not(.active):not(:active):hover .icon {
-                &.ring {
-                    @include button-sprite(ring-hover);
-                }
+            &:enabled:not(.active):not(:active):hover .icomoon {
+                color: $standardColor;
             }
 
-            &:enabled:active .icon,
-            &.active .icon {
-                &.ring {
-                    @include button-sprite(ring-active);
-                }
+            &:enabled:active .icomoon,
+            &.active .icomoon {
+                color: $textActive;
             }
 
             &:not(.active) {

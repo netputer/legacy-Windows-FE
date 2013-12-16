@@ -13,6 +13,26 @@
     width: 100%;
     -webkit-box-align: center;
 
+    .w-icon-btn {
+        &.primary {
+            .icomoon {
+                color: #fff;
+            }
+        }
+
+        &:hover:not(.primary):not([disabled]) {
+            .icomoon {
+                color: $standardColor;
+            }
+        }
+
+        &:active:not(.primary):not([disabled]) {
+            .icomoon {
+                color: $textActive;
+            }
+        }
+    }
+
     button {
         &:not(.primary) {
             background: transparent;
@@ -42,25 +62,6 @@
 
         &.primary + button.min {
             margin-left: 5px;
-        }
-
-        @each $icon in pause, start, delete, open-folder,
-             mark-as-read, refresh, import, export,
-             update, up, icon-down, star, sd, device,
-             fullscreen, merge, ring, itunes, reload,
-             move-down, reset {
-            &:enabled:not(.active):not(:active):hover .icon {
-                &.#{$icon} {
-                    @include button-sprite(#{$icon}-hover);
-                }
-            }
-
-            &:enabled:active .icon,
-            &.active .icon {
-                &.#{$icon} {
-                    @include button-sprite(#{$icon}-active);
-                }
-            }
         }
     }
 

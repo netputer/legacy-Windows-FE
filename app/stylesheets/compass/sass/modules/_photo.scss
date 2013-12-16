@@ -14,7 +14,6 @@
 }
 
 .w-photo-ios-banner-ctn {
-
     background: white;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -114,13 +113,13 @@
 
     .control {
         .button-share {
-            @include sprite-sprite(photo-share-small);
+            color: #999;
             height: 15px;
             margin-right: 5px;
             width: 15px;
 
             &:hover {
-                @include sprite-sprite(photo-share-small-hover);
+                color: #ccc;
             }
         }
     }
