@@ -29,6 +29,9 @@
 
         var RestoreLocalFileCollection = Backbone.Collection.extend({
             model : FileModel,
+            comparator : function (first, second) {
+                return  second.id.localeCompare(first.id);
+            },
             initialize : function () {
 
                 var loading = false;
@@ -64,7 +67,6 @@
                 this.trigger('refresh');
 
                 this.each(function (model) {
-
                     BackupRestoreService.readRestoreFileAsync(model.get('path')).done(function (resp) {
 
                         var info = {};

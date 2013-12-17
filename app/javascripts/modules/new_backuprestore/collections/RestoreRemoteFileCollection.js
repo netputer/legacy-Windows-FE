@@ -34,6 +34,9 @@
 
         var RestoreRemoteFileCollection = Backbone.Collection.extend({
             model : FileModel,
+            comparator : function (first, second) {
+                return  second.get('timestamp') - first.get('timestamp');
+            },
             initialize : function () {
 
                 var loading = false;
@@ -83,11 +86,7 @@
                 });
             },
             getAll : function () {
-                var models = this.models.sort(function (a, b) {
-                    return b.get('timestamp') - a.get('timestamp');
-                });
-
-                return models;
+                return this.models;
             }
         });
 

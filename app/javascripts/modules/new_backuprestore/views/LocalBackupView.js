@@ -366,7 +366,21 @@
                 if (deviceName !== undefined && deviceName.length > 0) {
                     deviceName = deviceName.replace(/ /g, '_').replace(new RegExp(this.invalidPattern, "g"), '_');
                 }
+
                 var curDate = StringUtil.formatDate('yyyy-MM-dd-HH-mm-ss-', new Date().valueOf());
+                curDate.replace(/(\w{4}-)(\w{1,2})-(\w{1,2})/, function (){
+                    var MM = arguments[2];
+                    if (parseInt(MM) < 10 ) {
+                        MM = '0' + MM;
+                    }
+
+                    var dd = arguments[3];
+                    if (parseInt(dd) < 10 ) {
+                        dd = '0' + dd;
+                    }
+
+                    return arguments[1] + MM + '-' + dd;
+                });
                 var fileName = curDate + deviceName;
                 initDone.push(BackupRestoreService.formatFileName(fileName).done(function (resp) {
                     var fileName = resp.body.value;
