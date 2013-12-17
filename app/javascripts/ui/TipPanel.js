@@ -98,13 +98,13 @@
 
                     this.locate();
 
-                    this.$el.removeClass('w-layout-hide')
-                        .toggleClass('w-anima-pop-in', this.popIn);
-
-                    var transitionEndHandler = function () {
-                        this.trigger(EventsMapping.SHOW);
-                    }.bind(this);
-                    this.$el.one('webkitTransitionEnd', transitionEndHandler);
+                    this.$el.toggleClass('w-anima-pop-in', this.popIn)
+                        .one('webkitAnimationEnd', function () {
+                            this.$el.removeClass('w-layout-hide');
+                        }.bind(this))
+                        .one('webkitTransitionEnd', function () {
+                            this.trigger(EventsMapping.SHOW);
+                        }.bind(this));
                 }
             },
             hide : function () {

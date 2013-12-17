@@ -181,6 +181,16 @@
         position: absolute;
         right: 5px;
         top: 5px;
+
+        &:hover {
+            background-color: #888;
+            color: #333;
+        }
+
+        &:active {
+            background-color: #ccc;
+            color: #333;
+        }
     }
 }
 

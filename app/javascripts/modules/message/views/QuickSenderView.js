@@ -70,6 +70,11 @@
             buildButton : function () {
                 MessageService.getServiceCenterAsync().done(function (resp) {
                     var serviceCenter = resp.body.sim || [];
+
+                    if (serviceCenter.length === 0) {
+                        return;
+                    }
+
                     var isDifferentService = serviceCenter[0].sim_name && serviceCenter[1].sim_name && serviceCenter[0].sim_name !== serviceCenter[1].sim_name;
 
                     if (serviceCenter.length > 0) {

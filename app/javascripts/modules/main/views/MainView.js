@@ -49,7 +49,7 @@
             switch (msg.type) {
             case CONFIG.enums.NAVIGATE_TYPE_MARKET:
                 if (msg.id) {
-                    this.getModule('browser').navigate('http://apps.wandoujia.com/apps/' + msg.id +'?pos=w/search');
+                    this.getModule('browser').navigate('http://apps.wandoujia.com/apps/' + msg.id + '?pos=w/search');
                 } else {
                     this.getModule('browser').navigate('http://apps.wandoujia.com/');
                 }
@@ -71,19 +71,17 @@
                 this.getModule('contact').navigateGroup(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_CONTACT:
-                if (msg.action === CONFIG.enums.NAVIGATE_TYPE_CALL) {
-                    var data = msg.id.split('|');
-                    this.getModule('contact').navigateAsync({
-                        id : data[0]
-                    }).done(function () {
+                var data = msg.id.split('|');
+                this.getModule('contact').navigateAsync({
+                    id : data[0]
+                }).done(function () {
+                    if (msg.action === CONFIG.enums.NAVIGATE_TYPE_CALL) {
                         var dialEle = $('.button-dial[data-phone-number="' + data[1] + '"]')[0];
                         if (dialEle) {
                             dialEle.click();
                         }
-                    });
-                } else {
-                    this.getModule('contact').navigateAsync(msg);
-                }
+                    }
+                });
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_GROUP_SMS:
                 this.getModule('message').navigateGroup(msg);

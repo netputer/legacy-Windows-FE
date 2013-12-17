@@ -23,14 +23,26 @@
     ) {
         var WeiboCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'weibo')),
-            className : FeedCardView.getClass().prototype.className + ' weibo',
+            className : FeedCardView.getClass().prototype.className + ' weibo hide',
             render : function () {
                 this.$el.html(this.template({}));
 
-                log({
-                    'event' : 'ui.show.welcome_card',
-                    'type' : this.model.get('type')
-                });
+                var count = Settings.get('welcome_count_weibo') || 0;
+
+                if (!Settings.get('welcome_feed_weibo') &&
+                        count < 5) {
+                    this.$el.removeClass('hide');
+                    this.options.parentView.initLayout();
+
+                    Settings.set('welcome_count_weibo', count + 1, true);
+
+                    log({
+                        'event' : 'ui.show.welcome_card',
+                        'type' : this.model.get('type')
+                    });
+                } else {
+                    this.hide();
+                }
 
                 return this;
             },

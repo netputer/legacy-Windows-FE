@@ -697,7 +697,11 @@
                 // Update Recommend Type
                 UPDATE_RECOMMEND : 'STRONG_RECOMMEND',
                 UPDATE_WARNING : 'WARNNING',
-                UPDATE_NOT_RECOMMEND : 'NOT_RECOMMEND'
+                UPDATE_NOT_RECOMMEND : 'NOT_RECOMMEND',
+
+                // Social Card Type
+                WELCOME_WEIBO_CARD : 0,
+                WELCOME_TIEBA_CARD : 1
             }
         };
 
