@@ -9,7 +9,7 @@
  ********************************************************************************/
 .w-browser-module-main {
     .w-ui-toolbar {
-        height: 35px;
+        height: 38px;
         background: -webkit-linear-gradient(rgba(0,0,0,0.04) 0%, rgba(0,0,0,0) 9%), url("../images/welcome_bg_100X100.png");
 
         .developer-wrap {
@@ -147,9 +147,10 @@
     .root-item {
         box-sizing: border-box;
         cursor: pointer;
+        font-size: 13px;
         height: 22px;
         line-height: 22px;
-        padding: 0 10px;
+        padding: 0 12px;
 
         &:hover {
             color: $textPrimary;
@@ -158,16 +159,17 @@
 
         &.selected {
             color: $linkColor;
+            font-weight: bold;
             text-shadow: 0 1px 0 #fff;
         }
     }
 }
 
 .w-browser-menu-pointer {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#7fc124), to(#60ac1e));
+    background-color: #3baa24;
     bottom: -1px;
     display: none;
-    height: 3px;
+    height: 4px;
     position: absolute;
     width: 100px;
     -webkit-transition: left .2s, width .2s;

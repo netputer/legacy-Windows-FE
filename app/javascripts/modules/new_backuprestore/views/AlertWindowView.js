@@ -3,16 +3,17 @@
     define([
         'jquery',
         'Internationalization',
+        'Log',
         'ui/UIHelper',
         'ui/AlertWindow'
     ], function (
         $,
         i18n,
+        log,
         UIHelper,
         AlertWindow
     ) {
         console.log('BackupRestoreAlertWindow - File loaded.');
-
 
         var alertWindow = new AlertWindow({
             buttons : [{
@@ -50,6 +51,11 @@
 
             if (showQQ) {
                 alertWindow.$('.w-ui-window-footer-monitor').empty().append(i18n.new_backuprestore.QQ);
+
+                log({
+                    event : 'ui.show.new_backuprestore_showQQ'
+                });
+
             } else {
                 alertWindow.$('.w-ui-window-footer-monitor').empty();
             }
