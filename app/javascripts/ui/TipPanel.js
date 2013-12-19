@@ -98,13 +98,19 @@
 
                     this.locate();
 
-                    this.$el.toggleClass('w-anima-pop-in', this.popIn)
-                        .one('webkitAnimationEnd', function () {
+                    this.$el.toggleClass('w-anima-pop-in', this.popIn);
+
+                    if (this.popIn) {
+                        this.$el.one('webkitAnimationEnd', function () {
                             this.$el.removeClass('w-layout-hide');
-                        }.bind(this))
-                        .one('webkitTransitionEnd', function () {
-                            this.trigger(EventsMapping.SHOW);
                         }.bind(this));
+                    } else {
+                        this.$el.removeClass('w-layout-hide');
+                    }
+
+                    this.$el.one('webkitTransitionEnd', function () {
+                        this.trigger(EventsMapping.SHOW);
+                    }.bind(this));
                 }
             },
             hide : function () {

@@ -386,6 +386,7 @@
     @include footer-panel;
     box-sizing: border-box;
     height: 0;
+    overflow: hidden;
     padding: 0 10px;
     -webkit-box-align: center;
     -webkit-transition: height .4s linear;
