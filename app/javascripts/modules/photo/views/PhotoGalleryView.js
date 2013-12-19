@@ -216,6 +216,11 @@
                                         });
 
                                         this.$el.append(this.iosView.render().$el);
+
+                                        log({
+                                            'event' : 'ui.show.ios_banner'
+                                        });
+
                                     } else {
                                         this.iosView.$el.show();
                                     }
