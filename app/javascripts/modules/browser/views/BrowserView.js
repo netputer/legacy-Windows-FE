@@ -169,6 +169,14 @@
                         get : function () {
                             return flashErrorHandler;
                         }
+                    },
+                    additionalClass : {
+                        set : function (value) {
+                            this.className += ' ' + value;
+                            if (this.$el) {
+                                this.$el.addClass(value);
+                            }
+                        }
                     }
                 });
 

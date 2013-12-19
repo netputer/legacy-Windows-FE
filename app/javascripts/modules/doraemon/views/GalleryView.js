@@ -68,7 +68,8 @@
                     model : new ExtensionModel({
                         id : 305,
                         name : '豌豆荚的百宝袋'
-                    })
+                    }),
+                    additionalClass : 'wdj-iframe-gallery'
                 }).render().$el);
 
                 this.rendered = true;

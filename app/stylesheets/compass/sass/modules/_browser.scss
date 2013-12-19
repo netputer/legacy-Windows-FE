@@ -7,6 +7,12 @@
  /********************************************************************************
  * Browser Module Main
  ********************************************************************************/
+.wdj-iframe-gallery {
+    .w-ui-toolbar {
+        height: 38px;
+    }
+}
+
 .w-browser-module-main {
     .w-ui-toolbar {
         height: 38px;
@@ -153,7 +159,7 @@
         padding: 0 12px;
 
         &:hover {
-            color: $textPrimary;
+            color: $linkColor;
             text-shadow: 0 1px 0 rgba(255, 255, 255, .6);
         }
 
