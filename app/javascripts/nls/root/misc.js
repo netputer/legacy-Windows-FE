@@ -80,7 +80,7 @@ define({
     NAV_CONTACT_ALL : '全部联系人',
     NAV_CONTACT_HAS_PHONE : '有电话的联系人',
     NAV_CONTACT_STARRED : '收藏夹',
-    NAV_APP : '软件和游戏管理',
+    NAV_APP : '应用和游戏管理',
     NAV_APP_INSTALLED : '已安装',
     NAV_APP_SYS : '系统',
     NAV_APP_UPDATABLE : '可升级',
