@@ -159,6 +159,15 @@
             case CONFIG.enums.NAVIGATE_TYPE_VIDEO_SEARCH:
                 this.getModule('browser').navigateToThirdParty(258, '', 'wdj-extension://__MSG_@@extension_id__/search.html#q/' + msg.keyword);
                 break;
+            case CONFIG.enums.NAVIGATE_TYPE_DORAEMON:
+                var index = msg.id.indexOf('-');
+                if (index <= 0) {
+                    return;
+                }
+                var extensionId = parseInt(msg.id.substr(0, index), 10);
+                var extentsionUrl = msg.id.substr(index + 1);
+                this.getModule('browser').navigateToThirdParty(extensionId, '', extentsionUrl);
+                break;
             }
         };
 
