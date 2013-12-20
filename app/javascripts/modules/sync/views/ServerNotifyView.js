@@ -58,7 +58,7 @@
                 return this;
             },
             clickButtonOpen : function () {
-                if (this.options.component_id) {
+                if (this.options.componentId) {
                     // Open doraemon
                     IO.requestAsync({
                         url : CONFIG.actions.OPEN_WANDUJIA,
