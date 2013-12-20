@@ -63,8 +63,8 @@
                     IO.requestAsync({
                         url : CONFIG.actions.OPEN_WANDUJIA,
                         data : {
-                            doraemon_id : parseInt(this.options.component_id, 10),
-                            doraemon_url : this.options.data_url,
+                            doraemon_id : parseInt(this.options.componentId, 10),
+                            doraemon_url : this.options.dataUrl,
                             source : 'server_notify'
                         }
                     });
@@ -73,7 +73,7 @@
                     IO.requestAsync({
                         url : CONFIG.actions.OPEN_URL_HELPER,
                         data : {
-                            url : this.options.redirect_url
+                            url : this.options.redirectUrl
                         }
                     });
                 }
@@ -85,7 +85,6 @@
                 });
             },
             events : {
-                'click .button-open' : 'clickButtonOpen',
                 'click' : 'clickButtonOpen'
             }
         });
