@@ -139,7 +139,7 @@
                     return;
                 }
 
-                Account.loginAsync();
+                Account.loginAsync('', 'cloud-photo-switch');
 
                 var handler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
