@@ -95,7 +95,7 @@
             tab : 'app-wash',
             order : 90,
             icon : 'wash',
-            hide : true
+            hide : !FunctionSwitch.ENABLE_APP_WASH
         }, {
             label : i18n.misc.NAV_CONTACT_ALL,
             id : 7,

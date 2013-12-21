@@ -20,9 +20,9 @@
         'welcome/views/DeviceView',
         'welcome/views/ToolbarView',
         // 'welcome/views/GuideView',
-        'welcome/views/FeedListView',
-        'welcome/collections/FeedsCollection',
-        'welcome/views/TipsCardView',
+        // 'welcome/views/FeedListView',
+        // 'welcome/collections/FeedsCollection',
+        // 'welcome/views/TipsCardView',
         'welcome/views/CapacityBarView'
     ], function (
         Backbone,
@@ -44,9 +44,9 @@
         DeviceView,
         ToolbarView,
         // GuideView,
-        FeedListView,
-        FeedsCollection,
-        TipsCardView,
+        // FeedListView,
+        // FeedsCollection,
+        // TipsCardView,
         CapacityBarView
     ) {
         console.log('WelcomeView - File loaded.');
@@ -56,7 +56,7 @@
         var toolbarView;
         var capacityBarView;
         // var guideView;
-        var feedListView;
+        // var feedListView;
 
         var WelcomeView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('welcome', 'welcome')),
@@ -66,9 +66,9 @@
                     window.requestAnimationFrame(function () {
                         var target = evt.target;
                         this.moveComponents(target.scrollTop);
-                        if (target.scrollHeight - (target.scrollTop + target.offsetHeight) < 400) {
-                            feedListView.loadNextPage();
-                        }
+                        // if (target.scrollHeight - (target.scrollTop + target.offsetHeight) < 400) {
+                        //     feedListView.loadNextPage();
+                        // }
                     }.bind(this));
                 }.bind(this);
 
@@ -165,7 +165,7 @@
                 clockView = ClockView.getInstance();
                 toolbarView = ToolbarView.getInstance();
                 capacityBarView = CapacityBarView.getInstance();
-                feedListView = FeedListView.getInstance();
+                // feedListView = FeedListView.getInstance();
 
                 this.listenTo(toolbarView, 'top', this.scrollTopAnimation);
 
@@ -181,23 +181,23 @@
                     //     $top.after(guideView.render().$el);
                     // }
 
-                    this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
+                    // this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
 
-                    var feedsCollection = FeedsCollection.getInstance();
-                    var noticeArray = [
-                        i18n.welcome.NO_MORE_1,
-                        i18n.welcome.NO_MORE_2,
-                        i18n.welcome.NO_MORE_3
-                    ];
+                    // var feedsCollection = FeedsCollection.getInstance();
+                    // var noticeArray = [
+                    //     i18n.welcome.NO_MORE_1,
+                    //     i18n.welcome.NO_MORE_2,
+                    //     i18n.welcome.NO_MORE_3
+                    // ];
 
-                    this.loading = feedsCollection.loading;
-                    this.listenTo(feedsCollection, 'update refresh', function () {
-                        this.loading = feedsCollection.loading;
-                        if (feedsCollection.finish) {
-                            var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
-                            this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
-                        }
-                    });
+                    // this.loading = feedsCollection.loading;
+                    // this.listenTo(feedsCollection, 'update refresh', function () {
+                    //     this.loading = feedsCollection.loading;
+                    //     if (feedsCollection.finish) {
+                    //         var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
+                    //         this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
+                    //     }
+                    // });
 
                     this.$el.append(toolbarView.render().$el)
                         .append(capacityBarView.render().$el)

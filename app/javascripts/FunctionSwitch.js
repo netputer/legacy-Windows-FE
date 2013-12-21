@@ -169,8 +169,9 @@
             },
             ENABLE_APP_WASH : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return false;
+                    // return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
+                    //         Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
                 }
             },
             ENABLE_AUTOBACKUP_POPUP : {
