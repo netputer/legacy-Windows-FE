@@ -342,10 +342,11 @@
                         }
                         break;
                     case 'web':
-                        appList.showWanXiaoDou = false;
                         if (Account.get('isLogin')) {
+                            appList.showWanXiaoDou = false;
                             appList.emptyTip = doT.template(TemplateFactory.get('app', 'web-app-empty-tip'))({});
                         } else {
+                            appList.showWanXiaoDou = true;
                             appList.emptyTip = i18n.app.EMPTY_TIP_WEB_APP_NOT_LOGIN;
                         }
                         break;

@@ -18,7 +18,11 @@ define({
     DELETE_SUCCESS_TEXT : '成功删除 {1} 张图片。',
     EMPTY_PHONE_LIST : '<span>好像您的手机上还没有照片哦，</span></br><span>要不先去手机上拍几张照片？</span>',
     EMPTY_LIBRARY_LIST : '<span>好像您手机上还没有图片哦，</span></br><span>要不去下几张好看的壁纸吧？</span></br><button class="button-download-pic primary grand">马上下载壁纸</button>',
-    EMPTY_CLOUD_LIST : '您的云相册中还没有图片呢',
+
+    EMPTY_CLOUD_LIST_0 : '<span>将照片备份到豌豆荚云相册，永远留住回忆</span></br><button class="button-turn-on-cloud primary grand">开启云相册</button>',
+    EMPTY_CLOUD_LIST_1 : '<span>爱拍照的你可知道</span><br /><span>用豌豆荚云相册备份照片，无限空间更安全</span></br><button class="button-turn-on-cloud primary grand">开启云相册</button>',
+    EMPTY_CLOUD_LIST_2 : '<span>会把您手机上的照片，同步到电脑上，查看更方便</span></br><button class="button-turn-on-cloud primary grand">开启云相册</button>',
+
     EXPORT_FAILED_TEXT : '导出失败！',
     SLIDES_STOP_TEXT : '停止播放',
     WALLPAPER_SETTING_SUCCESS_TEXT : '设置壁纸已成功',

@@ -15,6 +15,9 @@
 
         var CloudPhotoCollection = PhotoCollection.getClass().extend({
             url : CONFIG.actions.PHOTO_CLOUD_SHOW,
+            data : {
+                photo_type : CONFIG.enums.PHOTO_CLOUD_TYPE
+            },
             getThumbsAsync : function (ids) {
                 // thumbnails of cloud photo already got on show, need not to get them again
                 return;
