@@ -11,6 +11,7 @@
         'ui/TemplateFactory',
         'ui/WindowState',
         'ui/MouseState',
+        'photo/views/PhotoSyncSwitchView',
         'Device',
         'photo/views/PhotoThreadView',
         'IO',
@@ -26,6 +27,7 @@
         TemplateFactory,
         WindowState,
         MouseState,
+        PhotoSyncSwitchView,
         Device,
         PhotoThreadView,
         IO,
@@ -243,7 +245,8 @@
                         return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.CUSTOM_RESOURCE_LOCKED;
                     }
 
-                    return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.EMPTY_CLOUD_LIST;
+                    var index = _.random(0, 2);
+                    return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo['EMPTY_CLOUD_LIST_' + index];
                 default:
                     log({
                         'event' : 'ui.show.wanxiaodou',
@@ -343,10 +346,14 @@
                 });
                 Account.resetAsync();
             },
+            clickTurnOnCloud : function () {
+                PhotoSyncSwitchView.getInstance().tryLogin();
+            },
             events : {
                 'click .button-login' : 'clickButtonLogin',
                 'click .button-download-pic' : 'clickButtonDownload',
                 'click .button-reset-pw' : 'clickButtonReset',
+                'click .button-turn-on-cloud' : 'clickTurnOnCloud',
                 'mousedown' : 'startDraw'
             }
         });
