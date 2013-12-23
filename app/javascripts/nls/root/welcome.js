@@ -115,5 +115,8 @@ define({
     NO_MORE_3 : '欢迎来到应用海的海底探险，让我们回到海面吧。',
     UPDATED : '豌豆荚升级啦~',
 
-    READING_INFO_WARNING : '正在更新信息，请稍后再试'
+    READING_INFO_WARNING : '正在更新信息，请稍后再试',
+
+    ACCOUNT_UNLOGIN_TEXT : '登录账号开启您的个性主页',
+    ACCOUNT_LOGIN_TEXT : '您好，{1}'
 });

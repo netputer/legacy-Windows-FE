@@ -45,7 +45,9 @@
 
                 if (this.options.icon !== '') {
                     this.$('.pic-ctn').css({
-                        'background-image' : 'url(' + this.options.icon + ')'
+                        'background-image' : 'url(' + this.options.icon + ')',
+                        'background-position' : '0 0',
+                        'background-size' : 'contain'
                     });
                 }
 
@@ -56,12 +58,25 @@
                 return this;
             },
             clickButtonOpen : function () {
-                IO.requestAsync({
-                    url : CONFIG.actions.OPEN_URL_HELPER,
-                    data : {
-                        url : this.options.redirect_url
-                    }
-                });
+                if (this.options.componentId) {
+                    // Open doraemon
+                    IO.requestAsync({
+                        url : CONFIG.actions.OPEN_WANDUJIA,
+                        data : {
+                            doraemon_id : parseInt(this.options.componentId, 10),
+                            doraemon_url : this.options.dataUrl,
+                            source : 'server_notify'
+                        }
+                    });
+                } else {
+                    // Open browser
+                    IO.requestAsync({
+                        url : CONFIG.actions.OPEN_URL_HELPER,
+                        data : {
+                            url : this.options.redirectUrl
+                        }
+                    });
+                }
 
                 BackupRestoreService.closeAllNotificationInHelperAsync();
 
@@ -70,7 +85,7 @@
                 });
             },
             events : {
-                'click .button-open' : 'clickButtonOpen'
+                'click' : 'clickButtonOpen'
             }
         });
 

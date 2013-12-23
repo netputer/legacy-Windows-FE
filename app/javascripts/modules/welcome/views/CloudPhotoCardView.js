@@ -51,7 +51,7 @@
                     return;
                 }
 
-                Account.loginAsync();
+                Account.loginAsync('', 'guide-cloud-photo');
 
                 var handler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE

@@ -23,7 +23,8 @@
         'welcome/views/FeedListView',
         'welcome/collections/FeedsCollection',
         'welcome/views/TipsCardView',
-        'welcome/views/CapacityBarView'
+        'welcome/views/CapacityBarView',
+        'welcome/views/AccountView'
     ], function (
         Backbone,
         _,
@@ -47,7 +48,8 @@
         FeedListView,
         FeedsCollection,
         TipsCardView,
-        CapacityBarView
+        CapacityBarView,
+        AccountView
     ) {
         console.log('WelcomeView - File loaded.');
 
@@ -55,6 +57,7 @@
         var clockView;
         var toolbarView;
         var capacityBarView;
+        var accountView;
         var guideView;
         var feedListView;
 
@@ -165,6 +168,7 @@
                 clockView = ClockView.getInstance();
                 toolbarView = ToolbarView.getInstance();
                 capacityBarView = CapacityBarView.getInstance();
+                accountView = AccountView.getInstance();
                 feedListView = FeedListView.getInstance();
 
                 this.listenTo(toolbarView, 'top', this.scrollTopAnimation);
@@ -201,6 +205,7 @@
 
                         this.$el.append(toolbarView.render().$el)
                             .append(capacityBarView.render().$el)
+                            .append(accountView.render().$el)
                             .on('scroll', this.scrollHandler);
                     }.bind(this));
                 }.bind(this), 1000);

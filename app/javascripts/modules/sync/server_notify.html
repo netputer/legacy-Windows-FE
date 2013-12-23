@@ -24,7 +24,9 @@
                         title : QueryString.get('title'),
                         desc : QueryString.get('desc'),
                         icon : QueryString.get('icon'),
-                        redirect_url : QueryString.get('redirect_url')
+                        redirectUrl : QueryString.get('redirect_url'),
+                        componentId : QueryString.get('component_id'),
+                        dataUrl : QueryString.get('data_url')
                     });
                     $('body').append(notify.render().$el);
                 });

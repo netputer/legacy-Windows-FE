@@ -503,6 +503,7 @@
                 NAVIGATE_TYPE_CALL : 'make_call',
                 NAVIGATE_TYPE_VIDEO : 'video',
                 NAVIGATE_TYPE_VIDEO_SEARCH : 'group_video',
+                NAVIGATE_TYPE_DORAEMON : 'doraemon',
 
                 /* Update ignore states */
                 UPDATE_IGNORE_NONE : 'none',

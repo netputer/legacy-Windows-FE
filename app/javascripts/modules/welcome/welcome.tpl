@@ -358,4 +358,12 @@
         <span class="button-open">{{= i18n.welcome.OPEN_FOLDER }}</span>
     </div>
 </script>
+
+<script type="text/x-ui-template" id="account">
+    {{? it.isLogin }}
+        <span class="button-user">{{= StringUtil.format(i18n.welcome.ACCOUNT_LOGIN_TEXT, it.userName) }}</span>
+    {{??}}
+        <span class="button-login">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
+    {{?}}
+</script>
 </templates>
