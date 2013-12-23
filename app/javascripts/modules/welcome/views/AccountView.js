@@ -5,6 +5,7 @@
         'underscore',
         'doT',
         'Account',
+        'Log',
         'ui/TemplateFactory',
         'utilities/FormatDate',
         'Internationalization'
@@ -13,6 +14,7 @@
         _,
         doT,
         Account,
+        log,
         TemplateFactory,
         formatDate,
         i18n
@@ -37,6 +39,10 @@
                 if (!Account.get('isLogin')) {
                     Account.loginAsync('', 'welcome-account');
                 }
+
+                log({
+                    'event' : 'ui.click.welcome_button_login'
+                });
             },
             events : {
                 'click .button-login' : 'clickButtonLogin'
