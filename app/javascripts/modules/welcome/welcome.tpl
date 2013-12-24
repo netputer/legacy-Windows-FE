@@ -361,7 +361,7 @@
 
 <script type="text/x-ui-template" id="account">
     {{? it.isLogin }}
-        <span class="button-user">{{= StringUtil.format(i18n.welcome.ACCOUNT_LOGIN_TEXT, it.userName) }}</span>
+        <span class="button-user">{{= it.greeting }}，{{= it.userName }}</span>
     {{??}}
         <span class="button-login">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
     {{?}}
