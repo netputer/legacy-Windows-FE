@@ -117,6 +117,5 @@ define({
 
     READING_INFO_WARNING : '正在更新信息，请稍后再试',
 
-    ACCOUNT_UNLOGIN_TEXT : '点击此处开启个性主页',
-    ACCOUNT_LOGIN_TEXT : '您好，{1}'
+    ACCOUNT_UNLOGIN_TEXT : '点击此处开启个性主页'
 });

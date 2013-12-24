@@ -28,24 +28,40 @@
                 this.listenTo(Account, 'change:isLogin change:userName', _.debounce(this.render, 200));
             },
             render : function () {
+                var hour = formatDate('HH'),
+                    greeting = '您好';
+
+                if (hour >= 6) {
+                    if (hour <= 10) {
+                        greeting = '早上好';
+                    } else if (hour <= 13) {
+                        greeting = '中午好';
+                    } else if (hour <= 18) {
+                        greeting = '下午好';
+                    } else {
+                        greeting = '晚上好';
+                    }
+                }
+
                 this.$el.html(this.template({
                     isLogin : Account.get('isLogin'),
+                    greeting : greeting,
                     userName : Account.get('userName')
                 }));
 
                 return this;
             },
-            clickButtonLogin : function () {
+            clickButtonRegister : function () {
                 if (!Account.get('isLogin')) {
-                    Account.loginAsync('', 'welcome-account');
+                    Account.regAsync('', 'welcome-account');
                 }
 
                 log({
-                    'event' : 'ui.click.welcome_button_login'
+                    'event' : 'ui.click.welcome_button_register'
                 });
             },
             events : {
-                'click .button-login' : 'clickButtonLogin'
+                'click .button-register' : 'clickButtonRegister'
             }
         });
 
