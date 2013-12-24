@@ -363,7 +363,7 @@
     {{? it.isLogin }}
         <span class="button-user">{{= it.greeting }}，{{= it.userName }}</span>
     {{??}}
-        <span class="button-login">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
+        <span class="button-register">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
     {{?}}
 </script>
 </templates>

@@ -54,7 +54,7 @@
             },
             clickButtonStar : function () {
                 if (!Account.get('isLogin')) {
-                    Account.loginAsync(i18n.misc.LOGIN_TO_STAR, 'star-button-on-info-panel');
+                    Account.regAsync(i18n.misc.LOGIN_TO_STAR, 'star-button-on-info-panel');
                 } else {
                     this.model.starAsync().done(function () {
                         extensionsCollection.add(this.model).trigger('star', this.model);

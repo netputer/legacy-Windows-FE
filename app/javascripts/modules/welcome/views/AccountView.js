@@ -51,17 +51,17 @@
 
                 return this;
             },
-            clickButtonLogin : function () {
+            clickButtonRegister : function () {
                 if (!Account.get('isLogin')) {
-                    Account.loginAsync('', 'welcome-account');
+                    Account.regAsync('', 'welcome-account');
                 }
 
                 log({
-                    'event' : 'ui.click.welcome_button_login'
+                    'event' : 'ui.click.welcome_button_register'
                 });
             },
             events : {
-                'click .button-login' : 'clickButtonLogin'
+                'click .button-register' : 'clickButtonRegister'
             }
         });
 
