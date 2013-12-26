@@ -70,7 +70,7 @@
                             action : 'yes'
                         });
                     } else {
-                        Account.loginAsync('', 'photo-sync');
+                        Account.regAsync('', 'photo-sync');
 
                         var handler = IO.Backend.Device.onmessage({
                             'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
