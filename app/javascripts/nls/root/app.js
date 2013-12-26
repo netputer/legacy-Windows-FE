@@ -54,7 +54,7 @@ define({
     WASH_SURVEY : '有豌豆没发现的脏应用？',
     TELL_US : '告诉豌豆们吧！',
 
-    EMPTY_TIP_WEB_APP_NOT_LOGIN : '<span>下载过的应用不见了</span><br /><span>登录豌豆荚账号即可全部找回。</span><br /><button class="button-login primary grand">登录账号</button>',
+    EMPTY_TIP_WEB_APP_NOT_LOGIN : '<span>下载过的应用不见了</span><br /><span>登录豌豆荚账号即可全部找回。</span><br /><button class="button-login primary grand">登录豌豆荚</button>',
 
     ALERT_TIP_CRITICAL_APP : '非常抱歉，「{1}」无法删除。此应用是 Android 手机系统的核心应用，删除后会导致手机损坏或「变砖」。',
     ALERT_TIP_UNINSTALL_WIFI_CONFIRM : '您当前使用的是 Wi-Fi 连接，需要您到手机上完成卸载。',
