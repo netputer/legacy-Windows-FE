@@ -22,7 +22,6 @@
         'welcome/views/GuideView',
         'welcome/views/FeedListView',
         'welcome/collections/FeedsCollection',
-        'welcome/views/TipsCardView',
         'welcome/views/CapacityBarView',
         'welcome/views/AccountView'
     ], function (
@@ -47,7 +46,6 @@
         GuideView,
         FeedListView,
         FeedsCollection,
-        TipsCardView,
         CapacityBarView,
         AccountView
     ) {
@@ -99,7 +97,7 @@
                     setTimeout(this.switchToGuide.bind(this));
                 });
 
-                if (FunctionSwitch.ENABLE_USER_GUIDE && !Settings.get('welcome_feed_tips')) {
+                if (FunctionSwitch.ENABLE_USER_GUIDE) {
                     if (!Settings.get('user_guide_shown')) {
                         var handlerReady = IO.Backend.Device.onmessage({
                             'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
