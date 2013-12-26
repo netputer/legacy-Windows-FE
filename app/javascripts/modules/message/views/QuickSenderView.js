@@ -8,6 +8,7 @@
         'Internationalization',
         'Device',
         'Log',
+        'Settings',
         'ui/UIHelper',
         'ui/AlertWindow',
         'ui/MenuButton',
@@ -22,6 +23,7 @@
         i18n,
         Device,
         log,
+        Settings,
         UIHelper,
         AlertWindow,
         MenuButton,
@@ -56,6 +58,14 @@
                         get : function () {
                             return duoquPanel;
                         }
+                    },
+                    selectedSIM : {
+                        set : function (value) {
+                            Settings.set('sms_selected_sim', value, true);
+                        },
+                        get : function () {
+                            return Settings.get('sms_selected_sim');
+                        }
                     }
                 });
 
@@ -84,9 +94,9 @@
                         var $sendBtn = $('<button>').addClass('primary button-send');
 
                         if (isDifferentService) {
-                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, serviceCenter[0].sim_name));
+                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, this.selectedSIM && serviceCenter[0].sim_id !== this.selectedSIM ? serviceCenter[1].sim_name : serviceCenter[0].sim_name));
                         } else {
-                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, 1));
+                            $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, this.selectedSIM && serviceCenter[0].sim_id !== this.selectedSIM ? 2 : 1));
                         }
 
                         var items = [];
@@ -99,9 +109,9 @@
                                             StringUtil.format(i18n.message.MUTIL_SIM_SELECT_HAS_NUM, service.sim_name, service.sim_phone_number) :
                                             StringUtil.format(i18n.message.MUTIL_SIM_SELECT, service.sim_name, i + 1),
                                 value : i,
-                                checked : i === 0
+                                checked : this.selectedSIM ? service.sim_id === this.selectedSIM : i === 0
                             });
-                        });
+                        }.bind(this));
 
                         items.push({
                             type : 'hr'
@@ -119,7 +129,7 @@
                             }
                         });
 
-                        this.serviceCenter = serviceCenter[0].sim_id;
+                        this.selectedSIM = this.selectedSIM || serviceCenter[0].sim_id;
 
                         this.serviceBtn = new MenuButton({
                             items : items
@@ -132,7 +142,7 @@
                             var sim = serviceCenter[item.value];
 
                             if (sim) {
-                                this.serviceCenter = sim.sim_id;
+                                this.selectedSIM = sim.sim_id;
 
                                 if (isDifferentService) {
                                     $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, sim.sim_name));
@@ -188,7 +198,7 @@
                     } else {
                         var sendHandler = function () {
                             this.disabled();
-                            MessageService.sendMessageAsync(this.addresses, content, this.serviceCenter).done(function () {
+                            MessageService.sendMessageAsync(this.addresses, content, this.selectedSIM).done(function () {
                                 this.trigger('sendSuccess');
 
                                 $content.prop({
