@@ -29,6 +29,8 @@
             className : 'w-sms-notification-sender vbox',
             template : doT.template(TemplateFactory.get('message', 'message-notification-sender')),
             initialize : function () {
+                this.constructor.__super__.initialize.apply(this);
+
                 var nextList = [];
                 var prevList = [];
                 Object.defineProperties(this, {
