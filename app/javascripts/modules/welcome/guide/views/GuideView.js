@@ -71,7 +71,6 @@
                 }.bind(this)).then(function () {
                     return this.regCardAsync(TipsView.getInstance());
                 }.bind(this)).then(function () {
-                    console.log(5);
                     this.totalCards = this.cardQueue.length;
                     IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY);
                     this.run();
