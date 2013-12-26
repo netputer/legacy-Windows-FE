@@ -60,6 +60,10 @@
                 contactsListView = ContactsListView.getInstance();
                 contactPanelView = ContactPanelView.getInstance();
 
+                this.listenTo(contactPanelView, '__SHOW_SELECTOR_WARP', function () {
+                    contactModuleToolbarView.toggleSelectorWrap(true);
+                });
+
                 this.$('.w-contact-ctn').append(contactsListView.render().$el).append(contactPanelView.render().$el);
 
                 this.rendered = true;

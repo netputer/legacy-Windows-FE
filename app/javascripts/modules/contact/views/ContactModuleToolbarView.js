@@ -183,8 +183,12 @@
             restoreFilter : function () {
                 accountSelectorView.selectByAccountId('all');
             },
-            toggleSelectorWrap : function () {
-                this.$('.selector-wrap').toggle();
+            toggleSelectorWrap : function (show) {
+                if (typeof show === undefined) {
+                    this.$('.selector-wrap').toggle();
+                } else {
+                    this.$('.selector-wrap').toggle(show);
+                }
             },
             render : function () {
                 this.$el.html(this.template({}));
@@ -254,6 +258,7 @@
             },
             clickButtonNew : function () {
                 ContactPanelView.getInstance().createNew();
+                this.toggleSelectorWrap(false);
 
                 log({
                     'event' : 'ui.click.contact.button.new.toolbar'
