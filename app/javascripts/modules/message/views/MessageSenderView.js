@@ -125,7 +125,7 @@
                 if (contact instanceof Array) {
                     var fragment = document.createDocumentFragment();
                     _.each(contact, function (con) {
-                        var model = con.id && !!contactMultiNumbersCollection.get(con.id) ? contactMultiNumbersCollection.get(con.id) : con;
+                        var model = (con.id && contactMultiNumbersCollection.get(con.id)) || con;
                         if (receiverList.indexOf(model.get('phoneNumber')) < 0) {
                             receiverList.push(model.get('phoneNumber'));
 
@@ -147,7 +147,7 @@
                     }, this);
                     item = fragment;
                 } else {
-                    var model = contact.id && !!contactMultiNumbersCollection.get(contact.id) ? contactMultiNumbersCollection.get(contact.id) : contact;
+                    var model = (contact.id && contactMultiNumbersCollection.get(contact.id)) || contact;
                     if (receiverList.indexOf(model.get('phoneNumber')) < 0) {
                         receiverList.push(model.get('phoneNumber'));
 
