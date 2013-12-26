@@ -90,7 +90,7 @@
 <script type="text/x-ui-template" id="batch-error-window">
     <div>{{= it.tip }}</div>
     {{? it.errorInfo }}
-    <div>{{= i18n.misc.POSIBLE_REASON }}{{= i18n.taskManager[it.errorInfo] || i18n.taskManager.UNKNOWN_ERROR }}</div>
+    <div>{{= i18n.misc.POSIBLE_REASON }}{{= i18n.taskManager[it.errorInfo.error_message] || i18n.taskManager.UNKNOWN_ERROR }}</div>
     {{?}}
     <ul class="list-ctn">
         {{~ it.items : item }}
