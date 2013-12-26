@@ -107,7 +107,9 @@
                             }
                             break;
                         case 32:
-                            targetView = CloudPhotoCardView;
+                            if (!Settings.get('welcome_feed_cloud_photo')) {
+                                targetView = CloudPhotoCardView;
+                            }
                             break;
                         case 33:
                             targetView = BackupCardView;
@@ -128,7 +130,9 @@
                             targetView = ChangelogCardView;
                             break;
                         case 99:
-                            targetView = TipsCardView;
+                            if (!Settings.get('welcome_feed_tips')) {
+                                targetView = TipsCardView;
+                            }
                             break;
                         case 100:
                             targetView = SnapPeaWebCardView;

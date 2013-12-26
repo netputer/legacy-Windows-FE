@@ -99,7 +99,7 @@
                     setTimeout(this.switchToGuide.bind(this));
                 });
 
-                if (FunctionSwitch.ENABLE_USER_GUIDE) {
+                if (FunctionSwitch.ENABLE_USER_GUIDE && !Settings.get('welcome_feed_tips')) {
                     if (!Settings.get('user_guide_shown')) {
                         var handlerReady = IO.Backend.Device.onmessage({
                             'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
