@@ -4,6 +4,7 @@
         'backbone',
         'underscore',
         'doT',
+        'Settings',
         'ui/Panel',
         'ui/TemplateFactory',
         'Internationalization'
@@ -11,6 +12,7 @@
         Backbone,
         _,
         doT,
+        Settings,
         Panel,
         TemplateFactory,
         i18n
@@ -25,7 +27,18 @@
             className : 'w-task-delete-footer',
             render : function () {
                 this.$el.html(this.template({}));
+
+                if (Settings.get('task_manager_delete_file')) {
+                    this.$('.check-delete-apk').attr('checked', 'checked');
+                }
+
                 return this;
+            },
+            clickDeleteApk : function () {
+                Settings.set('task_manager_delete_file', this.$('.check-delete-apk')[0].checked);
+            },
+            events : {
+                'click .check-delete-apk' : 'clickDeleteApk'
             }
         });
 

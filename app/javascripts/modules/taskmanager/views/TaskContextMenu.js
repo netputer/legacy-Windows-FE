@@ -42,8 +42,20 @@
                     }
                 }, this);
             },
+            show : function () {
+                TaskContextMenu.__super__.show.apply(this, arguments);
+
+                log({
+                    'event' : 'ui.show.taskmanager_context_menu'
+                });
+            },
             pauseTasks : function () {
                 tasksCollection.pauseTasksAsync(this.options.selected);
+
+                log({
+                     'event' : 'ui.show.task_pause_item',
+                     'position' : 'contextmenu'
+                });
             },
             deleteTasks : function () {
                 var alertPanel = new DeleteConfirmWindowView.getInstance({
@@ -55,9 +67,19 @@
                 alertPanel.on('button_yes', function () {
                     tasksCollection.deleteTasksAsync(this.options.selected, alertPanel.deleteFile);
                 }, this);
+
+                log({
+                     'event' : 'ui.show.task_delete_item',
+                     'position' : 'contextmenu'
+                });
             },
             resumeTasks : function () {
                 tasksCollection.startTasksAsync(this.options.selected);
+
+                log({
+                     'event' : 'ui.show.task_resume_item',
+                     'position' : 'contextmenu'
+                });
             },
             addItems : function () {
                 var selected = this.options.selected;
