@@ -560,7 +560,10 @@
         <div class="btn-ctn">
             <button class="button-select-from-pc">{{= i18n.contact.EDIT_CONTACT_HEAD_PC_SOURCE }}</button>
         </div>
-        <div class="link icomoon icomoon-delete button-delete">{{= i18n.contact.EDIT_CONTACT_HEAD_DEL_TEXT }}</div>
+        <div class="wc button-delete">
+            <span class="link icomoon icomoon-delete"></span>
+            <span class="link">{{= i18n.contact.EDIT_CONTACT_HEAD_DEL_TEXT }}</span>
+        </div>
     </div>
 </script>
 
@@ -637,7 +640,10 @@
     </div>
     {{??}}
     <div class="wc delete">
-        <span class="link icomoon icomoon-delete button-delete">{{= i18n.misc.DELETE }}</span>
+        <div class="button-delete">
+            <span class="link icomoon icomoon-delete"></span>
+            <span class="link">{{= i18n.misc.DELETE }}</span>
+        </div>
     </div>
     <div class="wc rename">
         <span class="link button-rename">{{= i18n.contact.GROUP_UPDATE_LABEL }}</span>

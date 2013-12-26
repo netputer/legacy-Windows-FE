@@ -638,6 +638,11 @@
 
                 .button-delete {
                     text-decoration: none;
+
+                    .icomoon {
+                        display: inline-block;
+                        margin-top: -1px;
+                    }
                 }
             }
 
@@ -674,6 +679,15 @@
 
         .btn-ctn {
             -webkit-box-flex: 1;
+        }
+
+        .button-delete {
+            text-decoration: none;
+
+            .icomoon {
+                display: inline-block;
+                margin-top: -1px;
+            }
         }
     }
 }
