@@ -360,10 +360,12 @@
 </script>
 
 <script type="text/x-ui-template" id="account">
+    {{? FunctionSwitch.IS_CHINESE_VERSION }}
     {{? it.isLogin }}
         <span class="button-user">{{= it.greeting }}，{{= it.userName }}</span>
     {{??}}
         <span class="button-register">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
+    {{?}}
     {{?}}
 </script>
 </templates>

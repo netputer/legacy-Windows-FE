@@ -6,6 +6,7 @@
         'doT',
         'Account',
         'Log',
+        'FunctionSwitch',
         'ui/TemplateFactory',
         'utilities/FormatDate',
         'Internationalization'
@@ -15,6 +16,7 @@
         doT,
         Account,
         log,
+        FunctionSwitch,
         TemplateFactory,
         formatDate,
         i18n
