@@ -617,7 +617,18 @@
                 }
             },
             addContactById : function (id) {
-                senderBodyView.addContact(contactMultiNumbersCollection.get(id));
+                var model = contactMultiNumbersCollection.get(id);
+
+                if (!model) {
+                    var phoneNumber = id.split('|')[1];
+
+                    model = new Backbone.Model({
+                        displayNumber : phoneNumber,
+                        phoneNumber : phoneNumber
+                    });
+                }
+
+                senderBodyView.addContact(model);
             },
             clickButtonSend : function () {
                 this.sendMessage();
