@@ -26,6 +26,9 @@
                 this.$el.html(this.template({}));
                 return this;
             },
+            hide : function () {
+                Settings.set('welcome_feed_tips', true, true);
+            },
             clickButtonAction : function () {
                 Backbone.trigger('welcome:showTips');
 
@@ -36,6 +39,7 @@
             },
             clickButtonIgnore : function () {
                 this.remove();
+                this.hide();
             },
             events : {
                 'click .button-action' : 'clickButtonAction',
