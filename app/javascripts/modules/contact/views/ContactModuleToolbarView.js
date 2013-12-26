@@ -184,11 +184,7 @@
                 accountSelectorView.selectByAccountId('all');
             },
             toggleSelectorWrap : function (show) {
-                if (typeof show === undefined) {
-                    this.$('.selector-wrap').toggle();
-                } else {
-                    this.$('.selector-wrap').toggle(show);
-                }
+                this.$('.selector-wrap').toggle(!!show);
             },
             render : function () {
                 this.$el.html(this.template({}));

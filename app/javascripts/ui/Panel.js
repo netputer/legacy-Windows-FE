@@ -251,7 +251,6 @@
             },
             remove : function () {
                 if (this.rendered) {
-
                     var transitionEndHandler = function () {
                         this.$el.remove();
                         this.stopListening();
