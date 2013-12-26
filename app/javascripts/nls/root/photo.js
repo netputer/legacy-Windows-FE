@@ -21,7 +21,6 @@ define({
 
     EMPTY_CLOUD_LIST_0 : '<span>将照片备份到豌豆荚云相册，永远留住回忆</span></br><button class="button-turn-on-cloud primary grand">开启云相册</button>',
     EMPTY_CLOUD_LIST_1 : '<span>爱拍照的你可知道</span><br /><span>用豌豆荚云相册备份照片，无限空间更安全</span></br><button class="button-turn-on-cloud primary grand">开启云相册</button>',
-    EMPTY_CLOUD_LIST_2 : '<span>会把您手机上的照片，同步到电脑上，查看更方便</span></br><button class="button-turn-on-cloud primary grand">开启云相册</button>',
 
     EXPORT_FAILED_TEXT : '导出失败！',
     SLIDES_STOP_TEXT : '停止播放',
