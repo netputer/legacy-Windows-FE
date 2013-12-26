@@ -9,6 +9,7 @@
         'Account',
         'IOBackendDevice',
         'Internationalization',
+        'Settings',
         'ui/TemplateFactory',
         'welcome/views/FeedCardView',
         'sync/SyncService'
@@ -21,6 +22,7 @@
         Account,
         IO,
         i18n,
+        Settings,
         TemplateFactory,
         FeedCardView,
         SyncService
