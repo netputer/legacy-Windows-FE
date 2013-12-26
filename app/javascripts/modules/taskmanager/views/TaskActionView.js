@@ -49,6 +49,11 @@
             clickButtonStart : function (evt) {
                 evt.stopPropagation();
                 this.model.startTaskAsync();
+
+                log({
+                    'event' : 'ui.click.task_start_item',
+                    'position' : 'action'
+                });
             },
             clickButtonPause : function (evt) {
                 evt.stopPropagation();
@@ -71,6 +76,10 @@
             clickButtonRetry : function (evt) {
                 evt.stopPropagation();
                 this.model.startTaskAsync();
+
+                log({
+                    'event' : 'ui.click.task_retry_item'
+                });
             },
             clickButtonForceRestart : function (evt) {
                 evt.stopPropagation();
@@ -166,11 +175,19 @@
                 this.model.restartAsync({
                     location : CONFIG.enums.INSTALL_LOCATION_DEVICE
                 });
+
+                log({
+                    'event' : 'ui.click.task_install_to_device_item'
+                });
             },
             clickButtonContinueInstall : function (evt) {
                 evt.stopPropagation();
                 this.model.restartAsync({
                     no_scan_virus : 1
+                });
+
+                log({
+                    'event' : 'ui.click.task_continue_install'
                 });
             },
             clickButtonHowToConnect : function () {
