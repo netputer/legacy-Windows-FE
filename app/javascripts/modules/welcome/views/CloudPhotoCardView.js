@@ -44,10 +44,14 @@
                 }.bind(this));
                 return this;
             },
+            hide : function () {
+                Settings.set('welcome_feed_cloud_photo', true, true);
+            },
             clickButtonAction : function () {
                 if (Account.get('isLogin')) {
                     SyncService.setPhotoSyncSwitchAsync(true).done(SyncService.uploadPhotoAsync);
                     this.remove();
+                    this.hide();
                     return;
                 }
 
@@ -59,6 +63,7 @@
                     if (message.auth) {
                         SyncService.setPhotoSyncSwitchAsync(true).done(SyncService.uploadPhotoAsync);
                         this.remove();
+                        this.hide();
                         IO.Backend.Device.offmessage(handler);
                     }
                 }, this);
@@ -72,6 +77,7 @@
             },
             clickButtonIgnore : function () {
                 this.remove();
+                this.hide();
             },
             events : {
                 'click .button-action' : 'clickButtonAction',
