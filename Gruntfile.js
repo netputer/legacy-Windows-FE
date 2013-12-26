@@ -221,19 +221,19 @@ module.exports = function (grunt) {
                     include : ['welcome/guide/views/GuideView'],
                     exclude : ['RequireConfig']
                 }]
-            }
+            },
             WDJ : {},
             SUNING : {
                 options : {
                     pragmas : {
-                            SUNING_INCLUDE : true
+                        SUNING_INCLUDE : true
                     }
                 }
             },
             TIANYIN : {
                 options : {
                     pragmas : {
-                            TIANYIN_INCLUDE : true
+                        TIANYIN_INCLUDE : true
                     }
                 }
             }
@@ -269,6 +269,21 @@ module.exports = function (grunt) {
                     dest : '<%= path.dist %>'
                 }]
             }
+        },
+        qunit: {
+            files : ['test/index.html']
+        },
+        jshint : {
+            all : ['app/javascripts/**/*.js'],
+            options : {
+                ignores : [
+                    'app/javascripts/modules/contact/collections/ContactsCollection.js',
+                    'app/javascripts/modules/music/views/MusicModuleView.js',
+                    'app/javascripts/modules/photo/views/PhotoModuleView.js',
+                    'app/javascripts/modules/video/views/VideoModuleView.js',
+                    'app/javascripts/utilities/FilterFunction.js'
+                ]
+            }
         }
     });
 
@@ -281,8 +296,8 @@ module.exports = function (grunt) {
             'copy:server',
             'targethtml:server',
             'createScssConfig:' + project,
-            'compass:build',
-            'requirejs:source'
+            'compass:server',
+            'watch'
         ];
 
         grunt.task.run(taskList);
@@ -299,7 +314,7 @@ module.exports = function (grunt) {
             'replace:server' + project,
             'createScssConfig:' + project + ':true',
             'compass:dist',
-            'requirejs:project',
+            'requirejs:' + project,
             'useminPrepare',
             'imagemin',
             'copy:dist',
@@ -345,6 +360,12 @@ module.exports = function (grunt) {
         } catch (exception) {
             throw exception;
         }
+    });
+
+    grunt.registerTask('test', function () {
+        // grunt.option('force', true);
+        grunt.task.run('jshint:all');
+        grunt.task.run('build');
     });
 
     grunt.event.on('watch', function(action, filePath, target) {
