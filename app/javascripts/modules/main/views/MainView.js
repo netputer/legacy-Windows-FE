@@ -87,10 +87,8 @@
                 this.getModule('message').navigateGroup(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_SMS:
-                this.getModule('message').navigate(msg);
-                break;
             case CONFIG.enums.NAVIGATE_TYPE_SEND_SMS:
-                this.getModule('message').sendMessageByContactId(msg.id);
+                this.getModule('message').navigate(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_PAGE:
                 this.getModule('browser').navigate(msg.id, false);
