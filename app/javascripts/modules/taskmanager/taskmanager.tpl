@@ -607,7 +607,7 @@
 </script>
 
 <script type="text/x-ui-template" id="delete-monitor">
-    <input type="checkbox" class="check-delete-apk" checked />
+    <input type="checkbox" class="check-delete-apk"/>
     {{= i18n.taskManager.DELET_APK_ALSO }}
 </script>
 

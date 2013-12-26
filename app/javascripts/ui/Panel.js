@@ -250,16 +250,19 @@
                 this.trigger(EventsMapping.HIDE);
             },
             remove : function () {
-                if (this.rendered && this.$el.hasClass('show')) {
+                if (this.rendered) {
                     var transitionEndHandler = function () {
                         this.$el.remove();
                         this.stopListening();
                         this.trigger(EventsMapping.REMOVE);
                     }.bind(this);
-                    this.$el.one('webkitTransitionEnd', transitionEndHandler);
 
-                    this.hide();
-
+                    if (this.isShow) {
+                        this.$el.one('webkitTransitionEnd', transitionEndHandler);
+                        this.hide();
+                    } else {
+                        transitionEndHandler();
+                    }
                     this.rendered = false;
                 }
             },

@@ -225,9 +225,9 @@
                             model.clear({
                                 silent : true
                             });
-                            model.set(new ContactModel(resp.body).toJSON(), {
+                            model.set(new ContactModel(resp.body, {
                                 parse : true
-                            });
+                            }).toJSON());
                             this.trigger('refresh', this);
 
                             deferred.resolve(resp);
