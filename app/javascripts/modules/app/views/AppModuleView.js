@@ -53,10 +53,10 @@
                 this.$el.prepend(AppModuleToolbarView.getInstance().render().$el);
 
                 appListView = AppListView.getInstance();
-                appPanelView = AppPanelView.getInstance();
+                // appPanelView = AppPanelView.getInstance();
 
-                this.$('.w-app-ctn').append(appListView.render().$el)
-                                    .append(appPanelView.render().$el);
+                this.$('.w-app-ctn').append(appListView.render().$el);
+                                    // .append(appPanelView.render().$el);
 
                 this.rendered = true;
 
