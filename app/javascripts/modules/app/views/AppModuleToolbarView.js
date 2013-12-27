@@ -135,7 +135,7 @@
                 }
                 AppService.batchUninstallAsync(appListView.selected).done(function (resp) {
                     var failed = resp.body.failed;
-                    if (app !== undefined && !failed) {
+                    if (app !== undefined && !failed.length) {
                         if (FunctionSwitch.ENABLE_SHARE_UNINSTALL) {
                             QuickShareView.getInstance({
                                 model : app
