@@ -120,7 +120,7 @@
                     .append(pimMenuView.render().$el);
 
                 setTimeout(function () {
-                    if (!Environment.get('internetBar')) {
+                    if (0 && !Environment.get('internetBar')) {
                         if (!redirectExtId) {
                             if (Environment.get('deviceId') === 'Default') {
                                 Backbone.trigger('switchModule', {
