@@ -111,6 +111,7 @@
                             deferred.resolve(resp);
                         }
                     }).fail(function (resp) {
+                        batchActionWindow.remove();
                         deferred.reject(resp);
                     });
                 }, this);
