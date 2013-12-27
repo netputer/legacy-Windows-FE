@@ -22,7 +22,6 @@
         'welcome/views/GuideView',
         'welcome/views/FeedListView',
         'welcome/collections/FeedsCollection',
-        'welcome/views/TipsCardView',
         'welcome/views/CapacityBarView',
         'welcome/views/AccountView'
     ], function (
@@ -47,7 +46,6 @@
         GuideView,
         FeedListView,
         FeedsCollection,
-        TipsCardView,
         CapacityBarView,
         AccountView
     ) {

@@ -107,10 +107,16 @@
                             }
                             break;
                         case 32:
-                            targetView = CloudPhotoCardView;
+                            if (!Settings.get('welcome_feed_cloud_photo')) {
+                                targetView = CloudPhotoCardView;
+                            }
                             break;
                         case 33:
-                            targetView = BackupCardView;
+                            lastShownTimestamp = Settings.get('welcome-card-backup-show') || Date.now();
+                            show = Math.round((Date.now() - lastShownTimestamp) / 1000 / 3600 / 24) > 3;
+                            if (show) {
+                                targetView = BackupCardView;
+                            }
                             break;
                         case 34:
                             if (Settings.get('welcome_feed_tieba') ||
@@ -128,7 +134,9 @@
                             targetView = ChangelogCardView;
                             break;
                         case 99:
-                            targetView = TipsCardView;
+                            if (!Settings.get('welcome_feed_tips')) {
+                                targetView = TipsCardView;
+                            }
                             break;
                         case 100:
                             targetView = SnapPeaWebCardView;
