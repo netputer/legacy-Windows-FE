@@ -60,8 +60,8 @@
                 contactsListView = ContactsListView.getInstance();
                 contactPanelView = ContactPanelView.getInstance();
 
-                this.listenTo(contactPanelView, '__SHOW_SELECTOR_WARP', function () {
-                    contactModuleToolbarView.toggleSelectorWrap(true);
+                this.listenTo(contactPanelView, '__SELECTOR_WARP', function (show) {
+                    contactModuleToolbarView.toggleSelectorWrap(show);
                 });
 
                 this.$('.w-contact-ctn').append(contactsListView.render().$el).append(contactPanelView.render().$el);
@@ -118,7 +118,6 @@
                 var highlight = function () {
                     contactModuleToolbarView.restoreFilter();
                     contactsListView.highlight(msg);
-                    contactModuleToolbarView.toggleSelectorWrap();
 
                     setTimeout(function () {
                         deferred.resolve();
