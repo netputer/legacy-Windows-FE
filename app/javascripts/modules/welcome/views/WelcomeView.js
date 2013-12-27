@@ -22,7 +22,6 @@
         'welcome/views/GuideView',
         'welcome/views/FeedListView',
         'welcome/collections/FeedsCollection',
-        'welcome/views/TipsCardView',
         'welcome/views/CapacityBarView',
         'welcome/views/AccountView'
     ], function (
@@ -47,7 +46,6 @@
         GuideView,
         FeedListView,
         FeedsCollection,
-        TipsCardView,
         CapacityBarView,
         AccountView
     ) {
@@ -180,7 +178,7 @@
 
                     deviceView.$el.one('webkitAnimationEnd', function () {
                         if (FunctionSwitch.ENABLE_USER_GUIDE &&
-                                !Settings.get('user_guide_shown')) {
+                                !Settings.get('welcome_feed_tips')) {
                             guideView = GuideView.getInstance();
                             $top.after(guideView.render().$el);
                         }

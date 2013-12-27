@@ -50,6 +50,9 @@
                 }.bind(this));
                 return this;
             },
+            hide : function () {
+                Settings.set('welcome-card-backup-show', Date.now(), true);
+            },
             clickButtonAction : function () {
                 if (!FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE && !Device.get('isUSB')) {
                     alert(i18n.backup_restore.TIP_IN_WIFI);
@@ -58,6 +61,7 @@
 
                 BackupController.start();
                 this.remove();
+                this.hide();
 
                 log({
                     'event' : 'ui.click.welcome_card_action',
@@ -68,6 +72,7 @@
             },
             clickButtonIgnore : function () {
                 this.remove();
+                this.hide();
             },
             events : {
                 'click .button-action' : 'clickButtonAction',

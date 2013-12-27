@@ -272,9 +272,11 @@
     <button class="w-icon-btn button-open-sd transparent min" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
         <span class="icomoon icomoon-sd"></span>{{= i18n.misc.MANAGE_SD_CARD }}
     </button>
+    {{? FunctionSwitch.IS_CHINESE_VERSION }}
     <button class="w-icon-btn button-set-wallpaper transparent min" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
         <span class="icomoon icomoon-wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
     </button>
+    {{?}}
     <div class='spliter'></div>
     <button class="button-top transparent min">{{= i18n.welcome.TOP }}</button>
 </script>
@@ -360,10 +362,12 @@
 </script>
 
 <script type="text/x-ui-template" id="account">
+    {{? FunctionSwitch.IS_CHINESE_VERSION }}
     {{? it.isLogin }}
         <span class="button-user">{{= it.greeting }}，{{= it.userName }}</span>
     {{??}}
         <span class="button-register">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
+    {{?}}
     {{?}}
 </script>
 </templates>
