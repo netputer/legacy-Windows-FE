@@ -33,7 +33,8 @@
             },
             ENABLE_APP_UPGRADE : {
                 get : function () {
-                    return SETTING & ENABLE_APP_UPGRADE;
+                    // return SETTING & ENABLE_APP_UPGRADE;
+                    return false;
                 }
             },
             ENABLE_DEBUG : {
