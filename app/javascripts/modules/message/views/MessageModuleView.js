@@ -131,17 +131,17 @@
                 }
             });
 
-            if (noNewMessageWindow) {
-                noNewMessageWindow = !notification.show();
+            //if (noNewMessageWindow) {
+            noNewMessageWindow = !notification.show();
 
-                var handler = IO.Backend.Device.onmessage({
-                    'data.channel' : CONFIG.events.MESSAGE_CLOSE_MESSAGE_NOTIFICATION
-                }, function () {
-                    notification.cancel();
-                    noNewMessageWindow = true;
-                    IO.Backend.Device.offmessage(handler);
-                });
-            }
+            var handler = IO.Backend.Device.onmessage({
+                'data.channel' : CONFIG.events.MESSAGE_CLOSE_MESSAGE_NOTIFICATION
+            }, function () {
+                notification.cancel();
+                noNewMessageWindow = true;
+                IO.Backend.Device.offmessage(handler);
+            });
+            //}
         });
 
         var messageModuleView;

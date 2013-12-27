@@ -57,14 +57,18 @@
 
                 detailPanelView.on('cancel', function () {
                     this.handelSwitch(contactsListView.selected);
-                    this.trigger('__SHOW_SELECTOR_WARP');
+                    this.trigger('__SELECTOR_WARP', true);
                 }, this);
 
                 detailPanelView.on('save', function (id) {
                     contactsListView.highlight({
                         id : id
                     });
-                    this.trigger('__SHOW_SELECTOR_WARP');
+                    this.trigger('__SELECTOR_WARP', true);
+                }, this);
+
+                detailPanelView.on('edit', function () {
+                    this.trigger('__SELECTOR_WARP', false);
                 }, this);
             },
             handelSwitch : function (selected) {

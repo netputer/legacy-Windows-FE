@@ -81,10 +81,10 @@
                         MessageService.closeAllNotificationAsync();
                     } else if (this.nextList.length > 0) {
                         this.markAsRead();
-                        this.nextMessage(true);
+                        //this.nextMessage(true);
                     } else {
                         this.markAsRead();
-                        this.prevMessage(true);
+                        //this.prevMessage(true);
                     }
                 }, this);
             },

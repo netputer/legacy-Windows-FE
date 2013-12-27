@@ -786,6 +786,8 @@
                 this.template = editorTemplate;
                 this.renderEditor();
 
+                this.trigger('edit');
+
                 log({
                     'event' : 'ui.click.contact.edit'
                 });
