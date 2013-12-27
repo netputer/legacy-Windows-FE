@@ -177,6 +177,7 @@
                 conversationsCollection.deleteConversationsAsync(ids, session).done(function (resp) {
                     deferred.resolve(resp);
                 }).fail(function (resp) {
+                    batchActionWindow.remove();
                     deferred.reject(resp);
                 }).always(function () {
                     Threads4ContactCollection.getInstance().trigger('update');
