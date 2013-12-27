@@ -9,6 +9,13 @@
     </head>
     <body class="w-main">
         <!-- build:js javascripts/SnapPeaLoader.js -->
+
+        <!--(if target server)><!-->
+        <script type="text/javascript">
+            //@@PROJECT_FLAG
+        </script>
+        <!--<!(endif)-->
+
         <script type="text/javascript">
         if (window.OneRingRequest === undefined) {
             window.externalCall = function () {};
