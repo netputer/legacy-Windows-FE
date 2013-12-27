@@ -225,9 +225,9 @@
                             model.clear({
                                 silent : true
                             });
-                            model.set(new ContactModel(resp.body).toJSON(), {
+                            model.set(new ContactModel(resp.body, {
                                 parse : true
-                            });
+                            }).toJSON());
                             this.trigger('refresh', this);
 
                             deferred.resolve(resp);
@@ -608,7 +608,9 @@
                 data.starred = 0;
                 data.id = '';
 
-                return new ContactModel(data);
+                return new ContactModel(data, {
+                    parse : true
+                });
             },
             getAll : function () {
                 return this.models;

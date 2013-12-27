@@ -157,16 +157,19 @@
 
                     this.setNextBtnDisable(true);
 
-                    this.once('remove', importSelectFileBodyView.remove, importSelectFileBodyView);
-                });
+                    this.listenTo(Device, 'change:isConnected', function (Device, isConnected) {
+                        if (!isConnected) {
+                            this.setNextBtnDisable(true);
+                        } else {
+                            this.setNextBtnDisable(!importSelectFileBodyView.getFilePath());
+                        }
+                    });
 
-                Device.on('change:isConnected', function (Device, isConnected) {
-                    if (!isConnected) {
-                        this.setNextBtnDisable(true);
-                    } else {
-                        this.setNextBtnDisable(!importSelectFileBodyView.getFilePath());
-                    }
-                }, this);
+                    this.once('remove', function () {
+                        importSelectFileBodyView.remove();
+                        this.stopListening(Device, 'change:isConnected');
+                    });
+                });
 
                 this.buttons = [{
                     $button : $('<button>').html(i18n.ui.NEXT).addClass('button-next primary'),

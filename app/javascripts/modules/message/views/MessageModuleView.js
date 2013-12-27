@@ -202,6 +202,7 @@
                 }
             },
             sendMessageByContactId : function (id) {
+                // @TODO: remove it
                 var messageSenderView = MessageSenderView.getInstance();
 
                 messageSenderView.once('show', function () {

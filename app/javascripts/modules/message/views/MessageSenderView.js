@@ -11,6 +11,7 @@
         'FunctionSwitch',
         'IO',
         'Log',
+        'Settings',
         'ui/UIHelper',
         'ui/TemplateFactory',
         'ui/Panel',
@@ -34,6 +35,7 @@
         FunctionSwitch,
         IO,
         log,
+        Settings,
         UIHelper,
         TemplateFactory,
         Panel,
@@ -82,8 +84,6 @@
 
         var serviceBtn;
 
-        var selectedSIM;
-
         var SenderBodyView = Backbone.View.extend({
             className : 'w-message-sender-window',
             template : doT.template(TemplateFactory.get('message', 'message-sender')),
@@ -125,7 +125,7 @@
                 if (contact instanceof Array) {
                     var fragment = document.createDocumentFragment();
                     _.each(contact, function (con) {
-                        var model = con.id ? contactMultiNumbersCollection.get(con.id) : con;
+                        var model = (con.id && contactMultiNumbersCollection.get(con.id)) || con;
                         if (receiverList.indexOf(model.get('phoneNumber')) < 0) {
                             receiverList.push(model.get('phoneNumber'));
 
@@ -147,7 +147,7 @@
                     }, this);
                     item = fragment;
                 } else {
-                    var model = contact.id ? contactMultiNumbersCollection.get(contact.id) : contact;
+                    var model = (contact.id && contactMultiNumbersCollection.get(contact.id)) || contact;
                     if (receiverList.indexOf(model.get('phoneNumber')) < 0) {
                         receiverList.push(model.get('phoneNumber'));
 
@@ -363,15 +363,14 @@
             initialize : function () {
                 MessageSenderView.__super__.initialize.call(this, arguments);
 
-                var serviceCenter;
                 var sendFrom = '';
                 Object.defineProperties(this, {
-                    serviceCenter : {
+                    selectedSIM : {
                         set : function (value) {
-                            serviceCenter = value;
+                            Settings.set('sms_selected_sim', value, true);
                         },
                         get : function () {
-                            return serviceCenter;
+                            return Settings.get('sms_selected_sim');
                         }
                     },
                     sendFrom : {
@@ -490,9 +489,9 @@
                     var $sendBtn = $('<button>').addClass('primary button-send');
 
                     if (isDifferentService) {
-                        $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, selectedSIM && serviceCenter[0].sim_id !== selectedSIM ? serviceCenter[1].sim_name : serviceCenter[0].sim_name));
+                        $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, this.selectedSIM && serviceCenter[0].sim_id !== this.selectedSIM ? serviceCenter[1].sim_name : serviceCenter[0].sim_name));
                     } else {
-                        $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, selectedSIM && serviceCenter[0].sim_id !== selectedSIM ? 2 : 1));
+                        $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM, this.selectedSIM && serviceCenter[0].sim_id !== this.selectedSIM ? 2 : 1));
                     }
 
                     var items = [];
@@ -505,9 +504,9 @@
                                         StringUtil.format(i18n.message.MUTIL_SIM_SELECT_HAS_NUM, service.sim_name, service.sim_phone_number) :
                                         StringUtil.format(i18n.message.MUTIL_SIM_SELECT, service.sim_name, i + 1),
                             value : i,
-                            checked : selectedSIM ? service.sim_id === selectedSIM  : i === 0
+                            checked : this.selectedSIM ? service.sim_id === this.selectedSIM : i === 0
                         });
-                    });
+                    }.bind(this));
 
                     items.push({
                         type : 'hr'
@@ -525,7 +524,7 @@
                         }
                     });
 
-                    this.serviceCenter = selectedSIM || serviceCenter[0].sim_id;
+                    this.selectedSIM = this.selectedSIM || serviceCenter[0].sim_id;
 
                     serviceBtn = new MenuButton({
                         items : items
@@ -542,7 +541,7 @@
                         var sim = serviceCenter[item.value];
 
                         if (sim) {
-                            this.serviceCenter = selectedSIM = sim.sim_id;
+                            this.selectedSIM = sim.sim_id;
 
                             if (isDifferentService) {
                                 $sendBtn.html(StringUtil.format(i18n.message.SEND_WITH_SPEC_SIM_HAS_NAME, sim.sim_name));
@@ -588,7 +587,7 @@
                 } else {
                     var sendHandler = function () {
                         this.disabled();
-                        MessageService.sendMessageAsync(receiverList, content, this.serviceCenter, this.sendFrom)
+                        MessageService.sendMessageAsync(receiverList, content, this.selectedSIM, this.sendFrom)
                             .always(function () {
                                 this.disabled(false);
                             }.bind(this))
@@ -617,7 +616,18 @@
                 }
             },
             addContactById : function (id) {
-                senderBodyView.addContact(contactMultiNumbersCollection.get(id));
+                var model = contactMultiNumbersCollection.get(id);
+
+                if (!model) {
+                    var phoneNumber = id.split('|')[1];
+
+                    model = new Backbone.Model({
+                        displayNumber : phoneNumber,
+                        phoneNumber : phoneNumber
+                    });
+                }
+
+                senderBodyView.addContact(model);
             },
             clickButtonSend : function () {
                 this.sendMessage();

@@ -100,9 +100,19 @@
             },
             clickButtonPause : function () {
                 tasksCollection.pauseTasksAsync(taskListView.selected);
+
+                log({
+                    'event' : 'ui.click.task_pause_item',
+                    'position' : 'toolbar'
+                });
             },
             clickButtonContinue : function () {
                 tasksCollection.startTasksAsync(taskListView.selected);
+
+                log({
+                    'event' : 'ui.click.task_start_item',
+                    'position' : 'toolbar'
+                });
             },
             clickButtonDelete : function () {
                 var alertPanel = new DeleteConfirmWindowView.getInstance({
@@ -113,6 +123,11 @@
 
                 alertPanel.on('button_yes', function () {
                     tasksCollection.deleteTasksAsync(taskListView.selected, alertPanel.deleteFile);
+                });
+
+                log({
+                    'event' : 'ui.click.task_delete_item',
+                    'position' : 'toolbar'
                 });
             },
             clickButtonOpenFolder : function () {
@@ -131,11 +146,18 @@
                     }
                 });
             },
+            clickSelectAll : function (e) {
+                log({
+                    'event' : 'ui.click.taskmanager_selecte_all',
+                    'check_state' : e.currentTarget.checked
+                });
+            },
             events : {
                 'click .button-pause' : 'clickButtonPause',
                 'click .button-continue' : 'clickButtonContinue',
                 'click .button-delete' : 'clickButtonDelete',
-                'click .button-open-folder' : 'clickButtonOpenFolder'
+                'click .button-open-folder' : 'clickButtonOpenFolder',
+                'click .check-select-all' : 'clickSelectAll'
             }
         });
 

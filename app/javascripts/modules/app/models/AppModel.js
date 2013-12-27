@@ -197,7 +197,7 @@
                         if (resp.state_code === 200) {
                             console.log('AppModel - "' + baseInfo.name + '" uninstall success.');
 
-                            if (this.collection && !resp.body.failed) {
+                            if (this.collection && !resp.body.failed.length) {
                                 var collection = this.collection;
                                 collection.remove(this);
                                 collection.trigger('refresh', collection);

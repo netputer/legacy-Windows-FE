@@ -51,7 +51,7 @@
         };
 
         //whiteList for stupid CDN CACHE
-        var whiteList = ['18', '223', '235', '258', '255', '256', '254'];
+        var whiteList = ['18', '223', '235', '258', '255', '256', '254', '376'];
 
         var ExtensionModel = Backbone.Model.extend({
             defaults : {

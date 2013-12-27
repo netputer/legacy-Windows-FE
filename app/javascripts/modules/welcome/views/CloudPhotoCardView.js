@@ -9,6 +9,7 @@
         'Account',
         'IOBackendDevice',
         'Internationalization',
+        'Settings',
         'ui/TemplateFactory',
         'welcome/views/FeedCardView',
         'sync/SyncService'
@@ -21,6 +22,7 @@
         Account,
         IO,
         i18n,
+        Settings,
         TemplateFactory,
         FeedCardView,
         SyncService
@@ -44,14 +46,18 @@
                 }.bind(this));
                 return this;
             },
+            hide : function () {
+                Settings.set('welcome_feed_cloud_photo', true, true);
+            },
             clickButtonAction : function () {
                 if (Account.get('isLogin')) {
                     SyncService.setPhotoSyncSwitchAsync(true).done(SyncService.uploadPhotoAsync);
                     this.remove();
+                    this.hide();
                     return;
                 }
 
-                Account.loginAsync('', 'guide-cloud-photo');
+                Account.regAsync('', 'guide-cloud-photo');
 
                 var handler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
@@ -59,6 +65,7 @@
                     if (message.auth) {
                         SyncService.setPhotoSyncSwitchAsync(true).done(SyncService.uploadPhotoAsync);
                         this.remove();
+                        this.hide();
                         IO.Backend.Device.offmessage(handler);
                     }
                 }, this);
@@ -72,6 +79,7 @@
             },
             clickButtonIgnore : function () {
                 this.remove();
+                this.hide();
             },
             events : {
                 'click .button-action' : 'clickButtonAction',
