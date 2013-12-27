@@ -12,15 +12,14 @@ module.exports = function (grunt) {
     var paths = {
         app : 'app',
         dist : 'dist',
-        debug : 'debug',
-        tmp : '.tmp'
+        tmp : 'tmp'
     };
 
     grunt.initConfig({
         path : paths,
         clean : {
-            dist : ['<%= path.tmp %>/*', '<%= path.dist %>/*'],
-            server : ['<%= path.tmp %>/*', '<%= path.debug %>/*']
+            dist : ['<%= path.tmp %>/', '<%= path.dist %>/'],
+            server : ['<%= path.tmp %>/']
         },
         watch : {
             tpl : {
@@ -28,7 +27,7 @@ module.exports = function (grunt) {
                     '<%= path.app %>/javascripts/**/*.tpl',
                     '<%= path.app %>/**/*.html',
                 ],
-                tasks : ['targethtml:server']
+                tasks : ['targethtml']
             },
             src : {
                 files : [
@@ -39,14 +38,14 @@ module.exports = function (grunt) {
             },
             stylesheets : {
                 files : [
-                    '<%= path.debug %>/stylesheets/compass/{,*/}*/{,*/}*.{scss,sass,png}'
+                    '<%= path.tmp %>/stylesheets/compass/{,*/}*/{,*/}*.{scss,sass,png}'
                 ],
                 tasks : ['compass:server']
             }
         },
         replace : {
             serverWDJ : {
-                src : ['<%= path.debug %>/index.html'],
+                src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
                     from : '//@@PROJECT_FLAG',
@@ -54,7 +53,7 @@ module.exports = function (grunt) {
                 }]
             },
             serverSUNING : {
-                src : ['<%= path.debug %>/index.html'],
+                src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
                     from : '//@@PROJECT_FLAG',
@@ -62,7 +61,7 @@ module.exports = function (grunt) {
                 }]
             },
             serverTIANYIN : {
-                src : ['<%= path.debug %>/index.html'],
+                src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
                     from : '//@@PROJECT_FLAG',
@@ -72,19 +71,15 @@ module.exports = function (grunt) {
         },
         compass : {
             options : {
-                sassDir : '<%= path.debug %>/stylesheets/compass/sass',
-                cssDir : '<%= path.debug %>/stylesheets',
-                imagesDir : '<%= path.debug %>/stylesheets/compass/images',
-                generatedImagesDir : '<%= path.debug %>/images',
+                sassDir : '<%= path.tmp %>/stylesheets/compass/sass',
+                cssDir : '<%= path.tmp %>/stylesheets',
+                imagesDir : '<%= path.tmp %>/stylesheets/compass/images',
+                generatedImagesDir : '<%= path.tmp %>/images',
                 relativeAssets : true
             },
             dist : {
                 options : {
-                    outputStyle : 'compressed',
-                    sassDir : '<%= path.tmp %>/stylesheets/compass/sass',
-                    cssDir : '<%= path.tmp %>/stylesheets',
-                    imagesDir : '<%= path.tmp %>/stylesheets/compass/images',
-                    generatedImagesDir : '<%= path.tmp %>/images',
+                    outputStyle : 'compressed'
                 }
             },
             server : {
@@ -94,29 +89,6 @@ module.exports = function (grunt) {
             }
         },
         copy : {
-            server : {
-                files : [{
-                    expand : true,
-                    dot : true,
-                    cwd : '<%= path.app %>',
-                    dest : '<%= path.debug %>',
-                    src : [
-                        'images/**/*.{png,gif}',
-                        'javascripts/**/*.js',
-                        'stylesheets/**/*.{sass,scss,png,ttf}',
-                        'bower_components/wookmark-jquery/jquery.wookmark.js',
-                        'bower_components/requirejs-doT/doT.js',
-                        'bower_components/requirejs-text/text.js',
-                        'bower_components/requirejs/require.js',
-                        'bower_components/jquery/jquery.js',
-                        'bower_components/dot/doT.js',
-                        'bower_components/underscore/underscore.js',
-                        'bower_components/backbone/backbone.js',
-                        'bower_components/requirejs-i18n/i18n.js',
-                        'bower_components/qrcode.js/qrcode.js'
-                    ]
-                }]
-            },
             tmp : {
                 files : [{
                     expand : true,
@@ -164,18 +136,6 @@ module.exports = function (grunt) {
             }
         },
         targethtml : {
-            server : {
-                files : [{
-                    expand : true,
-                    dot : true,
-                    cwd : '<%= path.app %>',
-                    dest : '<%= path.debug %>',
-                    src : [
-                        'javascripts/**/*.tpl',
-                        '*.html'
-                    ]
-                }]
-            },
             build : {
                 files : [{
                     expand : true,
@@ -293,8 +253,8 @@ module.exports = function (grunt) {
 
         var taskList = [
             'clean:server',
-            'copy:server',
-            'targethtml:server',
+            'copy:tmp',
+            'targethtml',
             'createScssConfig:' + project,
             'compass:server',
             'watch'
@@ -310,7 +270,7 @@ module.exports = function (grunt) {
         var taskList = [
             'clean:dist',
             'copy:tmp',
-            'targethtml:build',
+            'targethtml',
             'replace:server' + project,
             'createScssConfig:' + project + ':true',
             'compass:dist',
@@ -330,36 +290,31 @@ module.exports = function (grunt) {
     grunt.registerTask('createScssConfig', function (project, isBuild) {
 
         var fd;
-        var dir = paths.debug;
+        var dir = paths.tmp;
 
         if (isBuild) {
             dir = paths.tmp;
         }
         var filePath = dir + '/stylesheets/compass/sass/_projectflag.scss';
 
-        try {
+        fd = fs.openSync(filePath, 'w');
 
-            fd = fs.openSync(filePath, 'w');
-
-            var content = '';
-            switch (project) {
-            case 'WDJ':
-                content = '$PROJECT_FLAG : PROJECT_SUNING';
-                break;
-            case 'SUNING':
-                content = '$PROJECT_FLAG : PROJECT_SUNING';
-                break;
-            case 'TIANYIN':
-                content = '$PROJECT_FLAG : PROJECT_TIANYIN';
-                break;
-            }
-
-            fs.writeSync(fd, content);
-            fs.closeSync(fd);
-
-        } catch (exception) {
-            throw exception;
+        var content = '';
+        switch (project) {
+        case 'WDJ':
+            content = '$PROJECT_FLAG : PROJECT_SUNING';
+            break;
+        case 'SUNING':
+            content = '$PROJECT_FLAG : PROJECT_SUNING';
+            break;
+        case 'TIANYIN':
+            content = '$PROJECT_FLAG : PROJECT_TIANYIN';
+            break;
         }
+
+        fs.writeSync(fd, content);
+        fs.closeSync(fd);
+
     });
 
     grunt.registerTask('test', function () {
@@ -372,7 +327,7 @@ module.exports = function (grunt) {
 
         if (target === 'src') {
 
-            var targetPath = filePath.replace(paths.app, paths.debug);
+            var targetPath = filePath.replace(paths.app, paths.tmp);
             if (grunt.file.isDir(filePath)) {
                 return;
             }
