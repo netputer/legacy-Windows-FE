@@ -263,8 +263,8 @@
         <button class="button-send primary">{{= i18n.message.REPLY_MESSAGE }}</button>
         <div class="navigate">
             <span class="button-delete link">{{= i18n.misc.DELETE }}</span>
-            <span class="button-prev link">{{= i18n.message.PREV_MESSAGE }}</span>
-            <span class="button-next link">{{= i18n.message.NEXT_MESSAGE }}</span>
+            <!--<span class="button-prev link">{{= i18n.message.PREV_MESSAGE }}</span>-->
+            <!--<span class="button-next link">{{= i18n.message.NEXT_MESSAGE }}</span>-->
         </div>
     </div>
 </script>
