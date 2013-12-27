@@ -91,8 +91,9 @@
             },
             ENABLE_DORAEMON : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    // return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
+                    //         Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return false;
                 }
             },
             ENABLE_PHOTO_SYNC : {
