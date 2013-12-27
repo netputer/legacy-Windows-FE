@@ -608,7 +608,9 @@
                 data.starred = 0;
                 data.id = '';
 
-                return new ContactModel(data);
+                return new ContactModel(data, {
+                    parse : true
+                });
             },
             getAll : function () {
                 return this.models;
