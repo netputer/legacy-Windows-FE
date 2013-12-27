@@ -124,7 +124,7 @@
                     photoCollection = undefined;
 
                     alertWindow.once('button_retry', function () {
-                        PhotoService.exportPhotosAsync(failed).done(deferred.resolve).fail(deferred.reject);
+                        PhotoService.exportPhotosAsync(failed, models).done(deferred.resolve).fail(deferred.reject);
                         alertWindow.remove();
                     }, this);
 
