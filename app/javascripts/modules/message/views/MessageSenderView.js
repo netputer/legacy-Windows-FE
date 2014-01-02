@@ -641,7 +641,17 @@
                 senderBodyView.addPlaceholder();
             },
             keydownInputContent : function (evt) {
-                if (evt.ctrlKey && evt.keyCode === KeyMapping.ENTER) {
+
+                if (!FunctionSwitch.IS_CHINESE_VERSION) {
+
+                    if (evt.keyCode === KeyMapping.ENTER && !evt.shiftKey) {
+                        this.sendMessage();
+
+                        evt.stopPropagation();
+                        evt.preventDefault();
+                    }
+
+                } else if (evt.ctrlKey && evt.keyCode === KeyMapping.ENTER) {
                     this.sendMessage();
                 }
             },

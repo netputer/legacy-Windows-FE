@@ -233,13 +233,24 @@
                 this.sendMessage();
             },
             keydownInputContent : function (evt) {
-                if (evt.ctrlKey && evt.keyCode === KeyMapping.ENTER) {
-                    this.sendMessage();
-                }
 
                 if (evt.keyCode === KeyMapping.ESC) {
                     this.$('.input-content').blur();
                 }
+
+                if (!FunctionSwitch.IS_CHINESE_VERSION) {
+
+                    if (evt.keyCode === KeyMapping.ENTER && !evt.shiftKey) {
+                        this.sendMessage();
+
+                        evt.stopPropagation();
+                        evt.preventDefault();
+                    }
+
+                } else if (evt.ctrlKey && evt.keyCode === KeyMapping.ENTER) {
+                    this.sendMessage();
+                }
+
             },
             events : {
                 'click .button-send' : 'clickButtonSend',
