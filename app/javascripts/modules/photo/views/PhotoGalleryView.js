@@ -13,6 +13,7 @@
         'Configuration',
         'Environment',
         'Settings',
+        'FunctionSwitch',
         'photo/collections/PhonePhotoCollection',
         'photo/collections/LibraryPhotoCollection',
         'photo/collections/CloudPhotoCollection',
@@ -31,6 +32,7 @@
         CONFIG,
         Environment,
         Settings,
+        FunctionSwitch,
         PhonePhotoCollection,
         LibraryPhotoCollection,
         CloudPhotoCollection,
@@ -199,7 +201,7 @@
                 case 'cloud':
                     this.hideTabs(true, true, false);
 
-                    if (!Settings.get('ios.banner.isclosed')) {
+                    if (FunctionSwitch.IS_CHINESE_VERSION && !Settings.get('ios.banner.isclosed')) {
                         $.ajax({
                             url : CONFIG.enums.IOS_SHOW_ADVERTISEMENT,
                             data : {
