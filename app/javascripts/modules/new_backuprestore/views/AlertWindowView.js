@@ -4,12 +4,14 @@
         'jquery',
         'Internationalization',
         'Log',
+        'FunctionSwitch',
         'ui/UIHelper',
         'ui/AlertWindow'
     ], function (
         $,
         i18n,
         log,
+        FunctionSwitch,
         UIHelper,
         AlertWindow
     ) {
@@ -49,7 +51,7 @@
             alertWindow.on(UIHelper.EventsMapping.REMOVE, removeHandler);
             alertWindow.show();
 
-            if (showQQ) {
+            if (FunctionSwitch.IS_CHINESE_VERSION && showQQ) {
                 alertWindow.$('.w-ui-window-footer-monitor').empty().append(i18n.new_backuprestore.QQ);
 
                 log({
