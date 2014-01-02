@@ -165,17 +165,6 @@
     </div>
 </script>
 
-<script type="text/x-ui-template" id="snappea-onemobile">
-    <div class="icon-ctn"></div>
-    <div class="info-ctn">
-        <h1 class="title">1Mobile</h1>
-        <p class="desc">Download free apps</p>
-        <div class="btn-ctn hbox">
-            <button class="button-action">{{= i18n.misc.OPEN }}</button>
-        </div>
-    </div>
-</script>
-
 <script type="text/x-ui-template" id="snappea-facebook">
     <div class="icon-ctn"></div>
     <div class="info-ctn">

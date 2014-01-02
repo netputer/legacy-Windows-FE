@@ -591,7 +591,6 @@
     &.tips,
     &.snappea-web,
     &.snappea-photos,
-    &.snappea-onemobile,
     &.snappea-facebook,
     &.snappea-itunes,
     &.snappea-youtube {
@@ -647,7 +646,6 @@
     }
 
     &.cloud-photo,
-    &.snappea-onemobile,
     &.snappea-facebook {
         background-color: #00bcce; // Blue
     }
@@ -682,7 +680,7 @@
         }
     }
 
-    @each $card in web, photos, onemobile, facebook, itunes, youtube {
+    @each $card in web, photos, facebook, itunes, youtube {
         &.snappea-#{$card} {
             .icon-ctn {
                 @include snappea-sprite(snappea-#{$card});
