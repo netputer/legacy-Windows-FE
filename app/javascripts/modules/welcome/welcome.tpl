@@ -154,6 +154,17 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="snappea-feedback">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">How are we doing?</h1>
+        <p class="desc">Take our 3-minute.<br />We&rsquo;d love to get your feedback.</p>
+        <div class="btn-ctn hbox">
+            <a class="button-action" href="https://snappea.wufoo.com/forms/snappea-for-windows-user-satisfaction-survey/" target="_default">Take me there</a>
+        </div>
+    </div>
+</script>
+
 <script type="text/x-ui-template" id="snappea-photos">
     <div class="icon-ctn"></div>
     <div class="info-ctn">
