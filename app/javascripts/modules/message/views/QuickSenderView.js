@@ -9,6 +9,7 @@
         'Device',
         'Log',
         'Settings',
+        'FunctionSwitch',
         'ui/UIHelper',
         'ui/AlertWindow',
         'ui/MenuButton',
@@ -24,6 +25,7 @@
         Device,
         log,
         Settings,
+        FunctionSwitch,
         UIHelper,
         AlertWindow,
         MenuButton,
@@ -78,6 +80,11 @@
                 }
             },
             buildButton : function () {
+
+                if (!FunctionSwitch.ENABLE_DUAL_SIM) {
+                    return;
+                }
+
                 MessageService.getServiceCenterAsync().done(function (resp) {
                     var serviceCenter = resp.body.sim || [];
 
