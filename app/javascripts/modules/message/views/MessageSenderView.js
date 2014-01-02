@@ -474,6 +474,11 @@
                 this.sendFrom = source;
             },
             buildButton : function () {
+
+                if (!FunctionSwitch.ENABLE_DUAL_SIM) {
+                    return;
+                }
+
                 MessageService.getServiceCenterAsync().done(function (resp) {
                     var serviceCenter = resp.body.sim || [];
 
