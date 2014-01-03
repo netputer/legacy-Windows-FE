@@ -9,19 +9,16 @@
     </head>
     <body class="w-main">
 
-        <!-- build:js javascripts/SnapPeaLoader.js -->
-
         <script type="text/javascript">
-
-            var PROJECT = {
-                WDJ : 'wandoujia',
-                SUNING : 'suning',
-                TIANYIN : 'tianyin'
-            };
-
-            //@@PROJECT_FLAG
+            localStorage.setItem(
+                'projectConfig',
+                JSON.stringify(
+                    //@@PROJECT_CONFIG
+                )
+            );
         </script>
 
+        <!-- build:js javascripts/SnapPeaLoader.js -->
         <script type="text/javascript">
         if (window.OneRingRequest === undefined) {
             window.externalCall = function () {};

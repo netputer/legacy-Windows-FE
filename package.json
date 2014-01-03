@@ -22,7 +22,6 @@
     "grunt-rev": "latest",
     "qunit-reporter-junit":"latest",
     "grunt-text-replace" : "latest",
-    "grunt-targethtml" : "latest",
     "grunt-usemin": "~0.1.12",
     "matchdep": "latest"
   },
