@@ -94,29 +94,31 @@
             },
             initState : function () {
 
-                BackupRestoreService.getAppDataCountAsync().done(function (resp) {
+                if (FunctionSwitch.IS_CHINESE_VERSION) {
+                    BackupRestoreService.getAppDataCountAsync().done(function (resp) {
 
-                    this.$('input[type=checkbox][value=10]').prop('disabled', false);
-                    BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP_DATA] = parseInt(resp.body.value, 10);
+                        this.$('input[type=checkbox][value=10]').prop('disabled', false);
+                        BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP_DATA] = parseInt(resp.body.value, 10);
 
-                }.bind(this)).fail(function (resp) {
+                    }.bind(this)).fail(function (resp) {
 
-                    this.$('input[type=checkbox][value=10]').prop('disabled', true);
-                    BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP_DATA] = -1;
+                        this.$('input[type=checkbox][value=10]').prop('disabled', true);
+                        BackupContextModel.get('dataNumList')[CONFIG.enums.BR_TYPE_APP_DATA] = -1;
 
-                }.bind(this));
+                    }.bind(this));
 
-                var defaultBackupType = BackupContextModel.get('appType');
-                this.$('input[type=radio][value=' + defaultBackupType + ']').prop('checked', true);
+                    var defaultBackupType = BackupContextModel.get('appType');
+                    this.$('input[type=radio][value=' + defaultBackupType + ']').prop('checked', true);
 
-                BackupRestoreService.getIsWdapkReadyAsync().done(function (resp) {
+                    BackupRestoreService.getIsWdapkReadyAsync().done(function (resp) {
 
-                    if (!resp.body.value) {
-                        this.$('input[type=radio][value=2]').prop('disabled', true);
-                        this.$('input[type=radio][value=0]').prop('checked', true);
-                    }
+                        if (!resp.body.value) {
+                            this.$('input[type=radio][value=2]').prop('disabled', true);
+                            this.$('input[type=radio][value=0]').prop('checked', true);
+                        }
 
-                }.bind(this));
+                    }.bind(this));
+                }
 
                 _.each(BackupContextModel.get('dataIDList'), function (item) {
                     this.$('input[type=checkbox][value=' + item +  ']').prop('checked', true);
@@ -246,7 +248,7 @@
                         title : i18n.new_backuprestore.BACKUP_ADVANCE_TITLE,
                         disableX: true,
                         width : '450px',
-                        height : '350px'
+                        height : FunctionSwitch.IS_CHINESE_VERSION ? '350px' : '270px'
 
                     });
                 }

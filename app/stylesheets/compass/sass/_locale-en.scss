@@ -103,4 +103,55 @@
             display: none;
         }
     }
+
+    .w-backuprestore-start {
+        .action-panel {
+            .container {
+                cursor: pointer;
+                -webkit-transition: all .2s;
+
+                &:hover {
+                    .icon,
+                    .info,
+                    .action-container {
+                        top: 0px;
+                    }
+
+                    background: #E6E6E6;
+                }
+
+                .desc {
+                    color: #000;
+                }
+            }
+        }
+
+        .info-panel {
+            .info-panel {
+                &.auto-backup-remote{
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .w-backuprestore-local-backup-advance {
+
+        .container {
+
+            dd {
+                 label:nth-child(4) {
+                    display: none;
+                 }
+
+                .beta {
+                    display: none;
+                }
+            }
+
+            .backup-app-list {
+                display: none;
+            }
+        }
+    }
 }
