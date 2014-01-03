@@ -12,6 +12,7 @@
         'Internationalization',
         'utilities/StringUtil',
         'WindowController',
+        'FunctionSwitch',
         'main/collections/PIMCollection',
         'new_backuprestore/BackupRestoreService',
         'new_backuprestore/views/ConfirmWindowView',
@@ -35,6 +36,7 @@
         i18n,
         StringUtil,
         WindowController,
+        FunctionSwitch,
         PIMCollection,
         BackupRestoreService,
         ConfirmWindowView,
@@ -343,7 +345,7 @@
 
                 }.bind(this)));
 
-                initDone.push(BackupRestoreService.getSettingPathAsync().done(function (resp) {
+                initDone.push(BackupRestoreService.getSettingPathAsync(!FunctionSwitch.IS_CHINESE_VERSION).done(function (resp) {
 
                     var path = resp.body.value;
                     BackupContextModel.set('filePath', path);
@@ -355,13 +357,17 @@
 
                 }.bind(this)));
 
-                initDone.push(BackupRestoreService.getIsWdapkReadyAsync().done(function (resp) {
+                if (FunctionSwitch.IS_CHINESE_VERSION) {
+                    initDone.push(BackupRestoreService.getIsWdapkReadyAsync().done(function (resp) {
 
-                    if (!resp.body.value) {
-                        BackupContextModel.set('appType', 0);
-                    }
+                        if (!resp.body.value) {
+                            BackupContextModel.set('appType', 0);
+                        }
 
-                }));
+                    }));
+                } else {
+                    BackupContextModel.set('appType', 0);
+                }
 
                 if (deviceName !== undefined && deviceName.length > 0) {
                     deviceName = deviceName.replace(/ /g, '_').replace(new RegExp(this.invalidPattern, "g"), '_');

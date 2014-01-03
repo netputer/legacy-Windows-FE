@@ -133,10 +133,14 @@
         </dd>
         <dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_TYPE}}</dt>
         <dd>
-            <label><input type="radio" name="backup-type" value="2"/>{{= i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE}}</label><br/>
-            <span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE_DESC}}</span><br/>
-            <label><input type="radio"  name="backup-type" value="0"/>{{= i18n.new_backuprestore.APP_TYPE_APK_TITLE}}</label><br/>
-            <span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_APK_TITLE_DESC}}</span>
+            <div class="backup-app-list">
+                <label><input type="radio" name="backup-type" value="2"/>{{= i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE}}</label><br/>
+                <span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE_DESC}}</span><br/>
+            </div>
+            <div class="backup-full-app">
+                <label><input type="radio"  name="backup-type" value="0"/>{{= i18n.new_backuprestore.APP_TYPE_APK_TITLE}}</label><br/>
+                <span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_APK_TITLE_DESC}}</span>
+            </div>
         </dd>
         <dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_FILE_PATH}}</dt>
         <dd>
