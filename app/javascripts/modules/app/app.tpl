@@ -450,13 +450,11 @@
                 <div>{{= i18n.misc.NAV_APP_SYS }}</div>
                 <div class="count">{{= it.sys }}</div>
             </li>
-            <!--(if target !suning)>-->
             {{? FunctionSwitch.IS_CHINESE_VERSION }}
             <li class="hbox" data-tab="update">
                 <div>{{= i18n.misc.NAV_APP_UPDATABLE }}</div>
                 <div class="count">{{= it.update }}</div>
             </li>
-            <!--<!(endif)-->
             {{?}}
             {{? FunctionSwitch.ENABLE_MY_APPS }}
             <li class="hbox" data-tab="web">
