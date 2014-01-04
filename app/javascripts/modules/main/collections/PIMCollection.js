@@ -15,8 +15,20 @@
     ) {
         console.log('PIMCollection - File loaded.');
 
+        var title = i18n.misc.NAV_WELCOME_TO_WDJ;
+
+        //>>includeStart('SUNING_INCLUDE', pragmas.SUNING_INCLUDE);
+        //>>excludeStart('SUNING_EXCLUDE', pragmas.SUNING_EXCLUDE);
+        if (window.PROJECT_FLAG === window.PROJECT.SUNING) {
+        //>>excludeEnd('SUNING_EXCLUDE');
+            title = i18n.misc.NAV_WELCOME_TO_SUNING;
+        //>>excludeStart('SUNING_EXCLUDE', pragmas.SUNING_EXCLUDE);
+        }
+        //>>excludeEnd('SUNING_EXCLUDE');
+        //>>includeEnd('SUNING_INCLUDE');
+
         var menus = [{
-            label : i18n.misc.NAV_WELCOME_TO_WDJ,
+            label : title,
             module : 'welcome',
             tab : 'all',
             id : 0,
