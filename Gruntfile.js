@@ -13,8 +13,7 @@ module.exports = function (grunt) {
     var paths = {
         app : 'app',
         dist : 'dist',
-        tmp : 'tmp',
-        config : 'app/javascripts/projectConfig'
+        tmp : 'tmp'
     };
 
     grunt.initConfig({
@@ -48,10 +47,8 @@ module.exports = function (grunt) {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
-                    from : '//@@PROJECT_CONFIG',
-                    to : function (matchedWord) {
-                        return grunt.file.read(paths.config + '/WDJ.json');
-                    }
+                    from : '//@@PROJECT_FLAG',
+                    to : 'var PROJECT_FLAG = PROJECT.WDJ;'
                 }]
             },
             SUNING : {
@@ -59,9 +56,7 @@ module.exports = function (grunt) {
                 overwrite : true,
                 replacements : [{
                     from : '//@@PROJECT_FLAG',
-                    to : function (matchedWord) {
-                        return grunt.file.read(paths.config + '/SUNING.json');
-                    }
+                    to : 'var PROJECT_FLAG = PROJECT.SUNING;'
                 }]
             },
             TIANYIN : {
@@ -69,9 +64,7 @@ module.exports = function (grunt) {
                 overwrite : true,
                 replacements : [{
                     from : '//@@PROJECT_FLAG',
-                    to : function (matchedWord) {
-                        return grunt.file.read(paths.config + '/TIANYIN.json');
-                    }
+                    to : 'var PROJECT_FLAG = PROJECT.TIANYIN;'
                 }]
             }
         },
@@ -104,8 +97,6 @@ module.exports = function (grunt) {
                     src : [
                         'images/**/*.{png,gif}',
                         'javascripts/**/*.js',
-                        'javascripts/**/*.tpl',
-                        '**/*.html',
                         'stylesheets/**/*.{sass,scss,png,ttf}',
                         'bower_components/wookmark-jquery/jquery.wookmark.js',
                         'bower_components/requirejs-doT/doT.js',
@@ -143,6 +134,44 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        targethtml : {
+            WDJ : {
+                files : [{
+                    expand : true,
+                    dot : true,
+                    cwd : '<%= path.app %>',
+                    dest : '<%= path.tmp %>',
+                    src : [
+                        'javascripts/**/*.tpl',
+                        '*.html'
+                    ]
+                }]
+            },
+            SUNING : {
+                files : [{
+                    expand : true,
+                    dot : true,
+                    cwd : '<%= path.app %>',
+                    dest : '<%= path.tmp %>',
+                    src : [
+                        'javascripts/**/*.tpl',
+                        '*.html'
+                    ]
+                }]
+            },
+            TIANYIN : {
+                files : [{
+                    expand : true,
+                    dot : true,
+                    cwd : '<%= path.app %>',
+                    dest : '<%= path.tmp %>',
+                    src : [
+                        'javascripts/**/*.tpl',
+                        '*.html'
+                    ]
+                }]
+            }
+        },
         requirejs : {
             options : {
                 almond : true,
@@ -175,6 +204,27 @@ module.exports = function (grunt) {
                     include : ['welcome/guide/views/GuideView'],
                     exclude : ['RequireConfig']
                 }]
+            },
+            WDJ : {
+                options : {
+                    pragmas : {
+                        WDJ_INCLUDE : true
+                    }
+                }
+            },
+            SUNING : {
+                options : {
+                    pragmas : {
+                        SUNING_INCLUDE : true
+                    }
+                }
+            },
+            TIANYIN : {
+                options : {
+                    pragmas : {
+                        TIANYIN_INCLUDE : true
+                    }
+                }
             }
         },
         useminPrepare : {
@@ -236,6 +286,7 @@ module.exports = function (grunt) {
         var taskList = [
             'clean:server',
             'copy:tmp',
+            'targethtml:' + project_flag,
             'replace:' + project_flag,
             'createScssConfig',
             'compass:server',
@@ -254,7 +305,7 @@ module.exports = function (grunt) {
         var taskList = [
             'clean:dist',
             'copy:tmp',
-            'replace:' + project_flag,
+            'targethtml:' + project_flag,
             'createScssConfig',
             'compass:dist',
             'requirejs:' + project_flag,
@@ -313,12 +364,10 @@ module.exports = function (grunt) {
             switch (action) {
             case 'added':
             case 'changed':
-                var baseName = path.basename(filePath);
-                grunt.file.copy(filePath, targetPath);
-
-                if (baseName === 'index.html') {
+                var extname = path.extname(filePath);
+                if (extname === '.tpl' || extname === '.html') {
                     var exec = require('child_process').exec;
-                    exec('grunt replace:' + project_flag, function (error, stdout, stderr) {
+                    exec('grunt targethtml:' + project_flag, function (error, stdout, stderr) {
                         stdout && console.log('stdout: ' + stdout);
                         stderr && console.log('stderr: ' + stderr);
                         if (error !== null) {
@@ -327,7 +376,7 @@ module.exports = function (grunt) {
                     });
                     return;
                 }
-
+                grunt.file.copy(filePath, targetPath);
                 break;
             case 'deleted':
                 grunt.file.delete(targetPath);
