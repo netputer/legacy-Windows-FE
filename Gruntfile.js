@@ -80,7 +80,7 @@ module.exports = function (grunt) {
             },
             dist : {
                 options : {
-                    outputStyle : 'compressed',
+                    outputStyle: 'compressed',
                     sassDir : '<%= path.tmp %>/stylesheets/compass/sass',
                     cssDir : '<%= path.tmp %>/stylesheets',
                     imagesDir : '<%= path.tmp %>/stylesheets/compass/images',
@@ -89,7 +89,7 @@ module.exports = function (grunt) {
             },
             server : {
                 options : {
-                    debugInfo : true
+                    debugInfo: true
                 }
             }
         },
