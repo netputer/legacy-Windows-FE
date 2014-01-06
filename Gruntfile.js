@@ -3,12 +3,6 @@
 var LIVERELOAD_PORT = 35729;
 var path = require('path');
 var fs = require('fs');
-var project_flag = 'WDJ';
-
-var flags = process.argv[process.argv.length - 1].split(':');
-if (flags.length === 2) {
-    project_flag = flags[1].toUpperCase();
-}
 
 module.exports = function (grunt) {
     // load all grunt tasks
@@ -31,9 +25,9 @@ module.exports = function (grunt) {
             tpl : {
                 files : [
                     '<%= path.app %>/javascripts/**/*.tpl',
-                    '<%= path.app %>/**/*.html'
+                    '<%= path.app %>/**/*.html',
                 ],
-                tasks : ['targethtml:' + project_flag]
+                tasks : ['targethtml']
             },
             src : {
                 files : [
@@ -47,9 +41,6 @@ module.exports = function (grunt) {
                     '<%= path.tmp %>/stylesheets/compass/{,*/}*/{,*/}*.{scss,sass,png}'
                 ],
                 tasks : ['compass:server']
-            },
-            options : {
-                spawn : true
             }
         },
         replace : {
@@ -286,15 +277,16 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('server', function () {
-
+    grunt.registerTask('server', function (project) {
+        project = project || 'WDJ';
+        project = project.toUpperCase();
 
         var taskList = [
             'clean:server',
             'copy:tmp',
-            'targethtml:' + project_flag,
-            'replace:' + project_flag,
-            'createScssConfig',
+            'targethtml:' + project,
+            'replace:' + project,
+            'createScssConfig:' + project,
             'compass:server',
             'watch'
         ];
@@ -302,15 +294,17 @@ module.exports = function (grunt) {
         grunt.task.run(taskList);
     });
 
-    grunt.registerTask('build', function () {
+    grunt.registerTask('build', function (project) {
+        project = project || 'WDJ';
+        project = project.toUpperCase();
 
         var taskList = [
             'clean:dist',
             'copy:tmp',
-            'targethtml:' + project_flag,
-            'createScssConfig',
+            'targethtml:' + project,
+            'createScssConfig:' + project,
             'compass:dist',
-            'requirejs:' + project_flag,
+            'requirejs:' + project,
             'useminPrepare',
             'imagemin',
             'copy:dist',
@@ -323,7 +317,7 @@ module.exports = function (grunt) {
         grunt.task.run(taskList);
     });
 
-    grunt.registerTask('createScssConfig', function () {
+    grunt.registerTask('createScssConfig', function (project) {
 
         var fd;
         var filePath = paths.tmp + '/stylesheets/compass/sass/_projectflag.scss';
@@ -331,7 +325,7 @@ module.exports = function (grunt) {
         fd = fs.openSync(filePath, 'w');
 
         var content = '';
-        switch (project_flag) {
+        switch (project) {
         case 'WDJ':
             content = '$PROJECT_FLAG : PROJECT_WDJ';
             break;
@@ -370,6 +364,7 @@ module.exports = function (grunt) {
                 if (extname === '.tpl' || extname === '.html') {
                     return;
                 }
+
                 grunt.file.copy(filePath, targetPath);
                 break;
             case 'deleted':
