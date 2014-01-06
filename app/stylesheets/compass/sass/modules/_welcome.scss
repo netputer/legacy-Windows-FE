@@ -1013,6 +1013,10 @@
         background: rgba(255, 255, 255, .1);
         border-color: rgba(255, 255, 255, .2);
     }
+
+    .button-open-sd {
+        cursor: pointer;
+    }
 }
 
 .w-autobackup-tip {
@@ -1103,6 +1107,7 @@
         .info-device,
         .info-sd-internal,
         .info-sd-external {
+            cursor: pointer;
             margin-right: 20px;
             -webkit-box-align: center;
         }
