@@ -7,7 +7,8 @@
 
 /node_modules/
 /dist/
-/tmp/
+/.tmp/
+/debug/
 
 
 /lint.log
