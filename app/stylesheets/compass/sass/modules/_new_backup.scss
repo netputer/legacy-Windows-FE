@@ -192,6 +192,7 @@
 
                 .title {
                     color: #ccc;
+                    display: block;
                 }
 
                 .do-action {
@@ -726,4 +727,8 @@
             }
         }
     }
+}
+
+.local-backup-advance-window {
+    height: 350px;
 }

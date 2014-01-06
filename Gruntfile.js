@@ -3,6 +3,7 @@
 var LIVERELOAD_PORT = 35729;
 var path = require('path');
 var fs = require('fs');
+var project_flag = 'WDJ';
 
 module.exports = function (grunt) {
     // load all grunt tasks
@@ -12,7 +13,8 @@ module.exports = function (grunt) {
     var paths = {
         app : 'app',
         dist : 'dist',
-        tmp : 'tmp'
+        tmp : 'tmp',
+        config : 'app/javascripts/projectConfig'
     };
 
     grunt.initConfig({
@@ -22,18 +24,13 @@ module.exports = function (grunt) {
             server : ['<%= path.tmp %>/']
         },
         watch : {
-            tpl : {
-                files : [
-                    '<%= path.app %>/javascripts/**/*.tpl',
-                    '<%= path.app %>/**/*.html',
-                ],
-                tasks : ['targethtml']
-            },
             src : {
                 files : [
                     '<%= path.app %>/javascripts/**/*.js',
                     '<%= path.app %>/stylesheets/**/*.{scss,sass,png}',
-                    '<%= path.app %>/images/**/*.{png,gif}'
+                    '<%= path.app %>/images/**/*.{png,gif}',
+                    '<%= path.app %>/javascripts/**/*.tpl',
+                    '<%= path.app %>/**/*.html'
                 ]
             },
             stylesheets : {
@@ -41,6 +38,9 @@ module.exports = function (grunt) {
                     '<%= path.tmp %>/stylesheets/compass/{,*/}*/{,*/}*.{scss,sass,png}'
                 ],
                 tasks : ['compass:server']
+            },
+            options : {
+                spawn : true
             }
         },
         replace : {
@@ -48,8 +48,10 @@ module.exports = function (grunt) {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
-                    from : '//@@PROJECT_FLAG',
-                    to : 'var PROJECT_FLAG = PROJECT.WDJ;'
+                    from : '//@@PROJECT_CONFIG',
+                    to : function (matchedWord) {
+                        return grunt.file.read(paths.config + '/WDJ.json');
+                    }
                 }]
             },
             SUNING : {
@@ -57,7 +59,9 @@ module.exports = function (grunt) {
                 overwrite : true,
                 replacements : [{
                     from : '//@@PROJECT_FLAG',
-                    to : 'var PROJECT_FLAG = PROJECT.SUNING;'
+                    to : function (matchedWord) {
+                        return grunt.file.read(paths.config + '/SUNING.json');
+                    }
                 }]
             },
             TIANYIN : {
@@ -65,7 +69,9 @@ module.exports = function (grunt) {
                 overwrite : true,
                 replacements : [{
                     from : '//@@PROJECT_FLAG',
-                    to : 'var PROJECT_FLAG = PROJECT.TIANYIN;'
+                    to : function (matchedWord) {
+                        return grunt.file.read(paths.config + '/TIANYIN.json');
+                    }
                 }]
             }
         },
@@ -98,6 +104,8 @@ module.exports = function (grunt) {
                     src : [
                         'images/**/*.{png,gif}',
                         'javascripts/**/*.js',
+                        'javascripts/**/*.tpl',
+                        '**/*.html',
                         'stylesheets/**/*.{sass,scss,png,ttf}',
                         'bower_components/wookmark-jquery/jquery.wookmark.js',
                         'bower_components/requirejs-doT/doT.js',
@@ -135,44 +143,6 @@ module.exports = function (grunt) {
                 }]
             }
         },
-        targethtml : {
-            WDJ : {
-                files : [{
-                    expand : true,
-                    dot : true,
-                    cwd : '<%= path.app %>',
-                    dest : '<%= path.tmp %>',
-                    src : [
-                        'javascripts/**/*.tpl',
-                        '*.html'
-                    ]
-                }]
-            },
-            SUNING : {
-                files : [{
-                    expand : true,
-                    dot : true,
-                    cwd : '<%= path.app %>',
-                    dest : '<%= path.tmp %>',
-                    src : [
-                        'javascripts/**/*.tpl',
-                        '*.html'
-                    ]
-                }]
-            },
-            TIANYIN : {
-                files : [{
-                    expand : true,
-                    dot : true,
-                    cwd : '<%= path.app %>',
-                    dest : '<%= path.tmp %>',
-                    src : [
-                        'javascripts/**/*.tpl',
-                        '*.html'
-                    ]
-                }]
-            }
-        },
         requirejs : {
             options : {
                 almond : true,
@@ -205,27 +175,6 @@ module.exports = function (grunt) {
                     include : ['welcome/guide/views/GuideView'],
                     exclude : ['RequireConfig']
                 }]
-            },
-            WDJ : {
-                options : {
-                    pragmas : {
-                        WDJ_INCLUDE : true
-                    }
-                }
-            },
-            SUNING : {
-                options : {
-                    pragmas : {
-                        SUNING_INCLUDE : true
-                    }
-                }
-            },
-            TIANYIN : {
-                options : {
-                    pragmas : {
-                        TIANYIN_INCLUDE : true
-                    }
-                }
             }
         },
         useminPrepare : {
@@ -277,16 +226,18 @@ module.exports = function (grunt) {
         }
     });
 
+    var project_flag = 'WDJ';
     grunt.registerTask('server', function (project) {
-        project = project || 'WDJ';
-        project = project.toUpperCase();
+
+        if (typeof project !== 'undefined') {
+            project_flag = project;
+        }
 
         var taskList = [
             'clean:server',
             'copy:tmp',
-            'targethtml:' + project,
-            'replace:' + project,
-            'createScssConfig:' + project,
+            'replace:' + project_flag,
+            'createScssConfig',
             'compass:server',
             'watch'
         ];
@@ -295,16 +246,18 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('build', function (project) {
-        project = project || 'WDJ';
-        project = project.toUpperCase();
+
+        if (typeof project !== 'undefined') {
+            project_flag = project;
+        }
 
         var taskList = [
             'clean:dist',
             'copy:tmp',
-            'targethtml:' + project,
-            'createScssConfig:' + project,
+            'replace:' + project_flag,
+            'createScssConfig',
             'compass:dist',
-            'requirejs:' + project,
+            'requirejs',
             'useminPrepare',
             'imagemin',
             'copy:dist',
@@ -317,7 +270,7 @@ module.exports = function (grunt) {
         grunt.task.run(taskList);
     });
 
-    grunt.registerTask('createScssConfig', function (project) {
+    grunt.registerTask('createScssConfig', function () {
 
         var fd;
         var filePath = paths.tmp + '/stylesheets/compass/sass/_projectflag.scss';
@@ -325,7 +278,7 @@ module.exports = function (grunt) {
         fd = fs.openSync(filePath, 'w');
 
         var content = '';
-        switch (project) {
+        switch (project_flag) {
         case 'WDJ':
             content = '$PROJECT_FLAG : PROJECT_WDJ';
             break;
@@ -360,12 +313,21 @@ module.exports = function (grunt) {
             switch (action) {
             case 'added':
             case 'changed':
-                var extname = path.extname(filePath);
-                if (extname === '.tpl' || extname === '.html') {
+                var baseName = path.basename(filePath);
+                grunt.file.copy(filePath, targetPath);
+
+                if (baseName === 'index.html') {
+                    var exec = require('child_process').exec;
+                    exec('grunt replace:' + project_flag, function (error, stdout, stderr) {
+                        stdout && console.log('stdout: ' + stdout);
+                        stderr && console.log('stderr: ' + stderr);
+                        if (error !== null) {
+                          console.log('exec error: ' + error);
+                        }
+                    });
                     return;
                 }
 
-                grunt.file.copy(filePath, targetPath);
                 break;
             case 'deleted':
                 grunt.file.delete(targetPath);

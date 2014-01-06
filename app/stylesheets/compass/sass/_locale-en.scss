@@ -97,4 +97,68 @@
             max-width: 62%;
         }
     }
+
+    .w-message-sender-window {
+        .help {
+            display: none;
+        }
+    }
+
+    .w-backuprestore-start {
+        .action-panel {
+            .container {
+                cursor: pointer;
+                -webkit-transition: all .2s;
+
+                &:hover {
+                    .icon,
+                    .info,
+                    .action-container {
+                        top: 0;
+                    }
+
+                    background: #E6E6E6;
+                }
+
+                .desc {
+                    color: #000;
+                }
+            }
+        }
+
+        .info-panel {
+            .info-panel {
+                &.auto-backup-remote{
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .w-backuprestore-local-restore-advance,
+    .w-backuprestore-local-backup-advance {
+
+        .container {
+
+            height: 175px;
+
+            dd {
+                 label:nth-child(4) {
+                    display: none;
+                 }
+
+                .beta {
+                    display: none;
+                }
+            }
+
+            .backup-app-list {
+                display: none;
+            }
+        }
+    }
+
+    .local-backup-advance-window {
+        height: 270px;
+    }
 }

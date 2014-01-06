@@ -7,6 +7,7 @@
         'doT',
         'Log',
         'Device',
+        'FunctionSwitch',
         'utilities/StringUtil',
         'ui/TemplateFactory',
         'main/views/BindingDeviceWindowView',
@@ -22,6 +23,7 @@
         doT,
         log,
         Device,
+        FunctionSwitch,
         StringUtil,
         TemplateFactory,
         BindingDeviceWindowView,
@@ -226,6 +228,11 @@
                 }
             },
             clickBackupLocal : function () {
+
+                if (FunctionSwitch.IS_CHINESE_VERSION) {
+                    return;
+                }
+
                 this.trigger('__DO_ACTION', 'BACKUP_LOCAL');
 
                 log({
@@ -257,6 +264,11 @@
                 });
             },
             clickRestoreLocal : function () {
+
+                if (FunctionSwitch.IS_CHINESE_VERSION) {
+                    return;
+                }
+
                 this.trigger('__DO_ACTION', 'RESTORE_LOCAL');
 
                 log({
@@ -288,12 +300,14 @@
                 });
             },
             events: {
-                'click .do-action.local': 'clickActionLocal',
-                'click .do-action.remote': 'clickActionRemote',
-                'click .action-backup-local': 'clickBackupLocal',
-                'click .action-backup-remote': 'clickBackupRemote',
-                'click .action-restore-local': 'clickRestoreLocal',
-                'click .action-restore-remote': 'clickRestoreRemote'
+                'click .do-action.local' : 'clickActionLocal',
+                'click .do-action.remote' : 'clickActionRemote',
+                'click .action-backup-local' : 'clickBackupLocal',
+                'click .action-backup-remote' : 'clickBackupRemote',
+                'click .action-restore-local' : 'clickRestoreLocal',
+                'click .action-restore-remote' : 'clickRestoreRemote',
+                'click .container.backup' : 'clickBackupLocal',
+                'click .container.restore' : 'clickRestoreLocal'
             }
         });
 

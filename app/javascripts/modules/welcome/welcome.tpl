@@ -154,6 +154,17 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="snappea-feedback">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">How are we doing?</h1>
+        <p class="desc">Take our 3-minute.<br />We&rsquo;d love to get your feedback.</p>
+        <div class="btn-ctn hbox">
+            <a class="button-action" href="https://snappea.wufoo.com/forms/snappea-for-windows-user-satisfaction-survey/" target="_default">Take me there</a>
+        </div>
+    </div>
+</script>
+
 <script type="text/x-ui-template" id="snappea-photos">
     <div class="icon-ctn"></div>
     <div class="info-ctn">
@@ -161,17 +172,6 @@
         <p class="desc">All your photos in just one click</p>
         <div class="btn-ctn hbox">
             <a class="button-action" href="https://chrome.google.com/webstore/detail/snappea-photos/epindigjbiphgfhnmlpcocaiafjgbabe" target="_default">Get it now</a>
-        </div>
-    </div>
-</script>
-
-<script type="text/x-ui-template" id="snappea-onemobile">
-    <div class="icon-ctn"></div>
-    <div class="info-ctn">
-        <h1 class="title">1Mobile</h1>
-        <p class="desc">Download free apps</p>
-        <div class="btn-ctn hbox">
-            <button class="button-action">{{= i18n.misc.OPEN }}</button>
         </div>
     </div>
 </script>
