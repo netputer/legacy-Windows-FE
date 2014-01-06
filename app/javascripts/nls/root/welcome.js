@@ -24,7 +24,7 @@ define({
     TOOL_RECOVERY : '恢复',
 
     MANAGE_SD_UNCONNECT : '很抱歉，您的手机连接已断开，无法启动文件管理。',
-    MANAGE_SD_ERROR : '很抱歉，无法启动文件管理。',
+    MANAGE_SD_ERROR : '很抱歉，暂时无法启动 SD 卡文件管理。请重新拔插手机，或者重启豌豆荚再试试。',
     MANAGE_SD_INTERNET : '很抱歉，豌豆荚暂时不支持在 Internet 连接下的 SD 卡管理。',
 
     EDIT_RING : '更换铃声',
