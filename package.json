@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-autoprefixer": "latest",
+    "grunt": "~0.4.1",
     "grunt-contrib-copy": "latest",
     "grunt-contrib-concat": "latest",
     "grunt-contrib-uglify": "latest",
@@ -16,13 +15,13 @@
     "grunt-contrib-imagemin": "~0.1.4",
     "grunt-contrib-requirejs": "latest",
     "grunt-contrib-watch": "latest",
-    "grunt-contrib-jshint": "~0.7.0",
-    "grunt-contrib-qunit": "latest",
-    "grunt-concurrent": "latest",
     "grunt-rev": "latest",
-    "qunit-reporter-junit":"latest",
-    "grunt-text-replace" : "latest",
+    "grunt-autoprefixer": "latest",
     "grunt-usemin": "~0.1.12",
+    "grunt-contrib-jshint": "~0.7.0",
+    "grunt-concurrent": "latest",
+    "qunit-reporter-junit":"latest",
+    "grunt-contrib-qunit": "latest",
     "matchdep": "latest"
   },
   "engines": {

@@ -1,9 +1,6 @@
 'use strict';
 
 var LIVERELOAD_PORT = 35729;
-var path = require('path');
-var fs = require('fs');
-var project_flag = 'WDJ';
 
 module.exports = function (grunt) {
     // load all grunt tasks
@@ -12,179 +9,99 @@ module.exports = function (grunt) {
     // configurable paths
     var paths = {
         app : 'app',
-        dist : 'dist',
-        tmp : 'tmp',
-        config : 'app/javascripts/projectConfig'
+        dist : 'dist'
     };
 
     grunt.initConfig({
         path : paths,
-        clean : {
-            dist : ['<%= path.tmp %>/', '<%= path.dist %>/'],
-            server : ['<%= path.tmp %>/']
-        },
         watch : {
-            src : {
+            compass : {
                 files : [
-                    '<%= path.app %>/javascripts/**/*.js',
-                    '<%= path.app %>/stylesheets/**/*.{scss,sass,png}',
-                    '<%= path.app %>/images/**/*.{png,gif}',
-                    '<%= path.app %>/javascripts/**/*.tpl',
-                    '<%= path.app %>/**/*.html'
-                ]
-            },
-            stylesheets : {
-                files : [
-                    '<%= path.tmp %>/stylesheets/compass/{,*/}*/{,*/}*.{scss,sass,png}'
+                    '<%= path.app %>/stylesheets/compass/{,*/}*/{,*/}*.{scss,sass,png}'
                 ],
-                tasks : ['compass:server']
+                tasks : ['compass']
             },
-            options : {
-                spawn : true
+            livereload: {
+                files: [
+                    '<%= path.app %>{,*/}*/*.html',
+                    '<%= path.app %>/stylesheets/*.css',
+                    '<%= path.app %>/javascripts/{,*/}*/{,*/}*.js',
+                    '<%= path.app %>/images/{,*/}*/{,*/}*.{png,jpg,jpeg,gif,webp}'
+                ],
+                options : {
+                    livereload : LIVERELOAD_PORT
+                },
+                tasks : ['livereload']
             }
         },
-        replace : {
-            WDJ : {
-                src : ['<%= path.tmp %>/index.html'],
-                overwrite : true,
-                replacements : [{
-                    from : '//@@PROJECT_CONFIG',
-                    to : function (matchedWord) {
-                        return grunt.file.read(paths.config + '/WDJ.json');
-                    }
-                }]
-            },
-            SUNING : {
-                src : ['<%= path.tmp %>/index.html'],
-                overwrite : true,
-                replacements : [{
-                    from : '//@@PROJECT_FLAG',
-                    to : function (matchedWord) {
-                        return grunt.file.read(paths.config + '/SUNING.json');
-                    }
-                }]
-            },
-            TIANYIN : {
-                src : ['<%= path.tmp %>/index.html'],
-                overwrite : true,
-                replacements : [{
-                    from : '//@@PROJECT_FLAG',
-                    to : function (matchedWord) {
-                        return grunt.file.read(paths.config + '/TIANYIN.json');
-                    }
-                }]
+        requirejs : {
+            source : {
+                options : {
+                    almond : true,
+                    appDir : '<%= path.app %>/javascripts',
+                    dir :　'<%= path.dist %>/javascripts',
+                    optimize : 'uglify',
+                    baseUrl : './',
+                    mainConfigFile : '<%= path.app %>/javascripts/RequireConfig.js',
+                    uglify : {
+                        toplevel : true,
+                        ascii_only : false,
+                        beautify : false
+                    },
+                    preserveLicenseComments : true,
+                    useStrict : false,
+                    wrap : true,
+                    modules : [{
+                        name : 'RequireConfig',
+                        include : ['jquery', 'underscore', 'backbone', 'doT', 'text', 'i18n']
+                    }, {
+                        name : 'SnapPea',
+                        include : ['SnapPea'],
+                        exclude : ['RequireConfig']
+                    }, {
+                        name : 'photo/PhotoModule',
+                        include : ['photo/PhotoModule'],
+                        exclude : ['RequireConfig']
+                    }, {
+                        name : 'welcome/guide/views/GuideView',
+                        include : ['welcome/guide/views/GuideView'],
+                        exclude : ['RequireConfig']
+                    }]
+                }
             }
+
         },
         compass : {
             options : {
-                sassDir : '<%= path.tmp %>/stylesheets/compass/sass',
-                cssDir : '<%= path.tmp %>/stylesheets',
-                imagesDir : '<%= path.tmp %>/stylesheets/compass/images',
-                generatedImagesDir : '<%= path.tmp %>/images',
+                sassDir : '<%= path.app %>/stylesheets/compass/sass',
+                cssDir : '<%= path.app %>/stylesheets',
+                imagesDir : '<%= path.app %>/stylesheets/compass/images',
+                generatedImagesDir : '<%= path.app %>/images',
                 relativeAssets : true
             },
             dist : {
                 options : {
-                    outputStyle : 'compressed'
+                    outputStyle: 'compressed'
                 }
             },
             server : {
                 options : {
-                    debugInfo : true
+                    debugInfo: true
                 }
             }
         },
-        copy : {
-            tmp : {
-                files : [{
-                    expand : true,
-                    dot : true,
-                    cwd : '<%= path.app %>',
-                    dest : '<%= path.tmp %>',
-                    src : [
-                        'images/**/*.{png,gif}',
-                        'javascripts/**/*.js',
-                        'javascripts/**/*.tpl',
-                        '**/*.html',
-                        'stylesheets/**/*.{sass,scss,png,ttf}',
-                        'bower_components/wookmark-jquery/jquery.wookmark.js',
-                        'bower_components/requirejs-doT/doT.js',
-                        'bower_components/requirejs-text/text.js',
-                        'bower_components/requirejs/require.js',
-                        'bower_components/jquery/jquery.js',
-                        'bower_components/doT/doT.js',
-                        'bower_components/underscore/underscore.js',
-                        'bower_components/backbone/backbone.js',
-                        'bower_components/requirejs-i18n/i18n.js',
-                        'bower_components/qrcode.js/qrcode.js'
-                    ]
-                }]
-            },
-            dist : {
-                files : [{
-                    expand : true,
-                    dot : true,
-                    cwd : '<%= path.tmp %>',
-                    dest : '<%= path.dist %>',
-                    src : [
-                        'images/{,*/}*.{webp,gif,png,jpg,jpeg}',
-                        'stylesheets/{,*/}*.{css,ttf}',
-                        'bower_components/wookmark-jquery/jquery.wookmark.js',
-                        'bower_components/requirejs-doT/doT.js',
-                        'bower_components/requirejs-text/text.js',
-                        'bower_components/requirejs/require.js',
-                        'bower_components/jquery/jquery.js',
-                        'bower_components/doT/doT.js',
-                        'bower_components/underscore/underscore.js',
-                        'bower_components/backbone/backbone.js',
-                        'bower_components/requirejs-i18n/i18n.js',
-                        'bower_components/qrcode.js/qrcode.js'
-                    ]
-                }]
-            }
-        },
-        requirejs : {
-            options : {
-                almond : true,
-                appDir : '<%= path.tmp %>/javascripts',
-                dir :　'<%= path.dist %>/javascripts',
-                optimize : 'uglify',
-                baseUrl : './',
-                mainConfigFile : '<%= path.tmp %>/javascripts/RequireConfig.js',
-                uglify : {
-                    toplevel : true,
-                    ascii_only : false,
-                    beautify : false
-                },
-                preserveLicenseComments : true,
-                useStrict : false,
-                wrap : true,
-                modules : [{
-                    name : 'RequireConfig',
-                    include : ['jquery', 'underscore', 'backbone', 'doT', 'text', 'i18n']
-                }, {
-                    name : 'SnapPea',
-                    include : ['SnapPea'],
-                    exclude : ['RequireConfig']
-                }, {
-                    name : 'photo/PhotoModule',
-                    include : ['photo/PhotoModule'],
-                    exclude : ['RequireConfig']
-                }, {
-                    name : 'welcome/guide/views/GuideView',
-                    include : ['welcome/guide/views/GuideView'],
-                    exclude : ['RequireConfig']
-                }]
-            }
+        clean : {
+            dist : ['.tmp', '<%= path.dist %>/*'],
+            server : '.tmp'
         },
         useminPrepare : {
-            html : ['<%= path.tmp %>/index.html', '<%= path.tmp %>/javascripts/modules/photo/photo.html'],
+            html : ['<%= path.app %>/index.html', '<%= path.app %>/javascripts/modules/photo/photo.html'],
             options : {
                 dest : '<%= path.dist %>'
             }
         },
         usemin : {
-            html : ['<%= path.dist %>/**/*.html'],
+            html : ['<%= path.dist %>/{,*/}*.html'],
             options : {
                 dirs : ['<%= path.dist %>']
             }
@@ -193,8 +110,8 @@ module.exports = function (grunt) {
             dist : {
                 files : [{
                     expand : true,
-                    cwd : '<%= path.tmp %>/images',
-                    src : '**/*.{png,jpg,jpeg}',
+                    cwd : '<%= path.app %>/images',
+                    src : '{,*/}*.{png,jpg,jpeg}',
                     dest : '<%= path.dist %>/images'
                 }]
             }
@@ -203,9 +120,30 @@ module.exports = function (grunt) {
             dist : {
                 files : [{
                     expand : true,
-                    cwd : '<%= path.tmp %>',
-                    src : ['*.html', 'javascripts/**/*.html'],
+                    cwd : '<%= path.app %>',
+                    src : ['*.html', 'javascripts/{,*/}*/*.html'],
                     dest : '<%= path.dist %>'
+                }]
+            }
+        },
+        copy : {
+            dist : {
+                files : [{
+                    expand : true,
+                    dot : true,
+                    cwd : '<%= path.app %>',
+                    dest : '<%= path.dist %>',
+                    src : [
+                        'images/{,*/}*.{webp,gif,png,jpg,jpeg}',
+                        'stylesheets/{,*/}*.{css,ttf}',
+                        'bower_components/requirejs-text/text.js',
+                        'bower_components/jquery/jquery.js',
+                        'bower_components/dot/doT.js',
+                        'bower_components/underscore/underscore.js',
+                        'bower_components/backbone/backbone.js',
+                        'bower_components/requirejs-i18n/i18n.js',
+                        'bower_components/qrcode.js/qrcode.js'
+                    ]
                 }]
             }
         },
@@ -226,113 +164,29 @@ module.exports = function (grunt) {
         }
     });
 
-    var project_flag = 'WDJ';
-    grunt.registerTask('server', function (project) {
+    grunt.registerTask('server', [
+        'clean:server',
+        'compass:server',
+        'watch',
+        'livereload-start'
+    ]);
 
-        if (typeof project !== 'undefined') {
-            project_flag = project;
-        }
-
-        var taskList = [
-            'clean:server',
-            'copy:tmp',
-            'replace:' + project_flag,
-            'createScssConfig',
-            'compass:server',
-            'watch'
-        ];
-
-        grunt.task.run(taskList);
-    });
-
-    grunt.registerTask('build', function (project) {
-
-        if (typeof project !== 'undefined') {
-            project_flag = project;
-        }
-
-        var taskList = [
-            'clean:dist',
-            'copy:tmp',
-            'replace:' + project_flag,
-            'createScssConfig',
-            'compass:dist',
-            'requirejs',
-            'useminPrepare',
-            'imagemin',
-            'copy:dist',
-            'htmlmin',
-            'concat',
-            'uglify',
-            'usemin'
-        ];
-
-        grunt.task.run(taskList);
-    });
-
-    grunt.registerTask('createScssConfig', function () {
-
-        var fd;
-        var filePath = paths.tmp + '/stylesheets/compass/sass/_projectflag.scss';
-
-        fd = fs.openSync(filePath, 'w');
-
-        var content = '';
-        switch (project_flag) {
-        case 'WDJ':
-            content = '$PROJECT_FLAG : PROJECT_WDJ';
-            break;
-        case 'SUNING':
-            content = '$PROJECT_FLAG : PROJECT_SUNING';
-            break;
-        case 'TIANYIN':
-            content = '$PROJECT_FLAG : PROJECT_TIANYIN';
-            break;
-        }
-
-        fs.writeSync(fd, content);
-        fs.closeSync(fd);
-
-    });
+    grunt.registerTask('build', [
+        'clean:dist',
+        'compass:dist',
+        'requirejs:source',
+        'useminPrepare',
+        'imagemin',
+        'copy',
+        'htmlmin',
+        'concat',
+        'uglify',
+        'usemin'
+    ]);
 
     grunt.registerTask('test', function () {
         // grunt.option('force', true);
         grunt.task.run('jshint:all');
         grunt.task.run('build');
-    });
-
-    grunt.event.on('watch', function(action, filePath, target) {
-
-        if (target === 'src') {
-
-            var targetPath = filePath.replace(paths.app, paths.tmp);
-            if (grunt.file.isDir(filePath)) {
-                return;
-            }
-
-            switch (action) {
-            case 'added':
-            case 'changed':
-                var baseName = path.basename(filePath);
-                grunt.file.copy(filePath, targetPath);
-
-                if (baseName === 'index.html') {
-                    var exec = require('child_process').exec;
-                    exec('grunt replace:' + project_flag, function (error, stdout, stderr) {
-                        stdout && console.log('stdout: ' + stdout);
-                        stderr && console.log('stderr: ' + stderr);
-                        if (error !== null) {
-                          console.log('exec error: ' + error);
-                        }
-                    });
-                    return;
-                }
-
-                break;
-            case 'deleted':
-                grunt.file.delete(targetPath);
-                break;
-            }
-        }
     });
 };
