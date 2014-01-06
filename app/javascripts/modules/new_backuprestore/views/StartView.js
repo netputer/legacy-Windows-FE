@@ -300,14 +300,14 @@
                 });
             },
             events: {
-                'click .do-action.local': 'clickActionLocal',
-                'click .do-action.remote': 'clickActionRemote',
-                'click .action-backup-local': 'clickBackupLocal',
-                'click .action-backup-remote': 'clickBackupRemote',
-                'click .action-restore-local': 'clickRestoreLocal',
-                'click .action-restore-remote': 'clickRestoreRemote',
-                'click .container.backup': 'clickBackupLocal',
-                'click .container.restore': 'clickRestoreLocal'
+                'click .do-action.local' : 'clickActionLocal',
+                'click .do-action.remote' : 'clickActionRemote',
+                'click .action-backup-local' : 'clickBackupLocal',
+                'click .action-backup-remote' : 'clickBackupRemote',
+                'click .action-restore-local' : 'clickRestoreLocal',
+                'click .action-restore-remote' : 'clickRestoreRemote',
+                'click .container.backup' : 'clickBackupLocal',
+                'click .container.restore' : 'clickRestoreLocal'
             }
         });
 

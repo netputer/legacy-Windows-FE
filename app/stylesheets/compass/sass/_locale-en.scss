@@ -114,7 +114,7 @@
                     .icon,
                     .info,
                     .action-container {
-                        top: 0px;
+                        top: 0;
                     }
 
                     background: #E6E6E6;
@@ -135,9 +135,12 @@
         }
     }
 
+    .w-backuprestore-local-restore-advance,
     .w-backuprestore-local-backup-advance {
 
         .container {
+
+            height: 175px;
 
             dd {
                  label:nth-child(4) {
@@ -153,5 +156,9 @@
                 display: none;
             }
         }
+    }
+
+    .local-backup-advance-window {
+        height: 270px;
     }
 }
