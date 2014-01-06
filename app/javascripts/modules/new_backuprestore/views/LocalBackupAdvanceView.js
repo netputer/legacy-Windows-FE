@@ -246,10 +246,9 @@
                 if (!localBackupAdvanceView) {
                     localBackupAdvanceView = new LocalBackupAdvanceView({
                         title : i18n.new_backuprestore.BACKUP_ADVANCE_TITLE,
+                        className : 'w-ui-window vbox local-backup-advance-window',
                         disableX: true,
-                        width : '450px',
-                        height : FunctionSwitch.IS_CHINESE_VERSION ? '350px' : '270px'
-
+                        width : '450px'
                     });
                 }
 
