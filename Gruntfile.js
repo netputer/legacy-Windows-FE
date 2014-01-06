@@ -257,7 +257,7 @@ module.exports = function (grunt) {
             'replace:' + project_flag,
             'createScssConfig',
             'compass:dist',
-            'requirejs',
+            'requirejs:' + project_flag,
             'useminPrepare',
             'imagemin',
             'copy:dist',
