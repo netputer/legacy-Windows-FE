@@ -5,6 +5,11 @@ var path = require('path');
 var fs = require('fs');
 var project_flag = 'WDJ';
 
+var flags = process.argv[process.argv.length - 1].split(':');
+if (flags.length === 2) {
+    project_flag = flags[1].toUpperCase();
+}
+
 module.exports = function (grunt) {
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -23,13 +28,18 @@ module.exports = function (grunt) {
             server : ['<%= path.tmp %>/']
         },
         watch : {
+            tpl : {
+                files : [
+                    '<%= path.app %>/javascripts/**/*.tpl',
+                    '<%= path.app %>/**/*.html'
+                ],
+                tasks : ['targethtml:' + project_flag]
+            },
             src : {
                 files : [
                     '<%= path.app %>/javascripts/**/*.js',
                     '<%= path.app %>/stylesheets/**/*.{scss,sass,png}',
-                    '<%= path.app %>/images/**/*.{png,gif}',
-                    '<%= path.app %>/javascripts/**/*.tpl',
-                    '<%= path.app %>/**/*.html'
+                    '<%= path.app %>/images/**/*.{png,gif}'
                 ]
             },
             stylesheets : {
@@ -276,12 +286,8 @@ module.exports = function (grunt) {
         }
     });
 
-    var project_flag = 'WDJ';
-    grunt.registerTask('server', function (project) {
+    grunt.registerTask('server', function () {
 
-        if (typeof project !== 'undefined') {
-            project_flag = project;
-        }
 
         var taskList = [
             'clean:server',
@@ -296,11 +302,7 @@ module.exports = function (grunt) {
         grunt.task.run(taskList);
     });
 
-    grunt.registerTask('build', function (project) {
-
-        if (typeof project !== 'undefined') {
-            project_flag = project;
-        }
+    grunt.registerTask('build', function () {
 
         var taskList = [
             'clean:dist',
@@ -366,14 +368,6 @@ module.exports = function (grunt) {
             case 'changed':
                 var extname = path.extname(filePath);
                 if (extname === '.tpl' || extname === '.html') {
-                    var exec = require('child_process').exec;
-                    exec('grunt targethtml:' + project_flag, function (error, stdout, stderr) {
-                        stdout && console.log('stdout: ' + stdout);
-                        stderr && console.log('stderr: ' + stderr);
-                        if (error !== null) {
-                          console.log('exec error: ' + error);
-                        }
-                    });
                     return;
                 }
                 grunt.file.copy(filePath, targetPath);
