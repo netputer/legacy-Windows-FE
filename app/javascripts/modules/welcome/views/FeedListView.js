@@ -23,7 +23,7 @@
         'welcome/views/ChangelogCardView',
         'welcome/views/SnapPeaWebCardView',
         'welcome/views/SnapPeaPhotosCardView',
-        //'welcome/views/OneMobileCardView',
+        'welcome/views/SnapPeaFeedbackCardView',
         'welcome/views/FacebookCardView',
         'welcome/views/ITunesMoviesCardView',
         'welcome/views/YouTubeCardView',
@@ -51,7 +51,7 @@
         ChangelogCardView,
         SnapPeaWebCardView,
         SnapPeaPhotosCardView,
-        //OneMobileCardView,
+        SnapPeaFeedbackCardView,
         FacebookCardView,
         ITunesMoviesCardView,
         YouTubeCardView,
@@ -144,9 +144,9 @@
                         case 101:
                             targetView = SnapPeaPhotosCardView;
                             break;
-                        /*case 102:
-                            targetView = OneMobileCardView;
-                            break;*/
+                        case 102:
+                            targetView = SnapPeaFeedbackCardView;
+                            break;
                         case 103:
                             targetView = FacebookCardView;
                             break;

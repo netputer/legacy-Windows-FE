@@ -608,7 +608,9 @@
         text-shadow: 0 1px 0 #fff;
 
         .content {
-            word-break: break-all;
+            white-space: pre-wrap;
+            word-break: break-word;
+            word-wrap: break-word;
 
             em {
                 background-color: #f1ea00;

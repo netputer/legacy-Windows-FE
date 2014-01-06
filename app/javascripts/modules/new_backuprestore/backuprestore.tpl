@@ -56,7 +56,6 @@
             <div class="icon"/>
             <div class="info">
                 <span class="title">{{= i18n.new_backuprestore.LAST_BACKUP_TIME }}</span>
-                <br/>
                 <span class="last-time"></span>
             </div>
         </div>
@@ -64,7 +63,6 @@
             <div class="icon"/>
             <div class="info">
                 <span class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_TO_LOCAL }}</span>
-                <br/>
                 <span class="is-auto-backup-local"></span>
                 <span class="do-action local"></span>
             </div>
@@ -73,7 +71,6 @@
             <div class="icon"/>
             <div class="info">
                 <span class="title">{{= i18n.new_backuprestore.AUTO_BACKUP_TO_REMOTE }}</span>
-                <br/>
                 <span class="is-auto-backup-remote"></span>
                 <span class="do-action remote"></span>
             </div>
@@ -133,10 +130,14 @@
         </dd>
         <dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_TYPE}}</dt>
         <dd>
-            <label><input type="radio" name="backup-type" value="2"/>{{= i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE}}</label><br/>
-            <span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE_DESC}}</span><br/>
-            <label><input type="radio"  name="backup-type" value="0"/>{{= i18n.new_backuprestore.APP_TYPE_APK_TITLE}}</label><br/>
-            <span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_APK_TITLE_DESC}}</span>
+            <div class="backup-app-list">
+                <label><input type="radio" name="backup-type" value="2"/>{{= i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE}}</label>
+                <span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_WDAPK_TITLE_DESC}}</span>
+            </div>
+            <div class="backup-full-app">
+                <label><input type="radio"  name="backup-type" value="0"/>{{= i18n.new_backuprestore.APP_TYPE_APK_TITLE}}</label>
+                <span class="text-thirdly desc">{{=i18n.new_backuprestore.APP_TYPE_APK_TITLE_DESC}}</span>
+            </div>
         </dd>
         <dt class="text-bold">{{= i18n.new_backuprestore.BACKUP_FILE_PATH}}</dt>
         <dd>

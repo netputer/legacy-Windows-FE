@@ -9,6 +9,7 @@
         'Device',
         'Log',
         'Settings',
+        'FunctionSwitch',
         'ui/UIHelper',
         'ui/AlertWindow',
         'ui/MenuButton',
@@ -24,6 +25,7 @@
         Device,
         log,
         Settings,
+        FunctionSwitch,
         UIHelper,
         AlertWindow,
         MenuButton,
@@ -78,6 +80,11 @@
                 }
             },
             buildButton : function () {
+
+                if (!FunctionSwitch.ENABLE_DUAL_SIM) {
+                    return;
+                }
+
                 MessageService.getServiceCenterAsync().done(function (resp) {
                     var serviceCenter = resp.body.sim || [];
 
@@ -226,13 +233,24 @@
                 this.sendMessage();
             },
             keydownInputContent : function (evt) {
-                if (evt.ctrlKey && evt.keyCode === KeyMapping.ENTER) {
-                    this.sendMessage();
-                }
 
                 if (evt.keyCode === KeyMapping.ESC) {
                     this.$('.input-content').blur();
                 }
+
+                if (!FunctionSwitch.IS_CHINESE_VERSION) {
+
+                    if (evt.keyCode === KeyMapping.ENTER && !evt.shiftKey) {
+                        this.sendMessage();
+
+                        evt.stopPropagation();
+                        evt.preventDefault();
+                    }
+
+                } else if (evt.ctrlKey && evt.keyCode === KeyMapping.ENTER) {
+                    this.sendMessage();
+                }
+
             },
             events : {
                 'click .button-send' : 'clickButtonSend',

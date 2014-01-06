@@ -124,9 +124,9 @@
             snapPeaFetch : function () {
                 this.set([
                     { type : 100 },
-                    { type : 102 },
                     { type : 103 },
-                    { type : 101 }
+                    { type : 101 },
+                    { type : 102 }
                     // { type : 104 }
                     // { type : 105 }
                 ]);

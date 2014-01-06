@@ -591,10 +591,10 @@
     &.tips,
     &.snappea-web,
     &.snappea-photos,
-    &.snappea-onemobile,
     &.snappea-facebook,
     &.snappea-itunes,
-    &.snappea-youtube {
+    &.snappea-youtube,
+    &.snappea-feedback {
         -webkit-box-align: center;
 
         .info-ctn {
@@ -647,8 +647,8 @@
     }
 
     &.cloud-photo,
-    &.snappea-onemobile,
-    &.snappea-facebook {
+    &.snappea-facebook,
+    &.snappea-feedback {
         background-color: #00bcce; // Blue
     }
 
@@ -682,7 +682,7 @@
         }
     }
 
-    @each $card in web, photos, onemobile, facebook, itunes, youtube {
+    @each $card in web, photos, facebook, itunes, youtube, feedback {
         &.snappea-#{$card} {
             .icon-ctn {
                 @include snappea-sprite(snappea-#{$card});
