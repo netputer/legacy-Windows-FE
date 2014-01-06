@@ -44,28 +44,28 @@ module.exports = function (grunt) {
             }
         },
         replace : {
-            WDJ : {
+            serverWDJ : {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
                     from : '//@@PROJECT_FLAG',
-                    to : 'var PROJECT_FLAG = PROJECT.WDJ;'
+                    to : 'localStorage.setItem(\'PROJECT_FLAG\', \'WDJ\');'
                 }]
             },
-            SUNING : {
+            serverSUNING : {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
                     from : '//@@PROJECT_FLAG',
-                    to : 'var PROJECT_FLAG = PROJECT.SUNING;'
+                    to : 'localStorage.setItem(\'PROJECT_FLAG\', \'SUNING\');'
                 }]
             },
-            TIANYIN : {
+            serverTIANYIN : {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
                     from : '//@@PROJECT_FLAG',
-                    to : 'var PROJECT_FLAG = PROJECT.TIANYIN;'
+                    to : 'localStorage.setItem(\'PROJECT_FLAG\', \'TIANYIN\');'
                 }]
             }
         },
@@ -136,31 +136,7 @@ module.exports = function (grunt) {
             }
         },
         targethtml : {
-            WDJ : {
-                files : [{
-                    expand : true,
-                    dot : true,
-                    cwd : '<%= path.app %>',
-                    dest : '<%= path.tmp %>',
-                    src : [
-                        'javascripts/**/*.tpl',
-                        '*.html'
-                    ]
-                }]
-            },
-            SUNING : {
-                files : [{
-                    expand : true,
-                    dot : true,
-                    cwd : '<%= path.app %>',
-                    dest : '<%= path.tmp %>',
-                    src : [
-                        'javascripts/**/*.tpl',
-                        '*.html'
-                    ]
-                }]
-            },
-            TIANYIN : {
+            build : {
                 files : [{
                     expand : true,
                     dot : true,
@@ -206,13 +182,7 @@ module.exports = function (grunt) {
                     exclude : ['RequireConfig']
                 }]
             },
-            WDJ : {
-                options : {
-                    pragmas : {
-                        WDJ_INCLUDE : true
-                    }
-                }
-            },
+            WDJ : {},
             SUNING : {
                 options : {
                     pragmas : {
@@ -284,8 +254,7 @@ module.exports = function (grunt) {
         var taskList = [
             'clean:server',
             'copy:tmp',
-            'targethtml:' + project,
-            'replace:' + project,
+            'targethtml',
             'createScssConfig:' + project,
             'compass:server',
             'watch'
@@ -301,8 +270,9 @@ module.exports = function (grunt) {
         var taskList = [
             'clean:dist',
             'copy:tmp',
-            'targethtml:' + project,
-            'createScssConfig:' + project,
+            'targethtml',
+            'replace:server' + project,
+            'createScssConfig:' + project + ':true',
             'compass:dist',
             'requirejs:' + project,
             'useminPrepare',
@@ -317,17 +287,22 @@ module.exports = function (grunt) {
         grunt.task.run(taskList);
     });
 
-    grunt.registerTask('createScssConfig', function (project) {
+    grunt.registerTask('createScssConfig', function (project, isBuild) {
 
         var fd;
-        var filePath = paths.tmp + '/stylesheets/compass/sass/_projectflag.scss';
+        var dir = paths.tmp;
+
+        if (isBuild) {
+            dir = paths.tmp;
+        }
+        var filePath = dir + '/stylesheets/compass/sass/_projectflag.scss';
 
         fd = fs.openSync(filePath, 'w');
 
         var content = '';
         switch (project) {
         case 'WDJ':
-            content = '$PROJECT_FLAG : PROJECT_WDJ';
+            content = '$PROJECT_FLAG : PROJECT_SUNING';
             break;
         case 'SUNING':
             content = '$PROJECT_FLAG : PROJECT_SUNING';
