@@ -227,11 +227,10 @@
                     break;
                 }
             },
-            clickBackupLocal : function () {
+            clickBackupLocal : function (event) {
 
-                if (FunctionSwitch.IS_CHINESE_VERSION) {
-                    return;
-                }
+                event.preventDefault();
+                event.stopPropagation();
 
                 this.trigger('__DO_ACTION', 'BACKUP_LOCAL');
 
@@ -239,7 +238,10 @@
                     event : 'ui.click.new_backuprestore_local_backup'
                 });
             },
-            clickBackupRemote : function () {
+            clickBackupRemote : function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
 
                 if (Account.get('isLogin')) {
                     this.trigger('__DO_ACTION', 'BACKUP_REMOTE');
@@ -263,11 +265,10 @@
                     event : 'ui.click.new_backuprestore_remote_backup'
                 });
             },
-            clickRestoreLocal : function () {
+            clickRestoreLocal : function (event) {
 
-                if (FunctionSwitch.IS_CHINESE_VERSION) {
-                    return;
-                }
+                event.preventDefault();
+                event.stopPropagation();
 
                 this.trigger('__DO_ACTION', 'RESTORE_LOCAL');
 
@@ -275,7 +276,10 @@
                     event : 'ui.click.new_backuprestore_local_restore'
                 });
             },
-            clickRestoreRemote : function () {
+            clickRestoreRemote : function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
 
                 if (Account.get('isLogin')) {
                     this.trigger('__DO_ACTION', 'RESTORE_REMOTE');
