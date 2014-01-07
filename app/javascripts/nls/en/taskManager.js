@@ -4,7 +4,7 @@ define({
     RUNNING_STATUS : '{1}, {2}/s',
     PUSHING_STATUS : '{1} transfering, {2}/s',
     PAUSE_STATUS : '{1}, paused',
-    PUSH_PAUSE_STATUS : '{1} transfering，now paused',
+    PUSH_PAUSE_STATUS : '{1} transfering,now paused',
     WAITING_DOWNLOAD : 'Download queued',
     WAITING_PUSHING : 'Transfer queued',
     WAITING_INSTALL : 'Install queued',
@@ -16,7 +16,7 @@ define({
     PROGRESS : 'Status',
     RUNNING_COUNT : '{1} tasks...',
     FAILED_COUNT : '{1} task(s) failed',
-    WATING_PUSH_COUNT : '{1} items to push',
+    WATING_PUSH_COUNT : '{1} item(s) to push',
     NO_TASK_RUNNING : 'No tasks in progress',
     HOW_TO_CONNECT_URL : 'http://snappea.zendesk.com/forums/20791302-connecting-your-device',
     UNKNOWN : 'Unknown',
@@ -24,9 +24,9 @@ define({
     CONFIRM_DELETE_BATCH : 'Remove these items?',
     DELET_APK_ALSO : ' Also move files to Recycle Bin?',
     DELETE_TITLE : 'Remove downloaded items',
-    RUNNING_COUNT_TIP : '{1} items in progress',
-    ERROR_COUNT_TIP : '{1} items failed',
-    COMPLETE_COUNT_TIP : '{1} items completed',
+    RUNNING_COUNT_TIP : '{1} item(s) in progress',
+    ERROR_COUNT_TIP : '{1} item(s) failed',
+    COMPLETE_COUNT_TIP : '{1} item(s) completed',
     DEVICE_NOT_CONNECT : 'No device connected',
     DEVICE_NOT_CONNECT_TIP : 'You haven\'t connected a device. Downloads will automatically transfer the next time you connect.',
     CONFIRM_ON_DEVICE_TIP : 'You\'re using Wi-Fi to connect, which requires you to confirm the install on your device.',
@@ -62,7 +62,7 @@ define({
     DELETE_TASK : 'Delete task',
     CONTINUE_INSTALL : 'Resume install',
 
-    CAPACITY_TIPS : '{1}（{2} / {3}，remaining space {4}）',
+    CAPACITY_TIPS : '{1}（{2} / {3},remaining space {4}）',
 
     /* Install failed reasons */
     INSTALL_FAILED_DEVICE_NOT_FOUND : 'Unable to install, no device connected',
@@ -168,20 +168,18 @@ define({
     NO_SDCARD : 'No SD card found, unable to transfer files',
     DEVICE_NOT_FOUND : 'Connect your device to transfer',
     DEVICE_NOT_FOUND_TIP : 'Connect your device via USB or Wi-Fi, and SnapPea will finish these tasks',
-
-    RETRY_INSTALL : 'Retry',
-    RETRY_PUSH_VIDEO : 'Retry',
-
     PUSHING_PHONE : 'Sending to phone...',
     PUSH_PHONE_FAILED : 'Failed to send',
     PUSH_PHONE_SUCCESS : 'Sent to phone',
     RETRY_PUSH_PHONE : 'Send again',
     CANCEL_PUSH_PHONE : 'Cancel send',
 
+    RETRY_INSTALL : 'Retry',
+    RETRY_PUSH_VIDEO : 'Retry',
 
-    DISK_NO_SPACE_TITLE : '硬盘空间不足',
-    DISK_NO_SPACE_CHANGE_FOLDER : '修改下载文件夹',
-    DISK_NO_SPACE_CLEAN_FOLDER : '清理下载文件夹',
-    DISK_NO_SPACE_DESC : '您的硬盘空间已满。<br />请修改下载文件夹位置后，再重新下载。',
-    DISK_NO_SPACE_CAN_NOT_USE_DESC : '目前的下载位置不可用。<br />请修改下载文件夹位置后，再重新下载。'
+    DISK_NO_SPACE_TITLE : 'Insufficient hard drive space',
+    DISK_NO_SPACE_CHANGE_FOLDER : 'Edit location',
+    DISK_NO_SPACE_CLEAN_FOLDER : 'Manage downloads',
+    DISK_NO_SPACE_DESC : 'Your hard drive is full. <br />Edit the location of your downloads folder and try again.',
+    DISK_NO_SPACE_CAN_NOT_USE_DESC : 'You can\'t download to the current location.<br />Edit the location of your downloads folder and try again.'
 });

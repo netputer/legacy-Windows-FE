@@ -18,7 +18,10 @@ define({
     DELETE_SUCCESS_TEXT : 'Deleted {1} picture(s)',
     EMPTY_PHONE_LIST : 'Import a picture here!',
     EMPTY_LIBRARY_LIST : 'Import a picture here!',
-    EMPTY_CLOUD_LIST : 'No photos in your cloud album yet',
+
+    //EMPTY_CLOUD_LIST_0 : '<span>将照片备份到豌豆荚云相册,永远留住回忆</span></br><button class="button-turn-on-cloud primary grand">开启云相册</button>',
+    //EMPTY_CLOUD_LIST_1 : '<span>爱拍照的你可知道</span><br /><span>用豌豆荚云相册备份照片,无限空间更安全</span></br><button class="button-turn-on-cloud primary grand">开启云相册</button>',
+
     EXPORT_FAILED_TEXT : 'Export failed',
     SLIDES_STOP_TEXT : 'Pause',
     WALLPAPER_SETTING_SUCCESS_TEXT : 'Set as wallpaper!',
@@ -34,7 +37,7 @@ define({
     SET_AS_WALLPAPER : 'Set as wallpaper',
     UPLOADING_PHOTOS : 'Uploading photos',
     PHOTO_BACKUP_AUTO : 'Upload completed',
-    PHOTO_SYNC : '<p>Do you want to automatically upload to your gallery？</p><p>Take a picture on your device, and it\'ll upload to: <a href="#" class="go-photo-sync">{1}</a> From there you can view or share your photos anytime!</p>',
+    PHOTO_SYNC : '<p>Do you want to automatically upload to your gallery?</p><p>Take a picture on your device, and it\'ll upload to: <a href="#" class="go-photo-sync">{1}</a> From there you can view or share your photos anytime!</p>',
     TIP_CLOSE_PHOTO_SYNC : 'Are you sure you want to turn off photo sync?',
     CLOSE_PHOTO_SYNC : 'Turn off photo sync',
     EMPTY_TIP_PHOTO_CLOUD_NOT_LOGIN : '<span class="button-login link">Sign in to SnapPea</span> to view your cloud albums',

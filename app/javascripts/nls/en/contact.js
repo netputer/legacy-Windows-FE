@@ -38,7 +38,7 @@ define({
     REMARK : 'Notes',
     MERGE : 'Merge',
     DIAL : 'Call number',
-    DIAL_SUCCESS : 'SnapPea has already dialed that number, pick up your phone and say hello!',
+    DIAL_SUCCESS : 'Pick up your phone to complete the call!',
 
     SELECT_CONATCTS_BAKCUP_FILE : 'Select .vcf or .csv file',
     INVALID_BAKCUP_FILE : 'Invalid .vcf or .csv file',
@@ -51,6 +51,7 @@ define({
     SELECT_COUNTACTS_TO_EXPORT : 'Select contacts to export',
     CURRENT_SELECT : 'Contacts currently selected ',
     CONTACT_HAS_NUMBER : 'Contacts with a phone number ',
+    EXPORT_CANTACT_CANCEL : 'Canceled contacts export',
     GROUP : 'Group ',
 
     MANAGE_GROUP : 'Manage group...',
@@ -168,10 +169,11 @@ define({
 
     EXPORT_USING_VCARD : 'Export in vCard format',
 
-    CONTACT_TIP_PART : '{1} contact(S) related to「{2}」',
+    CONTACT_TIP_PART : '{1} contact(S) related to "{2}"',
 
     EMPTY_PHONE_LIST : 'Oh? No photos in your phone\'s album',
     EMPTY_LIBRARY_LIST : 'Oh? No pictures in your phone\'s gallery',
 
     NAV_CONTACT_ALL : 'All Contacts'
 });
+
