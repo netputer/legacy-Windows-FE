@@ -251,7 +251,8 @@
             cancel : function () {
 
                 var showTip = function () {
-                    if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4 && RestoreContextModel.isSmsSelected) {
+
+                    if (RestoreContextModel.get('isDefaultApp')) {
                         alert(i18n.new_backuprestore.RECOVER_DEAFULT_4_4);
                         BackupRestoreService.recoverDefaultApp();
                     }

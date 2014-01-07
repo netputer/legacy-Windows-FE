@@ -133,11 +133,13 @@
                         session : this.lastSessionId
                     }
                 }).done(function () {
-                    alert(i18n.misc.CANCEL_IMPORT_TEXT);
                     conversationConllection.syncAsync();
                 }).always(function () {
+                    alert(i18n.misc.CANCEL_IMPORT_TEXT, function () {
+                        this.trigger('_IMPORT_SMS_CANCEL');
+                    }, this);
                     WindowController.releaseWindowAsync();
-                });
+                }.bind(this));
             },
             events : {
                 'click .button-finish' : 'clickFinishBtn',
