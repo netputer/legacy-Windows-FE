@@ -215,6 +215,7 @@ define({
     OPEN_EXPORT_FOLDER : '打开导出文件夹',
 
     ILLEGAL_LOGOUT : '很抱歉，对于绑定的手机，只有在手机连接的时候才可以注销账号。',
+
     BIND : '绑定',
     UNBIND : '不绑定',
     BINDING_DEVICE : '绑定手机',

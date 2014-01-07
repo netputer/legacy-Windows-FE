@@ -1,8 +1,8 @@
 /*global define*/
 define({
-    NAME : 'Name:',
-    DATE : 'Date:',
-    FILE_SIZE : 'File size:',
+    NAME : 'Name: ',
+    DATE : 'Date: ',
+    FILE_SIZE : 'File size: ',
     USB_LOADING_INFO : 'Reading phone\'s data, please wait...',
     USB_LOADING_INFO_FAILED : 'Failed to read phone\'s data, please try again',
     USB_ROM_TOO_OLD : 'Your phone\'s ROM is lower than version 2.0. SnapPea doesn\'t support it.',
@@ -13,7 +13,7 @@ define({
     USB_APK_UPDATING : 'After SnapPea finishes updating on your phone, you can start managing your phone...',
     USB_INSTALL_FAILED_NO_MORE_SPACE : 'Failed to install SnapPea on your phone, storage space is insufficient.',
     USB_INSTALL_FAILED_INTERNAL_ERROR : 'Failed to install SnapPea on your phone, internal error on phone.',
-    USB_INSTALL_ALLOW : '链接手机时，需要您在手机上允许安装豌豆荚才能正常连接',
+    USB_INSTALL_ALLOW : 'When you connect your phone, allow the installation of SnapPea on your phone.',
     PHTONE_DISCONNECTED : 'Phone disconnected',
 
     POSIBLE_REASON : 'Possible reason:',
@@ -44,7 +44,7 @@ define({
     CONFIRM_EXTENTION : 'Are you sure you want to restore the default extension settings?',
     MANGEMENT : 'Manage',
     ADD_TO_COLLECT : 'Add extension',
-    BATCH_UNSTAR_PLUGINS : '<p>Remove {1} selected extension(s)？</p>',
+    BATCH_UNSTAR_PLUGINS : '<p>Remove {1} selected extension(s)?</p>',
     PUBLISH : 'Publish',
     LOGIN_TO_MANAGE : 'Register to add extensions',
     LOGIN_TO_STAR : 'Register to add extensions',
@@ -54,7 +54,7 @@ define({
     STARRED_COUNT : 'Starred total: {1}',
     FLASH_NOTIFIER : 'You need to download Adobe Flash Player in order to show all content on this page.',
     DOWNLOAD_FLASH : 'Download Adobe Flash Player',
-    APP_DEPENDENCY_TIP : '「{1}」type of content requires you to download another app to view',
+    APP_DEPENDENCY_TIP : '{1} content requires you to download another app to view',
     SEND : 'Submit',
 
     PLEASE_UNMOUNT_SD_CARD : 'Please turn off USB storage mode',
@@ -94,7 +94,7 @@ define({
     NAV_PIC_CLOUD : 'Cloud photos',
     NAV_VIDEO : 'Videos',
     NAV_SHOW_GALLERY : 'Add extensions',
-    NAV_BACKUP_RESTORE : '备份和恢复',
+    NAV_BACKUP_RESTORE : 'Backups',
 
     ADD_COLLECT : 'Save extension',
     MOVE_UP : 'Up',
@@ -209,10 +209,10 @@ define({
     AGENT_NOTIFI : 'Connected, enjoy the SnapPea service!',
     SEND_TO_PHONE : 'Send to phone',
     DO_NOT_SEND_TO_PHONE : 'Don\'t send',
-    /*LEARN_MORE : '了解更多',*/
+    //LEARN_MORE : '了解更多',
 
     RETRY : 'Retry',
-    OPEN_EXPORT_FOLDER : '打开导出文件夹',
+    OPEN_EXPORT_FOLDER : 'Open export folder',
 
     ILLEGAL_LOGOUT : 'Sorry, you can only cancel your account when your device is connected.',
 
