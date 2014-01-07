@@ -111,6 +111,8 @@
             },
             defaults : {
 
+                isDefaultApp : false,
+
                 restoreData : {},
 
                 // 0 : local, 1 : remote
@@ -145,6 +147,8 @@
             clearCache : function () {
 
                 this.set({
+                    'isDefaultApp' : false,
+
                     'restoreData': 0,
                     'backupType': 0,
 
