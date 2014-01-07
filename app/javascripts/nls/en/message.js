@@ -11,7 +11,7 @@ define({
 
     CONTENT_COUNT : '{1} characters, ',
     CONTENT_COUNT2 : '{1}',
-    MESSAGE_COUNT : 'May be sent as {1} separate messages，',
+    MESSAGE_COUNT : 'May be sent as {1} separate messages,',
     CONTACTS_COUNT : 'will send to {1} contact(s)',
     BIRTHDAY_TIP : 'Today\'s his/her birthday, send your congrats! ',
 
@@ -79,8 +79,12 @@ define({
     SEND : 'Send',
     NEW_SMS : 'Write',
     BATCH_CONVERSATION_TITLE : 'All messages from {1} selected',
-    SEND_WITH_SIM1 : 'Send from default SIM',
-    SEND_WITH_SIM2 : 'Send from second SIM',
+    //SEND_WITH_SPEC_SIM : '使用 卡 {1} 发送',
+    //SEND_WITH_SPEC_SIM_HAS_NAME : '使用{1}号发送',
+    //MUTIL_SIM_SELECT : '使用{1}号（卡 {2}）发送',
+    //MUTIL_SIM_SELECT_HAS_NUM : '使用{1}号 {2} 发送',
+    //MUTIL_SIM_SUPPORT : '由「多趣短信」提供双卡技术支持',
+    //MUTIL_SIM_SUPPORT_LINK : '由<a class="duoqu" href="http://apps.wandoujia.com/apps/cn.com.xy.duoqu?pos=w/search/list//%E5%A4%9A%E8%B6%A3%E7%9F%AD%E4%BF%A1/2" target="_default">「多趣短信」</a>提供双卡技术支持',
 
     WINDOW_IMPORT_TITLE : 'Import Messages',
     IMPORT_FAILED : 'Failed to import messages',
@@ -92,7 +96,7 @@ define({
     EXPORTING_SMS : 'Exporting messages, please wait...',
     EXPORT_SMS_FINISH : 'Exporting messages completed',
     IMPORT_SELECT_FILE : 'Select .csv files to import',
-    EXPORT_SMS_CANCEL : '您已取消短信导出操作',
+    EXPORT_SMS_CANCEL : 'Canceled messages export',
     INVALID_FILE : 'Invalid .csv file',
     SELECT_MESSAGE : 'Select messages to export',
     NO_CONVERSATION : 'You haven\'t received any messages yet',
@@ -105,11 +109,12 @@ define({
     COPY_SMS : 'Message successfully copied to the Clipboard',
 
     RETURN_ALL : 'All messages',
-    SEARCH_TIP : '{1} messages containing「{2}」',
+    SEARCH_TIP : '{1} messages containing "{2}"',
     UNREAD_DES : '{1} unread messages',
 
-    //Not in Snappea
-    NOT_SUPPORT_DELETE_4_4 : '豌豆荚暂时不支持在 Android 4.4 上删除短信',
-    NOT_SUPPORT_MARK_AS_READ_4_4 : '豌豆荚暂时不支持在 Android 4.4 上将短信标记已读',
-    NOT_SUPPORT_IMPORT_4_4 : '豌豆荚暂时不支持在 Android 4.4 上导入短信'
+    APPLY_DEFAULT_4_4 : 'You\'re using Android 4.4. To import text messages, set SnapPea as the "Default SMS App" in your phone\'s settings. Afterwards, return to the original settings.',
+    UPDATA_USB_PROXY_4_4 : 'You\'re using Android 4.4. To import text messages, you need to update to the latest version of SnapPea.',
+    RECOVER_DEAFULT_4_4 : 'To ensure that you can send text messages, please switch back to your original "Default SMS App."',
+    DELET_TIP_4_4 : 'To delete text messages, set SnapPea as the "Default SMS App" in your phone\'s settings.',
+    MARK_AS_READ_TIP_4_4 : 'To mark as read, set SnapPea as the "Default SMS App" in your phone\'s settings.'
 });
