@@ -60,7 +60,7 @@ define({
     BACKUP_COMPRESSING : '正在为您压缩备份文件，请稍候...',
     RESTORE_APP_TIP : '豌豆荚已将要恢复的应用添加到任务管理器，您可以在下载管理界面中查看应用安装的情况。',
     RESTORE_PERMISSSION_TIP1 : '很抱歉，{1}恢复失败。',
-    RESTORE_PERMISSSION_TIP2 : '您可能使用了控制手机数据读写权限的系统或者程序。例如MIUI系统、Flyme系统、LBE、腾讯手机管家等。请您授予豌豆荚读写{1}的权限后再继续恢复数据。<a target="_default" href="http://help.wandoujia.com/entries/22017678?utm_campaign=tips&utm_medium=client&utm_source=backup">帮助</a>',
+    RESTORE_PERMISSSION_TIP2 : '您可能使用了控制手机数据读写权限的系统或者程序。例如MIUI系统、Flyme系统、LBE、腾讯手机管家等。请您授予豌豆荚读写{1}的权限后再继续恢复数据。<a target="_default" href="http://www.wandoujia.com/help/?do=topic&id=37594488&utm_medium=client">帮助</a>',
     RESTORE_PERMISSSION_TIP3 : '是否忽略并继续恢复其他数据？',
     RESTORE_PERMISSSION_PART_TIP1 : '很抱歉，{1} 个{2}恢复失败。',
     SELECT_FILE_FOLDER_TIP : '抱歉，豌豆荚没有找到您备份的文件，您是否把备份文件移动到了其他位置？',
@@ -78,7 +78,7 @@ define({
     CHOOSE_BACKUP_DATA_TIP : '请选择要备份的数据',
     CHOOSE_RESTORE_DATA_TIP : '请选择要恢复的数据',
     LOGIN_FAILED_TIP : '很抱歉，登录失败。请检查您的网络后重试登录，或选择本地备份',
-    PERMISSION_TIP : '读取手机数据失败。<br />可能是手机上的安全软件阻止了豌豆荚读取联系人或信息的权限，请在手机上「权限管理」中授权。<a target="_default" href="http://help.wandoujia.com/entries/22017678?utm_campaign=tips&utm_medium=client&utm_source=sms">帮助</a>',
+    PERMISSION_TIP : '读取手机数据失败。<br />可能是手机上的安全软件阻止了豌豆荚读取联系人或信息的权限，请在手机上「权限管理」中授权。<a target="_default" href="http://www.wandoujia.com/help/?do=topic&id=37594488&utm_medium=client">帮助</a>',
 
     SET_FILE_NAME : '请命名备份文件',
     DEFAULT_FILE_NAME : '豌豆荚的备份文件',
