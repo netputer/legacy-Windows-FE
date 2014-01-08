@@ -140,6 +140,10 @@
                                     silent : true
                                 });
 
+                                ThreadsPanelView.getInstance().once('rendered', function () {
+                                    this.update(conversation.get('id'), msg);
+                                });
+
                                 conversationList.addSelect(conversation.id);
                                 conversationList.scrollTo(conversation);
 
