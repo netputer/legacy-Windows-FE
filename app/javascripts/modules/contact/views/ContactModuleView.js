@@ -51,12 +51,6 @@
 
                 contactModuleToolbarView = ContactModuleToolbarView.getInstance();
                 contactsCollection = ContactsCollection.getInstance();
-
-                Backbone.on('showModule', function (name) {
-                    if (name === 'contact') {
-                        contactModuleToolbarView.toggleSelectorWrap(true);
-                    }
-                });
             },
             render : function () {
                 this.$el.html(this.template({}));
