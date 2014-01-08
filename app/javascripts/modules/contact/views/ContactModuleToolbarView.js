@@ -105,11 +105,11 @@
                 this.on('select', function (data) {
                     this.label = LABEL_MAPPING[data.value];
 
-                    Backbone.trigger('switchModule', {
+                    this.trigger('switchDataset', {
                         module : 'contact',
                         tab : data.value
                     });
-                }, this);
+                });
 
                 var navModels = pimCollection.filter(function (item) {
                     return item.get('parent') === 1;
@@ -141,15 +141,6 @@
 
                 contactsCollection = ContactsCollection.getInstance();
                 contactsCollection.on('refresh', this.setButtonState, this);
-
-                Backbone.on('switchModule', function (data) {
-                    if (data.module === 'contact') {
-                        currentTab = data.tab;
-                        this.refresh();
-
-                        tabSelectorView.reset();
-                    }
-                }, this);
             },
             refresh : function () {
                 contactsListView.refresh(currentTab, currentAccountId, currentGroupId);
@@ -191,6 +182,10 @@
 
                 tabSelectorView = new TabSelectorView();
                 this.$('.selector-wrap').append(tabSelectorView.render().$el);
+                tabSelectorView.on('switchDataset', function (data) {
+                    currentTab = data.tab;
+                    this.refresh();
+                }.bind(this));
 
                 contactsListView = ContactsListView.getInstance({
                     $observer : this.$('.check-select-all')

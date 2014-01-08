@@ -143,6 +143,7 @@
                                 ThreadsPanelView.getInstance().once('rendered', function () {
                                     this.update(conversation.get('id'), msg);
                                 });
+
                                 conversationList.addSelect(conversation.id);
                                 conversationList.scrollTo(conversation);
 
@@ -286,12 +287,6 @@
                     conversationList.deselectAll({
                         silent : true
                     });
-
-                    var models = conversationsCollection.getByKeyword();
-                    if (models.length > 0) {
-                        var conversation = models[0];
-                        conversationList.addSelect(conversation.id);
-                    }
 
                 }.bind(this));
             },
