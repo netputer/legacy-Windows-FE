@@ -612,7 +612,7 @@
 
                 // External links
                 URL_TAPAS_HELP : 'http://bbs.dianxinos.com/',
-                URL_MULTI_SIM_HELP : 'http://help.wandoujia.com/entries/21550442',
+                URL_MULTI_SIM_HELP : 'http://www.wandoujia.com/help/?do=topic&id=23861422&utm_medium=client',
                 URL_EXTENSION_PUBLISH : 'http://www.wandoujia.com/webstore/dev',
                 URL_WELCOME_BILLBOARD : 'http://www.wandoujia.com/webstore/billboard',
                 URL_WELCOME_BILLBOARD_EN : 'https://s3.amazonaws.com/snappea_welcome/startpage.html',
