@@ -96,7 +96,7 @@
                     contactModuleToolbarView.toggleSelectorWrap();
 
                     contactsListView.once('__RETURN_DEFAULT', function () {
-                        contactModuleToolbarView.toggleSelectorWrap();
+                        contactModuleToolbarView.toggleSelectorWrap(true);
                     });
                 };
                 if (!contactsCollection.loading && !contactsCollection.syncing) {

@@ -13116,62 +13116,54 @@ body.locale-en-us .w-restore-app-tip .image-ctn {
 body.locale-en-us .w-restore-app-tip .btn-next {
   margin-top: 50px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\0000393}}
-body.locale-en-us .w-message-item-ctn li {
-  padding: 0 20px 23px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\0000396}}
-body.locale-en-us .w-message-item-ctn li .content-wrap {
-  max-width: 62%;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003102}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\0000394}}
 body.locale-en-us .w-message-sender-window .help {
   display: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003109}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003101}}
 body.locale-en-us .w-backuprestore-start .action-panel .container {
   cursor: pointer;
   -webkit-transition: all .2s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003113}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003105}}
 body.locale-en-us .w-backuprestore-start .action-panel .container:hover {
   background: #E6E6E6;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003114}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003106}}
 body.locale-en-us .w-backuprestore-start .action-panel .container:hover .icon,
 body.locale-en-us .w-backuprestore-start .action-panel .container:hover .info,
 body.locale-en-us .w-backuprestore-start .action-panel .container:hover .action-container {
   top: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003123}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003115}}
 body.locale-en-us .w-backuprestore-start .action-panel .container .desc {
   color: #000;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003131}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003123}}
 body.locale-en-us .w-backuprestore-start .info-panel .info-panel.auto-backup-remote {
   display: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003141}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003133}}
 body.locale-en-us .w-backuprestore-local-restore-advance .container,
 body.locale-en-us .w-backuprestore-local-backup-advance .container {
   height: 175px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003146}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003138}}
 body.locale-en-us .w-backuprestore-local-restore-advance .container dd label:nth-child(4),
 body.locale-en-us .w-backuprestore-local-backup-advance .container dd label:nth-child(4) {
   display: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003150}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003142}}
 body.locale-en-us .w-backuprestore-local-restore-advance .container dd .beta,
 body.locale-en-us .w-backuprestore-local-backup-advance .container dd .beta {
   display: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003155}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003147}}
 body.locale-en-us .w-backuprestore-local-restore-advance .container .backup-app-list,
 body.locale-en-us .w-backuprestore-local-backup-advance .container .backup-app-list {
   display: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003161}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lixiaopeng\/Project\/Windows-FE\/app\/stylesheets\/compass\/sass\/_locale-en\.scss}line{font-family:\00003153}}
 body.locale-en-us .local-backup-advance-window {
   height: 290px;
 }
