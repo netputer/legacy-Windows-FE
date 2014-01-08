@@ -38,7 +38,7 @@
                 var contact = contactsCollection.get(this.get('id'));
 
                 this.set({
-                    id : this.get('id') + '|' + this.get('description_item')[0].value,
+                    id : this.get('id') + '|' + this.get('description_item')[0].value.replace(/<em>|<\/em>/gi, ''),
                     displayTitle : this.get('title'),
                     title : this.get('title').replace(/<em>|<\/em>/gi, ''),
                     displayNumber : this.get('sub_title'),
