@@ -79,12 +79,6 @@
 
                 this.bindContactsCollectionEvents();
 
-                Backbone.on('switchModule', function (data) {
-                    if (data.module === 'contact') {
-                        currentTab = data.tab;
-                    }
-                });
-
                 $(document).on('keydown', function (evt) {
                     if (window.SnapPea.CurrentModule === 'contact' &&
                             $('input:focus, textarea:focus').length === 0) {
@@ -102,12 +96,12 @@
                 }.bind(this));
             },
             refresh : function (tab, accountId, groupId) {
-                tab = tab || currentTab;
+                currentTab = tab || currentTab;
                 currentGroupId = groupId || currentGroupId;
                 currentAccountId = accountId || currentAccountId;
 
                 var getter;
-                switch (tab) {
+                switch (currentTab) {
                 case 'all':
                     if (currentGroupId === 'all') {
                         if (currentAccountId === 'all') {

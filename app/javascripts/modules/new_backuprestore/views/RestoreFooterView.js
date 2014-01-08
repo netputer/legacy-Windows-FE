@@ -137,6 +137,7 @@
                 BackupRestoreService.applyDefaultApp().done(function (resp){
                     var isDefault = resp.body.value;
                     if (isDefault) {
+                        RestoreContextModel.set('isDefaultApp', true);
                         this.trigger('__START_RESTORE');
                     } else {
                         confirm(i18n.new_backuprestore.RESTORE_ANDROID_4_4, function () {

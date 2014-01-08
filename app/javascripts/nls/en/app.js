@@ -185,7 +185,7 @@ define({
     GET_RECOMMEND_ERROR : 'Oh no, no recs',
 
     RETURN_ALL : 'All apps',
-    SEARCH_TIP_PART : '{1} apps related to「{2}」',
+    SEARCH_TIP_PART : '{1} apps related to "{2}"',
 
     UPDATE_FROM_SNAPPEA : 'Update from SnapPea',
     UPDATE_FROM_OTHERS : 'Update from another app store',

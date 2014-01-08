@@ -27,6 +27,7 @@
         var importAutoBackupView;
         var importSelectFileView;
         var importProgressView;
+        var isDefaultApp;
 
         var importController;
         var ImportController = Backbone.View.extend({
@@ -43,6 +44,8 @@
                     importSelectFileView.refreshSwitchBtn();
                     importSelectFileView.show();
                 }
+
+                isDefaultApp = false;
             },
             checkDefault : function () {
                 MessageService.applyDefaultApp().done(function (resp) {
@@ -131,6 +134,13 @@
                     if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
                         MessageService.recoverDefaultApp();
                         alert(i18n.message.RECOVER_DEAFULT_4_4);
+                    }
+                });
+
+                importProgressView.on('_IMPORT_SMS_CANCEL', function () {
+                    if (isDefaultApp) {
+                        alert(i18n.message.RECOVER_DEAFULT_4_4);
+                        MessageService.recoverDefaultApp();
                     }
                 });
             },

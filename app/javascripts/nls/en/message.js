@@ -2,7 +2,7 @@
 define({
     SENDER_PLACEHOLDER : 'Write your message...',
     SEND_A_SMS : 'Message your friend...',
-    SEND_TO : 'Send to {1}：',
+    SEND_TO : 'Send to {1}: ',
     LOAD_MORE : 'View more messages',
     SEND_MESSAGE : 'Send Message',
 
@@ -57,7 +57,7 @@ define({
     SEND_FAILED_TIP : '{1} failed to send',
     RESEND_ALL : 'Re-send all',
 
-    SEND_SMS : 'Send',
+    SEND_SMS : 'Send &crarr;',
     MARK_AS_READ : 'Mark as read',
     SEND_MESSAGE_TO : 'Send to: ',
 
@@ -76,7 +76,7 @@ define({
 
     ALERT_TIP_EXPORT_MMS : 'Export will not include MMS messages',
 
-    SEND : 'Send',
+    SEND : 'Send &crarr;',
     NEW_SMS : 'Write',
     BATCH_CONVERSATION_TITLE : 'All messages from {1} selected',
     SEND_WITH_SIM1 : 'Send from default SIM',
