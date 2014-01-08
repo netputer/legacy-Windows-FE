@@ -87,6 +87,9 @@
                 this.getModule('message').navigateGroup(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_SMS:
+                msg.id = msg.id.split('|')[0];
+                this.getModule('message').navigate(msg);
+                break;
             case CONFIG.enums.NAVIGATE_TYPE_SEND_SMS:
                 this.getModule('message').navigate(msg);
                 break;
