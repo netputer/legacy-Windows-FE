@@ -373,7 +373,7 @@
                                         });
                                         break;
                                     default:
-                                        showAlert(i18n.welcome.MANAGE_SD_ERROR);
+                                        alert(i18n.welcome.MANAGE_SD_ERROR);
                                         break;
                                     }
 

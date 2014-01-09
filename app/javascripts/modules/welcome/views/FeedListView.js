@@ -94,14 +94,14 @@
                             break;
                         case 30:
                             lastShownTimestamp = Settings.get('welcome-card-update-show') || 1;
-                            show = StringUtil.formatDate('YY/MM/DD') !== StringUtil.formatDate('YY/MM/DD', lastShownTimestamp);
+                            show = StringUtil.formatDate('yyyy/MM/dd') !== StringUtil.formatDate('yyyy/MM/dd', lastShownTimestamp);
                             if (show) {
                                 targetView = UpdateCardView;
                             }
                             break;
                         case 31:
                             lastShownTimestamp = Settings.get('welcome-card-xibaibai-show') || 1;
-                            show = StringUtil.formatDate('YY/MM/DD') !== StringUtil.formatDate('YY/MM/DD', lastShownTimestamp);
+                            show = StringUtil.formatDate('yyyy/MM/dd') !== StringUtil.formatDate('yyyy/MM/dd', lastShownTimestamp);
                             if (show) {
                                 targetView = XibaibaiCardView;
                             }

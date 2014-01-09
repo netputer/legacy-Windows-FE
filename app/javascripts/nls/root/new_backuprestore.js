@@ -39,11 +39,11 @@ define({
     RESTORE_FINISH_LABEL : '恢复完成',
     BACKUP_COMPRESSING : '正在为您压缩备份文件，请稍候...',
     RESTORE_PERMISSSION_TIP1 : '很抱歉，{1}恢复失败。',
-    RESTORE_PERMISSSION_TIP2 : '您可能使用了控制手机数据读写权限的系统或者程序。例如MIUI系统、Flyme系统、LBE、腾讯手机管家等。请您授予豌豆荚读写{1}的权限后再继续恢复数据。<a target="_default" href="http://help.wandoujia.com/entries/22017678?utm_campaign=tips&utm_medium=client&utm_source=backup">帮助</a>',
+    RESTORE_PERMISSSION_TIP2 : '您可能使用了控制手机数据读写权限的系统或者程序。例如MIUI系统、Flyme系统、LBE、腾讯手机管家等。请您授予豌豆荚读写{1}的权限后再继续恢复数据。<a target="_default" href="http://www.wandoujia.com/help/?do=topic&id=37594488&utm_medium=client">帮助</a>',
     RESTORE_PERMISSSION_TIP3 : '是否忽略并继续恢复其他数据？',
     RESTORE_PERMISSSION_PART_TIP1 : '很抱歉，{1} 个{2}恢复失败。',
 
-    PERMISSION_TIP : '读取手机数据失败。<br />可能是手机上的安全软件阻止了豌豆荚读取联系人或信息的权限，请在手机上「权限管理」中授权。<a target="_default" href="http://help.wandoujia.com/entries/22017678?utm_campaign=tips&utm_medium=client&utm_source=sms">帮助</a>',
+    PERMISSION_TIP : '读取手机数据失败。<br />可能是手机上的安全软件阻止了豌豆荚读取联系人或信息的权限，请在手机上「权限管理」中授权。<a target="_default" href="http://www.wandoujia.com/help/?do=topic&id=37594488&utm_medium=client">帮助</a>',
 
     FILE_NAME_UNLEGAL :　'您指定的文件名无效，可能其中包含非法字符，请重新指定',
     GET_FILE_NAME_FAILED : '很抱歉，获取备份文件失败，请手工指定',
