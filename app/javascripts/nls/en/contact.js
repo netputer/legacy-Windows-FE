@@ -143,7 +143,7 @@ define({
 
 
     EDIT_CONTACT_HEAD : 'Edit profile picture',
-    EDIT_CONTACT_HEAD_SELECT_SOURCE : 'Select file: ',
+    EDIT_CONTACT_HEAD_SELECT_SOURCE : 'Select file:&nbsp;&nbsp;',
     EDIT_CONTACT_HEAD_SOURCE_BY_PHONE : 'My Photos',
     EDIT_CONTACT_HEAD_SOURCE_BY_LIBRARY : 'Photo Library',
     EDIT_CONTACT_HEAD_PC_SOURCE : 'Select file',
