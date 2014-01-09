@@ -238,6 +238,10 @@
                 });
                 this.subViews.length = 0;
 
+                if (this.collection.models.length === 0) {
+                    return;
+                }
+
                 var models = this.collection.models.concat();
                 var modelPool = [];
                 var modelSlibingNextPool = [];
