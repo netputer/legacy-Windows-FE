@@ -116,7 +116,7 @@ define({
     NO_MORE_3 : '',
     UPDATED : 'SnapPea was updated!',
 
-    READING_INFO_WARNING : '正在更新信息,请稍后再试',
+    READING_INFO_WARNING : 'Reading your phone\'s info, please wait'
 
     //ACCOUNT_UNLOGIN_TEXT : '点击此处开启个性主页'
 });
