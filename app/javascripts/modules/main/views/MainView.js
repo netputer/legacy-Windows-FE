@@ -71,26 +71,27 @@
                 this.getModule('contact').navigateGroup(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_CONTACT:
-                var data = msg.id.split('|');
-                this.getModule('contact').navigateAsync({
-                    id : data[0]
-                }).done(function () {
-                    if (msg.action === CONFIG.enums.NAVIGATE_TYPE_CALL) {
-                        var dialEle = $('.button-dial[data-phone-number="' + data[1] + '"]')[0];
-                        if (dialEle) {
-                            dialEle.click();
+                if (msg.action === CONFIG.enums.NAVIGATE_TYPE_SEND_SMS) {
+                    this.getModule('message').sendMessageByContactId(msg.id);
+                } else {
+                    var data = msg.id.split('|');
+                    this.getModule('contact').navigateAsync({
+                        id : data[0]
+                    }).done(function () {
+                        if (msg.action === CONFIG.enums.NAVIGATE_TYPE_CALL) {
+                            var dialEle = $('.button-dial[data-phone-number="' + data[1] + '"]')[0];
+                            if (dialEle) {
+                                dialEle.click();
+                            }
                         }
-                    }
-                });
+                    });
+                }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_GROUP_SMS:
                 this.getModule('message').navigateGroup(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_SMS:
                 msg.id = msg.id.split('|')[0];
-                this.getModule('message').navigate(msg);
-                break;
-            case CONFIG.enums.NAVIGATE_TYPE_SEND_SMS:
                 this.getModule('message').navigate(msg);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_PAGE:
