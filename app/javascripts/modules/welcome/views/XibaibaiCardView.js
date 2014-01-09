@@ -36,11 +36,9 @@
 
         var XibaibaiCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'card-app-set')),
-            className : FeedCardView.getClass().prototype.className + ' app-set xibaibai',
+            className : FeedCardView.getClass().prototype.className + ' app-set xibaibai hide',
             tagName : 'li',
             render : function () {
-                this.$el.addClass('hide');
-
                 XibaibaiService.scanAppsAsync().done(function (appsQueryResultCollection) {
                     if (appsQueryResultCollection.length !== 0) {
                         var appsCollection = AppsCollection.getInstance();
