@@ -18,7 +18,7 @@ define({
     ME : '我',
     UNNAMED_CONTACT : '未命名的联系人',
     NONE_SUBJECT : '无主题',
-    CONTAIN_MULTIMEDIA : '包含 {1} 个多媒体附件',
+    CONTAIN_MULTIMEDIA : '包含 {1} 个多媒体附件，',
     OPEN_ON_DEIVE : '在手机上查看',
     EXPEND : '展开',
     SENDING : '发送中...',
