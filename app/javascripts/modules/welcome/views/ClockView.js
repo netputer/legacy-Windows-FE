@@ -42,17 +42,22 @@
             },
             render : function () {
                 var hour = formatDate('HH'),
-                    greeting = '您好';
+                    greeting = i18n.welcome.ACCOUNT_GREETING;
+
+                greeting = i18n.welcome.ACCOUNT_MORNING;
+                greeting = i18n.welcome.ACCOUNT_NOON;
+                greeting = i18n.welcome.ACCOUNT_AFTERNOON;
+                greeting = i18n.welcome.ACCOUNT_EVENING;
 
                 if (hour >= 6) {
                     if (hour <= 10) {
-                        greeting = '早上好';
+                        greeting = i18n.welcome.ACCOUNT_MORNING;
                     } else if (hour <= 13) {
-                        greeting = '中午好';
+                        greeting = i18n.welcome.ACCOUNT_NOON;
                     } else if (hour <= 18) {
-                        greeting = '下午好';
+                        greeting = i18n.welcome.ACCOUNT_AFTERNOON;
                     } else {
-                        greeting = '晚上好';
+                        greeting = i18n.welcome.ACCOUNT_EVENING;
                     }
                 }
 
