@@ -65,7 +65,7 @@ define({
     ALERT_TIP_UPDATE_NOT_RECOMMENDED : '<p>{1}</p><p>是否继续？</p>',
     ALERT_TIP_UPDATE_ILLEGAL_SYSTEM_UNROOT : '<p>检测到「{1}」新版本和已安装版本签名不一致。</p><p>由于此应用是一个系统应用，豌豆荚需要 root 权限才能为您升级此应用。</p><p>是否继续？</p>',
     SD_MOUNT_TIP : '由于您在手机上打开了「USB 存储设备」，豌豆荚无法显示您安装的应用程序。请根据提示管理「USB 存储」选项功能再试。',
-    SD_MOUNT_TIP2 : '您在手机上打开了「USB 存储设备」，如果您有安装在 SD 卡上的应用，将不能被读取。<a href="http://help.wandoujia.com/entries/22332803-sd" target="_default">查看帮助</a>',
+    SD_MOUNT_TIP2 : '您在手机上打开了「USB 存储设备」，如果您有安装在 SD 卡上的应用，将不能被读取。<a href="http://www.wandoujia.com/help/?do=topic&id=23907837&utm_medium=client" target="_default">查看帮助</a>',
     FLASH_TIP_TIP : '又刷机了？豌豆荚可以快速帮您恢复数据到手机上哦。<span class="button-flash link">马上去试试！</span>',
 
     ONE_KEY_UPDATE : '一键升级 ({1})',

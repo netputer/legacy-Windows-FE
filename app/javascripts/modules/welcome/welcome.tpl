@@ -229,10 +229,21 @@
 </script>
 
 <script type="text/x-ui-template" id="clock">
-    <div class="time">{{= it.time }}</div>
-    <div class="date-ctn">
-        <div>{{= it.date }}</div>
-        <div>{{= it.day }}</div>
+    {{? FunctionSwitch.IS_CHINESE_VERSION }}
+    <div class="account wc">
+        {{? it.isLogin }}
+            <span class="button-user">{{= it.greeting }}，{{= it.userName }}</span>
+        {{??}}
+            <span class="button-register">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
+        {{?}}
+    </div>
+    {{?}}
+    <div class="clock hbox">
+        <div class="time">{{= it.time }}</div>
+        <div class="date-ctn">
+            <div class="date">{{= it.date }}</div>
+            <div class="day">{{= it.day }}</div>
+        </div>
     </div>
 </script>
 
@@ -241,7 +252,7 @@
         <div class="screen-wrap">
             <div class="screen-ctn vbox">
                 <div class="screen">
-                    <img class="screenshot" alt="" />
+                    <img class="screenshot" src="images/blank.png" alt="" />
                 </div>
             </div>
         </div>
@@ -359,15 +370,5 @@
         <span>{{= StringUtil.format(i18n.welcome.AUTO_BACKUP, it.date) }}</span>
         <span class="button-open">{{= i18n.welcome.OPEN_FOLDER }}</span>
     </div>
-</script>
-
-<script type="text/x-ui-template" id="account">
-    {{? FunctionSwitch.IS_CHINESE_VERSION }}
-    {{? it.isLogin }}
-        <span class="button-user">{{= it.greeting }}，{{= it.userName }}</span>
-    {{??}}
-        <span class="button-register">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
-    {{?}}
-    {{?}}
 </script>
 </templates>

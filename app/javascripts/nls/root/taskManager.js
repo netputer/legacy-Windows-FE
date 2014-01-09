@@ -18,7 +18,7 @@ define({
     FAILED_COUNT : '{1} 项任务失败',
     WATING_PUSH_COUNT : '{1} 项任务待传输',
     NO_TASK_RUNNING : '没有正在进行的任务',
-    HOW_TO_CONNECT_URL : 'http://help.wandoujia.com/entries/401079-2-0',
+    HOW_TO_CONNECT_URL : 'http://www.wandoujia.com/help/?do=index&fid=22130767&utm_medium=client',
     UNKNOWN : '未知',
     CONFIRM_DELETE : '确定要删除这个任务吗？',
     CONFIRM_DELETE_BATCH : '确定要删除选中的任务吗？',

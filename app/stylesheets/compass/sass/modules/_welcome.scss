@@ -274,7 +274,6 @@
 
     .top {
         margin-bottom: 35px;
-        pointer-events: none;
         -webkit-box-align: end;
     }
 
@@ -872,11 +871,37 @@
     color: #fff;
     // text-shadow: rgba(0, 0, 0, .3) 0 5px 8px, rgba(0, 0, 0, 0.3) 0 1px 2px;
     text-shadow: rgba(0, 0, 0, .8) 0 3px 8px,rgba(0, 0, 0, .4) 0 1px 2px;
-    height: 120px;
     margin-bottom: 110px;
     -webkit-animation: fade-in-time 1.5s;
-    -webkit-box-align: end;
     -webkit-transform: translate3d(0, 0, 0);
+
+    .account {
+        font-size: 18px;
+
+        .button-user,
+        .button-register {
+            border: 1px solid transparent;
+            border-radius: 3px;
+            color: rgba(255, 255, 255, .9);
+            display: inline-block;
+            padding: 10px;
+            text-shadow: rgba(0, 0, 0, .8) 0 3px 8px, rgba(0, 0, 0, .4) 0 1px 2px;
+            -webkit-transition: color .2s linear;
+        }
+
+        .button-register {
+            &:hover {
+                color: #fff;
+                background-color: rgba(255, 255, 255, .1);
+                border-color: rgba(255, 255, 255, .2);
+            }
+        }
+    }
+
+    .clock {
+        pointer-events: none;
+        -webkit-box-align: end;
+    }
 
     .time {
         font-family: "Roboto-Thin";
@@ -1139,30 +1164,6 @@
                     background-color: #F24949;
                 }
             }
-        }
-    }
-}
-
-.w-welcome-account {
-    left: 305px;
-    position: absolute;
-    top: 200px;
-
-    span {
-        border: 1px solid transparent;
-        border-radius: 3px;
-        color: rgba(255, 255, 255, .9);
-        font-size: 18px;
-        padding: 10px;
-        text-shadow: rgba(0, 0, 0, .8) 0 3px 8px, rgba(0, 0, 0, .4) 0 1px 2px;
-        -webkit-transition: color .2s linear;
-    }
-
-    .button-register {
-        &:hover {
-            color: #fff;
-            background-color: rgba(255, 255, 255, .1);
-            border-color: rgba(255, 255, 255, .2);
         }
     }
 }

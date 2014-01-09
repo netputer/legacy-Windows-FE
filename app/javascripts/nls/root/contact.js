@@ -108,7 +108,7 @@ define({
 
     DELETE_TIP_TEXT : '确定要删除选中的 {1} 个联系人？',
 
-    NON_CONTACT_TEXT_PERMISSION : '豌豆荚无法显示您的联系人，可能是手机上的安全软件阻止了豌豆荚读取联系人的权限，请在手机上「权限管理」中授权。<a target="_default" href="http://help.wandoujia.com/entries/22017678?utm_campaign=tips&utm_medium=client&utm_source=contacts">帮助</a>',
+    NON_CONTACT_TEXT_PERMISSION : '豌豆荚无法显示您的联系人，可能是手机上的安全软件阻止了豌豆荚读取联系人的权限，请在手机上「权限管理」中授权。<a target="_default" href="http://www.wandoujia.com/help/?do=topic&id=37594488&utm_medium=client">帮助</a>',
     NON_CONTACT_TEXT : '您还没有添加过联系人。',
     NON_PHONE_CONTACT_TEXT : '您没有有电话号码的联系人。',
     NON_STAR_CONTACT_TEXT : '您收藏夹中还没有任何联系人，您可以点击联系人旁边的五角星把他（她）添加到收藏夹。',

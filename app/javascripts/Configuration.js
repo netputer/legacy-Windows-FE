@@ -485,7 +485,6 @@
                 NAVIGATE_TYPE_CONTACT_CREATE : 'contact_create',
                 NAVIGATE_TYPE_GROUP_SMS : 'group_sms',
                 NAVIGATE_TYPE_SMS : 'sms',
-                NAVIGATE_TYPE_SEND_SMS : 'send_sms',
                 NAVIGATE_TYPE_PAGE : 'page',
                 NAVIGATE_TYPE_WEBAPP : 'web_app',
                 NAVIGATE_TYPE_PHOTO_CLOUD : 'photo_cloud',
@@ -500,7 +499,9 @@
                 NAVIGATE_TYPE_TASK_MANAGER : 'task_manager',
                 NAVIGATE_TYPE_PIM_MODULE : 'pim_module',
                 NAVIGATE_TYPE_UNINSTALL_APP : 'remove_app',
+                NAVIGATE_TYPE_SEND_SMS : 'send_sms',
                 NAVIGATE_TYPE_CALL : 'make_call',
+                NAVIGATE_TYPE_REPLY_SMS : 'reply_sms',
                 NAVIGATE_TYPE_VIDEO : 'video',
                 NAVIGATE_TYPE_VIDEO_SEARCH : 'group_video',
                 NAVIGATE_TYPE_DORAEMON : 'doraemon',
@@ -612,7 +613,7 @@
 
                 // External links
                 URL_TAPAS_HELP : 'http://bbs.dianxinos.com/',
-                URL_MULTI_SIM_HELP : 'http://help.wandoujia.com/entries/21550442',
+                URL_MULTI_SIM_HELP : 'http://www.wandoujia.com/help/?do=topic&id=23861422&utm_medium=client',
                 URL_EXTENSION_PUBLISH : 'http://www.wandoujia.com/webstore/dev',
                 URL_WELCOME_BILLBOARD : 'http://www.wandoujia.com/webstore/billboard',
                 URL_WELCOME_BILLBOARD_EN : 'https://s3.amazonaws.com/snappea_welcome/startpage.html',
