@@ -77,7 +77,7 @@ define({
     ALERT_TIP_EXPORT_MMS : 'Export will not include MMS messages',
 
     SEND : 'Send &crarr;',
-    NEW_SMS : 'Write',
+    NEW_SMS : 'New Message',
     BATCH_CONVERSATION_TITLE : 'All messages from {1} selected',
     //SEND_WITH_SPEC_SIM : '使用 卡 {1} 发送',
     //SEND_WITH_SPEC_SIM_HAS_NAME : '使用{1}号发送',
