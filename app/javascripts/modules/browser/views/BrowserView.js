@@ -123,7 +123,7 @@
         var changeHandler = function (model) {
             if (!this.$('iframe').attr('src')) {
                 this.$('iframe').attr({
-                    src : model.get('targetURL') || model.get('web_url') || (model.get('extension').app ? model.get('extension').app.launch.web_url : ''),
+                    src : model.get('targetURL') || model.get('web_url') || (model.get('extension') && model.get('extension').app ? model.get('extension').app.launch.web_url : ''),
                     extension : model.id
                 });
             }
