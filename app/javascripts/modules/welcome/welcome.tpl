@@ -252,7 +252,7 @@
         <div class="screen-wrap">
             <div class="screen-ctn vbox">
                 <div class="screen">
-                    <img class="screenshot" alt="" />
+                    <img class="screenshot" src="images/blank.png" alt="" />
                 </div>
             </div>
         </div>
