@@ -1,6 +1,6 @@
 /*global define*/
 define({
-    CLOCK_DATE_FORMAT : 'MM dd ',
+    CLOCK_DATE_FORMAT : 'MM / dd ',
     OPEN_FOLDER : 'Open folder',
     TOP : 'Return to top',
 
