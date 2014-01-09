@@ -162,7 +162,7 @@ define({
     SEND_TO_PHONE_HEAD : 'Phone isn\'t connected. Send content to your phone?',
     SEND_TO_PHONE_CONTENT : 'Phone isn\'t connected, so we can\'t download to your phone. <br /> Send content to your phone?',
 
-    MORE_MEMORY : 'Not enough internal storage space',
+    NO_MORE_MEMORY : 'Not enough internal storage space',
     NO_MORE_SDCARD : 'Not enough SD card space',
     SDCARD_MOUNT : 'Please don\'t remove SD card',
     NO_SDCARD : 'No SD card found, unable to transfer files',

@@ -55,6 +55,14 @@
                     this.$('.button-send').prop({
                         disabled : !isConnected
                     });
+
+                    var btn = this.$('.button-delete');
+                    if (isConnected) {
+                        btn.removeAttr('disabled');
+                    } else {
+                        btn.attr('disabled', 'true');
+                    }
+
                 }, this);
 
                 IO.Backend.Device.onmessage({
