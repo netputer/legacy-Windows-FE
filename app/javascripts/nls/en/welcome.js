@@ -1,6 +1,6 @@
 /*global define*/
 define({
-    CLOCK_DATE_FORMAT : 'MM dd ',
+    CLOCK_DATE_FORMAT : 'MM / dd ',
     OPEN_FOLDER : 'Open folder',
     TOP : 'Return to top',
 
@@ -114,9 +114,9 @@ define({
     NO_MORE_1 : '',
     NO_MORE_2 : '',
     NO_MORE_3 : '',
-    UPDATED : 'SnapPea was updated!'
+    UPDATED : 'SnapPea was updated!',
 
-    //READING_INFO_WARNING : '正在更新信息,请稍后再试',
+    READING_INFO_WARNING : 'Reading your phone\'s info, please wait'
 
     //ACCOUNT_UNLOGIN_TEXT : '点击此处开启个性主页'
 });

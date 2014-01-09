@@ -18,7 +18,7 @@ define({
     ME : 'Me',
     UNNAMED_CONTACT : 'Unknown contacts',
     NONE_SUBJECT : 'No subject',
-    CONTAIN_MULTIMEDIA : 'Contains {1} multimedia attachment(s)',
+    CONTAIN_MULTIMEDIA : 'Contains {1} multimedia attachment(s),',
     OPEN_ON_DEIVE : 'View on phone',
     EXPEND : 'Expand',
     SENDING : '(Sending...)',
@@ -77,7 +77,7 @@ define({
     ALERT_TIP_EXPORT_MMS : 'Export will not include MMS messages',
 
     SEND : 'Send &crarr;',
-    NEW_SMS : 'Write',
+    NEW_SMS : 'New Message',
     BATCH_CONVERSATION_TITLE : 'All messages from {1} selected',
     //SEND_WITH_SPEC_SIM : '使用 卡 {1} 发送',
     //SEND_WITH_SPEC_SIM_HAS_NAME : '使用{1}号发送',

@@ -144,13 +144,25 @@
                 }
             }
 
-            .backup-app-list {
+            dt:nth-child(3) {
+                display: none;
+            }
+
+            .backup-app-list,
+            .backup-full-app {
                 display: none;
             }
         }
     }
 
     .local-backup-advance-window {
-        height: 290px;
+        height: 240px;
+    }
+
+
+    .w-media-gallery {
+        .empty-tip {
+            top : 60px;
+        }
     }
 }
