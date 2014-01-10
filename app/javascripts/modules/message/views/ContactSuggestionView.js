@@ -35,10 +35,10 @@
             },
             initialize : function () {
                 contactsCollection = contactsCollection || ContactsCollection.getInstance();
-                var contact = contactsCollection.get(this.get('id'));
+                var contact = contactsCollection.get(this.get('contactId'));
 
                 this.set({
-                    id : this.get('id') + '|' + this.get('description_item')[0].value.replace(/<em>|<\/em>/gi, ''),
+                    id : this.get('id'),
                     displayTitle : this.get('title'),
                     title : this.get('title').replace(/<em>|<\/em>/gi, ''),
                     displayNumber : this.get('sub_title'),
@@ -269,9 +269,39 @@
                         max_result : 5
                     }
                 }).done(function (resp) {
+
+                    var conditioner = function  () {
+                        var rest = {
+                            body: {
+                                result : [],
+                                state_code : resp.state_code
+                            }
+                        };
+
+                        _.each(resp.body.result, function (re) {
+                            var subTitleArr = re.sub_title.split(',');
+
+                            if (subTitleArr.length === 1) {
+                                var nre = JSON.parse(JSON.stringify(re));
+                                rest.body.result.push(nre);
+                            } else {
+                                _.each(subTitleArr, function (subTitle) {
+                                    var nre = JSON.parse(JSON.stringify(re));
+                                    nre.sub_title = subTitle;
+                                    nre.contactId = nre.id;
+                                    nre.id = nre + '|' + subTitle.replace(/<em>|<\/em>/gi, '');
+                                    rest.body.result.push(nre);
+                                });
+                            }
+                        });
+
+                        return rest;
+                    };
+
                     if (resp.state_code === 200 ||
                             resp.state_code === 202) {
                         console.log('ContactSuggestionView - Search contact success.');
+                        resp = conditioner();
                         deferred.resolve(resp);
                     } else {
                         console.log('ContactSuggestionView - Search contact failed. Error info: ' + resp.state_line);
