@@ -270,6 +270,15 @@
                     }
                 }).done(function (resp) {
 
+                    var creatItem = function (re, subTitle) {
+                        var nre = JSON.parse(JSON.stringify(re));
+                        nre.contactId = nre.id;
+                        nre.sub_title = subTitle || nre.sub_title;
+                        nre.id = nre.id + '|' + nre.sub_title.replace(/<em>|<\/em>/gi, '');
+
+                        return nre;
+                    };
+
                     var conditioner = function  () {
                         var rest = {
                             body: {
@@ -282,14 +291,11 @@
                             var subTitleArr = re.sub_title.split(',');
 
                             if (subTitleArr.length === 1) {
-                                var nre = JSON.parse(JSON.stringify(re));
+                                var nre = creatItem(re);
                                 rest.body.result.push(nre);
                             } else {
                                 _.each(subTitleArr, function (subTitle) {
-                                    var nre = JSON.parse(JSON.stringify(re));
-                                    nre.sub_title = subTitle;
-                                    nre.contactId = nre.id;
-                                    nre.id = nre + '|' + subTitle.replace(/<em>|<\/em>/gi, '');
+                                    var nre = creatItem(re, subTitle);
                                     rest.body.result.push(nre);
                                 });
                             }
