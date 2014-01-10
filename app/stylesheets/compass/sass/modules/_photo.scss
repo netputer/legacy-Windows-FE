@@ -1,0 +1,426 @@
+/********************************************************************************
+ * This is the CSS declaration of Photo Module
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ @import "../skins/default/default";
+/********************************************************************************
+ * Photo Gallery and Item
+ ********************************************************************************/
+.w-photo-gallery-ctn {
+    background-image: url(../images/texture-grey-bg-80X80.png);
+    position: relative;
+    -webkit-box-flex: 1;
+}
+
+.w-photo-ios-banner-ctn {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.09);
+    height: 220px;
+    margin: 20px auto;
+    position: relative;
+    width: 704px;
+
+    .banner {
+        @include ios-sprite(bg);
+        height: ios-sprite-height(bg);
+        margin: 10px;
+        width: ios-sprite-width(bg);
+
+        .button-close {
+            @include ios-sprite(close);
+            cursor: pointer;
+            float: right;
+            height: ios-sprite-height(close);
+            width: ios-sprite-width(close);
+
+            &:hover {
+                @include ios-sprite(close-hover);
+            }
+        }
+
+        .button-download {
+            @include ios-sprite(download);
+            cursor: pointer;
+            height: ios-sprite-height(download);
+            left: 455px;
+            position: absolute;
+            top: 40px;
+            width: ios-sprite-width(download);
+
+            &:hover {
+                @include ios-sprite(download-hover);
+            }
+        }
+
+        .button-sms {
+            @include ios-sprite(sms);
+            cursor: pointer;
+            height: ios-sprite-height(sms);
+            left: 455px;
+            position: absolute;
+            top: 105px;
+            width: ios-sprite-width(sms);
+
+            &:hover {
+                @include ios-sprite(sms-hover);
+            }
+        }
+    }
+}
+
+.w-media-gallery {
+    &.cloud {
+        .w-photo-item {
+            .thumb {
+                display: inline-block;
+                height: auto;
+                left: 50%;
+                margin-top: -85px;
+                position: absolute;
+                top: 50%;
+                width: auto;
+
+                &.rotate-90,
+                &.rotate-180,
+                &.rotate-270 {
+                    -webkit-transform: rotate(0);
+                }
+            }
+        }
+    }
+
+    &.with-banner {
+        top: 278px;
+    }
+
+    .empty-tip {
+        .reset {
+            display: block;
+            font-size: 12px;
+            line-height: 20px;
+            margin: 0px auto;
+            width: 350px;
+        }
+    }
+
+}
+
+.w-photo-item {
+    @extend .w-media-item;
+
+    .control {
+        .button-share {
+            color: #999;
+            height: 15px;
+            margin-right: 5px;
+            width: 15px;
+
+            &:hover {
+                color: #ccc;
+            }
+        }
+    }
+}
+
+.disconnected {
+    .w-photo-item:not(.hasOriginalPic) {
+        .control {
+            .button-share {
+                display: none;
+            }
+        }
+    }
+}
+
+/********************************************************************************
+ * Slide Show
+ ********************************************************************************/
+.w-photo-slideshow {
+    background-color: rgba(0, 0, 0, .9);
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    -webkit-transition: opacity .4s;
+
+    &.show {
+        opacity: 1;
+    }
+
+    .photo-ctn {
+        text-align: center;
+        position: relative;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        -webkit-box-flex: 1;
+
+        .photo {
+            opacity: 1;
+            -webkit-transition: opacity .6s, -webkit-transform .2s;
+
+            &.rotate-90 {
+                -webkit-transform: rotate(90deg);
+            }
+
+            &.rotate-180 {
+                -webkit-transform: rotate(180deg);
+            }
+
+            &.rotate-270 {
+                -webkit-transform: rotate(-90deg);
+            }
+
+            &.hide {
+                opacity: 0;
+            }
+        }
+
+        .button-previous,
+        .button-next {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            width: 50%;
+            -webkit-box-align: center;
+
+            .button {
+                height: 42px;
+                margin: 0 25px;
+                width: 23px;
+            }
+        }
+
+        .button-previous {
+            left: 0;
+
+            .button {
+                @include sprite-sprite(photo-previous);
+            }
+
+            &:hover {
+                .button {
+                    @include sprite-sprite(photo-previous-hover);
+                }
+            }
+
+            &:active {
+                .button {
+                    @include sprite-sprite(photo-previous-active);
+                }
+            }
+        }
+
+        .button-next {
+            right: 0;
+            -webkit-box-pack: end;
+
+            .button {
+                @include sprite-sprite(photo-next);
+            }
+
+            &:hover {
+                .button {
+                    @include sprite-sprite(photo-next-hover);
+                }
+            }
+
+            &:active {
+                .button {
+                    @include sprite-sprite(photo-next-active);
+                }
+            }
+        }
+
+        .error {
+            color: #fff;
+            display: none;
+            height: 18px;
+            margin-top: -9px;
+            left: 0;
+            pointer-events: none;
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            width: 100%;
+
+            .button-retry {
+                @include sprite-sprite(retry-light);
+                display: inline-block;
+                height: 16px;
+                margin: -2px 0 0 5px;
+                pointer-events: auto;
+                vertical-align: middle;
+                width: 16px;
+
+                &:hover {
+                    @include sprite-sprite(retry-light-hover);
+                }
+            }
+        }
+    }
+
+    .control {
+        height: 70px;
+        -webkit-box-align: center;
+        -webkit-box-pack: end;
+
+        .tip {
+            color: #fff;
+            display: none;
+            padding-bottom: 40px;
+            text-align: center;
+        }
+
+        .buttons {
+            height: 100%;
+            -webkit-box-pack: center;
+
+            .btn-ctn {
+                background-color: #303030;
+                border-radius: 3px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+                height: 26px;
+                padding: 5px 15px;
+
+                .button {
+                    display: inline-block;
+                    height: 26px;
+                    width: 35px;
+
+                    @each $icon in delete, export, play, pause, share, wallpaper, rotate-left, rotate-right {
+                        &.button-#{$icon} {
+                            @include sprite-sprite(photo-#{$icon});
+                        }
+
+                        &.button-#{$icon}:hover {
+                            @include sprite-sprite(photo-#{$icon}-hover);
+                        }
+
+                        &.button-#{$icon}:active {
+                            @include sprite-sprite(photo-#{$icon}-active);
+                        }
+                    }
+
+                    + .button {
+                        margin-left: 10px;
+                    }
+                }
+
+                .split {
+                    background-color: #454545;
+                    border: {
+                        color: #242424;
+                        style: solid;
+                        width: 0 0 0 1px;
+                    }
+                    display: inline-block;
+                    height: 26px;
+                    margin: 0 10px;
+                    width: 1px;
+                }
+            }
+        }
+    }
+
+    .button-close {
+        @include sprite-sprite(photo-close);
+        height: 50px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50px;
+    }
+}
+
+/********************************************************************************
+ * Photo List and Item
+ ********************************************************************************/
+.w-photo-list-header {
+    .check-select-all-wrap {
+        padding: 0 15px;
+    }
+
+    .preview {
+        width: 55px;
+    }
+
+    .title {
+        margin-right: 5px;
+        -webkit-box-flex: 1;
+    }
+
+    .format {
+        width: 100px;
+    }
+
+    .size {
+        width: 100px;
+    }
+}
+
+.w-photo-list-item {
+    padding: 4px 0;
+    -webkit-box-align: center;
+
+    .item-checker-wrap {
+        padding: 12px 15px;
+    }
+
+    .preview {
+        height: 42px;
+        width: 55px;
+
+        img {
+            height: 42px;
+            width: 42px;
+        }
+    }
+
+    .title {
+        margin-right: 5px;
+        -webkit-box-flex: 1;
+    }
+
+    .format {
+        width: 100px;
+    }
+
+    .size {
+        width: 100px;
+    }
+}
+
+.w-photo-sync-switch {
+    .tip {
+        margin-right: 10px;
+    }
+}
+
+/********************************************************************************
+ * Import local photos window
+ ********************************************************************************/
+.w-photo-local-import {
+    -webkit-box-flex: 1;
+
+    .btn-ctn {
+        -webkit-box-align: center;
+
+        .tip {
+            margin-left: 10px;
+            -webkit-box-flex: 1;
+        }
+    }
+
+    .w-photo-local-import-list {
+        border: 1px $borderColor solid;
+        border-radius: 3px;
+        margin-top: 10px;
+        -webkit-box-flex: 1;
+    }
+}

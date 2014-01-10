@@ -1,0 +1,157 @@
+/********************************************************************************
+ * This is the CSS declaration of CSS reset, include HTML5 tags reset
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+/********************************************************************************
+ * HTML5 CSS Reset
+ ********************************************************************************/
+html, body, div, button, textarea, input,
+span, object, iframe, h1, h2, h3, h4, h5,
+h6, p, blockquote, pre, abbr, address, cite,
+code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl,
+dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    border: 0;
+    font-size: 100%;
+    font-style: normal;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary {
+    display: block;
+}
+
+nav, ul, ol, menu {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+a {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+ins {
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none;
+}
+
+mark {
+    background-color: #ff9;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #d6d6d6;
+    display: block;
+    height: 1px;
+    margin: 1em 0;
+    padding: 0;
+}
+
+input, select {
+    vertical-align: middle;
+}
+
+:focus {
+    outline: none;
+}
+
+html,
+body {
+    cursor: default;
+    overflow: hidden;
+    -webkit-user-select: none;
+}
+
+::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+    -webkit-box-shadow: none;
+}
+
+::-webkit-scrollbar-track:vertical,
+::-webkit-scrollbar-track:horizontal,
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal {
+    border-style: solid;
+    border-color: transparent;
+    -webkit-box-shadow: none;
+}
+
+::-webkit-scrollbar-track:vertical {
+    background-clip: padding-box;
+    background-color: transparent;
+    border-width: 0 0 0 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    background-color: rgba(0, 0, 0, .2);
+    min-height: 28px;
+    padding-top: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, .4);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    border-width: 0 0 0 3px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    border-width: 0;
+}
+
+::-webkit-scrollbar-track:hover {
+    background-color: rgba(0, 0, 0, .05);
+}
+
+::-webkit-scrollbar-track:active {
+    background-color: rgba(0, 0, 0, .05);
+}

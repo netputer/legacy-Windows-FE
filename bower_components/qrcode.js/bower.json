@@ -1,0 +1,11 @@
+{
+  "name": "jquery-qrcode",
+  "version": "1.0.2",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chilijung/qrcodejs.git"
+  },
+  "dependencies": {
+    "jquery": "~1.7.1"
+  }
+}

@@ -1,0 +1,167 @@
+/********************************************************************************
+ * This is the CSS declaration of SmartList Component
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "../skins/default/default";
+.w-smart-list-header {
+    background-color: $bgColor;
+    border-bottom: 1px #e3e3e3 solid;
+    height: 22px;
+    line-height: 22px;
+    -webkit-box-align: center;
+
+    .resize-handler {
+        border-right: 1px $borderColor solid;
+        cursor: e-resize;
+        height: 17px;
+        margin-right: 4px;
+        width: 4px;
+    }
+
+    .smart-list-sortable {
+        cursor: pointer;
+
+        .sort-icon {
+            @extend .icomoon;
+
+            display: inline-block;
+            height: 12px;
+            margin: 0 0 4px 2px;
+            vertical-align: middle;
+            width: 12px;
+        }
+
+        &.asc {
+            .sort-icon {
+                @extend .icomoon-down;
+            }
+        }
+
+        &.desc {
+            .sort-icon {
+                @extend .icomoon-up;
+            }
+        }
+
+        &:hover {
+            color: $textPrimary;
+        }
+
+        &:active {
+            color: $textActive;
+        }
+    }
+}
+
+.w-smart-list-footer {
+    background-color: #f9f9f9;
+    border-top: 1px #e3e3e3 solid;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+}
+
+.w-ui-smartlist {
+    position: relative;
+    -webkit-box-flex: 1;
+
+    .empty-tip {
+        left: 0;
+        line-height: 25px;
+        position: absolute;
+        padding: 0 10px;
+        right: 0;
+        text-align: center;
+        top: 10px;
+
+        &.center {
+            top: 40%;
+            -webkit-transform: translate3d(0, -50%, 0);
+        }
+
+        &.fix-text {
+            font-size: 14px;
+
+            button {
+                margin-top : 4px;
+            }
+        }
+    }
+
+    &.scrolling {
+        .w-ui-smartlist-body-ctn > li {
+            pointer-events: none;
+        }
+    }
+}
+
+.w-ui-smartlist-body-ctn {
+    overflow: hidden;
+    -webkit-box-flex: 1;
+}
+
+.w-ui-smartlist-scroll-ctn {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 12px;
+}
+
+.w-ui-smartlist-scroll-substitution {
+    width: 0;
+}
+
+.w-ui-smartlist-body-ctn {
+    &.odd > li {
+        &:nth-child(odd):not(.highlight):not(:hover) {
+            background-color: #f5f5f5;;
+        }
+
+        &:nth-child(even):not(.highlight):not(:hover) {
+            background-color: transparent;
+        }
+    }
+
+    > li {
+        border-top: 1px #f3f3f3 solid;
+
+        &:first-child {
+            border-top-color: transparent;
+        }
+
+        &:nth-child(odd):not(.highlight):not(:hover) {
+            background-color: transparent;;
+        }
+
+        &:nth-child(even):not(.highlight):not(:hover) {
+            background-color: #f5f5f5;
+        }
+
+        &.highlight {
+            background-color: $checkedColor;
+            color: $textPrimary;
+
+            .text-secondary {
+                color: $textPrimary;
+            }
+
+            + .highlight {
+                border-color: #d6ecb6;
+            }
+        }
+
+        &:hover,
+        &.highlight:hover {
+            background-color: $listItemHoverColor;
+        }
+    }
+
+    .item-checker-wrap {
+        display : block;
+        -webkit-box-align: center;
+    }
+}

@@ -1,0 +1,187 @@
+/********************************************************************************
+ * This is the CSS declaration of Mutilmedia Module
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ .w-media-gallery {
+    bottom: 0;
+    box-sizing: border-box;
+    left: 0;
+    overflow-y: auto;
+    padding: 10px 5px 0;
+    position: absolute;
+    top: 29px;
+    width: 100%;
+
+    .empty-tip {
+        left: 0;
+        line-height: 25px;
+        position: absolute;
+        padding: 0 10px;
+        right: 0;
+        text-align: center;
+        text-shadow: 0 1px 0 #fff;
+        top: 10px;
+
+        &.center {
+            height: 292px;
+            top: 40%;
+            -webkit-transform: translate3d(0, -50%, 0);
+
+            button {
+                margin-top: 4px;
+            }
+        }
+
+        &.fix-text {
+            font-size: 14px;
+        }
+    }
+
+    .mask {
+        background-color: rgba(255, 255, 255, .6);
+        border: 1px #fff solid;
+        box-sizing: border-box;
+        position: absolute;
+    }
+}
+
+.w-media-thread {
+    .header {
+        padding: 0 5px;
+
+        .label {
+            display: inline-block;
+        }
+
+        .checker {
+            margin-right: 6px;
+        }
+
+        .count {
+            @include badge;
+        }
+    }
+
+    .media-ctn {
+        padding: 5px 20px 5px 25px;
+    }
+}
+
+.w-media-item {
+    display: inline-block;
+    border: 1px rgba(0, 0, 0, .05) solid;
+    height: 128px;
+    margin: 0 10px 10px 0;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    vertical-align: top;
+    width: 128px;
+
+    .thumb {
+        display: block;
+        height: 128px;
+        opacity: 0;
+        width: 128px;
+        -webkit-transition: opacity .2s;
+
+        &.show {
+            opacity: 1;
+        }
+
+        &.rotate-90 {
+            -webkit-transform: rotate(90deg);
+        }
+
+        &.rotate-180 {
+            -webkit-transform: rotate(180deg);
+        }
+
+        &.rotate-270 {
+            -webkit-transform: rotate(-90deg);
+        }
+    }
+
+    .error {
+        display: none;
+        height: 18px;
+        margin-top: -9px;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 0 #fff;
+        top: 50%;
+        width: 100%;
+
+        .button-retry {
+            display: inline-block;
+            height: 16px;
+            margin: -2px 0 0 5px;
+            pointer-events: auto;
+            vertical-align: middle;
+            width: 16px;
+
+            &:hover {
+                color: $standardColor;
+            }
+
+            &:active {
+                color: $textActive;
+            }
+        }
+    }
+
+    .control {
+        background-color: rgba(0, 0, 0, .8);
+        bottom: 0;
+        box-sizing: border-box;
+        height: 25px;
+        left: 0;
+        overflow: hidden;
+        padding: 0 5px;
+        position: absolute;
+        width: 100%;
+        -webkit-box-align: center;
+        -webkit-transform: translate3d(0, 0, 0);
+        -webkit-transition: -webkit-transform .2s;
+
+        .placeholder {
+            -webkit-box-flex: 1;
+        }
+
+        .button-info {
+            color: #999;
+            height: 15px;
+            width: 15px;
+
+            &:hover {
+                color: #ccc;
+            }
+        }
+    }
+
+    &:not(.selected) {
+        .control {
+            -webkit-transform: translate3d(0, 100%, 0);
+        }
+
+        &:hover {
+            .control {
+                -webkit-transform: translate3d(0, 0, 0);
+                overflow: visible;
+            }
+        }
+    }
+
+    .w-ui-loading {
+        pointer-events: none;
+        position: fixed;
+    }
+
+    &:hover {
+        border-color: $standardColor;
+        outline: 2px #cce6a6 solid;
+    }
+}

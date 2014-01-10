@@ -1,0 +1,331 @@
+ /********************************************************************************
+ * This is the CSS declaration of miscs
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ @import "skins/default/default";
+ /********************************************************************************
+ * Browser Module Main
+ ********************************************************************************/
+.wdj-iframe-gallery {
+    .w-ui-toolbar {
+        height: 38px;
+    }
+}
+
+.w-browser-module-main {
+    .w-ui-toolbar {
+        height: 38px;
+        background: -webkit-linear-gradient(rgba(0,0,0,0.04) 0%, rgba(0,0,0,0) 9%), url("../images/welcome_bg_100X100.png");
+
+        .developer-wrap {
+            -webkit-box-align: center;
+
+            .label {
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+.w-browser {
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+
+    .browser-ctn {
+        position: relative;
+        -webkit-box-flex: 1;
+
+        .progress {
+            height: 1px;
+            left: 0;
+            opacity: .5;
+            position: absolute;
+            top: -2px;
+            width: 100%;
+
+            .value {
+                background-image: -webkit-gradient(linear, left top, left bottom, from(#7fc124), to(#60ac1e));
+                display: block;
+                height: 2px;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 5%;
+                -webkit-transition: width .4s;
+
+                .shinning {
+                    background-color: transparent;
+                    box-shadow: 0 0 5px rgb(120, 182, 0);
+                    display: block;
+                    height: 2px;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    width: 8px;
+                    -webkit-animation: anima-breath 2s infinite;
+                }
+            }
+        }
+
+        .flash-notifier {
+            background: $headerGradient;
+            border: 1px $splitLineColor solid;
+            border-radius: 0 0 3px 3px;
+            left: 10px;
+            padding: 7px 15px;
+            position: absolute;
+            right: 10px;
+            top: -1px;
+            -webkit-box-align: center;
+
+            .des {
+                -webkit-box-flex: 1;
+            }
+
+            .button-install-flash {
+                height: 22px;
+                line-height: 14px;
+            }
+
+            .button-close-flash-notifier {
+                @include button-close;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .browser {
+        height: 100%;
+        position: absolute;
+        width: 100%;
+    }
+}
+
+.w-browser-app-dependency {
+    background-color: #f0f0f0;
+    border-bottom: 1px $splitLineColor solid;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .15) inset;
+    display: none;
+    line-height: 32px;
+    margin: -1px 0 1px 0;
+    padding: 5px;
+    text-shadow: 0 1px 0 #fff;
+
+    .ctn {
+        -webkit-box-align: center;
+
+        .icon {
+            height: 32px;
+            margin: 0 10px;
+            width: 32px;
+
+            img {
+                height: 32px;
+                width: 32px;
+            }
+        }
+
+        .info {
+            -webkit-box-flex: 1;
+
+            .tip,
+            .button-install {
+                margin-left: 10px;
+            }
+        }
+
+        .button-close {
+            @include button-close;
+        }
+    }
+}
+
+/********************************************************************************
+ * Browser Menu
+ ********************************************************************************/
+.w-browser-menu {
+    -webkit-box-flex: 1;
+    -webkit-box-pack: center;
+
+    .root-item {
+        box-sizing: border-box;
+        cursor: pointer;
+        font-size: 13px;
+        height: 22px;
+        line-height: 22px;
+        padding: 0 12px;
+
+        &:hover {
+            color: $linkColor;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, .6);
+        }
+
+        &.selected {
+            color: $linkColor;
+            font-weight: bold;
+            text-shadow: 0 1px 0 #fff;
+        }
+    }
+}
+
+.w-browser-menu-pointer {
+    background-color: #3baa24;
+    bottom: -1px;
+    display: none;
+    height: 4px;
+    position: absolute;
+    width: 100px;
+    -webkit-transition: left .2s, width .2s;
+}
+
+.w-icon-btn.browser-nav {
+    min-width: 16px;
+
+    .star {
+        @include button-star;
+
+        &.starred {
+            @include button-starred;
+        }
+    }
+
+
+    &:not(.primary).min {
+        padding: 2px 8px;
+
+        .icon {
+            height: 16px;
+            margin-right: 0;
+            width: 16px;
+        }
+
+        .label {
+            margin-left: 3px;
+        }
+    }
+}
+
+/********************************************************************************
+ * Info panel
+ ********************************************************************************/
+.w-browser-info-panel {
+    background-color: #fff;
+    border-bottom: 1px #d6d6d6 solid;
+    border-top: 1px #d6d6d6 solid;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05) inset, 0 -1px 2px rgba(0, 0, 0, .05) inset;
+    margin-top: -1px;
+    padding: 12px 15px;
+    position: relative;
+
+    .arrow {
+        background-color: #fff;
+        border: {
+            color: #d6d6d6;
+            style: solid;
+            width: 1px 0 0 1px;
+        }
+        height: 8px;
+        position: absolute;
+        right: 13px;
+        top: -5px;
+        width: 8px;
+        -webkit-transform: rotate(45deg);
+    }
+
+    .icon {
+        height: 72px;
+        margin-right: 12px;
+        width: 72px;
+
+        img {
+            height: 72px;
+            width: 72px;
+        }
+    }
+
+    .tip {
+        margin-left: 10px;
+    }
+
+    .content {
+        -webkit-box-flex: 1;
+
+        .title {
+            font-size: 16px;
+        }
+
+        .des {
+            line-height: 28px;
+            -webkit-box-flex: 1;
+        }
+    }
+
+    .button-close {
+        @include button-close;
+        margin-left: 10px;
+    }
+}
+
+/********************************************************************************
+ * Report Window
+ ********************************************************************************/
+.w-browser-report {
+    .form-report {
+        padding: 15px 0;
+
+        .label {
+            display: block;
+            margin-right: 10px;
+            text-align: right;
+            width: 120px;
+        }
+
+        .content-label {
+            margin-top: 10px;
+            -webkit-box-align: start;
+
+            .input-content {
+                height: 100px;
+                width: 360px;
+            }
+        }
+
+        .email-label {
+            -webkit-box-align: center;
+
+            .input-email {
+                width: 360px;
+            }
+        }
+    }
+}
+
+.w-misc-extension-error {
+    background-color: $bgColor;
+    margin: 70px auto;
+    padding: 30px 50px;
+    max-width: 450px;
+
+    .failed {
+        @include sprite-sprite(failed);
+        height: 48px;
+        margin-right: 25px;
+        width: 48px;
+    }
+
+    .info {
+        -webkit-box-flex: 1;
+
+        h2 {
+            color: #000;
+        }
+
+        .link {
+          margin-left: 10px;
+          vertical-align: bottom;
+        }
+    }
+}

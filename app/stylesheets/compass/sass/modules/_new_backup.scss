@@ -1,0 +1,734 @@
+/********************************************************************************
+ * This is the CSS declaration of BackupRestore Module
+ *
+ * @author lixiaopeng@wandoujia.com
+ ********************************************************************************/
+@import "../skins/default/default";
+
+.w-backuprestore-module-main {
+    background: url("../images/welcome_bg_100X100.png");
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+}
+
+.w-backuprestore-start {
+    height: 440px;
+    width: 650px;
+
+    .action-panel {
+        height: 300px;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+
+        .container {
+            background-color: #fff;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            width: 300px;
+
+            &:hover {
+
+                .icon,
+                .info,
+                .action-container {
+                    top : -300px;
+                    -webkit-transition-timing-function: ease-in;
+                }
+            }
+
+            &.backup {
+                margin-right: 25px;
+
+                .icon {
+                    @include backuprestore-sprite(backupbutton);
+                }
+            }
+
+            &.restore {
+                margin-left: 25px;
+
+                .icon {
+                    @include backuprestore-sprite(restorebutton);
+                }
+            }
+
+            .icon {
+                height: 96px;
+                margin: 80px auto 30px;
+                position: relative;
+                width: 144px;
+                -webkit-transition: all .2s;
+            }
+
+            .info {
+                height: 94px;
+                position: relative;
+                text-align: center;
+
+                .title {
+                    display : block;
+                    font-size: 20px;
+                    margin-bottom: 15px;
+                }
+                -webkit-transition: all .2s;
+            }
+
+            .action-container {
+                background: #fff;
+                color: #fff;
+                position: relative;
+                margin: 10px;
+                -webkit-transition: all .2s;
+
+
+                .action-button {
+                    background: #58b745;
+                    cursor: pointer;
+                    height: 135px;
+                    -webkit-box-align: center;
+                    -webkit-transition: background .2s;
+
+                    &:hover {
+                        background: #3baa24;
+                    }
+
+                    &:active {
+                        background: $textActive;
+                    }
+
+                    .top {
+
+                        margin-top: 40px;
+                        margin-bottom: 10px;
+                        width: 280px;
+                        -webkit-box-align: center;
+                        -webkit-box-pack: center;
+
+                        .action-icon {
+                            height: 32px;
+                            margin-right: 10px;
+                            width: 40px;
+                        }
+
+                        .title {
+                            display: block;
+                            font-size: 18px;
+                        }
+                    }
+
+                    .desc {
+                        display: block;
+                        opacity: .6;
+                        text-align: center;
+                        width: 200px;
+                    }
+                }
+
+                .action-backup-local,
+                .action-restore-local{
+                    margin-bottom: 5px;
+
+                    .action-icon {
+                        @include backuprestore-sprite(pclight);
+                    }
+                }
+
+                .action-backup-remote,
+                .action-restore-remote {
+                    margin-top: 10px;
+
+                    .action-icon {
+                        @include backuprestore-sprite(cloudlight);
+                    }
+                }
+            }
+        }
+    }
+
+    .info-panel {
+        height: 140px;
+        -webkit-box-align: center;
+
+        .info-panel {
+            height: 40px;
+            width: 210px;
+
+            &.last-backup-time {
+                margin-right: 5px;
+
+                .icon {
+                    @include backuprestore-sprite(time);
+                }
+            }
+
+            &.auto-backup-local {
+                margin-left: 5px;
+                margin-right: 5px;
+                -webkit-box-pack: center;
+
+                .icon {
+                    @include backuprestore-sprite(pc);
+                }
+            }
+
+            &.auto-backup-remote{
+                margin-left: 5px;
+                -webkit-box-pack: end;
+
+                .icon {
+                    @include backuprestore-sprite(cloud);
+                }
+            }
+
+            .icon {
+                height: 32px;
+                margin-right: 10px;
+                width: 40px;
+            }
+
+            .info {
+                height: 40px;
+
+                .title {
+                    color: #ccc;
+                    display: block;
+                }
+
+                .do-action {
+                    color: $textPrimary;
+                    cursor: pointer;
+                    margin-left: 24px;
+                }
+            }
+        }
+    }
+}
+
+.w-backuprestore-base {
+    height: 550px;
+    width: 650px;
+
+    .top {
+        height: 150px;
+
+        .big-title {
+            display: block;
+            font-size: 18px;
+            margin-top: 85px;
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.w-backuprestore-progress {
+    border-bottom: 3px #ccc solid;
+    border-top: 3px #ccc solid;
+    height: 250px;
+    -webkit-box-pack: center;
+
+    .content-box {
+        height: 250px;
+        width: 210px;
+
+        .icon {
+            height: 48px;
+            margin-right: 15px;
+            width: 48px;
+        }
+
+        .title-box {
+            color: #ccc;
+            height: 48px;
+            margin-bottom: 30px;
+            margin-top: 90px;
+            width: 210px;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+
+            .count {
+                color: black;
+                font-size: 22px;
+                line-height: 40px;
+            }
+        }
+
+        progress {
+            margin-left: 45px;
+            width: 125px;
+
+            &.hide {
+                display: none;
+            }
+        }
+
+        .status {
+            display: block;
+            font-size: 12px;
+            padding-top: 10px;
+            text-align: center;
+            width: 208px;
+        }
+    }
+
+    .contact {
+        margin-right: 5px;
+
+        .icon {
+            @include backuprestore-sprite(contact);
+
+        }
+
+        &.finish {
+            .icon {
+                @include backuprestore-sprite(contactdone);
+            }
+        }
+    }
+
+    .sms {
+        margin-left: 5px;
+        margin-right: 5px;
+
+        .icon {
+            @include backuprestore-sprite(sms);
+        }
+
+        &.finish {
+            .icon {
+                @include backuprestore-sprite(smsdone);
+            }
+        }
+    }
+
+    .app {
+        margin-left: 5px;
+
+        .icon {
+            @include backuprestore-sprite(app);
+        }
+
+        &.finish {
+            .icon {
+                @include backuprestore-sprite(appdone);
+            }
+        }
+
+        .beta {
+            display: inline-block;
+            height: 12px;
+            margin-left: 3px;
+            width: 25px;
+            @include sprite-sprite(beta);
+        }
+    }
+}
+
+.w-backuprestore-footer {
+    height: 150px;
+
+    .left {
+        margin-top: 15px;
+        -webkit-box-flex: 1;
+    }
+
+    .right {
+        margin-top: 10px;
+        width: 200px;
+        -webkit-box-pack: end;
+
+        button {
+            margin-left: 20px;
+        }
+    }
+}
+
+.w-backuprestore-local-backup-advance,
+.w-backuprestore-remote-backup-advance {
+    .container {
+        display: block;
+        height: 251px;
+        width: 420px;
+
+        dt {
+            clear: left;
+            float: left;
+            margin-bottom: 20px;
+            text-align: right;
+            width: 80px;
+        }
+
+        dd {
+            float: left;
+            padding-left: 30px;
+            max-width : 310px;
+            margin-bottom: 10px;
+
+            label {
+                margin-right: 15px;
+
+                input {
+                    margin-right: 5px;
+                }
+            }
+
+            .desc {
+                display: block;
+                margin-top: 10px;
+                margin-left: 20px;
+            }
+
+            .file-path {
+                display: inline-block;
+                width: 270px;
+            }
+
+            .change-backup-path {
+                margin-left: 10px;
+            }
+
+            .file-name {
+                width: 290px;
+            }
+
+            .beta {
+                display: inline-block;
+                height: 12px;
+                margin-left: -10px;
+                width: 25px;
+                @include sprite-sprite(beta);
+            }
+        }
+    }
+}
+
+.w-backup-app-data-tip {
+    .backup-pic-ctn {
+        @include misc-sprite(app-data-backup-tip);
+        height: 131px;
+        width: 103px;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .content-ctn {
+        margin-left: 20px;
+        -webkit-box-flex: 1;
+
+        em {
+            color: $textHighlight;
+        }
+    }
+}
+
+.w-backup-error-item-list {
+    margin-top: 5px;
+
+    .title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .app-list-ctn {
+        border: 1px $borderColor solid;
+        height: 144px;
+        overflow-y: auto;
+        -webkit-box-align: center;
+
+        li {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            padding: 1px 0;
+            -webkit-box-align: center;
+            -webkit-box-flex: 1;
+
+            .icon {
+                height: 36px;
+                margin: 0 5px 0 5px;
+                width: 36px;
+
+                img {
+                    height: 36px;
+                    width: 36px;
+                }
+            }
+
+            .name {
+                -webkit-box-flex: 1;
+            }
+
+            .size {
+                width: 85px;
+            }
+        }
+
+        li:last-child {
+            border-bottom: 0 solid #ccc;
+        }
+    }
+}
+
+.w-backuprestore-download,
+.w-backuprestore-file-list {
+    border-bottom: 3px #ccc solid;
+    border-top: 3px #ccc solid;
+    height: 250px;
+}
+
+.w-backuprestore-download {
+
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+
+    progress {
+        width: 220px;
+    }
+}
+
+.w-backuprestore-file-list {
+
+    .w-ui-smartlist-body-ctn {
+
+        li {
+            border-top: 1px #eee solid;
+        }
+    }
+
+    .empty-tip {
+        color: $textGrey;
+    }
+}
+
+.w-backuprestore-file-item {
+    height: 45px;
+
+    .name {
+
+        color: black;
+        display: -webkit-box;
+        width: 340px;
+        -webkit-box-pack: start;
+        -webkit-box-align: center;
+
+        input {
+            margin-left: 5px;
+            margin-right: 10px;
+        }
+
+        .time {
+            display: inline-block;
+            width: 120px;
+        }
+
+        .device-name {
+            display: inline-block;
+            text-align: left;
+            width: 160px;
+        }
+    }
+
+    .num-container {
+        width: 100px;
+        -webkit-box-pack: start;
+        -webkit-box-align: center;
+
+        .icon {
+            height: 24px;
+            width: 24px;
+        }
+
+        .contact-icon {
+            @include nav-sprite(nav-contact-hover);
+        }
+
+        .sms-icon {
+            @include nav-sprite(nav-sms-hover);
+        }
+
+        .app-icon {
+            @include nav-sprite(nav-app-hover);
+        }
+
+        .app-data-icon {
+            height: 16px;
+            margin-left: 5px;
+            vertical-align: middle;
+            width: 16px;
+            @include backuprestore-sprite(data);
+        }
+    }
+}
+
+.w-backuprestore-local-restore-advance{
+    .container {
+        display: block;
+        height: 251px;
+        width: 420px;
+
+        dt {
+            clear: left;
+            float: left;
+            margin-bottom: 20px;
+            text-align: right;
+            width: 80px;
+        }
+
+        dd {
+            float: left;
+            padding-left: 30px;
+            max-width : 310px;
+            margin-bottom: 10px;
+
+            label {
+                margin-right: 15px;
+
+                input {
+                    margin-right: 5px;
+                }
+            }
+
+            .desc {
+                display: block;
+                margin-top: 10px;
+                margin-left: 20px;
+            }
+
+            .file-path {
+                display: inline-block;
+                width: 270px;
+            }
+
+            .change-backup-path {
+                margin-left: 10px;
+            }
+
+            .file-name {
+                width: 290px;
+            }
+
+            .beta {
+                display: inline-block;
+                height: 12px;
+                margin-left: -10px;
+                width: 25px;
+                @include sprite-sprite(beta);
+            }
+        }
+    }
+}
+
+.w-backup-auto-tip {
+    .pic-ctn {
+        height: 161px;
+        margin-top: 15px;
+        margin-left: 15px;
+        width: 95px;
+    }
+
+    .pic-local-ctn {
+        @include sprite-sprite(auto-backup-local);
+    }
+
+    .pic-remote-ctn {
+        @include sprite-sprite(auto-backup-remote);
+    }
+
+    .content-ctn {
+        margin-left: 25px;
+        margin-top: 15px;
+        -webkit-box-flex: 1;
+
+        .title {
+            font-size: 18px;
+        }
+
+        .desc {
+            width: 340px;
+
+            em {
+                color: $textPrimary;
+            }
+        }
+    }
+}
+
+.w-backup-app-data-tip {
+    .backup-pic-ctn {
+        @include misc-sprite(app-data-backup-tip);
+        height: 131px;
+        width: 103px;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .content-ctn {
+        margin-left: 20px;
+        -webkit-box-flex: 1;
+
+        em {
+            color: $textHighlight;
+        }
+    }
+}
+
+.w-backup-auto-tip {
+    .pic-ctn {
+        height: 161px;
+        margin-top: 15px;
+        margin-left: 15px;
+        width: 95px;
+    }
+
+    .pic-local-ctn {
+        @include sprite-sprite(auto-backup-local);
+    }
+
+    .pic-remote-ctn {
+        @include sprite-sprite(auto-backup-remote);
+    }
+
+    .content-ctn {
+        margin-left: 25px;
+        margin-top: 15px;
+        -webkit-box-flex: 1;
+
+        .title {
+            font-size: 18px;
+        }
+
+        .desc {
+            width: 340px;
+
+            em {
+                color: $textPrimary;
+            }
+        }
+    }
+}
+
+.w-ui-alert-window {
+    .w-ui-window-footer-monitor {
+        .qq-link {
+            display: block;
+
+            .icon {
+                @include backuprestore-sprite(qq);
+                display: inline-block;
+                height: 16px;
+                margin-left: 5px;
+                margin-top: 4px;
+                overflow: hidden;
+                vertical-align: top;
+                width: 16px;
+            }
+        }
+    }
+}
+
+.local-backup-advance-window {
+    height: 350px;
+}

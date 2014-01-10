@@ -1,0 +1,168 @@
+/********************************************************************************
+ * This is the CSS declaration of en-us locale style
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ body.locale-en-us {
+    &,
+    button,
+    input,
+    textarea {
+        font: 12px/1.5em 'Sergio UI', Arial, sans-serif;
+        text-rendering: auto;
+    }
+
+    .w-contact-detail-panel {
+        .info-ctn {
+            dt {
+                margin: 0 5px 12px 0;
+                text-align: right;
+                width: 90px;
+            }
+
+            dd {
+                max-width: 237px;
+                min-width: 205px;
+            }
+        }
+    }
+
+    .w-contact-detail-panel.edit {
+        .contact-info {
+            dt {
+                width: 120px;
+            }
+
+            .input-phone,
+            .input-email,
+            .input-im,
+            .input-address,
+            .input-organization {
+                width: 170px;
+            }
+
+            .input-note {
+                width: 170px;
+            }
+        }
+
+        .category-selector {
+            margin-bottom: 15px;
+            padding: 0 20px;
+        }
+    }
+
+    .w-app-mount-sd-tip {
+        .mount-sd {
+            @include misc-sprite(unmount-sd-en);
+        }
+    }
+
+    .w-contact-sim-tip {
+        .sim-tip {
+            @include misc-sprite(sim-tip-en);
+        }
+    }
+
+    .w-misc-sd-mount-ctn {
+        .mount-sd-tip {
+            @include misc-sprite(unmount-sd-en);
+        }
+    }
+
+    .wel-tip-content {
+        a.app-tip-title {
+            cursor: default;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .w-restore-app-tip {
+        .image-ctn {
+            @include misc-sprite(restore-app-tip-en);
+        }
+
+        .btn-next {
+            margin-top: 50px;
+        }
+    }
+
+    .w-message-sender-window {
+        .help {
+            display: none;
+        }
+    }
+
+    .w-backuprestore-start {
+        .action-panel {
+            .container {
+                cursor: pointer;
+                -webkit-transition: all .2s;
+
+                &:hover {
+                    .icon,
+                    .info,
+                    .action-container {
+                        top: 0;
+                    }
+
+                    background: #E6E6E6;
+                }
+
+                .desc {
+                    color: #000;
+                }
+            }
+        }
+
+        .info-panel {
+            .info-panel {
+                &.auto-backup-remote{
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .w-backuprestore-local-restore-advance,
+    .w-backuprestore-local-backup-advance {
+
+        .container {
+
+            height: 175px;
+
+            dd {
+                 label:nth-child(4) {
+                    display: none;
+                 }
+
+                .beta {
+                    display: none;
+                }
+            }
+
+            dt:nth-child(3) {
+                display: none;
+            }
+
+            .backup-app-list,
+            .backup-full-app {
+                display: none;
+            }
+        }
+    }
+
+    .local-backup-advance-window {
+        height: 240px;
+    }
+
+
+    .w-contact-avatar-list {
+        .empty-tip {
+            top : 60px;
+        }
+    }
+}

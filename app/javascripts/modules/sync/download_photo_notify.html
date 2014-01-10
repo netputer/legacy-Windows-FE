@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html style="height:auto">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Backup Guide</title>
+        <script type="text/javascript" src="../../../bower_components/requirejs/require.js"></script>
+        <link rel="stylesheet" href="../../../stylesheets/main.css" type="text/css" />
+        <script type="text/javascript" language="JavaScript">
+            require.config({
+                baseUrl : "../../"
+            });
+            require(['RequireConfig'], function () {
+                require([
+                    'jquery',
+                    'utilities/QueryString',
+                    'sync/views/DownloadPhotoNotifyView'
+                ], function (
+                    $,
+                    QueryString,
+                    DownloadPhotoNotifyView
+                ) {
+                    var notify = DownloadPhotoNotifyView.getInstance({
+                        num : QueryString.get('num'),
+                        helper : (QueryString.get('from') === 'helper')
+                    });
+                    $('body').append(notify.render().$el);
+                });
+            });
+
+        </script>
+    </head>
+        <body class="w-notification-body"></body>
+</html>

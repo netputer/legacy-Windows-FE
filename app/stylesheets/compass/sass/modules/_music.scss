@@ -1,0 +1,309 @@
+/********************************************************************************
+ * This is the CSS declaration of Music Module
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "../skins/default/default";
+/********************************************************************************
+ * Music List and Item
+ ********************************************************************************/
+.w-music-list {
+    margin-top: 1px;
+    -webkit-box-flex: 1;
+
+    .w-music-list-header {
+        .check-select-all-wrap {
+            display: none;
+        }
+
+        .title {
+            margin-left: 34px;
+            -webkit-box-flex: 1;
+        }
+    }
+}
+
+.w-music-list-header {
+    .check-select-all-wrap {
+        padding: 0 10px;
+    }
+
+    .title {
+        margin-right: 5px;
+        padding-left: 5px;
+        -webkit-box-flex: 1;
+    }
+
+    .artist {
+        margin-right: 5px;
+        width: 130px
+    }
+
+    .duration {
+        width: 45px;
+    }
+
+    .format {
+        width: 45px;
+    }
+
+    .size {
+        width: 65px;
+    }
+
+    .album {
+        margin-right: 5px;
+        width: 130px;
+    }
+
+    .play {
+        width: 40px;
+    }
+
+    .type {
+        margin-right: 15px;
+        width: 80px;
+    }
+}
+
+.w-music-list-item {
+    height: 24px;
+    padding: 5px 0;
+    -webkit-box-align: center;
+
+    .item-checker-wrap {
+        padding: 3px 10px;
+    }
+
+    .title {
+        margin-right: 5px;
+        padding-left: 5px;
+        -webkit-box-flex: 1;
+    }
+
+    .artist {
+        margin-right: 5px;
+        width: 130px
+    }
+
+    .duration {
+        width: 45px;
+    }
+
+    .format {
+        width: 45px;
+    }
+
+    .size {
+        width: 65px;
+    }
+
+    .album {
+        margin-right: 5px;
+        width: 130px;
+    }
+
+    .play {
+        overflow: hidden;
+        width: 0;
+
+        &:not(.disabled) {
+            width: 40px;
+
+            .loading,
+            .playing,
+            .error,
+            .button-play,
+            .button-stop {
+                display: inline-block;
+                height: 16px;
+                vertical-align: middle;
+                width: 16px;
+            }
+
+            .loading {
+                background-image: url('../images/loading_16X16.gif');
+            }
+
+            .playing {
+                background-image: url('../images/playing_11X11.gif');
+                height: 11px;
+                width: 11px;
+            }
+
+            .button-play {
+                color: #888;
+                display: none;
+
+                &:hover {
+                    color: $standardColor;
+                }
+
+                &:active {
+                    color: $textActive;
+                }
+            }
+
+            .error {
+                color: #888;
+            }
+
+            .button-stop {
+                color: #888;
+
+                &:hover {
+                    color: $standardColor;
+                }
+
+                &:active {
+                    color: $textActive;
+                }
+            }
+        }
+    }
+
+    .type {
+        margin-right: 15px;
+        width: 80px;
+
+        .ring-icon {
+            display: inline-block;
+            height: 12px;
+            vertical-align: middle;
+            width: 12px;
+
+            &.ringtone {
+                @include sprite-sprite(ringtone);
+            }
+
+            &.notification {
+                @include sprite-sprite(notification);
+            }
+
+            &.alarm {
+                @include sprite-sprite(alarm);
+            }
+        }
+
+        button {
+            background: transparent;
+            border-color: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            color: $textSecondary;
+            height: 18px;
+            min-width: 0;
+            padding: 0 5px;
+
+            &:enabled:hover:not(.active):not(:active),
+            &:enabled:focus {
+                background: transparent;
+                color: $textPrimary;
+            }
+
+            &:enabled:active,
+            &.active {
+                background: transparent;
+                box-shadow: none;
+                color: $textActive;
+            }
+
+            &:enabled:not(.active):not(:active):hover .icomoon {
+                color: $standardColor;
+            }
+
+            &:enabled:active .icomoon,
+            &.active .icomoon {
+                color: $textActive;
+            }
+
+            &:not(.active) {
+                display: none;
+            }
+
+            &.active {
+                ~ .ring-icon {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .play {
+            .button-play {
+                display: inline-block;
+            }
+        }
+
+        .type {
+            .ring-icon {
+                display: none;
+            }
+
+            button {
+                display: -webkit-box;
+            }
+        }
+    }
+}
+
+/********************************************************************************
+ * Import local musics window
+ ********************************************************************************/
+.w-music-local-import {
+    -webkit-box-flex: 1;
+
+    .btn-ctn {
+        -webkit-box-align: center;
+
+        .tip {
+            margin-left: 10px;
+            -webkit-box-flex: 1;
+        }
+    }
+
+    .w-music-local-import-list {
+        border: 1px $borderColor solid;
+        border-radius: 3px;
+        margin-top: 10px;
+        -webkit-box-flex: 1;
+
+        .w-music-list-item {
+            .play,
+            .album,
+            .type {
+                display: none;
+            }
+        }
+    }
+}
+
+.w-music-toolbar {
+    .itunes-wrap {
+        text-align: right;
+        padding-right: 5px;
+        -webkit-box-flex: 1;
+
+        .button-itunes {
+            display: none;
+        }
+    }
+}
+
+.w-music-set-ring-list {
+    border: 1px $borderColor solid;
+    border-radius: 3px;
+    -webkit-box-flex: 1;
+
+    .w-music-list-item {
+        .item-checker-wrap,
+        .artist,
+        .duration,
+        .format,
+        .size,
+        .album {
+            display: none;
+        }
+    }
+}

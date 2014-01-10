@@ -1,0 +1,261 @@
+ /********************************************************************************
+ * This is the CSS declaration of miscs
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ @import "skins/default/default";
+
+.w-misc-device-binding {
+    p {
+        margin: 5px 0;
+    }
+
+    ul {
+        background-color: $bgColor;
+        border-radius: 5px;
+        box-shadow: 0 0 3px rgba(0, 0, 0, .1) inset;
+        margin: 15px 0 5px;
+        padding: 0 15px;
+
+        li {
+            padding: 10px 0;
+
+            .icon {
+                height: 36px;
+                margin: 0 15px 0 5px;
+                width: 36px;
+
+                @each $cate in backup, contact, connect, update {
+                    &.#{$cate} {
+                        @include sprite-sprite(bind-#{$cate});
+                    }
+                }
+            }
+
+            h2 {
+                font-size: 14px;
+                font-weight: normal;
+                margin-bottom: 2px;
+            }
+
+            .des {
+                -webkit-box-flex: 1;
+            }
+
+            + li {
+                border-top: 1px $borderColor solid;
+            }
+        }
+    }
+}
+
+.w-misc-sd-mount-ctn {
+    margin-top: 10px;
+
+    h1 {
+        margin-bottom: 5px;
+    }
+
+    .mount-sd-tip {
+        @include misc-sprite(unmount-sd);
+        height: 371px;
+        margin: 1em auto 0;
+        width: 470px;
+    }
+}
+
+.w-misc-error-window-body {
+    overflow-y: scroll;
+
+    .list-ctn {
+        margin-top: 5px;
+        max-height: 300px;
+
+        .item + .item {
+            margin-top: 3px;
+        }
+    }
+}
+
+
+.w-notify-setting {
+    -webkit-box-align: center;
+    -webkit-box-flex: 1;
+
+    .setting-icon {
+        @include sprite-sprite(setting);
+        height: 16px;
+        margin-right: 3px;
+        width: 16px;
+    }
+}
+
+.w-device-usb-detect {
+    @include yellow-panel;
+    border-top: 1px $splitLineColor solid;
+    bottom: 0;
+    box-shadow: 0 -1px 1px rgba(0, 0, 0, .05) inset, 0 -1px 0 #fff;
+    display: none;
+    left: 0;
+    position: absolute;
+    right: 0;
+
+    .ctn {
+        height: 100%;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+
+        .tip {
+            margin-right: 10px;
+            text-shadow: 0 1px 0 #fff;
+        }
+
+        .loading {
+            height: 6px;
+            position: relative;
+            width: 100px;
+        }
+
+        .button-retry {
+            display: none;
+        }
+    }
+
+    &.error {
+        .ctn {
+            .loading {
+                display: none;
+            }
+
+            .button-retry {
+                display: block;
+            }
+        }
+    }
+}
+
+.w-misc-device-close-auto-start,
+.w-misc-new-ia {
+    @include yellow-panel;
+    border-bottom: 1px $splitLineColor solid;
+    box-shadow: 0 -1px 1px rgba(0, 0, 0, .05) inset, 0 1px 0 #fff;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+
+    .tip {
+        text-align: center;
+        -webkit-box-flex: 1;
+    }
+
+    .button-close {
+        @include button-close;
+        margin-top: -8px;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+    }
+}
+
+.w-misc-agent-notifi {
+    padding: 5px 0;
+    text-align: center;
+    width: 185px;
+
+    .bg {
+        @include misc-sprite(agent-notifi);
+        display: inline-block;
+        height: misc-sprite-height(agent-notifi);
+        width: misc-sprite-width(agent-notifi);
+    }
+
+    .tip {
+        text-align: left;
+    }
+
+    .button-close {
+        @include button-close;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+
+        &:hover {
+            background-color: #888;
+            color: #333;
+        }
+
+        &:active {
+            background-color: #ccc;
+            color: #333;
+        }
+    }
+}
+
+.w-misc-device-binding-cloud{
+
+    .arrow-bg {
+        @include misc-sprite(binding-arrow);
+        height: 22px;
+        margin: 10px auto 0;
+        width: 445px;
+    }
+
+    .icon-check {
+        @include misc-sprite(binding-check);
+        height: 27px;
+        width: 26px;
+    }
+
+    .content-ctn {
+
+        .content-text {
+            margin-top: 15px;
+
+            .desc-text {
+                line-height: 27px;
+                margin-left: 10px;
+            }
+
+        }
+
+        .content-text-first {
+            margin-top: 15px;
+
+            .icon-check {
+                margin-top: 4px;
+            }
+
+            .desc-text {
+                margin-top: 2px;
+            }
+
+            .desc-text p {
+                margin-left: 10px;
+                margin-top: -4px;
+            }
+        }
+    }
+
+    .icon-device {
+        @include misc-sprite(binding-device);
+        height: 161px;
+        width: 94px;
+    }
+
+    .header-text {
+       font-size: 18px;
+    }
+
+    .pic-ctn {
+        margin-left: 10px;
+        margin-right: 35px;
+    }
+
+    .main-ctn {
+        padding-top: 10px;
+        width: 445px;
+    }
+}
