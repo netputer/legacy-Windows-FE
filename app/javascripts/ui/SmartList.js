@@ -587,10 +587,17 @@
                     var id = evt.target.value;
 
                     if (evt.target.checked) {
+                        if (!this.enableMutilselect) {
+                            var selected = this.selected.concat();
+                            this.removeSelect(selected, {
+                                silent : true
+                            });
+                        }
                         this.addSelect(id);
                     } else {
                         this.removeSelect(id);
                     }
+
                     this.lastSelect = id;
                 }
             },
