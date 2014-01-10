@@ -18,7 +18,7 @@ define({
     ME : 'Me',
     UNNAMED_CONTACT : 'Unknown contacts',
     NONE_SUBJECT : 'No subject',
-    CONTAIN_MULTIMEDIA : 'Contains {1} multimedia attachment(s),',
+    CONTAIN_MULTIMEDIA : 'Contains {1} multimedia attachment(s)',
     OPEN_ON_DEIVE : 'View on phone',
     EXPEND : 'Expand',
     SENDING : '(Sending...)',

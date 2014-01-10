@@ -468,9 +468,6 @@
                     var failed = resp.body.failed;
 
                     if (failed && failed.length) {
-                        if (batchActionWindow !== undefined) {
-                            batchActionWindow.remove();
-                        }
 
                         if (!Device.get('isUSB') && failed.length < ids.length) {
                             alert(i18n.app.CONFIRM_UNINSTALL_ON_DEVICE);
@@ -484,12 +481,13 @@
                 }).fail(function (resp) {
                     if (resp.state_code !== 402) {
                         alert(i18n.app.UNINSTALL_ERROR);
-                        if (batchActionWindow !== undefined) {
-                            batchActionWindow.remove();
-                        }
                     }
 
                     deferred.reject(resp);
+                }).always(function () {
+                    if (batchActionWindow !== undefined) {
+                        batchActionWindow.remove();
+                    }
                 });
             };
 
