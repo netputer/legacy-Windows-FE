@@ -4,187 +4,207 @@
         'underscore',
         'backbone',
         'Internationalization',
+        'ProjectConfig',
         'FunctionSwitch',
         'Environment'
     ], function (
         _,
         Backbone,
         i18n,
+        ProjectConfig,
         FunctionSwitch,
         Environment
     ) {
         console.log('PIMCollection - File loaded.');
 
         var menus = [{
+            count : -1,
+            hide : ProjectConfig.get('HIDE_NAV_WELCOME_TO_WDJ'),
+            icon : 'welcome',
+            id : 0,
             label : i18n.misc.NAV_WELCOME_TO_WDJ,
             module : 'welcome',
-            tab : 'all',
-            id : 0,
-            root : true,
-            count : -1,
             order : 0,
-            icon : 'welcome'
+            root : true,
+            tab : 'all'
         }, {
+            count : -1,
+            hide : ProjectConfig.get('HIDE_NAV_CONTACT'),
+            icon : 'contact',
+            id : 1,
             label : i18n.misc.NAV_CONTACT,
             module : 'contact',
-            tab : 'all',
-            id : 1,
-            root : true,
-            count : -1,
             order : 20,
-            icon : 'contact'
+            root : true,
+            tab : 'all'
         }, {
+            count : 0,
+            hide : ProjectConfig.get('HIDE_NAV_SMS'),
+            icon : 'sms',
+            id : 2,
             label : i18n.misc.NAV_SMS,
             module : 'message',
-            tab : 'all',
-            id : 2,
-            root : true,
-            count : 0,
             order : 30,
-            icon : 'sms'
+            root : true,
+            tab : 'all'
         }, {
+            hide : ProjectConfig.get('HIDE_NAV_APP'),
+            icon : 'app',
+            id : 3,
             label : i18n.misc.NAV_APP,
             module : 'app',
-            tab : 'normal',
-            id : 3,
-            root : true,
             order : 10,
-            icon : 'app'
+            root : true,
+            tab : 'normal'
         }, {
-            label : i18n.misc.NAV_MUSIC,
+            hide : ProjectConfig.get('HIDE_NAV_MUSIC'),
+            icon : 'music',
             id : 4,
-            root : true,
+            label : i18n.misc.NAV_MUSIC,
             module : 'music',
-            tab : 'music',
             order : 40,
-            icon : 'music'
-        }, {
-            label : i18n.misc.NAV_PIC,
-            id : 5,
             root : true,
+            tab : 'music'
+        }, {
             count : -1,
-            order : 50,
+            hide : ProjectConfig.get('HIDE_NAV_PIC'),
             icon : 'photo',
+            id : 5,
+            label : i18n.misc.NAV_PIC,
             module : 'photo',
+            order : 50,
+            root : true,
             tab : 'phone'
         }, {
-            label : i18n.misc.NAV_VIDEO,
+            hide : ProjectConfig.get('HIDE_NAV_VIDEO'),
+            icon : 'video',
             id : 6,
-            root : true,
+            label : i18n.misc.NAV_VIDEO,
             module : 'video',
-            tab : 'video',
             order : 60,
-            icon : 'video'
+            root : true,
+            tab : 'video'
         }, {
-            label : i18n.misc.NAV_BACKUP_RESTORE,
+            count : -1,
+            hide : ProjectConfig.get('HIDE_NAV_BACKUP_RESTORE'),
+            icon : 'backup',
             id : 20,
-            root : true,
+            label : i18n.misc.NAV_BACKUP_RESTORE,
             module : 'backup-restore',
-            tab : 'backup-restore',
             order : 60,
-            count : -1,
+            root : true,
             syncing : false,
-            icon : 'backup'
+            tab : 'backup-restore'
         }, {
-            label : i18n.app.APP_WASH,
-            id : 19,
             count : -1,
-            root : true,
-            module : 'app-wash',
-            tab : 'app-wash',
-            order : 90,
+            hide : ProjectConfig.get('HIDE_APP_WASH') || !FunctionSwitch.ENABLE_APP_WASH,
             icon : 'wash',
-            hide : !FunctionSwitch.ENABLE_APP_WASH
-        }, {
-            label : i18n.misc.NAV_CONTACT_ALL,
-            id : 7,
-            root : false,
-            parent : 1,
-            module : 'contact',
-            tab : 'all',
-            order : 100
-        }, {
-            label : i18n.misc.NAV_CONTACT_HAS_PHONE,
-            id : 8,
-            root : false,
-            parent : 1,
-            module : 'contact',
-            tab : 'hasnumber',
-            order : 110
-        }, {
-            label : i18n.misc.NAV_CONTACT_STARRED,
-            id : 9,
-            root : false,
-            parent : 1,
-            module : 'contact',
-            tab : 'starred',
-            order : 120
-        }, {
-            label : i18n.misc.NAV_SMS_ALL,
-            id : 10,
-            root : false,
-            parent : 2,
-            module : 'message',
-            tab : 'all',
-            order : 130
-        }, {
-            label : i18n.misc.NAV_SMS_UNREAD,
-            id : 11,
-            root : false,
-            parent : 2,
-            module : 'message',
-            tab : 'unread',
-            order : 140
-        }, {
-            label : i18n.misc.NAV_APP_INSTALLED,
-            id : 12,
-            root : false,
-            parent : 3,
-            module : 'app',
-            tab : 'normal',
-            order : 150
-        }, {
-            label : i18n.misc.NAV_APP_SYS,
-            id : 13,
-            root : false,
-            parent : 3,
-            module : 'app',
-            tab : 'sys',
-            order : 160
-        }, {
-            label : i18n.misc.NAV_APP_UPDATABLE,
-            id : 14,
-            root : false,
-            parent : 3,
-            module : 'app',
-            tab : 'update',
-            hide : !FunctionSwitch.ENABLE_APP_UPGRADE,
-            order : 170
-        }, {
-            label : i18n.misc.NAV_PIC_PHONE_LIB,
-            id : 16,
-            root : false,
-            parent : 5,
-            module : 'photo',
-            tab : 'phone',
-            order : 180
-        }, {
-            label : i18n.misc.NAV_PIC_GALLERY,
-            id : 17,
-            root : false,
-            parent : 5,
-            module : 'photo',
-            tab : 'lib',
-            order : 190
-        }, {
-            label : i18n.misc.NAV_OPTIMIZE,
-            id : 18,
+            id : 19,
+            label : i18n.app.APP_WASH,
+            module : 'app-wash',
+            order : 90,
             root : true,
-            module : 'optimize',
-            tab : 'optimize',
+            tab : 'app-wash'
+        }, {
+            hide : ProjectConfig.get('HIDE_NAV_CONTACT_ALL'),
+            id : 7,
+            label : i18n.misc.NAV_CONTACT_ALL,
+            module : 'contact',
+            order : 100,
+            parent : 1,
+            root : false,
+            tab : 'all'
+        }, {
+            hide : ProjectConfig.get('HIDE_NAV_CONTACT_HAS_PHONE'),
+            id : 8,
+            label : i18n.misc.NAV_CONTACT_HAS_PHONE,
+            module : 'contact',
+            order : 110,
+            parent : 1,
+            root : false,
+            tab : 'hasnumber'
+        }, {
+            hide : ProjectConfig.get('HIDE_NAV_CONTACT_STARRED'),
+            id : 9,
+            label : i18n.misc.NAV_CONTACT_STARRED,
+            module : 'contact',
+            order : 120,
+            parent : 1,
+            root : false,
+            tab : 'starred'
+        }, {
+            hide : ProjectConfig.get('HIDE_NAV_SMS_ALL'),
+            id : 10,
+            label : i18n.misc.NAV_SMS_ALL,
+            module : 'message',
+            order : 130,
+            parent : 2,
+            root : false,
+            tab : 'all'
+        }, {
+            hide : ProjectConfig.get('HIDE_NAV_SMS_UNREAD'),
+            id : 11,
+            label : i18n.misc.NAV_SMS_UNREAD,
+            module : 'message',
+            order : 140,
+            parent : 2,
+            root : false,
+            tab : 'unread'
+        }, {
+            hide : ProjectConfig.get('HIDE_NAV_APP_INSTALLED'),
+            id : 12,
+            label : i18n.misc.NAV_APP_INSTALLED,
+            module : 'app',
+            order : 150,
+            parent : 3,
+            root : false,
+            tab : 'normal'
+        }, {
+            hide : ProjectConfig.get('HIDE_NAV_APP_SYS'),
+            id : 13,
+            label : i18n.misc.NAV_APP_SYS,
+            module : 'app',
+            order : 160,
+            parent : 3,
+            root : false,
+            tab : 'sys'
+        }, {
+            hide : ProjectConfig.get('HIDE_NAV_APP_UPDATABLE') || !FunctionSwitch.ENABLE_APP_UPGRADE,
+            id : 14,
+            label : i18n.misc.NAV_APP_UPDATABLE,
+            module : 'app',
+            order : 170,
+            parent : 3,
+            root : false,
+            tab : 'update'
+        }, {
+            hide : ProjectConfig.get('HIDE_NAV_PIC_PHONE_LIB'),
+            id : 16,
+            label : i18n.misc.NAV_PIC_PHONE_LIB,
+            module : 'photo',
+            order : 180,
+            parent : 5,
+            root : false,
+            tab : 'phone'
+        }, {
+            hide : ProjectConfig.get('HIDE_NAV_PIC_GALLERY'),
+            id : 17,
+            label : i18n.misc.NAV_PIC_GALLERY,
+            module : 'photo',
+            order : 190,
+            parent : 5,
+            root : false,
+            tab : 'lib'
+        }, {
             count : -1,
+            hide : ProjectConfig.get('HIDE_NAV_OPTIMIZE'),
+            icon : 'nav-optimize',
+            id : 18,
+            label : i18n.misc.NAV_OPTIMIZE,
+            module : 'optimize',
             order : 80,
-            icon : 'nav-optimize'
+            root : true,
+            tab : 'optimize'
         }];
 
         var MenuModel = Backbone.Model.extend({
