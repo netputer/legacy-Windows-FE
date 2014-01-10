@@ -183,8 +183,9 @@
     <div class="content-wrap text-secondary">
         <span class="content enable-select">
         <div class="receiver">{{! StringUtil.format(i18n.message.SEND_TO, it.contact_name) }}</div>
-        {{? it.id < 0 }}
-        [{{= i18n.misc.MMS }}] {{! it.subject || i18n.message.NONE_SUBJECT }}（{{= StringUtil.format(i18n.message.CONTAIN_MULTIMEDIA, it.mms_media_count) }}<span class="link button-open-on-device">{{= i18n.message.OPEN_ON_DEIVE }}</span>）<br />
+        {{? it.id < 0 }}[{{= i18n.misc.MMS }}] {{! it.subject || i18n.message.NONE_SUBJECT }}<br />
+        {{= StringUtil.format(i18n.message.CONTAIN_MULTIMEDIA, it.mms_media_count) }} <br />
+        <span class="link button-open-on-device">{{= i18n.message.OPEN_ON_DEIVE }}</span>
             <span class="mms-content{{ if(it.body.length > 140) { }} wc{{ } }}">{{= it.body }}</span>
             {{? it.body.length > 140 }}
             <span class="button-toggle link">{{= i18n.message.EXPEND }}</span>
