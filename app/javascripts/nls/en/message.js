@@ -51,7 +51,7 @@ define({
 
     NO_CONTACT_UNDER_THIS_ACCOUNT : 'Current account no contacts',
 
-    BATCH_SEND : 'Mass',
+    BATCH_SEND : 'Group',
     BATCH_SEND_TIP : '... And so on {1}.',
     NAMEPLATE_BATCH_SEND_TIP : '...and <span class="link list-switch">{1} others</span>',
     SEND_FAILED_TIP : '{1} failed to send',
@@ -77,7 +77,7 @@ define({
     ALERT_TIP_EXPORT_MMS : 'Export will not include MMS messages',
 
     SEND : 'Send &crarr;',
-    NEW_SMS : 'New Message',
+    NEW_SMS : 'New message',
     BATCH_CONVERSATION_TITLE : 'All messages from {1} selected',
     //SEND_WITH_SPEC_SIM : '使用 卡 {1} 发送',
     //SEND_WITH_SPEC_SIM_HAS_NAME : '使用{1}号发送',
