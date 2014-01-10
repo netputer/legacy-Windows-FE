@@ -149,7 +149,7 @@
         <h1 class="title">SnapPea Web</h1>
         <p class="desc">Your photos, messages, contacts and apps from your browser</p>
         <div class="btn-ctn hbox">
-            <a class="button-action" href="http://web.snappea.com/" target="_default">Try it now</a>
+            <a class="button-action" href="http://www.snappea.com/" target="_default">Try it now</a>
         </div>
     </div>
 </script>
