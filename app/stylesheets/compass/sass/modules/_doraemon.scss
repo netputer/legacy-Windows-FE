@@ -1,0 +1,176 @@
+ /********************************************************************************
+ * This is the CSS declaration of Doraemon
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ @import "skins/default/default";
+/********************************************************************************
+ * Menus
+ ********************************************************************************/
+.w-sidebar-menu.w-menu-doraemon {
+    .title {
+        font-size: 13px;
+        height: 40px;
+
+        @each $icon in dor-18, dor-223, dor-235, dor-258, dor-255 , dor-256, dor-254, dor-376, nav-optimize {
+            & .#{$icon} {
+                @include nav-sprite(#{$icon});
+            }
+        }
+
+        .button-management {
+            height: 16px;
+            margin-right: 10px;
+            opacity: .5;
+            width: 16px;
+
+            &:hover {
+                opacity: .7;
+            }
+
+            &:active {
+                opacity: .85;
+            }
+        }
+
+        &.highlight-anima {
+            background-color: #f1de93;
+            -webkit-animation: {
+                name: highlight;
+                duration: 2s;
+                iteration-count: 1;
+            }
+        }
+
+        .icon {
+            height: 30px;
+            margin: 0 10px 0 15px;
+            width: 30px;
+
+            .img {
+                border-radius: 3px;
+                height: 30px;
+                width: 30px;
+            }
+        }
+
+        &.gallery {
+            .icon {
+                @include nav-sprite(nav-gallery);
+            }
+        }
+    }
+}
+
+@-webkit-keyframes highlight {
+    0% {
+        background-color: transparent;
+    }
+    30% {
+        background-color: rgba(110, 184, 0, .40);
+    }
+    100% {
+        background-color: transparent
+    }
+}
+
+/********************************************************************************
+ * Doraemon Module main
+ ********************************************************************************/
+.w-doraemon-module-main {
+    .w-ui-toolbar {
+        .debug-wrap {
+            -webkit-box-align: center;
+
+            span {
+                font-size: 14px;
+            }
+        }
+
+        .flex-right {
+            -webkit-box-flex: 1;
+            -webkit-box-pack: end;
+        }
+    }
+}
+
+/********************************************************************************
+ * Extension management list and item
+ ********************************************************************************/
+.w-extension-list-ctn {
+    margin-top: 1px;
+    -webkit-box-flex: 1;
+
+    .w-smart-list-header {
+        .name {
+            margin-left: 45px;
+            margin-right: 5px;
+            -webkit-box-flex: 1;
+        }
+
+        .developer {
+            margin-right: 5px;
+            width: 200px;
+        }
+
+        .category {
+            margin-right: 5px;
+            width: 120px;
+        }
+
+        .fav {
+            width: 100px;
+        }
+    }
+}
+
+.w-extension-list-item {
+    padding: 4px 0;
+    -webkit-box-align: center;
+
+    .item-checker-wrap {
+        padding: 9px 10px;
+
+        .item-checker {
+            margin-top: -2px;
+        }
+    }
+
+    .icon {
+        height: 36px;
+        margin-right: 5px;
+        width: 36px;
+
+        img {
+            height: 36px;
+            width: 36px;
+        }
+    }
+
+    .name {
+        margin-right: 5px;
+        -webkit-box-flex: 1;
+    }
+
+    .developer {
+        margin-right: 5px;
+        width: 200px;
+    }
+
+    .category {
+        margin-right: 5px;
+        width: 120px;
+    }
+
+    .fav {
+        width: 100px;
+    }
+
+    .dev-mode {
+        width: 235px;
+
+        span {
+            margin-right: 10px;
+        }
+    }
+}

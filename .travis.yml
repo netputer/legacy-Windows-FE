@@ -1,0 +1,12 @@
+ language: node_js
+ node_js:
+   - "0.10"
+ before_script:
+   - npm install -g grunt-cli
+   - gem install compass
+   - npm install
+ notifications:
+   email:
+     - wangye.zhao@wandoujia.com
+     - lixiaopeng@wandoujia.com
+     - netputer@wandoujia.com

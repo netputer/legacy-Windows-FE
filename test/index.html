@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>QUnit Test Suite</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet/quint.css">
+    <script type="text/javascript" src="lib/qunit.js"></script>
+    <script type="text/javascript" src="lib/qunit-reporter-junit.js"></script>
+    <script type="text/javascript" src="../app/bower_components/requirejs/require.js"></script>
+    <script type="text/javascript" src="../app/javascripts/RequireConfig.js"></script>
+    <script type="text/javascript">
+
+        QUnit.config.reorder = false;
+
+        QUnit.jUnitReport = function(data) {
+            var console = window.console;
+            if (console) {
+                console.log(data.xml);
+            }
+        };
+
+        require.config({
+            baseUrl: "../app/javascripts"
+        });
+    </script>
+
+    <!-- setup below -->
+    <script type="text/javascript">
+    require(['utilities/QueryString'], function(QueryString) {
+        if (!QueryString.get('device_id') || !QueryString.get('device_name')) {
+            window.location.href = '?device_id=1-234-567-890&device_name=' + encodeURIComponent('猫猫');
+        }
+    });
+    </script>
+
+    <!-- mock below -->
+    <script type="text/javascript" src="mock-onering.js"></script>
+
+    <!-- test case below -->
+    <!--<script type="text/javascript" src="test-configuration.js"></script>
+    <script type="text/javascript" src="test-backendsocket.js"></script>-->
+    <!--<script type="text/javascript" src="test-io.js"></script>
+    <script type="text/javascript" src="test-environment.js"></script>
+    <script type="text/javascript" src="test-settings.js"></script>-->
+    <!--<script type="text/javascript" src="test-device.js"></script>-->
+    <!--<script type="text/javascript" src="test-uihelper.js"></script>
+    <script type="text/javascript" src="test-templatefactory.js"></script>
+    <script type="text/javascript" src="test-messageroutermixin.js"></script>-->
+
+    <!-- Utilities test case below -->
+    <script type="text/javascript" src="utilities/test-formatstring.js"></script>
+    <script type="text/javascript" src="utilities/test-validateurl.js"></script>
+    <script type="text/javascript" src="utilities/test-readablesize.js"></script>
+    <script type="text/javascript" src="utilities/test-formatdate.js"></script>
+    <script type="text/javascript" src="utilities/test-querystring.js"></script>
+    <script type="text/javascript" src="utilities/test-filterfunction.js"></script>
+    <script type="text/javascript" src="utilities/test-conditionalescape.js"></script>
+    <script type="text/javascript" src="utilities/test-shortenquantity.js"></script>
+
+    <!-- UI test case below -->
+    <script type="text/javascript" src="ui/test-smarlist.js"></script>
+
+    <!-- i18n test case below -->
+    <!-- <script type="text/javascript" src="test-i18n.js"></script>-->
+</head>
+<body>
+    <h1 id="qunit-header">Wandoujia Test Suite</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture"><!-- test markup --></div>
+</body>
+</html>

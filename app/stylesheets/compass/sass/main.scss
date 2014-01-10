@@ -1,0 +1,61 @@
+@charset "UTF-8";
+@import "sprite/*.png";
+@import "misc/*.png";
+@import "nav/*.png";
+@import "button/*.png";
+@import "wanxiaodou/*.png";
+@import "backuprestore/*.png";
+@import "ios/*.png";
+@import "snappea/*.png";
+
+/**
+ * Base declaration
+ */
+@import "reset";
+@import "icon";
+@import "layout";
+@import "typography";
+@import "form";
+@import "misc";
+@import "anima";
+@import "wanxiaodou";
+
+/**
+ * UI components
+ */
+@import "ui";
+@import "ui/toolbar";
+@import "ui/window";
+@import "ui/menu";
+@import "ui/smartlist";
+@import "ui/clipimage";
+
+/**
+ * Moduels
+ */
+@import "modules/menu";
+@import "modules/doraemon";
+@import "modules/browser";
+@import "modules/app";
+@import "modules/contact";
+@import "modules/message";
+@import "modules/taskmanager";
+@import "modules/music";
+@import "modules/video";
+@import "modules/media";
+@import "modules/photo";
+
+@import "modules/iTunes";
+@import "modules/welcome";
+@import "modules/sync";
+@import "modules/optimize";
+@import "modules/social";
+@import "modules/backuprestore";
+@import "modules/_new_backup";
+@import "modules/wash";
+
+/**
+ * Localization styles
+ */
+@import "locale-en"
+

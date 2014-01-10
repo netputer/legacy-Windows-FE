@@ -1,0 +1,220 @@
+/********************************************************************************
+ * This is the CSS declaration of Tencent Optimize Module
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "../skins/default/default";
+@import "tx/*.png";
+/********************************************************************************
+ * Optimize Module
+ ********************************************************************************/
+.w-optimize-module-main {
+    height: 100%;
+}
+
+/********************************************************************************
+ * Scan View
+ ********************************************************************************/
+.w-optimize-scan {
+    background-color: rgb(246, 251, 253);
+    -webkit-box-flex: 1;
+
+    .progress {
+        border: {
+            color: $borderColor;
+            style: solid;
+            bottom-width: 1px;
+        }
+        padding: 10px 50px;
+        -webkit-box-align: center;
+
+        .pre-scan,
+        .warn,
+        .scanning,
+        .finish {
+            height: 70px;
+            margin-right: 10px;
+            width: 70px;
+        }
+
+        .pre-scan {
+            @include tx-sprite(pre-scan);
+        }
+
+        .warn {
+            @include tx-sprite(warn);
+        }
+
+        .scanning {
+            background: {
+                image: url(../images/tx/scanning.gif);
+                repeat: no-repeat;
+                position: center center;
+            }
+        }
+
+        .finish {
+            @include tx-sprite(finish);
+        }
+
+        .title-ctn {
+            margin-right: 15px;
+            width: 430px;
+
+            .title {
+                font-size: 18px;
+                line-height: 2em;
+            }
+
+            progress {
+                margin-bottom: 5px;
+                width: 100%;
+            }
+
+            .progress-ctn {
+                background-color: #fff;
+                border: 1px $borderColor solid;
+                padding: 2px 0;
+                width: 100%;
+
+                .progress-inside {
+                    background-color: $standardColor;
+                    height: 4px;
+                    width: 0;
+                }
+            }
+
+            .tip {
+                .button-backward {
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        .action {
+            height: 70px;
+            padding-bottom: 15px;
+            -webkit-box-pack: end;
+        }
+    }
+
+    .monitor-ctn {
+        padding: 10px;
+        -webkit-box-flex: 1;
+
+        .monitor {
+            background: {
+                position: left bottom;
+                repeat: no-repeat;
+            }
+            -webkit-box-pack: center;
+            -webkit-box-flex: 1;
+
+            .button-ctn {
+                -webkit-box-align: center;
+                -webkit-box-pack: center;
+
+                .button-scan {
+                    @include tx-sprite(scan);
+                    border: none;
+                    box-shadow: none;
+                    display: block;
+                    height: 69px;
+                    margin: 0 auto;
+                    width: 219px;
+                }
+
+                .wifi-tip {
+                    margin-top: 15px;
+                }
+            }
+        }
+
+        .vendor {
+            -webkit-box-align: center;
+            -webkit-box-pack: end;
+
+            .logo {
+                @include tx-sprite(logo);
+                height: 45px;
+                margin-left: 5px;
+                width: 45px;
+            }
+        }
+    }
+
+    .w-optimize-scan-progress {
+        -webkit-box-align: center;
+        -webkit-box-flex: 1;
+
+        .button-optimize-all {
+            @include tx-sprite(optimize);
+            border: none;
+            box-shadow: none;
+            display: block;
+            height: 36px;
+            width: 97px;
+
+            &:enabled:hover {
+                @include tx-sprite(optimize);
+                background-color: transparent;
+                border: none;
+            }
+        }
+
+        .title-ctn {
+            .tip {
+                height: 18px;
+            }
+        }
+    }
+
+    .w-optimize-scan-monitor {
+        padding: 30px 50px;
+        -webkit-box-flex: 1;
+
+        .virus,
+        .cache,
+        .ram,
+        .upfate,
+        .backup {
+            display: none;
+            -webkit-box-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        li {
+            line-height: 30px;
+            -webkit-box-align: center;
+
+            .tip {
+                -webkit-box-flex: 1;
+            }
+
+            .link {
+                margin-right: 150px;
+            }
+        }
+    }
+
+    .icon {
+        height: 15px;
+        margin-right: 5px;
+        width: 15px;
+
+        &.icon-info {
+            @include tx-sprite(icon-info);
+        }
+
+        &.icon-warn {
+            @include tx-sprite(icon-warn);
+        }
+
+        &.icon-done {
+            @include tx-sprite(icon-done);
+        }
+    }
+}

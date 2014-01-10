@@ -1,0 +1,575 @@
+/********************************************************************************
+ * This is the CSS declaration of form elements
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "skins/default/default";
+/********************************************************************************
+ * Button
+ ********************************************************************************/
+input[type="submit"],
+button {
+    background-image: $secondaryBtnBgColor;
+    border: 1px $secondaryBtnBorderColor solid;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, .9);
+    height: 26px;
+    min-width: 60px;
+    padding: 3px 10px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+    vertical-align: middle;
+
+    &:enabled:hover:not(.active):not(:active),
+    &:enabled:focus {
+        background-image: $secondaryBtnHoverBgColor;
+        color: #000;
+    }
+
+    &:enabled:active,
+    &.active {
+        background-image: $secondaryBtnActiveBgColor;
+        box-shadow: none;
+        color: #000;
+    }
+
+    &:disabled {
+        opacity: $disabledOpacity;
+    }
+
+    &.primary {
+        background-image: $primaryBtnBgColor;
+        border-color: $primaryBtnBorderColor;
+        box-shadow: inset 0 1px 0 0 #72c261;
+        color: $primaryBtnTextColor;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+
+        &:enabled:hover:not(.active):not(:active),
+        &:enabled:focus {
+            background-image: $primaryBtnHoverBgColor;
+            box-shadow: inset 0 1px 0 0 #79d367;
+            color: $primaryBtnTextColor;
+        }
+
+        &:enabled:active,
+        &.active {
+            background-image: $primaryBtnActiveBgColor;
+            border-color: $primaryBtnActiveBorderColor;
+            color: $primaryBtnTextColor;
+        }
+    }
+
+    &.secondary {
+        background-image: $warnningBtnBgColor;
+        border-color: $warnningBtnBorderColor;
+        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .2);
+        color: $warnningBtnTextColor;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+
+        &:enabled:hover:not(.active):not(:active),
+        &:enabled:focus {
+            background-image: $warnningBtnHoverBgColor;
+            color: $warnningBtnTextColor;
+        }
+
+        &:enabled:active,
+        &.active {
+            background-image: $warnningBtnActiveBgColor;
+            color: $warnningBtnTextColor;
+        }
+    }
+
+    &.transparent {
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        color: rgba(255, 255, 255, .9);
+        // text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, .8), 0 1px 0 rgba(0, 0, 0, .5);
+
+        &:enabled:hover:not(.active):not(:active),
+        &:enabled:focus {
+            background: rgba(255, 255, 255, .1);
+            border-color: rgba(255, 255, 255, .2);
+            color: #fff;
+            // text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
+        }
+
+        &:enabled:active,
+        &.active {
+            background: rgba(255, 255, 255, .1);
+            color: rgba(255, 255, 255, .8);
+            // text-shadow: 0 1px 0 rgba(0, 0, 0, .8);
+        }
+
+        + button {
+            margin-left: 0;
+        }
+    }
+
+
+    + button,
+    + .w-ui-buttongroup {
+        margin-left: 4px
+    }
+
+    &.min {
+        height: 24px;
+        padding: 2px 10px;
+    }
+
+    &.max {
+        font-size: 14px;
+        height: 32px;
+        line-height: 18px;
+        padding: 6px 15px;
+    }
+
+    &.grand {
+        font-size: 14px;
+        height: 38px;
+        line-height: 18px;
+        padding: 9px 15px;
+        min-width: 80px;
+    }
+}
+
+/********************************************************************************
+ * Image Button
+ ********************************************************************************/
+button.w-icon-btn {
+    -webkit-transition: color .2s linear;
+
+    .icomoon {
+        color: #888;
+    }
+
+    .icon {
+        display: inline-block;
+        height: 16px;
+        margin: -2px 3px 0 0;
+        vertical-align: middle;
+        width: 16px;
+
+        @each $icon in return {
+            // @TODO: NEED DESIGN
+            &.#{$icon} {
+                @include button-sprite(#{$icon});
+            }
+        }
+    }
+
+    &.img {
+        padding-left: 6px;
+        padding-right: 6px;
+        min-width: 25px;
+
+        .icon {
+            margin-right: 0;
+            opacity: .8;
+        }
+
+        &:hover,
+        &:enabled:active,
+        &.active {
+            .icon {
+                opacity: 1;
+            }
+        }
+    }
+
+    &:disabled .icon {
+        pointer-events: none;
+    }
+};
+
+/********************************************************************************
+ * Menu Button
+ ********************************************************************************/
+.w-ui-button.w-ui-menubutton {
+    .label {
+        text-align: left;
+        -webkit-box-flex: 1;
+
+        + .arrow-ctn {
+            margin-left: 5px;
+        }
+    }
+
+    .arrow-ctn {
+        -webkit-box-align: center;
+
+        .arrow {
+            border: {
+                color: #000 transparent transparent transparent;
+                style: solid;
+                width: 4px 4px 0;
+            }
+            opacity: .7;
+        }
+    }
+
+    &:enabled:hover {
+        .arrow-ctn {
+            .arrow {
+                opacity: 1;
+            }
+        }
+    }
+
+    &:enabled:active,
+    &.active,
+    &.active:hover {
+        .arrow-ctn {
+            .arrow {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.primary,
+    &.secondary {
+        .arrow-ctn .arrow {
+            border-top-color: #fff;
+        }
+
+        &:enabled:hover {
+            .arrow-ctn {
+                .arrow {
+                    border-top-color: #fff;
+                }
+            }
+        }
+
+        &:enabled:active,
+        &.active,
+        &.active:hover {
+            .arrow-ctn {
+                .arrow {
+                    border-top-color: #fff;
+                }
+            }
+        }
+    }
+
+    &.primary,
+    &.secondary {
+        .arrow-ctn {
+            border-color: #fff;
+        }
+    }
+
+    &.toggle {
+        min-width: 16px;
+        padding-left: 5px;
+        padding-right: 5px;
+
+        .label {
+            display: none;
+
+            + .arrow-ctn {
+                margin-left: 0px;
+            }
+        }
+    }
+
+    &.transparent {
+        .arrow-ctn .arrow {
+            border-top-color: rgba(255, 255, 255, .9);
+        }
+
+        &:enabled:hover {
+            .arrow-ctn {
+                .arrow {
+                    border-top-color: #fff;
+                }
+            }
+        }
+
+        &:enabled:active,
+        &.active,
+        &.active:hover {
+            .arrow-ctn {
+                .arrow {
+                    border-top-color: rgba(255, 255, 255, .8);
+                }
+            }
+        }
+    }
+}
+
+/********************************************************************************
+ * Button Group
+ ********************************************************************************/
+.w-ui-buttongroup {
+    display: inline-block;
+
+    button {
+        border-radius: 0;
+        margin-left: 0;
+        min-width: 50px;
+    }
+
+    button:first-child {
+        border: {
+            bottom-left-radius: 3px;
+            right-width: 0;
+            top-left-radius: 3px;
+        }
+
+        + button {
+            border-left-width: 1px;
+        }
+    }
+
+    button:last-child {
+        border: {
+            bottom-right-radius: 3px;
+            left-width: 0;
+            top-right-radius: 3px;
+        }
+    }
+
+    + button:not(.trans),
+    + .w-ui-buttongroup {
+        margin-left: 4px;
+    }
+}
+
+/********************************************************************************
+ * Text Input and Textarea
+ ********************************************************************************/
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    border: 1px $componentBorderColor solid;
+    box-shadow: 0 1px 0 #fff, 0 1px 3px rgba(0,0,0,.05) inset;
+    height: 30px;
+    resize: none;
+    -webkit-transition: border linear .2s, box-shadow linear .2s, height .2s linear, min-height .2s linear;
+
+    &:hover:not(:disabled) {
+        border-color: rgba($standardColor, .5);
+    }
+
+    &:focus,
+    &:focus:hover {
+        border-color: $standardColor;
+        box-shadow: 0 1px 0 #fff, 0 0 3px rgba(109, 184, 0, .6), 0 1px 3px rgba(0,0,0,.05) inset;
+    }
+
+    &:disabled {
+        background-color: $bgColor;
+        border-color: $componentBorderColor;
+        cursor: not-allowed;
+    }
+}
+
+input:invalid,
+input:focus:invalid,
+textarea:invalid,
+textarea:focus:invalid,
+input.invalid {
+    border-color: $textHighlight;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 0 5px;
+}
+
+textarea {
+    padding: 2px 5px;
+}
+
+/********************************************************************************
+ * Checkbox and Radio
+ ********************************************************************************/
+input[type="checkbox"] {
+    background-color: #fff;
+    border: 1px $componentBorderColor solid;
+    border-radius: 2px;
+    box-sizing: border-box;
+    height: 14px;
+    margin-top: -3px;
+    width: 14px;
+    -webkit-appearance: none;
+
+    &:enabled:hover {
+        border-color: $standardColor;
+    }
+
+    &:enabled:checked,
+    &:enabled:checked:hover {
+        @include sprite-sprite(check);
+        background-color: #fff;
+        border-color: $standardColor;
+    }
+
+    &:disabled {
+        opacity: $disabledOpacity;
+    }
+
+    &.dark {
+        @include sprite-sprite(check-dark);
+
+        &:enabled:checked,
+        &:enabled:checked:hover {
+            @include sprite-sprite(check-dark-checked);
+        }
+    }
+}
+
+
+input[type="radio"] {
+    @include sprite-sprite(radio-normal);
+    border: none;
+    height: 16px;
+    margin-top: -2px;
+    width: 16px;
+    vertical-align: middle;
+    -webkit-appearance: none;
+
+    &:enabled:hover {
+        @include sprite-sprite(radio-hover);
+    }
+
+    &:enabled:checked,
+    &:enabled:checked:hover {
+        @include sprite-sprite(radio-checked);
+    }
+
+    &:disabled {
+        opacity: $disabledOpacity;
+    }
+}
+
+/********************************************************************************
+ * Progress Bar
+ ********************************************************************************/
+progress {
+    display: block;
+    height: 32px;
+    -webkit-appearance: none;
+
+    &::-webkit-progress-bar {
+        background-color: #6a6a6a;
+        box-shadow: inset 1px 0 5px 0 rgba(0, 0, 0, .2);
+        display: block;
+        height: 32px;
+    }
+
+    &::-webkit-progress-value {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#7fc124), to(#60ac1e));
+        display: block;
+        height: 32px;
+        min-width: 10px;
+    }
+
+    &.running {
+        &::-webkit-progress-value {
+            background: url('../images/progress_bg_18X6.png');
+            background-color: $standardColor;
+            -webkit-animation: {
+                duration: .5s;
+                iteration-count: infinite;
+                name: runningProgress;
+                timing-function: linear;
+            }
+        }
+    }
+
+    &.min,
+    &.tiny {
+        background-image: none;
+        border: 1px #bbb solid;
+        padding: 1px;
+
+        &::-webkit-progress-bar {
+            background-color: #fff;
+            background-image: none;
+            border-radius: 6px;
+            box-shadow: none;
+        }
+
+        &::-webkit-progress-value {
+            border-radius: 6px;
+        }
+    }
+
+    &.min {
+        border-radius: 6px;
+        height: 14px;
+
+        &::-webkit-progress-bar {
+            height: 10px;
+        }
+
+        &::-webkit-progress-value {
+            height: 10px;
+        }
+    }
+
+    &.tiny {
+        border-radius: 6px;
+        height: 10px;
+
+        &::-webkit-progress-bar {
+            height: 6px;
+        }
+
+        &::-webkit-progress-value {
+            height: 6px;
+        }
+    }
+
+    &.disabled {
+        &::-webkit-progress-value {
+            background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #f1f1f1), color-stop(0.05,#f9f9f9), color-stop(1, #ccc));
+        }
+    }
+}
+
+@-webkit-keyframes runningProgress {
+    0% {
+        background-position-x: 0;
+    }
+    50% {
+        background-position-x: 9px;
+    }
+    100% {
+        background-position-x: 18px;
+    }
+}
+
+.w-ui-switch-button {
+    background-color: #b4b4b4;
+    border: 1px #9e9e9e solid;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1) inset;
+    display: block;
+    height: 14px;
+    padding: 1px;
+    width: 36px;
+    -webkit-transition: all .2s;
+
+    .switcher {
+        background-image: $headerGradient;
+        border-radius: 3px;
+        display: inline-block;
+        height: 14px;
+        width: 18px;
+        -webkit-transition: margin .2s;
+    }
+
+    &.on {
+        background-color: #87c746;
+        border-color: #4f9513;
+
+        .switcher {
+            margin-left: 18px;
+        }
+    }
+}

@@ -1,0 +1,1142 @@
+/********************************************************************************
+ * This is the CSS declaration of Message Module
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "../skins/default/default";
+/********************************************************************************
+ * Message Module main
+ ********************************************************************************/
+.w-message-module-main {
+    .w-message-ctn {
+        margin-top: 1px;
+        position: relative;
+        -webkit-box-flex: 1;
+    }
+}
+
+/********************************************************************************
+ * Conversation List
+ ********************************************************************************/
+.w-message-conversation-list {
+    border-right: 1px $borderColor solid;
+    height: 100%;
+    left: 0;
+    margin-right: 377px;
+    position: absolute;
+    right: 0;
+
+    .button-return {
+        color: #333;
+        display: none;
+        position: absolute;
+        text-shadow: none;
+        top: -2px;
+
+        &:enabled:hover:not(.active):not(:active),
+        &:enabled:focus {
+            color: #333;
+            text-shadow: none;
+        }
+
+        &:hover {
+            .return{
+                @include button-sprite(return-hover);
+            }
+        }
+
+        &:enabled:active,
+        &.active {
+            color: #333;
+            text-shadow: none;
+        }
+
+        &:active {
+            .return {
+                @include button-sprite(return-active);
+            }
+        }
+    }
+
+    .count-tip {
+        background-color: $bgColor;
+        border-bottom: 1px $borderColor solid;
+        display: block;
+        line-height: 22px;
+        text-align: center;
+        text-shadow: 0 1px 0 #fff;
+    }
+}
+
+.w-message-conversation-list-item {
+    padding: 4px 0;
+    position: relative;
+
+    .item-checker-wrap {
+        padding: 5px 10px;
+
+        .item-checker {
+            margin-top: 5px;
+        }
+    }
+
+    .avatar {
+        height: 36px;
+        margin-right: 15px;
+        position: relative;
+        width: 36px;
+
+        img {
+            height: 36px;
+            width: 36px;
+        }
+    }
+
+    .content {
+        margin-right: 12px;
+        -webkit-box-flex: 1;
+
+        .nameplate {
+            margin-right: 10px;
+            -webkit-box-align: center;
+            -webkit-box-flex: 1;
+
+            .name {
+                display: inline-block;
+                font-size: 14px;
+                max-width: 70%;
+            }
+        }
+
+        .count {
+            @include badge;
+
+            &.unread {
+                background-color: $standardColor;
+                color: #fff;
+                text-shadow: 0 1px 0 rgba(0, 0, 0, .3);
+            }
+        }
+
+        .icon {
+            display: inline-block;
+            height: 16px;
+            margin-top: -2px;
+            vertical-align: middle;
+            width: 16px;
+
+            + .icon {
+                margin-left: 3px;
+            }
+
+            &.faild {
+                // @TODO: NEED DESIGN
+                @include sprite-sprite(error);
+            }
+
+            &.sending {
+                // @TODO: NEED DESIGN
+                @include sprite-sprite(sending);
+            }
+        }
+
+        .count.unread + .icon {
+            margin-left: 3px;
+        }
+
+        .summary {
+            margin-right: 10px;
+            -webkit-box-flex: 1;
+        }
+    }
+
+    .button-close {
+        @include button-close;
+        display: none;
+        margin-top: -8px;
+        position: absolute;
+        right: 8px;
+        top: 50%;
+    }
+}
+
+.w-message-panel {
+    background-image: url(../images/texture-grey-bg-80X80.png);
+    bottom: 0;
+    overflow-y: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 377px;
+
+    .empty-info {
+        margin-top: 35%;
+        text-align: center;
+
+        .bg {
+            @include sprite-sprite(message-bg);
+            display: inline-block;
+            height: 110px;
+            width: 139px;
+        }
+
+        .tip {
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: center;
+            text-shadow: 0 1px 0 #fff;
+        }
+    }
+}
+
+/********************************************************************************
+ * Batch Conversations Panel
+ ********************************************************************************/
+.w-message-batch-conversations {
+    bottom: 0;
+    left: 0;
+    padding: 15px;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .title {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .button-deselect {
+        margin-left: 12px;
+    }
+
+    .w-message-batch-conversations-list-ctn {
+        background: #fff;
+        border: 1px $borderColor solid;
+        -webkit-box-flex: 1;
+    }
+
+    .w-message-conversation-list-item  {
+        .input,
+        .date {
+            display: none;
+        }
+
+        .avatar {
+            margin-left: 5px;
+        }
+
+        &:hover {
+            .button-close {
+                display: block;
+            }
+        }
+
+        .content {
+            .notifier {
+                margin-right: 15px
+            }
+        }
+    }
+}
+
+/********************************************************************************
+ * Threads List
+ ********************************************************************************/
+.w-message-threads-ctn {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .nameplate-top {
+        background-color: $bgColor;
+        border-bottom: 1px $componentBorderColor solid;
+        box-shadow: 0 0 3px rgba(0, 0, 0, .1), 0 -1px 0 #fff inset;
+        height: 36px;
+        padding: 5px 10px;
+        -webkit-box-align: center;
+
+        img {
+            height: 36px;
+            width: 36px;
+        }
+
+        .contact-info {
+            padding: 0 5px;
+            text-shadow: 0 1px 0 #fff;
+            -webkit-box-align: center;
+            -webkit-box-flex: 1;
+
+            .name {
+                max-width: 50%;
+            }
+
+            .number {
+                max-width: 50%;
+            }
+        }
+
+        .contact-info.batch {
+            -webkit-box-flex: 1;
+        }
+
+        .failed-count {
+            margin: 0 5px;
+        }
+    }
+
+    .w-message-threads-list-ctn {
+        overflow-y: auto;
+        -webkit-box-flex: 1;
+    }
+
+    .empty-tip {
+        left: 20px;
+        position: absolute;
+        top: 10px;
+    }
+
+    .receiver {
+        display: none;
+    }
+
+    &.batch {
+        .receiver {
+            display: block;
+        }
+    }
+}
+
+.w-sms-sender-header {
+    position: relative;
+}
+
+/********************************************************************************
+ * Sender
+ ********************************************************************************/
+.w-message-sender-window {
+    .header {
+        margin-bottom: 10px;
+
+        label {
+            line-height: 25px;
+            margin-right: 5px;
+            text-align: right;
+            width: 60px;
+        }
+
+        .address {
+            border: 1px $componentBorderColor solid;
+            cursor: text;
+            margin-right: 10px;
+            max-height: 63px;
+            min-height: 21px;
+            overflow-y: auto;
+            padding: 1px;
+            -webkit-box-flex: 1;
+            -webkit-transition: border linear .2s, box-shadow linear .2s;
+
+            &.focus,
+            &.focus:hover {
+                border-color: $standardColor;
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px $standardColor;
+            }
+
+            &:hover {
+                border-color: rgba($standardColor, .5);
+            }
+        }
+
+        .input-contact {
+            border: none;
+            box-shadow: none;
+            height: 18px;
+            line-height: 18px;
+            width: 80px;
+        }
+
+
+    }
+
+    .body {
+        label {
+            line-height: 25px;
+            margin-right: 5px;
+            text-align: right;
+            width: 60px;
+        }
+
+        .input-content {
+            height: 100px;
+            width: 373px;
+        }
+
+    }
+
+    .monitor {
+        margin-left: 65px;
+    }
+
+    .help {
+        margin-left: 65px;
+        cursor: default;
+
+        .batch-send-tip,
+        .multi-sim-tip {
+            position: relative;
+
+            .link {
+                vertical-align: middle;
+            }
+
+            .tip {
+                // @TODO: NEED DESIGN
+                @include sprite-sprite(help);
+                cursor: help;
+                display: inline-block;
+                height: 15px;
+                margin-left: 5px;
+                vertical-align: middle;
+                width: 15px;
+            }
+        }
+
+        .batch-send-tip {
+            margin-right: 20px;
+        }
+    }
+}
+
+/********************************************************************************
+ * Quick sender
+ ********************************************************************************/
+.w-message-quick-sender {
+    background-color: $bgColor;
+    border-top: 1px $componentBorderColor solid;
+    box-shadow: 0 1px 0 #fff inset, 0 0 3px rgba(0, 0, 0, .1);
+    padding: 10px;
+
+    .selector-ctn {
+        margin-bottom: 5px;
+        -webkit-box-align: center;
+    }
+
+    .sender-ctn {
+        min-height: 26px;
+        -webkit-box-align: end;
+
+        .input-content {
+            display: block;
+            height: 20px;
+            line-height: 19px;
+            margin-right: 10px;
+            min-height: 20px;
+            -webkit-box-flex: 1;
+        }
+
+        .count-ctn {
+            min-width: 78px;
+
+            .button-send {
+                width: 100%;
+            }
+
+            .count-down-container {
+                display: block;
+                margin-bottom: 3px;
+                width: 100%;
+
+
+                .count-down {
+                    display: block;
+                    float: left;
+                }
+
+                .duoqu {
+                    @include sprite-sprite(duoqu);
+                    display: none;
+                    float: right;
+                    height: 21px;
+                    width: 21px;
+                }
+            }
+
+        }
+    }
+
+    &.dual-sim {
+        .sender-ctn {
+            .count-ctn {
+                .button-send {
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+/********************************************************************************
+ * SMS Notification
+ ********************************************************************************/
+.w-notification-body {
+    height: auto;
+}
+
+.w-sms-notification {
+    background-color: #f9f9f9;
+    padding: 5px 15px 5px;
+}
+
+.w-sms-notification-avatar {
+    margin-right: 10px;
+    width: 32px;
+
+    img {
+        height: 32px;
+        width: 32px;
+    }
+}
+
+.w-sms-notification-content {
+    max-height: 250px;
+    overflow-y: auto;
+    word-break: break-all;
+    -webkit-box-flex: 1;
+}
+
+.w-sms-notification-nameplate {
+    display: block;
+}
+
+.w-sms-notification-body {
+    display: block;
+
+    date {
+        display: inline-block;
+    }
+}
+
+.w-sms-notification-sender {
+    textarea {
+        display: block;
+        height: 36px;
+        margin: 10px 0 10px;
+        -webkit-box-flex: 1;
+    }
+
+    .hbox {
+        margin-bottom: 10px;
+    }
+
+    .w-ui-buttongroup {
+        .hbox {
+            margin-bottom: 0;
+        }
+    }
+
+    .navigate {
+        text-align: right;
+        -webkit-box-flex: 1;
+
+        * {
+            line-height: 25px;
+            margin-left: 5px;
+            display: none;
+        }
+    }
+}
+
+.w-sms-notification-sender-monitor {
+    display: block;
+    float: right;
+    line-height: 25px;
+    margin-right: 5px;
+}
+
+/********************************************************************************
+ * Threads Item
+ ********************************************************************************/
+.w-message-thread {
+    .date-ctn {
+        margin: 30px auto;
+        width: 75%;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+
+        date {
+            text-shadow: 0 1px 0 #fff;
+            margin: 0 10px;
+        }
+
+        hr {
+            box-shadow: 0 1px 0 #fff;
+            height: 0;
+            -webkit-box-flex: 1;
+        }
+    }
+
+    .button-previous,
+    .button-next {
+        padding: 9px 0;
+        text-align: center;
+        text-shadow: 0 1px 0 #fff;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+/********************************************************************************
+ * Message Item
+ ********************************************************************************/
+.w-message-item-ctn li {
+    padding: 0 20px 23px;
+
+    .content-wrap {
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fbfbfb), color-stop(1, #f8f8f8));
+        border: $componentBorderColor 1px solid;
+        border-radius: 5px;
+        box-shadow: 0 1px 0 #fff inset, 0 0 5px rgba(0, 0, 0, .1);
+        box-sizing: border-box;
+        display: inline-block;
+        max-width: 210px;
+        min-width: 58px;
+        padding: 7px 13px;
+        position: relative;
+        text-shadow: 0 1px 0 #fff;
+
+        .content {
+            white-space: pre-wrap;
+            word-break: break-word;
+            word-wrap: break-word;
+
+            em {
+                background-color: #f1ea00;
+                border-radius: 4px;
+                box-shadow: rgba(0, 0, 0, .5) 3px 3px 4px;
+                color: #000;
+                padding: 2px 2px 2px 3px;
+                margin: -2px -2px -2px -3px;
+                opacity: .8;
+                -webkit-animation:{
+                    name: magnifier;
+                    duration: 0.2s;
+                    iteration-count: 1;
+                    timing-function: linear;
+                }
+            }
+        }
+
+        .button-toggle {
+            display: inline-block;
+        }
+
+        .arrow {
+            border-bottom: 1px $componentBorderColor solid;
+            bottom: -1px;
+            height: 9px;
+            left: -10px;
+            overflow: hidden;
+            position: absolute;
+            width: 15px;
+
+            .side {
+                background-color: #f8f8f8;
+                border-left: 1px $componentBorderColor solid;
+                height: 20px;
+                left: 0;
+                position: absolute;
+                top: 3px;
+                width: 20px;
+                -webkit-transform: rotate(45deg);
+            }
+        }
+
+        .actions {
+            bottom: -20px;
+            display: none;
+            left: 0;
+            padding-top: 5px;
+            position: absolute;
+            right: 0;
+
+            button {
+                border: none;
+                box-shadow: none;
+                display: inline-block;
+                height: 16px;
+                min-width: 16px;
+                padding: 3px 3px;
+                width: 16px;
+
+                @each $icon in delete, reply, copy {
+                    // @TODO: NEED DESIGN
+                    &.button-#{$icon} {
+                        @include button-sprite(#{$icon});
+
+                        &:enabled:hover {
+                            @include button-sprite(#{$icon}-hover);
+                        }
+
+                        &:enabled:active {
+                            @include button-sprite(#{$icon}-active);
+                        }
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            .actions {
+                display: inline-block;
+            }
+        }
+    }
+
+    .info {
+        display: inline-block;
+        vertical-align: bottom;
+        margin: 0 0 0 10px;
+        text-shadow: 0 1px 0 #fff;
+
+        .icon {
+            display: inline-block;
+            height: 16px;
+            margin: -2px 0 0;
+            vertical-align: middle;
+            width: 16px;
+
+            &.faild {
+                // @TODO: NEED DESIGN
+                @include sprite-sprite(error);
+                margin-right: 3px;
+            }
+
+            &.sending {
+                // @TODO: NEED DESIGN
+                @include sprite-sprite(sending);
+            }
+        }
+    }
+
+    &.from-me {
+        direction: rtl;
+
+        .content-wrap {
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d6f5b6), color-stop(1, #97e647));
+            border-color: #84c93f;
+            direction: ltr;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, .6);
+
+            .actions {
+                direction: rtl;
+
+                button + button {
+                    margin: 0 4px 0 0;
+                }
+            }
+        }
+
+        .info {
+            direction: ltr;
+            margin: 0 10px 0 0;
+        }
+
+        .arrow {
+            border-bottom: 1px #84c93f solid;
+            left: auto;
+            right: -10px;
+
+            .side {
+                background-color: #97e647;
+                border-left: none;
+                border-top: 1px $componentBorderColor solid;
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+}
+
+@-webkit-keyframes magnifier {
+    0% {
+        padding: 7px 7px 7px 8px;
+        margin: -7px -7px -7px -8px;
+    }
+    100% {
+        padding: 2px 2px 2px 3px;
+        margin: -2px -2px -2px -3px;
+    }
+}
+
+/********************************************************************************
+ * Contact selector
+ ********************************************************************************/
+.w-message-contact-selector {
+    .filter-ctn {
+        margin-right: 5px;
+        -webkit-box-flex: 1;
+
+        button {
+            display: block;
+            -webkit-box-flex: 1;
+        }
+    }
+
+    .suggestion-ctn input[type="text"] {
+        height: 24px;
+        width: 268px;
+    }
+}
+
+/********************************************************************************
+ * Contact list
+ ********************************************************************************/
+.w-message-contact-selector-body {
+    .searchbox {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .selector-ctrl {
+        background-image: $headerGradient;
+        border: 1px $componentBorderColor solid;
+        border-bottom: none;
+        margin-top: 10px;
+        padding-right: 10px;
+        -webkit-box-align: center;
+
+        .selector-ctn {
+            -webkit-box-flex: 1;
+
+            button {
+                &:not(.primary) {
+                    background: transparent;
+                    border-color: transparent;
+                    border-radius: 0;
+                    box-shadow: none;
+                    color: $textSecondary;
+
+                    &:enabled:hover:not(.active):not(:active),
+                    &:enabled:focus {
+                        background: transparent;
+                        color: $textPrimary;
+                    }
+
+                    &:enabled:active,
+                    &.active {
+                        background: transparent;
+                        box-shadow: none;
+                        color: $textActive;
+                    }
+                }
+            }
+
+            .w-ui-button.w-ui-menubutton {
+                max-width: 105px;
+                padding-left: 5px;
+                padding-right: 5px;
+
+                .arrow-ctn {
+                    .arrow {
+                        border-color: #999 transparent transparent transparent;
+                    }
+                    opacity: 1;
+                }
+
+                &:enabled:hover {
+                    .arrow-ctn {
+                        .arrow {
+                            border-top-color: $standardColor;
+                        }
+                    }
+                }
+
+                &:enabled:active,
+                &.active,
+                &.active:hover {
+                    .arrow-ctn {
+                        .arrow {
+                            border-top-color: $textActive;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .selector-footer {
+        .button-clear-all {
+            float: right;
+        }
+    }
+
+    .list-ctn {
+        border: 1px $componentBorderColor solid;
+        height: 150px;
+    }
+
+    .selector-monitor {
+        border: 1px $componentBorderColor solid;
+        height: 75px;
+        margin: 10px 0;
+        overflow-y: auto;
+        padding: 3px;
+    }
+}
+
+.w-message-contact-selector-list-item {
+    height: 24px;
+    padding: 3px;
+    -webkit-box-align: center;
+
+    .avatar {
+        height: 24px;
+        width: 24px;
+    }
+
+    .input {
+        display: none;
+        padding: 0 5px;
+    }
+
+    .title {
+        margin: 0 5px 0 10px;
+        -webkit-box-flex: 1;
+    }
+
+    .phone-number {
+        margin-right: 5px;
+        width: 120px;
+    }
+
+    .state {
+        margin-right: 10px;
+        width: 45px;
+        -webkit-box-align: center;
+
+        .tip,
+        .check {
+            display: none;
+        }
+
+        .check {
+            @include sprite-sprite(check);
+            height: 12px;
+            width: 12px;
+        }
+    }
+
+    &:not(.highlight):hover {
+        .state {
+            .tip {
+                display: block;
+            }
+        }
+    }
+
+    &.highlight {
+        .state {
+            .check {
+                display: block;
+            }
+        }
+    }
+}
+
+.w-message-contact-selector-monitor-item {
+    background-color: $bgColor;
+    border: 1px $componentBorderColor solid;
+    border-radius: 2px;
+    cursor: default;
+    display: inline-block;
+    line-height: 18px;
+    margin: 1px 3px 1px 0;
+    padding: 0 20px 0 10px;
+    position: relative;
+    text-shadow: 0 1px 0 #fff;
+
+    .button-delete {
+        @include button-close;
+        display: none;
+        margin-top: -8px;
+        position: absolute;
+        right: 2px;
+        top: 50%;
+    }
+
+    &:hover .button-delete {
+        display: block;
+    }
+}
+
+/********************************************************************************
+ * Search suggestion
+ ********************************************************************************/
+.w-message-suggestion-ctn {
+    background: #fff;
+    border: 1px $standardColor solid;
+    box-shadow: $componentShadow;
+    position: absolute;
+
+    li {
+        height: 24px;
+        padding: 3px;
+        -webkit-box-align: center;
+        -webkit-transition: background-color .2s linear;
+
+        .avatar {
+            height: 24px;
+            margin-right: 10px;
+            width: 24px;
+        }
+
+        .title {
+            margin-right: 5px;
+            -webkit-box-flex: 1;
+        }
+
+        .number {
+            width: 125px;
+        }
+
+        em {
+            color: $textHighlight;
+        }
+
+        &.highlight {
+            background-color: $listItemHoverColor;
+        }
+    }
+}
+
+/********************************************************************************
+ * Import
+ ********************************************************************************/
+.w-import-autobackup-body-ctn {
+    .header {
+        border: 1px $borderColor solid;
+        border-bottom-width: 0;
+        background-color: $bgColor;
+        height: 35px;
+        font-weight: bold;
+        margin-top: 10px;
+        -webkit-box-align: center;
+
+        .backup-record {
+            -webkit-box-flex: 1;
+            margin-left: 80px;
+        }
+
+        .message-number {
+            width: 80px;
+        }
+    }
+
+    .list-ctn {
+        border: 1px $borderColor solid;
+        position: relative;
+
+        .list {
+            height: 142px;
+            overflow-y: auto;
+
+            li {
+                border: 1px $borderColor solid;
+                border-top-width: 0;
+
+                label {
+                    height: 35px;
+                    -webkit-box-align: center;
+
+                    input[type="radio"] {
+                        margin: {
+                            left: 10px;
+                            right: 10px;
+                        }
+                    }
+
+                    .date {
+                        margin-right: 5px;
+                        width: 75px;
+                    }
+
+                    .title {
+                        -webkit-box-flex: 1;
+                    }
+
+                    .count {
+                        width: 60px;
+                    }
+                }
+            }
+        }
+
+        .loading {
+            position: absolute;
+            left: 45%;
+            top: 10px;
+        }
+    }
+}
+
+.w-message-import-selectfile-body-ctn {
+    .file {
+      height: 25px;
+      width: 320px;
+    }
+
+    .title {
+      margin-bottom: 5px;
+    }
+
+    .browser{
+      float: right;
+    }
+
+    .invalid {
+        margin-top: 10px;
+        font-weight: bolder;
+    }
+}
+
+.w-message-import-progress-body {
+    min-height: 56px;
+
+    .progress-desc {
+        -webkit-box-flex: 1;
+    }
+
+    .progress-ctn {
+        margin: 5px auto;
+
+        progress {
+            -webkit-box-flex: 1;
+        }
+    }
+}
+
+/********************************************************************************
+ * Export
+ ********************************************************************************/
+.w-message-export-select-body-ctn {
+    .title {
+        margin-bottom: 5px;
+    }
+}
+
+.w-message-export-progress-body {
+    .progress-desc {
+        -webkit-box-flex: 1;
+    }
+
+    .progress-ctn {
+        margin-top: 5px;
+
+        progress {
+            -webkit-box-flex: 1;
+        }
+    }
+}

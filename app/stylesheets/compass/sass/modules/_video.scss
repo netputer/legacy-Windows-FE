@@ -1,0 +1,163 @@
+/********************************************************************************
+ * This is the CSS declaration of Video Module
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "../skins/default/default";
+
+.w-video-module-main {
+    background-image: url(../images/texture-grey-bg-80X80.png);
+
+    .w-media-gallery {
+        top: 36px;
+    }
+}
+
+.w-video-item {
+    @extend .w-media-item;
+
+    .w-video-item-mask {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+
+        .w-video-item-button {
+            @include sprite-sprite(video_play);
+            height: sprite-sprite-height(video_play);
+            width: sprite-sprite-width(video_play);
+        }
+
+        &:hover {
+            .w-video-item-button {
+                @include sprite-sprite(video_play_hover);
+            }
+        }
+    }
+
+    &.error{
+        .error {
+            display: block;
+            top: 50%;
+        }
+
+        .w-video-item-button {
+            display: none;
+        }
+    }
+}
+
+.w-video-loading {
+    background-color: rgba(0, 0, 0, .8);
+    border-radius: 3px;
+    color: #FFF;
+    display: none;
+    left: 50%;
+    padding: 5px 10px;
+    position: absolute;
+    top: 50%;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+
+    .w-video-loading-icon {
+        height: 50px;
+        position: relative;
+        width: 50px;
+
+        .w-ui-loading {
+            display: block;
+            left: 0;
+            margin: 0;
+            top: 0;
+        }
+    }
+
+    .w-video-loading-text {
+        -webkit-box-flex: 1;
+    }
+
+    .w-video-loading-percent {
+        text-align: center;
+        width: 50px;
+    }
+}
+
+.w-video-list-loading {
+    .w-ui-loading {
+        display: block;
+    }
+}
+
+/********************************************************************************
+ * Video List and Item
+ ********************************************************************************/
+.w-video-list-header {
+    .check-select-all-wrap {
+        padding: 0 15px;
+    }
+
+    .title {
+        margin-right: 5px;
+        -webkit-box-flex: 1;
+    }
+
+    .format {
+        width: 100px;
+    }
+
+    .size {
+        width: 100px;
+    }
+}
+
+.w-video-list-item {
+    padding: 5px 0;
+    -webkit-box-align: center;
+
+    .item-checker-wrap {
+        padding: 0 15px;
+    }
+
+    .title {
+        margin-right: 5px;
+        -webkit-box-flex: 1;
+    }
+
+    .format {
+        width: 100px;
+    }
+
+    .size {
+        width: 100px;
+    }
+}
+
+/********************************************************************************
+ * Import local videos window
+ ********************************************************************************/
+.w-video-local-import {
+    -webkit-box-flex: 1;
+
+    .btn-ctn {
+        -webkit-box-align: center;
+
+        .tip {
+            margin-left: 10px;
+            -webkit-box-flex: 1;
+        }
+    }
+
+    .support-tip {
+        margin: 5px 0;
+    }
+
+    .w-video-local-import-list {
+        border: 1px $borderColor solid;
+        border-radius: 3px;
+        -webkit-box-flex: 1;
+    }
+}
