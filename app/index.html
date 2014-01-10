@@ -10,21 +10,16 @@
     <body class="w-main">
 
         <script type="text/javascript">
-            localStorage.setItem(
-                'projectConfig',
-                JSON.stringify(
-                    //@@PROJECT_CONFIG
-                )
-            );
+            localStorage.setItem('projectConfig', JSON.stringify(/*@@PROJECT_CONFIG@@*/));
         </script>
 
         <!-- build:js javascripts/SnapPeaLoader.js -->
         <script type="text/javascript">
-        if (window.OneRingRequest === undefined) {
-            window.externalCall = function () {};
-            window.OneRingRequest = function () {};
-            window.OneRingStreaming = function () {};
-        }
+            if (window.OneRingRequest === undefined) {
+                window.externalCall = function () {};
+                window.OneRingRequest = function () {};
+                window.OneRingStreaming = function () {};
+            }
         </script>
         <script type="text/javascript" data-main="javascripts/SnapPeaLoader" src="bower_components/requirejs/require.js"></script>
         <script type="text/javascript">

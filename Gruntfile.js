@@ -48,7 +48,7 @@ module.exports = function (grunt) {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
-                    from : '//@@PROJECT_CONFIG',
+                    from : '/*@@PROJECT_CONFIG@@*/',
                     to : function (matchedWord) {
                         return grunt.file.read(paths.config + '/WDJ.json');
                     }
@@ -58,7 +58,7 @@ module.exports = function (grunt) {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
-                    from : '//@@PROJECT_FLAG',
+                    from : '/*@@PROJECT_CONFIG@@*/',
                     to : function (matchedWord) {
                         return grunt.file.read(paths.config + '/SUNING.json');
                     }
@@ -68,7 +68,7 @@ module.exports = function (grunt) {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
-                    from : '//@@PROJECT_FLAG',
+                    from : '/*@@PROJECT_CONFIG@@*/',
                     to : function (matchedWord) {
                         return grunt.file.read(paths.config + '/TIANYIN.json');
                     }
