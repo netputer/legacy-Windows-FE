@@ -35,7 +35,7 @@
         BackupRestoreService.CONSTS = {
             ViewHeight : 360,
             ViewWidth : 520,
-            ViewWidthTip : 380,
+            ViewWidthTip : 388,
 
             DefaultSnapshot : {
                 Base : 24 * 3600 * 1000,
