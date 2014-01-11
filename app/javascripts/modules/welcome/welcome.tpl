@@ -231,7 +231,7 @@
 <script type="text/x-ui-template" id="clock">
     {{? FunctionSwitch.IS_CHINESE_VERSION }}
     {{? it.isLogin }}
-    <span class="account button-user wc">{{= it.greeting }}，{{= it.userName }}</span>
+    <span class="account button-user wc">{{= StringUtil.format(i18n.welcome.ACCOUNT_GREETING_FORMAT, it.greeting, it.userName) }}</span>
     {{??}}
     <span class="account button-register">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
     {{?}}

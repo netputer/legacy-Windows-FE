@@ -9,6 +9,7 @@
         'Log',
         'ui/TemplateFactory',
         'utilities/FormatDate',
+        'utilities/StringUtil',
         'Internationalization'
     ], function (
         Backbone,
@@ -19,6 +20,7 @@
         log,
         TemplateFactory,
         formatDate,
+        StringUtil,
         i18n
     ) {
         console.log('ClockView - File loaded. ');
@@ -43,11 +45,6 @@
             render : function () {
                 var hour = formatDate('HH'),
                     greeting = i18n.welcome.ACCOUNT_GREETING;
-
-                greeting = i18n.welcome.ACCOUNT_MORNING;
-                greeting = i18n.welcome.ACCOUNT_NOON;
-                greeting = i18n.welcome.ACCOUNT_AFTERNOON;
-                greeting = i18n.welcome.ACCOUNT_EVENING;
 
                 if (hour >= 6) {
                     if (hour <= 10) {
