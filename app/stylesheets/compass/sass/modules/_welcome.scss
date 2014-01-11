@@ -869,6 +869,7 @@
 
 .w-welcome-clock {
     color: #fff;
+    position: relative;
     // text-shadow: rgba(0, 0, 0, .3) 0 5px 8px, rgba(0, 0, 0, 0.3) 0 1px 2px;
     text-shadow: rgba(0, 0, 0, .8) 0 3px 8px,rgba(0, 0, 0, .4) 0 1px 2px;
     margin-bottom: 110px;
@@ -880,20 +881,17 @@
     }
 
     .account {
+        border: 1px solid transparent;
+        border-radius: 3px;
+        color: rgba(255, 255, 255, .9);
         font-size: 18px;
+        padding: 10px;
+        position: absolute;
+        text-shadow: rgba(0, 0, 0, .8) 0 3px 8px, rgba(0, 0, 0, .4) 0 1px 2px;
+        top: -40px;
+        -webkit-transition: color .2s linear;
 
-        .button-user,
-        .button-register {
-            border: 1px solid transparent;
-            border-radius: 3px;
-            color: rgba(255, 255, 255, .9);
-            display: inline-block;
-            padding: 10px;
-            text-shadow: rgba(0, 0, 0, .8) 0 3px 8px, rgba(0, 0, 0, .4) 0 1px 2px;
-            -webkit-transition: color .2s linear;
-        }
-
-        .button-register {
+        &.button-register {
             &:hover {
                 color: #fff;
                 background-color: rgba(255, 255, 255, .1);
@@ -901,6 +899,7 @@
             }
         }
     }
+
 
     .clock {
         pointer-events: none;
