@@ -108,8 +108,11 @@ define({
     SEARCH_TIP : '{1} messages containing「{2}」',
     UNREAD_DES : '{1} unread messages',
 
-    //Not in Snappea
-    NOT_SUPPORT_DELETE_4_4 : '豌豆荚暂时不支持在 Android 4.4 上删除短信',
-    NOT_SUPPORT_MARK_AS_READ_4_4 : '豌豆荚暂时不支持在 Android 4.4 上将短信标记已读',
-    NOT_SUPPORT_IMPORT_4_4 : '豌豆荚暂时不支持在 Android 4.4 上导入短信'
+    APPLY_DEFAULT_4_4 : 'You\'re using Android 4.4. To import text messages, set SnapPea as the "Default SMS App" in your phone\'s settings. Afterwards, return to the original settings.',
+    UPDATA_USB_PROXY_4_4 : 'You\'re using Android 4.4. To import text messages, you need to update to the latest version of SnapPea.',
+    RECOVER_DEAFULT_4_4 : 'To ensure that you can send text messages, please switch back to your original "Default SMS App."',
+    DELET_TIP_4_4 : 'To delete text messages, set SnapPea as the "Default SMS App" in your phone\'s settings.',
+    MARK_AS_READ_TIP_4_4 : 'To mark as read, set SnapPea as the "Default SMS App" in your phone\'s settings.',
+
+    OPEN_ON_DEIVE_4_4 : 'Please view it on your phone'
 });
