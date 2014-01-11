@@ -63,7 +63,6 @@
             className : 'w-welcome-ctn',
             initialize : function () {
                 var scrollHandler = function (evt) {
-                    return;
                     window.requestAnimationFrame(function () {
                         var target = evt.target;
                         this.moveComponents(target.scrollTop);
