@@ -875,6 +875,10 @@
     -webkit-animation: fade-in-time 1.5s;
     -webkit-transform: translate3d(0, 0, 0);
 
+    &.logged-in {
+        pointer-events: none;
+    }
+
     .account {
         font-size: 18px;
 

@@ -65,7 +65,7 @@
                     isLogin : Account.get('isLogin'),
                     greeting : greeting,
                     userName : Account.get('userName')
-                }));
+                })).toggleClass('logged-in', Account.get('isLogin'));
 
                 this.renderContent();
 
