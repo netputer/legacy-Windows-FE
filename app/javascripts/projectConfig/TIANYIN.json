@@ -1,3 +1,18 @@
 {
-    'projectFlag' : 'TIANYIN'
+    "PROJECT_FLAG" : "TIANYIN",
+
+    "HIDE_NAV_CONTACT" : true,
+    "HIDE_NAV_SMS" : true,
+    "HIDE_NAV_APP" : true,
+    "HIDE_NAV_MUSIC" : true,
+    "HIDE_NAV_PIC" : true,
+    "HIDE_NAV_VIDEO" : true,
+    "HIDE_NAV_BACKUP_RESTORE" : true,
+    "HIDE_APP_WASH" : true,
+    "HIDE_NAV_OPTIMIZE" : true,
+
+    "DISABLE_BACKUP_RESTORE" : true,
+    "DISABLE_USER_GUIDE" : true,
+    "DISABLE_WELCOME_FEED" : true,
+    "DISABLE_TASKMANAGER_ACTION" : true
 }

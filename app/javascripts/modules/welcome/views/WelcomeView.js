@@ -7,6 +7,7 @@
         'jquery',
         'DB',
         'ui/TemplateFactory',
+        'ProjectConfig',
         'FunctionSwitch',
         'IOBackendDevice',
         'Configuration',
@@ -30,6 +31,7 @@
         $,
         DB,
         TemplateFactory,
+        ProjectConfig,
         FunctionSwitch,
         IO,
         CONFIG,
@@ -61,10 +63,12 @@
             className : 'w-welcome-ctn',
             initialize : function () {
                 var scrollHandler = function (evt) {
+                    return;
                     window.requestAnimationFrame(function () {
                         var target = evt.target;
                         this.moveComponents(target.scrollTop);
-                        if (target.scrollHeight - (target.scrollTop + target.offsetHeight) < 400) {
+                        if (!ProjectConfig.get('DISABLE_WELCOME_FEED') &&
+                                (target.scrollHeight - (target.scrollTop + target.offsetHeight) < 400)) {
                             feedListView.loadNextPage();
                         }
                     }.bind(this));
@@ -170,7 +174,7 @@
                 setTimeout(function () {
                     var $top = this.$('.top').append(deviceView.render().$el)
                                 .append(clockView.render().$el);
-                    this.loading = true;
+                    this.loading = !ProjectConfig.get('DISABLE_WELCOME_FEED');
 
                     deviceView.$el.one('webkitAnimationEnd', function () {
                         if (FunctionSwitch.ENABLE_USER_GUIDE &&
@@ -179,23 +183,25 @@
                             $top.after(guideView.render().$el);
                         }
 
-                        this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
+                        if (!ProjectConfig.get('DISABLE_WELCOME_FEED')) {
+                            this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
 
-                        var feedsCollection = FeedsCollection.getInstance();
-                        var noticeArray = [
-                            i18n.welcome.NO_MORE_1,
-                            i18n.welcome.NO_MORE_2,
-                            i18n.welcome.NO_MORE_3
-                        ];
+                            var feedsCollection = FeedsCollection.getInstance();
+                            var noticeArray = [
+                                i18n.welcome.NO_MORE_1,
+                                i18n.welcome.NO_MORE_2,
+                                i18n.welcome.NO_MORE_3
+                            ];
 
-                        this.loading = feedsCollection.loading;
-                        this.listenTo(feedsCollection, 'update refresh', function () {
                             this.loading = feedsCollection.loading;
-                            if (feedsCollection.finish) {
-                                var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
-                                this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
-                            }
-                        });
+                            this.listenTo(feedsCollection, 'update refresh', function () {
+                                this.loading = feedsCollection.loading;
+                                if (feedsCollection.finish) {
+                                    var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
+                                    this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
+                                }
+                            });
+                        }
 
                         this.$el.append(toolbarView.render().$el)
                             .append(capacityBarView.render().$el)

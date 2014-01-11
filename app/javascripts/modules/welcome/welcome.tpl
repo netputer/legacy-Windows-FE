@@ -274,12 +274,14 @@
             <span class="icomoon icomoon-screenshot"></span>{{= i18n.welcome.SCREEN_SHOT_TEXT }}
         </button>
     </span>
+    {{? !ProjectConfig.get('DISABLE_BACKUP_RESTORE') }}
     <button class="w-icon-btn button-backup transparent min">
         <span class="icomoon icomoon-backup"></span>{{= i18n.welcome.TOOL_BACKUP }}
     </button>
     <button class="w-icon-btn button-restore transparent min">
         <span class="icomoon icomoon-restore"></span>{{= i18n.welcome.TOOL_RECOVERY }}
     </button>
+    {{?}}
     <button class="w-icon-btn button-open-sd transparent min" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
         <span class="icomoon icomoon-sd"></span>{{= i18n.misc.MANAGE_SD_CARD }}
     </button>

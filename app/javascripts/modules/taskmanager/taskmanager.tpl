@@ -14,6 +14,7 @@
 
 <script type="text/x-ui-template" id="toolbar">
     <input type="checkbox" class="check-select-all" />
+    {{? !ProjectConfig.get('DISABLE_TASKMANAGER_ACTION') }}
     <button class="w-icon-btn button-pause min">
         <span class="icomoon icomoon-pause"></span>{{= i18n.misc.PAUSE }}
     </button>
@@ -27,6 +28,7 @@
     <button class="w-icon-btn button-open-folder min">
         <span class="icomoon icomoon-folder"></span>{{= i18n.taskManager.OPEN_DOWNLOAD_FOLDER }}
     </button>
+    {{?}}
     <div class="button-close icomoon icomoon-no"></div>
 </script>
 
@@ -366,6 +368,7 @@
 </script>
 
 <script type="text/x-ui-template" id="task-action">
+    {{? !ProjectConfig.get('DISABLE_TASKMANAGER_ACTION') }}
     {{
         switch (it.type) {
             case CONFIG.enums.TASK_TYPE_DOWNLOAD :
@@ -527,6 +530,7 @@
                 }
         }
     }}
+    {{?}}
 </script>
 
 <script type="text/x-ui-template" id="monitor-item">

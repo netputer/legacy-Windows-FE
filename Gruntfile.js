@@ -41,6 +41,9 @@ module.exports = function (grunt) {
             },
             options : {
                 spawn : true
+            },
+            projectConfig : {
+                files : ['<%= path.config %>/*.json']
             }
         },
         replace : {
@@ -48,7 +51,7 @@ module.exports = function (grunt) {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
-                    from : '//@@PROJECT_CONFIG',
+                    from : '/*@@PROJECT_CONFIG@@*/',
                     to : function (matchedWord) {
                         return grunt.file.read(paths.config + '/WDJ.json');
                     }
@@ -58,7 +61,7 @@ module.exports = function (grunt) {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
-                    from : '//@@PROJECT_FLAG',
+                    from : '/*@@PROJECT_CONFIG@@*/',
                     to : function (matchedWord) {
                         return grunt.file.read(paths.config + '/SUNING.json');
                     }
@@ -68,7 +71,7 @@ module.exports = function (grunt) {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
                 replacements : [{
-                    from : '//@@PROJECT_FLAG',
+                    from : '/*@@PROJECT_CONFIG@@*/',
                     to : function (matchedWord) {
                         return grunt.file.read(paths.config + '/TIANYIN.json');
                     }
@@ -301,14 +304,37 @@ module.exports = function (grunt) {
         grunt.task.run('build');
     });
 
-    grunt.event.on('watch', function(action, filePath, target) {
+    var runSubTask = function (command) {
+        var exec = require('child_process').exec;
 
-        if (target === 'src') {
+        exec(command, function (error, stdout, stderr) {
+            if (stdout) {
+                console.log('stdout: ' + stdout);
+            }
 
-            var targetPath = filePath.replace(paths.app, paths.tmp);
+            if (stderr) {
+                console.log('stderr: ' + stderr);
+            }
+
+            if (error) {
+                console.log('exec error: ' + error);
+            }
+        });
+    };
+
+    grunt.event.on('watch', function (action, filePath, target) {
+        switch (target) {
+        case 'projectConfig':
+            grunt.file.copy(paths.app + '/index.html', paths.tmp + '/index.html');
+            runSubTask('grunt replace:' + project_flag);
+            break;
+
+        case 'src':
             if (grunt.file.isDir(filePath)) {
                 return;
             }
+
+            var targetPath = filePath.replace(paths.app, paths.tmp);
 
             switch (action) {
             case 'added':
@@ -317,22 +343,17 @@ module.exports = function (grunt) {
                 grunt.file.copy(filePath, targetPath);
 
                 if (baseName === 'index.html') {
-                    var exec = require('child_process').exec;
-                    exec('grunt replace:' + project_flag, function (error, stdout, stderr) {
-                        stdout && console.log('stdout: ' + stdout);
-                        stderr && console.log('stderr: ' + stderr);
-                        if (error !== null) {
-                          console.log('exec error: ' + error);
-                        }
-                    });
-                    return;
+                    runSubTask('grunt replace:' + project_flag);
                 }
 
                 break;
+
             case 'deleted':
                 grunt.file.delete(targetPath);
                 break;
             }
+
+            break;
         }
     });
 };
