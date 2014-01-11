@@ -116,5 +116,7 @@ define({
     UPDATA_USB_PROXY_4_4 : 'You\'re using Android 4.4. To import text messages, you need to update to the latest version of SnapPea.',
     RECOVER_DEAFULT_4_4 : 'To ensure that you can send text messages, please switch back to your original "Default SMS App."',
     DELET_TIP_4_4 : 'To delete text messages, set SnapPea as the "Default SMS App" in your phone\'s settings.',
-    MARK_AS_READ_TIP_4_4 : 'To mark as read, set SnapPea as the "Default SMS App" in your phone\'s settings.'
+    MARK_AS_READ_TIP_4_4 : 'To mark as read, set SnapPea as the "Default SMS App" in your phone\'s settings.',
+
+    OPEN_ON_DEIVE_4_4 : 'Please view it on your phone'
 });
