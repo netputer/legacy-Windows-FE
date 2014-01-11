@@ -230,13 +230,11 @@
 
 <script type="text/x-ui-template" id="clock">
     {{? FunctionSwitch.IS_CHINESE_VERSION }}
-    <div class="account wc">
-        {{? it.isLogin }}
-            <span class="button-user">{{= it.greeting }}，{{= it.userName }}</span>
-        {{??}}
-            <span class="button-register">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
-        {{?}}
-    </div>
+    {{? it.isLogin }}
+    <span class="account button-user wc">{{= StringUtil.format(i18n.welcome.ACCOUNT_GREETING_FORMAT, it.greeting, it.userName) }}</span>
+    {{??}}
+    <span class="account button-register">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
+    {{?}}
     {{?}}
     <div class="clock hbox">
         <div class="time">{{= it.time }}</div>

@@ -9,6 +9,7 @@
         'Log',
         'ui/TemplateFactory',
         'utilities/FormatDate',
+        'utilities/StringUtil',
         'Internationalization'
     ], function (
         Backbone,
@@ -19,6 +20,7 @@
         log,
         TemplateFactory,
         formatDate,
+        StringUtil,
         i18n
     ) {
         console.log('ClockView - File loaded. ');
@@ -44,11 +46,6 @@
                 var hour = formatDate('HH'),
                     greeting = i18n.welcome.ACCOUNT_GREETING;
 
-                greeting = i18n.welcome.ACCOUNT_MORNING;
-                greeting = i18n.welcome.ACCOUNT_NOON;
-                greeting = i18n.welcome.ACCOUNT_AFTERNOON;
-                greeting = i18n.welcome.ACCOUNT_EVENING;
-
                 if (hour >= 6) {
                     if (hour <= 10) {
                         greeting = i18n.welcome.ACCOUNT_MORNING;
@@ -64,8 +61,8 @@
                 this.$el.html(this.template({
                     isLogin : Account.get('isLogin'),
                     greeting : greeting,
-                    userName : Account.get('userName')
-                }));
+                    userName : Account.get('userName').length > 8 ? Account.get('userName').substr(0, 7) + '…' : Account.get('userName')
+                })).toggleClass('logged-in', Account.get('isLogin'));
 
                 this.renderContent();
 
