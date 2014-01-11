@@ -188,7 +188,7 @@
         {{? Device.get('SDKVersion') < CONFIG.enums.ANDROID_4_4 }}
         <span class="link button-open-on-device">{{= i18n.message.OPEN_ON_DEIVE }}</span>
         {{??}}
-        <span class="text-thirdly">{{= i18n.message.OPEN_ON_DEIVE_4_4 }}<span>
+        <span class="text-thirdly">{{= i18n.message.OPEN_ON_DEIVE_4_4 }}</span>
         {{?}}
             <span class="mms-content{{ if(it.body.length > 140) { }} wc{{ } }}">{{= it.body }}</span>
             {{? it.body.length > 140 }}
