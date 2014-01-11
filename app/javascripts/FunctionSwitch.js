@@ -4,6 +4,7 @@
     define([
         'backbone',
         'underscore',
+        'ProjectConfig',
         'Configuration',
         'Environment',
         'utilities/QueryString',
@@ -11,6 +12,7 @@
     ], function (
         Backbone,
         _,
+        ProjectConfig,
         CONFIG,
         Environment,
         QueryString,
@@ -189,8 +191,9 @@
             },
             ENABLE_USER_GUIDE : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return !ProjectConfig.get('DISABLE_USER_GUIDE') &&
+                                (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
+                                Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN);
                 }
             }
         });

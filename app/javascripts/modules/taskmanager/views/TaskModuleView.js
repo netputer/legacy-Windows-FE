@@ -9,6 +9,7 @@
         'ui/AlertWindow',
         'Internationalization',
         'Configuration',
+        'ProjectConfig',
         'Log',
         'IOBackendDevice',
         'task/views/TaskModuleToolbarView',
@@ -24,6 +25,7 @@
         AlertWindow,
         i18n,
         CONFIG,
+        ProjectConfig,
         log,
         IO,
         TaskModuleToolbarView,
@@ -156,7 +158,7 @@
 
                 this.$('.ctn').append(taskListView.render().$el);
 
-                this.$('.ctn').append(TaskModuleCapacityView.getInstance().render().$el);
+                // this.$('.ctn').append(TaskModuleCapacityView.getInstance().render().$el);
 
                 this.rendered = true;
 
