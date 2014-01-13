@@ -12,7 +12,7 @@
         'Log',
         'Internationalization',
         'ui/Notification',
-        'backuprestore/BackupRestoreService',
+        'new_backuprestore/BackupRestoreService',
         'welcome/WelcomeService'
     ], function (
         $,

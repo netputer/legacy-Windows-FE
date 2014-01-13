@@ -147,37 +147,39 @@ module.exports = function (grunt) {
             }
         },
         requirejs : {
-            options : {
-                almond : true,
-                appDir : '<%= path.tmp %>/javascripts',
-                dir :　'<%= path.dist %>/javascripts',
-                optimize : 'uglify',
-                baseUrl : './',
-                mainConfigFile : '<%= path.tmp %>/javascripts/RequireConfig.js',
-                uglify : {
-                    toplevel : true,
-                    ascii_only : false,
-                    beautify : false
-                },
-                preserveLicenseComments : true,
-                useStrict : false,
-                wrap : true,
-                modules : [{
-                    name : 'RequireConfig',
-                    include : ['jquery', 'underscore', 'backbone', 'doT', 'text', 'i18n']
-                }, {
-                    name : 'SnapPea',
-                    include : ['SnapPea'],
-                    exclude : ['RequireConfig']
-                }, {
-                    name : 'photo/PhotoModule',
-                    include : ['photo/PhotoModule'],
-                    exclude : ['RequireConfig']
-                }, {
-                    name : 'welcome/guide/views/GuideView',
-                    include : ['welcome/guide/views/GuideView'],
-                    exclude : ['RequireConfig']
-                }]
+            source : {
+                options : {
+                    almond : true,
+                    appDir : '<%= path.tmp %>/javascripts',
+                    dir :　'<%= path.dist %>/javascripts',
+                    optimize : 'uglify',
+                    baseUrl : './',
+                    mainConfigFile : '<%= path.tmp %>/javascripts/RequireConfig.js',
+                    uglify : {
+                        toplevel : true,
+                        ascii_only : false,
+                        beautify : false
+                    },
+                    preserveLicenseComments : true,
+                    useStrict : false,
+                    wrap : true,
+                    modules : [{
+                        name : 'RequireConfig',
+                        include : ['jquery', 'underscore', 'backbone', 'doT', 'text', 'i18n']
+                    }, {
+                        name : 'SnapPea',
+                        include : ['SnapPea'],
+                        exclude : ['RequireConfig']
+                    }, {
+                        name : 'photo/PhotoModule',
+                        include : ['photo/PhotoModule'],
+                        exclude : ['RequireConfig']
+                    }, {
+                        name : 'welcome/guide/views/GuideView',
+                        include : ['welcome/guide/views/GuideView'],
+                        exclude : ['RequireConfig']
+                    }]
+                }
             }
         },
         useminPrepare : {
@@ -260,7 +262,7 @@ module.exports = function (grunt) {
             'replace:' + project_flag,
             'createScssConfig',
             'compass:dist',
-            'requirejs',
+            'requirejs:source',
             'useminPrepare',
             'imagemin',
             'copy:dist',

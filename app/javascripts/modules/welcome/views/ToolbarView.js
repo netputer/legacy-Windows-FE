@@ -15,14 +15,11 @@
         'FunctionSwitch',
         'ui/MenuButton',
         'ui/TemplateFactory',
-        //'ui/AlertWindow',
         'ui/PopupPanel',
         'ui/PopupTip',
         'ui/Panel',
         'ui/ToastBox',
         'utilities/StringUtil',
-        //'backuprestore/BackupController',
-        //'backuprestore/RestoreController',
         'welcome/views/DeviceView',
         'welcome/WelcomeService',
         'task/TaskService',
@@ -42,21 +39,16 @@
         FunctionSwitch,
         MenuButton,
         TemplateFactory,
-        //AlertWindow,
         PopupPanel,
         PopupTip,
         Panel,
         ToastBox,
         StringUtil,
-        //BackupController,
-        //RestoreController,
         DeviceView,
         WelcomeService,
         TaskService,
         TaskModel
     ) {
-
-        //var alert = window.alert;
 
         var destination = Settings.get('screenShot-destination') !== undefined ? Settings.get('screenShot-destination') : CONFIG.enums.SCREEN_SHOT_DESTINATION_FILE;
         var wrapWithShell = Settings.get('screenShot-wrapWithShell') !== undefined ? Settings.get('screenShot-wrapWithShell') : 1;
@@ -309,12 +301,6 @@
                 });
             },
             clickButtonBackup : function () {
-                /*if (!FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE && !Device.get('isUSB')) {
-                    alert(i18n.backup_restore.TIP_IN_WIFI);
-                    return;
-                }
-
-                BackupController.start();*/
 
                 Backbone.trigger('switchModule', {
                     module : 'backup-restore'
@@ -326,12 +312,6 @@
                 });
             },
             clickButtonRestore : function () {
-                /*if (!FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE && !Device.get('isUSB')) {
-                    alert(i18n.backup_restore.TIP_IN_WIFI);
-                    return;
-                }
-
-                RestoreController.start();*/
 
                 Backbone.trigger('switchModule', {
                     module : 'backup-restore'

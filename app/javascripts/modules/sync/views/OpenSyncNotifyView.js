@@ -11,7 +11,7 @@
         'ui/Panel',
         'ui/TemplateFactory',
         'welcome/WelcomeService',
-        'backuprestore/BackupRestoreService'
+        'new_backuprestore/BackupRestoreService'
     ], function (
         Backbone,
         _,

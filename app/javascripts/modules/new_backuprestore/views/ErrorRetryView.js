@@ -30,7 +30,7 @@
         console.log('ErrorRetryView - File loaded. ');
 
         var ErrorRetryBodyView = Backbone.View.extend({
-            template : doT.template(TemplateFactory.get('backup', 'error-retry')),
+            template : doT.template(TemplateFactory.get('new_backuprestore', 'error-retry')),
             className : 'w-backup-error-retry',
             initialize : function () {
                 ErrorRetryBodyView.__super__.initialize.apply(this, arguments);

@@ -80,16 +80,6 @@
         }
     }
 
-    .w-restore-app-tip {
-        .image-ctn {
-            @include misc-sprite(restore-app-tip-en);
-        }
-
-        .btn-next {
-            margin-top: 50px;
-        }
-    }
-
     .w-message-sender-window {
         .help {
             display: none;

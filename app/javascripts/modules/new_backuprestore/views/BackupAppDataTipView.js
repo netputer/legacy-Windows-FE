@@ -24,7 +24,7 @@
         console.log('BackupAppDataTipView - File loaded. ');
 
         var BackupAppDataTipBodyView = Backbone.View.extend({
-            template : doT.template(TemplateFactory.get('backup', 'backup-app-data-tip-view')),
+            template : doT.template(TemplateFactory.get('new_backuprestore', 'backup-app-data-tip-view')),
             className : 'w-backup-app-data-tip',
             render : function () {
                 this.$el.html(this.template({}));

@@ -20,13 +20,8 @@
         'text!doraemon/doraemon.tpl',
         'text!music/music.tpl',
         'text!video/video.tpl',
-
-        'text!backuprestore/backup.tpl',
-        'text!backuprestore/restore.tpl',
-
         'text!app/wash/wash.tpl',
         'text!guide/guide.tpl',
-
         'text!new_backuprestore/backuprestore.tpl'
     ], function (
         $,
@@ -46,13 +41,8 @@
         DoraemonTplStr,
         MusicTplStr,
         VideoTplStr,
-
-        BackupTplStr,
-        RestoreTplStr,
-
         WashTplStr,
         GuideTplStr,
-
         BackupRestoreTplStr
     ) {
 
@@ -72,11 +62,6 @@
             doraemon : $(StringUtil.compressHTML(DoraemonTplStr)),
             music : $(StringUtil.compressHTML(MusicTplStr)),
             video : $(StringUtil.compressHTML(VideoTplStr)),
-
-            //TODO:
-            backup : $(StringUtil.compressHTML(BackupTplStr)),
-            restore : $(StringUtil.compressHTML(RestoreTplStr)),
-
             wash : $(StringUtil.compressHTML(WashTplStr)),
             guide : $(StringUtil.compressHTML(GuideTplStr)),
             new_backuprestore : $(StringUtil.compressHTML(BackupRestoreTplStr))
