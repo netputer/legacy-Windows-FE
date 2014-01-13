@@ -13,7 +13,6 @@
         'i18n!nls/message',
         'i18n!nls/optimize',
         'i18n!nls/sync',
-        'i18n!nls/backup_restore',
         'i18n!nls/new_backuprestore'
     ], function (
         ui,
@@ -28,7 +27,6 @@
         message,
         optimize,
         sync,
-        backup_restore,
         new_backuprestore
     ) {
         console.log('Internationalization - File loaded.');
@@ -46,7 +44,6 @@
             message : message,
             optimize : optimize,
             sync : sync,
-            backup_restore : backup_restore,
             new_backuprestore : new_backuprestore
         };
 

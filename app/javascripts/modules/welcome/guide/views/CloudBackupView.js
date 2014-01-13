@@ -14,7 +14,7 @@
         'ui/TemplateFactory',
         'utilities/ValidateEmail',
         'guide/views/CardView',
-        'backuprestore/BackupRestoreService'
+        'new_backuprestore/BackupRestoreService'
     ], function (
         $,
         Backbone,

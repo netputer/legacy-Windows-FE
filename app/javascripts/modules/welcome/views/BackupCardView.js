@@ -12,7 +12,6 @@
         'ui/TemplateFactory',
         'ui/AlertWindow',
         'welcome/views/FeedCardView',
-        'backuprestore/BackupController',
         'sync/SyncService'
     ], function (
         Backbone,
@@ -26,7 +25,6 @@
         TemplateFactory,
         AlertWindow,
         FeedCardView,
-        BackupController,
         SyncService
     ) {
         var alert = window.alert;
@@ -59,7 +57,10 @@
                     return;
                 }
 
-                BackupController.start();
+                Backbone.trigger('switchModule', {
+                    module : 'backup-restore'
+                });
+
                 this.remove();
                 this.hide();
 

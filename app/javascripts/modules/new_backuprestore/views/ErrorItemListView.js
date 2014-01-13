@@ -32,7 +32,7 @@
         console.log('ErrorItemListView - File loaded. ');
 
         var ErrorItemListBodyView = Backbone.View.extend({
-            template : doT.template(TemplateFactory.get('backup', 'error-item-list')),
+            template : doT.template(TemplateFactory.get('new_backuprestore', 'error-item-list')),
             className : 'w-backup-error-item-list',
             initialize : function () {
                 var itemList = [];
@@ -108,7 +108,7 @@
         });
 
         var ErrorItemTipBodyView = Backbone.View.extend({
-            template : doT.template(TemplateFactory.get('backup', 'error-item-tip')),
+            template : doT.template(TemplateFactory.get('new_backuprestore', 'error-item-tip')),
             className : 'w-backup-error-item-tip',
             initialize : function () {
                 ErrorItemTipBodyView.__super__.initialize.apply(this, arguments);

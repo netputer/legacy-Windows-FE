@@ -16,7 +16,6 @@
         'Environment',
         'main/views/NavView',
         'task/views/TaskMonitorView',
-        'backuprestore/BackupController',
         'main/views/FastUSBNotificationView',
         'main/collections/PIMCollection',
         'main/views/AgentNotifiPopup',
@@ -35,7 +34,6 @@
         Environment,
         NavView,
         TaskMonitorView,
-        BackupController,
         FastUSBNotificationView,
         PIMCollection,
         AgentNotifiPopup,
@@ -140,7 +138,9 @@
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_BACKUP_CLOUD:
                 if (Device.get('isConnected')) {
-                    BackupController.start(true);
+                    Backbone.trigger('switchModule', {
+                        module : 'backup-restore'
+                    });
                 } else {
                     alert(i18n.welcome.CONNECT_UR_PHONE);
                 }

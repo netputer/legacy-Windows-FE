@@ -36,7 +36,7 @@
         var accountSelectorView;
 
         var RestoreChooseAccountBodyView = Backbone.View.extend({
-            template : doT.template(TemplateFactory.get('restore', 'choose-account')),
+            template : doT.template(TemplateFactory.get('new_backuprestore', 'choose-account')),
             className : 'w-restore-choose-account',
             initialize : function () {
                 accountSelectorView = AccountSelectorView.getInstance({

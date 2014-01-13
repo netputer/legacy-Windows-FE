@@ -13,7 +13,7 @@
         'IframeMessageWorker',
         'ui/TemplateFactory',
         'sync/SyncService',
-        'backuprestore/BackupRestoreService'
+        'new_backuprestore/BackupRestoreService'
     ], function (
         Backbone,
         _,

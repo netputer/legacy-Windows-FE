@@ -72,7 +72,6 @@
         'IframeMessageListener',
         'PerformanceTracker',
         'main/views/BindingDeviceWindowView',
-        'backuprestore/BackupController',
         'new_backuprestore/views/BackupRestoreModuleView'
     ], function (
         $,
@@ -107,8 +106,6 @@
         IframeMessageListener,
         PerformanceTracker,
         BindingDeviceWindowView,
-
-        BackupController,
         BackupRestoreModuleView
     ) {
         window.SnapPea = window.SnapPea || {};
@@ -145,7 +142,9 @@
         IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.SYNC_BACKUP_START
         }, function (data) {
-            BackupController.start();
+            Backbone.trigger('switchModule', {
+                module : 'backup-restore'
+            });
         }, this);
 
         window.externalCall('', 'page_ready', '');

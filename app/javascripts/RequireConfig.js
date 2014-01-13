@@ -20,7 +20,6 @@ require.config({
         contact : 'modules/contact',
         photo : 'modules/photo',
         video : 'modules/video',
-        backuprestore : 'modules/backuprestore',
         new_backuprestore : 'modules/new_backuprestore',
         social : 'modules/social',
         sync : 'modules/sync',
