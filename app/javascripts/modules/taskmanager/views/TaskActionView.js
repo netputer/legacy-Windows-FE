@@ -206,6 +206,10 @@
             clickButtonConnect : function (evt) {
                 evt.stopPropagation();
                 IO.requestAsync(CONFIG.actions.CONNET_PHONE);
+
+                log({
+                    'event' : 'ui.click.task_button_connect'
+                });
             },
             clickButtonPushToPhone : function (evt) {
                 evt.stopPropagation();
