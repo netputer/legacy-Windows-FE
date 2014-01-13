@@ -6,14 +6,16 @@
         'doT',
         'ui/TemplateFactory',
         'IO',
-        'Configuration'
+        'Configuration',
+        'Log'
     ], function (
         _,
         Backbone,
         doT,
         TemplateFactory,
         IO,
-        CONFIG
+        CONFIG,
+        log
     ) {
         console.log('ConnectionGuideView - File loaded. ');
 
@@ -26,6 +28,10 @@
             },
             clickButtonConnect : function () {
                 IO.requestAsync(CONFIG.actions.CONNET_PHONE);
+
+                log({
+                    'event' : 'ui.click.welcome_button_connect'
+                });
             },
             events : {
                 'click .button-connect' : 'clickButtonConnect'
