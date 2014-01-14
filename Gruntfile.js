@@ -3,7 +3,6 @@
 var LIVERELOAD_PORT = 35729;
 var path = require('path');
 var fs = require('fs');
-var project_flag = 'WDJ';
 
 module.exports = function (grunt) {
     // load all grunt tasks
@@ -235,7 +234,7 @@ module.exports = function (grunt) {
     grunt.registerTask('server', function (project) {
 
         if (typeof project !== 'undefined') {
-            project_flag = project;
+            project_flag = project.toUpperCase();
         }
 
         var taskList = [
@@ -253,7 +252,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', function (project) {
 
         if (typeof project !== 'undefined') {
-            project_flag = project;
+            project_flag = project.toUpperCase();
         }
 
         var taskList = [
