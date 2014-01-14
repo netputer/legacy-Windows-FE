@@ -49,7 +49,7 @@
                     collection : this.model.collection
                 })));
 
-                if (this.model.collection.settings) {
+                if (this.model.collection && this.model.collection.settings) {
                     this.renderRingSettingButton();
                 }
 
