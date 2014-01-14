@@ -3,7 +3,6 @@
 var LIVERELOAD_PORT = 35729;
 var path = require('path');
 var fs = require('fs');
-var project_flag = 'WDJ';
 
 module.exports = function (grunt) {
     // load all grunt tasks
@@ -147,39 +146,46 @@ module.exports = function (grunt) {
             }
         },
         requirejs : {
+            debug : {
+                options : {
+                    optimize : 'none'
+                }
+            },
             source : {
                 options : {
-                    almond : true,
-                    appDir : '<%= path.tmp %>/javascripts',
-                    dir :　'<%= path.dist %>/javascripts',
                     optimize : 'uglify',
-                    baseUrl : './',
-                    mainConfigFile : '<%= path.tmp %>/javascripts/RequireConfig.js',
                     uglify : {
                         toplevel : true,
                         ascii_only : false,
                         beautify : false
-                    },
-                    preserveLicenseComments : true,
-                    useStrict : false,
-                    wrap : true,
-                    modules : [{
-                        name : 'RequireConfig',
-                        include : ['jquery', 'underscore', 'backbone', 'doT', 'text', 'i18n']
-                    }, {
-                        name : 'SnapPea',
-                        include : ['SnapPea'],
-                        exclude : ['RequireConfig']
-                    }, {
-                        name : 'photo/PhotoModule',
-                        include : ['photo/PhotoModule'],
-                        exclude : ['RequireConfig']
-                    }, {
-                        name : 'welcome/guide/views/GuideView',
-                        include : ['welcome/guide/views/GuideView'],
-                        exclude : ['RequireConfig']
-                    }]
+                    }
                 }
+            },
+            options : {
+                almond : true,
+                appDir : '<%= path.tmp %>/javascripts',
+                dir :　'<%= path.dist %>/javascripts',
+                baseUrl : './',
+                mainConfigFile : '<%= path.tmp %>/javascripts/RequireConfig.js',
+                preserveLicenseComments : true,
+                useStrict : false,
+                wrap : true,
+                modules : [{
+                    name : 'RequireConfig',
+                    include : ['jquery', 'underscore', 'backbone', 'doT', 'text', 'i18n']
+                }, {
+                    name : 'SnapPea',
+                    include : ['SnapPea'],
+                    exclude : ['RequireConfig']
+                }, {
+                    name : 'photo/PhotoModule',
+                    include : ['photo/PhotoModule'],
+                    exclude : ['RequireConfig']
+                }, {
+                    name : 'welcome/guide/views/GuideView',
+                    include : ['welcome/guide/views/GuideView'],
+                    exclude : ['RequireConfig']
+                }]
             }
         },
         useminPrepare : {
@@ -235,7 +241,7 @@ module.exports = function (grunt) {
     grunt.registerTask('server', function (project) {
 
         if (typeof project !== 'undefined') {
-            project_flag = project;
+            project_flag = project.toUpperCase();
         }
 
         var taskList = [
@@ -250,10 +256,15 @@ module.exports = function (grunt) {
         grunt.task.run(taskList);
     });
 
-    grunt.registerTask('build', function (project) {
+    grunt.registerTask('build', function (project, requireTask) {
 
         if (typeof project !== 'undefined') {
-            project_flag = project;
+            project_flag = project.toUpperCase();
+        }
+
+        var rtask = 'source';
+        if (typeof requireTask !== 'undefined') {
+            rtask = requireTask;
         }
 
         var taskList = [
@@ -262,7 +273,7 @@ module.exports = function (grunt) {
             'replace:' + project_flag,
             'createScssConfig',
             'compass:dist',
-            'requirejs:source',
+            'requirejs:' + rtask,
             'useminPrepare',
             'imagemin',
             'copy:dist',
