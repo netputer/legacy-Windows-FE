@@ -509,7 +509,7 @@
                 Account.loginAsync('', 'web-app');
             },
             clickButtonFindApp : function () {
-                BrowserModuleView.navigateToThirdParty(18, i18n.app.APP_SEARCH);
+                BrowserModuleView.navigateToThirdParty(18, i18n.app.APP_SEARCH, 'http://apps.wandoujia.com/');
 
                 log({
                     'event' : 'ui.click.app.webapp.findapp'
@@ -525,7 +525,7 @@
                 this.selectTab(tab);
             },
             clickButtonDownload : function () {
-                BrowserModuleView.navigateToThirdParty(223, '', "http://apps.wandoujia.com/starter");
+                BrowserModuleView.navigateToThirdParty(223, '', 'http://apps.wandoujia.com/starter');
 
                 log({
                     'event' : 'ui.click.wanxiaodou_download',
