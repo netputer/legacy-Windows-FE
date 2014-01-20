@@ -28,8 +28,8 @@
                 this.listenTo(Account, 'change:isLogin change:userName', _.debounce(this.render, 200));
             },
             render : function () {
-                var hour = formatDate('HH'),
-                    greeting = i18n.welcome.ACCOUNT_GREETING;
+                var hour = formatDate('HH');
+                var greeting = i18n.welcome.ACCOUNT_GREETING;
 
                 if (hour >= 6) {
                     if (hour <= 10) {
