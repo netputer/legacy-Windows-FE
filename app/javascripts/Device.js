@@ -122,6 +122,8 @@
                     }.bind(this));
                 };
 
+                this.on('change:isConnected', getShellInfoHandler, this);
+
                 var setCanScreenshotAsync = function (Device) {
                     if (Device.get('isConnected')) {
                         if (Device.get('isUSB')) {
@@ -140,9 +142,7 @@
                     }
                 };
 
-                this.on('change:isConnected', getShellInfoHandler, this);
-                this.on('change', setCanScreenshotAsync, this);
-                setCanScreenshotAsync(this);
+                this.on('change:isConnected change:isUSB change:isWifi change:isFastADB', setCanScreenshotAsync, this);
             },
             getUdidAsync : function () {
                 var deferred = $.Deferred();
