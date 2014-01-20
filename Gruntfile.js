@@ -357,6 +357,7 @@ module.exports = function (grunt) {
                 var extName = path.extname(filePath);
 
                 grunt.file.copy(filePath, targetPath);
+                console.log('copy - ' + filePath);
 
                 if (baseName === 'index.html') {
                     runSubTask('grunt replace:' + projectFlag);
