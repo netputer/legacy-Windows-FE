@@ -367,10 +367,10 @@
                 Object.defineProperties(this, {
                     selectedSIM : {
                         set : function (value) {
-                            Settings.set('sms_selected_sim', value, true);
+                            window.sessionStorage.setItem('sms_selected_sim', value);
                         },
                         get : function () {
-                            return Settings.get('sms_selected_sim');
+                            return window.sessionStorage.getItem('sms_selected_sim');
                         }
                     },
                     sendFrom : {
@@ -474,7 +474,6 @@
                 this.sendFrom = source;
             },
             buildButton : function () {
-
                 if (!FunctionSwitch.ENABLE_DUAL_SIM) {
                     return;
                 }
