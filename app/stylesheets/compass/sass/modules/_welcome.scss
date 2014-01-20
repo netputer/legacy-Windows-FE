@@ -154,58 +154,42 @@
         }
     }
 
-    &.turn-left {
+    &.turn-left,
+    &.turn-right {
         -webkit-transition: width .5s;
 
         .screen-wrap {
-            -webkit-transform: rotate(-90deg);
             -webkit-transition-timing-function: ease-in;
+        }
+    }
+
+    &.turn-left {
+        .screen-wrap {
+            -webkit-transform: rotate(-90deg);
 
             .screen-ctn {
                 -webkit-filter: drop-shadow(-20px 8px 30px rgba(0, 0, 0, 0.8));
             }
         }
-
-        .shadow {
-            left: 105px;
-            top: 15px;
-            -webkit-transform: rotate(-90deg);
-            -webkit-transition-timing-function: ease-in;
-        }
     }
 
     &.turn-right {
-        -webkit-transition: width .5s;
-
         .screen-wrap {
             -webkit-transform: rotate(90deg);
-            -webkit-transition-timing-function: ease-in;
 
             .screen-ctn {
                 -webkit-filter: drop-shadow(20px -8px 30px rgba(0, 0, 0, 0.8));
             }
         }
-
-        .shadow {
-            left: 105px;
-            top: 15px;
-            -webkit-transform: rotate(90deg);
-            -webkit-transition-timing-function: ease-in;
-        }
     }
 
     &.turn-down {
-        .shadow {
-            -webkit-transform: rotate(-180deg);
-            -webkit-transition-timing-function: ease-in;
-        }
-
         .screen-wrap {
             -webkit-transform: rotate(180deg);
-        }
 
-        .shadow {
-            -webkit-transform: rotate(180deg);
+            .screen-ctn {
+                -webkit-filter: drop-shadow(-15px -15px 30px rgba(0, 0, 0, 0.8));
+            }
         }
     }
 }
