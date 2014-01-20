@@ -867,7 +867,7 @@
     -webkit-transition: height .5s ease-out;
 }
 
-.w-welcome-clock {
+.w-welcome-info {
     color: #fff;
     position: relative;
     // text-shadow: rgba(0, 0, 0, .3) 0 5px 8px, rgba(0, 0, 0, 0.3) 0 1px 2px;
@@ -876,50 +876,54 @@
     -webkit-animation: fade-in-time 1.5s;
     -webkit-transform: translate3d(0, 0, 0);
 
-    &.logged-in {
-        pointer-events: none;
-    }
-
-    .account {
-        border: 1px solid transparent;
-        border-radius: 3px;
-        color: rgba(255, 255, 255, .9);
-        font-size: 18px;
-        padding: 10px;
+    .w-welcome-account {
         position: absolute;
-        text-shadow: rgba(0, 0, 0, .8) 0 3px 8px, rgba(0, 0, 0, .4) 0 1px 2px;
         top: -40px;
-        -webkit-transition: color .2s linear;
 
-        &.button-register {
+        .button-register,
+        .button-user {
+            border: 1px solid transparent;
+            border-radius: 3px;
+            color: rgba(255, 255, 255, .9);
+            display: inline-block;
+            font-size: 18px;
+            padding: 10px;
+            text-shadow: rgba(0, 0, 0, .8) 0 3px 8px, rgba(0, 0, 0, .4) 0 1px 2px;
+            -webkit-transition: color .2s linear;
+        }
+
+        .button-register {
             &:hover {
                 color: #fff;
                 background-color: rgba(255, 255, 255, .1);
                 border-color: rgba(255, 255, 255, .2);
             }
         }
+
+        &.logged-in {
+            pointer-events: none;
+        }
     }
 
-
-    .clock {
+    .w-welcome-clock {
         pointer-events: none;
         -webkit-box-align: end;
-    }
 
-    .time {
-        font-family: "Roboto-Thin";
-        font-size: 120px;
-        letter-spacing: -5px;
-        line-height: 120px;
-        width: 275px;
-        -webkit-transition: all .7s ease-out;
-    }
+        .time {
+            font-family: "Roboto-Thin";
+            font-size: 120px;
+            letter-spacing: -5px;
+            line-height: 120px;
+            width: 275px;
+            -webkit-transition: all .7s ease-out;
+        }
 
-    .date-ctn {
-        height: 50px;
-        font-size: 14px;
-        margin-left: 5px;
-        -webkit-transition: all .7s ease-out;
+        .date-ctn {
+            font-size: 14px;
+            height: 50px;
+            margin-left: 5px;
+            -webkit-transition: all .7s ease-out;
+        }
     }
 
     &.min {

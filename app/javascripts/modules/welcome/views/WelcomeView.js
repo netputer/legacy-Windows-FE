@@ -17,7 +17,7 @@
         'Log',
         'Environment',
         'utilities/QueryString',
-        'welcome/views/ClockView',
+        'welcome/views/InfoView',
         'welcome/views/DeviceView',
         'welcome/views/ToolbarView',
         'welcome/views/GuideView',
@@ -41,7 +41,7 @@
         log,
         Environment,
         QueryString,
-        ClockView,
+        InfoView,
         DeviceView,
         ToolbarView,
         GuideView,
@@ -52,7 +52,7 @@
         console.log('WelcomeView - File loaded.');
 
         var deviceView;
-        var clockView;
+        var infoView;
         var toolbarView;
         var capacityBarView;
         var guideView;
@@ -155,7 +155,7 @@
                     '-webkit-transform' : 'translate3d(' + -Math.round(50 * progress2) + 'px, ' + -Math.round(180 * progress2)  + 'px, 0)'
                 });
 
-                clockView.$el.css({
+                infoView.$el.css({
                     '-webkit-transform' : 'translate3d(' + -Math.round(20 * progress2) + 'px, ' + -Math.round(180 * progress2)  + 'px, 0)'
                 });
             },
@@ -163,7 +163,7 @@
                 this.$el.html(this.template({}));
 
                 deviceView = DeviceView.getInstance();
-                clockView = ClockView.getInstance();
+                infoView = InfoView.getInstance();
                 toolbarView = ToolbarView.getInstance();
                 capacityBarView = CapacityBarView.getInstance();
                 feedListView = FeedListView.getInstance();
@@ -172,7 +172,7 @@
 
                 setTimeout(function () {
                     var $top = this.$('.top').append(deviceView.render().$el)
-                                .append(clockView.render().$el);
+                                .append(infoView.render().$el);
                     this.loading = !ProjectConfig.get('DISABLE_WELCOME_FEED');
 
                     deviceView.$el.one('webkitAnimationEnd', function () {

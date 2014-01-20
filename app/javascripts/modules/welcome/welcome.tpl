@@ -228,20 +228,21 @@
     <div class="link button-more">{{= i18n.app.MORE }}</div>
 </script>
 
-<script type="text/x-ui-template" id="clock">
+<script type="text/x-ui-template" id="account">
     {{? FunctionSwitch.IS_CHINESE_VERSION }}
     {{? it.isLogin }}
-    <span class="account button-user wc">{{= StringUtil.format(i18n.welcome.ACCOUNT_GREETING_FORMAT, it.greeting, it.userName) }}</span>
+    <span class="button-user wc">{{= StringUtil.format(i18n.welcome.ACCOUNT_GREETING_FORMAT, it.greeting, it.userName) }}</span>
     {{??}}
-    <span class="account button-register">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
+    <span class="button-register">{{= i18n.welcome.ACCOUNT_UNLOGIN_TEXT }}</span>
     {{?}}
     {{?}}
-    <div class="clock hbox">
-        <div class="time">{{= it.time }}</div>
-        <div class="date-ctn">
-            <div class="date">{{= it.date }}</div>
-            <div class="day">{{= it.day }}</div>
-        </div>
+</script>
+
+<script type="text/x-ui-template" id="clock">
+    <div class="time">{{= it.time }}</div>
+    <div class="date-ctn">
+        <div>{{= it.date }}</div>
+        <div>{{= it.day }}</div>
     </div>
 </script>
 
