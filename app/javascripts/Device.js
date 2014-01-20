@@ -44,6 +44,7 @@
                 isInternet : false,
                 isFlashed : false,
                 isFastADB : false,
+                isDualSIM : false,
                 SDKVersion : 0,
                 productId : '',
                 isRoot : false,
@@ -64,7 +65,8 @@
                 internalSDPath : '',
                 externalSDCapacity : 0,
                 externalSDFreeCapacity : 0,
-                externalSDPath : ''
+                externalSDPath : '',
+                dualSIM : []
             },
             initialize : function () {
                 var listenBack = false;
@@ -143,6 +145,24 @@
                 };
 
                 this.on('change:isConnected change:isUSB change:isWifi change:isFastADB', setCanScreenshotAsync, this);
+
+                var setServiceCenterAsync = function () {
+                    this.getDualSimInfoAsync().done(function (resp) {
+                        if (resp.body.sim.length > 0) {
+                            this.set({
+                                isDualSIM : true,
+                                dualSIM : resp.body.sim
+                            });
+                        } else {
+                            this.set({
+                                isDualSIM : false,
+                                dualSIM : []
+                            });
+                        }
+                    }.bind(this));
+                };
+
+                this.on('change:isConnected', setServiceCenterAsync, this);
             },
             getUdidAsync : function () {
                 var deferred = $.Deferred();
@@ -597,6 +617,24 @@
                         if (resp.state_code === 200) {
                             deferred.resolve(resp);
                         } else {
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+
+                return deferred.promise();
+            },
+            getDualSimInfoAsync : function () {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : CONFIG.actions.SMS_GET_SERVICE_CENTER,
+                    success : function (resp) {
+                        if (resp.state_code === 200) {
+                            console.log('MessageService - Get SMS service center success.');
+                            deferred.resolve(resp);
+                        } else {
+                            console.error('MessageService - Get SMS service center faild. Error info: ' + resp.state_line);
                             deferred.reject(resp);
                         }
                     }

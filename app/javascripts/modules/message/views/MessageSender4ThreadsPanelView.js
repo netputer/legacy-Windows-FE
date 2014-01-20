@@ -163,6 +163,8 @@
                 Device.on('change:isConnected', function (Device, isConnected) {
                     this.disabledSender(!isConnected);
                 }, this);
+
+                this.listenTo(Device, 'change:isDualSIM', this.render);
             },
             disabledSender : function (disabled) {
                 this.$el.toggle(!disabled);

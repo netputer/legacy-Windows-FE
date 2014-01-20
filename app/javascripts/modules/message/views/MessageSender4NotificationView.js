@@ -95,6 +95,8 @@
                         //this.prevMessage(true);
                     }
                 }, this);
+
+                this.listenTo(Device, 'change:isDualSIM', this.render);
             },
             render : function () {
                 _.extend(this.events, MessageSender4NotificationView.__super__.events);
