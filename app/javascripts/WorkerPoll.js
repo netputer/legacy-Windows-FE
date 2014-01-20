@@ -68,7 +68,24 @@
             addTask : function (message, callback, context) {
                 var timestamp = new Date().getTime();
                 if (this.workerQueue.length > 0) {
-                    this.runTask(message, callback, context, timestamp);
+                    if (message instanceof Array) {
+                        var results = [];
+                        var handler = function (evt) {
+                            results.push(evt);
+
+                            if (results.length === message.length) {
+                                callback.call(context || window, results);
+                                results = undefined;
+                            }
+                        };
+
+                        _.each(message, function (value, index) {
+                            this.runTask(value, handler, context, new Date().getTime());
+                        }, this);
+
+                    } else {
+                        this.runTask(message, callback, context, timestamp);
+                    }
                 } else {
                     this.taskQueue.push({
                         message : message,
