@@ -122,8 +122,6 @@
             }
         }
 
-
-
         .offline-tip {
             display: none;
             left: 50%;
@@ -162,6 +160,10 @@
         .screen-wrap {
             -webkit-transform: rotate(-90deg);
             -webkit-transition-timing-function: ease-in;
+
+            .screen-ctn {
+                -webkit-filter: drop-shadow(-20px 8px 30px rgba(0, 0, 0, 0.8));
+            }
         }
 
         .shadow {
@@ -178,6 +180,10 @@
         .screen-wrap {
             -webkit-transform: rotate(90deg);
             -webkit-transition-timing-function: ease-in;
+
+            .screen-ctn {
+                -webkit-filter: drop-shadow(20px -8px 30px rgba(0, 0, 0, 0.8));
+            }
         }
 
         .shadow {
