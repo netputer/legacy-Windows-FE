@@ -7,7 +7,8 @@
         'photo/views/PhotoGalleryView',
         'photo/views/SlideShowView',
         'IO',
-        'Configuration'
+        'Configuration',
+        'PerformanceTracker'
     ], function (
         $,
         Backbone,
@@ -15,7 +16,8 @@
         PhotoGalleryView,
         SlideShowView,
         IO,
-        CONFIG
+        CONFIG,
+        PerformanceTracker
     ) {
         var fragment = document.createDocumentFragment();
 

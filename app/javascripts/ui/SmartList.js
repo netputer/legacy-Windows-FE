@@ -139,6 +139,12 @@
                     window.requestAnimationFrame(function () {
                         this.build(evt.target.scrollTop);
                     }.bind(this));
+
+                    wandoujia.getFPS('recordeFPS', JSON.stringify({
+                        'type' : 'smartlist_scroll_' + SnapPea.CurrentModule,
+                        'lengthOnScreen' : onScreenItems.length
+                    }));
+
                 }.bind(this);
                 var enableContextMenu = false;
                 var selectable = true;
@@ -523,6 +529,7 @@
                         }
                     }
                 }
+
             }, 35),
             clickListItem : function (evt) {
                 if (evt.currentTarget.tagName === 'LI' && this.selectable) {

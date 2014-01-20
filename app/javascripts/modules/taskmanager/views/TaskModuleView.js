@@ -37,6 +37,10 @@
 
         var taskListView;
 
+        var performanceHandler;
+        var setInterval = window.setInterval;
+        var clearInterval = window.clearInterval;
+
         var pushNotificationView;
         var downloadHandler = function (msg) {
 
@@ -168,11 +172,30 @@
             },
             slideIn : function () {
                 this.show = true;
+                this.recordFPS();
                 this.$el.toggleClass('hide', !this.show);
             },
             slideOut : function () {
                 this.show = false;
+                this.recordFPS();
                 this.$el.toggleClass('hide', !this.show);
+            },
+            recordFPS : function () {
+
+                clearInterval(performanceHandler);
+
+                this.$el.find('.ctn').one('webkitAnimationEnd', function () {
+                    clearInterval(performanceHandler);
+                });
+
+                this.$el.find('.ctn').one('webkitAnimationStart', function () {
+
+                    performanceHandler = setInterval(function () {
+                        wandoujia.getFPS('recordeFPS', JSON.stringify({
+                            'type' : taskmanager_slide
+                        }));
+                    }, 20);
+                });
             },
             clickButtonClose : function () {
                 this.slideOut();

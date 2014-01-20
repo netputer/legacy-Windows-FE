@@ -8,7 +8,8 @@
         'video/views/VideoModuleToolbarView',
         'video/views/ImportVideoView',
         'video/views/VideoListView',
-        'video/collections/VideosCollection'
+        'video/collections/VideosCollection',
+        'PerformanceTracker'
     ], function (
         _,
         Backbone,
@@ -17,7 +18,8 @@
         VideoModuleToolbarView,
         ImportVideoView,
         VideoListView,
-        VideosCollection
+        VideosCollection,
+        PerformanceTracker
     ) {
         console.log('VideoModuleView - File loaded. ');
 

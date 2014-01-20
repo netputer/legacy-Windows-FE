@@ -32,6 +32,7 @@
         var EventsMapping = UIHelper.EventsMapping;
 
         var WindowState = UIHelper.WindowState;
+        var interHandler;
 
         var Panel = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('ui', 'window')),

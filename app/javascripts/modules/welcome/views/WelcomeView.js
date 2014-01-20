@@ -63,6 +63,11 @@
             className : 'w-welcome-ctn',
             initialize : function () {
                 var scrollHandler = function (evt) {
+
+                    wandoujia.getFPS('recordeFPS', JSON.stringify({
+                        'type' : 'welcome_scroll'
+                    }));
+
                     window.requestAnimationFrame(function () {
                         var target = evt.target;
                         this.moveComponents(target.scrollTop);

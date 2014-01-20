@@ -34,6 +34,13 @@
             scrollTop = $window.scrollTop();
 
             WindowState.trigger('resize', WindowState);
+
+            wandoujia.getFPS('recordeFPS', JSON.stringify({
+                'type' : 'window_resize_' + SnapPea.CurrentModule,
+                'width' : width,
+                'height' : height
+            }));
+
         }, 25));
 
         Object.defineProperties(WindowState, {
