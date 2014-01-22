@@ -190,7 +190,7 @@
             },
             clickButtonLike : function () {
                 if (!Account.get('isLogin')) {
-                    Account.loginAsync('', 'app-commentary');
+                    Account.openLoginDialog('', 'app-commentary');
                 } else {
                     var $buttonLike = this.$('.button-like');
                     var $likeCount = this.$('.like-count');
@@ -209,7 +209,7 @@
             },
             clickButtonDislike : function () {
                 if (!Account.get('isLogin')) {
-                    Account.loginAsync('', 'app-commentary');
+                    Account.openLoginDialog('', 'app-commentary');
                 } else {
                     var $buttonDislike = this.$('.button-dislike');
                     if (!$buttonDislike.hasClass('checked')) {
@@ -229,7 +229,7 @@
                 }
             },
             clickButtonLogin : function () {
-                Account.loginAsync('', 'app-commentary');
+                Account.openLoginDialog('', 'app-commentary');
             },
             keydownInputContent : function (evt) {
                 if (evt.ctrlKey && evt.keyCode === UIHelper.KeyMapping.ENTER) {
@@ -265,7 +265,7 @@
             },
             clickButtonComment : function () {
                 if (!Account.get('isLogin')) {
-                    Account.loginAsync('', 'app-commentary');
+                    Account.openLoginDialog('', 'app-commentary');
                 } else {
                     this.$('.input-ctn').slideToggle('fast');
                     this.$('.button-comment').toggleClass('active');

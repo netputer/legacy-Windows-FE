@@ -153,7 +153,7 @@
             },
             clickButtonAction : function () {
                 if (!Account.get('isLogin')) {
-                    Account.regAsync(i18n.welcome.GUIDE_REG_LOGIN_AND_BACKUP, 'guide-cloud-backup').done(function () {
+                    Account.openRegDialog(i18n.welcome.GUIDE_REG_LOGIN_AND_BACKUP, 'guide-cloud-backup').done(function () {
                         var handler = IO.Backend.onmessage({
                             'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                         }, function (data) {
@@ -178,7 +178,7 @@
                 this.$('.button-reg').prop('disabled', !evt.originalEvent.srcElement.checked);
             },
             clickButtonLogin : function () {
-                Account.loginAsync(i18n.welcome.GUIDE_REG_LOGIN_AND_BACKUP, 'guide-cloud-backup');
+                Account.openLoginDialog(i18n.welcome.GUIDE_REG_LOGIN_AND_BACKUP, 'guide-cloud-backup');
             },
             clickCaptchaImage : function () {
                 var $img = this.$('.captcha-image');

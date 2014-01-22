@@ -57,7 +57,7 @@
                     return;
                 }
 
-                Account.regAsync('', 'guide-cloud-photo');
+                Account.openRegDialog('', 'guide-cloud-photo');
 
                 var handler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE

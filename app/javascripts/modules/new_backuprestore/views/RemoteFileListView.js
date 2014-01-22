@@ -164,7 +164,7 @@
                                 'event' : 'ui.click.reset_password',
                                 'type' : 'restore'
                             });
-                            Account.resetAsync();
+                            Account.openResetDialog();
                         }
 
                         this.trigger('__CANCEL');

@@ -132,7 +132,7 @@
             },
             clickButtonStar : function () {
                 if (!Account.get('isLogin')) {
-                    Account.regAsync(i18n.misc.LOGIN_TO_STAR, 'star-button-on-toolbar');
+                    Account.openRegDialog(i18n.misc.LOGIN_TO_STAR, 'star-button-on-toolbar');
                 } else {
                     if (extensionsCollection.get(this.model.id)) {
                         this.model.unstarredAsync();

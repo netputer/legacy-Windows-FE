@@ -45,7 +45,7 @@
             isActive : function (platform) {
                 return this.get('platforms')[platform] === true;
             },
-            bindAsync : function (platform) {
+            openBindDialog : function (platform) {
                 var deferred = $.Deferred();
 
                 if (!this.isActive(platform)) {
@@ -70,7 +70,7 @@
 
                 return deferred.promise();
             },
-            regAsync : function (title, source, platform) {
+            openRegDialog : function (title, source, platform) {
                 var deferred = $.Deferred();
 
                 if (!this.get('isLogin')) {
@@ -99,7 +99,7 @@
 
                 return deferred.promise();
             },
-            loginAsync : function (title, source, platform) {
+            openLoginDialog : function (title, source, platform) {
                 var deferred = $.Deferred();
 
                 if (!this.get('isLogin')) {
@@ -145,7 +145,7 @@
 
                 return deferred.promise();
             },
-            resetAsync : function () {
+            openResetDialog : function () {
                 var deferred = $.Deferred();
 
                 IO.requestAsync({

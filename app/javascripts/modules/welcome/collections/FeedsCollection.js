@@ -17,6 +17,8 @@
     ) {
         console.log('FeedsCollection - File loaded. ');
 
+        var firstLoad = true;
+
         var FeedsCollection = Backbone.Collection.extend({
             url : CONFIG.actions.WELCOME_FEEDS,
             data : {
@@ -26,13 +28,16 @@
                 udid : ''
             },
             parse : function (resp) {
-                if (this.data.singleFeedCursor === 0) {
+                if (firstLoad) {
                     resp.feeds.unshift({
                         type : 99
                     });
+
                     resp.feeds.unshift({
                         type : 98
                     });
+
+                    firstLoad = false;
                 }
 
                 this.data.totalFeedCursor = resp.totalFeedCursor;

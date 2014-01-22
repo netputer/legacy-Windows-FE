@@ -18,8 +18,7 @@
         'message/views/MessagePanelView',
         'message/collections/ConversationsCollection',
         'message/collections/ThreadsCollection',
-        'message/collections/Threads4ContactCollection',
-        'message/MessageService'
+        'message/collections/Threads4ContactCollection'
     ], function (
         Backbone,
         _,
@@ -38,8 +37,7 @@
         MessagePanelView,
         ConversationsCollection,
         ThreadsCollection,
-        Threads4ContactCollection,
-        MessageService
+        Threads4ContactCollection
     ) {
         console.log('MessageModuleView - File loaded.');
 
@@ -79,8 +77,6 @@
                 $ctn.append(fragment);
 
                 this.rendered = true;
-
-                MessageService.getServiceCenterAsync();
 
                 return this;
             }

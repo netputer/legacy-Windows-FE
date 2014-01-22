@@ -150,7 +150,7 @@
                     'data.channel' : CONFIG.events.SIDEBAR_STAR
                 }, function (data) {
                     if (!Account.get('isLogin')) {
-                        Account.regAsync(i18n.misc.LOGIN_TO_STAR, 'star-item-in-gallery');
+                        Account.openRegDialog(i18n.misc.LOGIN_TO_STAR, 'star-item-in-gallery');
                     } else {
                         if (!this.get(data.id)) {
                             var extension = new ExtensionModel(data);

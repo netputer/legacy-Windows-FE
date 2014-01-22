@@ -191,7 +191,7 @@
                 var appListView = AppListView.getInstance();
                 if (appListView.list.currentSet.name === 'web') {
                     if (!Account.get('isLogin')) {
-                        Account.loginAsync('', 'app-list-refresh');
+                        Account.openLoginDialog('', 'app-list-refresh');
                         var loginHandler = function (Account, isLogin) {
                             if (isLogin) {
                                 WebAppsCollection.getInstance().syncAsync().fail(function () {
