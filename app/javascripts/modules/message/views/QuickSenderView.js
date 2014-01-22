@@ -66,6 +66,10 @@
                             window.sessionStorage.setItem('sms_selected_sim', value);
                         },
                         get : function () {
+                            if (!Device.get('isDualSIM')) {
+                                return null;
+                            }
+
                             return window.sessionStorage.getItem('sms_selected_sim');
                         }
                     }
