@@ -139,7 +139,7 @@
                     return;
                 }
 
-                Account.regAsync('', 'cloud-photo-switch');
+                Account.openRegDialog('', 'cloud-photo-switch');
 
                 var handler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE

@@ -506,7 +506,7 @@
                 IgnoredAppsWindowView.getInstance().show();
             },
             clickButtonLogin :  function () {
-                Account.loginAsync('', 'web-app');
+                Account.openLoginDialog('', 'web-app');
             },
             clickButtonFindApp : function () {
                 BrowserModuleView.navigateToThirdParty(18, i18n.app.APP_SEARCH, 'http://apps.wandoujia.com/');

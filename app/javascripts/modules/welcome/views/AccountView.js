@@ -52,7 +52,7 @@
                 return this;
             },
             clickButtonRegister : function () {
-                Account.regAsync('', 'welcome-account');
+                Account.openRegDialog('', 'welcome-account');
 
                 log({
                     'event' : 'ui.click.welcome_button_register'

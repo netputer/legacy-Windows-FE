@@ -47,7 +47,7 @@
                 evt.preventDefault();
 
                 if (!Account.get('isLogin')) {
-                    Account.regAsync(i18n.misc.LOGIN_TO_MANAGE, 'gallery-manage');
+                    Account.openRegDialog(i18n.misc.LOGIN_TO_MANAGE, 'gallery-manage');
                 } else {
                     Backbone.trigger('switchModule', {
                         module : 'doraemon'

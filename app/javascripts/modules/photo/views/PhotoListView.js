@@ -328,7 +328,7 @@
 
             },
             clickButtonLogin :  function () {
-                Account.loginAsync('', 'cloud-photo');
+                Account.openLoginDialog('', 'cloud-photo');
             },
             clickButtonDownload : function () {
 
@@ -344,7 +344,7 @@
                     'event' : 'ui.click.reset_password',
                     'type' : 'cloud_photo'
                 });
-                Account.resetAsync();
+                Account.openResetDialog();
             },
             clickTurnOnCloud : function () {
                 PhotoSyncSwitchView.getInstance().tryLogin();

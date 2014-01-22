@@ -83,7 +83,7 @@
                             checked : false
                         });
 
-                        Account.bindAsync(type);
+                        Account.openBindDialog(type);
                     }
                 } else {
                     if ($checkbox[0].checked) {
@@ -91,7 +91,7 @@
                             checked : false
                         });
 
-                        Account.loginAsync('', 'social_share', type);
+                        Account.openLoginDialog('', 'social_share', type);
                     }
                 }
             },
@@ -110,7 +110,7 @@
                 }
 
                 this.refreshState(Account);
-                Account.bindAsync(type);
+                Account.openBindDialog(type);
             },
             events : {
                 'click .social-platform' : 'selectPlatformCallback',

@@ -201,7 +201,7 @@
 
                 switch (remoteAction) {
                 case 0:
-                    Account.loginAsync('', 'backup-restore');
+                    Account.openLoginDialog('', 'backup-restore');
                     loginHandler = IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                     }, function (message) {
@@ -248,7 +248,7 @@
                     return;
                 }
 
-                Account.loginAsync('', 'backup-restore');
+                Account.openLoginDialog('', 'backup-restore');
                 backupLoginHandler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                 }, function (message) {
@@ -286,7 +286,7 @@
                     return;
                 }
 
-                Account.loginAsync('', 'backup-restore');
+                Account.openLoginDialog('', 'backup-restore');
                 restoreLoginHandler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                 }, function (message) {
