@@ -6,6 +6,7 @@
         'Configuration',
         'IOBackendDevice',
         'Device',
+        'Settings',
         'Log',
         'ui/TemplateFactory',
         'message/views/QuickSenderView',
@@ -17,6 +18,7 @@
         CONFIG,
         IO,
         Device,
+        Settings,
         log,
         TemplateFactory,
         QuickSenderView,
@@ -97,6 +99,8 @@
                 }, this);
 
                 this.listenTo(Device, 'change:isDualSIM', this.render);
+
+                window.sessionStorage.setItem('sms_selected_sim', Settings.get('sms_selected_sim'));
             },
             render : function () {
                 _.extend(this.events, MessageSender4NotificationView.__super__.events);
@@ -121,7 +125,6 @@
                 if (this.prevList.length > 0) {
                     this.$('.button-prev').show();
                 }
-
 
                 this.model.clear({ silent : true });
                 this.model.set(this.nextList.shift());

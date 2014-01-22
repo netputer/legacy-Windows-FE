@@ -64,6 +64,7 @@
                     selectedSIM : {
                         set : function (value) {
                             window.sessionStorage.setItem('sms_selected_sim', value);
+                            Settings.set('sms_selected_sim', value, true);
                         },
                         get : function () {
                             if (!Device.get('isDualSIM')) {
