@@ -195,7 +195,7 @@
                             this.loading = feedsCollection.loading;
                             this.listenTo(feedsCollection, 'update refresh', function () {
                                 this.loading = feedsCollection.loading;
-                                if (feedsCollection.finish) {
+                                if (feedsCollection.finish && feedsCollection.length > 2) {
                                     var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
                                     this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
                                 }
