@@ -68,7 +68,7 @@
                         },
                         get : function () {
                             if (!Device.get('isDualSIM')) {
-                                return null;
+                                return;
                             }
 
                             return window.sessionStorage.getItem('sms_selected_sim');
