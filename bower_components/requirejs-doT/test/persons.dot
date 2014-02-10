@@ -1,8 +1,0 @@
-<ul>
-{{~ it.persons :person }}
-  <li>
-    <h2>{{= person.name }}</h2>
-    <h3>{{= person.age }}</h3>
-  </li>
-{{~}}
-</ul>
