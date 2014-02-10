@@ -238,14 +238,15 @@ module.exports = function (grunt) {
     });
 
     var project_flag = 'WDJ';
-    grunt.registerTask('server', function (project) {
 
+    grunt.registerTask('server', function (project) {
         if (typeof project !== 'undefined') {
             project_flag = project.toUpperCase();
         }
 
         var taskList = [
             'clean:server',
+            'jshint:all',
             'copy:tmp',
             'replace:' + project_flag,
             'createScssConfig',
@@ -257,7 +258,6 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('build', function (project, requireTask) {
-
         if (typeof project !== 'undefined') {
             project_flag = project.toUpperCase();
         }
@@ -269,6 +269,7 @@ module.exports = function (grunt) {
 
         var taskList = [
             'clean:dist',
+            'jshint:all',
             'copy:tmp',
             'replace:' + project_flag,
             'createScssConfig',
@@ -353,10 +354,14 @@ module.exports = function (grunt) {
             case 'added':
             case 'changed':
                 var baseName = path.basename(filePath);
+                var extName = path.extname(filePath);
+
                 grunt.file.copy(filePath, targetPath);
 
                 if (baseName === 'index.html') {
                     runSubTask('grunt replace:' + project_flag);
+                } else if (extName === '.js') {
+                    runSubTask('grunt jshint:all');
                 }
 
                 break;
