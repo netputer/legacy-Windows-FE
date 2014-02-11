@@ -18,6 +18,13 @@
         box-shadow: 0 1px 0 #515559 inset;
         padding-top: 7px;
         margin-top: 9px;
+
+        @if $PROJECT_FLAG == PROJECT_SUNING {
+            .disconnected & {
+                opacity: .4;
+                pointer-events: none;
+            }
+        }
     }
 }
 
