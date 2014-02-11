@@ -140,12 +140,18 @@
                         this.build(evt.target.scrollTop);
                     }.bind(this));
 
+                    var data = {
+                        'type' : 'welcome_scroll_' + SnapPea.CurrentModule,
+                        'lengthOnScreen' : onScreenItems.length,
+                        'url' : ''
+                    };
+                    if (this.currentModels.length > 0) {
+                        data.url = this.currentModels[0].collection.url || '';
+                    }
+
                     var index = _.uniqueId('smartlist_scroll_');
                     wandoujia.data = wandoujia.data || {};
-                    wandoujia.data[index] = {
-                        'type' : 'welcome_scroll_' + SnapPea.CurrentModule,
-                        'lengthOnScreen' : onScreenItems.length
-                    };
+                    wandoujia.data[index] = data;
                     wandoujia.getFPS('recordeFPS', index);
 
                 }.bind(this);
