@@ -22,7 +22,7 @@
             hide : ProjectConfig.get('HIDE_NAV_WELCOME_TO_WDJ'),
             icon : 'welcome',
             id : 0,
-            label : i18n.misc.NAV_WELCOME_TO_WDJ,
+            label : ProjectConfig.get('CUSTOM_NAV_WELCOME_TEXT') || i18n.misc.NAV_WELCOME_TO_WDJ,
             module : 'welcome',
             order : 0,
             root : true,
@@ -97,7 +97,7 @@
             tab : 'backup-restore'
         }, {
             count : -1,
-            hide : ProjectConfig.get('HIDE_APP_WASH') || !FunctionSwitch.ENABLE_APP_WASH,
+            hide : ProjectConfig.get('HIDE_NAV_WASH') || !FunctionSwitch.ENABLE_APP_WASH,
             icon : 'wash',
             id : 19,
             label : i18n.app.APP_WASH,

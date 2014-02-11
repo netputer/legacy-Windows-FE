@@ -9,6 +9,7 @@
         'utilities/QueryString',
         'Internationalization',
         'Environment',
+        'ProjectConfig',
         'Configuration',
         'WindowController',
         'main/views/PIMMenuView',
@@ -26,6 +27,7 @@
         QueryString,
         i18n,
         Environment,
+        ProjectConfig,
         CONFIG,
         WindowController,
         PIMMenuView,
@@ -120,7 +122,7 @@
                     .append(pimMenuView.render().$el);
 
                 setTimeout(function () {
-                    if (!Environment.get('internetBar')) {
+                    if (!ProjectConfig.get('SHOW_FIRST_EXTENSION') && !Environment.get('internetBar')) {
                         if (!redirectExtId) {
                             if (Environment.get('deviceId') === 'Default') {
                                 Backbone.trigger('switchModule', {

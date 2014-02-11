@@ -8,7 +8,7 @@
     "HIDE_NAV_PIC" : true,
     "HIDE_NAV_VIDEO" : true,
     "HIDE_NAV_BACKUP_RESTORE" : true,
-    "HIDE_APP_WASH" : true,
+    "HIDE_NAV_WASH" : true,
     "HIDE_NAV_OPTIMIZE" : true,
 
     "DISABLE_BACKUP_RESTORE" : true,

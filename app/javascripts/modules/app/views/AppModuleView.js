@@ -5,6 +5,7 @@
         'underscore',
         'doT',
         'Log',
+        'ProjectConfig',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'app/views/AppModuleToolbarView',
@@ -16,6 +17,7 @@
         _,
         doT,
         log,
+        ProjectConfig,
         TemplateFactory,
         StringUtil,
         AppModuleToolbarView,
@@ -53,10 +55,12 @@
                 this.$el.prepend(AppModuleToolbarView.getInstance().render().$el);
 
                 appListView = AppListView.getInstance();
-                appPanelView = AppPanelView.getInstance();
+                this.$('.w-app-ctn').append(appListView.render().$el);
 
-                this.$('.w-app-ctn').append(appListView.render().$el)
-                                    .append(appPanelView.render().$el);
+                if (!ProjectConfig.get('HIDE_APP_PANEL')) {
+                    appPanelView = AppPanelView.getInstance();
+                    this.$('.w-app-ctn').append(appPanelView.render().$el);
+                }
 
                 this.rendered = true;
 

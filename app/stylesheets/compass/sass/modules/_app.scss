@@ -310,6 +310,10 @@
     position: absolute;
     right: 219px;
 
+    @if $PROJECT_FLAG == PROJECT_SUNING {
+        right: 0;
+    }
+
     .button-return {
         color: #333;
         display: none;
