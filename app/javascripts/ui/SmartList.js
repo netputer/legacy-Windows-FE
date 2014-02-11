@@ -140,12 +140,16 @@
                         this.build(evt.target.scrollTop);
                     }.bind(this));
 
-                    wandoujia.getFPS('recordeFPS', JSON.stringify({
-                        'type' : 'smartlist_scroll_' + SnapPea.CurrentModule,
+                    var index = _.uniqueId('smartlist_scroll_');
+                    wandoujia.data = wandoujia.data || {};
+                    wandoujia.data[index] = {
+                        'type' : 'welcome_scroll_' + SnapPea.CurrentModule,
                         'lengthOnScreen' : onScreenItems.length
-                    }));
+                    };
+                    wandoujia.getFPS('recordeFPS', index);
 
                 }.bind(this);
+
                 var enableContextMenu = false;
                 var selectable = true;
                 var listenToCollection;

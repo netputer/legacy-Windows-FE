@@ -64,9 +64,10 @@
             initialize : function () {
                 var scrollHandler = function (evt) {
 
-                    wandoujia.getFPS('recordeFPS', JSON.stringify({
-                        'type' : 'welcome_scroll'
-                    }));
+                    var index = _.uniqueId('welcome_scroll_');
+                    wandoujia.data = wandoujia.data || {};
+                    wandoujia.data[index] = {'type' : 'welcome_scroll'};
+                    wandoujia.getFPS('recordeFPS', index);
 
                     window.requestAnimationFrame(function () {
                         var target = evt.target;

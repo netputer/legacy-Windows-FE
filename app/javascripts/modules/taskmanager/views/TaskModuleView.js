@@ -191,9 +191,10 @@
                 this.$el.find('.ctn').one('webkitAnimationStart', function () {
 
                     performanceHandler = setInterval(function () {
-                        wandoujia.getFPS('recordeFPS', JSON.stringify({
-                            'type' : taskmanager_slide
-                        }));
+                        var index = _.uniqueId('taskmanager_slide_');
+                        wandoujia.data = wandoujia.data || {};
+                        wandoujia.data[index] = {'type' : 'taskmanager_slide'};
+                        wandoujia.getFPS('recordeFPS', index);
                     }, 20);
                 });
             },

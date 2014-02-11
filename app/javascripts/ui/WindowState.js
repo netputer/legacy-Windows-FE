@@ -35,11 +35,18 @@
 
             WindowState.trigger('resize', WindowState);
 
-            wandoujia.getFPS('recordeFPS', JSON.stringify({
-                'type' : 'window_resize_' + SnapPea.CurrentModule,
-                'width' : width,
-                'height' : height
-            }));
+            if (window.SnapPea) {
+
+                var index = _.uniqueId('window_resize_');
+                wandoujia.data = wandoujia.data || {};
+                wandoujia.data[index] = {
+                    'type' : 'window_resize_' + SnapPea.CurrentModule,
+                    'width' : width,
+                    'height' : height
+                };
+
+                wandoujia.getFPS('recordeFPS', index);
+            }
 
         }, 25));
 

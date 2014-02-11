@@ -4,14 +4,12 @@
         'underscore',
         'Distributor',
         'Log',
-        'jquery',
-        'ParserFactory'
+        'jquery'
     ], function (
         _,
         Distributor,
         log,
-        $,
-        ParserFactory
+        $
     ) {
         var PerformanceTracker =  {};
         var SYS_INFO = {};
@@ -20,7 +18,7 @@
             SYS_INFO = JSON.parse(result);
 
             _.each(SYS_INFO, function (value, key) {
-                SYS_INFO[key] = $.trim(value);
+                SYS_INFO[key] = value.replace(/\s/g, '');
             });
         };
 
@@ -28,13 +26,14 @@
             wandoujia.getSystemInfo('getSysInfo');
         };
 
-        window.recordeFPS = function (result, data) {
+        window.recordeFPS = function (result, index) {
+            var data = wandoujia.data[index];
+            delete wandoujia.data[index];
 
-            ParserFactory.addTask([result, data], function(evt) {
-                log(_.extend({
-                    'event' : 'ui.show.performance'
-                }, evt[0], evt[1]));
-            });
+            result = JSON.parse(result);
+            log(_.extend({
+                'event' : 'ui.show.performance'
+            }, data, result, SYS_INFO));
         };
 
         return PerformanceTracker;
