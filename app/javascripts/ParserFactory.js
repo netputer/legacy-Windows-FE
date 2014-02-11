@@ -1,12 +1,20 @@
 /*global define*/
 (function (window) {
-    define(['underscore', 'WorkerPoll', 'Configuration'], function (_, WorkerPoll, CONFIG) {
+    define([
+        'underscore',
+        'WorkerPoll',
+        'Configuration',
+        'text!workers/jsonparser.js'
+    ], function (
+        _,
+        WorkerPoll,
+        CONFIG,
+        jsonparser
+    ) {
         console.log('ParserFactory - File loaded.');
 
         var POOL_SIZE = 3;
-        var WORKER_PATH = CONFIG.BASE_PATH + 'workers/jsonparser.js';
-
-        var ParserFactory = new WorkerPoll(WORKER_PATH, POOL_SIZE);
+        var ParserFactory = new WorkerPoll(window.URL.createObjectURL(new Blob([jsonparser])), POOL_SIZE);
 
         return ParserFactory;
     });
