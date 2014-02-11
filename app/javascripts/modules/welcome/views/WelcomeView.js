@@ -63,6 +63,12 @@
             className : 'w-welcome-ctn',
             initialize : function () {
                 var scrollHandler = function (evt) {
+
+                    var index = _.uniqueId('welcome_scroll_');
+                    wandoujia.data = wandoujia.data || {};
+                    wandoujia.data[index] = {'type' : 'welcome_scroll'};
+                    wandoujia.getFPS('recordeFPS', index);
+
                     window.requestAnimationFrame(function () {
                         var target = evt.target;
                         this.moveComponents(target.scrollTop);

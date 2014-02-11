@@ -53,7 +53,7 @@
             },
             clickButtonAction : function () {
                 if (!FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE && !Device.get('isUSB')) {
-                    alert(i18n.backup_restore.TIP_IN_WIFI);
+                    alert(i18n.new_backuprestore.TIP_IN_WIFI);
                     return;
                 }
 

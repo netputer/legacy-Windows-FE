@@ -241,10 +241,6 @@
                         'type' : 'cloud_photo'
                     });
 
-                    if (this.collection.stateCode === 747) {
-                        return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo.CUSTOM_RESOURCE_LOCKED;
-                    }
-
                     var index = _.random(0, 1);
                     return doT.template(TemplateFactory.get('misc', 'wanxiaodou'))({}) + i18n.photo['EMPTY_CLOUD_LIST_' + index];
                 default:
@@ -339,20 +335,12 @@
 
                 IO.sendCustomEventsAsync(CONFIG.events.WEB_NAVIGATE, {type: CONFIG.enums.NAVIGATE_TYPE_GALLERY, id: 256});
             },
-            clickButtonReset : function () {
-                log({
-                    'event' : 'ui.click.reset_password',
-                    'type' : 'cloud_photo'
-                });
-                Account.openResetDialog();
-            },
             clickTurnOnCloud : function () {
                 PhotoSyncSwitchView.getInstance().tryLogin();
             },
             events : {
                 'click .button-login' : 'clickButtonLogin',
                 'click .button-download-pic' : 'clickButtonDownload',
-                'click .button-reset-pw' : 'clickButtonReset',
                 'click .button-turn-on-cloud' : 'clickTurnOnCloud',
                 'mousedown' : 'startDraw'
             }

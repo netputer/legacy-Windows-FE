@@ -121,7 +121,7 @@
                             alert(i18n.misc.NOT_ENOUGH_ROOM_FOR_IMPORT, yesHandler);
                             break;
                         case 709:
-                            alert(i18n.backup_restore.ERROR_WHEN_WRITE_ROM, yesHandler);
+                            alert(i18n.new_backuprestore.ERROR_WHEN_WRITE_ROM, yesHandler);
                             break;
                         default:
                             alert(i18n.message.IMPORT_FAILED, yesHandler);

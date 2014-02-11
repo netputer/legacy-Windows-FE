@@ -15,9 +15,9 @@
     <div class="hbox wrap cf">
         <div class="pic-ctn"></div>
         <div class="content-ctn">
-            <h2 class="header-text">{{= i18n.backup_restore.AUTO_BACKUP_COMPLETE_FINISH }}</h2>
+            <h2 class="header-text">{{= i18n.new_backuprestore.AUTO_BACKUP_COMPLETE_FINISH }}</h2>
             <p class="content text-secondary">{{= it.content }}</p>
-            <p class="text-secondary">{{= i18n.backup_restore.AUTO_BACKUP_COMPLETE_FINISH_TIP }}</p>
+            <p class="text-secondary">{{= i18n.new_backuprestore.AUTO_BACKUP_COMPLETE_FINISH_TIP }}</p>
         </div>
     </div>
     <div class="hbox footer-ctn">
@@ -42,8 +42,8 @@
     <div class="hbox wrap cf">
         <div class="pic-ctn"></div>
         <div class="content-ctn">
-            <h2 class="header-text">{{= StringUtil.format(i18n.backup_restore.PHOTO_DOWNLOAD_NOTIFY_TITLE, it.num) }}</h2>
-            <p class="content text-secondary">{{= i18n.backup_restore.PHOTO_DOWNLOAD_NOTIFY_CONTENT }}</p>
+            <h2 class="header-text">{{= StringUtil.format(i18n.new_backuprestore.PHOTO_DOWNLOAD_NOTIFY_TITLE, it.num) }}</h2>
+            <p class="content text-secondary">{{= i18n.new_backuprestore.PHOTO_DOWNLOAD_NOTIFY_CONTENT }}</p>
         </div>
     </div>
     <div class="hbox footer-ctn">
@@ -55,8 +55,8 @@
     <div class="hbox wrap cf">
         <div class="pic-ctn"></div>
         <div class="content-ctn">
-            <h2 class="header-text">{{= i18n.backup_restore.SYNC_PHOTO_PUSH_NOTIFY_TITLE }}</h2>
-            <p class="content text-secondary">{{= StringUtil.format(i18n.backup_restore.SYNC_PHOTO_PUSH_NOTIFY_CONTENT, it.num) }}</p>
+            <h2 class="header-text">{{= i18n.new_backuprestore.SYNC_PHOTO_PUSH_NOTIFY_TITLE }}</h2>
+            <p class="content text-secondary">{{= StringUtil.format(i18n.new_backuprestore.SYNC_PHOTO_PUSH_NOTIFY_CONTENT, it.num) }}</p>
         </div>
     </div>
     <div class="hbox footer-ctn">
@@ -69,11 +69,11 @@
         <div class="pic-ctn"></div>
         <div class="content-ctn">
             <h2 class="header-text">{{= it.content }}</h2>
-            <p class="text-secondary">{{= i18n.backup_restore.BACKUP_GUIDE_CONTENT }}</p>
+            <p class="text-secondary">{{= i18n.new_backuprestore.BACKUP_GUIDE_CONTENT }}</p>
         </div>
     </div>
     <div class="hbox footer-ctn">
-        <button class="primary button-open">{{= i18n.backup_restore.BACKUP_GUIDE_NOW }}</button>
+        <button class="primary button-open">{{= i18n.new_backuprestore.BACKUP_GUIDE_NOW }}</button>
     </div>
 </script>
 

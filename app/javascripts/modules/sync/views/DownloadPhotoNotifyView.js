@@ -38,7 +38,7 @@
                     'data.channel' : CONFIG.events.SYNC_PHOTO_NOTIFY_UPDATE
                 }, function (message) {
                     this.options.num = parseInt(message, 10);
-                    this.$('.header-text').text(StringUtil.format(i18n.backup_restore.PHOTO_DOWNLOAD_NOTIFY_TITLE, message));
+                    this.$('.header-text').text(StringUtil.format(i18n.new_backuprestore.PHOTO_DOWNLOAD_NOTIFY_TITLE, message));
 
                     log({
                         'event' : 'debug.sync.photo.notify.update',

@@ -40,7 +40,5 @@ define({
     PHOTO_SYNC : '<p>是否在这台电脑上开启云相册同步？</p><p>开启云相册同步后，您的豌豆荚账号下的手机照片会同步到您的 <a href="{1}" target="_default">私人云相册</a> 中保存，同时也会同步到您的这台电脑上。</p><p>如果您使用的不是自己的电脑，请不要选择开启。</p>',
     TIP_CLOSE_PHOTO_SYNC : '确定要关闭云相册同步吗？',
     CLOSE_PHOTO_SYNC : '关闭同步',
-    EMPTY_TIP_PHOTO_CLOUD_NOT_LOGIN : '<span class="button-login link">登录豌豆荚</span> 来查看您的私人云相册',
-
-    CUSTOM_RESOURCE_LOCKED : '<span class="reset">豌豆荚在 8 月 25 日碰到技术故障，当天我们暂时关闭了豌豆荚的账号服务，12 个小时后账号服务修复完成。但为了您的信息安全考虑，目前通过旧的密码将不能使用云恢复、云相册等功能。请您立即修改密码，以便正常使用豌豆荚。</span><button class="button-reset-pw primary grand">修改密码</button>'
+    EMPTY_TIP_PHOTO_CLOUD_NOT_LOGIN : '<span class="button-login link">登录豌豆荚</span> 来查看您的私人云相册'
 });

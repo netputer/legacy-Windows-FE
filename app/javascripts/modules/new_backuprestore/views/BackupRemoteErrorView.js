@@ -110,7 +110,7 @@
             getInstance : function () {
                 if (!backupRemoteErrorView) {
                     backupRemoteErrorView = new BackupRemoteErrorView({
-                        title : i18n.backup_restore.BACKUP_TITLE_REMOTE,
+                        title : i18n.new_backuprestore.BACKUP_TITLE_REMOTE,
                         disableX : true,
                         width : BackupRestoreService.CONSTS.ViewWidthTip
                     });

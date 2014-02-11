@@ -211,7 +211,7 @@
     <div class="all-non-app-failed">
         <p>{{= StringUtil.format(i18n.new_backuprestore.RESTORE_PERMISSSION_TIP1, it.type_name) }}</p>
         <p>{{= StringUtil.format(i18n.new_backuprestore.RESTORE_PERMISSSION_TIP2, it.type_name) }}</p>
-        <p>{{= i18n.backup_restore.RESTORE_PERMISSSION_TIP3 }}</p>
+        <p>{{= i18n.new_backuprestore.RESTORE_PERMISSSION_TIP3 }}</p>
     </div>
     <div class="part-non-app-failed">
         <p>{{= StringUtil.format(i18n.new_backuprestore.RESTORE_PERMISSSION_PART_TIP1, it.error_number, it.type_name) }}</p>

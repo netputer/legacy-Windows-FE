@@ -298,7 +298,7 @@
                         case CONFIG.enums.TASK_STATE_PROCESSING :
                             if (it.message === CONFIG.enums.BACKUP_APP_DATA_MESSAGE_NEED_USER_RESTORE) {
         }}
-        <div class="text-warning">{{= i18n.backup_restore.RESTORE_APP_DATA_WAITING }}</div>
+        <div class="text-warning">{{= i18n.new_backuprestore.RESTORE_APP_DATA_WAITING }}</div>
         {{
                             } else {
         }}
@@ -317,7 +317,7 @@
                         case CONFIG.enums.TASK_STATE_FAILD :
         }}
         <div>
-            {{= i18n.backup_restore.RESTORE_APP_DATA_ERROR }}
+            {{= i18n.new_backuprestore.RESTORE_APP_DATA_ERROR }}
         </div>
         {{
                         break;

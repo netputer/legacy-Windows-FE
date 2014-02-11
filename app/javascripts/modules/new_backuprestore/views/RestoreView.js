@@ -125,7 +125,7 @@
                     this.updateStatus(type, currentValue, maxValue, true);
                     break;
                 case BackupRestoreService.CONSTS.BR_PI_STATUS.ERROR:
-                    //pattern = i18n.backup_restore.RESTORE_FAILED;
+                    //pattern = i18n.new_backuprestore.RESTORE_FAILED;
 
                     //TODO:
                     //var desc = StringUtil.format(pattern, i18n.new_backuprestore.BR_TYPE_WORD_ENUM[type]);
@@ -335,7 +335,7 @@
                         }.bind(this)).fail(function (resp) {
                             var message;
                             if (this.isCsvFile(name)) {
-                                message = i18n.backup_restore.RESTORE_INVLID_CONTACTS_FILE;
+                                message = i18n.new_backuprestore.RESTORE_INVLID_CONTACTS_FILE;
                             } else {
                                 message = BackupRestoreService.getErrorMessage(resp.state_code);
                             }
