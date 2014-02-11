@@ -237,18 +237,18 @@ module.exports = function (grunt) {
         }
     });
 
-    var project_flag = 'WDJ';
+    var projectFlag = 'WDJ';
 
     grunt.registerTask('server', function (project) {
         if (typeof project !== 'undefined') {
-            project_flag = project.toUpperCase();
+            projectFlag = project.toUpperCase();
         }
 
         var taskList = [
             'clean:server',
             'jshint:all',
             'copy:tmp',
-            'replace:' + project_flag,
+            'replace:' + projectFlag,
             'createScssConfig',
             'compass:server',
             'watch'
@@ -259,7 +259,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', function (project, requireTask) {
         if (typeof project !== 'undefined') {
-            project_flag = project.toUpperCase();
+            projectFlag = project.toUpperCase();
         }
 
         var rtask = 'source';
@@ -271,7 +271,7 @@ module.exports = function (grunt) {
             'clean:dist',
             'jshint:all',
             'copy:tmp',
-            'replace:' + project_flag,
+            'replace:' + projectFlag,
             'createScssConfig',
             'compass:dist',
             'requirejs:' + rtask,
@@ -295,7 +295,7 @@ module.exports = function (grunt) {
         fd = fs.openSync(filePath, 'w');
 
         var content = '';
-        switch (project_flag) {
+        switch (projectFlag) {
         case 'WDJ':
             content = '$PROJECT_FLAG : PROJECT_WDJ';
             break;
@@ -340,7 +340,7 @@ module.exports = function (grunt) {
         switch (target) {
         case 'projectConfig':
             grunt.file.copy(paths.app + '/index.html', paths.tmp + '/index.html');
-            runSubTask('grunt replace:' + project_flag);
+            runSubTask('grunt replace:' + projectFlag);
             break;
 
         case 'src':
@@ -359,7 +359,7 @@ module.exports = function (grunt) {
                 grunt.file.copy(filePath, targetPath);
 
                 if (baseName === 'index.html') {
-                    runSubTask('grunt replace:' + project_flag);
+                    runSubTask('grunt replace:' + projectFlag);
                 } else if (extName === '.js') {
                     runSubTask('grunt jshint:all');
                 }

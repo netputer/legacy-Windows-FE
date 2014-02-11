@@ -158,7 +158,9 @@
 
                 this.$('.ctn').append(taskListView.render().$el);
 
-                // this.$('.ctn').append(TaskModuleCapacityView.getInstance().render().$el);
+                if (ProjectConfig.get('PROJECT_FLAG') !== 'TIANYIN') {
+                    this.$('.ctn').append(TaskModuleCapacityView.getInstance().render().$el);
+                }
 
                 this.rendered = true;
 
