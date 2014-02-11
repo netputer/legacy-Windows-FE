@@ -7,6 +7,7 @@
         'doT',
         'ui/TemplateFactory',
         'utilities/QueryString',
+        'Device',
         'Internationalization',
         'Environment',
         'ProjectConfig',
@@ -25,6 +26,7 @@
         doT,
         TemplateFactory,
         QueryString,
+        Device,
         i18n,
         Environment,
         ProjectConfig,
@@ -151,18 +153,26 @@
                         }
                     } else {
                         var selectDefault = function () {
-                            extensionsCollection.at(0).set('selected', true);
+                            if (extensionsCollection.length > 0) {
+                                extensionsCollection.at(0).set('selected', true);
+                            }
                         };
+
+                        var refreshHandler = function () {
+                            if (extensionsCollection.length > 0) {
+                                selectDefault.call(this);
+                                extensionsCollection.off('refresh', refreshHandler);
+                            }
+                        };
+
                         if (extensionsCollection.length > 0) {
                             selectDefault.call(this);
                         } else {
-                            var refreshHandler = function () {
-                                if (extensionsCollection.length > 0) {
-                                    selectDefault.call(this);
-                                    extensionsCollection.off('refresh', refreshHandler);
-                                }
-                            };
                             extensionsCollection.on('refresh', refreshHandler, this);
+                        }
+
+                        if (ProjectConfig.get('PROJECT_FLAG') === 'SUNING') {
+                            Device.on('change:isConnected', selectDefault, this);
                         }
                     }
 
