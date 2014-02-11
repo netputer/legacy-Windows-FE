@@ -38,7 +38,7 @@
             render : function () {
                 this.$el.html(this.template({
                     content : this.options.content ?
-                                StringUtil.format(i18n.backup_restore.AUTO_BACKUP_COMPLETE_FINISH_CONTENT, this.options.content)  : ''
+                                StringUtil.format(i18n.new_backuprestore.AUTO_BACKUP_COMPLETE_FINISH_CONTENT, this.options.content)  : ''
                 }));
 
                 var $notifySetting = $(doT.template(TemplateFactory.get('misc', 'notify-setting'))({})).addClass('setting-ctn');

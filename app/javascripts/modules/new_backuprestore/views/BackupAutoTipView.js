@@ -70,7 +70,7 @@
                     $button : $('<button>').html(yesText).addClass('button-yes primary'),
                     eventName : 'button_yes'
                 }, {
-                    $button : $('<button>').html(i18n.backup_restore.AUTO_BACKUP_NO),
+                    $button : $('<button>').html(i18n.new_backuprestore.AUTO_BACKUP_NO),
                     eventName : 'button_cancel'
                 }];
             },

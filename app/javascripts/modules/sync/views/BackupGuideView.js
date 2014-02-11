@@ -35,7 +35,7 @@
             template : doT.template(TemplateFactory.get('sync', 'backup-guide')),
             render : function () {
                 var content = this.options.day > 0 ?
-                                StringUtil.format(i18n.backup_restore.BACKUP_GUIDE_TIP_DAY, this.options.day) : i18n.backup_restore.BACKUP_GUIDE_TIP;
+                                StringUtil.format(i18n.new_backuprestore.BACKUP_GUIDE_TIP_DAY, this.options.day) : i18n.new_backuprestore.BACKUP_GUIDE_TIP;
                 this.$el.html(this.template({
                     content : content
                 }));

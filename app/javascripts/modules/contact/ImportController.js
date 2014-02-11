@@ -105,7 +105,7 @@
                             alert(i18n.misc.NOT_ENOUGH_ROOM_FOR_IMPORT);
                             break;
                         case 709:
-                            alert(i18n.backup_restore.ERROR_WHEN_WRITE_ROM);
+                            alert(i18n.new_backuprestore.ERROR_WHEN_WRITE_ROM);
                             break;
                         case 402:
                             break;
