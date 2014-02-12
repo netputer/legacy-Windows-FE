@@ -46,6 +46,8 @@
         });
 
         var FunctionSwitch = _.extend({}, Backbone.Events);
+        var IS_CHINESE_VERSION = Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
+                                        Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
 
         Object.defineProperties(FunctionSwitch, {
             PRIVACY : {
@@ -55,145 +57,124 @@
             },
             IS_CHINESE_VERSION :  {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_APP_UPGRADE : {
                 get : function () {
-                    return !ProjectConfig.get('DISABLE_APP_UPGRADE') && PRIVACY.ENABLE_APP_UPGRADE &&
-                            (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                                Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN);
+                    return IS_CHINESE_VERSION &&
+                                PRIVACY.ENABLE_APP_UPGRADE &&
+                                !ProjectConfig.get('DISABLE_APP_UPGRADE');
                 }
             },
             ENABLE_APP_COMMENT : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_APP_RECOMMEND : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_APP_PERMISSION : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_APP_SEARCH : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_DORAEMON : {
                 get : function () {
-                    return !ProjectConfig.get('DISABLE_DORAEMON') && (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN);
+                    return IS_CHINESE_VERSION &&
+                                !ProjectConfig.get('DISABLE_DORAEMON');
                 }
             },
             ENABLE_PHOTO_SYNC : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_PHOTO_SYNC_DOWNLOAD : {
                 get : function () {
-                    return (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                                Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) &&
+                    return IS_CHINESE_VERSION &&
                                 !Environment.get('internetBar');
                 }
             },
             ENABLE_DUAL_SIM : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_OPTIMIZE : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_WDAPK : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_MY_APPS : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_SUGGESTION_INSTALL : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_MY_MUTIL_SOCIAL_PLATFORM : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_SHARE_SET_WALLPAPER : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_CLOUD_BACKUP_RESTORE : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_SHARE_UNINSTALL : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_BACKUP_APP_DATA : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_APP_WASH : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return IS_CHINESE_VERSION;
                 }
             },
             ENABLE_AUTOBACKUP_POPUP : {
                 get : function () {
-                    return (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                                Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) &&
+                    return IS_CHINESE_VERSION &&
                                 !Environment.get('internetBar');
                 }
             },
             ENABLE_PHOTO_DOWNLOAD_POPUP : {
                 get : function () {
-                    return (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                                Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) &&
+                    return IS_CHINESE_VERSION &&
                                 !Environment.get('internetBar');
                 }
             },
             ENABLE_USER_GUIDE : {
                 get : function () {
-                    return !ProjectConfig.get('DISABLE_USER_GUIDE') &&
-                                (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                                Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN);
+                    return IS_CHINESE_VERSION &&
+                                !ProjectConfig.get('DISABLE_USER_GUIDE');
                 }
             }
         });
