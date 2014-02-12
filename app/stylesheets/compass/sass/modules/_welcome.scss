@@ -25,6 +25,10 @@
         position: relative;
         width: 615px;
 
+        @if $PROJECT_FLAG == PROJECT_SUNING {
+            background-image: url('../images/connection-guide-bg-300X300-suning.png');
+        }
+
         .tips-ctn {
             bottom: 30px;
             position: absolute;

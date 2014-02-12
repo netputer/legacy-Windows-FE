@@ -7,8 +7,10 @@
         'doT',
         'ui/TemplateFactory',
         'utilities/QueryString',
+        'Device',
         'Internationalization',
         'Environment',
+        'ProjectConfig',
         'Configuration',
         'WindowController',
         'main/views/PIMMenuView',
@@ -24,8 +26,10 @@
         doT,
         TemplateFactory,
         QueryString,
+        Device,
         i18n,
         Environment,
+        ProjectConfig,
         CONFIG,
         WindowController,
         PIMMenuView,
@@ -120,7 +124,7 @@
                     .append(pimMenuView.render().$el);
 
                 setTimeout(function () {
-                    if (!Environment.get('internetBar')) {
+                    if (!ProjectConfig.get('SHOW_FIRST_EXTENSION') && !Environment.get('internetBar')) {
                         if (!redirectExtId) {
                             if (Environment.get('deviceId') === 'Default') {
                                 Backbone.trigger('switchModule', {
@@ -149,18 +153,26 @@
                         }
                     } else {
                         var selectDefault = function () {
-                            extensionsCollection.at(0).set('selected', true);
+                            if (extensionsCollection.length > 0) {
+                                extensionsCollection.at(0).set('selected', true);
+                            }
                         };
+
+                        var refreshHandler = function () {
+                            if (extensionsCollection.length > 0) {
+                                selectDefault.call(this);
+                                extensionsCollection.off('refresh', refreshHandler);
+                            }
+                        };
+
                         if (extensionsCollection.length > 0) {
                             selectDefault.call(this);
                         } else {
-                            var refreshHandler = function () {
-                                if (extensionsCollection.length > 0) {
-                                    selectDefault.call(this);
-                                    extensionsCollection.off('refresh', refreshHandler);
-                                }
-                            };
                             extensionsCollection.on('refresh', refreshHandler, this);
+                        }
+
+                        if (ProjectConfig.get('PROJECT_FLAG') === 'SUNING') {
+                            Device.on('change:isConnected', selectDefault, this);
                         }
                     }
 

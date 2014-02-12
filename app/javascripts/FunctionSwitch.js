@@ -61,7 +61,7 @@
             },
             ENABLE_APP_UPGRADE : {
                 get : function () {
-                    return PRIVACY.ENABLE_APP_UPGRADE &&
+                    return !ProjectConfig.get('DISABLE_APP_UPGRADE') && PRIVACY.ENABLE_APP_UPGRADE &&
                             (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
                                 Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN);
                 }
@@ -92,8 +92,8 @@
             },
             ENABLE_DORAEMON : {
                 get : function () {
-                    return Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+                    return !ProjectConfig.get('DISABLE_DORAEMON') && (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
+                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN);
                 }
             },
             ENABLE_PHOTO_SYNC : {
