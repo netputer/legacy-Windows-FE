@@ -90,11 +90,6 @@
                     return !ProjectConfig.get('HIDE_NAV_APP_SYS');
                 }
             },
-            ENABLE_APP_UPDATABLE : {
-                get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_APP_UPDATABLE');
-                }
-            },
             ENABLE_APP_UPGRADE : {
                 get : function () {
                     return IS_CHINESE_VERSION &&
@@ -104,7 +99,8 @@
             },
             ENABLE_APP_WASH : {
                 get : function () {
-                    return IS_CHINESE_VERSION;
+                    return IS_CHINESE_VERSION &&
+                                !ProjectConfig.get('HIDE_NAV_WASH');
                 }
             },
             ENABLE_AUTOBACKUP_POPUP : {
@@ -176,7 +172,8 @@
             },
             ENABLE_OPTIMIZE : {
                 get : function () {
-                    return IS_CHINESE_VERSION;
+                    return IS_CHINESE_VERSION &&
+                                !ProjectConfig.get('HIDE_NAV_OPTIMIZE');
                 }
             },
             ENABLE_PHOTO_DOWNLOAD_POPUP : {
