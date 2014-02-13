@@ -159,7 +159,7 @@
                         var index = _.uniqueId('smartlist_scroll_');
                         window.wandoujia.data = window.wandoujia.data || {};
                         window.wandoujia.data[index] = data;
-                        window.wandoujia.getFPS('recordeFPS', index);
+                        window.wandoujia.getFPS('recordFPS', index);
                     }
                 }.bind(this);
 

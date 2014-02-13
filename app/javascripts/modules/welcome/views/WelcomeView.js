@@ -65,7 +65,7 @@
                         var index = _.uniqueId('welcome_scroll_');
                         window.wandoujia.data = window.wandoujia.data || {};
                         window.wandoujia.data[index] = {'type' : 'welcome_scroll'};
-                        window.wandoujia.getFPS('recordeFPS', index);
+                        window.wandoujia.getFPS('recordFPS', index);
                     }
 
                     window.requestAnimationFrame(function () {

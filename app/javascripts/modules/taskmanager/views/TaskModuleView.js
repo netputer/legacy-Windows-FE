@@ -196,7 +196,7 @@
                         var index = _.uniqueId('taskmanager_slide_');
                         window.wandoujia.data = window.wandoujia.data || {};
                         window.wandoujia.data[index] = {'type' : 'taskmanager_slide'};
-                        window.wandoujia.getFPS('recordeFPS', index);
+                        window.wandoujia.getFPS('recordFPS', index);
                     }, 20);
                 });
             },

@@ -45,7 +45,7 @@
                     'width' : width,
                     'height' : height
                 };
-                window.wandoujia.getFPS('recordeFPS', index);
+                window.wandoujia.getFPS('recordFPS', index);
             }
         }, 25));
 

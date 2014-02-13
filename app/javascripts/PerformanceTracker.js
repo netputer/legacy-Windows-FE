@@ -26,7 +26,7 @@
             wandoujia.getSystemInfo('getSysInfo');
         };
 
-        window.recordeFPS = function (result, index) {
+        window.recordFPS = function (result, index) {
             var data = wandoujia.data[index];
             delete wandoujia.data[index];
 
