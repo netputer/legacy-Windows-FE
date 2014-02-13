@@ -181,6 +181,9 @@
                 this.$el.toggleClass('hide', !this.show);
             },
             recordFPS : function () {
+                if (!FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+                    return;
+                }
 
                 clearInterval(performanceHandler);
 
@@ -189,12 +192,11 @@
                 });
 
                 this.$el.find('.ctn').one('webkitAnimationStart', function () {
-
                     performanceHandler = setInterval(function () {
                         var index = _.uniqueId('taskmanager_slide_');
-                        wandoujia.data = wandoujia.data || {};
-                        wandoujia.data[index] = {'type' : 'taskmanager_slide'};
-                        wandoujia.getFPS('recordeFPS', index);
+                        window.wandoujia.data = window.wandoujia.data || {};
+                        window.wandoujia.data[index] = {'type' : 'taskmanager_slide'};
+                        window.wandoujia.getFPS('recordeFPS', index);
                     }, 20);
                 });
             },

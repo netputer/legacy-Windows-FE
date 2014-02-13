@@ -176,6 +176,11 @@
                                 !ProjectConfig.get('HIDE_NAV_OPTIMIZE');
                 }
             },
+            ENABLE_PERFORMANCE_TRACKER : {
+                get : function () {
+                    return !ProjectConfig.get('DISABLE_PERFORMANCE_TRACKER');
+                }
+            },
             ENABLE_PHOTO_DOWNLOAD_POPUP : {
                 get : function () {
                     return IS_CHINESE_VERSION &&

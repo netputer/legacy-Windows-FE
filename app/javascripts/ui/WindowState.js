@@ -9,11 +9,13 @@
     define([
         'jquery',
         'underscore',
-        'backbone'
+        'backbone',
+        'FunctionSwitch'
     ], function (
         $,
         _,
-        Backbone
+        Backbone,
+        FunctionSwitch
     ) {
         console.log('WindowState - File loaded.');
 
@@ -35,19 +37,16 @@
 
             WindowState.trigger('resize', WindowState);
 
-            if (window.SnapPea) {
-
+            if (window.SnapPea && FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
                 var index = _.uniqueId('window_resize_');
-                wandoujia.data = wandoujia.data || {};
-                wandoujia.data[index] = {
-                    'type' : 'window_resize_' + SnapPea.CurrentModule,
+                window.wandoujia.data = window.wandoujia.data || {};
+                window.wandoujia.data[index] = {
+                    'type' : 'window_resize_' + window.SnapPea.CurrentModule,
                     'width' : width,
                     'height' : height
                 };
-
-                wandoujia.getFPS('recordeFPS', index);
+                window.wandoujia.getFPS('recordeFPS', index);
             }
-
         }, 25));
 
         Object.defineProperties(WindowState, {

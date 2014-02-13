@@ -5,6 +5,7 @@
         'underscore',
         'backbone',
         'doT',
+        'FunctionSwitch',
         'ui/UIHelper',
         'ui/TemplateFactory',
         'ui/WindowState',
@@ -18,6 +19,7 @@
         _,
         Backbone,
         doT,
+        FunctionSwitch,
         UIHelper,
         TemplateFactory,
         WindowState,
@@ -131,29 +133,34 @@
                 var removeScrollingClass = _.debounce(function () {
                     this.$el.removeClass('scrolling');
                 }.bind(this), 200);
+
                 var scrollHandler = function (evt) {
                     if (!this.$el.hasClass('scrolling')) {
                         this.$el.addClass('scrolling');
                     }
+
                     removeScrollingClass.call(this);
+
                     window.requestAnimationFrame(function () {
                         this.build(evt.target.scrollTop);
                     }.bind(this));
 
-                    var data = {
-                        'type' : 'welcome_scroll_' + SnapPea.CurrentModule,
-                        'lengthOnScreen' : onScreenItems.length,
-                        'url' : ''
-                    };
-                    if (this.currentModels.length > 0) {
-                        data.url = this.currentModels[0].collection.url || '';
+                    if (FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+                        var data = {
+                            'type' : 'smartlist_scroll_' + window.SnapPea.CurrentModule,
+                            'lengthOnScreen' : onScreenItems.length,
+                            'url' : ''
+                        };
+
+                        if (this.currentModels.length > 0) {
+                            data.url = this.currentModels[0].collection.url || '';
+                        }
+
+                        var index = _.uniqueId('smartlist_scroll_');
+                        window.wandoujia.data = window.wandoujia.data || {};
+                        window.wandoujia.data[index] = data;
+                        window.wandoujia.getFPS('recordeFPS', index);
                     }
-
-                    var index = _.uniqueId('smartlist_scroll_');
-                    wandoujia.data = wandoujia.data || {};
-                    wandoujia.data[index] = data;
-                    wandoujia.getFPS('recordeFPS', index);
-
                 }.bind(this);
 
                 var enableContextMenu = false;

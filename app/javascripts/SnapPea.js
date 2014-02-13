@@ -146,6 +146,9 @@
         }, this);
 
         window.externalCall('', 'page_ready', '');
-        PerformanceTracker.launch();
+
+        if (FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+            PerformanceTracker.launch();
+        }
     });
 }(this));

@@ -61,11 +61,12 @@
             className : 'w-welcome-ctn',
             initialize : function () {
                 var scrollHandler = function (evt) {
-
-                    var index = _.uniqueId('welcome_scroll_');
-                    wandoujia.data = wandoujia.data || {};
-                    wandoujia.data[index] = {'type' : 'welcome_scroll'};
-                    wandoujia.getFPS('recordeFPS', index);
+                    if (FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+                        var index = _.uniqueId('welcome_scroll_');
+                        window.wandoujia.data = window.wandoujia.data || {};
+                        window.wandoujia.data[index] = {'type' : 'welcome_scroll'};
+                        window.wandoujia.getFPS('recordeFPS', index);
+                    }
 
                     window.requestAnimationFrame(function () {
                         var target = evt.target;
