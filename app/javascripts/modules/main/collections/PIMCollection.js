@@ -19,7 +19,7 @@
 
         var menus = [{
             count : -1,
-            hide : ProjectConfig.get('HIDE_NAV_WELCOME_TO_WDJ'),
+            hide : !FunctionSwitch.ENABLE_WELCOME,
             icon : 'welcome',
             id : 0,
             label : ProjectConfig.get('CUSTOM_NAV_WELCOME_TEXT') || i18n.misc.NAV_WELCOME_TO_WDJ,
@@ -29,7 +29,7 @@
             tab : 'all'
         }, {
             count : -1,
-            hide : ProjectConfig.get('HIDE_NAV_CONTACT'),
+            hide : !FunctionSwitch.ENABLE_CONTACT,
             icon : 'contact',
             id : 1,
             label : i18n.misc.NAV_CONTACT,
@@ -39,7 +39,7 @@
             tab : 'all'
         }, {
             count : 0,
-            hide : ProjectConfig.get('HIDE_NAV_SMS'),
+            hide : !FunctionSwitch.ENABLE_SMS,
             icon : 'sms',
             id : 2,
             label : i18n.misc.NAV_SMS,
@@ -48,7 +48,7 @@
             root : true,
             tab : 'all'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_APP'),
+            hide : !FunctionSwitch.ENABLE_APP,
             icon : 'app',
             id : 3,
             label : i18n.misc.NAV_APP,
@@ -57,7 +57,7 @@
             root : true,
             tab : 'normal'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_MUSIC'),
+            hide : !FunctionSwitch.ENABLE_MUSIC,
             icon : 'music',
             id : 4,
             label : i18n.misc.NAV_MUSIC,
@@ -67,7 +67,7 @@
             tab : 'music'
         }, {
             count : -1,
-            hide : ProjectConfig.get('HIDE_NAV_PIC'),
+            hide : !FunctionSwitch.ENABLE_PIC,
             icon : 'photo',
             id : 5,
             label : i18n.misc.NAV_PIC,
@@ -76,7 +76,7 @@
             root : true,
             tab : 'phone'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_VIDEO'),
+            hide : !FunctionSwitch.ENABLE_VIDEO,
             icon : 'video',
             id : 6,
             label : i18n.misc.NAV_VIDEO,
@@ -86,7 +86,7 @@
             tab : 'video'
         }, {
             count : -1,
-            hide : ProjectConfig.get('HIDE_NAV_BACKUP_RESTORE'),
+            hide : !FunctionSwitch.ENABLE_BACKUP_RESTORE,
             icon : 'backup',
             id : 20,
             label : i18n.misc.NAV_BACKUP_RESTORE,
@@ -97,7 +97,7 @@
             tab : 'backup-restore'
         }, {
             count : -1,
-            hide : ProjectConfig.get('HIDE_NAV_WASH') || !FunctionSwitch.ENABLE_APP_WASH,
+            hide : !FunctionSwitch.ENABLE_APP_WASH,
             icon : 'wash',
             id : 19,
             label : i18n.app.APP_WASH,
@@ -106,7 +106,7 @@
             root : true,
             tab : 'app-wash'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_CONTACT_ALL'),
+            hide : !FunctionSwitch.ENABLE_CONTACT_ALL,
             id : 7,
             label : i18n.misc.NAV_CONTACT_ALL,
             module : 'contact',
@@ -115,7 +115,7 @@
             root : false,
             tab : 'all'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_CONTACT_HAS_PHONE'),
+            hide : !FunctionSwitch.ENABLE_CONTACT_HAS_PHONE,
             id : 8,
             label : i18n.misc.NAV_CONTACT_HAS_PHONE,
             module : 'contact',
@@ -124,7 +124,7 @@
             root : false,
             tab : 'hasnumber'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_CONTACT_STARRED'),
+            hide : !FunctionSwitch.ENABLE_CONTACT_STARRED,
             id : 9,
             label : i18n.misc.NAV_CONTACT_STARRED,
             module : 'contact',
@@ -133,7 +133,7 @@
             root : false,
             tab : 'starred'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_SMS_ALL'),
+            hide : !FunctionSwitch.ENABLE_SMS_ALL,
             id : 10,
             label : i18n.misc.NAV_SMS_ALL,
             module : 'message',
@@ -142,7 +142,7 @@
             root : false,
             tab : 'all'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_SMS_UNREAD'),
+            hide : !FunctionSwitch.ENABLE_SMS_UNREAD,
             id : 11,
             label : i18n.misc.NAV_SMS_UNREAD,
             module : 'message',
@@ -151,7 +151,7 @@
             root : false,
             tab : 'unread'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_APP_INSTALLED'),
+            hide : !FunctionSwitch.ENABLE_APP_INSTALLED,
             id : 12,
             label : i18n.misc.NAV_APP_INSTALLED,
             module : 'app',
@@ -160,7 +160,7 @@
             root : false,
             tab : 'normal'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_APP_SYS'),
+            hide : !FunctionSwitch.ENABLE_APP_SYS,
             id : 13,
             label : i18n.misc.NAV_APP_SYS,
             module : 'app',
@@ -169,7 +169,7 @@
             root : false,
             tab : 'sys'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_APP_UPDATABLE') || !FunctionSwitch.ENABLE_APP_UPGRADE,
+            hide : !FunctionSwitch.ENABLE_APP_UPGRADE,
             id : 14,
             label : i18n.misc.NAV_APP_UPDATABLE,
             module : 'app',
@@ -178,7 +178,7 @@
             root : false,
             tab : 'update'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_PIC_PHONE_LIB'),
+            hide : !FunctionSwitch.ENABLE_PIC_PHONE_LIB,
             id : 16,
             label : i18n.misc.NAV_PIC_PHONE_LIB,
             module : 'photo',
@@ -187,7 +187,7 @@
             root : false,
             tab : 'phone'
         }, {
-            hide : ProjectConfig.get('HIDE_NAV_PIC_GALLERY'),
+            hide : !FunctionSwitch.ENABLE_PIC_GALLERY,
             id : 17,
             label : i18n.misc.NAV_PIC_GALLERY,
             module : 'photo',
@@ -197,7 +197,7 @@
             tab : 'lib'
         }, {
             count : -1,
-            hide : ProjectConfig.get('HIDE_NAV_OPTIMIZE'),
+            hide : !FunctionSwitch.ENABLE_OPTIMIZE,
             icon : 'nav-optimize',
             id : 18,
             label : i18n.misc.NAV_OPTIMIZE,

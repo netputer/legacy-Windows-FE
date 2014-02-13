@@ -7,7 +7,6 @@
         'jquery',
         'DB',
         'ui/TemplateFactory',
-        'ProjectConfig',
         'FunctionSwitch',
         'IOBackendDevice',
         'Configuration',
@@ -31,7 +30,6 @@
         $,
         DB,
         TemplateFactory,
-        ProjectConfig,
         FunctionSwitch,
         IO,
         CONFIG,
@@ -63,16 +61,17 @@
             className : 'w-welcome-ctn',
             initialize : function () {
                 var scrollHandler = function (evt) {
-
-                    var index = _.uniqueId('welcome_scroll_');
-                    wandoujia.data = wandoujia.data || {};
-                    wandoujia.data[index] = {'type' : 'welcome_scroll'};
-                    wandoujia.getFPS('recordeFPS', index);
+                    if (FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+                        var index = _.uniqueId('welcome_scroll_');
+                        window.wandoujia.data = window.wandoujia.data || {};
+                        window.wandoujia.data[index] = {'type' : 'welcome_scroll'};
+                        window.wandoujia.getFPS('recordFPS', index);
+                    }
 
                     window.requestAnimationFrame(function () {
                         var target = evt.target;
                         this.moveComponents(target.scrollTop);
-                        if (!ProjectConfig.get('DISABLE_WELCOME_FEED') &&
+                        if (FunctionSwitch.ENABLE_WELCOME_FEED &&
                                 (target.scrollHeight - (target.scrollTop + target.offsetHeight) < 400)) {
                             feedListView.loadNextPage();
                         }
@@ -179,7 +178,7 @@
                 setTimeout(function () {
                     var $top = this.$('.top').append(deviceView.render().$el)
                                 .append(infoView.render().$el);
-                    this.loading = !ProjectConfig.get('DISABLE_WELCOME_FEED');
+                    this.loading = FunctionSwitch.ENABLE_WELCOME_FEED;
 
                     deviceView.$el.one('webkitAnimationEnd', function () {
                         if (FunctionSwitch.ENABLE_USER_GUIDE &&
@@ -188,7 +187,7 @@
                             $top.after(guideView.render().$el);
                         }
 
-                        if (!ProjectConfig.get('DISABLE_WELCOME_FEED')) {
+                        if (FunctionSwitch.ENABLE_WELCOME_FEED) {
                             this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
 
                             var feedsCollection = FeedsCollection.getInstance();

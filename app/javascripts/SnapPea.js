@@ -58,7 +58,6 @@
         'optimize/views/OptimizeModuleView',
         'app/wash/views/AppWashModuleView',
         'sync/SyncModule',
-        'ProjectConfig',
         'FunctionSwitch',
         'social/SocialService',
         'Device',
@@ -92,7 +91,6 @@
         OptimizeModuleView,
         AppWashModuleView,
         SyncModule,
-        ProjectConfig,
         FunctionSwitch,
         SocialService,
         Device,
@@ -148,6 +146,9 @@
         }, this);
 
         window.externalCall('', 'page_ready', '');
-        PerformanceTracker.launch();
+
+        if (FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+            PerformanceTracker.launch();
+        }
     });
 }(this));

@@ -9,7 +9,7 @@
         'ui/AlertWindow',
         'Internationalization',
         'Configuration',
-        'ProjectConfig',
+        'FunctionSwitch',
         'Log',
         'IOBackendDevice',
         'task/views/TaskModuleToolbarView',
@@ -25,7 +25,7 @@
         AlertWindow,
         i18n,
         CONFIG,
-        ProjectConfig,
+        FunctionSwitch,
         log,
         IO,
         TaskModuleToolbarView,
@@ -162,7 +162,7 @@
 
                 this.$('.ctn').append(taskListView.render().$el);
 
-                if (ProjectConfig.get('PROJECT_FLAG') !== 'TIANYIN') {
+                if (FunctionSwitch.ENABLE_TASKMANAGER_CAPACITY) {
                     this.$('.ctn').append(TaskModuleCapacityView.getInstance().render().$el);
                 }
 
@@ -181,6 +181,9 @@
                 this.$el.toggleClass('hide', !this.show);
             },
             recordFPS : function () {
+                if (!FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+                    return;
+                }
 
                 clearInterval(performanceHandler);
 
@@ -189,12 +192,11 @@
                 });
 
                 this.$el.find('.ctn').one('webkitAnimationStart', function () {
-
                     performanceHandler = setInterval(function () {
                         var index = _.uniqueId('taskmanager_slide_');
-                        wandoujia.data = wandoujia.data || {};
-                        wandoujia.data[index] = {'type' : 'taskmanager_slide'};
-                        wandoujia.getFPS('recordeFPS', index);
+                        window.wandoujia.data = window.wandoujia.data || {};
+                        window.wandoujia.data[index] = {'type' : 'taskmanager_slide'};
+                        window.wandoujia.getFPS('recordFPS', index);
                     }, 20);
                 });
             },
