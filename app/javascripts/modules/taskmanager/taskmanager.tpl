@@ -14,7 +14,7 @@
 
 <script type="text/x-ui-template" id="toolbar">
     <input type="checkbox" class="check-select-all" />
-    {{? !ProjectConfig.get('DISABLE_TASKMANAGER_ACTION') }}
+    {{? FunctionSwitch.ENABLE_TASKMANAGER_ACTION }}
     <button class="w-icon-btn button-pause min">
         <span class="icomoon icomoon-pause"></span>{{= i18n.misc.PAUSE }}
     </button>
@@ -368,7 +368,7 @@
 </script>
 
 <script type="text/x-ui-template" id="task-action">
-    {{? !ProjectConfig.get('DISABLE_TASKMANAGER_ACTION') }}
+    {{? FunctionSwitch.ENABLE_TASKMANAGER_ACTION }}
     {{
         switch (it.type) {
             case CONFIG.enums.TASK_TYPE_DOWNLOAD :

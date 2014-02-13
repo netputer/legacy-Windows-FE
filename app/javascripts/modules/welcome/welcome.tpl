@@ -273,7 +273,7 @@
             <span class="icomoon icomoon-screenshot"></span>{{= i18n.welcome.SCREEN_SHOT_TEXT }}
         </button>
     </span>
-    {{? !ProjectConfig.get('DISABLE_BACKUP_RESTORE') }}
+    {{? FunctionSwitch.ENABLE_BACKUP_RESTORE }}
     <button class="w-icon-btn button-backup transparent min">
         <span class="icomoon icomoon-backup"></span>{{= i18n.welcome.TOOL_BACKUP }}
     </button>

@@ -10,7 +10,7 @@
         'Device',
         'Internationalization',
         'Environment',
-        'ProjectConfig',
+        'FunctionSwitch',
         'Configuration',
         'WindowController',
         'main/views/PIMMenuView',
@@ -29,7 +29,7 @@
         Device,
         i18n,
         Environment,
-        ProjectConfig,
+        FunctionSwitch,
         CONFIG,
         WindowController,
         PIMMenuView,
@@ -124,7 +124,7 @@
                     .append(pimMenuView.render().$el);
 
                 setTimeout(function () {
-                    if (!ProjectConfig.get('SHOW_FIRST_EXTENSION') && !Environment.get('internetBar')) {
+                    if (!FunctionSwitch.SHOW_FIRST_EXTENSION && !Environment.get('internetBar')) {
                         if (!redirectExtId) {
                             if (Environment.get('deviceId') === 'Default') {
                                 Backbone.trigger('switchModule', {
@@ -171,7 +171,7 @@
                             extensionsCollection.on('refresh', refreshHandler, this);
                         }
 
-                        if (ProjectConfig.get('PROJECT_FLAG') === 'SUNING') {
+                        if (FunctionSwitch.SHOW_FIRST_EXTENSION_WHEN_CONNECTION_CHANGED) {
                             Device.on('change:isConnected', selectDefault, this);
                         }
                     }

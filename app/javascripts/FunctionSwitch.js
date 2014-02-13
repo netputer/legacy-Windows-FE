@@ -243,6 +243,11 @@
                     return !ProjectConfig.get('DISABLE_TASKMANAGER_ACTION');
                 }
             },
+            ENABLE_TASKMANAGER_CAPACITY : {
+                get : function () {
+                    return !ProjectConfig.get('DISABLE_TASKMANAGER_CAPACITY');
+                }
+            },
             ENABLE_USER_GUIDE : {
                 get : function () {
                     return IS_CHINESE_VERSION &&
@@ -282,6 +287,11 @@
             SHOW_FIRST_EXTENSION : {
                 get : function () {
                     return ProjectConfig.get('SHOW_FIRST_EXTENSION');
+                }
+            },
+            SHOW_FIRST_EXTENSION_WHEN_CONNECTION_CHANGED : {
+                get : function () {
+                    return ProjectConfig.get('SHOW_FIRST_EXTENSION_WHEN_CONNECTION_CHANGED');
                 }
             }
         });

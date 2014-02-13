@@ -7,7 +7,6 @@
         'jquery',
         'DB',
         'ui/TemplateFactory',
-        'ProjectConfig',
         'FunctionSwitch',
         'IOBackendDevice',
         'Configuration',
@@ -31,7 +30,6 @@
         $,
         DB,
         TemplateFactory,
-        ProjectConfig,
         FunctionSwitch,
         IO,
         CONFIG,
@@ -72,7 +70,7 @@
                     window.requestAnimationFrame(function () {
                         var target = evt.target;
                         this.moveComponents(target.scrollTop);
-                        if (!ProjectConfig.get('DISABLE_WELCOME_FEED') &&
+                        if (FunctionSwitch.ENABLE_WELCOME_FEED &&
                                 (target.scrollHeight - (target.scrollTop + target.offsetHeight) < 400)) {
                             feedListView.loadNextPage();
                         }
@@ -179,7 +177,7 @@
                 setTimeout(function () {
                     var $top = this.$('.top').append(deviceView.render().$el)
                                 .append(infoView.render().$el);
-                    this.loading = !ProjectConfig.get('DISABLE_WELCOME_FEED');
+                    this.loading = FunctionSwitch.ENABLE_WELCOME_FEED;
 
                     deviceView.$el.one('webkitAnimationEnd', function () {
                         if (FunctionSwitch.ENABLE_USER_GUIDE &&
@@ -188,7 +186,7 @@
                             $top.after(guideView.render().$el);
                         }
 
-                        if (!ProjectConfig.get('DISABLE_WELCOME_FEED')) {
+                        if (FunctionSwitch.ENABLE_WELCOME_FEED) {
                             this.$('.w-ui-loading-horizental-ctn').before(feedListView.initFeeds().$el);
 
                             var feedsCollection = FeedsCollection.getInstance();

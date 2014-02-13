@@ -9,7 +9,7 @@
         'ui/AlertWindow',
         'Internationalization',
         'Configuration',
-        'ProjectConfig',
+        'FunctionSwitch',
         'Log',
         'IOBackendDevice',
         'task/views/TaskModuleToolbarView',
@@ -25,7 +25,7 @@
         AlertWindow,
         i18n,
         CONFIG,
-        ProjectConfig,
+        FunctionSwitch,
         log,
         IO,
         TaskModuleToolbarView,
@@ -162,7 +162,7 @@
 
                 this.$('.ctn').append(taskListView.render().$el);
 
-                if (ProjectConfig.get('PROJECT_FLAG') !== 'TIANYIN') {
+                if (FunctionSwitch.ENABLE_TASKMANAGER_CAPACITY) {
                     this.$('.ctn').append(TaskModuleCapacityView.getInstance().render().$el);
                 }
 

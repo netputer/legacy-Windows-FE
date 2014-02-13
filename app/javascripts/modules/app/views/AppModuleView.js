@@ -5,7 +5,7 @@
         'underscore',
         'doT',
         'Log',
-        'ProjectConfig',
+        'FunctionSwitch',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'app/views/AppModuleToolbarView',
@@ -17,7 +17,7 @@
         _,
         doT,
         log,
-        ProjectConfig,
+        FunctionSwitch,
         TemplateFactory,
         StringUtil,
         AppModuleToolbarView,
@@ -57,7 +57,7 @@
                 appListView = AppListView.getInstance();
                 this.$('.w-app-ctn').append(appListView.render().$el);
 
-                if (!ProjectConfig.get('HIDE_APP_PANEL')) {
+                if (FunctionSwitch.ENABLE_APP_PANEL) {
                     appPanelView = AppPanelView.getInstance();
                     this.$('.w-app-ctn').append(appPanelView.render().$el);
                 }
