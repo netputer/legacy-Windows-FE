@@ -1,20 +1,19 @@
 {
     "PROJECT_FLAG" : "TIANYIN",
 
-    "DISABLE_CONTACT" : true,
-    "DISABLE_SMS" : true,
     "DISABLE_APP" : true,
+    "DISABLE_BACKUP_RESTORE" : true,
+    "DISABLE_BACKUP_RESTORE" : true,
+    "DISABLE_CONTACT" : true,
     "DISABLE_MUSIC" : true,
-    "DISABLE_PIC" : true,
-    "DISABLE_VIDEO" : true,
-    "DISABLE_BACKUP_RESTORE" : true,
-    "DISABLE_WASH" : true,
     "DISABLE_OPTIMIZE" : true,
-
-    "DISABLE_BACKUP_RESTORE" : true,
-    "DISABLE_USER_GUIDE" : true,
-    "DISABLE_WELCOME_FEED" : true,
+    "DISABLE_PERFORMANCE_TRACKER" : true,
+    "DISABLE_PIC" : true,
+    "DISABLE_SMS" : true,
     "DISABLE_TASKMANAGER_ACTION" : true,
     "DISABLE_TASKMANAGER_CAPACITY" : true,
-    "DISABLE_PERFORMANCE_TRACKER" : true
+    "DISABLE_USER_GUIDE" : true,
+    "DISABLE_VIDEO" : true,
+    "DISABLE_WASH" : true,
+    "DISABLE_WELCOME_FEED" : true
 }

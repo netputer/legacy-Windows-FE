@@ -1,17 +1,15 @@
 {
     "PROJECT_FLAG" : "SUNING",
 
-    "DISABLE_SMS" : true,
-    "DISABLE_WASH" : true,
-    "DISABLE_OPTIMIZE" : true,
     "DISABLE_APP_PANEL" : true,
-
     "DISABLE_APP_UPGRADE" : true,
     "DISABLE_DORAEMON" : true,
-    "DISABLE_USER_GUIDE" : true,
-    "DISABLE_WELCOME_FEED" : true,
+    "DISABLE_OPTIMIZE" : true,
     "DISABLE_PERFORMANCE_TRACKER" : true,
-
+    "DISABLE_SMS" : true,
+    "DISABLE_USER_GUIDE" : true,
+    "DISABLE_WASH" : true,
+    "DISABLE_WELCOME_FEED" : true,
     "SHOW_FIRST_EXTENSION" : true,
     "SHOW_FIRST_EXTENSION_WHEN_CONNECTION_CHANGED" : true,
 
