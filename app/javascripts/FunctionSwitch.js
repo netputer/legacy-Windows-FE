@@ -52,7 +52,7 @@
         Object.defineProperties(FunctionSwitch, {
             ENABLE_APP : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_APP');
+                    return !ProjectConfig.get('DISABLE_APP');
                 }
             },
             ENABLE_APP_COMMENT : {
@@ -62,12 +62,12 @@
             },
             ENABLE_APP_INSTALLED : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_APP_INSTALLED');
+                    return !ProjectConfig.get('DISABLE_APP_INSTALLED');
                 }
             },
             ENABLE_APP_PANEL : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_APP_PANEL');
+                    return !ProjectConfig.get('DISABLE_APP_PANEL');
                 }
             },
             ENABLE_APP_PERMISSION : {
@@ -87,7 +87,7 @@
             },
             ENABLE_APP_SYS : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_APP_SYS');
+                    return !ProjectConfig.get('DISABLE_APP_SYS');
                 }
             },
             ENABLE_APP_UPGRADE : {
@@ -100,7 +100,7 @@
             ENABLE_APP_WASH : {
                 get : function () {
                     return IS_CHINESE_VERSION &&
-                                !ProjectConfig.get('HIDE_NAV_WASH');
+                                !ProjectConfig.get('DISABLE_WASH');
                 }
             },
             ENABLE_AUTOBACKUP_POPUP : {
@@ -111,7 +111,7 @@
             },
             ENABLE_BACKUP_RESTORE : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_BACKUP_RESTORE');
+                    return !ProjectConfig.get('DISABLE_BACKUP_RESTORE');
                 }
             },
             ENABLE_BACKUP_APP_DATA : {
@@ -126,22 +126,22 @@
             },
             ENABLE_CONTACT : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_CONTACT');
+                    return !ProjectConfig.get('DISABLE_CONTACT');
                 }
             },
             ENABLE_CONTACT_ALL : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_CONTACT_ALL');
+                    return !ProjectConfig.get('DISABLE_CONTACT_ALL');
                 }
             },
             ENABLE_CONTACT_HAS_PHONE : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_CONTACT_HAS_PHONE');
+                    return !ProjectConfig.get('DISABLE_CONTACT_HAS_PHONE');
                 }
             },
             ENABLE_CONTACT_STARRED : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_CONTACT_STARRED');
+                    return !ProjectConfig.get('DISABLE_CONTACT_STARRED');
                 }
             },
             ENABLE_DORAEMON : {
@@ -157,7 +157,7 @@
             },
             ENABLE_MUSIC : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_MUSIC');
+                    return !ProjectConfig.get('DISABLE_MUSIC');
                 }
             },
             ENABLE_MY_APPS : {
@@ -173,7 +173,7 @@
             ENABLE_OPTIMIZE : {
                 get : function () {
                     return IS_CHINESE_VERSION &&
-                                !ProjectConfig.get('HIDE_NAV_OPTIMIZE');
+                                !ProjectConfig.get('DISABLE_OPTIMIZE');
                 }
             },
             ENABLE_PERFORMANCE_TRACKER : {
@@ -200,17 +200,17 @@
             },
             ENABLE_PIC : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_PIC');
+                    return !ProjectConfig.get('DISABLE_PIC');
                 }
             },
             ENABLE_PIC_GALLERY : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_PIC_GALLERY');
+                    return !ProjectConfig.get('DISABLE_PIC_GALLERY');
                 }
             },
             ENABLE_PIC_PHONE_LIB : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_PIC_PHONE_LIB');
+                    return !ProjectConfig.get('DISABLE_PIC_PHONE_LIB');
                 }
             },
             ENABLE_SHARE_SET_WALLPAPER : {
@@ -225,17 +225,17 @@
             },
             ENABLE_SMS : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_SMS');
+                    return !ProjectConfig.get('DISABLE_SMS');
                 }
             },
             ENABLE_SMS_ALL : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_SMS_ALL');
+                    return !ProjectConfig.get('DISABLE_SMS_ALL');
                 }
             },
             ENABLE_SMS_UNREAD : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_SMS_UNREAD');
+                    return !ProjectConfig.get('DISABLE_SMS_UNREAD');
                 }
             },
             ENABLE_SUGGESTION_INSTALL : {
@@ -261,7 +261,7 @@
             },
             ENABLE_VIDEO : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_VIDEO');
+                    return !ProjectConfig.get('DISABLE_VIDEO');
                 }
             },
             ENABLE_WDAPK : {
@@ -271,7 +271,7 @@
             },
             ENABLE_WELCOME : {
                 get : function () {
-                    return !ProjectConfig.get('HIDE_NAV_WELCOME');
+                    return !ProjectConfig.get('DISABLE_WELCOME');
                 }
             },
             ENABLE_WELCOME_FEED : {

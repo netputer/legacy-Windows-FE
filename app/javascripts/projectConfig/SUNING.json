@@ -1,10 +1,10 @@
 {
     "PROJECT_FLAG" : "SUNING",
 
-    "HIDE_NAV_SMS" : true,
-    "HIDE_NAV_WASH" : true,
-    "HIDE_NAV_OPTIMIZE" : true,
-    "HIDE_APP_PANEL" : true,
+    "DISABLE_SMS" : true,
+    "DISABLE_WASH" : true,
+    "DISABLE_OPTIMIZE" : true,
+    "DISABLE_APP_PANEL" : true,
 
     "DISABLE_APP_UPGRADE" : true,
     "DISABLE_DORAEMON" : true,
