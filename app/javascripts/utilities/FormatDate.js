@@ -2,8 +2,9 @@
 (function (window) {
     define([], function () {
 
-        var FormatDate = function (format, date) {
+        var FormatDate = function (format, date, withFullMonth) {
             date = date ? new Date(parseInt(date, 10)) : new Date();
+            withFullMonth = withFullMonth ? true : false;
             var output = format;
 
             var zh = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
@@ -16,7 +17,12 @@
                     result = date.getFullYear();
                     break;
                 case 'MM':
-                    result = date.getMonth() + 1;
+                    var MM = date.getMonth() + 1;
+                    if (withFullMonth) {
+                        result = MM < 10 ? '0' + MM : MM;
+                    } else  {
+                        result = MM;
+                    }
                     break;
                 case 'dd':
                     result = date.getDate();
