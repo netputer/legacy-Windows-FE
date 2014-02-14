@@ -2,25 +2,29 @@
 (function (window) {
     define([], function () {
 
-        var FormatDate = function (format, date, withFullMonth) {
+        var FormatDate = function (format, date) {
             date = date ? new Date(parseInt(date, 10)) : new Date();
-            withFullMonth = withFullMonth ? true : false;
             var output = format;
 
             var zh = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
             var en = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-            output = output.replace(/y{4}|D{2}|M{2}|d{2}|h{2}|H{2}|m{2}|s{2}/g, function (keyword) {
+            output = output.replace(/y{4}|D{2}|0?M{2}|d{2}|h{2}|H{2}|m{2}|s{2}/g, function (keyword) {
                 var result = '';
                 switch (keyword) {
                 case 'yyyy':
                     result = date.getFullYear();
                     break;
+                case '0MM':
                 case 'MM':
                     var MM = date.getMonth() + 1;
-                    if (withFullMonth) {
-                        result = MM < 10 ? '0' + MM : MM;
-                    } else  {
+                    if (keyword.substr(0, 1) === '0') {
+                        if (MM < 10) {
+                            result = '0' + MM;
+                        } else {
+                            result = MM;
+                        }
+                    } else {
                         result = MM;
                     }
                     break;
