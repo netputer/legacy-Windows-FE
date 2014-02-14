@@ -60,8 +60,10 @@
             template : doT.template(TemplateFactory.get('welcome', 'welcome')),
             className : 'w-welcome-ctn',
             initialize : function () {
+
                 var scrollHandler = function (evt) {
-                    if (FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+                    var ran = _.random(0, 9);
+                    if (ran > 8 && FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
                         var index = _.uniqueId('welcome_scroll_');
                         window.wandoujia.data = window.wandoujia.data || {};
                         window.wandoujia.data[index] = {'type' : 'welcome_scroll'};

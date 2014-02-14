@@ -145,7 +145,9 @@
                         this.build(evt.target.scrollTop);
                     }.bind(this));
 
-                    if (FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+                    var ran = _.random(0, 9);
+                    if (ran > 8 && FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+
                         var data = {
                             'type' : 'smartlist_scroll_' + window.SnapPea.CurrentModule,
                             'lengthOnScreen' : onScreenItems.length,

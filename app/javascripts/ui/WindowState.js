@@ -37,7 +37,8 @@
 
             WindowState.trigger('resize', WindowState);
 
-            if (window.SnapPea && FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+            var ran = _.random(0, 9);
+            if (ran > 8 && window.SnapPea && FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
                 var index = _.uniqueId('window_resize_');
                 window.wandoujia.data = window.wandoujia.data || {};
                 window.wandoujia.data[index] = {
