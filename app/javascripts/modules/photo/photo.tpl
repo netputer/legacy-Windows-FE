@@ -123,7 +123,7 @@
 
 <script type="text/x-ui-template" id="info">
     <div>{{= i18n.misc.NAME }}{{! it.display_name }}</div>
-    <div>{{= i18n.misc.DATE }}{{= StringUtil.formatDate('yyyy-MM-dd', it.date) }}</div>
+    <div>{{= i18n.misc.DATE }}{{= StringUtil.formatDate('yyyy-MM-dd', it.date || it.date_added) }}</div>
     <div>{{= i18n.misc.FILE_SIZE }}{{= StringUtil.readableSize(it.size) }}</div>
 </script>
 

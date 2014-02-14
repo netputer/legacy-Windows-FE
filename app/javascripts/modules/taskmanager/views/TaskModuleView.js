@@ -41,6 +41,8 @@
         var setInterval = window.setInterval;
         var clearInterval = window.clearInterval;
 
+        var hasRecordFPS = false;
+
         var pushNotificationView;
         var downloadHandler = function (msg) {
 
@@ -172,12 +174,16 @@
             },
             slideIn : function () {
                 this.show = true;
-                this.recordFPS();
+
+                if (!hasRecordFPS) {
+                    hasRecordFPS = true;
+                    this.recordFPS();
+                }
+
                 this.$el.toggleClass('hide', !this.show);
             },
             slideOut : function () {
                 this.show = false;
-                this.recordFPS();
                 this.$el.toggleClass('hide', !this.show);
             },
             recordFPS : function () {

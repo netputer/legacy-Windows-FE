@@ -31,9 +31,13 @@
             delete wandoujia.data[index];
 
             result = JSON.parse(result);
-            log(_.extend({
-                'event' : 'ui.show.performance'
-            }, data, result, SYS_INFO));
+
+            var ran = _.random(0, 1);
+            if (ran) {
+                log(_.extend({
+                    'event' : 'ui.show.performance'
+                }, data, result, SYS_INFO));
+            }
         };
 
         return PerformanceTracker;
