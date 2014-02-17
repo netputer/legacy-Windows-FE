@@ -34,11 +34,6 @@
                 this.$el.html(this.template(this.model.toJSON()));
 
                 this.$el.addClass(classMap[this.model.get('type')]);
-
-                log({
-                    'event' : 'ui.show.welcome_card',
-                    'type' : this.model.get('type')
-                });
                 return this;
             },
             clickButtonNavigate : function (evt) {

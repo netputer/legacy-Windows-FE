@@ -78,11 +78,6 @@
                                 Settings.set('latestVersion', Environment.get('backendVersion'));
 
                                 this.options.parentView.initLayout();
-
-                                log({
-                                    'event' : 'ui.show.welcome_card',
-                                    'type' : this.model.get('type')
-                                });
                             }
                         }.bind(this)
                     });
