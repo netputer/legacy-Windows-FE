@@ -35,11 +35,6 @@
                     this.options.parentView.initLayout();
 
                     Settings.set('welcome_count_weibo', count + 1, true);
-
-                    log({
-                        'event' : 'ui.show.welcome_card',
-                        'type' : this.model.get('type')
-                    });
                 } else {
                     this.hide();
                 }

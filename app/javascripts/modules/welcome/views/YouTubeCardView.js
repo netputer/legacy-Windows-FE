@@ -26,12 +26,6 @@
             className : FeedCardView.getClass().prototype.className + ' snappea-youtube',
             render : function () {
                 this.$el.html(this.template({}));
-
-                log({
-                    'event' : 'ui.show.welcome_card',
-                    'type' : this.model.get('type')
-                });
-
                 return this;
             },
             clickButtonAction : function () {

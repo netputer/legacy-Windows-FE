@@ -6,6 +6,7 @@
         'doT',
         'jquery',
         'wookmark',
+        'Log',
         'Settings',
         'Configuration',
         'utilities/StringUtil',
@@ -34,6 +35,7 @@
         doT,
         $,
         wookmark,
+        log,
         Settings,
         CONFIG,
         StringUtil,
@@ -71,10 +73,12 @@
                     var fragment = document.createDocumentFragment();
                     var lastShownTimestamp;
                     var show;
+                    var logData;
 
                     collection.each(function (feed) {
                         var targetView;
-                        switch (feed.get('type')) {
+                        var type = feed.get('type');
+                        switch (type) {
                         case 0:
                         case 1:
                             targetView = SingleCardView;
@@ -162,6 +166,13 @@
                                 model : feed,
                                 parentView : this
                             }).render().$el.toggleClass('flip', !fisrtScreen)[0]);
+
+                            logData = {};
+                            if (!logData[type]) {
+                                logData[type] = 1;
+                            } else {
+                                logData[type] ++;
+                            }
                         }
                     }, this);
 
@@ -172,6 +183,17 @@
                     if (fisrtScreen) {
                         fisrtScreen = false;
                     }
+
+                    if (logData) {
+                        _.each(logData, function (num, name) {
+                            log({
+                                'event' : 'ui.show.welcome_card',
+                                'type' : name,
+                                'num' : num
+                            });
+                        });
+                    }
+
                 }, this);
 
                 return this;

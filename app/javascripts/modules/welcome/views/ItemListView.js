@@ -72,10 +72,6 @@
                     imageLoader(item.icons.px36, $icons.eq(index), true);
                 });
 
-                log({
-                    'event' : 'ui.show.welcome_card',
-                    'type' : this.model.get('type')
-                });
                 return this;
             },
             renderButton : function () {
