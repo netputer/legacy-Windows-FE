@@ -188,7 +188,9 @@
             },
             recordFPS : function () {
 
-                this.$el.find('.ctn').on('webkitAnimationEnd', function () {
+                clearInterval(performanceHandler);
+
+                this.$el.find('.ctn').one('webkitAnimationEnd', function () {
                     clearInterval(performanceHandler);
                 });
 
