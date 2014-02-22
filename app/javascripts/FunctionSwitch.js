@@ -8,7 +8,8 @@
         'Configuration',
         'Environment',
         'utilities/QueryString',
-        'IOBackendDevice'
+        'IOBackendDevice',
+        'Distributor'
     ], function (
         Backbone,
         _,
@@ -16,7 +17,8 @@
         CONFIG,
         Environment,
         QueryString,
-        IO
+        IO,
+        Distributor
     ) {
         console.log('FunctionSwitch - File loaded.');
 
@@ -178,7 +180,7 @@
             },
             ENABLE_PERFORMANCE_TRACKER : {
                 get : function () {
-                    return !ProjectConfig.get('DISABLE_PERFORMANCE_TRACKER');
+                    return Distributor.PERFORMANCE_TRACK && !ProjectConfig.get('DISABLE_PERFORMANCE_TRACKER');
                 }
             },
             ENABLE_PHOTO_DOWNLOAD_POPUP : {

@@ -2,12 +2,10 @@
 (function (window) {
     define([
         'underscore',
-        'Distributor',
         'Log',
         'jquery'
     ], function (
         _,
-        Distributor,
         log,
         $
     ) {
