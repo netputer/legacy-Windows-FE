@@ -187,11 +187,6 @@
                 this.$el.toggleClass('hide', !this.show);
             },
             recordFPS : function () {
-                if (!FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
-                    return;
-                }
-
-                clearInterval(performanceHandler);
 
                 this.$el.find('.ctn').one('webkitAnimationEnd', function () {
                     clearInterval(performanceHandler);

@@ -2,12 +2,10 @@
 (function (window) {
     define([
         'underscore',
-        'Distributor',
         'Log',
         'jquery'
     ], function (
         _,
-        Distributor,
         log,
         $
     ) {
@@ -29,15 +27,11 @@
         window.recordFPS = function (result, index) {
             var data = wandoujia.data[index];
             delete wandoujia.data[index];
-
             result = JSON.parse(result);
 
-            var ran = _.random(0, 1);
-            if (ran) {
-                log(_.extend({
-                    'event' : 'ui.show.performance'
-                }, data, result, SYS_INFO));
-            }
+            log(_.extend({
+                'event' : 'ui.show.performance'
+            }, data, result, SYS_INFO));
         };
 
         return PerformanceTracker;
