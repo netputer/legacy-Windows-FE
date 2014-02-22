@@ -191,9 +191,7 @@
                     return;
                 }
 
-                clearInterval(performanceHandler);
-
-                this.$el.find('.ctn').one('webkitAnimationEnd', function () {
+                this.$el.find('.ctn').on('webkitAnimationEnd', function () {
                     clearInterval(performanceHandler);
                 });
 
