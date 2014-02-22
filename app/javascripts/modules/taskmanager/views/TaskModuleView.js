@@ -175,7 +175,7 @@
             slideIn : function () {
                 this.show = true;
 
-                if (FunctionSwitch.ENABLE_PERFORMANCE_TRACKER && !hasRecordFPS) {
+                if (!hasRecordFPS) {
                     hasRecordFPS = true;
                     this.recordFPS();
                 }
@@ -187,8 +187,6 @@
                 this.$el.toggleClass('hide', !this.show);
             },
             recordFPS : function () {
-
-                clearInterval(performanceHandler);
 
                 this.$el.find('.ctn').one('webkitAnimationEnd', function () {
                     clearInterval(performanceHandler);

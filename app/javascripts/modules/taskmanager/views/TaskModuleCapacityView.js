@@ -32,94 +32,91 @@
         var TaskModuleCapacityView = Backbone.View.extend({
             className : 'w-task-capacity hbox',
             template : doT.template(TemplateFactory.get('taskManager', 'capacity')),
-            capacityTimeout : undefined,
-            checkCapacityAsync : function () {
-                var deferred = $.Deferred();
-
-                Device.getCapacityAsync().done(deferred.resolve).fail(deferred.reject).always(function () {
-                    setTimeout(function () {
-                        if (isOpened) {
-                            this.checkCapacityAsync();
-                        }
-                    }.bind(this), 3000);
-                }.bind(this));
-
-                return deferred.promise();
-            },
             initialize : function () {
-                this.listenTo(Device, 'change:isConnected change:isMounted', _.debounce(this.render.bind(this), 200));
 
-                this.listenTo(Device, 'change:deviceFreeCapacity change:internalSDFreeCapacity change:externalSDFreeCapacity', _.debounce(function (changeModel) {
-                    if (isOpened) {
-                        this.render();
+                var isOpened = false;
+                var checkHandle;
+                Object.defineProperties(this, {
+                    isOpened : {
+                        get :  function () {
+                            return isOpened;
+                        },
+                        set : function (value) {
+                            isOpened = value;
+                        }
+                    },
+                    checkHandle : {
+                        get : function () {
+                            return checkHandle;
+                        },
+                        set : function (value) {
+                            checkHandle = value;
+                        }
                     }
-                }.bind(this), 1000));
+                });
+
+                this.listenTo(Device, 'change:isConnected change:isMounted change:deviceFreeCapacity change:internalSDFreeCapacity change:externalSDFreeCapacity', _.debounce(this.checkCapacity.bind(this), 200));
 
                 this.listenTo(Backbone, 'taskManager:toggle', function (data) {
-                    switch (data.status) {
-                    case 'open':
-                        isOpened = true;
-                        this.checkCapacityAsync();
-                        break;
-
-                    case 'close':
-                        isOpened = false;
-                        break;
-                    }
+                    this.isOpened = (data.status === 'open');
+                    this.checkCapacity();
                 });
 
                 this.listenTo(Backbone, 'switchModule', function (data) {
-                    if (data.module !== 'task') {
-                        isOpened = false;
-                    }
+                    this.isOpened = (data.module === 'task');
+                    this.checkCapacity();
                 });
             },
-            render : function () {
-                if (Device.get('isConnected')) {
-                    Device.getCapacityAsync().always(function () {
-                        var data = {
-                            deviceCapacity : Device.get('deviceCapacity'),
-                            deviceFreeCapacity : Device.get('deviceFreeCapacity'),
-                            internalSDCapacity : Device.get('internalSDCapacity'),
-                            internalSDFreeCapacity : Device.get('internalSDFreeCapacity'),
-                            internalSDPath : Device.get('internalSDPath'),
-                            externalSDCapacity : Device.get('externalSDCapacity'),
-                            externalSDFreeCapacity : Device.get('externalSDFreeCapacity'),
-                            externalSDPath : Device.get('externalSDPath')
-                        };
+            checkCapacity : function () {
+                clearInterval(this.checkHandle);
+                if (Device.get('isConnected') && this.isOpened) {
+                    this.checkHandle = setInterval(function() {
 
-                        this.$el.html(this.template(data)).addClass('show');
+                        Device.getCapacityAsync().always(this.setContent.bind(this));
 
-                        CapacityTipsView.getInstance({
-                            $host : this.$('.info-device'),
-                            source : 'phone',
-                            total : data.deviceCapacity,
-                            free : data.deviceFreeCapacity
-                        });
-
-                        if (data.internalSDCapacity > 0) {
-                            CapacityTipsView.getInstance({
-                                $host : this.$('.info-sd-internal'),
-                                source : 'sdcard',
-                                total : data.internalSDCapacity,
-                                free : data.internalSDFreeCapacity
-                            });
-                        }
-
-                        if (data.externalSDCapacity > 0) {
-                            CapacityTipsView.getInstance({
-                                $host : this.$('.info-sd-external'),
-                                source : 'sdcard',
-                                total : data.externalSDCapacity,
-                                free : data.externalSDFreeCapacity
-                            });
-                        }
-                    }.bind(this));
+                    }.bind(this), 3000);
                 } else {
                     this.$el.removeClass('show');
                 }
+            },
+            setContent : function () {
+                var data = {
+                    deviceCapacity : Device.get('deviceCapacity'),
+                    deviceFreeCapacity : Device.get('deviceFreeCapacity'),
+                    internalSDCapacity : Device.get('internalSDCapacity'),
+                    internalSDFreeCapacity : Device.get('internalSDFreeCapacity'),
+                    internalSDPath : Device.get('internalSDPath'),
+                    externalSDCapacity : Device.get('externalSDCapacity'),
+                    externalSDFreeCapacity : Device.get('externalSDFreeCapacity'),
+                    externalSDPath : Device.get('externalSDPath')
+                };
 
-                return this;
+                this.$el.html(this.template({})).addClass('show');
+
+                CapacityTipsView.getInstance({
+                    $host : this.$('.info-device'),
+                    source : 'phone',
+                    total : data.deviceCapacity,
+                    free : data.deviceFreeCapacity
+                });
+
+                if (data.internalSDCapacity > 0) {
+                    CapacityTipsView.getInstance({
+                        $host : this.$('.info-sd-internal'),
+                        source : 'sdcard',
+                        total : data.internalSDCapacity,
+                        free : data.internalSDFreeCapacity
+                    });
+                }
+
+                if (data.externalSDCapacity > 0) {
+                    CapacityTipsView.getInstance({
+                        $host : this.$('.info-sd-external'),
+                        source : 'sdcard',
+                        total : data.externalSDCapacity,
+                        free : data.externalSDFreeCapacity
+                    });
+                }
             },
             openSD : function (path) {
                 var $btn = this.$('.button-open-sd').prop('disabled', true);
