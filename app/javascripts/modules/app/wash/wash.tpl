@@ -6,7 +6,7 @@
     <p class="text-secondary">{{= i18n.app.SCAN_TIP3 }}</p>
     <button class="grand button-start primary">{{= i18n.app.START_SCAN }}</button>
     <p class="text-thirdly connect-tip">{{= i18n.app.WASH_CONNECT_TIP }}</p>
-    <div class="w-app-wash-report-ctn text-secondary">之前洗错了？请<span class="link button-feedback">反馈给豌豆们</span></div>
+    <div class="w-app-wash-report-ctn text-secondary">{{= i18n.app.WASH_INTRO_FEED_BACK }}</div>
 </script>
 
 <script type="text/x-ui-template" id="wash-scanning">
@@ -29,11 +29,11 @@
             </li>
             <li class="ads-uninstall">
                 <div class="count"></div>
-                <div class="des text-secondary">广告应用暂无替换方案</div>
+                <div class="des text-secondary">{{= i18n.app.ADS_NO_SOLUTION_TIP }}</div>
             </li>
         </ul>
     </div>
-    <div class="w-app-wash-report-ctn text-secondary">洗错了？<span class="link button-restart">再洗一次</span>试试，或<span class="link button-feedback">反馈给豌豆们</span></div>
+    <div class="w-app-wash-report-ctn text-secondary">{{= i18n.app.WASH_WRONG_TRY_AGAIN }}</div>
 </script>
 
 <script type="text/x-ui-template" id="summary-pop-ads">
@@ -51,7 +51,7 @@
     <p class="text-secondary desc">{{= i18n.app.RESULT_EMPTY_TIP }}</p>
     <div class="btn-ctn">
         <button class="grand button-share primary">{{= i18n.app.WASH_SHARE }}</button>
-        <button class="grand button-restart">再洗一次</button>
+        <button class="grand button-restart">{{= i18n.app.TRY_AGAIN }}</button>
     </div>
     <p class="text-thirdly survey">
         {{= i18n.app.WASH_SURVEY }}<span class="link button-feedback">{{= i18n.app.TELL_US }}</span>
@@ -63,7 +63,7 @@
     <p class="text-secondary desc">{{= i18n.app.RESULT_FINISH_TIP }}</p>
     <div class="btn-ctn">
         <button class="grand button-share primary">{{= i18n.app.WASH_SHARE }}</button>
-        <button class="grand button-restart">再洗一次</button>
+        <button class="grand button-restart">{{= i18n.app.TRY_AGAIN }}</button>
     </div>
     <p class="text-thirdly survey">
         {{= i18n.app.WASH_SURVEY }}<span class="link button-feedback">{{= i18n.app.TELL_US }}</span>
@@ -71,7 +71,7 @@
 </script>
 
 <script type="text/x-ui-template" id="feedback-card">
-    <h2 class="text-primary title">能告诉豌豆们为什么暂不处理吗？</h2>
+    <h2 class="text-primary title">{{= i18n.app.WASH_FEED_BACK_CARD_IGNORE }}</h2>
     <ul>
         {{
             var id = _.uniqueId('ignore-report-');
@@ -106,7 +106,7 @@
         {{?}}
         <li>
             <label>
-                <input type="radio" name="{{= id }}" value="" />其他<input disabled="true" type="text" class="input-reason" />
+                <input type="radio" name="{{= id }}" value="" />{{= i18n.app.OTHERS }}<input disabled="true" type="text" class="input-reason" />
             </label>
         </li>
     </ul>
@@ -120,8 +120,8 @@
     {{? it.result.suggestion.action === 'REPLACE' }}
     <div class="back replace-confirm vbox">
         <div class="wording-ctn">
-            <p>注意：替换后，当前山寨应用的数据或游戏积分会随替换而消失。</p>
-            <p>确定替换吗？</p>
+            <p>{{= i18n.app.WASH_RESULT_ITEM_ATTENTION }}</p>
+            <p>{{= i18n.app.WASH_RESULT_ITEM_CONFIRM }}</p>
         </div>
         <div class="button-ctn">
             <button class="button-replace primary">{{= i18n.ui.CONFIRM }}</button>
@@ -131,9 +131,9 @@
     {{?}}
     <div class="front vbox">
         {{? it.result.function.type === 'PIRATE' }}
-        <div class="tag pirate" data-title="该应用被原开发者以外的人篡改过">{{= i18n.app.PIRATE }}</div>
+        <div class="tag pirate" data-title="{{= i18n.app.WASH_RESULT_ITEM_CHANGE_BY_OTHERS }}">{{= i18n.app.PIRATE }}</div>
         {{??}}
-        <div class="tag ads" data-title="该应用有广告">{{= i18n.app.ADS }}</div>
+        <div class="tag ads" data-title="{{= i18n.app.WASH_RESULT_ITEM_APP_HAS_ADS }}">{{= i18n.app.ADS }}</div>
         {{?}}
         <div class="hbox app-info">
             <div class="icon"><img src="{{= it.origin.base_info.icon }}" alt="{{= it.origin.base_info.name }}" /></div>
@@ -144,13 +144,13 @@
         </div>
         <div class="button-ctn">
             {{? it.result.suggestion.action === 'CLOSEPOPUP' }}
-            <button class="button-close-ads">关广告</button>
+            <button class="button-close-ads">{{= i18n.app.WASH_RESULT_ITEM_DISABLE_ADS }}</button>
             {{?? it.result.suggestion.action === 'UNINSTALL' }}
             <button class="button-uninstall">{{= i18n.app.UNINSTALL }}</button>
             {{??}}
             <button class="button-confirm">{{= i18n.app.REPLACE }}</button>
             {{?}}
-            <span class="link button-ignore">暂不处理</span>
+            <span class="link button-ignore">{{= i18n.app.WASH_RESULT_ITEM_IGNORED}}</span>
         </div>
     </div>
 </script>
@@ -164,13 +164,13 @@
 <script type="text/x-ui-template" id="wash-feedback">
     <div class="step-1 step">
         <label>
-            <input type="radio" name="wash-feedback-type" value="1">洗错了
+            <input type="radio" name="wash-feedback-type" value="1">{{= i18n.app.WASH_FEED_BACK_WRONG }}
         </label>
         <label>
-            <input type="radio" name="wash-feedback-type" value="2">洗漏了
+            <input type="radio" name="wash-feedback-type" value="2">{{= i18n.app.WASH_FEED_BACK_LEAP }}
         </label>
         <label>
-            <input type="radio" name="wash-feedback-type" value="3">其他<input disabled="true" class="input-reason" type="text" />
+            <input type="radio" name="wash-feedback-type" value="3">{{= i18n.app.OTHERS }}<input disabled="true" class="input-reason" type="text" />
         </label>
     </div>
 </script>
@@ -215,7 +215,7 @@
             {{~}}
         {{?}}
         <label>
-            <input type="radio" name="wash-feedback-reason" value="">其他坏行为<input disabled="true" class="input-reason" type="text" />
+            <input type="radio" name="wash-feedback-reason" value="">{{= i18n.app.WASH_DO_SOMETHING_BAD }}<input disabled="true" class="input-reason" type="text" />
         </label>
     </div>
 </script>
@@ -225,16 +225,16 @@
         <div class="icon"></div>
     </div>
     <div class="info">
-        <h2 class="text-primary">跟山寨应用和广告应用说白白</h2>
-        <p class="text-secondary">豌豆洗白白可以找出您手机中的山寨应用和广告应用，并协助您把它们替换为官方版或无广告版。</p>
-        <button class="primary button-wash">洗一下</button>
+        <h2 class="text-primary">{{= i18n.app.WASH_NOTIFI_PRIMARY_TITLE }}</h2>
+        <p class="text-secondary">{{= i18n.app.WASH_NOTIFI_SEC_TITLEO }}</p>
+        <button class="primary button-wash">{{= i18n.app.WASH_NOTIFI_DO_WASH }}</button>
     </div>
 </script>
 
 <script type="text/x-ui-template" id="result-info">
     <ul class="w-app-wash-info">
         <li class="hbox info">
-            <div>替换前：<div></div></div>
+            <div>{{= i18n.app.WASH_RESULT_INFO_BEFORE_REPLACE }}<div></div></div>
             <ul class="item-ctn">
                 {{~ it.candidateApks[0].detailChange : change }}
                 {{
@@ -248,7 +248,7 @@
             </ul>
         </li>
         <li class="hbox info">
-            <div>替换后：<div></div></div>
+            <div>{{= i18n.app.WASH_RESULT_INFO_AFTER_REPLACE }}<div></div></div>
             <ul class="item-ctn">
                 {{~ it.candidateApks[0].detailChange : change }}
                 {{
@@ -266,7 +266,7 @@
 
 <script type="text/x-ui-template" id="close-notification">
     <div class="w-app-wash-close-popup-ctn">
-        <h1 class="text-primary">请在手机上关闭{{= it.title }}的通知栏消息</h1>
+        <h1 class="text-primary">{{= i18n.app.WASH_CLOSE_NOTIFI_TITLE}}</h1>
         <div class="close-popup-tip hbox">
             <div class="tip1"></div>
             <div class="tip2"></div>

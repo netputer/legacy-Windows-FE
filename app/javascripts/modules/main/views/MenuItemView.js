@@ -42,7 +42,7 @@
             initialize : function () {
                 var children = [];
                 Object.defineProperties(this, {
-                    children :　{
+                    children : {
                         set : function (value) {
                             if (value instanceof Array) {
                                 children = value;

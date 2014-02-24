@@ -39,10 +39,10 @@
             }
 
             var typeName = {};
-            typeName[CONFIG.enums.SYNC_DATA_TYPE_CONTACTS] = '联系人 ';
-            typeName[CONFIG.enums.SYNC_DATA_TYPE_SMS] = '短信 ';
-            typeName[CONFIG.enums.SYNC_DATA_TYPE_PHOTO] = '照片 ';
-            typeName[CONFIG.enums.SYNC_DATA_TYPE_APP] = '应用 ';
+            typeName[CONFIG.enums.SYNC_DATA_TYPE_CONTACTS] = i18n.sync.CONTACT;
+            typeName[CONFIG.enums.SYNC_DATA_TYPE_SMS] = i18n.sync.SMS;
+            typeName[CONFIG.enums.SYNC_DATA_TYPE_PHOTO] = i18n.sync.PHOTO;
+            typeName[CONFIG.enums.SYNC_DATA_TYPE_APP] = i18n.sync.APP;
 
             var content = '';
             _.each(message.result, function (cur) {
@@ -66,7 +66,7 @@
                 url : CONFIG.BASE_PATH + 'modules/sync/auto_backup_complete.html' +
                         Environment.get('search') +
                         '&content=' + encodeURIComponent(content),
-                title : '豌豆荚自动备份提醒',
+                title : i18n.sync.NOTIFICATION_TITLE,
                 onclose : function () {
                     clearTimeout(handler);
                 }

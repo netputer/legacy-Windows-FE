@@ -64,7 +64,7 @@
                 <label>
                     <div class="label">{{= i18n.welcome.GUIDE_REG_CAPTCHA }}</div>
                     <input type="text" class="captcha" />
-                    <img src="https://account.wandoujia.com/v4/api/seccode" class="captcha-image" title="点击更换" />
+                    <img src="https://account.wandoujia.com/v4/api/seccode" class="captcha-image" title="{{= i18n.welcome.CLICK_TO_CHANGE}}" />
                 </label>
                 <label>
                     <input type="checkbox" class="privacy" checked />{{= i18n.welcome.GUIDE_REG_PRAVICY }}

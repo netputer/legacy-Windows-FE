@@ -73,9 +73,9 @@
         <textarea placeholder="{{= StringUtil.format(i18n.app.COMMENTARY_PLACEHOLDER, it.base_info.name) }}" class="input-content"></textarea>
         <div class="code-ctn">
             <div class="ctn hbox">
-                <div class="text-secondary">验证码：</div>
+                <div class="text-secondary">{{= i18n.app.VERIFICATION_CODE}}</div>
                 <input class="input-code" type="text" />
-                <img class="code" title="点击更换" />
+                <img class="code" title="{{= i18n.app.CHANGE_VERIFICATION_CODE }}" />
             </div>
         </div>
         <div class="hbox comment-actions">
@@ -481,7 +481,7 @@
     <div class="ignore-tip">
         <div class="content hbox">
             <div class="count text-secondary"></div>
-            <button class="button-open-ignore min">查看</button>
+            <button class="button-open-ignore min">{{= i18n.app.CHECK }}</button>
         </div>
     </div>
 </script>
@@ -542,9 +542,9 @@
 </script>
 
 <script type="text/x-ui-template" id="hot-cate">
-    <h3 class="text-secondary">您喜欢的应用类型</h3>
+    <h3 class="text-secondary">{{= i18n.app.YOUR_FAVORITE_APP_TYPE}}</h3>
     <ul class="tags-ctn"></ul>
-    <h3 class="text-secondary">最新应用专题</h3>
+    <h3 class="text-secondary">{{= i18n.app.LAST_APP_LIST}}</h3>
     <div class="banner-ctn">
         <img class="banner" alt="" />
     </div>

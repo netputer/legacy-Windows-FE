@@ -55,7 +55,7 @@
                     customInfoWindowView = new CustomInfoWindowView({
                         title : i18n.contact.CUSTOME_CONTACT_INFO,
                         draggable : true,
-                        buttonSet :　'yes_no'
+                        buttonSet : 'yes_no'
                     });
                 }
                 return customInfoWindowView;

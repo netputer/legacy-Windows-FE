@@ -90,7 +90,7 @@
                 }.bind(this));
             },
             events : {
-                'click .button-cancel' :　'buttonClickCancel'
+                'click .button-cancel' : 'buttonClickCancel'
             }
         });
 

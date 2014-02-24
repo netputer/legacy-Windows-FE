@@ -131,7 +131,7 @@
                 this.getModule('video').showImport(msg.id);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_THEME:
-                this.getModule('browser').navigateToThirdParty(218, '豌豆荚主题');
+                this.getModule('browser').navigateToThirdParty(218, i18n.misc.WANDOUJIA_THEME);
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_APP_WASH:
                 this.getModule('app-wash').navigate();

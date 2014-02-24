@@ -8,6 +8,7 @@
         'Account',
         'Configuration',
         'IO',
+        'Internationalization',
         'browser/views/BrowserView',
         'doraemon/collections/ExtensionsCollection',
         'doraemon/models/ExtensionModel'
@@ -19,6 +20,7 @@
         Account,
         CONFIG,
         IO,
+        i18n,
         BrowserView,
         ExtensionsCollection,
         ExtensionModel
@@ -67,7 +69,7 @@
                     id : 'wdj-iframe-gallery',
                     model : new ExtensionModel({
                         id : 305,
-                        name : '豌豆荚的百宝袋'
+                        name : i18n.doraemon.DORAEMON
                     }),
                     additionalClass : 'wdj-iframe-gallery'
                 }).render().$el);

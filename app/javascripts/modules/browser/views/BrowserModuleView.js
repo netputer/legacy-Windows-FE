@@ -6,6 +6,7 @@
         'IOBackendDevice',
         'Configuration',
         'Environment',
+        'Internationalization',
         'browser/views/BrowserView',
         'doraemon/collections/ExtensionsCollection',
         'doraemon/models/ExtensionModel',
@@ -16,6 +17,7 @@
         IO,
         CONFIG,
         Environment,
+        i18n,
         BrowserView,
         ExtensionsCollection,
         ExtensionModel,
@@ -144,7 +146,7 @@
                             });
                             this.navigate(item, url);
                         } else {
-                            this.navigateToThirdParty(18, '应用搜索', url);
+                            this.navigateToThirdParty(18, i18n.browser.APP_SEARCH, url);
                         }
                     } else {
                         item = ExtensionsCollection.getInstance().get(138);

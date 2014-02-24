@@ -8,6 +8,7 @@
         'doT',
         'Configuration',
         'Environment',
+        'Internationalization',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'photo/views/PhotoItemView'
@@ -17,6 +18,7 @@
         doT,
         CONFIG,
         Environment,
+        i18n,
         TemplateFactory,
         StringUtil,
         PhotoItemView
@@ -88,7 +90,7 @@
                 if (currentType === CONFIG.enums.PHOTO_PHONE_TYPE || currentType === CONFIG.enums.PHOTO_CLOUD_TYPE) {
                     if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
                             Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
-                        key = StringUtil.formatDate('yyyy 年 MM 月', this.options.models[0].get('date'));
+                        key = StringUtil.formatDate(i18n.photo.SMART_DATE_SOME_MONTH, this.options.models[0].get('date'));
                     } else {
                         key = StringUtil.formatDate('yyyy-MM', this.options.models[0].get('date'));
                     }
