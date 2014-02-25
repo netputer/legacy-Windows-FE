@@ -205,8 +205,6 @@
 
                     this.model = appsCollection.get(id) || webAppsCollection.get(id);
 
-                    console.log(this.model.toJSON());
-
                     if (this.model.get('isWeb')) {
                         var currentId = this.model.id;
                         this.model.queryAppInfoAsync().done(function () {
@@ -353,8 +351,8 @@
                 AppService.batchMoveToDeviceAsync([this.model.id]);
             },
             clickButtonNavigateToCategory : function (evt) {
-                var basePath = 'http://apps.wandoujia.com/category/';
-                BrowserModuleView.getInstance().navigateTo(basePath + $(evt.currentTarget).data('cate'));
+                var basePath = 'http://apps.wandoujia.com/tag/{1}?pos=client/detail-panel';
+                BrowserModuleView.getInstance().navigateTo(StringUtil.format(basePath, $(evt.currentTarget).data('cate')));
             },
             clickButtonNavigateToVersion : function () {
                 var basePath = 'http://apps.wandoujia.com/apps/{1}/versions?pos=client/detail-panel';
