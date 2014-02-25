@@ -203,7 +203,7 @@
         <dt class="text-thirdly">{{= i18n.app.CATEGORY }}</dt>
         <dd>
             {{~ it.web_info.categories : cate }}
-            <span class="link button-navigate-to-category" data-cate="{{= cate.alias }}">{{= cate.name }}</span>
+            <span class="link button-navigate-to-category" data-cate="{{= cate.name }}">{{= cate.name }}</span>
             {{~}}
         </dd>
         {{?}}

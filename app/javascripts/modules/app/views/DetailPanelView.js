@@ -353,8 +353,8 @@
                 AppService.batchMoveToDeviceAsync([this.model.id]);
             },
             clickButtonNavigateToCategory : function (evt) {
-                var basePath = 'http://apps.wandoujia.com/category/';
-                BrowserModuleView.getInstance().navigateTo(basePath + $(evt.currentTarget).data('cate'));
+                var basePath = 'http://apps.wandoujia.com/tag/{1}?navType=app&pos=client/detail-panel';
+                BrowserModuleView.getInstance().navigateTo(StringUtil.format(basePath, $(evt.currentTarget).data('cate')));
             },
             clickButtonNavigateToVersion : function () {
                 var basePath = 'http://apps.wandoujia.com/apps/{1}/versions?pos=client/detail-panel';
