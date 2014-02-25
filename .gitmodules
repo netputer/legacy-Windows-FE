@@ -1,0 +1,3 @@
+[submodule "i18n"]
+	path = i18n
+	url = ssh://gerrit@git.corp.wandoujia.com/srv/github/Windows-FE-i18n.git
