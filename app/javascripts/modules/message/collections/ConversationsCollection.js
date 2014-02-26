@@ -180,7 +180,7 @@
                             this.totalCount = resp.body.total_sms;
                             this.unreadCount = resp.body.unread_sms;
 
-                            if (!resp.body.conversation) {
+                            if (resp.body.conversation.length === 0) {
                                 this.trigger('update');
                             } else {
                                 var conversation = new ConversationModel(resp.body.conversation[0]);
