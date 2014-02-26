@@ -491,9 +491,15 @@
                         }
                         break;
                     case CONFIG.enums.TASK_STATE_FAILD :
+                        if (it.message === 'CONNECTION_LOST' || it.message === 'DEVICE_NOT_FOUND') {
     }}
-    <button class="button-retry">{{= i18n.ui.RETRY }}</button>
+    <button class="button-connect primary">{{= i18n.welcome.CONNECT_PHONE }}</button>
     {{
+                        } else {
+    }}
+    <button class="button-retry">{{= i18n.ui.RETRY}}</button>
+    {{
+                        }
                         break;
                 }
                 break;
