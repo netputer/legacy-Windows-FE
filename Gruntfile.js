@@ -3,6 +3,7 @@
 var LIVERELOAD_PORT = 35729;
 var path = require('path');
 var fs = require('fs');
+var util = require('util');
 
 module.exports = function (grunt) {
     // load all grunt tasks
@@ -85,11 +86,6 @@ module.exports = function (grunt) {
                 generatedImagesDir : '<%= path.tmp %>/images',
                 relativeAssets : true
             },
-            dist : {
-                options : {
-                    outputStyle : 'compressed'
-                }
-            },
             server : {
                 options : {
                     debugInfo : true
@@ -106,6 +102,7 @@ module.exports = function (grunt) {
                     src : [
                         'images/**/*.{png,gif}',
                         'javascripts/**/*.js',
+                        '!**/nls/**',
                         'javascripts/**/*.tpl',
                         '**/*.html',
                         'stylesheets/**/*.{sass,scss,png,ttf}',
@@ -129,8 +126,7 @@ module.exports = function (grunt) {
                     cwd : '<%= path.tmp %>',
                     dest : '<%= path.dist %>',
                     src : [
-                        'images/{,*/}*.{webp,gif,png,jpg,jpeg}',
-                        'stylesheets/{,*/}*.{css,ttf}',
+                        'i18n/**/stylesheets/{,*/}*.{css,ttf}',
                         'bower_components/wookmark-jquery/jquery.wookmark.js',
                         'bower_components/requirejs-doT/doT.js',
                         'bower_components/requirejs-text/text.js',
@@ -237,86 +233,7 @@ module.exports = function (grunt) {
         }
     });
 
-    var projectFlag = 'WDJ';
-
-    grunt.registerTask('server', function (project) {
-        if (typeof project !== 'undefined') {
-            projectFlag = project.toUpperCase();
-        }
-
-        var taskList = [
-            'clean:server',
-            'jshint:all',
-            'copy:tmp',
-            'replace:' + projectFlag,
-            'createScssConfig',
-            'compass:server',
-            'watch'
-        ];
-
-        grunt.task.run(taskList);
-    });
-
-    grunt.registerTask('build', function (project, requireTask) {
-        if (typeof project !== 'undefined') {
-            projectFlag = project.toUpperCase();
-        }
-
-        var rtask = 'source';
-        if (typeof requireTask !== 'undefined') {
-            rtask = requireTask;
-        }
-
-        var taskList = [
-            'clean:dist',
-            'jshint:all',
-            'copy:tmp',
-            'replace:' + projectFlag,
-            'createScssConfig',
-            'compass:dist',
-            'requirejs:' + rtask,
-            'useminPrepare',
-            'imagemin',
-            'copy:dist',
-            'htmlmin',
-            'concat',
-            'uglify',
-            'usemin'
-        ];
-
-        grunt.task.run(taskList);
-    });
-
-    grunt.registerTask('createScssConfig', function () {
-
-        var fd;
-        var filePath = paths.tmp + '/stylesheets/compass/sass/_projectflag.scss';
-
-        fd = fs.openSync(filePath, 'w');
-
-        var content = '';
-        switch (projectFlag) {
-        case 'WDJ':
-            content = '$PROJECT_FLAG : PROJECT_WDJ';
-            break;
-        case 'SUNING':
-            content = '$PROJECT_FLAG : PROJECT_SUNING';
-            break;
-        case 'TIANYIN':
-            content = '$PROJECT_FLAG : PROJECT_TIANYIN';
-            break;
-        }
-
-        fs.writeSync(fd, content);
-        fs.closeSync(fd);
-
-    });
-
-    grunt.registerTask('test', function () {
-        // grunt.option('force', true);
-        grunt.task.run('jshint:all');
-        grunt.task.run('build');
-    });
+    var projectFlag;
 
     var runSubTask = function (command) {
         var exec = require('child_process').exec;
@@ -336,11 +253,125 @@ module.exports = function (grunt) {
         });
     };
 
+    grunt.registerTask('processI18n', function (nls) {
+
+        var i18nPath = paths.tmp + '/i18n';
+        fs.mkdirSync(i18nPath);
+
+        var i18nNlsPath = i18nPath + '/' + nls;
+        fs.mkdirSync(i18nNlsPath);
+
+        i18nNlsPath += '/nls';
+        fs.mkdirSync(i18nNlsPath);
+        fs.mkdirSync(i18nNlsPath + '/' + nls);
+
+        var content;
+        fs.readdirSync(paths.app + '/javascripts/nls/' + nls).forEach(function (file){
+            if (file.substr(0, 1) === '.') {
+                return;
+            } else {
+                grunt.file.write(i18nNlsPath + '/' + file, 'define({"' + nls + '" : true});');
+            }
+        });
+        runSubTask('cp -r ' + paths.app + '/javascripts/nls/' + nls + ' ' + i18nNlsPath);
+
+        var fd;
+        if (nls !== 'zh-cn') {
+            var mainScss = paths.tmp + '/stylesheets/compass/sass/main.scss';
+            fd = fs.openSync(mainScss, 'a');
+
+            fs.writeSync(fd, '@import "_locale-' + nls + '.scss"');
+            fs.closeSync(fd);
+        }
+    });
+
+    grunt.registerTask('switchI18nPath', function () {
+        var i18nPath = paths.tmp + '/javascripts/Internationalization.js';
+        var content = grunt.file.read(i18nPath, {
+            encoding : 'utf-8'
+        });
+
+        content = content.replace(/nls/g, '../i18n/\' + navigator.language + \'/nls');
+        grunt.file.write(i18nPath, content);
+    });
+
+    grunt.registerTask('copyCss', function (nls) {
+
+        var stylePath = paths.tmp + '/i18n/' + nls + '/stylesheets';
+        fs.mkdirSync(stylePath);
+        fs.readdirSync(paths.tmp + '/stylesheets/').forEach(function (file){
+            if (file.substr(0, 1) === '.' || file === 'compass') {
+                return;
+            } else {
+                runSubTask('cp ' + paths.tmp + '/stylesheets/' + file + ' ' + stylePath);
+            }
+        });
+    });
+
+    grunt.registerTask('copyImage', function (nls) {
+
+        var imagesPath = paths.tmp + '/i18n/' + nls + '/images';
+        runSubTask('cp -r ' + paths.tmp + '/images' + ' ' + imagesPath);
+    });
+
+    grunt.registerTask('createScssConfig', function (project) {
+
+        var filePath = paths.tmp + '/stylesheets/compass/sass/_projectflag.scss';
+        var content = '';
+        switch (project) {
+        case 'WDJ':
+            content = '$PROJECT_FLAG : PROJECT_WD';
+            break;
+        case 'SUNING':
+            content = '$PROJECT_FLAG : PROJECT_SUNING';
+            break;
+        case 'TIANYIN':
+            content = '$PROJECT_FLAG : PROJECT_TIANYIN';
+            break;
+        }
+
+        grunt.file.write(filePath, content);
+    });
+
+    grunt.registerTask('test', function () {
+        // grunt.option('force', true);
+        grunt.task.run('jshint:all');
+        runSubTask('./build.sh wdj source zh-cn');
+    });
+
+    grunt.registerTask('server', function (project, nls) {
+
+        projectFlag = project = project ? project.toUpperCase() : 'WDJ';
+        nls = nls ? nls.toLowerCase() : 'zh-cn';
+
+        console.log('project : ', project);
+        console.log('nls : ', nls);
+
+        var taskList = [
+            'initI18n',
+            'clean:server',
+            'jshint:all',
+            'copy:tmp',
+            'processI18n:' + nls,
+            'switchI18nPath',
+            'replaceCss',
+            'replace:' + project,
+            'createScssConfig:' + project,
+            'compass:server',
+            'copyCss:' + nls,
+            'copyImage:' + nls,
+            'watch'
+        ];
+
+        grunt.task.run(taskList);
+    });
+
     grunt.event.on('watch', function (action, filePath, target) {
         switch (target) {
         case 'projectConfig':
             grunt.file.copy(paths.app + '/index.html', paths.tmp + '/index.html');
             runSubTask('grunt replace:' + projectFlag);
+            runSubTask('grunt replaceCss:' + paths.tmp + '/index.html');
             break;
 
         case 'src':
@@ -359,10 +390,11 @@ module.exports = function (grunt) {
                 grunt.file.copy(filePath, targetPath);
                 console.log('copy - ' + filePath);
 
-                if (baseName === 'index.html') {
-                    runSubTask('grunt replace:' + projectFlag);
-                } else if (extName === '.js') {
-                    runSubTask('grunt jshint:all');
+                if (extName === '.html') {
+                    if (baseName === 'index.html') {
+                        runSubTask('grunt replace:' + projectFlag);
+                    }
+                    runSubTask('grunt replaceCss:' + targetPath);
                 }
 
                 break;
@@ -373,6 +405,110 @@ module.exports = function (grunt) {
             }
 
             break;
+        }
+    });
+
+    grunt.registerTask('switchI18nRunTimePath', function (nls) {
+        var i18nPath = paths.dist + '/javascripts/Internationalization.js';
+        var content = grunt.file.read(i18nPath, {
+            encoding : 'utf-8'
+        });
+
+        var re = new RegExp(nls, "g");
+        content = content.replace(re, '" + navigator.language + "');
+        grunt.file.write(i18nPath, content);
+
+
+        var SnapPeaPath = paths.dist + '/javascripts/SnapPea.js';
+        content = grunt.file.read(SnapPeaPath, {
+            encoding : 'utf-8'
+        });
+
+        var re = new RegExp('i18n!../i18n/' + nls, "g");
+        content = content.replace(re, 'i18n!../i18n/" + navigator.language + "');
+        grunt.file.write(SnapPeaPath, content);
+    });
+
+    grunt.registerTask('switchI18nReleasePath', function (nls) {
+        var i18nPath = paths.tmp + '/javascripts/Internationalization.js';
+        var content = grunt.file.read(i18nPath, {
+            encoding : 'utf-8'
+        });
+
+        content = content.replace(/nls/g, '../i18n/' + nls + '/nls');
+        grunt.file.write(i18nPath, content);
+    });
+
+    grunt.registerTask('replaceCss', function (file) {
+
+        var fileList;
+        if (typeof file !== 'undefined') {
+            fileList = [file];
+        } else {
+            var src = [
+                paths.tmp + '/index.html',
+                paths.tmp + '/javascripts/**/*.html'
+            ];
+            fileList = grunt.file.expand(src);
+        }
+
+        var script = '<script type="text/javascript">';
+        script += 'var link = document.createElement("link");';
+        script += 'link.href = "%s";';
+        script += 'link.type = "text/css";';
+        script += 'link.rel = "stylesheet";';
+        script += 'document.getElementsByTagName("head")[0].appendChild(link);';
+        script += '</script>'
+
+        fileList.forEach(function (file) {
+            var content = grunt.file.read(file, {
+                encoding : 'utf-8'
+            });
+
+            var result = content.match(/<[^>]+(?:href)=\s*["']?([^"]+\.(?:css))/);
+            var link = result[0] + '" />';
+            var href = result[1];
+
+            content = content.replace(link, util.format(script, href.replace('stylesheets', 'i18n/" + navigator.language.toLowerCase() + "/stylesheets' )));
+            grunt.file.write(file, content);
+        });
+    });
+
+    grunt.registerTask('build', function (project, requireTask, nls) {
+
+        var removeI18n = true;
+        if (nls) {
+            removeI18n = false;
+        }
+
+        project = project ? project.toUpperCase() : 'WDJ';
+        nls = nls ? nls.toLowerCase() : 'zh-cn';
+        requireTask = requireTask ? requireTask.toLowerCase() : 'source';
+
+        console.log('project : ', project);
+        console.log('nls : ', nls);
+        console.log('task : ', requireTask);
+
+        var taskList = [
+            'jshint:all',
+            'copy:tmp',
+            'switchI18nReleasePath:' + nls,
+            'replaceCss',
+            'replace:' + project,
+            'requirejs:' + requireTask,
+            'switchI18nRunTimePath:' + nls,
+            'useminPrepare',
+            'copy:dist',
+            'htmlmin',
+            'concat',
+            'uglify',
+            'usemin'
+        ];
+
+        grunt.task.run(taskList);
+
+        if (removeI18n) {
+            runSubTask('rm -rf ' + paths.dist + '/i18n');
         }
     });
 };

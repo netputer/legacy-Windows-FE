@@ -174,9 +174,9 @@
 
                     bodyView.$('input[type="radio"]').on('click', function (evt) {
                         if (bodyView.getFeedbackType() !== 1 && bodyView.getFeedbackType() !== 2) {
-                            $button.html('提交');
+                            $button.html(i18n.app.SUBMIT);
                         } else {
-                            $button.html('下一步');
+                            $button.html(i18n.app.NEXT);
                         }
                         $button.prop('disabled', false);
                     });
@@ -218,7 +218,7 @@
                                 listView.$el.delegate('input[type="radio"]', 'click', clickHandler);
                             }.bind(this), 0);
 
-                            this.title = '选择有问题的应用';
+                            this.title = i18n.app.CHOOSE_BAD_APPS;
 
                             step = 2;
                         } else {
@@ -234,7 +234,7 @@
                         this.$bodyContent = reasonView.render().$el;
 
                         this.buttons = [{
-                            $button : $('<button>').html('提交').addClass('primary'),
+                            $button : $('<button>').html(i18n.app.SUBMIT).addClass('primary'),
                             eventName : 'submit'
                         }, {
                             $button : $('<button>').html(i18n.ui.CANCEL),
@@ -249,7 +249,7 @@
                         };
                         reasonView.$el.delegate('input[type="radio"]', 'click', clickHandler);
 
-                        this.title = bodyView.getFeedbackType() === 1 ? '为什么洗错了' : '为什么洗漏了';
+                        this.title = bodyView.getFeedbackType() === 1 ? i18n.app.WASH_WRONG : i18n.app.WASH_LEAP;
 
                         step = 3;
                     }
@@ -282,10 +282,10 @@
         var factory = _.extend({
             getInstance : function (args) {
                 return new FeedbackWindowView(_.extend({
-                    title : '发生什么问题了？',
+                    title : i18n.app.WASH_FEEDBACK_TITLE,
                     height : 250,
                     buttons : [{
-                        $button : $('<button>').html('下一步').addClass('primary'),
+                        $button : $('<button>').html(i18n.app.NEXT).addClass('primary'),
                         eventName : 'next'
                     }, {
                         $button : $('<button>').html(i18n.ui.CANCEL),

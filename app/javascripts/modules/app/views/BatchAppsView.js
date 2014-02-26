@@ -90,7 +90,7 @@
                 AppListView.getInstance().list.removeSelect(id);
             },
             events : {
-                'click .button-deselect' :　'clickButtonDeselect',
+                'click .button-deselect' : 'clickButtonDeselect',
                 'click .w-app-list-item .button-close' : 'clickItemButtonClose'
             }
         });

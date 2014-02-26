@@ -9,6 +9,7 @@
         'IO',
         'Configuration',
         'Environment',
+        'Internationalization',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'video/views/VideoItemView'
@@ -19,6 +20,7 @@
         IO,
         CONFIG,
         Environment,
+        i18n,
         TemplateFactory,
         StringUtil,
         VideoItemView
@@ -87,7 +89,7 @@
                 var key;
                 if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
                         Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
-                    key = StringUtil.formatDate('yyyy 年 MM 月', this.options.models[0].get('date_added'));
+                    key = StringUtil.formatDate(i18n.video.SMART_DATE_SOME_MONTH, this.options.models[0].get('date_added'));
                 } else {
                     key = StringUtil.formatDate('yyyy-MM', this.options.models[0].get('date_added'));
                 }

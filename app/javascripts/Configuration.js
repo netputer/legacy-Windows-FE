@@ -307,7 +307,7 @@
                 OPTIMIZE_SCAN : 'wdj://optimize/scan_all.json',
                 OPTIMIZE_CHECK : 'wdj://optimize/check.json',
                 OPTIMIZE_INSTALL : 'wdj://optimize/install.json',
-                OPTIMIZE_RAM :　'wdj://optimize/optimize_tasks.json',
+                OPTIMIZE_RAM : 'wdj://optimize/optimize_tasks.json',
                 OPTIMIZE_CACHE : 'wdj://optimize/optimize_cache.json',
                 OPTIMIZE_CANCEL : 'wdj://optimize/cancel.json',
 
@@ -516,9 +516,9 @@
                 INSTALL_LOCATION_DEVICE : 1,
 
                 /* Default contact icon */
-                CONTACT_DEFAULT_ICON : 'images/contact-default-small.png',
-                CONTACT_DEFAULT_BATCH_ICON : 'images/contact-default-batch.png',
-                CONTACT_DEFAULT_ICON_LARGE : 'images/contact-default-large.png',
+                CONTACT_DEFAULT_ICON : 'i18n/' + navigator.language.toLowerCase() + '/images/contact-default-small.png',
+                CONTACT_DEFAULT_BATCH_ICON : 'i18n/' + navigator.language.toLowerCase() + '/images/contact-default-batch.png',
+                CONTACT_DEFAULT_ICON_LARGE : 'i18n/' + navigator.language.toLowerCase() + '/images/contact-default-large.png',
                 CONTACT_DESCRIPTION_ITEM_TYPE_PHONE_NUMBER : 0,
 
                 /* MUSIC ITUNES IMPORT TYPE*/
@@ -578,17 +578,17 @@
                 TASK_STATE_STOPPED : 6,
 
                 /* Task default icon path */
-                TASK_DEFAULT_ICON_PATH_APP : 'images/icon_default_app_36X36.png',
-                TASK_DEFAULT_ICON_PATH_MUSIC : 'images/icon_default_music_36X36.png',
-                TASK_DEFAULT_ICON_PATH_PHOTO : 'images/icon_default_pic_36X36.png',
-                TASK_DEFAULT_ICON_PATH_VIDEO : 'images/icon_default_video_36X36.png',
-                TASK_DEFAULT_ICON_PATH_BOOK : 'images/icon_default_ebook_36X36.png',
-                TASK_DEFAULT_ICON_PATH_FILE : 'images/icon_default_file_36X36.png',
-                IMAGE_SPACER : 'images/spacer-20X20.png',
+                TASK_DEFAULT_ICON_PATH_APP : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_app_36X36.png',
+                TASK_DEFAULT_ICON_PATH_MUSIC : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_music_36X36.png',
+                TASK_DEFAULT_ICON_PATH_PHOTO : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_pic_36X36.png',
+                TASK_DEFAULT_ICON_PATH_VIDEO : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_video_36X36.png',
+                TASK_DEFAULT_ICON_PATH_BOOK : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_ebook_36X36.png',
+                TASK_DEFAULT_ICON_PATH_FILE : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_file_36X36.png',
+                IMAGE_SPACER : 'i18n/' + navigator.language.toLowerCase() + '/images/spacer-20X20.png',
 
                 /* Defaut icon */
-                DEFAULT_30X30 : 'images/default-30X30.png',
-                DEFAULT_42X42 : 'images/default-42X42.png',
+                DEFAULT_30X30 : 'i18n/' + navigator.language.toLowerCase() + '/images/default-30X30.png',
+                DEFAULT_42X42 : 'i18n/' + navigator.language.toLowerCase() + '/images/default-42X42.png',
 
                 /* Model type */
                 MODEL_TYPE_APPLICATION : 'app',

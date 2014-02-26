@@ -244,7 +244,7 @@
                 i.startActivity();
 
                 var panel = new Panel({
-                    title : '关闭通知栏广告',
+                    title : i18n.app.WASH_RESULT_TITLE,
                     height : 550,
                     width : 715,
                     $bodyContent : $(doT.template(TemplateFactory.get('wash', 'close-notification'))({
@@ -256,9 +256,9 @@
                 panel.show();
 
                 panel.once('remove', function () {
-                    this.$('.content').html('已经关闭了「显示通知」？');
-                    this.$('.button-close-ads').html('关了').removeClass('button-close-ads').addClass('button-ignore-app');
-                    this.$('.button-ignore').html('没有').removeClass('button-ignore').addClass('button-reset');
+                    this.$('.content').html(i18n.app.WASH_ALREADY_CLOSE);
+                    this.$('.button-close-ads').html(i18n.app.CLOSED).removeClass('button-close-ads').addClass('button-ignore-app');
+                    this.$('.button-ignore').html(i18n.app.NO).removeClass('button-ignore').addClass('button-reset');
                 }, this);
 
                 var originalApp = appsCollection.get(this.model.get('sourceApk').packageName);

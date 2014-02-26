@@ -184,7 +184,7 @@
                 name : 'Jabber',
                 value : 7
             }, {
-                name : '自定义...',
+                name : i18n.contact.CUSTOM,
                 value : -1
             }],
             ADDRESS_OPTION : [{

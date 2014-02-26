@@ -25,52 +25,52 @@
             tips : [
                 {
                     icon : 'backup',
-                    desc : '如何备份和恢复手机数据',
+                    desc : i18n.welcome.BACKUP_RESOTRE,
                     url : 'http://www.wandoujia.com/help/?do=topic&id=29170747'
                 },
                 {
                     icon : 'wifi',
-                    desc : '如何使用 Wi-Fi  连接手机',
+                    desc : i18n.welcome.WIFI,
                     url : 'http://www.wandoujia.com/help/?do=topic&id=23873416'
                 },
                 {
                     icon : 'app',
-                    desc : '如何安装本地应用',
+                    desc : i18n.welcome.APP,
                     url : 'http://www.wandoujia.com/help/?do=topic&id=23908343'
                 },
                 {
                     icon : 'contact',
-                    desc : '如何使用豌豆荚管理联系人',
+                    desc : i18n.welcome.CONTACT,
                     url : 'http://www.wandoujia.com/help/?do=topic&id=29691816'
                 },
                 {
                     icon : 'ringtone',
-                    desc : '为什么试听铃声没有声音',
+                    desc : i18n.welcome.RINGTONE,
                     url : 'http://www.wandoujia.com/help/?do=topic&id=23916587'
                 },
                 {
                     icon : 'ringtone',
-                    desc : '如何快速设置手机铃声',
+                    desc : i18n.welcome.SETUP_RINGTONE,
                     url : 'http://www.wandoujia.com/help/?do=topic&id=23913916'
                 },
                 {
                     icon : 'contact',
-                    desc : '为什么不能识别设备上的联系人、短信或应用',
+                    desc : i18n.welcome.IDENTIFY_CONTACT,
                     url : 'http://www.wandoujia.com/help/?do=topic&id=23884968'
                 },
                 {
                     icon : 'app',
-                    desc : '网游充值遇到问题怎么办',
+                    desc : i18n.welcome.ONLINE_GAME,
                     url : 'http://www.wandoujia.com/help/?do=topic&id=25006937'
                 },
                 {
                     icon : 'traffic',
-                    desc : '「豌豆荚 Android 版」会消耗手机流量吗',
+                    desc : i18n.welcome.TRAFFIC,
                     url : 'http://www.wandoujia.com/help/?do=topic&id=23898841'
                 },
                 {
                     icon : 'contact',
-                    desc : '如何导入或导出我的联系人',
+                    desc : i18n.welcome.EXPORT_CONTACT,
                     url : 'http://www.wandoujia.com/help/?do=topic&id=23874953'
                 }
             ],

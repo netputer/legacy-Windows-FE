@@ -28,7 +28,7 @@
 </script>
 
 <script type="text/x-ui-template" id="sigle-card">
-    <img class="icon button-navigate" alt="{{! it.title }}" src="images/default-app-100X100.png" />
+    <img class="icon button-navigate" alt="{{! it.title }}" />
     <div class="info-ctn vbox">
         <div class="info-top hbox">
             <div class="info">
@@ -251,7 +251,7 @@
         <div class="screen-wrap">
             <div class="screen-ctn vbox">
                 <div class="screen">
-                    <img class="screenshot" src="images/blank.png" alt="" />
+                    <img class="screenshot" alt="" />
                 </div>
             </div>
         </div>

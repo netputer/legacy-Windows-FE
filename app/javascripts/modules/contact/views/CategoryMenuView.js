@@ -19,7 +19,7 @@
                 _.each(EditorConfig.CATEGORY_MENU, function (item) {
                     items.push({
                         name : 'category',
-                        type :　'normal',
+                        type : 'normal',
                         value : item.value,
                         label : item.name
                     });

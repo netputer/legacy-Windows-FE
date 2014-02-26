@@ -4,22 +4,44 @@
         <title>Extention Error</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="test/css" href="../../../stylesheets/main.css" />
+        <script type="text/javascript" src="../../../bower_components/requirejs/require.js"></script>
+        <script type="text/javascript">
+
+            var reload = function () {
+                var url = window.location.href;
+                window.location.href = url.replace(/^http:/, 'https:');
+            };
+
+            require.config({
+                baseUrl : '../../'
+            });
+
+            require(['RequireConfig'], function () {
+                require([
+                    'jquery',
+                    'Internationalization'
+                ], function (
+                    $,
+                    i18n
+                ) {
+                    $('h2').html(i18n.browser.DNS_SPOOFING);
+                    $('.text-secondary').html(i18n.browser.DNS_SUGGESTION);
+                    $('.button-retry').html(i18n.browser.DNS_CHANGE_TO_SSH);
+                    $('a').html(i18n.browser.UNDERSTAND_DNS_SPOOFING);
+                });
+            });
+        </script>
     </head>
-    <script>
-        var reload = function () {
-            var url = window.location.href;
-            window.location.href = url.replace(/^http:/, 'https:');
-        };
-    </script>
     <body>
         <div class="w-misc-extension-error hbox">
             <div class="failed"></div>
             <div class="info">
-                <h2>DNS 被劫持</h2>
+                <h2></h2>
                 <hr />
-                <p class="text-secondary">豌豆荚检测到您的网络提供商试图将您要访问的网页篡改为其他网页。使用加密传输模式可避免这个问题，但访问速度会变慢。</p>
+                <p class="text-secondary"></p>
                 <br />
-                <button class="primary button-retry" onclick="javascript: reload();">切换到加密传输模式</button><a class="link" href="http://wandoujia.zendesk.com/entries/22648273-dns" target="_default">了解 DNS 劫持的相关信息</a>
+                <button class="primary button-retry" onclick="javascript: reload();"></button>
+                <a class="link" href="http://wandoujia.zendesk.com/entries/22648273-dns" target="_default"></a>
             </div>
         </div>
     </body>

@@ -55,7 +55,7 @@
                 this.model.toggleStarAsync();
 
                 log({
-                    'event' :　'ui.click.contact.button.star',
+                    'event' : 'ui.click.contact.button.star',
                     'favorite' :  this.model.get('starred')
                 });
             },

@@ -5,17 +5,25 @@
         <title>Sync Notification</title>
         <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css" />
         <script type="text/javascript" src="../../../bower_components/requirejs/require.js"></script>
-        <script type="text/javascript" language="JavaScript">
+        <script type="text/javascript">
             require.config({
                 baseUrl : '../../'
             });
 
             require(['RequireConfig'], function () {
-                require(['jquery', 'utilities/QueryString', 'utilities/FormatString', 'IO', 'Configuration', 'Log'], function ($, QueryString, FormatString, IO, CONFIG, log) {
+                require([
+                    'jquery',
+                    'utilities/QueryString',
+                    'utilities/FormatString',
+                    'IO',
+                    'Configuration',
+                    'Log',
+                    'Internationalization'
+                ],function ($, QueryString, FormatString, IO, CONFIG, log, i18n) {
                     var auth = QueryString.get('auth');
                     var source = QueryString.get('source');
                     var synced_photo_num = QueryString.get('synced_photo_num');
-                    $('.header_text').html(FormatString('您有 {1} 张照片同步到了电脑', synced_photo_num));
+                    $('.header_text').html(FormatString(i18n.sync.SYNC_PHOTO, synced_photo_num));
 
                     log({
                         'event' : 'debug.sync.helper.photo.notify.show'
@@ -63,6 +71,12 @@
                             'event' : 'ui.click.sync.open.help'
                         });
                     });
+
+                    $('.header_text').html(i18n.sync.SYNC_REMOTE_TITLE);
+                    $('.pre-content').html(i18n.sync.SYNC_RRE_CONTENT);
+                    $('.suf-content').html(i18n.sync.SYNC_SUF_CONTENT);
+                    $('.button-help').html(i18n.sync.LEARN_MORE);
+                    $('.button-open').html(i18n.sync.OPEN);
                 });
             });
 
@@ -94,15 +108,11 @@
 
         <body class="w-notification-body">
             <div class="wrap cf">
-                <h2 class="header_text text-primary">照片已经从手机同步到电脑</h2>
-                <p>
-                    您在手机上的豌豆荚开启了「拍照立即同步」功能。在 Wi-Fi 网络下，豌豆荚会帮您把刚刚拍摄的照片上传到 <span class="link button-open-url">wandoujia.com/photos</span> 保存，并且随时同步到您的电脑上。
-                </p>
-                <p>
-                    如果您不需要照片同步功能，请在手机上的豌豆荚上设置关闭此功能。
-                </p>
-                <h2><span class="link button-help">了解更多</span></h2>
-                <h2><span class="link button-open">查看照片</span></h2>
+                <h2 class="header_text text-primary"></h2>
+                <p class="pre_content"></p>
+                <p class="suf_content"></p>
+                <h2><span class="link button-help"></span></h2>
+                <h2><span class="link button-open"></span></h2>
             </div>
         </body>
 </html>

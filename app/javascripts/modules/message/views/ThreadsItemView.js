@@ -77,23 +77,23 @@
                 if (sourceDate.getFullYear() === today.getFullYear() && sourceDate.getMonth() === today.getMonth()) {
                     switch (difference) {
                     case 0:
-                        date = StringUtil.formatDate('今天 MM 月 dd 日', sourceMills);
+                        date = StringUtil.formatDate(i18n.message.SMART_DATE_TODAY, sourceMills);
                         break;
                     case 1:
-                        date = StringUtil.formatDate('昨天 MM 月 dd 日', sourceMills);
+                        date = StringUtil.formatDate(i18n.message.SMART_DATE_YESTERDAY, sourceMills);
                         break;
                     case 2:
-                        date = StringUtil.formatDate('前天 MM 月 dd 日', sourceMills);
+                        date = StringUtil.formatDate(i18n.message.SMART_DATE_TDBY, sourceMills);
                         break;
                     default:
-                        date = StringUtil.formatDate('MM 月 dd 日', sourceMills);
+                        date = StringUtil.formatDate(i18n.message.SMART_DATE_SOME_DAY, sourceMills);
                     }
                 } else {
                     var yearDifference = today.getFullYear() - sourceDate.getFullYear();
                     if (yearDifference > 0) {
-                        date = StringUtil.formatDate('yyyy 年 MM 月 dd 日', sourceMills);
+                        date = StringUtil.formatDate(i18n.message.SMART_DATE_DIFF_YEAR, sourceMills);
                     } else {
-                        date = StringUtil.formatDate('MM 月 dd 日', sourceMills);
+                        date = StringUtil.formatDate(i18n.message.SMART_DATE_SOME_DAY, sourceMills);
                     }
                 }
 

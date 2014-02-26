@@ -74,7 +74,7 @@
                 if (this.get('dev_mode')) {
                     this.set({
                         cateid : 'dev',
-                        catetitle : '本地插件'
+                        catetitle : i18n.doraemon.LOCAL_PLUGIN
                     });
                 }
 
