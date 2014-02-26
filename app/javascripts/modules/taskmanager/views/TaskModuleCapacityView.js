@@ -91,7 +91,7 @@
                     externalSDPath : Device.get('externalSDPath')
                 };
 
-                this.$el.html(this.template({})).addClass('show');
+                this.$el.html(this.template(data)).addClass('show');
 
                 CapacityTipsView.getInstance({
                     $host : this.$('.info-device'),
