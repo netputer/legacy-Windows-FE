@@ -476,6 +476,11 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', function (project, requireTask, nls) {
 
+        var removeI18n = true;
+        if (nls) {
+            removeI18n = false;
+        }
+
         project = project ? project.toUpperCase() : 'WDJ';
         nls = nls ? nls.toLowerCase() : 'zh-cn';
         requireTask = requireTask ? requireTask.toLowerCase() : 'source';
@@ -501,5 +506,9 @@ module.exports = function (grunt) {
         ];
 
         grunt.task.run(taskList);
+
+        if (removeI18n) {
+            runSubTask('rm -rf ' + paths.dist + '/i18n');
+        }
     });
 };
