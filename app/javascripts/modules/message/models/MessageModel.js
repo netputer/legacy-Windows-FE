@@ -15,7 +15,7 @@
     ) {
         console.log('MessageModel - File loaded.');
 
-        var DEFUALT_ICON_PATH = 'i18n/' + navigator.language + '/images/contact-default-small.png';
+        var DEFUALT_ICON_PATH = 'i18n/' + navigator.language.toLowerCase() + '/images/contact-default-small.png';
 
         var MessageModel = Backbone.Model.extend({
             initialize : function () {

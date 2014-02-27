@@ -408,14 +408,19 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('switchI18nRunTimePath', function (nls) {
+    grunt.registerTask('switchI18nRunTimePath', function (nls, requireTask) {
         var i18nPath = paths.dist + '/javascripts/Internationalization.js';
         var content = grunt.file.read(i18nPath, {
             encoding : 'utf-8'
         });
 
         var re = new RegExp(nls, "g");
-        content = content.replace(re, '" + navigator.language + "');
+
+        var replacement = '" + navigator.language + "';
+        if (requireTask === 'debug') {
+            replacement = '\' + navigator.language + \'';
+        }
+        content = content.replace(re, replacement);
         grunt.file.write(i18nPath, content);
 
 
@@ -425,7 +430,11 @@ module.exports = function (grunt) {
         });
 
         var re = new RegExp('i18n!../i18n/' + nls, "g");
-        content = content.replace(re, 'i18n!../i18n/" + navigator.language + "');
+        replacement = 'i18n!../i18n/" + navigator.language + "';
+        if (requireTask === 'debug') {
+            replacement = 'i18n!../i18n/\' + navigator.language + \'';
+        }
+        content = content.replace(re, replacement);
         grunt.file.write(SnapPeaPath, content);
     });
 
@@ -496,7 +505,7 @@ module.exports = function (grunt) {
             'replaceCss',
             'replace:' + project,
             'requirejs:' + requireTask,
-            'switchI18nRunTimePath:' + nls,
+            'switchI18nRunTimePath:' + nls + ':' + requireTask,
             'useminPrepare',
             'copy:dist',
             'htmlmin',
