@@ -191,7 +191,7 @@
             },
             remove : function (models, options) {
                 VideosCollection.__super__.remove.apply(this, arguments);
-                this.trigger('batch_rmove');
+                this.trigger('batchRemove');
             }
         });
 

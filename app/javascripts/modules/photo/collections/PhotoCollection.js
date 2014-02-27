@@ -119,7 +119,7 @@
             },
             remove : function (models, options) {
                 PhotoCollection.__super__.remove.apply(this, arguments);
-                this.trigger('batch_rmove');
+                this.trigger('batchRemove');
             },
             dispose : function () {
                 this.set([]);

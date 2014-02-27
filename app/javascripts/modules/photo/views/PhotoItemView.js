@@ -105,7 +105,7 @@
                     };
                 });
                 this.listenTo(WindowState, 'resize', locateHandler);
-                this.listenTo(this.model.collection, 'batch_rmove', function () {
+                this.listenTo(this.model.collection, 'batchRemove', function () {
                     position = {
                         top : this.$el[0].offsetTop,
                         left : this.$el[0].offsetLeft
