@@ -105,15 +105,13 @@
                     };
                 });
                 this.listenTo(WindowState, 'resize', locateHandler);
-                this.listenTo(this.model.collection, 'remove', function (model) {
-                    if (model.id !== this.model.id) {
-                        position = {
-                            top : this.$el[0].offsetTop,
-                            left : this.$el[0].offsetLeft
-                        };
+                this.listenTo(this.model.collection, 'batchRemove', function () {
+                    position = {
+                        top : this.$el[0].offsetTop,
+                        left : this.$el[0].offsetLeft
+                    };
 
-                        setTimeout(locateHandler.call(this));
-                    }
+                    setTimeout(locateHandler.call(this));
                 });
 
                 if (this.options.template) {
