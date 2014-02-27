@@ -348,7 +348,6 @@ module.exports = function (grunt) {
         console.log('nls : ', nls);
 
         var taskList = [
-            'initI18n',
             'clean:server',
             'jshint:all',
             'copy:tmp',
