@@ -188,6 +188,10 @@
                 return this.filter(function (video) {
                     return video.get('selected');
                 });
+            },
+            remove : function (models, options) {
+                VideosCollection.__super__.remove.apply(this, arguments);
+                this.trigger('batchRemove');
             }
         });
 
