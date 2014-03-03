@@ -235,6 +235,31 @@ module.exports = function (grunt) {
 
     var projectFlag;
 
+    var copyFolderRecursive = function(path, dist, isDelete) {
+        isDelete = isDelete ? true : false;
+
+        if (!fs.existsSync(path)) {
+            return;
+        }
+
+        if (fs.statSync(path).isDirectory()) {
+            fs.readdirSync(path).forEach(function (file) {
+                var curPath = path + '/' +  file;
+                var distPath = dist + '/' + file;
+                if(fs.statSync(curPath).isDirectory()) {
+                    copyFolderRecursive(curPath, distPath, isDelete);
+                } else {
+                    grunt.file.copy(curPath, distPath);
+                    isDelete && fs.unlinkSync(curPath);
+                }
+            });
+            isDelete && fs.rmdirSync(path);
+        } else {
+            grunt.file.copy(path, dist);
+            isDelete && fs.unlinkSync(path);
+        }
+    }
+
     var runSubTask = function (command) {
         var exec = require('child_process').exec;
 
@@ -273,7 +298,7 @@ module.exports = function (grunt) {
                 grunt.file.write(i18nNlsPath + '/' + file, 'define({"' + nls + '" : true});');
             }
         });
-        runSubTask('cp -r ' + paths.app + '/javascripts/nls/' + nls + ' ' + i18nNlsPath);
+        copyFolderRecursive(paths.app + '/javascripts/nls/' + nls, i18nNlsPath + '/' + nls);
 
         var fd;
         if (nls !== 'zh-cn') {
@@ -303,7 +328,7 @@ module.exports = function (grunt) {
             if (file.substr(0, 1) === '.' || file === 'compass') {
                 return;
             } else {
-                runSubTask('cp ' + paths.tmp + '/stylesheets/' + file + ' ' + stylePath);
+                copyFolderRecursive(paths.tmp + '/stylesheets/' + file, stylePath + '/' + file);
             }
         });
     });
@@ -311,7 +336,7 @@ module.exports = function (grunt) {
     grunt.registerTask('copyImage', function (nls) {
 
         var imagesPath = paths.tmp + '/i18n/' + nls + '/images';
-        runSubTask('cp -r ' + paths.tmp + '/images' + ' ' + imagesPath);
+        copyFolderRecursive(paths.tmp + '/images', imagesPath);
     });
 
     grunt.registerTask('createScssConfig', function (project) {
