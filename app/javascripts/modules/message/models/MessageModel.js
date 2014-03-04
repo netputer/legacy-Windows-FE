@@ -15,8 +15,6 @@
     ) {
         console.log('MessageModel - File loaded.');
 
-        var DEFUALT_ICON_PATH = 'i18n/' + navigator.language.toLowerCase() + '/images/contact-default-small.png';
-
         var MessageModel = Backbone.Model.extend({
             initialize : function () {
                 Object.defineProperties(this, {
@@ -29,7 +27,7 @@
 
                 this.set({
                     contact_name : this.get('contact_name') || this.get('address'),
-                    contact_icon : this.get('contact_icon') ? 'file:///' + this.get('contact_icon') : DEFUALT_ICON_PATH,
+                    contact_icon : this.get('contact_icon') ? 'file:///' + this.get('contact_icon') : CONFIG.enums.CONTACT_DEFAULT_ICON,
                     body : StringUtil.conditionalEscape(this.get('body'))
                 });
             },

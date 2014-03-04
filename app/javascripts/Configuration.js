@@ -2,9 +2,10 @@
 (function (window) {
     'use strict';
 
+    var BASE_PATH = window.require.s.contexts._.config.baseUrl;
     define([], function () {
         var Configuration = {
-            BASE_PATH : window.require.s.contexts._.config.baseUrl,
+            BASE_PATH : BASE_PATH,
             actions : {
                 BLOCK_WINDOW : 'wdj://window/blocking.json',
 
@@ -516,9 +517,9 @@
                 INSTALL_LOCATION_DEVICE : 1,
 
                 /* Default contact icon */
-                CONTACT_DEFAULT_ICON : 'i18n/' + navigator.language.toLowerCase() + '/images/contact-default-small.png',
-                CONTACT_DEFAULT_BATCH_ICON : 'i18n/' + navigator.language.toLowerCase() + '/images/contact-default-batch.png',
-                CONTACT_DEFAULT_ICON_LARGE : 'i18n/' + navigator.language.toLowerCase() + '/images/contact-default-large.png',
+                CONTACT_DEFAULT_ICON : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/contact-default-small.png',
+                CONTACT_DEFAULT_BATCH_ICON : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/contact-default-batch.png',
+                CONTACT_DEFAULT_ICON_LARGE : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/contact-default-large.png',
                 CONTACT_DESCRIPTION_ITEM_TYPE_PHONE_NUMBER : 0,
 
                 /* MUSIC ITUNES IMPORT TYPE*/
@@ -578,17 +579,17 @@
                 TASK_STATE_STOPPED : 6,
 
                 /* Task default icon path */
-                TASK_DEFAULT_ICON_PATH_APP : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_app_36X36.png',
-                TASK_DEFAULT_ICON_PATH_MUSIC : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_music_36X36.png',
-                TASK_DEFAULT_ICON_PATH_PHOTO : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_pic_36X36.png',
-                TASK_DEFAULT_ICON_PATH_VIDEO : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_video_36X36.png',
-                TASK_DEFAULT_ICON_PATH_BOOK : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_ebook_36X36.png',
-                TASK_DEFAULT_ICON_PATH_FILE : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_file_36X36.png',
-                IMAGE_SPACER : 'i18n/' + navigator.language.toLowerCase() + '/images/spacer-20X20.png',
+                TASK_DEFAULT_ICON_PATH_APP : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/icon_default_app_36X36.png',
+                TASK_DEFAULT_ICON_PATH_MUSIC : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/icon_default_music_36X36.png',
+                TASK_DEFAULT_ICON_PATH_PHOTO : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/icon_default_pic_36X36.png',
+                TASK_DEFAULT_ICON_PATH_VIDEO : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/icon_default_video_36X36.png',
+                TASK_DEFAULT_ICON_PATH_BOOK : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/icon_default_ebook_36X36.png',
+                TASK_DEFAULT_ICON_PATH_FILE : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/icon_default_file_36X36.png',
+                IMAGE_SPACER : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/spacer-20X20.png',
 
                 /* Defaut icon */
-                DEFAULT_30X30 : 'i18n/' + navigator.language.toLowerCase() + '/images/default-30X30.png',
-                DEFAULT_42X42 : 'i18n/' + navigator.language.toLowerCase() + '/images/default-42X42.png',
+                DEFAULT_30X30 : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/default-30X30.png',
+                DEFAULT_42X42 : BASE_PATH + '../i18n/' + navigator.language.toLowerCase() + '/images/default-42X42.png',
 
                 /* Model type */
                 MODEL_TYPE_APPLICATION : 'app',
