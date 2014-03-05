@@ -316,7 +316,7 @@ module.exports = function (grunt) {
             encoding : 'utf-8'
         });
 
-        content = content.replace(/nls/g, '../i18n/\' + navigator.language + \'/nls');
+        content = content.replace(/nls/g, '../i18n/\' + navigator.language.toLowerCase() + \'/nls');
         grunt.file.write(i18nPath, content);
     });
 
@@ -440,9 +440,9 @@ module.exports = function (grunt) {
 
         var re = new RegExp(nls, "g");
 
-        var replacement = '" + navigator.language + "';
+        var replacement = '" + navigator.language.toLowerCase() + "';
         if (requireTask === 'debug') {
-            replacement = '\' + navigator.language + \'';
+            replacement = '\' + navigator.language.toLowerCase() + \'';
         }
         content = content.replace(re, replacement);
         grunt.file.write(i18nPath, content);
@@ -454,9 +454,9 @@ module.exports = function (grunt) {
         });
 
         var re = new RegExp('i18n!../i18n/' + nls, "g");
-        replacement = 'i18n!../i18n/" + navigator.language + "';
+        replacement = 'i18n!../i18n/" + navigator.language.toLowerCase() + "';
         if (requireTask === 'debug') {
-            replacement = 'i18n!../i18n/\' + navigator.language + \'';
+            replacement = 'i18n!../i18n/\' + navigator.language.toLowerCase() + \'';
         }
         content = content.replace(re, replacement);
         grunt.file.write(SnapPeaPath, content);

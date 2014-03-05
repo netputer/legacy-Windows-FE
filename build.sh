@@ -22,6 +22,7 @@ build_app_code() {
     first_language=`echo $NLS | cut -f 1 -d ','`
     echo ${first_language}
     grunt build:$PROJECT:$TARGET:${first_language}
+    rm ${work_path}/dist/javascript/build.txt
 }
 
 install_npm() {
