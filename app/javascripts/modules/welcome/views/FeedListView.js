@@ -61,6 +61,9 @@
     ) {
         console.log('FeedListView - File loaded. ');
 
+        var targetArr = [];
+        var wookmarkHandle;
+
         var FeedListView = Backbone.View.extend({
             tagName : 'ul',
             className : 'feed-ctn',
@@ -162,10 +165,16 @@
                             break;
                         }
                         if (targetView !== undefined) {
-                            fragment.appendChild(targetView.getInstance({
+
+                            var target = targetView.getInstance({
                                 model : feed,
                                 parentView : this
-                            }).render().$el.toggleClass('flip', !fisrtScreen)[0]);
+                            }).render().$el.toggleClass('flip', !fisrtScreen)[0];
+
+                            fragment.appendChild(target);
+                            if (!fisrtScreen) {
+                                targetArr.push(target);
+                            }
 
                             logData = {};
                             if (!logData[type]) {
@@ -199,7 +208,12 @@
                 return this;
             },
             initLayout : function () {
-                this.$('.w-welcome-feed-card:not(.hide)').wookmark({
+
+                if (wookmarkHandle) {
+                    wookmarkHandle.wookmarkInstance.clear();
+                }
+
+                wookmarkHandle = this.$('.w-welcome-feed-card:not(.hide)').wookmark({
                     align : 'left',
                     autoResize : true,
                     container : this.$el,
@@ -207,7 +221,10 @@
                     offset : 20
                 });
 
-                this.$('.w-welcome-feed-card.flip').removeClass('flip');
+                _.each(targetArr, function (target) {
+                    $(target).removeClass('flip');
+                });
+                targetArr = [];
             },
             loadNextPage : function () {
                 var collection = FeedsCollection.getInstance();
