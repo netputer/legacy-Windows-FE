@@ -61,6 +61,7 @@
             className : 'w-welcome-ctn',
             initialize : function () {
 
+                var requestedId;
                 var scrollHandler = function (evt) {
                     var ran = _.random(0, 9);
                     if (ran > 8 && FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
@@ -70,7 +71,8 @@
                         window.wandoujia.getFPS('recordFPS', index);
                     }
 
-                    window.requestAnimationFrame(function () {
+                    window.cancelAnimationFrame(requestedId);
+                    requestedId = window.requestAnimationFrame(function () {
                         var target = evt.target;
                         this.moveComponents(target.scrollTop);
                         if (FunctionSwitch.ENABLE_WELCOME_FEED &&
@@ -125,6 +127,11 @@
             },
             moveComponents : function (scrollTop) {
                 scrollTop = scrollTop >= 400 ? 400 : scrollTop;
+
+                if (scrollTop >= 400) {
+                    return;
+                }
+
                 var progress1 = scrollTop / 400;
                 this.$('.bg').css({
                     opacity : 1 - progress1

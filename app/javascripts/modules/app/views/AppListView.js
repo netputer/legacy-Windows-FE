@@ -61,6 +61,7 @@
         var webAppsCollection;
         var pimCollection;
         var sortMenu;
+        var lastWindowWidth;
 
         var searchResult = [];
 
@@ -430,7 +431,14 @@
                     'event' : 'ui.click.flash.app.tip.close'
                 });
             },
-            relocatePointer : function () {
+            relocatePointer : function (state) {
+
+                if (state && state.width === lastWindowWidth) {
+
+                    lastWindowWidth = state.width;
+                    return;
+                }
+
                 var $targetTab =  this.$('.tab li.selected');
                 if ($targetTab.length > 0) {
                     this.$('.pointer').css({

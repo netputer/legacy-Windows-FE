@@ -6,6 +6,7 @@
         'jquery',
         'doT',
         'ui/TemplateFactory',
+        'ui/WindowState',
         'utilities/QueryString',
         'Device',
         'Internationalization',
@@ -25,6 +26,7 @@
         $,
         doT,
         TemplateFactory,
+        WindowState,
         QueryString,
         Device,
         i18n,
@@ -43,6 +45,7 @@
 
         var setTimeout = window.setTimeout;
 
+        var lastWindowHeight;
         var pimMenuView;
         var doraemonMenuView;
         var pimCollection;
@@ -57,9 +60,15 @@
             defaultModule = parseInt(redirectModule, 10);
         }
 
-        var toggleShadow = function () {
+        var toggleShadow = function (state) {
+
+            if (state && state.height === lastWindowHeight) {
+                lastWindowHeight = state.height;
+                return;
+            }
+
+            var ele = this.$el[0];
             setTimeout(function () {
-                var ele = this.$el[0];
 
                 var $shadow = $('.w-menu-shadow');
                 var offsetHeight = ele.offsetHeight;
@@ -74,7 +83,7 @@
                 } else {
                     $shadow.addClass('w-layout-hide');
                 }
-            }.bind(this), 0);
+            }, 0);
         };
 
         var WelcomeItemView = Backbone.View.extend({
@@ -113,7 +122,7 @@
                 });
 
                 extensionsCollection.on('add remove refresh', _.throttle(toggleShadow.bind(this), 50));
-                $(window).on('resize', _.throttle(toggleShadow.bind(this), 50));
+                this.listenTo(WindowState, 'resize', toggleShadow.bind(this));
                 this.$el.on('scroll', _.throttle(toggleShadow.bind(this), 50));
             },
             render : function () {
