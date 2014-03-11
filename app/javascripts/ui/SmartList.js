@@ -35,12 +35,8 @@
 
         var EventsMapping = UIHelper.EventsMapping;
 
-        var CLASS_MAPPING = {
-            SCROLL_CTN : '.w-ui-smartlist-scroll-ctn'
-        };
-
         var calculateSettings = function () {
-            this.ctnHeight = this.$('.w-ui-smartlist-body-ctn').height();
+            this.ctnHeight = this.$ctn.height();
 
             // Calculate content height and set scroll substitution height
             this.contentHeight = this.currentModels.length * this.itemHeight;
@@ -57,7 +53,7 @@
 
             // Cache vars
             var models = this.currentModels;
-            var $itemCtn = this.$('.w-ui-smartlist-body-ctn');
+            var $itemCtn = this.$ctn;
             var modelCount = models.length;
             var ctnHeight = this.ctnHeight;
             var onScreenItems = this.onScreenItems;
@@ -170,6 +166,8 @@
                 var listenToCollection;
                 var enableMutilselect = true;
                 var enableDragAndDrop = false;
+                var $ctn;
+                var $scrollCtn;
                 Object.defineProperties(this, {
                     rendered : {
                         set : function (value) {
@@ -329,6 +327,22 @@
                         set : function (value) {
                             enableDragAndDrop = Boolean(value);
                         }
+                    },
+                    $ctn : {
+                        get : function () {
+                            return $ctn;
+                        },
+                        set : function (value) {
+                            $ctn = value;
+                        }
+                    },
+                    $scrollCtn : {
+                        get : function () {
+                            return $scrollCtn;
+                        },
+                        set : function (value) {
+                            $scrollCtn = value;
+                        }
                     }
                 });
 
@@ -348,10 +362,12 @@
             },
             render : function () {
                 this.$el.html(this.template({}));
+                this.$ctn = this.$('.w-ui-smartlist-body-ctn');
+                this.$scrollCtn = this.$('.w-ui-smartlist-scroll-ctn');
 
                 this.loading = Boolean(this.loading);
 
-                this.$(CLASS_MAPPING.SCROLL_CTN).on('scroll', this.scrollHandler);
+                this.$scrollCtn.on('scroll', this.scrollHandler);
 
                 this.listenTo(WindowState, 'resize', this.windowResizeHandler);
 
@@ -373,7 +389,7 @@
                     topModel = this.onScreenItems[0].model;
                 }
 
-                this.ctnHeight = this.$('.w-ui-smartlist-body-ctn').height();
+                this.ctnHeight = this.$ctn.height();
 
                 if (topModel !== undefined) {
                     var index = 0;
@@ -401,7 +417,7 @@
                 }
             },
             build : function (scrollTop) {
-                var $scrollCtn = this.$(CLASS_MAPPING.SCROLL_CTN);
+                var $scrollCtn = this.$scrollCtn;
                 $scrollCtn.off('scroll', this.scrollHandler);
 
                 var scrollCtn = $scrollCtn[0];
@@ -521,7 +537,7 @@
             },
             mousewheelBody : _.throttle(function (evt) {
                 if (this.renderQueue.length === 0) {
-                    var $scrollCtn = this.$(CLASS_MAPPING.SCROLL_CTN);
+                    var $scrollCtn = this.$scrollCtn;
 
                     var models = this.currentModels;
 
@@ -650,7 +666,7 @@
                 }
             },
             remove : function () {
-                this.$(CLASS_MAPPING.SCROLL_CTN).off('scroll', this.scrollHandler);
+                this.$scrollCtn.off('scroll', this.scrollHandler);
 
                 _.each(this.onScreenItems, function (item) {
                     item.remove();
@@ -664,7 +680,7 @@
             },
             scrollTo : function (model) {
                 var index = this.currentModels.indexOf(model);
-                this.$(CLASS_MAPPING.SCROLL_CTN)[0].scrollTop = index * this.itemHeight;
+                this.$scrollCtn[0].scrollTop = index * this.itemHeight;
 
                 if (this.onScreenItems[0]) {
                     this.onScreenItems[0].$el[0].scrollIntoView();
