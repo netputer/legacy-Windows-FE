@@ -13,6 +13,7 @@
         'ui/PopupPanel',
         'ui/TemplateFactory',
         'ui/Panel',
+        'utilities/FormatString',
         'IOBackendDevice',
         'task/TaskService',
         'app/collections/AppsCollection',
@@ -30,6 +31,7 @@
         PopupPanel,
         TemplateFactory,
         Panel,
+        formatString,
         IO,
         TaskService,
         AppsCollection,
@@ -248,7 +250,7 @@
                     height : 550,
                     width : 715,
                     $bodyContent : $(doT.template(TemplateFactory.get('wash', 'close-notification'))({
-                        title : appsCollection.get(this.model.get('sourceApk').packageName).get('base_info').name
+                        title : formatString(i18n.app.WASH_CLOSE_NOTIFI_TITLE, appsCollection.get(this.model.get('sourceApk').packageName).get('base_info').name)
                     })),
                     buttonSet : 'yes'
                 });
