@@ -24,11 +24,17 @@ module.exports = function (grunt) {
             server : ['<%= path.tmp %>/']
         },
         watch : {
+            i18n : {
+                files : [
+                    '<%= path.app %>/javascripts/nls/**'
+                ]
+            },
             src : {
                 files : [
                     '<%= path.app %>/javascripts/**/*.js',
-                    '<%= path.app %>/stylesheets/**/*.{scss,sass,png}',
                     '<%= path.app %>/images/**/*.{png,gif}',
+                    '<%= path.app %>/stylesheets/**/*.{scss,sass,png}',
+                    '!<%= path.app %>/javascripts/**/nls/**',
                     '<%= path.app %>/javascripts/**/*.tpl',
                     '<%= path.app %>/**/*.html'
                 ]
@@ -234,6 +240,7 @@ module.exports = function (grunt) {
     });
 
     var projectFlag;
+    var nlsFlag;
 
     var copyFolderRecursive = function(path, dist, isDelete) {
         isDelete = isDelete ? true : false;
@@ -367,7 +374,7 @@ module.exports = function (grunt) {
     grunt.registerTask('server', function (project, nls) {
 
         projectFlag = project = project ? project.toUpperCase() : 'WDJ';
-        nls = nls ? nls.toLowerCase() : 'zh-cn';
+        nlsFlag = nls = nls ? nls.toLowerCase() : 'zh-cn';
 
         console.log('project : ', project);
         console.log('nls : ', nls);
@@ -397,7 +404,22 @@ module.exports = function (grunt) {
             runSubTask('grunt replace:' + projectFlag);
             runSubTask('grunt replaceCss:' + paths.tmp + '/index.html');
             break;
+        case 'i18n' :
+            if (grunt.file.isDir(filePath)) {
+                return;
+            }
 
+            var targetPath = filePath.replace(paths.app, paths.tmp + '/i18n/' + nlsFlag ).replace('javascripts/', '');
+            console.log(targetPath);
+            switch (action) {
+            case 'added':
+            case 'changed':
+                grunt.file.copy(filePath, targetPath);
+                console.log('copy - ' + filePath + ' to ' + targetPath);
+                break;
+            }
+
+            break;
         case 'src':
             if (grunt.file.isDir(filePath)) {
                 return;
@@ -412,7 +434,7 @@ module.exports = function (grunt) {
                 var extName = path.extname(filePath);
 
                 grunt.file.copy(filePath, targetPath);
-                console.log('copy - ' + filePath);
+                console.log('copy - ' + filePath + ' to ' + targetPath);
 
                 if (extName === '.html') {
                     if (baseName === 'index.html') {
