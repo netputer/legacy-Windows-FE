@@ -266,7 +266,7 @@
 
 <script type="text/x-ui-template" id="close-notification">
     <div class="w-app-wash-close-popup-ctn">
-        <h1 class="text-primary">{{= i18n.app.WASH_CLOSE_NOTIFI_TITLE}}</h1>
+        <h1 class="text-primary">{{= it.title }}</h1>
         <div class="close-popup-tip hbox">
             <div class="tip1"></div>
             <div class="tip2"></div>
