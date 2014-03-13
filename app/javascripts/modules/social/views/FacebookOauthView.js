@@ -7,8 +7,7 @@
         'utilities/QueryString',
         'Internationalization',
         'Configuration',
-        'social/SocialData',
-        'social/views/FacebookShareView'
+        'social/SocialData'
     ], function (
         _,
         $,
@@ -16,8 +15,7 @@
         QueryString,
         i18n,
         CONFIG,
-        SocialData,
-        FacebookShareView
+        SocialData
     ) {
         var facebookOauthURI = CONFIG.enums.FACEBOOK_OAUTH_API + CONFIG.enums.FACEBOOK_REDIRECT_URI + '&state=' + new Date().getTime();
 
@@ -40,7 +38,7 @@
                         };
                         SocialData.authInfoAsync(data, function (resp) {
                             this.close();
-                            FacebookShareView.getInstance().showPanel({screen_name : resp.body.name});
+                            this.trigger('social.facebookOauthView.authSuccess');
                         }.bind(self), function () {
                             this.close();
                         }.bind(self));
