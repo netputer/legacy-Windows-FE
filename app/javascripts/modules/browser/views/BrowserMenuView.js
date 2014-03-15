@@ -24,17 +24,15 @@
             className : 'w-browser-menu hbox',
             template : doT.template(TemplateFactory.get('doraemon', 'browser-menu')),
             initialize : function () {
-                this.options.$iframe.on('readystatechange', function (evt) {
-                    if (evt.originalEvent.srcElement.readyState === 'loading') {
-                        this.selectTargetItem();
-                    }
-                }.bind(this));
+                var lastWindowWidth;
+
                 this.listenTo(this.model, 'change:extension', this.render);
-                this.listenTo(WindowState, 'resize', this.relocatePointer);
-            },
-            remove : function () {
-                this.options.$iframe.remove();
-                BrowserMenuView.__super__.remove.call(this);
+                this.listenTo(WindowState, 'resize', function (state) {
+                    if (lastWindowWidth !== state.width) {
+                        this.relocatePointer();
+                    }
+                    lastWindowWidth = state.width;
+                });
             },
             selectTargetItem : function () {
                 var contentDocument = this.options.$iframe[0].contentDocument;
@@ -51,7 +49,6 @@
                 var $targetTab =  this.$('.root-item.selected');
                 if ($targetTab.length > 0) {
                     var $pointer = this.$el.parent().find('.w-browser-menu-pointer').show();
-
                     $pointer.css({
                         left : $targetTab[0].offsetLeft,
                         width : $targetTab[0].offsetWidth
@@ -60,8 +57,7 @@
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
-                this.selectTargetItem();
-
+                setTimeout(this.selectTargetItem.bind(this), 0);
                 return this;
             },
             clickRootItem : function (evt) {

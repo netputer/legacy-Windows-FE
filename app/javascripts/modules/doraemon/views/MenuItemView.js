@@ -106,7 +106,6 @@
                         selected : true
                     });
                     BrowserModuleView.getInstance().goto(this.model);
-                    this.model.downloadAsync();
 
                     if (FunctionSwitch.PRIVACY.RECORD_BROWSE_HISTORY) {
                         log({

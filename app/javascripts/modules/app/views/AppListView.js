@@ -408,7 +408,12 @@
 
                 this.$('.sort').append(sortMenu.render().$el);
 
-                this.listenTo(WindowState, 'resize', this.relocatePointer);
+                this.listenTo(WindowState, 'resize', function (state) {
+                    if (lastWindowWidth !== state.width) {
+                        this.relocatePointer();
+                    }
+                    lastWindowWidth = state.width;
+                });
 
                 setTimeout(this.relocatePointer.bind(this));
 
@@ -431,13 +436,7 @@
                     'event' : 'ui.click.flash.app.tip.close'
                 });
             },
-            relocatePointer : function (state) {
-
-                if (state && state.width === lastWindowWidth) {
-
-                    lastWindowWidth = state.width;
-                    return;
-                }
+            relocatePointer : function () {
 
                 var $targetTab =  this.$('.tab li.selected');
                 if ($targetTab.length > 0) {

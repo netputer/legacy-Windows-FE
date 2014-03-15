@@ -122,7 +122,7 @@
                 });
 
                 extensionsCollection.on('add remove refresh', _.throttle(toggleShadow.bind(this), 50));
-                this.listenTo(WindowState, 'resize', toggleShadow.bind(this));
+                this.listenTo(WindowState, 'resize', toggleShadow);
                 this.$el.on('scroll', _.throttle(toggleShadow.bind(this), 50));
             },
             render : function () {
