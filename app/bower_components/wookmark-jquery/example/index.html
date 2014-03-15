@@ -1,8 +1,5 @@
 <!doctype html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,8 +13,8 @@
   <!-- CSS Reset -->
   <link rel="stylesheet" href="../css/reset.css">
 
-  <!-- Styling for your grid blocks -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Global CSS for the page and tiles -->
+  <link rel="stylesheet" href="../css/main.css">
 
 </head>
 
@@ -71,39 +68,31 @@
   <!-- include jQuery -->
   <script src="../libs/jquery.min.js"></script>
 
-  <!-- Include the imagesLoaded plug-in -->
-  <script src="../libs/jquery.imagesloaded.js"></script>
-
   <!-- Include the plug-in -->
   <script src="../jquery.wookmark.js"></script>
 
   <!-- Once the page is loaded, initalize the plug-in. -->
   <script type="text/javascript">
     (function ($){
-      $('#tiles').imagesLoaded(function() {
-        // Prepare layout options.
-        var options = {
+      var handler = $('#tiles li');
+
+      handler.wookmark({
+          // Prepare layout options.
           autoResize: true, // This will auto-update the layout when the browser window is resized.
           container: $('#main'), // Optional, used for some extra CSS styling
-          offset: 2, // Optional, the distance between grid items
+          offset: 5, // Optional, the distance between grid items
+          outerOffset: 10, // Optional, the distance to the containers border
           itemWidth: 210 // Optional, the width of a grid item
-        };
+      });
 
-        // Get a reference to your grid items.
-        var handler = $('#tiles li');
+      // Capture clicks on grid items.
+      handler.click(function(){
+        // Randomize the height of the clicked item.
+        var newHeight = $('img', this).height() + Math.round(Math.random() * 300 + 30);
+        $(this).css('height', newHeight+'px');
 
-        // Call the layout function.
-        handler.wookmark(options);
-
-        // Capture clicks on grid items.
-        handler.click(function(){
-          // Randomize the height of the clicked item.
-          var newHeight = $('img', this).height() + Math.round(Math.random()*300+30);
-          $(this).css('height', newHeight+'px');
-
-          // Update the layout.
-          handler.wookmark();
-        });
+        // Update the layout.
+        handler.wookmark();
       });
     })(jQuery);
   </script>

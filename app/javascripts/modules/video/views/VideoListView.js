@@ -190,7 +190,7 @@
                 }
 
                 var group = collection.groupBy(function (item) {
-                    return Number(formatdate('yyyyMM', item.get('date_added')));
+                    return Number(formatdate('yyyy0MM', item.get('date_added')));
                 });
 
                 this.threads = _.sortBy(group, function (item, key) {

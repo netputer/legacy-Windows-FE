@@ -36,8 +36,18 @@
 
             if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
                 var facebookShareView = FacebookShareView.getInstance();
+                var facebookOauthView = FacebookOauthView.getInstance();
+
+                this.listenTo(facebookShareView, 'social.facebookShareView.authFail', function () {
+                    facebookOauthView.show();
+                });
+
+                this.listenTo(facebookOauthView, 'social.facebookOauthView.authSuccess', function () {
+                    facebookShareView.showPanel({screen_name : resp.body.name});
+                });
+
                 SocialData.getUserAuthAsync(facebookShareView.showPanel.bind(facebookShareView), function () {
-                    FacebookOauthView.getInstance().show();
+                    facebookOauthView.show();
                 });
             } else {
                 ShareView.getInstance().showPanel();

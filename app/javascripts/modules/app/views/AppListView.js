@@ -61,6 +61,7 @@
         var webAppsCollection;
         var pimCollection;
         var sortMenu;
+        var lastWindowWidth;
 
         var searchResult = [];
 
@@ -407,7 +408,12 @@
 
                 this.$('.sort').append(sortMenu.render().$el);
 
-                this.listenTo(WindowState, 'resize', this.relocatePointer);
+                this.listenTo(WindowState, 'resize', function (state) {
+                    if (lastWindowWidth !== state.width) {
+                        this.relocatePointer();
+                    }
+                    lastWindowWidth = state.width;
+                });
 
                 setTimeout(this.relocatePointer.bind(this));
 
@@ -431,6 +437,7 @@
                 });
             },
             relocatePointer : function () {
+
                 var $targetTab =  this.$('.tab li.selected');
                 if ($targetTab.length > 0) {
                     this.$('.pointer').css({

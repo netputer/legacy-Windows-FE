@@ -63,8 +63,7 @@
                 extensionsCollection = ExtensionsCollection.getInstance();
 
                 this.listenTo(extensionsCollection, 'refresh add remove', _.debounce(this.setButtonState))
-                    .listenTo(FunctionSwitch, 'change', this.setButtonState)
-                    .listenTo(this.model, 'change:extension', this.render);
+                    .listenTo(FunctionSwitch, 'change', this.setButtonState);
 
                 if (this.options.hasOwnProperty('$iframe')) {
                     this.$iframe = this.options.$iframe;
@@ -72,6 +71,7 @@
             },
             remove : function () {
                 this.menuView.remove();
+                this.$iframe.remove();
                 BrowserToolbarView.__super__.remove.call(this);
             },
             setButtonState : function () {
@@ -107,7 +107,6 @@
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
-
                 this.menuView = BrowserMenuView.getInstance({
                     model : this.model,
                     $iframe : this.$iframe
