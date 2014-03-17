@@ -285,6 +285,12 @@ module.exports = function (grunt) {
         });
     };
 
+    var createNls = function (sourcePath, targetPath) {
+        var nlsJson = grunt.file.read(sourcePath);
+        var nlsContent = 'define({"'+ nlsFlag  +'" : ' + nlsJson + '});';
+        grunt.file.write(targetPath, nlsContent);
+    }
+
     grunt.registerTask('processI18n', function (nls) {
 
         var i18nPath = paths.tmp + '/i18n';
@@ -302,10 +308,9 @@ module.exports = function (grunt) {
             if (file.substr(0, 1) === '.') {
                 return;
             } else {
-                grunt.file.write(i18nNlsPath + '/' + file, 'define({"' + nls + '" : true});');
+                createNls(paths.app + '/javascripts/nls/' + nls + '/' + file, i18nNlsPath + '/' + file.replace('json', 'js'));
             }
         });
-        copyFolderRecursive(paths.app + '/javascripts/nls/' + nls, i18nNlsPath + '/' + nls);
 
         var fd;
         if (nls !== 'zh-cn') {
@@ -409,13 +414,12 @@ module.exports = function (grunt) {
                 return;
             }
 
-            var targetPath = filePath.replace(paths.app, paths.tmp + '/i18n/' + nlsFlag ).replace('javascripts/', '');
-            console.log(targetPath);
+            var targetPath = paths.tmp + '/i18n/' + nlsFlag + '/nls/' + path.basename(filePath).replace('json', 'js');
             switch (action) {
             case 'added':
             case 'changed':
-                grunt.file.copy(filePath, targetPath);
-                console.log('copy - ' + filePath + ' to ' + targetPath);
+                createNls(filePath, targetPath);
+                console.log('create - ' + targetPath);
                 break;
             }
 
