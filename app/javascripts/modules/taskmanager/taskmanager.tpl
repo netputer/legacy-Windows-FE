@@ -86,7 +86,7 @@
                         case CONFIG.enums.TASK_STATE_ADDED :
         }}
         <div class="progress hbox">
-            <progress class="tiny disabled" max="1000" value="{{= it.processing }}" />
+            <progress class="tiny disabled" max="100" value="{{= it.processing }}" />
         </div>
         <div>
             {{= StringUtil.format(i18n.taskManager.PAUSE_STATUS, StringUtil.readableSize(it.size * (it.processing / 100))) }}
@@ -96,7 +96,7 @@
                         case CONFIG.enums.TASK_STATE_WAITING :
         }}
         <div class="progress hbox">
-            <progress class="tiny disabled" max="1000" value="{{= it.processing }}" />
+            <progress class="tiny disabled" max="100" value="{{= it.processing }}" />
         </div>
         <div>{{= i18n.taskManager.WAITING_DOWNLOAD }}</div>
         {{
@@ -104,7 +104,7 @@
                         case CONFIG.enums.TASK_STATE_PROCESSING :
         }}
         <div class="progress hbox">
-            <progress class="tiny lighter" max="1000" value="{{= it.processing }}" />
+            <progress class="tiny" max="100" value="{{= it.processing }}" />
         </div>
         <div>
             {{= StringUtil.format(i18n.taskManager.RUNNING_STATUS, StringUtil.readableSize(it.received_size), StringUtil.readableSize(it.speed)) }}
@@ -133,19 +133,19 @@
                             break;
                         case CONFIG.enums.TASK_STATE_WAITING :
         }}
-        <div class="progress running hbox"><progress class="tiny" max="1000" value="1000" /></div>
+        <div class="progress running hbox"><progress class="tiny" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.WAITING_INSTALL }}</div>
         {{
                             break;
                         case CONFIG.enums.TASK_STATE_PROCESSING :
                             if(it.message === 'SCAN_VIRUS') {
         }}
-        <div class="progress hbox"><progress class="tiny running" max="1000" value="1000" /></div>
+        <div class="progress hbox"><progress class="tiny running" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.SCANNING }}</div>
         {{
                             } else {
         }}
-        <div class="progress hbox"><progress class="tiny running" max="1000" value="1000" /></div>
+        <div class="progress hbox"><progress class="tiny running" max="100" value="100" /></div>
         <div>
             {{= i18n.taskManager.INSTALLING }}
             {{? it.message === 'INSTALLING_PASS_VIRUS_SCAN' }}
@@ -178,7 +178,7 @@
                     switch (it.state) {
                         case CONFIG.enums.TASK_STATE_PROCESSING :
         }}
-        <div class="progress hbox"><progress class="tiny running" max="1000" value="1000" /></div>
+        <div class="progress hbox"><progress class="tiny running" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.PARSING_VIDEO_URL }}</div>
         {{
                             break;
@@ -202,7 +202,7 @@
                     switch (it.state) {
                         case CONFIG.enums.TASK_STATE_PROCESSING :
         }}
-        <div class="progress hbox"><progress class="tiny running" max="1000" value="1000" /></div>
+        <div class="progress hbox"><progress class="tiny running" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.MERGE_VIDEO }}</div>
         {{
                             break;
@@ -223,30 +223,30 @@
                         case CONFIG.enums.TASK_STATE_ADDED :
         }}
         <div class="progress hbox">
-            <progress class="tiny disabled" max="1000" value="{{= it.processing }}" />
+            <progress class="tiny disabled" max="100" value="{{= it.processing }}" />
         </div>
         <div>
-            {{= StringUtil.format(i18n.taskManager.PAUSESH_PAUSE_STATUS, StringUtil.readableSize(it.size * (it.processing / 1000))) }}
+            {{= StringUtil.format(i18n.taskManager.PUSH_PAUSE_STATUS, StringUtil.readableSize(it.size * (it.processing / 100))) }}
         </div>
         {{
                             break;
                         case CONFIG.enums.TASK_STATE_WAITING :
         }}
-        <div class="progress running hbox"><progress class="tiny" max="1000" value="1000" /></div>
+        <div class="progress running hbox"><progress class="tiny" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.WAITING_PUSHING }}</div>
         {{
                             break;
                         case CONFIG.enums.TASK_STATE_PROCESSING :
                             if(it.message === 'START_UNZIPPING') {
         }}
-        <div class="progress hbox"><progress class="tiny running" max="1000" value="1000" /></div>
+        <div class="progress hbox"><progress class="tiny running" max="100" value="100" /></div>
         <div>
             {{= i18n.taskManager.START_UNZIPPING }}
         </div>
         {{
                             } else if(it.message === 'UNZIP_COMPLETE') {
         }}
-        <div class="progress hbox"><progress class="tiny running" max="1000" value="1000" /></div>
+        <div class="progress hbox"><progress class="tiny running" max="100" value="100" /></div>
         <div>
             {{= i18n.taskManager.UNZIP_COMPLETE }}
         </div>
@@ -254,7 +254,7 @@
                             } else {
         }}
         <div class="progress hbox">
-            <progress class="tiny running" max="1000" value="{{= it.processing }}" />
+            <progress class="tiny running" max="100" value="{{= it.processing }}" />
         </div>
         <div>
             {{= i18n.taskManager.PUSHING }}
@@ -302,7 +302,7 @@
         {{
                             } else {
         }}
-        <div class="progress hbox"><progress class="tiny running" max="1000" value="1000" /></div>
+        <div class="progress hbox"><progress class="tiny running" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.PROCESSING_RESTORE_APP_DATA }}</div>
         {{
                             }
@@ -332,7 +332,7 @@
                             break;
                         case CONFIG.enums.TASK_STATE_WAITING :
         }}
-        <div class="progress running hbox"><progress class="tiny" max="1000" value="1000" /></div>
+        <div class="progress running hbox"><progress class="tiny" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.WAITING_UNZIP }}</div>
         {{
                         case CONFIG.enums.TASK_STATE_FAILD :
@@ -346,7 +346,7 @@
                 switch (it.state) {
                     case CONFIG.enums.TASK_STATE_PROCESSING :
         }}
-        <div class="progress running hbox"><progress class="tiny" max="1000" value="1000" /></div>
+        <div class="progress running hbox"><progress class="tiny" max="100" value="100" /></div>
         <div>{{= i18n.taskManager.PUSHING_PHONE }}</div>
         {{
                         break;
