@@ -18,7 +18,6 @@
     "grunt-contrib-watch": "latest",
     "grunt-contrib-jshint": "0.7.0",
     "grunt-contrib-qunit": "latest",
-    "grunt-concurrent": "latest",
     "grunt-rev": "latest",
     "qunit-reporter-junit":"latest",
     "grunt-text-replace" : "latest",
