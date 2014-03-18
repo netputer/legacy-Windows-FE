@@ -30,7 +30,7 @@
         BackupContextModel
     ) {
         console.log('BackupRemoteErrorView - File loaded. ');
-
+        var typeEnum = i18n.new_backuprestore.BR_TYPE_WORD_ENUM.split(',');
         var BackupRemoteErrorBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('new_backuprestore', 'backup-remote-error-view')),
             className : 'w-backup-remote-error-view',
@@ -54,7 +54,7 @@
                     var failedNum = current.total - current.success;
                     if (failedNum > 0) {
                         var brType = BackupRestoreService.GetBRTypeBy30x0x(current.data_type);
-                        var detail = StringUtil.format(i18n.new_backuprestore.BACKUP_TO_CLOUD_FAILED_DETAIL, failedNum, i18n.new_backuprestore.BR_TYPE_WORD_ENUM[brType]);
+                        var detail = StringUtil.format(i18n.new_backuprestore.BACKUP_TO_CLOUD_FAILED_DETAIL, failedNum, typeEnum[brType]);
                         var $item = $('<div>').html(detail).addClass('text-secondary detail');
                         this.$('.content').append($item);
                     }
