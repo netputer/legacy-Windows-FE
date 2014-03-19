@@ -46,7 +46,7 @@
                 this.$el.html(this.template({
                     isLogin : Account.get('isLogin'),
                     greeting : greeting,
-                    userName : Account.get('userName').length > 8 ? Account.get('userName').substr(0, 7) + '…' : Account.get('userName')
+                    userName : Account.get('userName')
                 })).toggleClass('logged-in', Account.get('isLogin'));
 
                 return this;
