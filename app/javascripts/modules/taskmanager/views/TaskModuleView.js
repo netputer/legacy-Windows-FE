@@ -35,6 +35,7 @@
     ) {
         console.log('TaskModuleView - File loaded.');
 
+        var lastView;
         var taskListView;
 
         var performanceHandler;
@@ -137,7 +138,8 @@
                 });
 
                 Backbone.on('switchModule', function (data) {
-                    if (data.module !== 'task') {
+                    lastView = data.module;
+                    if (data.module !== 'task' && this.show) {
                         this.slideOut();
                     }
                 }.bind(this));
@@ -173,16 +175,23 @@
                 return this;
             },
             slideIn : function () {
+
                 this.show = true;
 
                 if (!hasRecordFPS) {
                     hasRecordFPS = true;
                     this.recordFPS();
                 }
-
+                this.$el.find('.ctn').one('webkitAnimationEnd', function () {
+                    Backbone.trigger('taskManager.showModule', 'task');
+                });
+                lastView = SnapPea.CurrentModule;
                 this.$el.toggleClass('hide', !this.show);
             },
             slideOut : function () {
+                if (lastView){
+                    Backbone.trigger('taskManager.showModule', lastView);
+                }
                 this.show = false;
                 this.$el.toggleClass('hide', !this.show);
             },

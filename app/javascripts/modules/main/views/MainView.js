@@ -234,6 +234,10 @@
                 }, navigateHandler, this);
 
                 this.$el = $('body');
+
+                Backbone.on('taskManager.showModule', function (name) {
+                    this.showModule(name);
+                }.bind(this));
             },
             render : function () {
                 $('body').append(this.template({}));
@@ -276,8 +280,13 @@
                     return;
                 }
 
-                if (this.currentModule) {
+                if (this.currentModule && this.currentModule !== 'task') {
                     this.hideModule(this.currentModule);
+                }
+
+                this.currentModule = name;
+                if (name === 'task') {
+                    return;
                 }
 
                 var moduleInstance = this.modules[name].getInstance(tab);
@@ -293,8 +302,6 @@
                         $moduleCtn.children().last().before(moduleInstance.render().$el);
                     }
                 }
-
-                this.currentModule = name;
 
                 Backbone.trigger('showModule', name);
             },
