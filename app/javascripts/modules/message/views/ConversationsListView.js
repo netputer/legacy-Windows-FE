@@ -98,7 +98,7 @@
                 this.bindConversationsCollectionEvents();
                 this.listenTo(Backbone, 'showModule', function (name) {
                     if (name === 'message') {
-                        conversationList.isVisble = true;
+                        conversationList.resizeList();
                     }
                 });
             },

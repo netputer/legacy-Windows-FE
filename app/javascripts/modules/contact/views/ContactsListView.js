@@ -97,7 +97,7 @@
 
                 this.listenTo(Backbone, 'showModule', function (name) {
                     if (name === 'contact') {
-                        contactsList.isVisble = true;
+                        contactsList.resizeList();
                     }
                 });
             },

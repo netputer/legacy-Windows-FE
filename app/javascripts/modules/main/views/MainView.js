@@ -235,7 +235,7 @@
 
                 this.$el = $('body');
 
-                Backbone.on('taskManager.showModule', function (name) {
+                this.listenTo(Backbone, 'taskManager.showModule', function (name) {
                     this.showModule(name);
                 }.bind(this));
             },
@@ -303,6 +303,7 @@
                     }
                 }
 
+                moduleInstance.$el.find('.w-ui-smartlist').css('visibility', 'visible');
                 Backbone.trigger('showModule', name);
             },
             hideModule : function (name) {
@@ -311,6 +312,7 @@
                     moduleInstance.$el.hide();
                 }
 
+                moduleInstance.$el.find('.w-ui-smartlist').css('visibility', 'hidden');
                 Backbone.trigger('hideModule', name);
             }
         });

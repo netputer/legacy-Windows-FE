@@ -134,7 +134,7 @@
                     this.toggleEmptyTip();
                 }).listenTo(Backbone, 'showModule', function (name) {
                     if (name === 'app') {
-                        appList.isVisble = true;
+                        appList.resizeList();
                     }
                 });
 

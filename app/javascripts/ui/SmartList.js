@@ -178,12 +178,9 @@
                             enableResizeListener = value;
                         }
                     },
-                    isVisble : {
+                    isVisible : {
                         get : function () {
-                            return $ctn.is(':visible');
-                        },
-                        set : function (value) {
-                            this.windowResizeHandler();
+                            return $ctn.css('visibility') === 'visible';
                         }
                     },
                     rendered : {
@@ -387,7 +384,7 @@
                 this.$scrollCtn.on('scroll', this.scrollHandler);
 
                 if (this.enableResizeListener) {
-                    this.listenTo(WindowState, 'resize', this.windowResizeHandler);
+                    this.listenTo(WindowState, 'resize', this.resizeList);
                 }
 
                 setTimeout(function () {
@@ -401,9 +398,9 @@
 
                 return this;
             },
-            windowResizeHandler : function () {
+            resizeList : function () {
 
-                if (!this.isVisble) {
+                if (!this.isVisible) {
                     return;
                 }
 

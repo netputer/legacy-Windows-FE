@@ -71,7 +71,7 @@
 
                 this.listenTo(Backbone, 'showModule', function (name) {
                     if (name === 'music') {
-                        musicsList.isVisble = true;
+                        musicsList.resizeList();
                     }
                 });
             },
