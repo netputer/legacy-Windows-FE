@@ -390,7 +390,6 @@ module.exports = function (grunt) {
             'copy:tmp',
             'processI18n:' + nls,
             'switchI18nPath',
-            'replaceCss',
             'replace:' + project,
             'createScssConfig:' + project,
             'compass:server',
