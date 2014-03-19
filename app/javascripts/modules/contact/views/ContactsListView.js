@@ -94,6 +94,12 @@
                         }
                     }
                 }.bind(this));
+
+                this.listenTo(Backbone, 'showModule', function (name) {
+                    if (name === 'contact') {
+                        contactsList.isVisble = true;
+                    }
+                });
             },
             refresh : function (tab, accountId, groupId) {
                 currentTab = tab || currentTab;
@@ -228,7 +234,8 @@
                     itemHeight : 45,
                     $observer : this.options.$observer,
                     listenToCollection : contactsCollection,
-                    loading : contactsCollection.loading || contactsCollection.syncing
+                    loading : contactsCollection.loading || contactsCollection.syncing,
+                    enableResizeListener : true
                 });
 
                 this.listenTo(contactsList, 'select:change', function (selected) {

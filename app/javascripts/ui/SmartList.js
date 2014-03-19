@@ -161,6 +161,7 @@
                     }
                 }.bind(this);
 
+                var enableResizeListener = false;
                 var enableContextMenu = false;
                 var selectable = true;
                 var listenToCollection;
@@ -169,6 +170,22 @@
                 var $ctn;
                 var $scrollCtn;
                 Object.defineProperties(this, {
+                    enableResizeListener : {
+                        get : function () {
+                            return enableResizeListener;
+                        },
+                        set : function (value) {
+                            enableResizeListener = value;
+                        }
+                    },
+                    isVisble : {
+                        get : function () {
+                            return $ctn.is(':visible');
+                        },
+                        set : function (value) {
+                            this.windowResizeHandler();
+                        }
+                    },
                     rendered : {
                         set : function (value) {
                             rendered = value;
@@ -369,7 +386,9 @@
 
                 this.$scrollCtn.on('scroll', this.scrollHandler);
 
-                this.listenTo(WindowState, 'resize', this.windowResizeHandler);
+                if (this.enableResizeListener) {
+                    this.listenTo(WindowState, 'resize', this.windowResizeHandler);
+                }
 
                 setTimeout(function () {
                     calculateSettings.call(this);
@@ -383,6 +402,11 @@
                 return this;
             },
             windowResizeHandler : function () {
+
+                if (!this.isVisble) {
+                    return;
+                }
+
                 var topModel;
 
                 if (this.onScreenItems[0]) {

@@ -30,7 +30,11 @@
             },
             render : function () {
                 this.$el.append(accountView.render().$el)
-                        .append(clockView.render().$el);
+                        .append(clockView.render().$el).addClass('fade-in');
+
+                this.$el.one('webkitAnimationEnd', function (){
+                    this.$el.removeClass('fade-in');
+                }.bind(this));
 
                 return this;
             }

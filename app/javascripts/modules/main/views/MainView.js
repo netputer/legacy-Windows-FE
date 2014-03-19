@@ -284,18 +284,9 @@
                 var $moduleCtn = this.$('.module-ctn');
                 if (moduleInstance.rendered) {
                     this.hideModule(name);
-                    moduleInstance.$el.css({
-                        visibility : 'visible',
-                        opacity : 1
-                    });
+                    moduleInstance.$el.show();
                 } else {
                     var $last = $moduleCtn.children().last();
-
-                    moduleInstance.$el.css({
-                        visibility : 'visible',
-                        opacity : 1
-                    });
-
                     if ($last.length === 0) {
                         $moduleCtn.append(moduleInstance.render().$el);
                     } else {
@@ -310,10 +301,7 @@
             hideModule : function (name) {
                 var moduleInstance = this.modules[name].getInstance();
                 if (moduleInstance.rendered) {
-                    moduleInstance.$el.css({
-                        visibility : 'hidden',
-                        opacity : 0
-                    });
+                    moduleInstance.$el.hide();
                 }
 
                 Backbone.trigger('hideModule', name);

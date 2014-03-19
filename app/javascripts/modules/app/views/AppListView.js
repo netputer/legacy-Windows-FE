@@ -132,6 +132,10 @@
                         this.tryToShowFlashTip();
                     }
                     this.toggleEmptyTip();
+                }).listenTo(Backbone, 'showModule', function (name) {
+                    if (name === 'app') {
+                        appList.isVisble = true;
+                    }
                 });
 
                 _.each(pimCollection.where({
@@ -206,7 +210,8 @@
                         $observer : this.options.$observer,
                         itemHeight : 45,
                         listenToCollection : appsCollection,
-                        loading : appsCollection.loading || appsCollection.syncing
+                        loading : appsCollection.loading || appsCollection.syncing,
+                        enableResizeListener : false
                     });
 
                     this.$('.flash').after(appList.render().$el);
