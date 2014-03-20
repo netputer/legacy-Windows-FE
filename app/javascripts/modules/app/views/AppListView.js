@@ -211,7 +211,7 @@
                         itemHeight : 45,
                         listenToCollection : appsCollection,
                         loading : appsCollection.loading || appsCollection.syncing,
-                        enableResizeListener : false
+                        enableResizeListener : true
                     });
 
                     this.$('.flash').after(appList.render().$el);
