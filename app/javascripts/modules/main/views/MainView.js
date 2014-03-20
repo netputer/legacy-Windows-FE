@@ -237,7 +237,7 @@
 
                 this.listenTo(Backbone, 'taskManager.showModule', function (name) {
                     this.showModule(name);
-                }.bind(this));
+                });
             },
             render : function () {
                 $('body').append(this.template({}));
@@ -304,9 +304,9 @@
                     }
                 }
 
-                moduleInstance.$el.find('.w-ui-smartlist').css('visibility', 'visible');
+                moduleInstance.$('.w-ui-smartlist').css('visibility', 'visible');
                 if (name === 'welcome') {
-                    moduleInstance.$el.find('.feed-ctn').css('visibility', 'visible');
+                    moduleInstance.$('.feed-ctn').css('visibility', 'visible');
                 }
 
                 Backbone.trigger('showModule', name);
@@ -317,9 +317,9 @@
                     moduleInstance.$el.addClass('w-module-hide');
                 }
 
-                moduleInstance.$el.find('.w-ui-smartlist').css('visibility', 'hidden');
+                moduleInstance.$('.w-ui-smartlist').css('visibility', 'hidden');
                 if (name === 'welcome') {
-                    moduleInstance.$el.find('.feed-ctn').css('visibility', 'hidden');
+                    moduleInstance.$('.feed-ctn').css('visibility', 'hidden');
                 }
 
                 Backbone.trigger('hideModule', name);
