@@ -180,7 +180,7 @@
                     },
                     isVisible : {
                         get : function () {
-                            return $ctn.css('visibility') === 'visible';
+                            return this.$el.css('visibility') === 'visible';
                         }
                     },
                     rendered : {
