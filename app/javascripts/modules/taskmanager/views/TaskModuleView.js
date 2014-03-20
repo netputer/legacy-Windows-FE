@@ -43,6 +43,7 @@
         var clearInterval = window.clearInterval;
 
         var hasRecordFPS = false;
+        var timeoutHandle;
 
         var pushNotificationView;
         var downloadHandler = function (msg) {
@@ -176,24 +177,39 @@
             },
             slideIn : function () {
 
+                clearTimeout(timeoutHandle);
+                Backbone.trigger('taskmanager.silde', true);
+
                 this.show = true;
 
                 if (!hasRecordFPS) {
                     hasRecordFPS = true;
                     this.recordFPS();
                 }
-                this.$el.find('.ctn').one('webkitAnimationEnd', function () {
-                    Backbone.trigger('taskManager.showModule', 'task');
-                });
+
                 lastView = SnapPea.CurrentModule;
                 this.$el.toggleClass('hide', !this.show);
+
+                timeoutHandle = setTimeout(function () {
+                    Backbone.trigger('taskmanager.silde', false);
+                    Backbone.trigger('taskManager.showModule', 'task');
+                }, 500);
             },
             slideOut : function () {
+
+                clearTimeout(timeoutHandle);
+                Backbone.trigger('taskmanager.silde', true);
+
                 if (lastView){
                     Backbone.trigger('taskManager.showModule', lastView);
                 }
                 this.show = false;
                 this.$el.toggleClass('hide', !this.show);
+
+                timeoutHandle = setTimeout(function () {
+                    Backbone.trigger('taskmanager.silde', false);
+                }, 500);
+
             },
             recordFPS : function () {
 
