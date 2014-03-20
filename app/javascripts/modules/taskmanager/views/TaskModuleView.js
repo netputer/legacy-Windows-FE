@@ -178,6 +178,8 @@
             slideIn : function () {
 
                 clearTimeout(timeoutHandle);
+                Backbone.trigger('taskmanager.silde', true);
+
                 this.show = true;
 
                 if (!hasRecordFPS) {
@@ -189,17 +191,25 @@
                 this.$el.toggleClass('hide', !this.show);
 
                 timeoutHandle = setTimeout(function () {
+                    Backbone.trigger('taskmanager.silde', false);
                     Backbone.trigger('taskManager.showModule', 'task');
                 }, 500);
             },
             slideOut : function () {
 
                 clearTimeout(timeoutHandle);
+                Backbone.trigger('taskmanager.silde', true);
+
                 if (lastView){
                     Backbone.trigger('taskManager.showModule', lastView);
                 }
                 this.show = false;
                 this.$el.toggleClass('hide', !this.show);
+
+                timeoutHandle = setTimeout(function () {
+                    Backbone.trigger('taskmanager.silde', false);
+                }, 500);
+
             },
             recordFPS : function () {
 
