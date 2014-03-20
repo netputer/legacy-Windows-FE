@@ -10,6 +10,7 @@
         'Settings',
         'Configuration',
         'utilities/StringUtil',
+        'ui/WindowState',
         'app/collections/AppsCollection',
         'welcome/views/UpdateCardView',
         'welcome/views/XibaibaiCardView',
@@ -39,6 +40,7 @@
         Settings,
         CONFIG,
         StringUtil,
+        windowState,
         AppsCollection,
         UpdateCardView,
         XibaibaiCardView,
@@ -64,9 +66,25 @@
         var targetArr = [];
         var wookmarkHandle;
 
+        var initWindowWidth;
+        var lastWindowWidth;
+
         var FeedListView = Backbone.View.extend({
             tagName : 'ul',
             className : 'feed-ctn',
+            initialize : function () {
+
+                this.listenTo(windowState, 'resize', function (state){
+                    lastWindowWidth = state.width;
+                });
+
+                this.listenTo(Backbone, 'showModule', function (name) {
+                    if (name === 'welcome' && lastWindowWidth !== initWindowWidth) {
+                        initWindowWidth = lastWindowWidth;
+                        setTimeout(wookmarkHandle.wookmarkInstance.layout);
+                    }
+                });
+            },
             initFeeds : function () {
                 var collection = FeedsCollection.getInstance();
                 var fisrtScreen = true;
@@ -208,6 +226,8 @@
                 return this;
             },
             initLayout : function () {
+
+                initWindowWidth = windowState.width;
 
                 if (wookmarkHandle) {
                     wookmarkHandle.wookmarkInstance.clear();
