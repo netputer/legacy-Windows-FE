@@ -292,10 +292,11 @@
                 var moduleInstance = this.modules[name].getInstance(tab);
                 var $moduleCtn = this.$('.module-ctn');
                 if (moduleInstance.rendered) {
-                    this.hideModule(name);
-                    moduleInstance.$el.show();
+                    moduleInstance.$el.removeClass('w-module-hide');
                 } else {
                     var $last = $moduleCtn.children().last();
+                    moduleInstance.$el.removeClass('w-module-hide');
+
                     if ($last.length === 0) {
                         $moduleCtn.append(moduleInstance.render().$el);
                     } else {
@@ -304,15 +305,23 @@
                 }
 
                 moduleInstance.$el.find('.w-ui-smartlist').css('visibility', 'visible');
+                if (name === 'welcome') {
+                    moduleInstance.$el.find('.feed-ctn').css('visibility', 'visible');
+                }
+
                 Backbone.trigger('showModule', name);
             },
             hideModule : function (name) {
                 var moduleInstance = this.modules[name].getInstance();
                 if (moduleInstance.rendered) {
-                    moduleInstance.$el.hide();
+                    moduleInstance.$el.addClass('w-module-hide');
                 }
 
                 moduleInstance.$el.find('.w-ui-smartlist').css('visibility', 'hidden');
+                if (name === 'welcome') {
+                    moduleInstance.$el.find('.feed-ctn').css('visibility', 'hidden');
+                }
+
                 Backbone.trigger('hideModule', name);
             }
         });
