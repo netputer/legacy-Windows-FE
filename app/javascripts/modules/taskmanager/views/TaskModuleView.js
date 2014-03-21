@@ -149,7 +149,7 @@
                     'data.channel' : CONFIG.events.WEB_NAVIGATE
                 }, function (msg) {
 
-                    if (msg.type !== CONFIG.enums.NAVIGATE_TYPE_TASK_MANAGER) {
+                    if (msg.type !== CONFIG.enums.NAVIGATE_TYPE_TASK_MANAGER && this.show) {
                         this.slideOut();
                     }
 
