@@ -59,11 +59,11 @@
                     gotoURL = true;
                 }
 
-                this.$('.w-browser').addClass('w-layout-hidden');
+                this.$('.w-browser').addClass('w-module-hide');
 
                 var $browser = this.$('#' + IFRAME_PREFIX + extensionModel.id);
                 if ($browser.length > 0) {
-                    $browser.removeClass('w-layout-hidden');
+                    $browser.removeClass('w-module-hide');
                 } else {
                     $browser = BrowserView.getInstance({
                         id : IFRAME_PREFIX + extensionModel.id,
@@ -111,7 +111,7 @@
                         extensionPreview : isPreview
                     });
 
-                    this.$('.w-browser').addClass('w-layout-hidden');
+                    this.$('.w-browser').addClass('w-module-hide');
 
                     if (!publicBrowser) {
                         publicBrowser = BrowserView.getInstance({
@@ -124,7 +124,7 @@
                         publicBrowser.render();
                     }
 
-                    publicBrowser.$el.removeClass('w-layout-hidden');
+                    publicBrowser.$el.removeClass('w-module-hide');
 
                     Backbone.trigger('switchModule', {
                         module : 'browser',
