@@ -29,6 +29,7 @@
         'welcome/views/FacebookCardView',
         'welcome/views/ITunesMoviesCardView',
         'welcome/views/YouTubeCardView',
+        'welcome/views/P2pCardView',
         'welcome/collections/FeedsCollection'
     ], function (
         Backbone,
@@ -59,6 +60,7 @@
         FacebookCardView,
         ITunesMoviesCardView,
         YouTubeCardView,
+        P2pCardView,
         FeedsCollection
     ) {
         console.log('FeedListView - File loaded. ');
@@ -89,6 +91,14 @@
                 var collection = FeedsCollection.getInstance();
                 var fisrtScreen = true;
                 var randomDisplaySocialCard = _.random(1);
+
+                if (!Settings.get('welcome-card-p2p-show') && FunctionSwitch.IS_CHINESE_VERSION) {
+                    var view = P2pCardView.getInstance({
+                        parentView : this
+                    });
+                    this.$el.append(view.render().$el);
+                    Settings.set('welcome-card-p2p-show', true, true);
+                }
 
                 collection.on('refresh', function (collection) {
                     var fragment = document.createDocumentFragment();
@@ -156,7 +166,9 @@
                             }
                             break;
                         case 98:
-                            targetView = ChangelogCardView;
+                            if (Settings.get('latestVersion') !== Environment.get('backendVersion')) {
+                                targetView = ChangelogCardView;
+                            }
                             break;
                         case 99:
                             if (!Settings.get('welcome_feed_tips')) {
