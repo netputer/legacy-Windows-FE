@@ -114,7 +114,7 @@
 
                 IO.sendCustomEventsAsync(CONFIG.events.WEB_NAVIGATE, {
                     type: CONFIG.enums.NAVIGATE_TYPE_DORAEMON,
-                    id : '376-http://www.wandoujia.com/help/?do=topic&id=' + $target.data('id')
+                    id : '377-http://www.wandoujia.com/help/?do=topic&id=' + $target.data('id')
                 });
 
                 log({
