@@ -156,7 +156,9 @@
                             }
                             break;
                         case 98:
-                            targetView = ChangelogCardView;
+                            if (Settings.get('latestVersion') !== Environment.get('backendVersion')) {
+                                targetView = ChangelogCardView;
+                            }
                             break;
                         case 99:
                             if (!Settings.get('welcome_feed_tips')) {

@@ -32,7 +32,6 @@
         var ChangelogCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'changelog')),
             className : FeedCardView.getClass().prototype.className + ' changelog hide',
-            latestVersion : Settings.get('latestVersion'),
             initialize : function () {
                 var resp = {};
                 Object.defineProperties(this, {
@@ -47,41 +46,38 @@
                 });
             },
             render : function () {
-                var show = this.latestVersion !== Environment.get('backendVersion');
-                if (show) {
-                    this.$el.html(this.template({}));
+                this.$el.html(this.template({}));
 
-                    IO.requestAsync({
-                        url : CONFIG.actions.WELCOME_CHANGELOG,
-                        data : {
-                            version : Environment.get('backendVersion')
-                        },
-                        success : function (resp) {
-                            try {
-                                resp = JSON.parse(resp);
-                            } catch (e) {
-                                resp = {};
-                            }
+                IO.requestAsync({
+                    url : CONFIG.actions.WELCOME_CHANGELOG,
+                    data : {
+                        version : Environment.get('backendVersion')
+                    },
+                    success : function (resp) {
+                        try {
+                            resp = JSON.parse(resp);
+                        } catch (e) {
+                            resp = {};
+                        }
 
-                            this.resp = resp;
+                        this.resp = resp;
 
-                            if (resp.subtitle && resp.icon) {
-                                this.$el.removeClass('hide');
+                        if (resp.subtitle && resp.icon) {
+                            this.$el.removeClass('hide');
 
-                                this.$el.html(this.template({
-                                    title : resp.title,
-                                    subtitle : resp.subtitle,
-                                    icon : resp.icon,
-                                    blog : resp.blog
-                                }));
+                            this.$el.html(this.template({
+                                title : resp.title,
+                                subtitle : resp.subtitle,
+                                icon : resp.icon,
+                                blog : resp.blog
+                            }));
 
-                                Settings.set('latestVersion', Environment.get('backendVersion'));
+                            Settings.set('latestVersion', Environment.get('backendVersion'));
 
-                                this.options.parentView.initLayout();
-                            }
-                        }.bind(this)
-                    });
-                }
+                            this.options.parentView.initLayout();
+                        }
+                    }.bind(this)
+                });
                 return this;
             },
             clickButtonAction : function () {
