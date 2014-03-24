@@ -31,7 +31,7 @@
             },
             clickButtonSetup : function () {
 
-                IO.requestAsync(CONFIG.actions.WINDOW_OPEN_PRIVACY_SETTING);
+                IO.requestAsync(CONFIG.actions.WINDOW_OPEN_SETTING);
                 this.remove();
 
                 log({
