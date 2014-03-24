@@ -24,6 +24,13 @@
             className : 'w-browser-menu hbox',
             template : doT.template(TemplateFactory.get('doraemon', 'browser-menu')),
             initialize : function () {
+
+               this.options.$iframe.on('readystatechange', function (evt) {
+                    if (evt.originalEvent.srcElement.readyState === 'loading') {
+                        this.selectTargetItem();
+                    }
+                }.bind(this));
+
                 var lastWindowWidth;
 
                 this.listenTo(this.model, 'change:extension', this.render);

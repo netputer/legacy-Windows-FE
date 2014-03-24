@@ -70,9 +70,14 @@
 
                 BackupRestoreService.getLastBackupTimeAsync().done(function (resp) {
                     var date = parseInt(resp.body.value, 10);
-                    date = StringUtil.formatDate('yyyy/MM/dd HH:mm', date);
 
-                    this.$('.last-time').html(date);
+                    if (date > 0) {
+                        date = StringUtil.formatDate('yyyy/MM/dd HH:mm', date);
+                        this.$('.last-time').html(date);
+                    } else {
+                        this.$('.last-time').html(i18n.new_backuprestore.NEVER_BACKUP);
+                    }
+
                 }.bind(this));
 
                 this.setLocalState();

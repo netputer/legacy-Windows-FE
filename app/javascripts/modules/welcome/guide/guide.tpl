@@ -153,7 +153,7 @@
         {{~ it.tips : tip}}
         <li class="tip hbox">
             <span class="icon icon-{{= tip.icon }}"></span>
-            <div class="desc"><a class="link button-open" target="_default" href="{{= tip.url }}">{{! tip.desc }}</a></div>
+            <div class="desc"><span class="link button-open" data-id="{{= tip.id }}">{{! tip.desc }}</span></div>
         </li>
         {{~}}
         </ul>

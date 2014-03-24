@@ -53,8 +53,6 @@
                         highlight : false
                     });
                 }
-
-                BrowserModuleView.navigateToThirdParty(model.id);
             }
         };
 
@@ -66,6 +64,7 @@
                 extensionsCollection = extensionsCollection || ExtensionsCollection.getInstance();
 
                 this.listenTo(this.model, 'change:selected', changeSelectedHandler);
+
                 this.listenTo(this.model, 'change:name change:cate', this.render);
                 this.listenTo(extensionsCollection, 'remove', removeHandler);
             },
@@ -100,26 +99,25 @@
                         .addClass('highlight-anima');
             },
             clickItem : function () {
-                if (this.model.id !== undefined &&
-                        !this.model.get('selected')) {
+
+                if (this.model.id !== undefined && !this.model.get('selected')) {
+
                     this.model.set({
                         selected : true
                     });
-                    BrowserModuleView.getInstance().goto(this.model);
 
-                    if (FunctionSwitch.PRIVACY.RECORD_BROWSE_HISTORY) {
-                        log({
-                            'event' : 'ui.click.dora.nav',
-                            'id' : this.model.id,
-                            'isFastADB' : Device.get('isFastADB')
-                        });
-                    }
-                } else if (this.model.get('selected')) {
-                    Backbone.trigger('switchModule', {
-                        module : 'browser',
-                        tab : this.model.id
+                }
+
+                BrowserModuleView.navigateToThirdParty(this.model.id);
+
+                if (FunctionSwitch.PRIVACY.RECORD_BROWSE_HISTORY) {
+                    log({
+                        'event' : 'ui.click.dora.nav',
+                        'id' : this.model.id,
+                        'isFastADB' : Device.get('isFastADB')
                     });
                 }
+
                 Backbone.trigger('cleanForwardStack');
             },
             events : {
