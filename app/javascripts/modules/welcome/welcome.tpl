@@ -143,6 +143,18 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="p2p">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">{{= i18n.welcome.P2PTITLE }}</h1>
+        <p class="info text-secondary">{{= i18n.welcome.P2PDESCRIPTION }}</p>
+        <div class="btn-ctn hbox">
+            <button class="button-action">{{= i18n.welcome.GOTIT }}</button>
+            <span class="button-ignore button-setup text-thirdly">{{= i18n.welcome.SETTING }}</span>
+        </div>
+    </div>
+</script>
+
 <script type="text/x-ui-template" id="snappea-web">
     <div class="icon-ctn"></div>
     <div class="info-ctn">
