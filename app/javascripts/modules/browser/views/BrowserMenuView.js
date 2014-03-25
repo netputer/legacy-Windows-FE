@@ -44,7 +44,7 @@
             selectTargetItem : function () {
                 var contentDocument = this.options.$iframe[0].contentDocument;
                 if (contentDocument) {
-                    var $targetItem = this.$('li.root-item[data="' + contentDocument.location.href + '"]');
+                    var $targetItem = this.$('li.root-item[data="' + decodeURIComponent(contentDocument.location.href) + '"]');
                     if ($targetItem.length > 0) {
                         this.$('.root-item.selected').removeClass('selected');
                         $targetItem.addClass('selected');
