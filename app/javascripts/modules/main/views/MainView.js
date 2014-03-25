@@ -304,9 +304,9 @@
                     }
                 }
 
-                moduleInstance.$('.w-ui-smartlist').css('visibility', 'visible');
+                moduleInstance.$('.w-ui-smartlist').addClass('visible');
                 if (name === 'welcome') {
-                    moduleInstance.$('.feed-ctn').css('visibility', 'visible');
+                    moduleInstance.$('.feed-ctn').addClass('visible');
                 }
 
                 Backbone.trigger('showModule', name);
@@ -317,9 +317,9 @@
                     moduleInstance.$el.addClass('w-module-hide');
                 }
 
-                moduleInstance.$('.w-ui-smartlist').css('visibility', 'hidden');
+                moduleInstance.$('.w-ui-smartlist').removeClass('visible');
                 if (name === 'welcome') {
-                    moduleInstance.$('.feed-ctn').css('visibility', 'hidden');
+                    moduleInstance.$('.feed-ctn').removeClass('visible');
                 }
 
                 Backbone.trigger('hideModule', name);

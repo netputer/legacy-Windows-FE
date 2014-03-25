@@ -180,7 +180,7 @@
                     },
                     isVisible : {
                         get : function () {
-                            return this.$el.css('visibility') === 'visible';
+                            return this.$el.hasClass('visible');
                         }
                     },
                     rendered : {

@@ -919,7 +919,7 @@
                 } else if (isSameDay(date, yesterday)) {
                     dateStr = i18n.misc.YESTODAY;
                 } else {
-                    if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
+                    if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                         dateStr = StringUtil.formatDate('MM / dd / yyyy', timestamp);
                     } else {
                         dateStr = StringUtil.formatDate('yyyy-MM-dd', timestamp);

@@ -58,8 +58,7 @@
                     checked : false
                 }];
 
-                if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                        Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
+                if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
                     buttons.push({
                         label : i18n.app.UPDATE,
                         type : 'radio',

@@ -93,6 +93,14 @@
                     } else {
                         this.goto(extension);
                     }
+
+                    Backbone.trigger('switchModule', {
+                        module : 'browser',
+                        tab : extentionId,
+                        silent : true,
+                        ignore : true
+                    });
+
                 } else {
                     var selectedExtension = ExtensionsCollection.getInstance().filter(function (extension) {
                         return extension.get('selected');
@@ -133,33 +141,21 @@
                 }
             },
             navigateTo : function (url, isDebug) {
+
                 if (isDebug) {
                     this.navigateToThirdParty(CONFIG.enums.TEMP_EXTENTION_ID, 'Debug Mode', url);
-                } else {
-                    var item;
-                    if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
-                        item = ExtensionsCollection.getInstance().get(18);
-                        if (item) {
-                            item.set({
-                                selected : true
-                            });
-                            this.navigate(item, url);
-                        } else {
-                            this.navigateToThirdParty(18, i18n.browser.APP_SEARCH, url);
-                        }
-                    } else {
-                        item = ExtensionsCollection.getInstance().get(138);
-                        if (item) {
-                            item.set({
-                                selected : true
-                            });
-                            this.navigate(item, url);
-                        } else {
-                            this.navigateToThirdParty(138, 'Google Play', url);
-                        }
-                    }
+                    return;
                 }
+
+                var item;
+                var id = 18;
+                var name = i18n.browser.APP_SEARCH;
+                if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
+                    id = 138;
+                    name = 'Google Play';
+                }
+
+                this.navigateToThirdParty(id, name, url);
             }
         });
 
