@@ -52,17 +52,7 @@
 
         var environment = new Environment();
 
-        switch (environment.get('locale')) {
-        case CONFIG.enums.LOCALE_DEFAULT:
-            $('body').addClass('locale-defualt');
-            break;
-        case CONFIG.enums.LOCALE_ZH_CN:
-            $('body').addClass('locale-zh-cn');
-            break;
-        case CONFIG.enums.LOCALE_EN_US:
-            $('body').addClass('locale-en-us');
-            break;
-        }
+        $('body').addClass('locale-' + navigator.language.toLowerCase());
 
         window.Environment = environment;
 

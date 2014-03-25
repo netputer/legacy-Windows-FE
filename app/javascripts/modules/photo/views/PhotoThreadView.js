@@ -88,8 +88,7 @@
 
                 var currentType = this.options.models[0].collection.data.photo_type;
                 if (currentType === CONFIG.enums.PHOTO_PHONE_TYPE || currentType === CONFIG.enums.PHOTO_CLOUD_TYPE) {
-                    if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
+                    if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
                         key = StringUtil.formatDate(i18n.photo.SMART_DATE_SOME_MONTH, this.options.models[0].get('date'));
                     } else {
                         key = StringUtil.formatDate('yyyy-MM', this.options.models[0].get('date'));

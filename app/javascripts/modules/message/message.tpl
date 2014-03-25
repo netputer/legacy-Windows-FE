@@ -168,8 +168,7 @@
         <hr />
         <date>
             {{=
-                (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT
-                    || Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) ?
+                (navigator.language === CONFIG.enums.LOCALE_ZH_CN) ?
                         this.smartDate(it.day) : StringUtil.formatDate('MM / dd / yyyy', it.day * 24 * 60 * 60 * 1000)
             }}
         </date>

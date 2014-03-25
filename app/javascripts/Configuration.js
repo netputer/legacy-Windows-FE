@@ -466,9 +466,9 @@
             },
             enums : {
                 /*Environment locale*/
-                LOCALE_DEFAULT : 0,
-                LOCALE_ZH_CN : 1,
-                LOCALE_EN_US : 2,
+                LOCALE_ZH_CN : 'zh-CN',
+                LOCALE_EN_US : 'en-US',
+                LOCALE_TH_TH : 'th-TH',
 
                 /* Device and connection type */
                 VIRTUAL_DEVICE : 0,

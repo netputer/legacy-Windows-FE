@@ -449,8 +449,7 @@
         <span class="icomoon icomoon-export"></span>{{= i18n.misc.EXPORT }}
     </button>
     <div class="selector-wrap hbox">
-        {{? Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN }}
+        {{? navigator.language === CONFIG.enums.LOCALE_ZH_CN }}
         <div>{{= i18n.misc.DISPLAY }}</div>
         {{?}}
     </div>

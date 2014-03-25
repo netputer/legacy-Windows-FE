@@ -150,7 +150,7 @@
                 var item;
                 var id = 18;
                 var name = i18n.browser.APP_SEARCH;
-                if (Environment.get('locale') !== CONFIG.enums.LOCALE_DEFAULT && Environment.get('locale') !== CONFIG.enums.LOCALE_ZH_CN) {
+                if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                     id = 138;
                     name = 'Google Play';
                 }

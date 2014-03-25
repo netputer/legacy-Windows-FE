@@ -120,13 +120,13 @@
 
                 var $buttonShare = this.$('.button-share');
                 var title;
-                switch (Environment.get('locale')) {
-                case CONFIG.enums.LOCALE_EN_US:
-                    title = i18n.misc.SHARE_TO_FACEBOOK;
-                    break;
+                switch (navigator.language) {
                 case CONFIG.enums.LOCALE_ZH_CN:
-                case CONFIG.enums.LOCALE_DEFAULT:
                     title = i18n.misc.SHARE;
+                    break;
+                case CONFIG.enums.LOCALE_EN_US:
+                case CONFIG.enums.LOCALE_TH_TH:
+                    title = i18n.misc.SHARE_TO_FACEBOOK;
                     break;
                 }
                 $buttonShare.attr('title', title);

@@ -20,28 +20,28 @@
                     sourceDate.getMonth() === today.getMonth()) {
                 switch (difference) {
                 case 0:
-                    if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
+                    if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                         formatedDate = formatDate('Today MM/dd', sourceMills);
                     } else {
                         formatedDate = formatDate('今天 MM 月 dd 日', sourceMills);
                     }
                     break;
                 case 1:
-                    if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
+                    if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                         formatedDate = formatDate('Yesterday MM/dd', sourceMills);
                     } else {
                         formatedDate = formatDate('昨天 MM 月 dd 日', sourceMills);
                     }
                     break;
                 case 2:
-                    if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
+                    if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                         formatedDate = formatDate('MM/dd', sourceMills);
                     } else {
                         formatedDate = formatDate('前天 MM 月 dd 日', sourceMills);
                     }
                     break;
                 default:
-                    if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
+                    if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                         formatedDate = formatDate('MM/dd', sourceMills);
                     } else {
                         formatedDate = formatDate('MM 月 dd 日', sourceMills);
@@ -50,13 +50,13 @@
             } else {
                 var yearDifference = today.getFullYear() - sourceDate.getFullYear();
                 if (yearDifference !== 0) {
-                    if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
+                    if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                         formatedDate = formatDate('MM/dd/yyyy', sourceMills);
                     } else {
                         formatedDate = formatDate('yyyy 年 MM 月 dd 日', sourceMills);
                     }
                 } else {
-                    if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
+                    if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                         formatedDate = formatDate('MM/dd', sourceMills);
                     } else {
                         formatedDate = formatDate('yyyy 年 MM 月 dd 日', sourceMills);

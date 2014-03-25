@@ -111,7 +111,7 @@
                                 reset : true
                             });
                         };
-                        if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
+                        if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                             this.snapPeaFetch();
                             return;
                         }

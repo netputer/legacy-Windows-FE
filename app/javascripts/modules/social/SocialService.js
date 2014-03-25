@@ -34,7 +34,7 @@
                 this.setContent(config);
             }
 
-            if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
+            if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                 var facebookShareView = FacebookShareView.getInstance();
                 var facebookOauthView = FacebookOauthView.getInstance();
 
@@ -55,7 +55,7 @@
         };
 
         SocialService.setContent = function (config) {
-            if (Environment.get('locale') === CONFIG.enums.LOCALE_EN_US) {
+            if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                 if (config !== undefined) {
                     FacebookShareView.getInstance().setContent(config);
                 }

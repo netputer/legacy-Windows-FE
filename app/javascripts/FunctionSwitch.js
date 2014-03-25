@@ -48,8 +48,7 @@
         });
 
         var FunctionSwitch = _.extend({}, Backbone.Events);
-        var IS_CHINESE_VERSION = Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                                        Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+        var IS_CHINESE_VERSION = navigator.language === CONFIG.enums.LOCALE_ZH_CN;
 
         Object.defineProperties(FunctionSwitch, {
             ENABLE_APP : {
