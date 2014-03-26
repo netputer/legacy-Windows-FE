@@ -1,13 +1,15 @@
 /*global define*/
 (function (window) {
-    define([], function () {
+    define([
+        'Internationalization'
+    ], function (
+        i18n
+    ) {
 
         var FormatDate = function (format, date) {
             date = date ? new Date(parseInt(date, 10)) : new Date();
             var output = format;
-
-            var zh = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-            var en = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            var dateArr = i18n.misc.DATE_STR.split(',');
 
             output = output.replace(/y{4}|D{2}|0?M{2}|d{2}|h{2}|H{2}|m{2}|s{2}/g, function (keyword) {
                 var result = '';
@@ -68,11 +70,7 @@
                     break;
                 case 'DD':
                     var DD = date.getDay();
-                    if (window.navigator.language.indexOf('zh') > -1) {
-                        result = zh[DD];
-                    } else {
-                        result = en[DD];
-                    }
+                    result = dateArr[DD];
                     break;
                 }
 
