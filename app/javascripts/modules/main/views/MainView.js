@@ -306,7 +306,7 @@
 
                 moduleInstance.$('.w-ui-smartlist').addClass('visible');
                 if (name === 'welcome') {
-                    moduleInstance.$('.feed-ctn').addClss('visible');
+                    moduleInstance.$('.feed-ctn').addClass('visible');
                 }
 
                 Backbone.trigger('showModule', name);
