@@ -10,6 +10,7 @@
         'Internationalization',
         'FunctionSwitch',
         'Configuration',
+        'Strategy',
         'doraemon/collections/ExtensionsCollection',
         'doraemon/views/MenuItemView',
         'doraemon/views/GallerySwitchView',
@@ -23,6 +24,7 @@
         i18n,
         FunctionSwitch,
         CONFIG,
+        Strategy,
         ExtensionsCollection,
         MenuItemView,
         GallerySwitchView,
@@ -34,6 +36,7 @@
         var extensionsCollection;
         var optimizeItemView;
         var OptimizeItemView = PIMMenuItemView.getClass();
+        var strategy = Strategy.getInstance();
 
         var DoraemonMenuView = Backbone.View.extend({
             className : 'w-menu-doraemon w-sidebar-menu',
@@ -55,18 +58,24 @@
                     menuItemView.$el[0].scrollIntoView();
                     menuItemView.highlight();
                 });
+
+                this.listenTo(strategy, 'change:enable_qq_tijian', function () {
+
+                    if (FunctionSwitch.ENABLE_OPTIMIZE) {
+                        var model = PIMCollection.getInstance().get(18);
+
+                        optimizeItemView = optimizeItemView || new OptimizeItemView({
+                            model : model
+                        });
+                        model.set('hide', false);
+
+                        GallerySwitchView.getInstance().$el.before(optimizeItemView.render().$el);
+                    }
+                });
             },
             buildList : function (extensionsCollection) {
                 if (FunctionSwitch.ENABLE_DORAEMON) {
                     GallerySwitchView.getInstance().$el.detach();
-                }
-
-                if (FunctionSwitch.ENABLE_OPTIMIZE) {
-                    optimizeItemView = optimizeItemView || new OptimizeItemView({
-                        model : PIMCollection.getInstance().get(18)
-                    });
-
-                    optimizeItemView.$el.detach();
                 }
 
                 var fragment = document.createDocumentFragment();
@@ -77,10 +86,6 @@
 
                     fragment.appendChild(menuItemView.render().$el[0]);
                 });
-
-                if (FunctionSwitch.ENABLE_OPTIMIZE) {
-                    fragment.appendChild(optimizeItemView.render().$el[0]);
-                }
 
                 if (FunctionSwitch.ENABLE_DORAEMON) {
                     fragment.appendChild(GallerySwitchView.getInstance().render().$el[0]);
