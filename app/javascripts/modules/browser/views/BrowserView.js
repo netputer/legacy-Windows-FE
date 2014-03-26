@@ -92,18 +92,12 @@
                 }
             }.bind(this);
 
-            this.model.downloadAsync().done(function () {
-                if (!$iframe.attr('src')) {
-                    $iframe.attr({
-                        src : this.model.get('targetURL') || this.model.get('web_url') || this.model.get('extension').app.launch.web_url,
-                        extension : this.model.id
-                    });
-                }
-            }.bind(this)).fail(function () {
+            this.model.downloadAsync().fail(function () {
                 $iframe.attr({
                     src : CONFIG.enums.EXTENTION_ERROR_PAGE_URL,
                     extension : this.model.id
                 });
+                $iframe.on('readystatechange', errorPageHandler);
             }.bind(this)).always(function () {
                 this.progress += 20;
             }.bind(this));
@@ -121,7 +115,8 @@
         };
 
         var changeHandler = function (model) {
-            if (!this.$('iframe').attr('src')) {
+            var src = this.$('iframe').attr('src');
+            if (!src || src === CONFIG.enums.EXTENTION_ERROR_PAGE_URL) {
                 this.$('iframe').attr({
                     src : model.get('targetURL') || model.get('web_url') || (model.get('extension') && model.get('extension').app ? model.get('extension').app.launch.web_url : ''),
                     extension : model.id
@@ -237,19 +232,25 @@
                         this.$el.prepend(this.appDependencyView.render().$el);
                     }
                 }
+                $iframe.attr({
+                    extension : this.model.id
+                });
 
                 this.browserToolbarView = BrowserToolbarView.getInstance({
                     model : this.model,
                     $iframe : $iframe
                 });
-
                 this.$el.prepend(this.browserToolbarView.render().$el);
-                if (this.autoGotoURL) {
-                    this.gotoURL();
-                }
 
                 var url = this.model.get('targetURL') || this.model.get('web_url');
-                if (!url || !this.model.get('extension')) {
+                if (this.autoGotoURL && url) {
+                    $iframe.attr({
+                        src : url
+                    });
+                    this.model.unset('targetURL');
+                }
+
+                if (!this.model.get('extension')) {
                     setTimeout(function () {
                         loadExtension.call(this, $iframe);
                     }.bind(this), 0);
@@ -257,17 +258,6 @@
 
                 if (this.model.get('extension')) {
                     this.progress += 20;
-                }
-            },
-            gotoURL : function () {
-                var url = this.model.get('targetURL') || this.model.get('web_url');
-                var $iframe = this.$('iframe');
-                if (url) {
-                    $iframe.attr({
-                        src : url,
-                        extension : this.model.id
-                    });
-                    this.model.unset('targetURL');
                 }
             },
             renderFlashNotifier : function () {

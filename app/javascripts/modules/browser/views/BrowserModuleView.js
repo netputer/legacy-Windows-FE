@@ -54,10 +54,7 @@
                 this.rendered = true;
                 return this;
             },
-            goto : function (extensionModel, gotoURL) {
-                if (gotoURL === undefined) {
-                    gotoURL = true;
-                }
+            navigate : function (extensionModel, url) {
 
                 this.$('.w-browser').addClass('w-module-hide');
 
@@ -68,17 +65,22 @@
                     $browser = BrowserView.getInstance({
                         id : IFRAME_PREFIX + extensionModel.id,
                         model : extensionModel,
-                        autoGotoURL : gotoURL
+                        autoGotoURL : url ? false : true
                     }).render().$el;
                     this.$el.prepend($browser);
                 }
-            },
-            navigate : function (extensionModel, url) {
-                this.goto(extensionModel, false);
 
-                this.$('#' + IFRAME_PREFIX + extensionModel.id).find('iframe').attr({
+                $browser.find('iframe').attr({
                     src : url
                 });
+
+                Backbone.trigger('switchModule', {
+                    module : 'browser',
+                    tab : extensionModel.id,
+                    silent : true,
+                    ignore : true
+                });
+
             },
             navigateToThirdParty : function (extentionId, extentionName, url, isPreview) {
                 var extension = ExtensionsCollection.getInstance().get(extentionId);
@@ -88,18 +90,7 @@
                         selected : true
                     });
 
-                    if (url) {
-                        this.navigate(extension, url);
-                    } else {
-                        this.goto(extension);
-                    }
-
-                    Backbone.trigger('switchModule', {
-                        module : 'browser',
-                        tab : extentionId,
-                        silent : true,
-                        ignore : true
-                    });
+                   this.navigate(extension, url);
 
                 } else {
                     var selectedExtension = ExtensionsCollection.getInstance().filter(function (extension) {
