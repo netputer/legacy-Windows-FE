@@ -344,7 +344,9 @@
 
                 //4.4 support
                 APPLY_DEFAULT_APP : 'wdj://restore/apply_default_app.json',
-                RECOVER_DEFAULT_APP : 'wdj://restore/recover_default_app.json'
+                RECOVER_DEFAULT_APP : 'wdj://restore/recover_default_app.json',
+
+                STRATEGY : 'wdj://window/strategy.json'
             },
             events : {
                 // Backend events - History
