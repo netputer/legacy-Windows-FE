@@ -58,7 +58,7 @@
 
                 this.$('.w-browser').addClass('w-module-hide');
                 var $browser = this.$('#' + IFRAME_PREFIX + extensionModel.id);
-                var isWdj = (url && url.substr(0, 13) === 'wdj-extension');
+                var isWdj = (!url ||  url.substr(0, 13) === 'wdj-extension');
 
                 if (isWdj) {
                     extensionModel.set('targetURL', url);
@@ -74,7 +74,7 @@
                     $browser = BrowserView.getInstance({
                         id : IFRAME_PREFIX + extensionModel.id,
                         model : extensionModel,
-                        autoGotoURL : url ? false : true
+                        autoGotoURL : !isWdj
                     }).render().$el;
 
                     this.$el.prepend($browser);
