@@ -4,7 +4,11 @@
     <div class="control hbox">
         <input type="checkbox" class="check-item dark">
         <div class="placeholder"></div>
+        {{? FunctionSwitch.IS_CHINESE_VERSION}}
         <div class="button-share icomoon icomoon-share"></div>
+        {{??}}
+        <div class="button-share icomoon icomoon-facebook"></div>
+        {{?}}
         <div class="button-info icomoon icomoon-info"></div>
     </div>
     <div class="error text-thirdly">
