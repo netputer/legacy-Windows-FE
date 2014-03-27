@@ -59,10 +59,17 @@
             var currentModule = SnapPea.CurrentModule;
             if (currentModule === 'browser') {
                 var $iframe = $('#' + CONFIG.enums.IFRAME_PREFIX + SnapPea.CurrentTab + ' iframe');
-                var frameId = $iframe[0].id;
-                var branch = $iframe.attr('branch');
-                var backCount = history.backCount(frameId, branch);
-                var forwardCount = history.forwardCount(frameId, branch);
+
+                var backCount = 0;
+                var forwardCount = 0;
+
+                if ($iframe.length > 0) {
+                    var frameId = $iframe[0].id;
+                    var branch = $iframe.attr('branch');
+
+                    backCount = history.backCount(frameId, branch);
+                    orwardCount = history.forwardCount(frameId, branch);
+                }
 
                 window.externalCall('', 'navigation', JSON.stringify({
                     canGoBack : backStack.length > 1 || backCount > 0,

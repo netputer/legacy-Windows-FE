@@ -57,22 +57,34 @@
             navigate : function (extensionModel, url) {
 
                 this.$('.w-browser').addClass('w-module-hide');
-
                 var $browser = this.$('#' + IFRAME_PREFIX + extensionModel.id);
+                var isWdj = (url && url.substr(0, 13) === 'wdj-extension');
+
+                if (isWdj) {
+                    extensionModel.set('targetURL', url);
+                }
+
                 if ($browser.length > 0) {
                     $browser.removeClass('w-module-hide');
+                    $browser.find('iframe').attr({
+                        src : url
+                    });
                 } else {
+
                     $browser = BrowserView.getInstance({
                         id : IFRAME_PREFIX + extensionModel.id,
                         model : extensionModel,
                         autoGotoURL : url ? false : true
                     }).render().$el;
-                    this.$el.prepend($browser);
-                }
 
-                $browser.find('iframe').attr({
-                    src : url
-                });
+                    this.$el.prepend($browser);
+
+                    if (!isWdj) {
+                        $browser.find('iframe').attr({
+                            src : url
+                        });
+                    }
+                }
 
                 Backbone.trigger('switchModule', {
                     module : 'browser',
