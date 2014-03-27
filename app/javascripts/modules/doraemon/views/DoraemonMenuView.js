@@ -59,8 +59,7 @@
                     menuItemView.highlight();
                 });
 
-                this.listenTo(strategy, 'change:enable_qq_tijian', function () {
-
+                this.listenTo(strategy, 'change:enableQqTijian', function () {
                     if (FunctionSwitch.ENABLE_OPTIMIZE) {
                         var model = PIMCollection.getInstance().get(18);
 
