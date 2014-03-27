@@ -79,33 +79,28 @@
             }
         };
 
-        var loadExtension = function ($iframe) {
+        var loadExtension = function () {
             var errorPageHandler = function (evt) {
                 if (evt.originalEvent.srcElement.readyState === 'complete') {
-                    var $button = $($iframe[0].contentDocument).find('.button-retry');
+                    var $button = $(this.$iframe[0].contentDocument).find('.button-retry');
 
                     $button.one('click', function () {
-                        loadExtension.call(this, $iframe);
+                        loadExtension.call(this);
                     }.bind(this));
 
-                    $iframe.off('readystatechange', errorPageHandler);
+                    this.$iframe.off('readystatechange', errorPageHandler);
                 }
             }.bind(this);
 
-            this.model.downloadAsync().done(function () {
-                if (!$iframe.attr('src')) {
-                    $iframe.attr({
-                        src : this.model.get('targetURL') || this.model.get('web_url') || this.model.get('extension').app.launch.web_url,
-                        extension : this.model.id
-                    });
-                }
-            }.bind(this)).fail(function () {
-                $iframe.attr({
+            this.model.downloadAsync().fail(function () {
+                this.$iframe.attr({
                     src : CONFIG.enums.EXTENTION_ERROR_PAGE_URL,
                     extension : this.model.id
                 });
+                this.$iframe.on('readystatechange', errorPageHandler);
             }.bind(this)).always(function () {
                 this.progress += 20;
+                this.$('.browser-ctn').prepend(this.$iframe);
             }.bind(this));
         };
 
@@ -121,8 +116,9 @@
         };
 
         var changeHandler = function (model) {
-            if (!this.$('iframe').attr('src')) {
-                this.$('iframe').attr({
+            var src = this.$iframe.attr('src');
+            if (!src) {
+                this.$iframe.attr({
                     src : model.get('targetURL') || model.get('web_url') || (model.get('extension') && model.get('extension').app ? model.get('extension').app.launch.web_url : ''),
                     extension : model.id
                 });
@@ -136,6 +132,7 @@
                 var id;
                 var progress = 0;
                 var flashErrorHandler;
+                var $iframe;
                 Object.defineProperties(this, {
                     id : {
                         set : function (value) {
@@ -176,6 +173,14 @@
                             if (this.$el) {
                                 this.$el.addClass(value);
                             }
+                        }
+                    },
+                    $iframe : {
+                        set : function (value) {
+                            $iframe = value;
+                        },
+                        get : function () {
+                            return $iframe;
                         }
                     }
                 });
@@ -221,8 +226,8 @@
             renderContent : function () {
                 this.$('.w-ui-toolbar, .w-browser-info-panel').remove();
 
-                var $iframe = this.$('iframe');
-                $iframe.on('readystatechange', readystatechangeHandler.bind(this));
+                this.$iframe = this.$('iframe');
+                this.$iframe.on('readystatechange', readystatechangeHandler.bind(this));
                 if (FunctionSwitch.ENABLE_DORAEMON) {
                     if (this.model.get('extensionPreview')) {
                         this.infoPanelView = InfoPanelView.getInstance({
@@ -240,34 +245,29 @@
 
                 this.browserToolbarView = BrowserToolbarView.getInstance({
                     model : this.model,
-                    $iframe : $iframe
+                    $iframe : this.$iframe
                 });
-
                 this.$el.prepend(this.browserToolbarView.render().$el);
-                if (this.autoGotoURL) {
-                    this.gotoURL();
-                }
 
                 var url = this.model.get('targetURL') || this.model.get('web_url');
-                if (!url || !this.model.get('extension')) {
+                if (this.autoGotoURL && url) {
+                    this.$iframe.attr({
+                        src : url,
+                        extension : this.model.id
+                    });
+                    this.model.unset('targetURL');
+                } else {
+                    this.$iframe.detach();
+                }
+
+                if (!this.model.get('extension')) {
                     setTimeout(function () {
-                        loadExtension.call(this, $iframe);
+                        loadExtension.call(this);
                     }.bind(this), 0);
                 }
 
                 if (this.model.get('extension')) {
                     this.progress += 20;
-                }
-            },
-            gotoURL : function () {
-                var url = this.model.get('targetURL') || this.model.get('web_url');
-                var $iframe = this.$('iframe');
-                if (url) {
-                    $iframe.attr({
-                        src : url,
-                        extension : this.model.id
-                    });
-                    this.model.unset('targetURL');
                 }
             },
             renderFlashNotifier : function () {

@@ -26,7 +26,7 @@ module.exports = function (grunt) {
         watch : {
             i18n : {
                 files : [
-                    '<%= path.app %>/javascripts/nls/**'
+                    '<%= path.app %>/javascripts/nls/**/*.json',
                 ]
             },
             src : {

@@ -92,7 +92,7 @@
                 });
 
                 this.listenTo(this.model, 'change:hide', function (model, hide) {
-                    this.$el.toggle(!hide);
+                    this.$el.toggleClass('hide', !hide);
                 });
 
                 this.listenTo(this.model, 'change:count', function (model, count) {
@@ -115,7 +115,7 @@
                 this.$el.html(this.template(this.model.toJSON()));
 
                 if (this.model.get('hide')) {
-                    this.$el.hide();
+                    this.$el.addClass('hide');
                 }
 
                 if (this.model.id === 3 || this.model.id === 2) {
