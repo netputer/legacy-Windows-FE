@@ -150,6 +150,12 @@
                         return;
                     }
                 });
+
+                this.listenTo(Backbone, 'showModule', function (name) {
+                    if (name === 'video') {
+                        this.collection.trigger('refresh', this.collection);
+                    }
+                });
             },
             toggleEmptyTip : function (toggle) {
                 if (typeof toggle !== 'boolean') {
