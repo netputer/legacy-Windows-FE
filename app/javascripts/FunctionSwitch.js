@@ -179,7 +179,7 @@
                 get : function () {
                     return IS_CHINESE_VERSION &&
                         !ProjectConfig.get('DISABLE_OPTIMIZE') &&
-                        strategy.get('enable_qq_tijian');
+                        strategy.get('enableQqTijian');
                 }
             },
             ENABLE_PERFORMANCE_TRACKER : {

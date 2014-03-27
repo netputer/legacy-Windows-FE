@@ -9,7 +9,7 @@
     ) {
         var Strategy = Backbone.Model.extend({
             defaults : {
-                enable_qq_tijian : false
+                enableQqTijian : false
             },
             load : function () {
                 IO.requestAsync(CONFIG.actions.STRATEGY).done(function (resp) {
@@ -20,7 +20,7 @@
             },
             changeHandler : function (data) {
                 this.set({
-                    enable_qq_tijian : data.enable_qq_tijian
+                    enableQqTijian : data.enable_qq_tijian
                 });
             }
         });
