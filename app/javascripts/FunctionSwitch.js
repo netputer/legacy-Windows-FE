@@ -9,7 +9,8 @@
         'Environment',
         'utilities/QueryString',
         'IOBackendDevice',
-        'Distributor'
+        'Distributor',
+        'Strategy',
     ], function (
         Backbone,
         _,
@@ -18,7 +19,8 @@
         Environment,
         QueryString,
         IO,
-        Distributor
+        Distributor,
+        Strategy
     ) {
         console.log('FunctionSwitch - File loaded.');
 
@@ -28,6 +30,8 @@
         var RECORD_BROWSE_HISTORY = '0x00000010';
         var ENABLE_APP_UPGRADE = '0x00000001';
         var ENABLE_DEBUG = '0x00000040';
+
+        var strategy = Strategy.getInstance();
 
         Object.defineProperties(PRIVACY, {
             ENABLE_APP_UPGRADE : {
@@ -175,7 +179,8 @@
             ENABLE_OPTIMIZE : {
                 get : function () {
                     return IS_CHINESE_VERSION &&
-                                !ProjectConfig.get('DISABLE_OPTIMIZE');
+                        !ProjectConfig.get('DISABLE_OPTIMIZE') &&
+                        strategy.get('enableQqTijian');
                 }
             },
             ENABLE_PERFORMANCE_TRACKER : {

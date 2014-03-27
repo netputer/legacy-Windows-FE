@@ -70,6 +70,7 @@
         'Log',
         'IframeMessageListener',
         'PerformanceTracker',
+        'Strategy',
         'main/views/BindingDeviceWindowView',
         'new_backuprestore/views/BackupRestoreModuleView'
     ], function (
@@ -103,6 +104,7 @@
         log,
         IframeMessageListener,
         PerformanceTracker,
+        Strategy,
         BindingDeviceWindowView,
         BackupRestoreModuleView
     ) {
@@ -150,5 +152,9 @@
         if (FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
             PerformanceTracker.launch();
         }
+
+        var strategy = Strategy.getInstance();
+        window.SnapPea.strategy = strategy;
+        strategy.load();
     });
 }(this));
