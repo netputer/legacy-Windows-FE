@@ -414,7 +414,7 @@
                     return;
                 }
 
-                if (state.lastHeight !== this.lasHeight) {
+                if (state.height !== this.lasHeight) {
                     this.resizeList();
                     this.lasHeight = state.height;
                 }
