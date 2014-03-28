@@ -36,7 +36,8 @@
         var extensionsCollection;
         var optimizeItemView;
         var OptimizeItemView = PIMMenuItemView.getClass();
-        var strategy = Strategy.getInstance();
+
+        var optimizeModel = PIMCollection.getInstance().get(18);
 
         var DoraemonMenuView = Backbone.View.extend({
             className : 'w-menu-doraemon w-sidebar-menu',
@@ -59,22 +60,33 @@
                     menuItemView.highlight();
                 });
 
-                this.listenTo(strategy, 'change:enableQqTijian', function () {
-                    if (FunctionSwitch.ENABLE_OPTIMIZE) {
-                        var model = PIMCollection.getInstance().get(18);
+                if (!FunctionSwitch.ENABLE_OPTIMIZE) {
+                    this.listenTo(Strategy, 'change:enableQqTijian', function () {
+                        if (FunctionSwitch.ENABLE_OPTIMIZE) {
+                            var model = PIMCollection.getInstance().get(18);
 
-                        optimizeItemView = optimizeItemView || new OptimizeItemView({
-                            model : model
-                        });
-                        model.set('hide', false);
+                            optimizeItemView = optimizeItemView || new OptimizeItemView({
+                                model : model
+                            });
+                            model.set('hide', false);
 
-                        GallerySwitchView.getInstance().$el.before(optimizeItemView.render().$el);
-                    }
-                });
+                            GallerySwitchView.getInstance().$el.before(optimizeItemView.render().$el);
+                        }
+                    });
+                }
             },
             buildList : function (extensionsCollection) {
                 if (FunctionSwitch.ENABLE_DORAEMON) {
                     GallerySwitchView.getInstance().$el.detach();
+                }
+
+                if (FunctionSwitch.ENABLE_OPTIMIZE) {
+                    optimizeModel.set('hide', false);
+                    optimizeItemView = optimizeItemView || new OptimizeItemView({
+                        model : optimizeModel
+                    });
+
+                    optimizeItemView.$el.detach();
                 }
 
                 var fragment = document.createDocumentFragment();
@@ -85,6 +97,10 @@
 
                     fragment.appendChild(menuItemView.render().$el[0]);
                 });
+
+                if (FunctionSwitch.ENABLE_OPTIMIZE) {
+                    fragment.appendChild(optimizeItemView.render().$el[0]);
+                }
 
                 if (FunctionSwitch.ENABLE_DORAEMON) {
                     fragment.appendChild(GallerySwitchView.getInstance().render().$el[0]);
