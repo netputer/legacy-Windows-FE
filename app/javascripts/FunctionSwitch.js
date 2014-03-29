@@ -31,8 +31,6 @@
         var ENABLE_APP_UPGRADE = '0x00000001';
         var ENABLE_DEBUG = '0x00000040';
 
-        var strategy = Strategy.getInstance();
-
         Object.defineProperties(PRIVACY, {
             ENABLE_APP_UPGRADE : {
                 get : function () {
@@ -179,7 +177,7 @@
                 get : function () {
                     return IS_CHINESE_VERSION &&
                         !ProjectConfig.get('DISABLE_OPTIMIZE') &&
-                        strategy.get('enableQqTijian');
+                        Strategy.get('enableQqTijian');
                 }
             },
             ENABLE_PERFORMANCE_TRACKER : {

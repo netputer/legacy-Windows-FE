@@ -8,6 +8,9 @@
         IO
     ) {
         var Strategy = Backbone.Model.extend({
+            initialize : function () {
+                this.load();
+            },
             defaults : {
                 enableQqTijian : false
             },
@@ -25,15 +28,7 @@
             }
         });
 
-        var strategy;
-        var factory = {
-            getInstance : function () {
-                if (!strategy) {
-                    strategy = new Strategy();
-                }
-                return strategy;
-            }
-        };
-        return factory;
+        var strategy = new Strategy();
+        return strategy;
     });
 }(this));

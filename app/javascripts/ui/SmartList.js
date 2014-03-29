@@ -169,7 +169,17 @@
                 var enableDragAndDrop = false;
                 var $ctn;
                 var $scrollCtn;
+                var lastHeight;
+
                 Object.defineProperties(this, {
+                    lastHeight : {
+                        get : function () {
+                            return lastHeight;
+                        },
+                        set : function (value) {
+                            lastHeight = value;
+                        }
+                    },
                     enableResizeListener : {
                         get : function () {
                             return enableResizeListener;
@@ -384,7 +394,7 @@
                 this.$scrollCtn.on('scroll', this.scrollHandler);
 
                 if (this.enableResizeListener) {
-                    this.listenTo(WindowState, 'resize', this.resizeList);
+                    this.listenTo(WindowState, 'resize', this.resizeHandler);
                 }
 
                 setTimeout(function () {
@@ -396,13 +406,19 @@
 
                 this.trigger(EventsMapping.RENDERED);
 
+                this.lastHeight = WindowState.height;
+
                 return this;
             },
-            resizeList : function () {
+            resizeHandler : function (state) {
 
-                if (!this.isVisible) {
-                    return;
+                if (state.height !== this.lastHeight && this.isVisible) {
+                    this.resizeList();
                 }
+
+                this.lastHeight = state.height;
+            },
+            resizeList : function () {
 
                 var topModel;
 
