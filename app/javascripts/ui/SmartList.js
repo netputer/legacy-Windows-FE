@@ -406,18 +406,17 @@
 
                 this.trigger(EventsMapping.RENDERED);
 
+                this.lastHeight = WindowState.height;
+
                 return this;
             },
             resizeHandler : function (state) {
 
-                if (!this.isVisible) {
-                    return;
+                if (state.height !== this.lastHeight && this.isVisible) {
+                    this.resizeList();
                 }
 
-                if (state.height !== this.lasHeight) {
-                    this.resizeList();
-                    this.lasHeight = state.height;
-                }
+                this.lastHeight = state.height;
             },
             resizeList : function () {
 
