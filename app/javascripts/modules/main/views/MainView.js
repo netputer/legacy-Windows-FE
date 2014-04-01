@@ -46,14 +46,31 @@
         var navigateHandler = function (msg) {
             switch (msg.type) {
             case CONFIG.enums.NAVIGATE_TYPE_MARKET:
-                if (msg.id) {
-                    this.getModule('browser').navigate('http://apps.wandoujia.com/apps/' + msg.id + '?pos=w/search');
+                //change by zhangyaochun for i18n
+                if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
+                    if (msg.id) {
+                        this.getModule('browser').navigate('http://apps.wandoujia.com/apps/' + msg.id + '?pos=w/search');
+                    } else {
+                        this.getModule('browser').navigate('http://apps.wandoujia.com/');
+                    }
                 } else {
-                    this.getModule('browser').navigate('http://apps.wandoujia.com/');
+                    var url = 'wdj-extension://__MSG_@@extension_id__/index.html#app';
+                    if (msg.id) {
+                        url = 'wdj-extension://__MSG_@@extension_id__/detail.html?pos=w/search#' + msg.id;
+                        this.getModule('browser').navigateToThirdParty(380, '', url);
+                    } else {
+                        this.getModule('browser').navigateToThirdParty(380, '', url);
+                    }
                 }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_MARKET_SEARCH:
-                this.getModule('browser').navigate('http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword);
+                //change by zhangyaochun for i18n
+                if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
+                    this.getModule('browser').navigate('http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword);
+                } else {
+                    var url = 'wdj-extension://__MSG_@@extension_id__/search.html#q/' + msg.keyword;
+                    this.getModule('browser').navigateToThirdParty(380, '', 'wdj-extension://__MSG_@@extension_id__/search.html#q/' + msg.keyword);
+                }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_GROUP_APP:
                 this.getModule('app').navigateGroup(msg);
