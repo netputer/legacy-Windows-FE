@@ -48,28 +48,32 @@
             case CONFIG.enums.NAVIGATE_TYPE_MARKET:
                 //change by zhangyaochun for i18n
                 if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
+                    
+                    var url = 'http://apps.wandoujia.com/';
                     if (msg.id) {
-                        this.getModule('browser').navigate('http://apps.wandoujia.com/apps/' + msg.id + '?pos=w/search');
-                    } else {
-                        this.getModule('browser').navigate('http://apps.wandoujia.com/');
+                        url = 'http://apps.wandoujia.com/apps/' + msg.id + '?pos=w/search';
                     }
+
+                    this.getModule('browser').navigate(url);
+                
                 } else {
+                    
                     var url = 'wdj-extension://__MSG_@@extension_id__/index.html#app';
                     if (msg.id) {
                         url = 'wdj-extension://__MSG_@@extension_id__/detail.html?pos=w/search#' + msg.id;
-                        this.getModule('browser').navigateToThirdParty(380, '', url);
-                    } else {
-                        this.getModule('browser').navigateToThirdParty(380, '', url);
                     }
+                    
+                    this.getModule('browser').navigateToThirdParty(380, '', url);
                 }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_MARKET_SEARCH:
                 //change by zhangyaochun for i18n
                 if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
-                    this.getModule('browser').navigate('http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword);
+                    var url = 'http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword;
+                    this.getModule('browser').navigate(url);
                 } else {
                     var url = 'wdj-extension://__MSG_@@extension_id__/search.html#q/' + msg.keyword;
-                    this.getModule('browser').navigateToThirdParty(380, '', 'wdj-extension://__MSG_@@extension_id__/search.html#q/' + msg.keyword);
+                    this.getModule('browser').navigateToThirdParty(380, '', url);
                 }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_GROUP_APP:
