@@ -67,13 +67,10 @@
                 }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_MARKET_SEARCH:
-                var url;
                 if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
-                    url = 'http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword;
-                    this.getModule('browser').navigate(url);
+                    this.getModule('browser').navigate('http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword);
                 } else {
-                    url = 'wdj-extension://__MSG_@@extension_id__/search.html#q/' + msg.keyword;
-                    this.getModule('browser').navigateToThirdParty(380, '', url);
+                    this.getModule('browser').navigateToThirdParty(380, '', 'wdj-extension://__MSG_@@extension_id__/search.html#q/' + msg.keyword);
                 }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_GROUP_APP:
