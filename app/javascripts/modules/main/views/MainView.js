@@ -46,14 +46,35 @@
         var navigateHandler = function (msg) {
             switch (msg.type) {
             case CONFIG.enums.NAVIGATE_TYPE_MARKET:
-                if (msg.id) {
-                    this.getModule('browser').navigate('http://apps.wandoujia.com/apps/' + msg.id + '?pos=w/search');
+                var url;
+                if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
+                    
+                    url = 'http://apps.wandoujia.com/';
+                    if (msg.id) {
+                        url = 'http://apps.wandoujia.com/apps/' + msg.id + '?pos=w/search';
+                    }
+
+                    this.getModule('browser').navigate(url);
+                
                 } else {
-                    this.getModule('browser').navigate('http://apps.wandoujia.com/');
+                    
+                    url = 'wdj-extension://__MSG_@@extension_id__/index.html#app';
+                    if (msg.id) {
+                        url = 'wdj-extension://__MSG_@@extension_id__/detail.html?pos=w/search#' + msg.id;
+                    }
+                    
+                    this.getModule('browser').navigateToThirdParty(380, '', url);
                 }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_MARKET_SEARCH:
-                this.getModule('browser').navigate('http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword);
+                var url;
+                if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
+                    url = 'http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword;
+                    this.getModule('browser').navigate(url);
+                } else {
+                    url = 'wdj-extension://__MSG_@@extension_id__/search.html#q/' + msg.keyword;
+                    this.getModule('browser').navigateToThirdParty(380, '', url);
+                }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_GROUP_APP:
                 this.getModule('app').navigateGroup(msg);
