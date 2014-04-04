@@ -46,14 +46,32 @@
         var navigateHandler = function (msg) {
             switch (msg.type) {
             case CONFIG.enums.NAVIGATE_TYPE_MARKET:
-                if (msg.id) {
-                    this.getModule('browser').navigate('http://apps.wandoujia.com/apps/' + msg.id + '?pos=w/search');
+                var url;
+                if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
+                    
+                    url = 'http://apps.wandoujia.com/';
+                    if (msg.id) {
+                        url = 'http://apps.wandoujia.com/apps/' + msg.id + '?pos=w/search';
+                    }
+
+                    this.getModule('browser').navigate(url);
+                
                 } else {
-                    this.getModule('browser').navigate('http://apps.wandoujia.com/');
+                    
+                    url = 'wdj-extension://__MSG_@@extension_id__/index.html#app';
+                    if (msg.id) {
+                        url = 'wdj-extension://__MSG_@@extension_id__/detail.html?pos=w/search#' + msg.id;
+                    }
+                    
+                    this.getModule('browser').navigateToThirdParty(380, '', url);
                 }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_MARKET_SEARCH:
-                this.getModule('browser').navigate('http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword);
+                if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
+                    this.getModule('browser').navigate('http://apps.wandoujia.com/search?pos=w/search&key=' + msg.keyword);
+                } else {
+                    this.getModule('browser').navigateToThirdParty(380, '', 'wdj-extension://__MSG_@@extension_id__/search.html#q/' + msg.keyword);
+                }
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_GROUP_APP:
                 this.getModule('app').navigateGroup(msg);
@@ -234,6 +252,10 @@
                 }, navigateHandler, this);
 
                 this.$el = $('body');
+
+                this.listenTo(Backbone, 'taskManager.showModule', function (name) {
+                    this.showModule(name);
+                });
             },
             render : function () {
                 $('body').append(this.template({}));
@@ -276,25 +298,22 @@
                     return;
                 }
 
-                if (this.currentModule) {
+                if (this.currentModule && this.currentModule !== 'task') {
                     this.hideModule(this.currentModule);
+                }
+
+                this.currentModule = name;
+                if (name === 'task') {
+                    return;
                 }
 
                 var moduleInstance = this.modules[name].getInstance(tab);
                 var $moduleCtn = this.$('.module-ctn');
                 if (moduleInstance.rendered) {
-                    this.hideModule(name);
-                    moduleInstance.$el.css({
-                        visibility : 'visible',
-                        opacity : 1
-                    });
+                    moduleInstance.$el.removeClass('w-module-hide');
                 } else {
                     var $last = $moduleCtn.children().last();
-
-                    moduleInstance.$el.css({
-                        visibility : 'visible',
-                        opacity : 1
-                    });
+                    moduleInstance.$el.removeClass('w-module-hide');
 
                     if ($last.length === 0) {
                         $moduleCtn.append(moduleInstance.render().$el);
@@ -303,17 +322,22 @@
                     }
                 }
 
-                this.currentModule = name;
+                moduleInstance.$('.w-ui-smartlist').addClass('visible');
+                if (name === 'welcome') {
+                    moduleInstance.$('.feed-ctn').addClass('visible');
+                }
 
                 Backbone.trigger('showModule', name);
             },
             hideModule : function (name) {
                 var moduleInstance = this.modules[name].getInstance();
                 if (moduleInstance.rendered) {
-                    moduleInstance.$el.css({
-                        visibility : 'hidden',
-                        opacity : 0
-                    });
+                    moduleInstance.$el.addClass('w-module-hide');
+                }
+
+                moduleInstance.$('.w-ui-smartlist').removeClass('visible');
+                if (name === 'welcome') {
+                    moduleInstance.$('.feed-ctn').removeClass('visible');
                 }
 
                 Backbone.trigger('hideModule', name);

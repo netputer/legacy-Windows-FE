@@ -41,6 +41,7 @@
     ) {
         console.log('PhotoGalleryView - File loaded. ');
 
+        var lastWindowWidth;
         var PhotoGalleryView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('photo', 'gallery')),
             className : 'w-photo-gallery-ctn',
@@ -101,7 +102,12 @@
                 IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_IFRAME_PHOTO_RENDERED);
 
                 setTimeout(this.relocatePointer.bind(this), 0);
-                this.listenTo(WindowState, 'resize', this.relocatePointer);
+                this.listenTo(WindowState, 'resize', function (state) {
+                    if (lastWindowWidth !== state.width) {
+                        this.relocatePointer();
+                    }
+                    lastWindowWidth = state.width;
+                });
 
                 return this;
             },

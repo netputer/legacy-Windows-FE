@@ -54,31 +54,45 @@
                 this.rendered = true;
                 return this;
             },
-            goto : function (extensionModel, gotoURL) {
-                if (gotoURL === undefined) {
-                    gotoURL = true;
+            navigate : function (extensionModel, url) {
+
+                this.$('.w-browser').addClass('w-module-hide');
+                var $browser = this.$('#' + IFRAME_PREFIX + extensionModel.id);
+                var isWdj = (!url ||  url.substr(0, 13) === 'wdj-extension');
+
+                if (isWdj) {
+                    extensionModel.set('targetURL', url);
                 }
 
-                this.$('.w-browser').addClass('w-layout-hidden');
-
-                var $browser = this.$('#' + IFRAME_PREFIX + extensionModel.id);
                 if ($browser.length > 0) {
-                    $browser.removeClass('w-layout-hidden');
+                    $browser.removeClass('w-module-hide');
+                    $browser.find('iframe').attr({
+                        src : url
+                    });
                 } else {
+
                     $browser = BrowserView.getInstance({
                         id : IFRAME_PREFIX + extensionModel.id,
                         model : extensionModel,
-                        autoGotoURL : gotoURL
+                        autoGotoURL : !isWdj
                     }).render().$el;
-                    this.$el.prepend($browser);
-                }
-            },
-            navigate : function (extensionModel, url) {
-                this.goto(extensionModel, false);
 
-                this.$('#' + IFRAME_PREFIX + extensionModel.id).find('iframe').attr({
-                    src : url
+                    this.$el.prepend($browser);
+
+                    if (!isWdj) {
+                        $browser.find('iframe').attr({
+                            src : url
+                        });
+                    }
+                }
+
+                Backbone.trigger('switchModule', {
+                    module : 'browser',
+                    tab : extensionModel.id,
+                    silent : true,
+                    ignore : true
                 });
+
             },
             navigateToThirdParty : function (extentionId, extentionName, url, isPreview) {
                 var extension = ExtensionsCollection.getInstance().get(extentionId);
@@ -88,11 +102,8 @@
                         selected : true
                     });
 
-                    if (url) {
-                        this.navigate(extension, url);
-                    } else {
-                        this.goto(extension);
-                    }
+                   this.navigate(extension, url);
+
                 } else {
                     var selectedExtension = ExtensionsCollection.getInstance().filter(function (extension) {
                         return extension.get('selected');
@@ -111,7 +122,7 @@
                         extensionPreview : isPreview
                     });
 
-                    this.$('.w-browser').addClass('w-layout-hidden');
+                    this.$('.w-browser').addClass('w-module-hide');
 
                     if (!publicBrowser) {
                         publicBrowser = BrowserView.getInstance({
@@ -124,7 +135,7 @@
                         publicBrowser.render();
                     }
 
-                    publicBrowser.$el.removeClass('w-layout-hidden');
+                    publicBrowser.$el.removeClass('w-module-hide');
 
                     Backbone.trigger('switchModule', {
                         module : 'browser',
@@ -133,33 +144,21 @@
                 }
             },
             navigateTo : function (url, isDebug) {
+
                 if (isDebug) {
                     this.navigateToThirdParty(CONFIG.enums.TEMP_EXTENTION_ID, 'Debug Mode', url);
-                } else {
-                    var item;
-                    if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                            Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
-                        item = ExtensionsCollection.getInstance().get(18);
-                        if (item) {
-                            item.set({
-                                selected : true
-                            });
-                            this.navigate(item, url);
-                        } else {
-                            this.navigateToThirdParty(18, i18n.browser.APP_SEARCH, url);
-                        }
-                    } else {
-                        item = ExtensionsCollection.getInstance().get(138);
-                        if (item) {
-                            item.set({
-                                selected : true
-                            });
-                            this.navigate(item, url);
-                        } else {
-                            this.navigateToThirdParty(138, 'Google Play', url);
-                        }
-                    }
+                    return;
                 }
+
+                var item;
+                var id = 18;
+                var name = i18n.browser.APP_SEARCH;
+                if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
+                    id = 138;
+                    name = 'Google Play';
+                }
+
+                this.navigateToThirdParty(id, name, url);
             }
         });
 

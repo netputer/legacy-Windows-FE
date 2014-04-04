@@ -105,7 +105,7 @@
                 this.$el.css('opacity', disable ? '.7' : '1');
             },
             render : function () {
-                this.$el.html(this.template({})).find('.screenshot').attr('src', 'i18n/' + navigator.language.toLowerCase() + '/images/blank.png');
+                this.$el.html(this.template({})).addClass('fade-in').find('.screenshot').attr('src', 'i18n/' + navigator.language.toLowerCase() + '/images/blank.png');
 
                 this.renderShell(Device, Device.get('shell'));
                 this.renderScreenshot(Device, Device.get('screenshot'));
@@ -120,6 +120,10 @@
                 this.$el.append(screenControlView.render().$el);
 
                 this.setDisable(!Device.get('canScreenshot'));
+
+                this.$el.one('webkitAnimationEnd', function (){
+                    this.$el.removeClass('fade-in');
+                }.bind(this));
 
                 return this;
             },

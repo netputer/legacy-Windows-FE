@@ -52,7 +52,8 @@
                     itemHeight : 45,
                     enableContextMenu : true,
                     listenToCollection : tasksCollection,
-                    emptyTip : i18n.taskManager.EMPTY_LIST
+                    emptyTip : i18n.taskManager.EMPTY_LIST,
+                    enableResizeListener : true
                 });
 
                 taskList.listenTo(tasksCollection, 'refresh', function (tasksCollection) {

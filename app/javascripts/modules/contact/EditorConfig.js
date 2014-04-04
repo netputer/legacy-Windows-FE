@@ -138,7 +138,7 @@
                 name : i18n.contact.CUSTOME,
                 value : 0
             }],
-            IM_OPTION : Environment.get('locale') === CONFIG.enums.LOCALE_EN_US ? [{
+            IM_OPTION : navigator.language !== CONFIG.enums.LOCALE_ZH_CN ? [{
                 name : 'AIM',
                 value : 0
             }, {

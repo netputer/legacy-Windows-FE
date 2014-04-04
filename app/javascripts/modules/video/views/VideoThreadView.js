@@ -87,8 +87,7 @@
             },
             render : function () {
                 var key;
-                if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                        Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
+                if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
                     key = StringUtil.formatDate(i18n.video.SMART_DATE_SOME_MONTH, this.options.models[0].get('date_added'));
                 } else {
                     key = StringUtil.formatDate('yyyy-MM', this.options.models[0].get('date_added'));

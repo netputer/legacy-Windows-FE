@@ -104,7 +104,7 @@
                         case CONFIG.enums.TASK_STATE_PROCESSING :
         }}
         <div class="progress hbox">
-            <progress class="tiny" max="100" value="{{= it.processing }}" />
+            <progress class="tiny lighter" max="100" value="{{= it.processing }}" />
         </div>
         <div>
             {{= StringUtil.format(i18n.taskManager.RUNNING_STATUS, StringUtil.readableSize(it.received_size), StringUtil.readableSize(it.speed)) }}

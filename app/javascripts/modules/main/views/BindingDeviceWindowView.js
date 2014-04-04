@@ -65,8 +65,7 @@
             render : function () {
                 BindingDeviceWindowView.__super__.render.call(this, arguments);
 
-                if (Environment.get('locale') !== CONFIG.enums.LOCALE_DEFAULT &&
-                        Environment.get('locale') !== CONFIG.enums.LOCALE_ZH_CN) {
+                if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                     this.$bodyContent = $(doT.template(TemplateFactory.get('misc', 'binding-devie-i18n'))({}));
 
                 } else {

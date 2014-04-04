@@ -150,6 +150,12 @@
                         return;
                     }
                 });
+
+                this.listenTo(Backbone, 'showModule', function (name) {
+                    if (name === 'video') {
+                        this.collection.trigger('refresh', this.collection);
+                    }
+                });
             },
             toggleEmptyTip : function (toggle) {
                 if (typeof toggle !== 'boolean') {
@@ -190,7 +196,7 @@
                 }
 
                 var group = collection.groupBy(function (item) {
-                    return Number(formatdate('yyyyMM', item.get('date_added')));
+                    return Number(formatdate('yyyy0MM', item.get('date_added')));
                 });
 
                 this.threads = _.sortBy(group, function (item, key) {

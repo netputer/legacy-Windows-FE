@@ -9,7 +9,8 @@
         'Environment',
         'utilities/QueryString',
         'IOBackendDevice',
-        'Distributor'
+        'Distributor',
+        'Strategy',
     ], function (
         Backbone,
         _,
@@ -18,7 +19,8 @@
         Environment,
         QueryString,
         IO,
-        Distributor
+        Distributor,
+        Strategy
     ) {
         console.log('FunctionSwitch - File loaded.');
 
@@ -48,8 +50,7 @@
         });
 
         var FunctionSwitch = _.extend({}, Backbone.Events);
-        var IS_CHINESE_VERSION = Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                                        Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN;
+        var IS_CHINESE_VERSION = navigator.language === CONFIG.enums.LOCALE_ZH_CN;
 
         Object.defineProperties(FunctionSwitch, {
             ENABLE_APP : {
@@ -175,7 +176,8 @@
             ENABLE_OPTIMIZE : {
                 get : function () {
                     return IS_CHINESE_VERSION &&
-                                !ProjectConfig.get('DISABLE_OPTIMIZE');
+                        !ProjectConfig.get('DISABLE_OPTIMIZE') &&
+                        Strategy.get('enableQqTijian');
                 }
             },
             ENABLE_PERFORMANCE_TRACKER : {

@@ -12,8 +12,7 @@
             var count = quantity.toString();
 
             var str = '';
-            if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                    Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
+            if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
                 if (count.length > 5) {
                     str += count.slice(0, count.length - 4);
                     str += ' 万';

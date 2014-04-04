@@ -14,7 +14,6 @@
         'utilities/StringUtil',
         'Device',
         'social/SocialData',
-        'social/views/FacebookOauthView',
         'Log'
     ], function (
         $,
@@ -30,7 +29,6 @@
         StringUtil,
         Device,
         SocialData,
-        FacebookOauthView,
         log
     ) {
         console.log('Share View loaded');
@@ -170,10 +168,6 @@
 
                 $tip.html(text).show();
             },
-            showOauth : function () {
-                this.close();
-                FacebookOauthView.getInstance().show();
-            },
             shareSuccess : function () {
                 log({
                     'event' : 'social.share_' + this.type + '.success',
@@ -281,12 +275,15 @@
                         this.automaticClosing = true;
                         this.showShareTip('', 'sending');
 
-                        this.shareData.content = StringUtil.format(i18n.misc.WANDOUJIA_TOPIC) + this.$('textarea').val() + StringUtil.format(i18n.misc.FACEBOOK_MESSAGE_FROM, Device.get('deviceName'));
+                        this.shareData.content = this.$('textarea').val() + StringUtil.format(i18n.misc.FACEBOOK_MESSAGE_FROM, Device.get('deviceName'));
 
                         this.disableShareBtn(true);
                         SocialData.shareAsync(this.shareData,
                                         this.shareSuccess.bind(this),
-                                        this.showOauth.bind(this),
+                                        function () {
+                                            this.close();
+                                            this.trigger('social.facebookShareView.authFail');
+                                        }.bind(this),
                                         this.shareFail.bind(this)
                                         );
                     }).on('button_no', function () {

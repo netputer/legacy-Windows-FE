@@ -10,6 +10,7 @@
         'Settings',
         'Configuration',
         'utilities/StringUtil',
+        'ui/WindowState',
         'app/collections/AppsCollection',
         'welcome/views/UpdateCardView',
         'welcome/views/XibaibaiCardView',
@@ -28,6 +29,7 @@
         'welcome/views/FacebookCardView',
         'welcome/views/ITunesMoviesCardView',
         'welcome/views/YouTubeCardView',
+        'welcome/views/P2pCardView',
         'welcome/collections/FeedsCollection'
     ], function (
         Backbone,
@@ -39,6 +41,7 @@
         Settings,
         CONFIG,
         StringUtil,
+        windowState,
         AppsCollection,
         UpdateCardView,
         XibaibaiCardView,
@@ -57,17 +60,45 @@
         FacebookCardView,
         ITunesMoviesCardView,
         YouTubeCardView,
+        P2pCardView,
         FeedsCollection
     ) {
         console.log('FeedListView - File loaded. ');
 
+        var targetArr = [];
+        var wookmarkHandle;
+
+        var initWindowWidth;
+        var lastWindowWidth;
+
         var FeedListView = Backbone.View.extend({
             tagName : 'ul',
             className : 'feed-ctn',
+            initialize : function () {
+
+                this.listenTo(windowState, 'resize', function (state){
+                    lastWindowWidth = state.width;
+                });
+
+                this.listenTo(Backbone, 'showModule', function (name) {
+                    if (name === 'welcome' && lastWindowWidth !== initWindowWidth) {
+                        initWindowWidth = lastWindowWidth;
+                        setTimeout(wookmarkHandle.wookmarkInstance.layout);
+                    }
+                });
+            },
             initFeeds : function () {
                 var collection = FeedsCollection.getInstance();
                 var fisrtScreen = true;
                 var randomDisplaySocialCard = _.random(1);
+
+                if (!Settings.get('welcome-card-p2p-show') && FunctionSwitch.IS_CHINESE_VERSION) {
+                    var view = P2pCardView.getInstance({
+                        parentView : this
+                    });
+                    this.$el.append(view.render().$el);
+                    Settings.set('welcome-card-p2p-show', true, true);
+                }
 
                 collection.on('refresh', function (collection) {
                     var fragment = document.createDocumentFragment();
@@ -135,7 +166,9 @@
                             }
                             break;
                         case 98:
-                            targetView = ChangelogCardView;
+                            if (Settings.get('latestVersion') !== Environment.get('backendVersion')) {
+                                targetView = ChangelogCardView;
+                            }
                             break;
                         case 99:
                             if (!Settings.get('welcome_feed_tips')) {
@@ -162,10 +195,16 @@
                             break;
                         }
                         if (targetView !== undefined) {
-                            fragment.appendChild(targetView.getInstance({
+
+                            var target = targetView.getInstance({
                                 model : feed,
                                 parentView : this
-                            }).render().$el.toggleClass('flip', !fisrtScreen)[0]);
+                            }).render().$el.toggleClass('flip', !fisrtScreen)[0];
+
+                            fragment.appendChild(target);
+                            if (!fisrtScreen) {
+                                targetArr.push(target);
+                            }
 
                             logData = {};
                             if (!logData[type]) {
@@ -199,7 +238,14 @@
                 return this;
             },
             initLayout : function () {
-                this.$('.w-welcome-feed-card:not(.hide)').wookmark({
+
+                initWindowWidth = windowState.width;
+
+                if (wookmarkHandle) {
+                    wookmarkHandle.wookmarkInstance.clear();
+                }
+
+                wookmarkHandle = this.$('.w-welcome-feed-card:not(.hide)').wookmark({
                     align : 'left',
                     autoResize : true,
                     container : this.$el,
@@ -207,7 +253,10 @@
                     offset : 20
                 });
 
-                this.$('.w-welcome-feed-card.flip').removeClass('flip');
+                _.each(targetArr, function (target) {
+                    $(target).removeClass('flip');
+                });
+                targetArr = [];
             },
             loadNextPage : function () {
                 var collection = FeedsCollection.getInstance();

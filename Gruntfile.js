@@ -24,11 +24,17 @@ module.exports = function (grunt) {
             server : ['<%= path.tmp %>/']
         },
         watch : {
+            i18n : {
+                files : [
+                    '<%= path.app %>/javascripts/nls/**/*.json',
+                ]
+            },
             src : {
                 files : [
                     '<%= path.app %>/javascripts/**/*.js',
-                    '<%= path.app %>/stylesheets/**/*.{scss,sass,png}',
                     '<%= path.app %>/images/**/*.{png,gif}',
+                    '<%= path.app %>/stylesheets/**/*.{scss,sass,png}',
+                    '!<%= path.app %>/javascripts/**/nls/**',
                     '<%= path.app %>/javascripts/**/*.tpl',
                     '<%= path.app %>/**/*.html'
                 ]
@@ -234,6 +240,32 @@ module.exports = function (grunt) {
     });
 
     var projectFlag;
+    var nlsFlag;
+
+    var copyFolderRecursive = function(path, dist, isDelete) {
+        isDelete = isDelete ? true : false;
+
+        if (!fs.existsSync(path)) {
+            return;
+        }
+
+        if (fs.statSync(path).isDirectory()) {
+            fs.readdirSync(path).forEach(function (file) {
+                var curPath = path + '/' +  file;
+                var distPath = dist + '/' + file;
+                if(fs.statSync(curPath).isDirectory()) {
+                    copyFolderRecursive(curPath, distPath, isDelete);
+                } else {
+                    grunt.file.copy(curPath, distPath);
+                    isDelete && fs.unlinkSync(curPath);
+                }
+            });
+            isDelete && fs.rmdirSync(path);
+        } else {
+            grunt.file.copy(path, dist);
+            isDelete && fs.unlinkSync(path);
+        }
+    }
 
     var runSubTask = function (command) {
         var exec = require('child_process').exec;
@@ -253,6 +285,12 @@ module.exports = function (grunt) {
         });
     };
 
+    var createNls = function (sourcePath, targetPath) {
+        var nlsJson = grunt.file.read(sourcePath);
+        var nlsContent = 'define({"'+ nlsFlag  +'" : ' + nlsJson + '});';
+        grunt.file.write(targetPath, nlsContent);
+    }
+
     grunt.registerTask('processI18n', function (nls) {
 
         var i18nPath = paths.tmp + '/i18n';
@@ -270,10 +308,9 @@ module.exports = function (grunt) {
             if (file.substr(0, 1) === '.') {
                 return;
             } else {
-                grunt.file.write(i18nNlsPath + '/' + file, 'define({"' + nls + '" : true});');
+                createNls(paths.app + '/javascripts/nls/' + nls + '/' + file, i18nNlsPath + '/' + file.replace('json', 'js'));
             }
         });
-        runSubTask('cp -r ' + paths.app + '/javascripts/nls/' + nls + ' ' + i18nNlsPath);
 
         var fd;
         if (nls !== 'zh-cn') {
@@ -291,7 +328,7 @@ module.exports = function (grunt) {
             encoding : 'utf-8'
         });
 
-        content = content.replace(/nls/g, '../i18n/\' + navigator.language + \'/nls');
+        content = content.replace(/nls/g, '../i18n/\' + navigator.language.toLowerCase() + \'/nls');
         grunt.file.write(i18nPath, content);
     });
 
@@ -303,7 +340,7 @@ module.exports = function (grunt) {
             if (file.substr(0, 1) === '.' || file === 'compass') {
                 return;
             } else {
-                runSubTask('cp ' + paths.tmp + '/stylesheets/' + file + ' ' + stylePath);
+                copyFolderRecursive(paths.tmp + '/stylesheets/' + file, stylePath + '/' + file);
             }
         });
     });
@@ -311,7 +348,7 @@ module.exports = function (grunt) {
     grunt.registerTask('copyImage', function (nls) {
 
         var imagesPath = paths.tmp + '/i18n/' + nls + '/images';
-        runSubTask('cp -r ' + paths.tmp + '/images' + ' ' + imagesPath);
+        copyFolderRecursive(paths.tmp + '/images', imagesPath);
     });
 
     grunt.registerTask('createScssConfig', function (project) {
@@ -342,7 +379,7 @@ module.exports = function (grunt) {
     grunt.registerTask('server', function (project, nls) {
 
         projectFlag = project = project ? project.toUpperCase() : 'WDJ';
-        nls = nls ? nls.toLowerCase() : 'zh-cn';
+        nlsFlag = nls = nls ? nls.toLowerCase() : 'zh-cn';
 
         console.log('project : ', project);
         console.log('nls : ', nls);
@@ -353,7 +390,6 @@ module.exports = function (grunt) {
             'copy:tmp',
             'processI18n:' + nls,
             'switchI18nPath',
-            'replaceCss',
             'replace:' + project,
             'createScssConfig:' + project,
             'compass:server',
@@ -372,7 +408,21 @@ module.exports = function (grunt) {
             runSubTask('grunt replace:' + projectFlag);
             runSubTask('grunt replaceCss:' + paths.tmp + '/index.html');
             break;
+        case 'i18n' :
+            if (grunt.file.isDir(filePath)) {
+                return;
+            }
 
+            var targetPath = paths.tmp + '/i18n/' + nlsFlag + '/nls/' + path.basename(filePath).replace('json', 'js');
+            switch (action) {
+            case 'added':
+            case 'changed':
+                createNls(filePath, targetPath);
+                console.log('create - ' + targetPath);
+                break;
+            }
+
+            break;
         case 'src':
             if (grunt.file.isDir(filePath)) {
                 return;
@@ -387,7 +437,7 @@ module.exports = function (grunt) {
                 var extName = path.extname(filePath);
 
                 grunt.file.copy(filePath, targetPath);
-                console.log('copy - ' + filePath);
+                console.log('copy - ' + filePath + ' to ' + targetPath);
 
                 if (extName === '.html') {
                     if (baseName === 'index.html') {
@@ -415,9 +465,9 @@ module.exports = function (grunt) {
 
         var re = new RegExp(nls, "g");
 
-        var replacement = '" + navigator.language + "';
+        var replacement = '" + navigator.language.toLowerCase() + "';
         if (requireTask === 'debug') {
-            replacement = '\' + navigator.language + \'';
+            replacement = '\' + navigator.language.toLowerCase() + \'';
         }
         content = content.replace(re, replacement);
         grunt.file.write(i18nPath, content);
@@ -429,9 +479,9 @@ module.exports = function (grunt) {
         });
 
         var re = new RegExp('i18n!../i18n/' + nls, "g");
-        replacement = 'i18n!../i18n/" + navigator.language + "';
+        replacement = 'i18n!../i18n/" + navigator.language.toLowerCase() + "';
         if (requireTask === 'debug') {
-            replacement = 'i18n!../i18n/\' + navigator.language + \'';
+            replacement = 'i18n!../i18n/\' + navigator.language.toLowerCase() + \'';
         }
         content = content.replace(re, replacement);
         grunt.file.write(SnapPeaPath, content);

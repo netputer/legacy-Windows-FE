@@ -71,9 +71,10 @@
         });
 
         var progressView;
+        var typeEnum = i18n.new_backuprestore.BR_TYPE_WORD_ENUM.split(',');
         var ProgressView = BackupRestoreProgressView.extend({
             updateProgressStatus : function (type, status, isFull) {
-                if (!i18n.new_backuprestore.BR_TYPE_WORD_ENUM[type]) {
+                if (!typeEnum[type]) {
                     console.error('backup remote progess, unknown' + type);
                     return;
                 }

@@ -203,9 +203,9 @@
                     });
                 }, this);
 
-                IO.Backend.Device.onmessage({
-                    'data.channel' : CONFIG.events.TASK_CHANGE
-                }, function (data) {
+                var isSilde = false;
+                var handler;
+                var setData = function (data) {
                     this.set({
                         body : data
                     }, {
@@ -213,7 +213,27 @@
                     });
 
                     this.trigger('refresh', this);
+                }.bind(this);
+
+                IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.TASK_CHANGE
+                }, function (data) {
+
+                    clearTimeout(handler);
+                    if (isSilde) {
+                        handler = setTimeout(function() {
+                            setData(data);
+                        }, 1000);
+                    } else {
+                        setData(data);
+                    }
+
                 }, this);
+
+                this.listenTo(Backbone, 'taskmanager.silde', function (isSilding) {
+                    isSilde = isSilding;
+                });
+
             },
             getRunningTasks : function () {
                 return this.filter(function (task) {

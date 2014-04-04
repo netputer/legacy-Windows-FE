@@ -87,8 +87,7 @@
             },
             render : function () {
                 var url;
-                if (Environment.get('locale') === CONFIG.enums.LOCALE_DEFAULT ||
-                        Environment.get('locale') === CONFIG.enums.LOCALE_ZH_CN) {
+                if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
                     url = CONFIG.enums.URL_WELCOME_BILLBOARD;
                 } else {
                     url = CONFIG.enums.URL_WELCOME_BILLBOARD_EN;

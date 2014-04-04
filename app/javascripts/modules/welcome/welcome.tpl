@@ -143,13 +143,25 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="p2p">
+    <div class="icon-ctn"></div>
+    <div class="info-ctn">
+        <h1 class="title">{{= i18n.welcome.P2PTITLE }}</h1>
+        <p class="info text-secondary">{{= i18n.welcome.P2PDESCRIPTION }}</p>
+        <div class="btn-ctn hbox">
+            <button class="button-action">{{= i18n.welcome.GOTIT }}</button>
+            <span class="button-ignore button-setup text-thirdly">{{= i18n.welcome.SETTING }}</span>
+        </div>
+    </div>
+</script>
+
 <script type="text/x-ui-template" id="snappea-web">
     <div class="icon-ctn"></div>
     <div class="info-ctn">
-        <h1 class="title">SnapPea Web</h1>
-        <p class="desc">Your photos, messages, contacts and apps from your browser</p>
+        <h1 class="title">{{= i18n.welcome.SNAPPEA_WEB }}</h1>
+        <p class="desc">{{= i18n.welcome.SNAPPEN_WEB_DES}}</p>
         <div class="btn-ctn hbox">
-            <a class="button-action" href="http://www.snappea.com/" target="_default">Try it now</a>
+            <a class="button-action" href="http://www.snappea.com/" target="_default">{{= i18n.welcome.SNAPPEA_WEB_ACTION}}</a>
         </div>
     </div>
 </script>
@@ -157,10 +169,10 @@
 <script type="text/x-ui-template" id="snappea-feedback">
     <div class="icon-ctn"></div>
     <div class="info-ctn">
-        <h1 class="title">How are we doing?</h1>
-        <p class="desc">Take our 3-minute.<br />We&rsquo;d love to get your feedback.</p>
+        <h1 class="title">{{= i18n.welcome.SNAPPEA_FEEDBACK }}</h1>
+        <p class="desc">{{= i18n.welcome.SNAPPEA_FEEDBACK_DESC }}</p>
         <div class="btn-ctn hbox">
-            <a class="button-action" href="https://snappea.wufoo.com/forms/snappea-for-windows-user-satisfaction-survey/" target="_default">Take me there</a>
+            <a class="button-action" href="https://snappea.wufoo.com/forms/snappea-for-windows-user-satisfaction-survey/" target="_default">{{= i18n.welcome.SNAPPEA_FEEDBACK_ACTION }}</a>
         </div>
     </div>
 </script>
@@ -168,10 +180,10 @@
 <script type="text/x-ui-template" id="snappea-photos">
     <div class="icon-ctn"></div>
     <div class="info-ctn">
-        <h1 class="title">SnapPea Photos Chrome Extension</h1>
-        <p class="desc">All your photos in just one click</p>
+        <h1 class="title">{{= i18n.welcome.SNAPPEA_PHOTO }}</h1>
+        <p class="desc">{{= i18n.welcome.SNAPPEN_PHOTO_DES }}</p>
         <div class="btn-ctn hbox">
-            <a class="button-action" href="https://chrome.google.com/webstore/detail/snappea-photos/epindigjbiphgfhnmlpcocaiafjgbabe" target="_default">Get it now</a>
+            <a class="button-action" href="https://chrome.google.com/webstore/detail/snappea-photos/epindigjbiphgfhnmlpcocaiafjgbabe" target="_default">{{= i18n.welcome.SNAPPEA_PHOTO_ACTION }}</a>
         </div>
     </div>
 </script>
@@ -179,10 +191,10 @@
 <script type="text/x-ui-template" id="snappea-facebook">
     <div class="icon-ctn"></div>
     <div class="info-ctn">
-        <h1 class="title">SnapPea is on Facebook</h1>
-        <p class="desc">Like SnapPea to get tips & news!</p>
+        <h1 class="title">{{= i18n.welcome.SNAPPEA_FACEBOOK }}</h1>
+        <p class="desc">{{= i18n.welcome.SNAPPEN_FACEBOOK_DES }}</p>
         <div class="btn-ctn hbox">
-            <a class="button-action" href="https://www.facebook.com/SnapPeaInc" target="_default">Go to Facebook</a>
+            <a class="button-action" href="https://www.facebook.com/SnapPeaInc" target="_default">{{= i18n.welcome.SNAPPEA_FACEBOOK_ACTION }}</a>
         </div>
     </div>
 </script>
@@ -190,8 +202,8 @@
 <script type="text/x-ui-template" id="snappea-itunes">
     <div class="icon-ctn"></div>
     <div class="info-ctn">
-        <h1 class="title">iTunes Movies</h1>
-        <p class="desc">Download free movie trailers</p>
+        <h1 class="title">{{= i18n.welcome.SNAPPEA_ITUNES }}</h1>
+        <p class="desc">{{= i18n.welcome.SNAPPEN_ITUNES_DES }}</p>
         <div class="btn-ctn hbox">
             <button class="button-action">{{= i18n.misc.OPEN }}</button>
         </div>
@@ -201,8 +213,8 @@
 <script type="text/x-ui-template" id="snappea-youtube">
     <div class="icon-ctn"></div>
     <div class="info-ctn">
-        <h1 class="title">YouTube</h1>
-        <p class="desc">Download from PC, watch on your phone</p>
+        <h1 class="title">{{= i18n.welcome.SNAPPEN_YOUTUBE_DES }}</h1>
+        <p class="desc">{{= i18n.welcome.SNAPPEN_YOUTUBE_DES }}</p>
         <div class="btn-ctn hbox">
             <button class="button-action">{{= i18n.misc.OPEN }}</button>
         </div>

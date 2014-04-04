@@ -2,9 +2,12 @@
 (function (window) {
     'use strict';
 
+    var base_path = window.require.s.contexts._.config.baseUrl;
+    var source_base_path = base_path + '../i18n/' + navigator.language.toLowerCase();
+
     define([], function () {
         var Configuration = {
-            BASE_PATH : window.require.s.contexts._.config.baseUrl,
+            BASE_PATH : base_path,
             actions : {
                 BLOCK_WINDOW : 'wdj://window/blocking.json',
 
@@ -341,7 +344,9 @@
 
                 //4.4 support
                 APPLY_DEFAULT_APP : 'wdj://restore/apply_default_app.json',
-                RECOVER_DEFAULT_APP : 'wdj://restore/recover_default_app.json'
+                RECOVER_DEFAULT_APP : 'wdj://restore/recover_default_app.json',
+
+                STRATEGY : 'wdj://window/strategy.json'
             },
             events : {
                 // Backend events - History
@@ -463,9 +468,9 @@
             },
             enums : {
                 /*Environment locale*/
-                LOCALE_DEFAULT : 0,
-                LOCALE_ZH_CN : 1,
-                LOCALE_EN_US : 2,
+                LOCALE_ZH_CN : 'zh-CN',
+                LOCALE_EN_US : 'en-US',
+                LOCALE_TH_TH : 'th-TH',
 
                 /* Device and connection type */
                 VIRTUAL_DEVICE : 0,
@@ -516,9 +521,9 @@
                 INSTALL_LOCATION_DEVICE : 1,
 
                 /* Default contact icon */
-                CONTACT_DEFAULT_ICON : 'i18n/' + navigator.language.toLowerCase() + '/images/contact-default-small.png',
-                CONTACT_DEFAULT_BATCH_ICON : 'i18n/' + navigator.language.toLowerCase() + '/images/contact-default-batch.png',
-                CONTACT_DEFAULT_ICON_LARGE : 'i18n/' + navigator.language.toLowerCase() + '/images/contact-default-large.png',
+                CONTACT_DEFAULT_ICON : source_base_path + '/images/contact-default-small.png',
+                CONTACT_DEFAULT_BATCH_ICON : source_base_path + '/images/contact-default-batch.png',
+                CONTACT_DEFAULT_ICON_LARGE : source_base_path + '/images/contact-default-large.png',
                 CONTACT_DESCRIPTION_ITEM_TYPE_PHONE_NUMBER : 0,
 
                 /* MUSIC ITUNES IMPORT TYPE*/
@@ -578,17 +583,17 @@
                 TASK_STATE_STOPPED : 6,
 
                 /* Task default icon path */
-                TASK_DEFAULT_ICON_PATH_APP : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_app_36X36.png',
-                TASK_DEFAULT_ICON_PATH_MUSIC : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_music_36X36.png',
-                TASK_DEFAULT_ICON_PATH_PHOTO : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_pic_36X36.png',
-                TASK_DEFAULT_ICON_PATH_VIDEO : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_video_36X36.png',
-                TASK_DEFAULT_ICON_PATH_BOOK : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_ebook_36X36.png',
-                TASK_DEFAULT_ICON_PATH_FILE : 'i18n/' + navigator.language.toLowerCase() + '/images/icon_default_file_36X36.png',
-                IMAGE_SPACER : 'i18n/' + navigator.language.toLowerCase() + '/images/spacer-20X20.png',
+                TASK_DEFAULT_ICON_PATH_APP : source_base_path + '/images/icon_default_app_36X36.png',
+                TASK_DEFAULT_ICON_PATH_MUSIC : source_base_path + '/images/icon_default_music_36X36.png',
+                TASK_DEFAULT_ICON_PATH_PHOTO : source_base_path + '/images/icon_default_pic_36X36.png',
+                TASK_DEFAULT_ICON_PATH_VIDEO : source_base_path + '/images/icon_default_video_36X36.png',
+                TASK_DEFAULT_ICON_PATH_BOOK : source_base_path + '/images/icon_default_ebook_36X36.png',
+                TASK_DEFAULT_ICON_PATH_FILE : source_base_path + '/images/icon_default_file_36X36.png',
+                IMAGE_SPACER : source_base_path + '/images/spacer-20X20.png',
 
                 /* Defaut icon */
-                DEFAULT_30X30 : 'i18n/' + navigator.language.toLowerCase() + '/images/default-30X30.png',
-                DEFAULT_42X42 : 'i18n/' + navigator.language.toLowerCase() + '/images/default-42X42.png',
+                DEFAULT_30X30 : source_base_path + '/images/default-30X30.png',
+                DEFAULT_42X42 : source_base_path + '/images/default-42X42.png',
 
                 /* Model type */
                 MODEL_TYPE_APPLICATION : 'app',

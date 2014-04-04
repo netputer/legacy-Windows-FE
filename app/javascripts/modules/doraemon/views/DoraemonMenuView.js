@@ -10,6 +10,7 @@
         'Internationalization',
         'FunctionSwitch',
         'Configuration',
+        'Strategy',
         'doraemon/collections/ExtensionsCollection',
         'doraemon/views/MenuItemView',
         'doraemon/views/GallerySwitchView',
@@ -23,6 +24,7 @@
         i18n,
         FunctionSwitch,
         CONFIG,
+        Strategy,
         ExtensionsCollection,
         MenuItemView,
         GallerySwitchView,
@@ -34,6 +36,8 @@
         var extensionsCollection;
         var optimizeItemView;
         var OptimizeItemView = PIMMenuItemView.getClass();
+
+        var optimizeModel = PIMCollection.getInstance().get(18);
 
         var DoraemonMenuView = Backbone.View.extend({
             className : 'w-menu-doraemon w-sidebar-menu',
@@ -55,6 +59,21 @@
                     menuItemView.$el[0].scrollIntoView();
                     menuItemView.highlight();
                 });
+
+                if (!FunctionSwitch.ENABLE_OPTIMIZE) {
+                    this.listenTo(Strategy, 'change:enableQqTijian', function () {
+                        if (FunctionSwitch.ENABLE_OPTIMIZE) {
+                            var model = PIMCollection.getInstance().get(18);
+
+                            optimizeItemView = optimizeItemView || new OptimizeItemView({
+                                model : model
+                            });
+                            model.set('hide', false);
+
+                            GallerySwitchView.getInstance().$el.before(optimizeItemView.render().$el);
+                        }
+                    });
+                }
             },
             buildList : function (extensionsCollection) {
                 if (FunctionSwitch.ENABLE_DORAEMON) {
@@ -62,8 +81,9 @@
                 }
 
                 if (FunctionSwitch.ENABLE_OPTIMIZE) {
+                    optimizeModel.set('hide', false);
                     optimizeItemView = optimizeItemView || new OptimizeItemView({
-                        model : PIMCollection.getInstance().get(18)
+                        model : optimizeModel
                     });
 
                     optimizeItemView.$el.detach();

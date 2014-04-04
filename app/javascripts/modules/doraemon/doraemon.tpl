@@ -164,7 +164,7 @@
 
 <script type="text/x-ui-template" id="browser-menu">
     {{? it.extension }}
-        <li class="root-item selected" data="{{= it.extension.app.launch.web_url }}">
+        <li class="root-item selected" data="{{= decodeURIComponent(it.extension.app.launch.web_url) }}">
             {{= it.extension.app.label ? it.extension.app.label : i18n.misc.HOME_PAGE }}
         </li>
         {{~ it.extension.app.navigation : item }}

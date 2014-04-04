@@ -35,6 +35,7 @@
     ) {
         console.log('TaskModuleView - File loaded.');
 
+        var lastView;
         var taskListView;
 
         var performanceHandler;
@@ -42,6 +43,7 @@
         var clearInterval = window.clearInterval;
 
         var hasRecordFPS = false;
+        var timeoutHandle;
 
         var pushNotificationView;
         var downloadHandler = function (msg) {
@@ -137,7 +139,8 @@
                 });
 
                 Backbone.on('switchModule', function (data) {
-                    if (data.module !== 'task') {
+                    lastView = data.module;
+                    if (data.module !== 'task' && this.show) {
                         this.slideOut();
                     }
                 }.bind(this));
@@ -146,7 +149,7 @@
                     'data.channel' : CONFIG.events.WEB_NAVIGATE
                 }, function (msg) {
 
-                    if (msg.type !== CONFIG.enums.NAVIGATE_TYPE_TASK_MANAGER) {
+                    if (msg.type !== CONFIG.enums.NAVIGATE_TYPE_TASK_MANAGER && this.show) {
                         this.slideOut();
                     }
 
@@ -173,6 +176,10 @@
                 return this;
             },
             slideIn : function () {
+
+                clearTimeout(timeoutHandle);
+                Backbone.trigger('taskmanager.silde', true);
+
                 this.show = true;
 
                 if (!hasRecordFPS) {
@@ -180,11 +187,29 @@
                     this.recordFPS();
                 }
 
+                lastView = SnapPea.CurrentModule;
                 this.$el.toggleClass('hide', !this.show);
+
+                timeoutHandle = setTimeout(function () {
+                    Backbone.trigger('taskmanager.silde', false);
+                    Backbone.trigger('taskManager.showModule', 'task');
+                }, 500);
             },
             slideOut : function () {
+
+                clearTimeout(timeoutHandle);
+                Backbone.trigger('taskmanager.silde', true);
+
+                if (lastView){
+                    Backbone.trigger('taskManager.showModule', lastView);
+                }
                 this.show = false;
                 this.$el.toggleClass('hide', !this.show);
+
+                timeoutHandle = setTimeout(function () {
+                    Backbone.trigger('taskmanager.silde', false);
+                }, 500);
+
             },
             recordFPS : function () {
 
