@@ -128,10 +128,6 @@
             moveComponents : function (scrollTop) {
                 scrollTop = scrollTop >= 400 ? 400 : scrollTop;
 
-                if (scrollTop >= 400) {
-                    return;
-                }
-
                 var progress1 = scrollTop / 400;
                 this.$('.bg').css({
                     opacity : 1 - progress1
@@ -161,7 +157,9 @@
                         '-webkit-transform' : 'translate3d(0, 0, 0)'
                     });
                 }
-                toolbarView.$el.toggleClass('light', progress2 >= 0.65)
+
+                toolbarView.$el
+                    .toggleClass('light', progress2 >= 0.65)
                     .toggleClass('fixed', progress2 === 1);
 
                 deviceView.$el.css({
