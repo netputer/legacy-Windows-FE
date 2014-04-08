@@ -62,6 +62,18 @@
                         'time' : endTime - startTime
                     });
                 }
+
+                if (iframe.src === 'http://www.youtube.com/') {
+                    
+                    var contents = $("#"+iframe.id).contents();
+                    if (contents.find("#page-container").length === 1  && contents.find('#wdj-youtube-box').length === 0) {
+                        var youtube = '<div id="wdj-youtube-box"><span id="wdj-youtube-info">' + i18n.browser.YOUTUBE_INFO_NO + '</span><a href="javascript:void(0);" class="disabled" id="wdj-youtube-download"> ' + i18n.browser.YOUTUBE_DOWNLOAD + ' </a></div>';
+                        contents.find("body").append(youtube);
+                    }
+                    
+                }
+
+                
                 break;
             case 'interactive':
                 this.progress += 20;
