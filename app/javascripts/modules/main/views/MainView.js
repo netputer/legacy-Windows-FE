@@ -9,6 +9,7 @@
         'underscore',
         'ui/TemplateFactory',
         'ui/AlertWindow',
+        'ui/WindowState',
         'Configuration',
         'IOBackendDevice',
         'Internationalization',
@@ -27,6 +28,7 @@
         _,
         TemplateFactory,
         AlertWindow,
+        WindowState,
         CONFIG,
         IO,
         i18n,
@@ -43,26 +45,39 @@
 
         var alert = window.alert;
 
+        var $needToHide;
+        var showModule = _.debounce(function(){
+            $needToHide.removeClass('w-module-hide');
+            $needToHide = undefined;
+        }, 200);
+
+        WindowState.on('resize', function (){
+            if (!$needToHide) {
+                $needToHide = $('.need-to-hide').addClass('w-module-hide');
+            }
+            showModule();
+        });
+
         var navigateHandler = function (msg) {
             switch (msg.type) {
             case CONFIG.enums.NAVIGATE_TYPE_MARKET:
                 var url;
                 if (navigator.language === CONFIG.enums.LOCALE_ZH_CN) {
-                    
+
                     url = 'http://apps.wandoujia.com/';
                     if (msg.id) {
                         url = 'http://apps.wandoujia.com/apps/' + msg.id + '?pos=w/search';
                     }
 
                     this.getModule('browser').navigate(url);
-                
+
                 } else {
-                    
+
                     url = 'wdj-extension://__MSG_@@extension_id__/index.html#app';
                     if (msg.id) {
                         url = 'wdj-extension://__MSG_@@extension_id__/detail.html?pos=w/search#' + msg.id;
                     }
-                    
+
                     this.getModule('browser').navigateToThirdParty(380, '', url);
                 }
                 break;
@@ -310,10 +325,16 @@
                 var moduleInstance = this.modules[name].getInstance(tab);
                 var $moduleCtn = this.$('.module-ctn');
                 if (moduleInstance.rendered) {
-                    moduleInstance.$el.removeClass('w-module-hide');
+                    moduleInstance.$el.css({
+                        'visibility' : 'visible',
+                        'opacity' : '1'
+                    }).removeClass('need-to-hide');
                 } else {
                     var $last = $moduleCtn.children().last();
-                    moduleInstance.$el.removeClass('w-module-hide');
+                    moduleInstance.$el.css({
+                        'visibility' : 'visible',
+                        'opacity' : '1'
+                    }).removeClass('need-to-hide');
 
                     if ($last.length === 0) {
                         $moduleCtn.append(moduleInstance.render().$el);
@@ -332,7 +353,10 @@
             hideModule : function (name) {
                 var moduleInstance = this.modules[name].getInstance();
                 if (moduleInstance.rendered) {
-                    moduleInstance.$el.addClass('w-module-hide');
+                    moduleInstance.$el.css({
+                        'visibility' : 'hidden',
+                        'opacity' : '0'
+                    }).addClass('need-to-hide');
                 }
 
                 moduleInstance.$('.w-ui-smartlist').removeClass('visible');
