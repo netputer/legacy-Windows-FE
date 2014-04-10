@@ -259,7 +259,9 @@
 </script>
 
 <script type="text/x-ui-template" id="device">
+    <img class="shadow" src="images/shadow.png" alt="" />
     <div class="stage-ctn">
+        <img class="shadow" src="images/shadow.png" alt="" />
         <div class="screen-wrap">
             <div class="screen-ctn vbox">
                 <div class="screen">
