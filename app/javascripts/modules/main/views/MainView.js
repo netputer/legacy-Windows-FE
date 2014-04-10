@@ -45,15 +45,15 @@
 
         var alert = window.alert;
 
-        var needToHide;
+        var $needToHide;
         var showModule = _.debounce(function(){
-            needToHide.removeClass('w-module-hide');
-            needToHide = undefined;
+            $needToHide.removeClass('w-module-hide');
+            $needToHide = undefined;
         }, 200);
 
         WindowState.on('resize', function (){
-            if (!needToHide) {
-                needToHide = $('.need-to-hide').addClass('w-module-hide');
+            if (!$needToHide) {
+                $needToHide = $('.need-to-hide').addClass('w-module-hide');
             }
             showModule();
         });
