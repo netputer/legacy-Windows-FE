@@ -471,7 +471,7 @@
 
                                 break;
                             case CONFIG.enums.MODEL_TYPE_PHOTO :
-                                if (FunctionSwitch.ENABLE_SHARE_SET_WALLPAPER){
+                                if (true){
     }}
     <button class="button-set-as-wallpaper primary">{{= i18n.taskManager.SET_AS_WALL_PAPER }}</button>
     {{                          }
