@@ -64,16 +64,13 @@
                 }
 
                 if (iframe.src === 'http://www.youtube.com/') {
-                    
                     var contents = $("#"+iframe.id).contents();
                     if (contents.find("#page-container").length === 1  && contents.find('#wdj-youtube-box').length === 0) {
                         var youtube = '<div id="wdj-youtube-box"><span id="wdj-youtube-info">' + i18n.browser.YOUTUBE_INFO_NO + '</span><a href="javascript:void(0);" class="disabled" id="wdj-youtube-download"> ' + i18n.browser.YOUTUBE_DOWNLOAD + ' </a></div>';
                         contents.find("body").append(youtube);
                     }
-                    
                 }
 
-                
                 break;
             case 'interactive':
                 this.progress += 20;
@@ -112,7 +109,6 @@
                 this.$iframe.on('readystatechange', errorPageHandler);
             }.bind(this)).always(function () {
                 this.progress += 20;
-                this.$('.browser-ctn').prepend(this.$iframe);
             }.bind(this));
         };
 
@@ -135,6 +131,11 @@
                     extension : model.id
                 });
             }
+
+            if (this.isDetach) {
+                this.isDetach = false;
+                this.$('.browser-ctn').prepend(this.$iframe);
+            }
         };
 
         var BrowserView = Backbone.View.extend({
@@ -145,6 +146,7 @@
                 var progress = 0;
                 var flashErrorHandler;
                 var $iframe;
+                var isDetach = false;
                 Object.defineProperties(this, {
                     id : {
                         set : function (value) {
@@ -193,6 +195,14 @@
                         },
                         get : function () {
                             return $iframe;
+                        }
+                    },
+                    isDetach : {
+                        set : function (value) {
+                            isDetach = value;
+                        },
+                        get : function () {
+                            return isDetach;
                         }
                     }
                 });
@@ -261,7 +271,6 @@
                 });
                 this.$el.prepend(this.browserToolbarView.render().$el);
 
-                var url = this.model.get('targetURL') || this.model.get('web_url');
                 if (this.autoGotoURL && url) {
                     this.$iframe.attr({
                         src : url,
@@ -269,17 +278,17 @@
                     });
                     this.model.unset('targetURL');
                 } else {
+                    this.isDetach = true;
                     this.$iframe.detach();
                 }
 
-                if (!this.model.get('extension')) {
+                if (this.model.get('extension')){
+                    this.progress += 20;
+                    changeHandler.call(this, this.model);
+                } else {
                     setTimeout(function () {
                         loadExtension.call(this);
                     }.bind(this), 0);
-                }
-
-                if (this.model.get('extension')) {
-                    this.progress += 20;
                 }
             },
             renderFlashNotifier : function () {
