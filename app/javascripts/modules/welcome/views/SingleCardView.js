@@ -52,7 +52,7 @@
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()))
                     .toggleClass('ad', this.model.get('ad'))
-                    .find('.button-navigate').attr('i18n' + navigator.language.toLowerCase() + '/images/default-app-100X100.png');
+                    .find('.button-navigate').attr(CONFIG.enums.IMAGE_PATH + '/default-app-100X100.png');
 
                 if (this.model.get('ad')) {
                     this.$('.footer').remove();
