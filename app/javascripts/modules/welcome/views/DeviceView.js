@@ -105,7 +105,7 @@
                 this.$el.css('opacity', disable ? '.7' : '1');
             },
             render : function () {
-                this.$el.html(this.template({})).addClass('fade-in').find('.screenshot').attr('src', 'i18n/' + navigator.language.toLowerCase() + '/images/blank.png');
+                this.$el.html(this.template({})).addClass('fade-in').find('.screenshot').attr('src', CONFIG.enums.IMAGE_PATH + '/blank.png');
 
                 this.renderShell(Device, Device.get('shell'));
                 this.renderScreenshot(Device, Device.get('screenshot'));

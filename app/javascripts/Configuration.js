@@ -4,6 +4,7 @@
 
     var base_path = window.require.s.contexts._.config.baseUrl;
     var source_base_path = base_path + '../i18n/' + navigator.language.toLowerCase();
+    var image_path = source_base_path + '/images';
 
     define([], function () {
         var Configuration = {
@@ -467,6 +468,9 @@
                 SHOW_IOS_ADVERTISMENT : 'ios.show.advertismnet'
             },
             enums : {
+
+                IMAGE_PATH : image_path,
+
                 /*Environment locale*/
                 LOCALE_ZH_CN : 'zh-CN',
                 LOCALE_EN_US : 'en-US',
@@ -521,9 +525,9 @@
                 INSTALL_LOCATION_DEVICE : 1,
 
                 /* Default contact icon */
-                CONTACT_DEFAULT_ICON : source_base_path + '/images/contact-default-small.png',
-                CONTACT_DEFAULT_BATCH_ICON : source_base_path + '/images/contact-default-batch.png',
-                CONTACT_DEFAULT_ICON_LARGE : source_base_path + '/images/contact-default-large.png',
+                CONTACT_DEFAULT_ICON : image_path + '/contact-default-small.png',
+                CONTACT_DEFAULT_BATCH_ICON : image_path + '/contact-default-batch.png',
+                CONTACT_DEFAULT_ICON_LARGE : image_path + '/contact-default-large.png',
                 CONTACT_DESCRIPTION_ITEM_TYPE_PHONE_NUMBER : 0,
 
                 /* MUSIC ITUNES IMPORT TYPE*/
@@ -583,17 +587,17 @@
                 TASK_STATE_STOPPED : 6,
 
                 /* Task default icon path */
-                TASK_DEFAULT_ICON_PATH_APP : source_base_path + '/images/icon_default_app_36X36.png',
-                TASK_DEFAULT_ICON_PATH_MUSIC : source_base_path + '/images/icon_default_music_36X36.png',
-                TASK_DEFAULT_ICON_PATH_PHOTO : source_base_path + '/images/icon_default_pic_36X36.png',
-                TASK_DEFAULT_ICON_PATH_VIDEO : source_base_path + '/images/icon_default_video_36X36.png',
-                TASK_DEFAULT_ICON_PATH_BOOK : source_base_path + '/images/icon_default_ebook_36X36.png',
-                TASK_DEFAULT_ICON_PATH_FILE : source_base_path + '/images/icon_default_file_36X36.png',
-                IMAGE_SPACER : source_base_path + '/images/spacer-20X20.png',
+                TASK_DEFAULT_ICON_PATH_APP : image_path + '/icon_default_app_36X36.png',
+                TASK_DEFAULT_ICON_PATH_MUSIC : image_path + '/icon_default_music_36X36.png',
+                TASK_DEFAULT_ICON_PATH_PHOTO : image_path + '/icon_default_pic_36X36.png',
+                TASK_DEFAULT_ICON_PATH_VIDEO : image_path + '/icon_default_video_36X36.png',
+                TASK_DEFAULT_ICON_PATH_BOOK : image_path + '/icon_default_ebook_36X36.png',
+                TASK_DEFAULT_ICON_PATH_FILE : image_path + '/icon_default_file_36X36.png',
+                IMAGE_SPACER : image_path + '/spacer-20X20.png',
 
                 /* Defaut icon */
-                DEFAULT_30X30 : source_base_path + '/images/default-30X30.png',
-                DEFAULT_42X42 : source_base_path + '/images/default-42X42.png',
+                DEFAULT_30X30 : image_path + '/default-30X30.png',
+                DEFAULT_42X42 : image_path + '/default-42X42.png',
 
                 /* Model type */
                 MODEL_TYPE_APPLICATION : 'app',
