@@ -271,6 +271,7 @@
                 });
                 this.$el.prepend(this.browserToolbarView.render().$el);
 
+                var url = this.model.get('targetURL') || this.model.get('web_url');
                 if (this.autoGotoURL && url) {
                     this.$iframe.attr({
                         src : url,
