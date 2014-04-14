@@ -95,10 +95,10 @@
             },
             clickButtonNavigateToDetail : function (evt) {
                 evt.stopPropagation();
-                BrowserModuleView.getInstance().navigateTo(StringUtil.format(CONFIG.enums.URL_WANDOUJIA_APP_DETAIL_PAGE, this.model.get('app').packageName, this.model.get('app').detailParam));
+                BrowserModuleView.navigate(StringUtil.format(CONFIG.enums.URL_WANDOUJIA_APP_DETAIL_PAGE, this.model.get('app').packageName, this.model.get('app').detailParam));
             },
             clickButtonNavigateToRefPage : function () {
-                BrowserModuleView.getInstance().navigateTo(StringUtil.format(CONFIG.enums.URL_WANDOUJIA_APP_DETAIL_PAGE, this.model.get('recReason').packageName, this.model.get('recReason').detailParam));
+                BrowserModuleView.navigate(StringUtil.format(CONFIG.enums.URL_WANDOUJIA_APP_DETAIL_PAGE, this.model.get('recReason').packageName, this.model.get('recReason').detailParam));
             },
             events : {
                 'click .button-install' : 'clickButtonInstall',

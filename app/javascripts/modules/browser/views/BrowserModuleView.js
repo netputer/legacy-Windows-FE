@@ -43,12 +43,6 @@
                         }
                     }
                 });
-
-                Backbone.on('switchModule', function (data) {
-                    if (data.module === 'browser' && !data.silent) {
-                        this.navigateToThirdParty(data.tab, ExtensionsCollection.getInstance().get(data.tab).get('name'), undefined, true);
-                    }
-                }, this);
             },
             render : function () {
                 this.rendered = true;
@@ -85,80 +79,42 @@
                         });
                     }
                 }
-
-                Backbone.trigger('switchModule', {
-                    module : 'browser',
-                    tab : extensionModel.id,
-                    silent : true,
-                    ignore : true
-                });
-
             },
             navigateToThirdParty : function (extentionId, extentionName, url, isPreview) {
-                var extension = ExtensionsCollection.getInstance().get(extentionId);
+                var selectedExtension = ExtensionsCollection.getInstance().filter(function (extension) {
+                    return extension.get('selected');
+                })[0];
 
-                if (extension !== undefined) {
-                    extension.set({
-                        selected : true
+                if (selectedExtension !== undefined) {
+                    selectedExtension.set({
+                        selected : false
                     });
+                }
 
-                   this.navigate(extension, url);
+                var extensionModel = new ExtensionModel({
+                    id : extentionId,
+                    name : extentionName || '',
+                    preview : true,
+                    targetURL : url,
+                    extensionPreview : isPreview
+                });
 
+                this.$('.w-browser').addClass('w-module-hide');
+
+                if (!publicBrowser) {
+                    publicBrowser = BrowserView.getInstance({
+                        id : IFRAME_PREFIX + 'misc',
+                        model : extensionModel
+                    });
+                    this.$el.prepend(publicBrowser.render().$el);
                 } else {
-                    var selectedExtension = ExtensionsCollection.getInstance().filter(function (extension) {
-                        return extension.get('selected');
-                    })[0];
-                    if (selectedExtension !== undefined) {
-                        selectedExtension.set({
-                            selected : false
-                        });
-                    }
-
-                    var extensionModel = new ExtensionModel({
-                        id : extentionId,
-                        name : extentionName || '',
-                        preview : true,
-                        targetURL : url,
-                        extensionPreview : isPreview
-                    });
-
-                    this.$('.w-browser').addClass('w-module-hide');
-
-                    if (!publicBrowser) {
-                        publicBrowser = BrowserView.getInstance({
-                            id : IFRAME_PREFIX + 'misc',
-                            model : extensionModel
-                        });
-                        this.$el.prepend(publicBrowser.render().$el);
-                    } else {
-                        publicBrowser.model = extensionModel;
-                        publicBrowser.render();
-                    }
-
-                    publicBrowser.$el.removeClass('w-module-hide');
-
-                    Backbone.trigger('switchModule', {
-                        module : 'browser',
-                        tab : 'misc'
-                    });
-                }
-            },
-            navigateTo : function (url, isDebug) {
-
-                if (isDebug) {
-                    this.navigateToThirdParty(CONFIG.enums.TEMP_EXTENTION_ID, 'Debug Mode', url);
-                    return;
+                    publicBrowser.model = extensionModel;
+                    publicBrowser.render();
                 }
 
-                var item;
-                var id = 18;
-                var name = i18n.browser.APP_SEARCH;
-                if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
-                    id = 138;
-                    name = 'Google Play';
-                }
+                publicBrowser.$el.removeClass('w-module-hide');
 
-                this.navigateToThirdParty(id, name, url);
+                return extensionModel;
             }
         });
 
@@ -172,16 +128,46 @@
                 return browserModuleView;
             },
             navigate : function (url, isDebug) {
-                this.getInstance().navigateTo(url, isDebug);
+                if (isDebug) {
+                    factory.navigateToThirdParty(CONFIG.enums.TEMP_EXTENTION_ID, 'Debug Mode', url);
+                    return;
+                }
+
+                var item;
+                var id = 18;
+                var name = i18n.browser.APP_SEARCH;
+                if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
+                    id = 138;
+                    name = 'Google Play';
+                }
+
+                factory.navigateToThirdParty(id, name, url);
             },
-            navigateToThirdParty : function (id, name, url) {
-                this.getInstance().navigateToThirdParty(id, name, url, true);
+            navigateToThirdParty : function (id, name, url, isPreview) {
+
+                var extension = ExtensionsCollection.getInstance().get(id);
+                var tab = 'misc';
+                var ignore = true;
+
+                if (extension !== undefined) {
+                    extension.set({
+                        selected : true
+                    });
+
+                    tab = id;
+                    this.getInstance().navigate(extension, url);
+                } else {
+                    ignore = false;
+                    isPreview = typeof isPreview === 'undefined' ? true : isPreview;
+                    extension = this.getInstance().navigateToThirdParty(id, name, url, isPreview);
+                }
 
                 Backbone.trigger('switchModule', {
                     module : 'browser',
-                    tab : id,
+                    tab : tab,
                     silent : true,
-                    ignore : true
+                    ignore : ignore,
+                    extension : extension
                 });
             }
         });
@@ -190,6 +176,25 @@
             'data.channel' : CONFIG.events.SIDEBAR_PREVIEW
         }, function (data) {
             factory.navigateToThirdParty(data.id || data, data.name, data.targetURL);
+        });
+
+        Backbone.on('switchModule', function (data) {
+
+            var name = '';
+            var url = '';
+            var tab = data.tab;
+
+            var extension = data.extension;
+            if (extension) {
+                name = extension.get('name');
+                url = extension.get('targetUrl');
+                tab = extension.id;
+            }
+
+            if (data.module === 'browser' && !data.silent) {
+                factory.navigateToThirdParty(tab, name, url);
+
+            }
         });
 
         return factory;
