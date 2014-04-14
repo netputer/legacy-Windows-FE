@@ -342,7 +342,7 @@
                 });
             },
             clickButtonNavigateToDetail : function () {
-                BrowserModuleView.getInstance().navigateTo(this.model.get('detail_page_info'));
+                BrowserModuleView.navigate(this.model.get('detail_page_info'));
             },
             clickButtonMoveToSDCard : function () {
                 AppService.batchMoveToSDCardAsync([this.model.id]);
@@ -352,11 +352,11 @@
             },
             clickButtonNavigateToCategory : function (evt) {
                 var basePath = 'http://apps.wandoujia.com/tag/{1}?pos=client/detail-panel';
-                BrowserModuleView.getInstance().navigateTo(StringUtil.format(basePath, $(evt.currentTarget).data('cate')));
+                BrowserModuleView.navigate(StringUtil.format(basePath, $(evt.currentTarget).data('cate')));
             },
             clickButtonNavigateToVersion : function () {
                 var basePath = 'http://apps.wandoujia.com/apps/{1}/versions?pos=client/detail-panel';
-                BrowserModuleView.getInstance().navigateTo(StringUtil.format(basePath, this.model.get('base_info').package_name));
+                BrowserModuleView.navigate(StringUtil.format(basePath, this.model.get('base_info').package_name));
             },
             clickButtonInstall : function () {
                 var model = new Backbone.Model(_.extend(this.model.get('downloadInfo'), {
