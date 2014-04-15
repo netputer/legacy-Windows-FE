@@ -134,8 +134,9 @@
                 }));
             };
 
-            if (SnapPea.CurrentModule === 'browser') {
-                var $iframe = $('#' + CONFIG.enums.IFRAME_PREFIX + SnapPea.CurrentTab + ' iframe');
+            var $iframe = $('#' + CONFIG.enums.IFRAME_PREFIX + SnapPea.CurrentTab + ' iframe');
+            if (SnapPea.CurrentModule === 'browser' && $iframe.length > 0) {
+
                 var frameId = $iframe[0].id;
                 var branch = $iframe.attr('branch');
                 var backCount = history.backCount(frameId, branch);
@@ -169,8 +170,8 @@
                 }));
             };
 
-            if (SnapPea.CurrentModule === 'browser') {
-                var $iframe = $('#' + CONFIG.enums.IFRAME_PREFIX + SnapPea.CurrentTab + ' iframe');
+            var $iframe = $('#' + CONFIG.enums.IFRAME_PREFIX + SnapPea.CurrentTab + ' iframe');
+            if (SnapPea.CurrentModule === 'browser' && $iframe.length > 0) {
                 var frameId = $iframe[0].id;
                 var branch = $iframe.attr('branch');
                 var forwardCount = history.forwardCount(frameId, branch);
@@ -257,7 +258,10 @@
                 if (!data.ignore) {
                     forwarStack.length = 0;
                 }
-                delete data.silent;
+
+                if (data.tab !== 'misc') {
+                    delete data.silent;
+                }
                 delete data.ignore;
 
                 if (data.tab) {

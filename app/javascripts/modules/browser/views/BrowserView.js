@@ -147,6 +147,7 @@
                 var flashErrorHandler;
                 var $iframe;
                 var isDetach = false;
+                var model;
                 Object.defineProperties(this, {
                     id : {
                         set : function (value) {
@@ -204,6 +205,18 @@
                         get : function () {
                             return isDetach;
                         }
+                    },
+                    model : {
+                        set : function (value) {
+                            if (model) {
+                                this.stopListening(model, 'change', changeHandler);
+                            }
+                            model = value;
+                            this.listenTo(model, 'change', changeHandler);
+                        },
+                        get : function () {
+                            return model;
+                        }
                     }
                 });
 
@@ -218,8 +231,6 @@
                 extensionsCollection = extensionsCollection || ExtensionsCollection.getInstance();
 
                 this.listenTo(extensionsCollection, 'remove', removeBrowser);
-
-                this.listenTo(this.model, 'change', changeHandler);
 
                 flashErrorHandler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.FLASH_ERROR
