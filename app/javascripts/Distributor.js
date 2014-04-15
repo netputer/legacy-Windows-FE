@@ -10,7 +10,7 @@
         };
 
         var SETTINGS = {
-            PERFORMANCE_TRACK : 0.01
+            PERFORMANCE_TRACK : 0.1
         };
 
         var Distributor = {};
