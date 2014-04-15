@@ -43,12 +43,6 @@
                         }
                     }
                 });
-
-                Backbone.on('switchModule', function (data) {
-                    if (data.module === 'browser' && !data.silent) {
-                        this.navigateToThirdParty(data.tab, ExtensionsCollection.getInstance().get(data.tab).get('name'), undefined, true);
-                    }
-                }, this);
             },
             render : function () {
                 this.rendered = true;
@@ -85,68 +79,78 @@
                         });
                     }
                 }
-
-                Backbone.trigger('switchModule', {
-                    module : 'browser',
-                    tab : extensionModel.id,
-                    silent : true,
-                    ignore : true
-                });
-
             },
             navigateToThirdParty : function (extentionId, extentionName, url, isPreview) {
-                var extension = ExtensionsCollection.getInstance().get(extentionId);
+                var selectedExtension = ExtensionsCollection.getInstance().find(function (extension) {
+                    return extension.get('selected');
+                });
 
-                if (extension !== undefined) {
-                    extension.set({
-                        selected : true
-                    });
-
-                   this.navigate(extension, url);
-
-                } else {
-                    var selectedExtension = ExtensionsCollection.getInstance().filter(function (extension) {
-                        return extension.get('selected');
-                    })[0];
-                    if (selectedExtension !== undefined) {
-                        selectedExtension.set({
-                            selected : false
-                        });
-                    }
-
-                    var extensionModel = new ExtensionModel({
-                        id : extentionId,
-                        name : extentionName || '',
-                        preview : true,
-                        targetURL : url,
-                        extensionPreview : isPreview
-                    });
-
-                    this.$('.w-browser').addClass('w-module-hide');
-
-                    if (!publicBrowser) {
-                        publicBrowser = BrowserView.getInstance({
-                            id : IFRAME_PREFIX + 'misc',
-                            model : extensionModel
-                        });
-                        this.$el.prepend(publicBrowser.render().$el);
-                    } else {
-                        publicBrowser.model = extensionModel;
-                        publicBrowser.render();
-                    }
-
-                    publicBrowser.$el.removeClass('w-module-hide');
-
-                    Backbone.trigger('switchModule', {
-                        module : 'browser',
-                        tab : 'misc'
+                if (selectedExtension !== undefined) {
+                    selectedExtension.set({
+                        selected : false
                     });
                 }
-            },
-            navigateTo : function (url, isDebug) {
 
+                var extensionModel = new ExtensionModel({
+                    id : extentionId,
+                    name : extentionName || '',
+                    preview : true,
+                    targetURL : url,
+                    extensionPreview : isPreview
+                });
+
+                this.$('.w-browser').addClass('w-module-hide');
+
+                if (!publicBrowser) {
+                    publicBrowser = BrowserView.getInstance({
+                        id : IFRAME_PREFIX + 'misc',
+                        model : extensionModel
+                    });
+                    this.$el.prepend(publicBrowser.render().$el);
+                } else {
+                    publicBrowser.model = extensionModel;
+                    publicBrowser.render();
+                }
+
+                publicBrowser.$el.removeClass('w-module-hide');
+
+                return extensionModel;
+            }
+        });
+
+        var browserModuleView;
+
+        var factory = _.extend({
+            getInstance : function () {
+                if (!browserModuleView) {
+                    browserModuleView = new BrowserModuleView();
+
+                    Backbone.on('switchModule', function (data) {
+
+                        var name = '';
+                        var url = '';
+                        var tab = data.tab;
+
+                        var extension = data.extension;
+                        if (extension) {
+                            name = extension.get('name');
+                            url = extension.get('targetUrl');
+                            tab = extension.id;
+                        }
+
+                        if (data.module === 'browser' && !data.silent) {
+                            factory.navigateToThirdParty(tab, name, url);
+
+                        }
+                    });
+
+                }
+
+                return browserModuleView;
+            },
+            navigate : function (url, isDebug) {
                 if (isDebug) {
-                    this.navigateToThirdParty(CONFIG.enums.TEMP_EXTENTION_ID, 'Debug Mode', url);
+                    factory.navigateToThirdParty(CONFIG.enums.TEMP_EXTENTION_ID, 'Debug Mode', url);
                     return;
                 }
 
@@ -158,30 +162,33 @@
                     name = 'Google Play';
                 }
 
-                this.navigateToThirdParty(id, name, url);
-            }
-        });
+                factory.navigateToThirdParty(id, name, url);
+            },
+            navigateToThirdParty : function (id, name, url, isPreview) {
 
-        var browserModuleView;
+                var extension = ExtensionsCollection.getInstance().get(id);
+                var tab = 'misc';
+                var ignore = true;
 
-        var factory = _.extend({
-            getInstance : function () {
-                if (!browserModuleView) {
-                    browserModuleView = new BrowserModuleView();
+                if (extension !== undefined) {
+                    extension.set({
+                        selected : true
+                    });
+
+                    tab = id;
+                    this.getInstance().navigate(extension, url);
+                } else {
+                    ignore = false;
+                    isPreview = typeof isPreview === 'undefined' ? true : isPreview;
+                    extension = this.getInstance().navigateToThirdParty(id, name, url, isPreview);
                 }
-                return browserModuleView;
-            },
-            navigate : function (url, isDebug) {
-                this.getInstance().navigateTo(url, isDebug);
-            },
-            navigateToThirdParty : function (id, name, url) {
-                this.getInstance().navigateToThirdParty(id, name, url, true);
 
                 Backbone.trigger('switchModule', {
                     module : 'browser',
-                    tab : id,
+                    tab : tab,
                     silent : true,
-                    ignore : true
+                    ignore : ignore,
+                    extension : extension
                 });
             }
         });

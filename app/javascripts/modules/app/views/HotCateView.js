@@ -88,7 +88,7 @@
                 var basePath = 'http://apps.wandoujia.com/tag/{1}?pos=w/manage';
 
                 var alias = $(evt.currentTarget).html();
-                BrowserModuleView.getInstance().navigateTo(formatString(basePath, alias));
+                BrowserModuleView.navigate(formatString(basePath, alias));
 
                 log({
                     'event' : 'ui.click.app_hot_cate',
@@ -100,7 +100,7 @@
 
                 var basePath = 'http://apps.wandoujia.com/special/{1}?pos=w/manage';
 
-                BrowserModuleView.getInstance().navigateTo(formatString(basePath, alias));
+                BrowserModuleView.navigate(formatString(basePath, alias));
 
                 log({
                     'event' : 'ui.click.app_hot_banner',
