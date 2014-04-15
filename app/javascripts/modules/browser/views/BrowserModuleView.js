@@ -81,9 +81,9 @@
                 }
             },
             navigateToThirdParty : function (extentionId, extentionName, url, isPreview) {
-                var selectedExtension = ExtensionsCollection.getInstance().filter(function (extension) {
+                var selectedExtension = ExtensionsCollection.getInstance().find(function (extension) {
                     return extension.get('selected');
-                })[0];
+                });
 
                 if (selectedExtension !== undefined) {
                     selectedExtension.set({
@@ -124,7 +124,28 @@
             getInstance : function () {
                 if (!browserModuleView) {
                     browserModuleView = new BrowserModuleView();
+
+                    Backbone.on('switchModule', function (data) {
+
+                        var name = '';
+                        var url = '';
+                        var tab = data.tab;
+
+                        var extension = data.extension;
+                        if (extension) {
+                            name = extension.get('name');
+                            url = extension.get('targetUrl');
+                            tab = extension.id;
+                        }
+
+                        if (data.module === 'browser' && !data.silent) {
+                            factory.navigateToThirdParty(tab, name, url);
+
+                        }
+                    });
+
                 }
+
                 return browserModuleView;
             },
             navigate : function (url, isDebug) {
@@ -176,25 +197,6 @@
             'data.channel' : CONFIG.events.SIDEBAR_PREVIEW
         }, function (data) {
             factory.navigateToThirdParty(data.id || data, data.name, data.targetURL);
-        });
-
-        Backbone.on('switchModule', function (data) {
-
-            var name = '';
-            var url = '';
-            var tab = data.tab;
-
-            var extension = data.extension;
-            if (extension) {
-                name = extension.get('name');
-                url = extension.get('targetUrl');
-                tab = extension.id;
-            }
-
-            if (data.module === 'browser' && !data.silent) {
-                factory.navigateToThirdParty(tab, name, url);
-
-            }
         });
 
         return factory;
