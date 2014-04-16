@@ -5,12 +5,14 @@
         'jquery',
         'Configuration',
         'IO',
+        'Device',
         'photo/collections/PhotoCollection'
     ], function (
         _,
         $,
         CONFIG,
         IO,
+        Device,
         PhotoCollection
     ) {
         console.log('LibraryPhotoCollection - File loaded. ');
@@ -53,7 +55,16 @@
             getInstance : function () {
                 if (!libraryPhotoCollection) {
                     libraryPhotoCollection = new LibraryPhotoCollection();
-                    libraryPhotoCollection.trigger('update');
+
+                    if (Device.get('isUSB')) {
+                        libraryPhotoCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                libraryPhotoCollection.trigger('update');
+                            }
+                        });
+                    }
                 }
                 return libraryPhotoCollection;
             },

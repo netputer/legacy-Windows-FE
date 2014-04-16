@@ -192,7 +192,16 @@
             getInstance : function (args) {
                 if (!threadsCollection) {
                     threadsCollection = new ThreadsCollection(args);
-                    threadsCollection.trigger('update');
+
+                    if (Device.get('isUSB')) {
+                        threadsCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                threadsCollection.trigger('update');
+                            }
+                        });
+                    }
                 }
 
                 return threadsCollection;

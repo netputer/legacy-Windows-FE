@@ -384,7 +384,15 @@
                         });
                     });
 
-                    conversationsCollection.trigger('update');
+                    if (Device.get('isUSB')) {
+                        conversationsCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                conversationsCollection.trigger('update');
+                            }
+                        });
+                    }
                 }
                 return conversationsCollection;
             }
