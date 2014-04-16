@@ -2,11 +2,13 @@
 (function (window) {
     define([
         'underscore',
+        'Device',
         'Internationalization',
         'contact/models/ContactModel',
         'contact/collections/ContactsCollection'
     ], function (
         _,
+        Device,
         i18n,
         ContactModel,
         ContactsCollection
@@ -75,8 +77,16 @@
             getInstance : function () {
                 if (!contactMultiNumbersCollection) {
                     contactMultiNumbersCollection = new ContactMultiNumbersCollection();
-                    contactMultiNumbersCollection.trigger('update');
-                }
+
+                    if (Device.get('isUSB')) {
+                        contactMultiNumbersCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                contactMultiNumbersCollection.trigger('update');
+                            }
+                        });
+                    }                          }
                 return contactMultiNumbersCollection;
             }
         });

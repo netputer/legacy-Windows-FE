@@ -3,10 +3,12 @@
     define([
         'underscore',
         'Configuration',
+        'Device',
         'photo/collections/PhotoCollection'
     ], function (
         _,
         CONFIG,
+        Device,
         PhotoCollection
     ) {
         console.log('PhonePhotoCollection - File loaded. ');
@@ -23,7 +25,16 @@
             getInstance: function () {
                 if (!phonePhotoCollection) {
                     phonePhotoCollection = new PhonePhotoCollection();
-                    phonePhotoCollection.trigger('update');
+
+                    if (Device.get('isUSB')) {
+                        phonePhotoCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                phonePhotoCollection.trigger('update');
+                            }
+                        });
+                    }
                 }
                 return phonePhotoCollection;
             },
