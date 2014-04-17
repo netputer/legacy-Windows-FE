@@ -76,9 +76,6 @@
                     welcomeModuleView = new WelcomeModuleView();
                 }
                 return welcomeModuleView;
-            },
-            preload : function () {
-                return;
             }
         });
 
