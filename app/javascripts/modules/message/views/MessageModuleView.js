@@ -147,16 +147,11 @@
         var messageModuleView;
 
         var factory = _.extend({
-            enablePreload : false,
             getInstance: function () {
                 if (!messageModuleView) {
                     messageModuleView = new MessageModuleView();
                 }
                 return messageModuleView;
-            },
-            preload : function () {
-                ConversationsCollection.getInstance();
-                ThreadsCollection.getInstance();
             },
             navigateGroup : function (msg) {
                 Backbone.trigger('switchModule', {

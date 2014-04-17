@@ -88,10 +88,6 @@
         var galleryView;
 
         var factory = _.extend({
-            enablePreload : false,
-            preload : function () {
-                return;
-            },
             getInstance : function (args) {
                 if (!galleryView) {
                     galleryView = new GalleryView(args);

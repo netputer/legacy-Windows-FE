@@ -64,9 +64,6 @@
                 var inst = ImportVideoView.getInstance();
                 inst.resp = resp;
                 inst.show();
-            },
-            preload : function () {
-                return;
             }
         });
 

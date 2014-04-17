@@ -74,16 +74,11 @@
         var contactModuleView;
 
         var factory = _.extend({
-            enablePreload : false,
             getInstance : function () {
                 if (!contactModuleView) {
                     contactModuleView = new ContactModuleView();
                 }
                 return contactModuleView;
-            },
-            preload : function () {
-                ContactsCollection.getInstance();
-                AccountCollection.getInstance();
             },
             navigateGroup : function (msg) {
                 Backbone.trigger('switchModule', {
