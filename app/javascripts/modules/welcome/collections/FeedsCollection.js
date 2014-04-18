@@ -140,12 +140,12 @@
             },
             snapPeaFetch : function () {
                 this.set([
-                    { feedItemType : 100 },
-                    { feedItemType : 103 },
-                    { feedItemType : 101 },
-                    { feedItemType : 102 }
-                    // { feedItemType : 104 }
-                    // { feedItemType : 105 }
+                    { feedItemType : 100, feedName : 'snappea-web'},
+                    { feedItemType : 103, feedName : 'snappea-facebook'},
+                    { feedItemType : 101, feedName : 'snappea-photos'},
+                    { feedItemType : 102, feedName : 'snappea-feedback'}
+                    // { feedItemType : 104, feedName : 'snappea-itunes'}
+                    // { feedItemType : 105, feedname : 'snappea-youtube'}
                 ]);
 
                 setTimeout(function () {

@@ -5,9 +5,7 @@
         'underscore',
         'doT',
         'Configuration',
-        'Log',
         'Internationalization',
-        'browser/views/BrowserModuleView',
         'ui/TemplateFactory',
         'welcome/views/FeedCardView'
     ], function (
@@ -15,9 +13,7 @@
         _,
         doT,
         CONFIG,
-        log,
         i18n,
-        BrowserModuleView,
         TemplateFactory,
         FeedCardView
     ) {
@@ -29,14 +25,8 @@
                 return this;
             },
             clickButtonAction : function () {
-                BrowserModuleView.navigateToThirdParty(274, 'YouTube');
-
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'snappea-youtube'
-                });
+                this.openDoraemon(274);
+                this.log();
             },
             events : {
                 'click .button-action' : 'clickButtonAction'

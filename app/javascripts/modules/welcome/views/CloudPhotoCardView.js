@@ -5,7 +5,6 @@
         'underscore',
         'doT',
         'Configuration',
-        'Log',
         'Account',
         'IOBackendDevice',
         'Internationalization',
@@ -18,7 +17,6 @@
         _,
         doT,
         CONFIG,
-        log,
         Account,
         IO,
         i18n,
@@ -29,7 +27,7 @@
     ) {
         var CloudPhotoCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'cloud-photo')),
-            className : FeedCardView.getClass().prototype.className + ' cloud-photo hide',
+            className : FeedCardView.getClass().prototype.className + ' vbox cloud-photo hide',
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -41,14 +39,20 @@
                 }.bind(this));
                 return this;
             },
-            hide : function () {
+            setSettings : function () {
                 Settings.set('welcome_feed_cloud_photo', true, true);
+                Settings.set('welcome_feed_cloud_photo_show', new Date().getTime(), true);
             },
             clickButtonAction : function () {
-                if (Account.get('isLogin')) {
+
+                var turnPhotoAsync = function () {
                     SyncService.setPhotoSyncSwitchAsync(true).done(SyncService.uploadPhotoAsync);
+                    this.setSettings();
                     this.remove();
-                    this.hide();
+                }.bind(this);
+
+                if (Account.get('isLogin')) {
+                    turnPhotoAsync();
                     return;
                 }
 
@@ -58,23 +62,23 @@
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                 }, function (message) {
                     if (message.auth) {
-                        SyncService.setPhotoSyncSwitchAsync(true).done(SyncService.uploadPhotoAsync);
-                        this.remove();
-                        this.hide();
+                        turnPhotoAsync();
                         IO.Backend.Device.offmessage(handler);
                     }
                 }, this);
 
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'cloud-photo'
+                this.log({
+                    action : 'cloud-photo'
                 });
             },
             clickButtonIgnore : function () {
+
+                this.log({
+                    action : 'ignore'
+                });
+
+                this.setSettings();
                 this.remove();
-                this.hide();
             },
             events : {
                 'click .button-action' : 'clickButtonAction',

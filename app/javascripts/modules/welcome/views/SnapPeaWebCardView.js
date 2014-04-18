@@ -26,16 +26,8 @@
                 this.$el.html(this.template({}));
                 return this;
             },
-            clickButtonAction : function () {
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'snappea-web'
-                });
-            },
             events : {
-                'click .button-action' : 'clickButtonAction'
+                'click .button-action' : 'log'
             }
         });
 

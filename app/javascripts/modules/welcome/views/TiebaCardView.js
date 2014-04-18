@@ -4,7 +4,6 @@
         'backbone',
         'underscore',
         'doT',
-        'Log',
         'IOBackendDevice',
         'Internationalization',
         'Settings',
@@ -14,7 +13,6 @@
         Backbone,
         _,
         doT,
-        log,
         IO,
         i18n,
         Settings,
@@ -23,14 +21,13 @@
     ) {
         var TiebaCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'tieba')),
-            className : FeedCardView.getClass().prototype.className + ' tieba hide',
+            className : FeedCardView.getClass().prototype.className + ' vbox tieba hide',
             render : function () {
                 this.$el.html(this.template({}));
 
                 var count = Settings.get('welcome_count_tieba') || 0;
 
-                if (!Settings.get('welcome_feed_tieba') &&
-                        count < 5) {
+                if (!Settings.get('welcome_feed_tieba') && count < 5) {
                     this.$el.removeClass('hide');
                     this.options.parentView.initLayout();
 
@@ -41,7 +38,7 @@
 
                 return this;
             },
-            hide : function () {
+            setSettings : function () {
                 Settings.set('welcome_feed_tieba', true, true);
             },
             clickButtonAction : function () {
@@ -51,17 +48,19 @@
                     }).text(i18n.welcome.CARD_WEIBO_ACTION_CLICKED);
                 }.bind(this), 500);
 
-                this.hide();
-
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'tieba'
+                this.openUrl("http://tieba.baidu.com/f?ie=utf-8&kw=%E8%B1%8C%E8%B1%86%E8%8D%9A");
+                this.log({
+                    action : 'tieba'
                 });
+                this.setSettings();
             },
             clickButtonIgnore : function () {
-                this.hide();
+
+                this.log({
+                    action : 'ignore'
+                });
+
+                this.setSettings();
                 this.remove();
             },
             events : {

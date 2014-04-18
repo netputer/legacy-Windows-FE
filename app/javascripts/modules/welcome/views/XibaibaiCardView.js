@@ -8,7 +8,6 @@
         'Configuration',
         'Internationalization',
         'Settings',
-        'Log',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'welcome/views/FeedCardView',
@@ -24,7 +23,6 @@
         CONFIG,
         i18n,
         Settings,
-        log,
         TemplateFactory,
         StringUtil,
         FeedCardView,
@@ -35,8 +33,8 @@
     ) {
 
         var XibaibaiCardView = FeedCardView.getClass().extend({
-            template : doT.template(TemplateFactory.get('welcome', 'card-app-set')),
-            className : FeedCardView.getClass().prototype.className + ' app-set xibaibai hide',
+            template : doT.template(TemplateFactory.get('welcome', 'xibaibai-card')),
+            className : FeedCardView.getClass().prototype.className + ' vbox xibaibai hide',
             tagName : 'li',
             render : function () {
                 XibaibaiService.scanAppsAsync().done(function (appsQueryResultCollection) {
@@ -44,7 +42,7 @@
                         var appsCollection = AppsCollection.getInstance();
 
                         this.$el.html(this.template({
-                            items : _.map(appsQueryResultCollection.models.concat().splice(0, 5), function (item) {
+                            items : _.map(appsQueryResultCollection.models.concat().splice(0, 2), function (item) {
                                 return appsCollection.get(item.get('sourceApk').packageName).toJSON();
                             }),
                             title : i18n.welcome.CARD_XIBAIBAI_TITLE,
@@ -64,7 +62,7 @@
 
                 return this;
             },
-            clickButtonAction : function () {
+            doAction : function () {
                 IO.requestAsync({
                     url : CONFIG.actions.PUBLISH_EVENT,
                     data : {
@@ -74,21 +72,32 @@
                         })
                     }
                 });
-                this.remove();
-
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'xibaibai'
+            },
+            clickButtonAction : function () {
+                this.doAction();
+                this.log({
+                    action : 'xibaibai',
+                    element : 'button'
                 });
             },
             clickButtonIgnore : function () {
+                this.log({
+                    action : 'ignore',
+                    element : 'title'
+                });
                 this.remove();
+            },
+            clickIcon : function () {
+                this.doAction();
+                this.log({
+                    action : 'xibaibai',
+                    element : 'icon'
+                });
             },
             events : {
                 'click .button-action' : 'clickButtonAction',
-                'click .button-ignore' : 'clickButtonIgnore'
+                'click .button-ignore' : 'clickButtonIgnore',
+                'click .icon' : 'clickIcon'
             }
         });
 

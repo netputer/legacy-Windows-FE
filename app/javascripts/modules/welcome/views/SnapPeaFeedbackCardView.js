@@ -5,7 +5,6 @@
         'underscore',
         'doT',
         'Configuration',
-        'Log',
         'Internationalization',
         'ui/TemplateFactory',
         'welcome/views/FeedCardView'
@@ -14,7 +13,6 @@
         _,
         doT,
         CONFIG,
-        log,
         i18n,
         TemplateFactory,
         FeedCardView
@@ -26,16 +24,8 @@
                 this.$el.html(this.template({}));
                 return this;
             },
-            clickButtonAction : function () {
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'snappea-feedback'
-                });
-            },
             events : {
-                'click .button-action' : 'clickButtonAction'
+                'click .button-action' : 'log'
             }
         });
 
