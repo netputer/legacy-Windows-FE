@@ -3,7 +3,7 @@
     'use strict';
 
     var base_path = window.require.s.contexts._.config.baseUrl;
-    var source_base_path = base_path + '../i18n/' + navigator.language.toLowerCase();
+    var source_base_path = base_path + '../i18n/' + window.navigator.language.toLowerCase();
     var image_path = source_base_path + '/images';
 
     define([], function () {
@@ -339,7 +339,7 @@
                 CLOUD_SECCODE : 'https://account.wandoujia.com/v4/api/seccode',
 
                 WELCOME_BACKGROUND : 'http://apps.wandoujia.com/startpage/api/v1/background',
-                WELCOME_FEEDS : 'http://apps.wandoujia.com/startpage/api/v1/feeds',
+                WELCOME_FEEDS : 'http://60.29.246.10/debug/api/v1/fetch',
                 WELCOME_SINGLE_FEED : 'http://apps.wandoujia.com/startpage/api/v1/feed',
                 WELCOME_CHANGELOG : 'http://m.cfg.wandoujia.com/windows/index.php',
 
@@ -468,6 +468,8 @@
                 SHOW_IOS_ADVERTISMENT : 'ios.show.advertismnet'
             },
             enums : {
+
+                LAUNCH_TIME_KEY : 'wandoujia-launch-times',
 
                 IMAGE_PATH : image_path,
 

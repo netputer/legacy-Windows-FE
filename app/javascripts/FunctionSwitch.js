@@ -302,6 +302,11 @@
                 get : function () {
                     return ProjectConfig.get('SHOW_FIRST_EXTENSION_WHEN_CONNECTION_CHANGED');
                 }
+            },
+            IS_NEW_USER : {
+                get : function () {
+                    return Settings.get(CONFIG.enums.LAUNCH_TIME_KEY) <= 3;
+                }
             }
         });
 
