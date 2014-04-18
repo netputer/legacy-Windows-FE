@@ -6,63 +6,41 @@
         'Configuration',
         'Environment',
         'Device',
-        'Log'
+        'Log',
+        'Account',
+        'ParserFactory'
     ], function (
         Backbone,
         _,
         CONFIG,
         Environment,
         Device,
-        log
+        log,
+        Account,
+        ParserFactory
     ) {
         console.log('FeedsCollection - File loaded. ');
 
-        var firstLoad = true;
+        var totalFeedCursor = 0;
 
         var FeedsCollection = Backbone.Collection.extend({
             url : CONFIG.actions.WELCOME_FEEDS,
             data : {
-                totalFeedCursor : 0,
-                singleFeedCursor : 0,
+                ch : Environment.get('source'),
                 max : 30,
-                udid : ''
+                udid : '',
+                start : 0,
+                platform : 'windows',
+                launchedCount : Settings.get(CONFIG.enums.LAUNCH_TIME_KEY)
             },
-            parse : function (resp) {
-                if (firstLoad) {
-                    resp.feeds.unshift({
-                        type : 99
-                    });
+            parse : function (cards) {
 
-                    resp.feeds.unshift({
-                        type : 98
-                    });
-
-                    firstLoad = false;
-                }
-
-                this.data.totalFeedCursor = resp.totalFeedCursor;
-                this.data.singleFeedCursor = resp.singleFeedCursor;
-
-                this.finish = resp.feeds.length === 0;
-
-                _.each(resp.feeds, function (feed) {
-                    var list = [20, 21, 22, 23, 24, 25];
-                    if (list.indexOf(feed.type) >= 0) {
-                        _.each(feed.items, function (item) {
-                            if (item.tagline === 'null') {
-                                item.tagline = '';
-                            }
-                        });
-                    }
+                return _.map(cards, function (card) {
+                    var model = card.feedItem;
+                    model.feedItemType = card.feedItemType;
+                    model.feedName = card.feedName;
+                    return model;
                 });
-
-                log({
-                    'event' : 'debug.welcome_feed_load',
-                    'totalFeedCursor' : this.data.totalFeedCursor,
-                    'singleFeedCursor' : this.data.singleFeedCursor
-                });
-
-                return resp.feeds;
             },
             initialize : function () {
                 var loading = false;
@@ -94,20 +72,54 @@
                     });
                 }
 
+                if (Account.isLogin) {
+                    this.data.uid = Account.get('uid');
+                }
+                this.listenTo(Account, 'change:uid', function (Account, uid){
+                    if (Account.isLogin) {
+                        this.data.uid = uid;
+                    } else {
+                        delete this.data.uid;
+                    }
+                });
+
                 this.on('update', function () {
                     loading = true;
                     if (!this.finish) {
                         var doFetch = function () {
                             this.fetch({
-                                success : function (collection) {
-                                    loading = false;
-                                    collection.trigger('refresh', collection);
+                                success : function (collection, resp) {
+
+                                    collection.data.start += collection.data.max + 1;
+
+                                    ParserFactory.addTask(resp, function (result) {
+
+                                        var cards = result.data.cards;
+
+                                        if (cards.length < this.data.max) {
+                                            this.finish = true;
+                                        }
+
+                                        this.set(cards, {
+                                            parse : true
+                                        });
+
+                                        loading = false;
+                                        this.trigger('refresh', this);
+
+                                        totalFeedCursor += this.data.max;
+                                        log({
+                                            'event' : 'debug.welcome_feed_load',
+                                            'totalFeedCursor' : totalFeedCursor
+                                        });
+
+                                    }, collection);
                                 },
                                 error : function (collection) {
                                     loading = false;
                                     collection.trigger('refresh', collection);
-                                }
-                            }, {
+                                },
+                                parse : false,
                                 reset : true
                             });
                         };
@@ -128,12 +140,12 @@
             },
             snapPeaFetch : function () {
                 this.set([
-                    { type : 100 },
-                    { type : 103 },
-                    { type : 101 },
-                    { type : 102 }
-                    // { type : 104 }
-                    // { type : 105 }
+                    { feedItemType : 100 },
+                    { feedItemType : 103 },
+                    { feedItemType : 101 },
+                    { feedItemType : 102 }
+                    // { feedItemType : 104 }
+                    // { feedItemType : 105 }
                 ]);
 
                 setTimeout(function () {
