@@ -5,7 +5,6 @@
         'underscore',
         'jquery',
         'doT',
-        'Log',
         'IOBackendDevice',
         'Configuration',
         'Environment',
@@ -19,7 +18,6 @@
         _,
         $,
         doT,
-        log,
         IO,
         CONFIG,
         Environment,
@@ -31,7 +29,7 @@
     ) {
         var ChangelogCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'changelog')),
-            className : FeedCardView.getClass().prototype.className + ' changelog hide',
+            className : FeedCardView.getClass().prototype.className + ' vbox changelog hide',
             initialize : function () {
                 var resp = {};
                 Object.defineProperties(this, {
@@ -86,14 +84,15 @@
                     target : '_default'
                 })[0].click();
 
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'changelog'
+                this.log({
+                    action : 'changelog'
                 });
             },
             clickButtonIgnore : function () {
+                this.log({
+                    action : 'ignore'
+                });
+
                 this.remove();
             },
             events : {

@@ -189,6 +189,7 @@
 
                     deviceView.$el.one('webkitAnimationEnd', function () {
                         if (FunctionSwitch.ENABLE_USER_GUIDE &&
+                                FunctionSwitch.IS_NEW_USER &&
                                 !Settings.get('welcome_feed_tips')) {
                             guideView = GuideView.getInstance();
                             $top.after(guideView.render().$el);

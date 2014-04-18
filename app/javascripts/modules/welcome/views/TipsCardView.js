@@ -4,7 +4,6 @@
         'backbone',
         'underscore',
         'doT',
-        'Log',
         'IOBackendDevice',
         'Internationalization',
         'ui/TemplateFactory',
@@ -13,7 +12,6 @@
         Backbone,
         _,
         doT,
-        log,
         IO,
         i18n,
         TemplateFactory,
@@ -21,25 +19,27 @@
     ) {
         var TipsCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'tips')),
-            className : FeedCardView.getClass().prototype.className + ' tips hide',
+            className : FeedCardView.getClass().prototype.className + ' vbox tips hide',
             render : function () {
                 this.$el.html(this.template({}));
                 return this;
             },
-            hide : function () {
-                Settings.set('welcome_feed_tips', true, true);
-            },
             clickButtonAction : function () {
                 Backbone.trigger('welcome:showTips');
 
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'action' : 'tips'
+                this.log({
+                    action : 'tips'
                 });
             },
             clickButtonIgnore : function () {
+
+                Settings.set('welcome_feed_tips', true, true);
+
+                this.log({
+                    action : 'ignore'
+                });
+
                 this.remove();
-                this.hide();
             },
             events : {
                 'click .button-action' : 'clickButtonAction',

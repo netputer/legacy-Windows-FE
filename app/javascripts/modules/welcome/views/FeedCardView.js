@@ -3,12 +3,17 @@
     define([
         'backbone',
         'underscore',
-        'jquery'
+        'jquery',
+        'Log',
+        'IO'
     ], function (
         Backbone,
         _,
-        $
+        $,
+        log,
+        IO
     ) {
+
         var FeedCardView = Backbone.View.extend({
             className : 'w-welcome-feed-card hbox',
             tagName : 'li',
@@ -28,6 +33,28 @@
                 }
 
                 return index;
+            },
+            log : function (data) {
+
+                log(_.extend({
+                    'event' : 'ui.click.welcome_card_action',
+                    'name' : this.model.get('feedName'),
+                    'index' : this.getIndex()
+                }, data));
+            },
+            openUrl : function (url){
+                IO.requestAsync({
+                    url : CONFIG.actions.OPEN_URL,
+                    data : {
+                        url : url
+                    }
+                });
+            },
+            openDoraemon : function (id) {
+                IO.sendCustomEventsAsync(CONFIG.events.WEB_NAVIGATE, {
+                    type : CONFIG.enums.NAVIGATE_TYPE_DORAEMON,
+                    id : id
+                });
             }
         });
 

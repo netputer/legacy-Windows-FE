@@ -6,7 +6,6 @@
         'doT',
         'Internationalization',
         'Settings',
-        'Log',
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'welcome/views/FeedCardView',
@@ -19,7 +18,6 @@
         doT,
         i18n,
         Settings,
-        log,
         TemplateFactory,
         StringUtil,
         FeedCardView,
@@ -30,9 +28,8 @@
         var appsCollection;
 
         var UpdateCardView = FeedCardView.getClass().extend({
-            template : doT.template(TemplateFactory.get('welcome', 'card-app-set')),
-            className : FeedCardView.getClass().prototype.className + ' app-set update',
-            tagName : 'li',
+            template : doT.template(TemplateFactory.get('welcome', 'update-card')),
+            className : FeedCardView.getClass().prototype.className + ' vbox update',
             initialize : function () {
                 appsCollection = AppsCollection.getInstance();
                 this.listenTo(appsCollection, 'refresh', function () {
@@ -42,49 +39,70 @@
             },
             render : function () {
                 var apps = appsCollection.getUpdatableApps();
-                var show = apps.length !== 0;
+                var items = apps.concat();
+                var lastLength = Settings.get('welcome-card-update-number') || 0;
+
+                var show = apps.length !== 0 && (lastLength !== apps.length || Settings.get('welcome-card-update-ignore'));
+
                 this.$el.toggleClass('hide', !show);
+
                 if (show) {
+
+                    if (apps.length >= 3 ) {
+                        items = items.splice(0, 3);
+                    } else {
+                        items = items.splice(0, 1);
+                    }
+
                     this.$el.html(this.template({
-                        items : _.map(apps.concat().splice(0, 5), function (app) {
-                            return app.toJSON();
-                        }),
-                        title : i18n.welcome.CARD_UPDATE_TITLE,
-                        desc : StringUtil.format(i18n.welcome.CARD_UPDATE_DESC, apps[0].get('base_info').name, apps.length),
                         action : i18n.welcome.CARD_UPDATE_ACTION,
-                        length : apps.length
+                        length : apps.length,
+                        items : _.map(items, function (app) {
+                            return app.toJSON();
+                        })
                     }));
 
-                    this.$('.count').toggleClass('min', apps.length > 99);
+                    this.$el.toggleClass('max', apps.length >= 3);
 
-                    Settings.set('welcome-card-update-show', new Date().getTime(), true);
                 }
 
+                Settings.set('welcome-card-update-number', apps.length, true);
                 return this;
             },
-            clickButtonDetail : function () {
+            clickButtonAction : function () {
                 Backbone.trigger('switchModule', {
                     module : 'app',
                     tab : 'update'
                 });
-            },
-            clickButtonAction : function () {
-                OneKeyUpdateWindowView.getInstance().show();
-                this.remove();
 
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'update'
+                this.log({
+                    action : 'update',
+                    element : 'button'
                 });
             },
             clickButtonIgnore : function () {
+                this.log({
+                    action : 'ignore',
+                    element : 'title'
+                });
                 this.remove();
+
+                Settings.set('welcome-card-update-ignore', true, true);
+            },
+            clickAppList : function () {
+                Backbone.trigger('switchModule', {
+                    module : 'app',
+                    tab : 'update'
+                });
+
+                this.log({
+                    action : 'update',
+                    element : 'applist'
+                });
             },
             events : {
+                'click .apps-list' : 'clickAppList',
                 'click .button-action' : 'clickButtonAction',
-                'click .button-detail' : 'clickButtonDetail',
                 'click .button-ignore' : 'clickButtonIgnore'
             }
         });
