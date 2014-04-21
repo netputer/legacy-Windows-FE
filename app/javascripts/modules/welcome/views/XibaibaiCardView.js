@@ -62,7 +62,7 @@
 
                 return this;
             },
-            doAction : function () {
+            clickButtonAction : function (evt) {
                 IO.requestAsync({
                     url : CONFIG.actions.PUBLISH_EVENT,
                     data : {
@@ -72,32 +72,20 @@
                         })
                     }
                 });
-            },
-            clickButtonAction : function () {
-                this.doAction();
+
                 this.log({
-                    action : 'xibaibai',
-                    element : 'button'
-                });
+                    action : 'xibaibai'
+                }, evt);
             },
-            clickButtonIgnore : function () {
+            clickButtonIgnore : function (evt) {
                 this.log({
-                    action : 'ignore',
-                    element : 'title'
-                });
+                    action : 'ignore'
+                }, evt);
                 this.remove();
             },
-            clickIcon : function () {
-                this.doAction();
-                this.log({
-                    action : 'xibaibai',
-                    element : 'icon'
-                });
-            },
             events : {
-                'click .button-action' : 'clickButtonAction',
+                'click .button-action, .icon' : 'clickButtonAction',
                 'click .button-ignore' : 'clickButtonIgnore',
-                'click .icon' : 'clickIcon'
             }
         });
 

@@ -34,12 +34,13 @@
 
                 return index;
             },
-            log : function (data) {
+            log : function (data, evt) {
 
                 log(_.extend({
                     'event' : 'ui.click.welcome_card_action',
-                    'name' : this.model.get('feedName'),
-                    'index' : this.getIndex()
+                    'name' : this.model ? this.model.get('feedName') : '',
+                    'index' : this.getIndex(),
+                    'element' : evt.currentTarget.nodeName
                 }, data));
             },
             openUrl : function (url){

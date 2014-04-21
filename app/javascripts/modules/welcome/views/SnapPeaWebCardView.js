@@ -26,8 +26,13 @@
                 this.$el.html(this.template({}));
                 return this;
             },
+            clickButtonAction : function (evt) {
+                this.log({
+                    action : 'web'
+                }, evt);
+            },
             events : {
-                'click .button-action' : 'log'
+                'click .button-action' : 'clickButtonAction'
             }
         });
 

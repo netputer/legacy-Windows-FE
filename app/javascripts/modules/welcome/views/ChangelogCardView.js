@@ -78,25 +78,25 @@
                 });
                 return this;
             },
-            clickButtonAction : function () {
+            clickButtonAction : function (evt) {
                 $('<a>').attr({
                     href : this.resp.blog,
                     target : '_default'
                 })[0].click();
 
                 this.log({
-                    action : 'changelog'
-                });
+                    action : 'changelog',
+                }, evt);
             },
-            clickButtonIgnore : function () {
+            clickButtonIgnore : function (evt) {
                 this.log({
-                    action : 'ignore'
-                });
+                    action : 'ignore',
+                }, evt);
 
                 this.remove();
             },
             events : {
-                'click .button-action' : 'clickButtonAction',
+                'click .button-action, .icon' : 'clickButtonAction',
                 'click .button-ignore' : 'clickButtonIgnore'
             }
         });

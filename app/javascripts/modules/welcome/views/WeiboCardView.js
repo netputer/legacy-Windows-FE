@@ -41,7 +41,8 @@
             setSettings : function () {
                 Settings.set('welcome_feed_weibo', true, true);
             },
-            doAction : function () {
+            clickButtonAction : function (evt) {
+
                 setTimeout(function () {
                     this.$el.addClass('following').find('.button-action').attr({
                         disabled : true
@@ -51,37 +52,24 @@
                 this.openUrl('http://weibo.com/wandoulabs');
 
                 this.setSettings();
-            },
-            clickButtonAction : function () {
 
-                this.doAction();
                 this.log({
-                    action : 'weibo',
-                    element : 'button'
-                });
+                    action : 'weibo'
+                }, evt);
             },
-            clickButtonIgnore : function () {
+            clickButtonIgnore : function (evt) {
 
                 this.setSettings();
 
                 this.log({
                     action : 'ignore'
-                });
+                }, evt);
 
                 this.remove();
             },
-            clickIcon : function () {
-
-                this.doAction();
-                this.log({
-                    action : 'weibo',
-                    element : 'icon'
-                });
-            },
             events : {
-                'click .button-action' : 'clickButtonAction',
-                'click .button-ignore' : 'clickButtonIgnore',
-                'click .icon' : 'clickIcon'
+                'click .button-action, .icon' : 'clickButtonAction',
+                'click .button-ignore' : 'clickButtonIgnore'
             }
         });
 

@@ -44,7 +44,7 @@
             setSetting : function () {
                 Settings.set('welcome-card-backup-show', Date.now(), true);
             },
-            clickButtonAction : function () {
+            clickButtonAction : function (evt) {
 
                 if (!FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE && !Device.get('isUSB')) {
                     alert(i18n.new_backuprestore.TIP_IN_WIFI);
@@ -59,21 +59,21 @@
 
                 this.log({
                     action : 'backup'
-                });
+                }, evt);
 
                 this.remove();
             },
-            clickButtonIgnore : function () {
+            clickButtonIgnore : function (evt) {
 
                 this.log({
                     action : 'ignore'
-                });
+                }, evt);
 
                 this.setSetting();
                 this.remove();
             },
             events : {
-                'click .button-action' : 'clickButtonAction',
+                'click .button-action, .icon' : 'clickButtonAction',
                 'click .button-ignore' : 'clickButtonIgnore'
             }
         });

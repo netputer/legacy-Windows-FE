@@ -24,6 +24,11 @@
                 this.$el.html(this.template({}));
                 return this;
             },
+            clickButtonAction : function (evt) {
+                this.log({
+                    action : 'photos'
+                }, evt);
+            },
             events : {
                 'click .button-action' : 'log'
             }

@@ -9,7 +9,7 @@
 </script>
 
 <script type="text/x-ui-template" id="app-card">
-    <img class="icon" alt="{{! it.title }}" />
+    <img class="icon" alt="{{! it.title }}" src='{{= CONFIG.enums.IMAGE_PATH + "/default-app-100X100.png" }}'/>
     <div class="info-ctn vbox">
         <div class="info-top hbox">
             <div class="info">
@@ -80,7 +80,7 @@
     <img class="icon" alt="{{! it.title }}" />
     <div class="info-ctn hbox">
         <div class="info">
-            <span class="title button-navigate wc" title="{{! it.title}}">{{! it.title }}</span>
+            <h1 class="title button-navigate wc" title="{{! it.title}}">{{! it.title }}</h1>
         </div>
         <button class="button-action action"></button>
     </div>

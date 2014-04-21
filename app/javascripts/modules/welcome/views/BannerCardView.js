@@ -31,13 +31,16 @@
         AppsCollection,
         TasksCollection
     ) {
-        var appsCollection = AppsCollection.getInstance();
-        var tasksCollection = TasksCollection.getInstance();
+        var appsCollection;
+        var tasksCollection;
 
         var BannerCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'banner-card')),
             className : FeedCardView.getClass().prototype.className + ' vbox banner',
             initialize : function () {
+
+                appsCollection = appsCollection || AppsCollection.getInstance();
+                tasksCollection = tasksCollection || TasksCollection.getInstance();
 
                 var defaultAction = this.model.get('defaultAction');
                 var action = this.model.get('action');
@@ -99,7 +102,7 @@
             render : function () {
 
                 this.$el.html(this.template(_.extend(this.data, {
-                    title:this.model.get('title')
+                    title : this.model.get('title')
                 })));
 
                 imageLoader(this.model.get('imageUrl'), this.$('.icon'), true);
@@ -132,7 +135,7 @@
                 var targetApp = appsCollection.get(this.data.packageName);
                 var targetTask = tasksCollection.find(function (task) {
                     return task.get('detail') === this.data.packageName;
-                }.bind(this));
+                }, this);
 
                 if (targetTask !== undefined && (targetTask.get('state') !== CONFIG.enums.TASK_STATE_SUCCESS &&
                         targetTask.get('state') !== CONFIG.enums.TASK_STATE_FAILD)) {
@@ -154,22 +157,22 @@
                     this.toggleEle(false);
                 }
             },
-            clickButtonInstall : function () {
+            clickButtonInstall : function (evt) {
 
                 this.install();
                 this.log({
-                    action : 'install',
-                    element : 'button'
-                });
+                    action : 'install'
+                }, evt);
             },
             install : function () {
                 var target = appsCollection.get(this.data.packageName);
-                var model = new Backbone.Model().set({
+                var model = new Backbone.Model({
                     title : this.data.title,
                     iconPath : this.data.icons.px36,
                     packageName : this.data.packageName,
                     source : 'start-page-single'
                 });
+
                 if (target !== undefined && target.isUpdatable) {
                     model.set('downloadUrl', target.updateInfo.get('downloadUrl'));
                 } else {
@@ -178,15 +181,15 @@
 
                 TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
             },
-            clickButtonOpenUrl : function () {
+            clickButtonOpenUrl : function (evt) {
 
                 this.openUrl(this.defaultAction.url);
                 this.log({
-                    action : 'open_url',
-                    element : 'button'
-                });
+                    action : 'open_url'
+                }, evt);
             },
-            DoAction : function () {
+            clickButtonNavigate : function (evt) {
+
                 var doraemonId;
 
                 switch (this.type) {
@@ -206,26 +209,15 @@
                     this.openUrl(this.defaultAction.url);
                     break;
                 }
-            },
-            clickIcon : function () {
-                this.DoAction();
+
                 this.log({
-                    action : this.type.toLowerCase(),
-                    element : 'icon'
-                });
-            },
-            clickButtonNavigate : function () {
-                this.DoAction();
-                this.log({
-                    action : this.type.toLowerCase(),
-                    element : 'title'
-                });
+                    action : this.type.toLowerCase()
+                }, evt);
             },
             events : {
                 'click .install' : 'clickButtonInstall',
                 'click .open_url' : 'clickButtonOpenUrl',
-                'click .button-navigate' : 'clickButtonNavigate',
-                'click .icon' : 'clickIcon'
+                'click .button-navigate, .icon' : 'clickButtonNavigate'
             }
         });
 

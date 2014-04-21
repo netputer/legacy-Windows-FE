@@ -59,57 +59,41 @@
                     imageLoader(url, this.$('.icon:eq(' + index + ')'), true);
                 }, this);
 
-                setTimeout(function () {
-                    if (this.model.get('feedName') === feedType.bbsFeed) {
-                        this.$button.addClass('bbs');
-                    } else {
-                        this.$button.addClass('doraemon');
-                    }
-                }.bind(this), 0);
+                if (this.model.get('feedName') === feedType.bbsFeed) {
+                    this.$button.addClass('bbs');
+                } else {
+                    this.$button.addClass('doraemon');
+                }
 
                 return this;
             },
-            clickIcon : function () {
-                var actionName = this.DoAction();
-                this.log({
-                    action : actionName,
-                    element : 'icon'
-                });
-            },
-            doAction : function () {
-                var action;
+            clickButtonNavigate : function (evt) {
+
+                var actionName;
                 if (this.model.get('feedName') === feedType.bbsFeed) {
-                    action = 'open_url';
+                    actionName = 'open_url';
                     this.openUrl(this.model.get('defaultAction').url);
                 } else {
-                    action = 'doraemon';
+                    actionName = 'doraemon';
                     this.redirect();
                 }
 
-                return action;
-            },
-            clickButtonNavigate : function () {
-
-                var actionName = this.DoAction();
-
                 this.log({
-                    action : actionName,
-                    element : 'title'
-                });
+                    action : actionName
+                }, evt);
             },
-            clickButtonIgnore : function () {
+            clickButtonIgnore : function (evt) {
                 this.log({
                     action : 'ignore'
-                });
+                }, evt);
                 this.remove();
             },
-            clickButtonBBS : function () {
+            clickButtonBBS : function (evt) {
 
                 this.openUrl(this.model.get('defaultAction').url);
                 this.log({
                     action : 'open_url',
-                    element : 'button'
-                });
+                }, evt);
             },
             redirect : function () {
                 var index = '258';
@@ -119,19 +103,17 @@
 
                 this.openDoraemon(index + '-wdj-extension://__MSG_@@extension_id__/index.html');
             },
-            clickButtonDoraemon : function () {
+            clickButtonDoraemon : function (evt) {
                 this.redirect();
                 this.log({
                     action : 'doraemon',
-                    element : 'button'
-                });
+                }, evt);
             },
             events : {
                 'click .button-action.doraemon' : 'clickButtonDoraemon',
                 'click .button-ignore' : 'clickButtonIgnore',
                 'click .button-action.bbs' : 'clickButtonBBS',
-                'click .button-navigate' : 'clickButtonNavigate',
-                'click .icon' : 'clickIcon'
+                'click .button-navigate, .icon' : 'clickButtonNavigate'
             }
         });
 

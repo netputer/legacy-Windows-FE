@@ -69,40 +69,26 @@
                 Settings.set('welcome-card-update-number', apps.length, true);
                 return this;
             },
-            clickButtonAction : function () {
+            clickButtonAction : function (evt) {
                 Backbone.trigger('switchModule', {
                     module : 'app',
                     tab : 'update'
                 });
 
                 this.log({
-                    action : 'update',
-                    element : 'button'
-                });
+                    action : 'update'
+                }, evt);
             },
-            clickButtonIgnore : function () {
+            clickButtonIgnore : function (evt) {
                 this.log({
-                    action : 'ignore',
-                    element : 'title'
-                });
+                    action : 'ignore'
+                }, evt);
                 this.remove();
 
                 Settings.set('welcome-card-update-ignore', true, true);
             },
-            clickAppList : function () {
-                Backbone.trigger('switchModule', {
-                    module : 'app',
-                    tab : 'update'
-                });
-
-                this.log({
-                    action : 'update',
-                    element : 'applist'
-                });
-            },
             events : {
-                'click .apps-list' : 'clickAppList',
-                'click .button-action' : 'clickButtonAction',
+                'click .button-action, .apps-list' : 'clickButtonAction',
                 'click .button-ignore' : 'clickButtonIgnore'
             }
         });

@@ -43,7 +43,7 @@
                 Settings.set('welcome_feed_cloud_photo', true, true);
                 Settings.set('welcome_feed_cloud_photo_show', new Date().getTime(), true);
             },
-            clickButtonAction : function () {
+            clickButtonAction : function (evt) {
 
                 var turnPhotoAsync = function () {
                     SyncService.setPhotoSyncSwitchAsync(true).done(SyncService.uploadPhotoAsync);
@@ -69,13 +69,13 @@
 
                 this.log({
                     action : 'cloud-photo'
-                });
+                }, evt);
             },
-            clickButtonIgnore : function () {
+            clickButtonIgnore : function (evt) {
 
                 this.log({
                     action : 'ignore'
-                });
+                }, evt);
 
                 this.setSettings();
                 this.remove();
