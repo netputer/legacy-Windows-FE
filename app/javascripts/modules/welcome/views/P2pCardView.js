@@ -30,7 +30,7 @@
                 this.log({
                     name : 'p2p',
                     action : 'ignore'
-                },evt);
+                }, evt);
 
                 this.remove();
             },
