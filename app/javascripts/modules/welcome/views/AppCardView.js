@@ -47,7 +47,7 @@
                 tasksCollection = tasksCollection || TasksCollection.getInstance();
 
                 this.listenTo(appsCollection, 'refresh', this.renderButton)
-                .listenTo(tasksCollection, 'refresh', this.renderButton)
+                    .listenTo(tasksCollection, 'refresh', this.renderButton)
                     .listenTo(Device, 'change:isConnected', this.renderButton);
             },
             render : function () {

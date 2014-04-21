@@ -36,12 +36,19 @@
             },
             log : function (data, evt) {
 
+                if (evt){
+                    evt = {
+                        'element' : evt.currentTarget.nodeName
+                    };
+                } else {
+                    evt = {};
+                }
+
                 log(_.extend({
                     'event' : 'ui.click.welcome_card_action',
                     'name' : this.model ? this.model.get('feedName') : '',
-                    'index' : this.getIndex(),
-                    'element' : evt.currentTarget.nodeName
-                }, data));
+                    'index' : this.getIndex()
+                }, evt, data));
             },
             openUrl : function (url){
                 IO.requestAsync({
