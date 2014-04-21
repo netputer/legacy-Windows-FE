@@ -24,20 +24,20 @@
                 this.$el.html(this.template({}));
                 return this;
             },
-            clickButtonAction : function () {
+            clickButtonAction : function (evt) {
                 Backbone.trigger('welcome:showTips');
 
                 this.log({
                     action : 'tips'
-                });
+                }, evt);
             },
-            clickButtonIgnore : function () {
+            clickButtonIgnore : function (evt) {
 
                 Settings.set('welcome_feed_tips', true, true);
 
                 this.log({
                     action : 'ignore'
-                });
+                }, evt);
 
                 this.remove();
             },

@@ -26,28 +26,22 @@
                 this.$el.html(this.template({}));
                 return this;
             },
-            clickButtonIgnore : function () {
-
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'name' : 'p2p',
-                    'action' : 'ignore',
-                    'index' : this.getIndex()
-                });
+            clickButtonIgnore : function (evt){
+                this.log({
+                    name : 'p2p',
+                    action : 'ignore'
+                },evt);
 
                 this.remove();
             },
-            clickButtonSetup : function () {
+            clickButtonSetup : function (evt) {
 
                 IO.requestAsync(CONFIG.actions.WINDOW_OPEN_SETTING);
 
-                log({
-                    'event' : 'ui.click.welcome_card_action',
+                this.log({
                     'name' : 'p2p',
-                    'action' : 'p2p',
-                    'index' : this.getIndex()
-                });
-                this.remove();
+                    'action' : 'p2p'
+                }, evt);
             },
             events : {
                 'click .button-ignore' : 'clickButtonIgnore',

@@ -26,7 +26,9 @@
             },
             clickButtonAction : function () {
                 this.openDoraemon(274);
-                this.log();
+                this.log({
+                    action : 'youtube'
+                }, evt);
             },
             events : {
                 'click .button-action' : 'clickButtonAction'

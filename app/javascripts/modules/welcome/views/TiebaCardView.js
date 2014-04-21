@@ -41,7 +41,7 @@
             setSettings : function () {
                 Settings.set('welcome_feed_tieba', true, true);
             },
-            clickButtonAction : function () {
+            clickButtonAction : function (evt) {
                 setTimeout(function () {
                     this.$el.find('.button-action').attr({
                         disabled : true
@@ -49,22 +49,23 @@
                 }.bind(this), 500);
 
                 this.openUrl("http://tieba.baidu.com/f?ie=utf-8&kw=%E8%B1%8C%E8%B1%86%E8%8D%9A");
+
                 this.log({
                     action : 'tieba'
-                });
+                }, evt);
                 this.setSettings();
             },
-            clickButtonIgnore : function () {
+            clickButtonIgnore : function (evt) {
 
                 this.log({
                     action : 'ignore'
-                });
+                }, evt);
 
                 this.setSettings();
                 this.remove();
             },
             events : {
-                'click .button-action' : 'clickButtonAction',
+                'click .button-action, .icon' : 'clickButtonAction',
                 'click .button-ignore' : 'clickButtonIgnore'
             }
         });

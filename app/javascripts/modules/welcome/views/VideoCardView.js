@@ -48,32 +48,14 @@
                 imageLoader(this.model.get('cover').l, this.$('.icon'), true);
                 return this;
             },
-            clickButtonNavigate : function () {
-
+            clickButtonAction : function (evt) {
                 this.openDoraemon(this.url);
                 this.log({
-                    action : 'doraemon',
-                    element : 'title'
-                });
-            },
-            clickButtonAction : function () {
-                this.openDoraemon(this.url);
-                this.log({
-                    action : 'doraemon',
-                    element : 'button'
-                });
-            },
-            clickIcon : function () {
-                this.openDoraemon(this.url);
-                this.log({
-                    action : 'doraemon',
-                    element : 'icon'
-                });
+                    action : 'doraemon'
+                }, evt);
             },
             events : {
-                'click .button-action' : 'clickButtonAction',
-                'click .button-navigate' : 'clickButtonNavigate',
-                'click .icon' : 'clickIcon'
+                'click .button-navigate, .icon, .button-action' : 'clickButtonAction'
             }
         });
 

@@ -7,7 +7,6 @@
         'Environment',
         'Device',
         'Log',
-        'Account',
         'ParserFactory'
     ], function (
         Backbone,
@@ -16,7 +15,6 @@
         Environment,
         Device,
         log,
-        Account,
         ParserFactory
     ) {
         console.log('FeedsCollection - File loaded. ');
@@ -28,7 +26,6 @@
             data : {
                 ch : Environment.get('source'),
                 max : 30,
-                udid : '',
                 start : 0,
                 platform : 'windows',
                 launchedCount : Settings.get(CONFIG.enums.LAUNCH_TIME_KEY)
@@ -71,17 +68,6 @@
                         this.data.udid = udid;
                     });
                 }
-
-                if (Account.isLogin) {
-                    this.data.uid = Account.get('uid');
-                }
-                this.listenTo(Account, 'change:uid', function (Account, uid){
-                    if (Account.isLogin) {
-                        this.data.uid = uid;
-                    } else {
-                        delete this.data.uid;
-                    }
-                });
 
                 this.on('update', function () {
                     loading = true;

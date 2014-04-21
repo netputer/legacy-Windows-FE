@@ -35,17 +35,19 @@
     ) {
         var appsCollection;
         var tasksCollection;
+
         var basePath = 'http://apps.wandoujia.com/apps/{1}?pos=w/start_page_single';
 
         var AppCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'app-card')),
             className : FeedCardView.getClass().prototype.className + ' app',
             initialize : function () {
+
                 appsCollection = appsCollection || AppsCollection.getInstance();
                 tasksCollection = tasksCollection || TasksCollection.getInstance();
 
                 this.listenTo(appsCollection, 'refresh', this.renderButton)
-                    .listenTo(tasksCollection, 'refresh', this.renderButton)
+                .listenTo(tasksCollection, 'refresh', this.renderButton)
                     .listenTo(Device, 'change:isConnected', this.renderButton);
             },
             render : function () {
@@ -53,8 +55,7 @@
                 var isAd = this.model.get('ad');
                 this.model.set('readAbleSize', ReadableSize(this.model.get('apks')[0].bytes));
                 this.$el.html(this.template(this.model.toJSON()))
-                    .toggleClass('ad', isAd)
-                    .find('.icon').attr('src', CONFIG.enums.IMAGE_PATH + '/default-app-100X100.png');
+                    .toggleClass('ad', isAd);
 
                 imageLoader(this.model.get('icons').px100, this.$('.icon'), true);
 
@@ -99,15 +100,16 @@
                     });
                 }
             },
-            clickButtonAction : function () {
+            clickButtonAction : function (evt) {
 
                 var target = appsCollection.get(this.model.get('packageName'));
-                var model = new Backbone.Model().set({
+                var model = new Backbone.Model({
                     title : this.model.get('title'),
                     iconPath : this.model.get('icons').px36,
                     packageName : this.model.get('packageName'),
                     source : 'start-page-single'
                 });
+
                 if (target !== undefined && target.isUpdatable) {
                     model.set('downloadUrl', target.updateInfo.get('downloadUrl'));
                 } else {
@@ -118,32 +120,20 @@
 
                 this.log({
                     action : 'install',
-                    content : this.model.get('packageName'),
-                    element : 'button'
-                });
+                    content : this.model.get('packageName')
+                }, evt);
             },
-            clickButtonNavigate : function () {
+            clickButtonNavigate : function (evt) {
                 this.openDoraemon('18-' + StringUtil.format(basePath, this.model.get('packageName')));
 
                 this.log({
                     action : 'doraemon',
-                    content : this.model.get('packageName'),
-                    element : 'title'
-                });
-            },
-            clickIcon: function () {
-                this.openDoraemon('18-' + StringUtil.format(basePath, this.model.get('packageName')));
-
-                this.log({
-                    action : 'doraemon',
-                    content : this.model.get('packageName'),
-                    element : 'icon'
-                });
+                    content : this.model.get('packageName')
+                }, evt);
             },
             events : {
                 'click .button-action' : 'clickButtonAction',
-                'click .button-navigate' : 'clickButtonNavigate',
-                'click .icon' : 'clickIcon'
+                'click .button-navigate, .icon' : 'clickButtonNavigate'
             }
         });
 
