@@ -7,14 +7,13 @@
         'jquery',
         'Configuration',
         'Device',
-        'Log',
         'Internationalization',
         'ui/TemplateFactory',
         'ui/ImageLoader',
         'utilities/StringUtil',
+        'utilities/ReadableSize',
         'welcome/views/FeedCardView',
         'task/TaskService',
-        'browser/views/BrowserModuleView',
         'app/collections/AppsCollection',
         'task/collections/TasksCollection'
     ], function (
@@ -24,24 +23,26 @@
         $,
         CONFIG,
         Device,
-        log,
         i18n,
         TemplateFactory,
         imageLoader,
         StringUtil,
+        ReadableSize,
         FeedCardView,
         TaskService,
-        BrowserModuleView,
         AppsCollection,
         TasksCollection
     ) {
         var appsCollection;
         var tasksCollection;
 
-        var SingleCardView = FeedCardView.getClass().extend({
-            template : doT.template(TemplateFactory.get('welcome', 'sigle-card')),
-            className : FeedCardView.getClass().prototype.className + ' single',
+        var basePath = 'http://apps.wandoujia.com/apps/{1}?pos=w/start_page_single';
+
+        var AppCardView = FeedCardView.getClass().extend({
+            template : doT.template(TemplateFactory.get('welcome', 'app-card')),
+            className : FeedCardView.getClass().prototype.className + ' app',
             initialize : function () {
+
                 appsCollection = appsCollection || AppsCollection.getInstance();
                 tasksCollection = tasksCollection || TasksCollection.getInstance();
 
@@ -50,19 +51,17 @@
                     .listenTo(Device, 'change:isConnected', this.renderButton);
             },
             render : function () {
-                this.$el.html(this.template(this.model.toJSON()))
-                    .toggleClass('ad', this.model.get('ad'))
-                    .find('.button-navigate').attr(CONFIG.enums.IMAGE_PATH + '/default-app-100X100.png');
 
-                if (this.model.get('ad')) {
-                    this.$('.footer').remove();
-                }
+                var isAd = this.model.get('ad');
+                this.model.set('readAbleSize', ReadableSize(this.model.get('apks')[0].bytes));
+                this.$el.html(this.template(this.model.toJSON()))
+                    .toggleClass('ad', isAd);
 
                 imageLoader(this.model.get('icons').px100, this.$('.icon'), true);
 
                 this.renderButton();
 
-                if (this.model.get('ad')) {
+                if (isAd) {
                     var image = new window.Image();
                     image.src = this.model.get('imprUrl');
                 }
@@ -70,9 +69,9 @@
                 return this;
             },
             renderButton : function () {
-                var targetApp = appsCollection.get(this.model.get('key'));
+                var targetApp = appsCollection.get(this.model.get('packageName'));
                 var targetTask = tasksCollection.find(function (task) {
-                    return task.get('detail') === this.model.get('key');
+                    return task.get('detail') === this.model.get('packageName');
                 }.bind(this));
                 var $button = this.$('.button-action');
 
@@ -101,50 +100,46 @@
                     });
                 }
             },
-            clickButtonAction : function () {
-                var target = appsCollection.get(this.model.get('key'));
-                var model = new Backbone.Model().set({
+            clickButtonAction : function (evt) {
+
+                var target = appsCollection.get(this.model.get('packageName'));
+                var model = new Backbone.Model({
                     title : this.model.get('title'),
                     iconPath : this.model.get('icons').px36,
-                    packageName : this.model.get('key'),
+                    packageName : this.model.get('packageName'),
                     source : 'start-page-single'
                 });
+
                 if (target !== undefined && target.isUpdatable) {
                     model.set('downloadUrl', target.updateInfo.get('downloadUrl'));
                 } else {
-                    model.set('downloadUrl', this.model.get('action').url);
+                    model.set('downloadUrl', this.model.get('apks')[0].downloadUrl.url);
                 }
 
                 TaskService.addTask(CONFIG.enums.TASK_TYPE_INSTALL, CONFIG.enums.MODEL_TYPE_APPLICATION, model);
 
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'install',
-                    'content' : this.model.get('key')
-                });
+                this.log({
+                    action : 'install',
+                    content : this.model.get('packageName')
+                }, evt);
             },
-            clickButtonNavigate : function () {
-                var basePath = 'http://apps.wandoujia.com/apps/{1}?pos=w/start_page_single';
-                BrowserModuleView.navigateToThirdParty(this.model.get('extId'), '', StringUtil.format(basePath, this.model.get('key')));
+            clickButtonNavigate : function (evt) {
+                this.openDoraemon('18-' + StringUtil.format(basePath, this.model.get('packageName')));
 
-                log({
-                    'event' : 'ui.click.welcome_card_navigate',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'content' : this.model.get('key')
-                });
+                this.log({
+                    action : 'doraemon',
+                    content : this.model.get('packageName')
+                }, evt);
             },
             events : {
                 'click .button-action' : 'clickButtonAction',
-                'click .button-navigate' : 'clickButtonNavigate'
+                'click .button-navigate, .icon' : 'clickButtonNavigate'
             }
         });
 
         var factory = _.extend({
             getInstance : function (args) {
-                return new SingleCardView(args);
+                return new AppCardView(args);
             }
         });
 

@@ -108,6 +108,14 @@
         BindingDeviceWindowView,
         BackupRestoreModuleView
     ) {
+
+        var launchedTimes = Settings.get(CONFIG.enums.LAUNCH_TIME_KEY);
+        if (!launchedTimes) {
+            Settings.set(CONFIG.enums.LAUNCH_TIME_KEY, 1, true);
+        } else {
+            Settings.set(CONFIG.enums.LAUNCH_TIME_KEY, ++launchedTimes, true);
+        }
+
         window.SnapPea = window.SnapPea || {};
 
         var mainView = MainView.getInstance();
