@@ -23,7 +23,11 @@
         <div class="comment text-secondary">{{! it.editorComment }}</div>
     </div>
     <div class="tag">
-        {{= it.tags[0] ? it.tags[0].tag : '' }}
+        {{? it.appType === 'APP' }}
+        {{= i18n.misc.APP }}
+        {{??}}
+        {{= i18n.misc.GAME }}
+        {{?}}
     </div>
     <div class="ad-badge"></div>
 </script>

@@ -42,9 +42,18 @@
                 var items = apps.concat();
                 var lastLength = Settings.get('welcome-card-update-number') || 0;
 
-                var show = apps.length !== 0 && (lastLength !== apps.length || Settings.get('welcome-card-update-ignore'));
+                if (lastLength === apps.length){
+                    Settings.set('welcome-card-update-ignore', false, true);
+                }
 
-                this.$el.toggleClass('hide', !show);
+                var show = true;
+                if (apps.length === 0) {
+                    show = false;
+                } else if (lastLength === apps.length && Settings.get('welcome-card-update-ignore')) {
+                    show = false;
+                }
+
+                this.toggle(show);
 
                 if (show) {
 
@@ -79,12 +88,16 @@
                     action : 'update'
                 }, evt);
             },
+            toggle : function (show) {
+                this.$el.toggleClass('hide', !show);
+                this.options.parentView.initLayout();
+            },
             clickButtonIgnore : function (evt) {
                 this.log({
                     action : 'ignore'
                 }, evt);
-                this.remove();
 
+                this.toggle(false);
                 Settings.set('welcome-card-update-ignore', true, true);
             },
             events : {
