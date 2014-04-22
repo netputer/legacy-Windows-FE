@@ -147,4 +147,12 @@
     <div class="arrow-bg"></div>
 </div>
 </script>
+
+<script type="text/x-ui-template" id='pim-mask'>
+    <div class='w-main-pim-mask-ctn'>
+        <div class='icon'></div>
+        <span class='desc'>{{= i18n.misc.CONNECTION_TIP }}</span>
+        <button class='action primary max'>{{= i18n.misc.CONNECTION_BUTTON }}</button>
+    </div>
+</script>
 </templates>
