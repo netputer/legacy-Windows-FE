@@ -18,6 +18,7 @@
         'main/views/NavView',
         'task/views/TaskMonitorView',
         'main/views/FastUSBNotificationView',
+        'main/views/PimMaskView',
         'main/collections/PIMCollection',
         'main/views/AgentNotifiPopup',
         'app/AppService'
@@ -37,6 +38,7 @@
         NavView,
         TaskMonitorView,
         FastUSBNotificationView,
+        PimMaskView,
         PIMCollection,
         AgentNotifiPopup,
         AppService
@@ -44,6 +46,8 @@
         console.log('Wandoujia 2.0 launched.');
 
         var alert = window.alert;
+
+        var pimMaskView;
 
         var $needToHide;
         var showModule = _.debounce(function(){
@@ -283,6 +287,27 @@
 
                 this.$('.module-ctn').append(FastUSBNotificationView.getInstance().render().$el);
 
+                pimMaskView = PimMaskView.getInstance();
+                this.$('.module-ctn').append(pimMaskView.render().$el.hide());
+
+
+                Device.on('change:isWifi, change:isConnected', function (Device) {
+
+                    var isWifi = Device.get('isWifi');
+                    var isConnected = Device.get('isConnected');
+
+                    if (!isConnected) {
+                        pimMaskView.hide();
+                        return;
+                    }
+
+                    if (!SnapPea.CurrentModule.match(/task|welcome|browser/) && isWifi) {
+                        pimMaskView.show();
+                    } else {
+                        pimMaskView.hide();
+                    }
+                });
+
                 var delegate = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.REVERSE_PROXY_START
                 }, function () {
@@ -307,6 +332,13 @@
                 return this.modules[name];
             },
             showModule : function (name, tab) {
+
+                if (Device.get('isConnected') && !name.match(/task|broswe|welcome/) && Device.get('isWifi')) {
+                    pimMaskView.show();
+                } else {
+                    pimMaskView.hide();
+                }
+
                 this.currentTab = tab;
 
                 if (name === this.currentModule) {
