@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>wifi connection</title>
+        <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css" />
+        <script type="text/javascript" src="../../../bower_components/requirejs/require.js"></script>
+        <script type="text/javascript">
+            require.config({
+                baseUrl : '../../'
+            });
+
+            require(['RequireConfig'], function () {
+                require([
+                    'jquery',
+                    'utilities/QueryString',
+                    'main/views/UsbTipView'
+                ], function (
+                    $,
+                    QueryString,
+                    UsbTipView
+                ) {
+                    var usbTipView = UsbTipView.getInstance({
+                        'usbError' :  QueryString.get('usbError')
+                    });
+                    $('body').append(usbTipView.render().$el);
+                });
+            });
+        </script>
+        <body></body>
+</html>
