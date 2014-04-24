@@ -210,6 +210,15 @@
             }
         };
 
+        var toggleMask = function (name, isConnected, isWifi) {
+
+            if (isConnected && !name.match(/task|welcome|browser|gallery|doraemon/) && isWifi) {
+                pimMaskView.show();
+            } else {
+                pimMaskView.hide();
+            }
+        };
+
         var MainView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('misc', 'main')),
             initialize : function () {
@@ -295,17 +304,7 @@
 
                     var isWifi = Device.get('isWifi');
                     var isConnected = Device.get('isConnected');
-
-                    if (!isConnected) {
-                        pimMaskView.hide();
-                        return;
-                    }
-
-                    if (!SnapPea.CurrentModule.match(/task|welcome|browser/) && isWifi) {
-                        pimMaskView.show();
-                    } else {
-                        pimMaskView.hide();
-                    }
+                    toggleMask(SnapPea.CurrentModule, isConnected, isWifi);
                 });
 
                 var delegate = IO.Backend.Device.onmessage({
@@ -333,11 +332,7 @@
             },
             showModule : function (name, tab) {
 
-                if (Device.get('isConnected') && !name.match(/task|broswe|welcome/) && Device.get('isWifi')) {
-                    pimMaskView.show();
-                } else {
-                    pimMaskView.hide();
-                }
+                toggleMask(name, Device.get('isConnected'), Device.get('isWifi'));
 
                 this.currentTab = tab;
 

@@ -152,7 +152,49 @@
     <div class='w-main-pim-mask-ctn'>
         <div class='icon'></div>
         <span class='desc'>{{= i18n.misc.CONNECTION_TIP }}</span>
-        <button class='action primary max'>{{= i18n.misc.CONNECTION_BUTTON }}</button>
+        <button class='button-action primary max'>{{= i18n.misc.CONNECTION_BUTTON }}</button>
     </div>
 </script>
+
+<script type='text/x-ui-template' id='usb-tip'>
+    <div class='top'>
+        <div class='logo'></div>
+        <div class='button-close'>&times;</div>
+        <img src='{{= CONFIG.enums.IMAGE_PATH + "/connecting.gif" }}' class='connecting'/>
+        <div class='icon'></div>
+    </div>
+    <div class='container vbox'>
+        <div class='title'>{{= i18n.misc.USE_USB_TITLE }}</div>
+        <div class='tips'>
+            <div class='tip'>{{= i18n.misc.USB_TIP_1 }}</div>
+            <div class='tip'>{{= i18n.misc.USB_TIP_2 }}</div>
+        </div>
+        <button class='button-action use-usb max primary'>{{= i18n.misc.ALREADY_USE_USB }}</button>
+    </div>
+    <div class='feedback'></div>
+</script>
+
+<script type='text/x-ui-template' id='usb-error-tip'>
+    <div class='top'>
+        <div class='logo'></div>
+        <div class='button-close'>&times;</div>
+        <div class='icon'></div>
+    </div>
+    <div class='container vbox'>
+        <div class='title'>{{= i18n.misc.NO_RESPONSE_WITH_USB }}</div>
+        <div class='tips'>
+            {{~ [1, 2, 3]: index }}
+            <div class='tip'>
+                <span class='num'>{{= index }}</span>
+                <span class='content'>{{= i18n.misc['USB_ERROR_TIP_' + index] }}</span>
+            </div>
+            {{~}}
+        </div>
+        <button class='button-action reconnect max primary'>{{= i18n.misc.RECONNECT }}</button>
+    </div>
+    <div class='feedback'>
+        <span>{{= i18n.misc.FEEDBACK }}</span>
+    </div>
+</script>
+
 </templates>
