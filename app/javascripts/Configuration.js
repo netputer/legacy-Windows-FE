@@ -347,10 +347,7 @@
                 APPLY_DEFAULT_APP : 'wdj://restore/apply_default_app.json',
                 RECOVER_DEFAULT_APP : 'wdj://restore/recover_default_app.json',
 
-                STRATEGY : 'wdj://window/strategy.json',
-
-                EBOOK_DOWNLOAD : 'wdj://book/download.json',
-                VIDEO_DOWNLOAD : 'wdj://video/download.json'
+                STRATEGY : 'wdj://window/strategy.json'
             },
             events : {
                 // Backend events - History
