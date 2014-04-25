@@ -43,6 +43,7 @@
             className : FeedCardView.getClass().prototype.className + ' app',
             initialize : function () {
 
+                AppCardView.__super__.initialize.apply(this, arguments);
                 appsCollection = appsCollection || AppsCollection.getInstance();
                 tasksCollection = tasksCollection || TasksCollection.getInstance();
 

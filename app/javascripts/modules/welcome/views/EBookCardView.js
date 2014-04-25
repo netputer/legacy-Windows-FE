@@ -36,6 +36,9 @@
             template : doT.template(TemplateFactory.get('welcome', 'ebook-card')),
             className : FeedCardView.getClass().prototype.className + ' ebook',
             initialize : function () {
+
+                EBookCardView.__super__.initialize.apply(this, arguments);
+
                 Object.defineProperties(this, {
                     url : {
                         get : function () {
@@ -44,20 +47,49 @@
                     }
                 });
             },
-            render : function () {
+            downloadAsync : function (){
+                var deferred = $.Deferred();
 
+                IO.requestAsync({
+                    url : CONFIG.action.BOOK_DOWNLOAD,
+                    data : {
+                        url : 'http://ebooks.wandoujia.com/api/v1/offlineRead?ebookId=' + this.model.get('id') + '&source=windows2x',
+                        name : this.model.get('title'),
+                        icon : this.model.get('cover').s || '',
+                        pos : 'startPage'
+                    }
+                });
+
+                return deferred.promise();
+            },
+            render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
                 imageLoader(this.model.get('cover').l, this.$('.icon'), true);
                 return this;
             },
-            clickButtonAction : function (evt) {
+            clickButtonNavigate : function (evt) {
                 this.openDoraemon(this.url);
                 this.log({
                     action : 'doraemon',
                 }, evt);
             },
+            clickButtonAction : function (evt) {
+
+                var $btnAction = this.$('.button-action');
+                this.downloadAsync().done(function (){
+                    $btnAction.html(i18n.welcome.CARD_VIDEO_ALREADY_OFFLINE).prop('disabled', true);
+                    setTimeout(function (){
+                        $btnAction.html(i18n.welcome.CARD_VIDEO_OFFLINE).prop('disabled', false);
+                    }, 3000);
+                });
+
+                this.log({
+                    action : 'download',
+                }, evt);
+            },
             events : {
-                'click .button-action, .button-navigate, .icon' : 'clickButtonAction'
+                'click .button-navigate, .icon' : 'clickButtonNavigate',
+                'click .button-action' : 'clickButtonAction'
             }
         });
 

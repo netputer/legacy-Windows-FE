@@ -339,7 +339,7 @@
                 CLOUD_SECCODE : 'https://account.wandoujia.com/v4/api/seccode',
 
                 WELCOME_BACKGROUND : 'http://apps.wandoujia.com/startpage/api/v1/background',
-                WELCOME_FEEDS : 'http://60.29.246.10/debug/api/v1/fetch',
+                WELCOME_FEEDS : 'http://startpage.wandoujia.com/api/v1/fetch',
                 WELCOME_SINGLE_FEED : 'http://apps.wandoujia.com/startpage/api/v1/feed',
                 WELCOME_CHANGELOG : 'http://m.cfg.wandoujia.com/windows/index.php',
 

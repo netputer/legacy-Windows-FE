@@ -33,7 +33,7 @@
 
                     Settings.set('welcome_count_tieba', count + 1, true);
                 } else {
-                    this.hide();
+                    this.setSettings();
                 }
 
                 return this;
@@ -65,7 +65,7 @@
                 this.remove();
             },
             events : {
-                'click .button-action, .icon' : 'clickButtonAction',
+                'click .button-action, .icon, .title': 'clickButtonAction',
                 'click .button-ignore' : 'clickButtonIgnore'
             }
         });
