@@ -22,7 +22,6 @@
         'welcome/views/WeiboCardView',
         'welcome/views/UpdateCardView',
         'welcome/views/XibaibaiCardView',
-        'welcome/views/DiversionCardView',
         'welcome/views/TiebaCardView',
         'welcome/views/SnapPeaWebCardView',
         'welcome/views/SnapPeaPhotosCardView',
@@ -54,7 +53,6 @@
         WeiboCardView,
         UpdateCardView,
         XibaibaiCardView,
-        DiversionCardView,
         TiebaCardView,
         SnapPeaWebCardView,
         SnapPeaPhotosCardView,
@@ -176,9 +174,6 @@
                             break;
                         case 'BANNER':
                             targetView = BannerCardView;
-                            break;
-                        case "DIVERSION":
-                            targetView = DiversionCardView;
                             break;
                         case "WINDOWS_DIVERSION":
                             targetView = createDiversonCard(feed.get('feedName'));

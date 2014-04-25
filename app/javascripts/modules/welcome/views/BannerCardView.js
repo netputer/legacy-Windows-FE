@@ -39,6 +39,8 @@
             className : FeedCardView.getClass().prototype.className + ' vbox banner',
             initialize : function () {
 
+                BannerCardView.__super__.initialize.apply(this, arguments);
+
                 appsCollection = appsCollection || AppsCollection.getInstance();
                 tasksCollection = tasksCollection || TasksCollection.getInstance();
 

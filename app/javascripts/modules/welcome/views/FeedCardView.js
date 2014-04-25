@@ -17,6 +17,11 @@
         var FeedCardView = Backbone.View.extend({
             className : 'w-welcome-feed-card hbox',
             tagName : 'li',
+            initialize : function () {
+                this.$el.one('webkitTransitionEnd', function () {
+                    this.$el.addClass('transform');
+                }.bind(this));
+            },
             remove : function () {
                 FeedCardView.__super__.remove.call(this);
                 this.options.parentView.initLayout();
@@ -47,7 +52,8 @@
                 log(_.extend({
                     'event' : 'ui.click.welcome_card_action',
                     'name' : this.model ? this.model.get('feedName') : '',
-                    'index' : this.getIndex()
+                    'index' : this.getIndex(),
+                    'template' : this.model ? this.model.get('template') : ''
                 }, evt, data));
             },
             openUrl : function (url){

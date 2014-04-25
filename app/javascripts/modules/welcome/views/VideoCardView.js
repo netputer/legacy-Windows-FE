@@ -10,7 +10,6 @@
         'Internationalization',
         'ui/TemplateFactory',
         'ui/ImageLoader',
-        'utilities/StringUtil',
         'welcome/views/FeedCardView',
         'task/TaskService'
     ], function (
@@ -23,7 +22,6 @@
         i18n,
         TemplateFactory,
         imageLoader,
-        StringUtil,
         FeedCardView,
         TaskService
     ) {
@@ -34,6 +32,9 @@
             template : doT.template(TemplateFactory.get('welcome', 'video-card')),
             className : FeedCardView.getClass().prototype.className + ' video',
             initialize : function () {
+
+                VideoCardView.__super__.initialize.apply(this, arguments);
+
                 Object.defineProperties(this, {
                     url : {
                         get : function () {
@@ -42,20 +43,73 @@
                     }
                 });
             },
-            render : function () {
+            downloadAsync : function () {
+                var downloadUrl = this.model.get('videoEpisodes')[0].downloadUrls[0];
+                var url;
+                if (downloadUrl.accelUrl) {
+                    url = downloadUrl.accelUrl;
+                } else {
+                    url = downloadUrl.url;
+                }
 
+                var deferred = $.Deferred();
+                IO.requestAsync({
+                    url : 'wdj://video/download.json',
+                    data : {
+                        url : url + '&source=windows2x',
+                        name : this.model.get('title'),
+                        icon : this.model.get('cover').s || '',
+                        pos : 'oscar-dora-ext',
+                        dservice : true
+                    },
+                    success : function (resp){
+                        if(resp.state_code === 200) {
+                            console.log('download video - Search success');
+                            deferred.resolve(resp);
+                        } else {
+                            console.log('download video - Search fail');
+                            deferred.reject(resp);
+                        }
+                    }
+                });
+
+                return deferred.promise();
+            },
+            render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
                 imageLoader(this.model.get('cover').l, this.$('.icon'), true);
                 return this;
             },
-            clickButtonAction : function (evt) {
+            clickButtonNavigate : function (evt) {
                 this.openDoraemon(this.url);
                 this.log({
                     action : 'doraemon'
                 }, evt);
             },
+            clickButtonAction : function (evt) {
+
+                var $btnAction = this.$('.button-action');
+                if (this.model.get('type') === 'MOVIE') {
+
+                    this.downloadAsync().done(function (){
+                        $btnAction.html(i18n.welcome.CARD_VIDEO_ALREADY_OFFLINE).prop('disabled', true);
+                        setTimeout(function (){
+                            $btnAction.html(i18n.welcome.CARD_VIDEO_OFFLINE).prop('disabled', false);
+                        }, 3000);
+                    });
+
+                    this.log({
+                        action : 'download'
+                    }, evt);
+
+                    return;
+                }
+
+                this.clickButtonNavigate(evt);
+            },
             events : {
-                'click .button-navigate, .icon, .button-action' : 'clickButtonAction'
+                'click .button-navigate, .icon' : 'clickButtonNavigate',
+                'click .button-action' : 'clickButtonAction'
             }
         });
 
