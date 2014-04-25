@@ -51,7 +51,7 @@
                 var deferred = $.Deferred();
 
                 IO.requestAsync({
-                    url : CONFIG.action.EBOOK_DOWNLOAD,
+                    url : CONFIG.action.BOOK_DOWNLOAD,
                     data : {
                         url : 'http://ebooks.wandoujia.com/api/v1/offlineRead?ebookId=' + this.model.get('id') + '&source=windows2x',
                         name : this.model.get('title'),
