@@ -339,7 +339,7 @@
                 CLOUD_SECCODE : 'https://account.wandoujia.com/v4/api/seccode',
 
                 WELCOME_BACKGROUND : 'http://apps.wandoujia.com/startpage/api/v1/background',
-                WELCOME_FEEDS : 'http://60.29.246.10/debug/api/v1/fetch',
+                WELCOME_FEEDS : 'http://startpage.wandoujia.com/api/v1/fetch',
                 WELCOME_SINGLE_FEED : 'http://apps.wandoujia.com/startpage/api/v1/feed',
                 WELCOME_CHANGELOG : 'http://m.cfg.wandoujia.com/windows/index.php',
 
@@ -347,7 +347,10 @@
                 APPLY_DEFAULT_APP : 'wdj://restore/apply_default_app.json',
                 RECOVER_DEFAULT_APP : 'wdj://restore/recover_default_app.json',
 
-                STRATEGY : 'wdj://window/strategy.json'
+                STRATEGY : 'wdj://window/strategy.json',
+
+                EBOOK_DOWNLOAD : 'wdj://book/download.json',
+                VIDEO_DOWNLOAD : 'wdj://video/download.json'
             },
             events : {
                 // Backend events - History

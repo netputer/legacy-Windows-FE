@@ -36,6 +36,7 @@
                     var model = card.feedItem;
                     model.feedItemType = card.feedItemType;
                     model.feedName = card.feedName;
+                    model.template = card.template;
                     return model;
                 });
             },

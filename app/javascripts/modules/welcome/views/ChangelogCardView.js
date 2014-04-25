@@ -31,6 +31,8 @@
             template : doT.template(TemplateFactory.get('welcome', 'changelog')),
             className : FeedCardView.getClass().prototype.className + ' vbox changelog hide',
             initialize : function () {
+                ChangelogCardView.__super__.initialize.apply(this, arguments);
+
                 var resp = {};
                 Object.defineProperties(this, {
                     resp : {
@@ -96,7 +98,7 @@
                 this.remove();
             },
             events : {
-                'click .button-action, .icon' : 'clickButtonAction',
+                'click .button-action, .icon, .title' : 'clickButtonAction',
                 'click .button-ignore' : 'clickButtonIgnore'
             }
         });

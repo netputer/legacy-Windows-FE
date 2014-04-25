@@ -68,7 +68,7 @@
                 this.remove();
             },
             events : {
-                'click .button-action, .icon' : 'clickButtonAction',
+                'click .button-action, .icon, .title' : 'clickButtonAction',
                 'click .button-ignore' : 'clickButtonIgnore'
             }
         });

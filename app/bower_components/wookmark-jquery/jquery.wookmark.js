@@ -423,7 +423,8 @@
                     obj: $item,
                     css: {
                         position: 'absolute',
-                        '-webkit-transform': 'translate3d(' + sideOffset + 'px, ' + shortest + 'px, 0)'
+                        '-webkit-transform': 'translate3d(' + sideOffset + 'px, ' + shortest + 'px, 0)',
+                        opacity : 1
                     }
                 });
 

@@ -13,7 +13,7 @@
     <div class="info-ctn vbox">
         <div class="info-top hbox">
             <div class="info">
-                <h1 class="title button-navigate wc" title="{{! it.title }}">{{! it.title }}</h1>
+                <h1 class="title button-navigate wc link" title="{{! it.title }}">{{! it.title }}</h1>
             </div>
             <button class="button-action action"></button>
         </div>
@@ -37,15 +37,15 @@
     <div class="info-ctn vbox">
         <div class="info-top hbox">
             <div class="info">
-                <h1 class="title button-navigate wc" title="{{! it.title }}">{{! it.title }}</h1>
+                <h1 class="title button-navigate wc link" title="{{! it.title }}">{{! it.title }}</h1>
             </div>
-            <button class="button-action action">{{! i18n.misc.PLAY }}</button>
+            <button class="button-action action">{{! i18n.welcome.CARD_VIDEO_OFFLINE }}</button>
         </div>
         <span class="cate text-thirdly">
             {{? it.downloadCount > 10000 }}
-            {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_2, Math.round(it.downloadCount / 10000), it.latestEpisodeNum < it.totalEpisodesNum ? StringUtil.format(i18n.welcome.CARD_VIDEO_UPDATE_TO, it.latestEpisodeNum) : StringUtil.format(i18n.welcome.CARD_VIDEO_COMPLATE, it.totalEpisodesNum)) }}
+            {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_2, Math.round(it.downloadCount / 10000), it.latestEpisodeNum ? (it.latestEpisodeNum < it.totalEpisodesNum ? StringUtil.format(i18n.welcome.CARD_VIDEO_UPDATE_TO, it.latestEpisodeNum) : StringUtil.format(i18n.welcome.CARD_VIDEO_COMPLATE, it.totalEpisodesNum)) : '') }}
             {{??}}
-            {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_1, it.downloadCount, it.latestEpisodeNum < it.totalEpisodesNum ? StringUtil.format(i18n.welcome.CARD_VIDEO_UPDATE_TO, it.latestEpisodeNum) : StringUtil.format(i18n.welcome.CARD_VIDEO_COMPLATE, it.totalEpisodesNum)) }}
+            {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_1, it.downloadCount, it.latestEpisodeNum ? (it.latestEpisodeNum < it.totalEpisodesNum ? StringUtil.format(i18n.welcome.CARD_VIDEO_UPDATE_TO, it.latestEpisodeNum) : StringUtil.format(i18n.welcome.CARD_VIDEO_COMPLATE, it.totalEpisodesNum)) : '') }}
             {{?}}
         </span>
         <div class="comment text-secondary">{{! it.description }}</div>
@@ -61,9 +61,9 @@
     <div class="info-ctn vbox">
         <div class="info-top hbox">
             <div class="info">
-                <span class="title button-navigate wc" title="{{! it.title }}">{{! it.title }}</span>
+                <h1 class="title button-navigate wc link" title="{{! it.title }}">{{! it.title }}</h1>
             </div>
-            <button class="button-action action">{{! i18n.misc.READ }}</button>
+            <button class="button-action action">{{! i18n.welcome.CARD_VIDEO_OFFLINE }}</button>
         </div>
         <span class="cate text-thirdly">
             {{? it.readCount > 10000 }}
@@ -84,7 +84,7 @@
     <img class="icon" alt="{{! it.title }}" />
     <div class="info-ctn hbox">
         <div class="info">
-            <h1 class="title button-navigate wc" title="{{! it.title}}">{{! it.title }}</h1>
+            <h1 class="title button-navigate wc link" title="{{! it.title}}">{{! it.title }}</h1>
         </div>
         <button class="button-action action"></button>
     </div>
@@ -100,7 +100,7 @@
     </div>
     <div class="action-ctn">
         <span class="button-setup text-thirdly">{{= i18n.welcome.SETTING }}</span>
-        <button class="button-ignore action">{{= i18n.welcome.GOTIT }}</button>
+        <button class="button-ignore link action">{{= i18n.welcome.GOTIT }}</button>
     <div>
 </script>
 
@@ -108,12 +108,12 @@
     <div class="info-ctn hbox">
         <div class="icon-ctn"></div>
         <div class="top-ctn">
-            <h1 class="button-navigate title">{{= i18n.welcome.CARD_BACKUP_TITLE }}</h1>
+            <h1 class="title">{{= i18n.welcome.CARD_BACKUP_TITLE }}</h1>
             <p class="info text-secondary">{{= i18n.welcome.CARD_BACKUP_DESC }}</p>
         </div>
     </div>
     <div class="action-ctn">
-        <span class="button-ignore button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
         <button class="button-action action">{{= i18n.welcome.CARD_BACKUP_ACTION }}</button>
     <div>
 </script>
@@ -127,7 +127,7 @@
         </div>
     </div>
     <div class="action-ctn">
-        <span class="button-ignore button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
         <button class="button-action action">{{= i18n.misc.VIEW }}</button>
     <div>
 </script>
@@ -140,7 +140,7 @@
             {{?}}
         </div>
         <div class="top-ctn">
-            <h1 class="title">{{= i18n.welcome.UPDATED }}</h1>
+            <h1 class="title link">{{= i18n.welcome.UPDATED }}</h1>
             <p class="info text-secondary">
                 {{? Settings.get('latestVersion') }}
                 {{= Settings.get('latestVersion') + ' -> ' + Environment.get('backendVersion') }}
@@ -154,7 +154,7 @@
         </div>
     </div>
     <div class="action-ctn">
-        <span class="button-ignore button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
         <button class="button-action action">{{= i18n.misc.VIEW }}</button>
     <div>
 </script>
@@ -168,7 +168,7 @@
         </div>
     </div>
     <div class="action-ctn">
-        <span class="button-ignore button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
         <button class="button-action action">{{= i18n.welcome.CARD_CLOUD_PHOTO_OPEN }}</button>
     <div>
 </script>
@@ -177,12 +177,12 @@
     <div class="info-ctn hbox">
         <div class="icon-ctn"></div>
         <div class="top-ctn">
-            <h1 class="title">{{= i18n.welcome.CARD_WEIBO_TITLE }}</h1>
+            <h1 class="title link">{{= i18n.welcome.CARD_WEIBO_TITLE }}</h1>
             <p class="info text-secondary">{{= i18n.welcome.CARD_WEIBO_DESC }}</p>
         </div>
     </div>
     <div class="action-ctn">
-        <span class="button-ignore button-setup text-thirdly">{{= i18n.ui.IGNORE }}</span>
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.ui.IGNORE }}</span>
         <button class="button-action action">{{= i18n.welcome.CARD_WEIBO_ACTION }}</button>
     <div>
 </script>
@@ -191,37 +191,46 @@
     <div class="info-ctn hbox">
         <div class="icon-ctn"></div>
         <div class="top-ctn">
-            <h1 class="title">{{= i18n.welcome.CARD_TIEBA_TITLE }}</h1>
+            <h1 class="title link">{{= i18n.welcome.CARD_TIEBA_TITLE }}</h1>
             <p class="info text-secondary">{{= i18n.welcome.CARD_TIEBA_DESC }}</p>
         </div>
     </div>
     <div class="action-ctn">
-        <span class="button-ignore button-setup text-thirdly">{{= i18n.ui.IGNORE }}</span>
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.ui.IGNORE }}</span>
         <button class="button-action action">{{= i18n.welcome.CARD_WEIBO_ACTION }}</button>
     <div>
 </script>
 
 <script type="text/javascript" id="update-card">
-    <h1>{{= StringUtil.format(i18n.welcome.CARD_UPDATE_TITLE, it.length) }}</h1>
+    <h1 class="title">
+    {{? it.length > 1 }}
+    {{= StringUtil.format(i18n.welcome.CARD_UPDATE_TITLE, it.length) }}
+    {{??}}
+    {{= StringUtil.format(i18n.welcome.CARD_UPDATE_ONE_TITLE) }}
+    {{?}}
+    </h1>
     <ul class="apps-list">
         {{~ it.items : item : index}}
-            <li class="item {{? index > 0 }}border-top{{?}} hbox" title="{{= item.base_info.name }}">
+            <li class="item hbox {{? it.items.length === 1 }}no-border{{?}}" title="{{= item.base_info.name }}">
                 <img class="icon" src="{{= item.base_info.icon }}" alt="{{= item.base_info.name }}" />
                 <div class="info-ctn vbox">
                     <h1 class="info">{{= item.base_info.name }}</h1>
-                    <span class="text-thirdly">{{= StringUtil.format(i18n.welcome.CARD_UPDATE_INFO, item.upgrade_info.versionName, StringUtil.readableSize(item.upgrade_info.size)) }}</span>
+                    <span class="text-thirdly wc">{{= StringUtil.format(i18n.welcome.CARD_UPDATE_INFO, item.upgrade_info.versionName, StringUtil.readableSize(item.upgrade_info.size)) }}</span>
                 </div>
+                <button class='button-update normal' data-id="{{= item.id}}" >{{= i18n.app.UPDATE }}</button>
             </li>
         {{~}}
     </ul>
     <div class="action-ctn">
-        <span class="button-ignore button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
+        <span class="button-ignore link button-setup text-thirdly {{? it.items.length < 3}}no-padding{{?}}">{{= i18n.welcome.I_KNOW }}</span>
+        {{? it.length > 1 }}
         <button class="button-action action">{{= i18n.welcome.CARD_UPDATE_ACTION }}</button>
+        {{?}}
     <div>
 </script>
 
 <script type="text/x-ui-template" id="xibaibai-card">
-    <h1 class="title">{{= StringUtil.format(i18n.welcome.CARD_XIBAIBAI_TITLE, it.length) }}</h1>
+    <h1 class="title link">{{= StringUtil.format(i18n.welcome.CARD_XIBAIBAI_TITLE, it.length) }}</h1>
     <div class="info-ctn hbox">
         <div class="icon-ctn">
             {{~ it.items : item : index}}
@@ -233,21 +242,8 @@
         </div>
     </div>
     <div class="action-ctn">
-        <span class="button-ignore button-setup text-thirdly">{{= i18n.ui.IGNORE }}</span>
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.ui.IGNORE }}</span>
         <button class="button-action action">{{= i18n.welcome.CARD_XIBAIBAI_ACTION }}</button>
-    <div>
-</script>
-
-<script type="text/x-ui-template" id="diversion-card">
-    <span class="button-navigate title">{{= it.title }}</span>
-    <div class="hbox info-ctn">
-        {{~ it.imageUrls : url}}
-            <img class="icon"/>
-        {{~}}
-    </div>
-    <div class="action-ctn">
-        <span class="button-ignore button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
-        <button class="button-action action">{{= i18n.welcome.CARD_UPDATE_ACTION }}</button>
     <div>
 </script>
 
@@ -315,25 +311,6 @@
             <button class="button-action">{{= i18n.misc.OPEN }}</button>
         </div>
     </div>
-</script>
-
-<script type="text/x-ui-template" id="item-list-card">
-    <div class="icon-ctn">
-        <div class="text-primary title">{{! it.title }}</div>
-    </div>
-    <ul class="info-ctn">
-        {{~ it.items : item }}
-        <li class="item hbox">
-            <img class="icon button-navigate" src="{{= CONFIG.enums.TASK_DEFAULT_ICON_PATH_APP }}" alt="{{! item.title }}" data-key="{{= item.key }}" />
-            <div class="info">
-                <div class="wc title link button-navigate" data-key="{{= item.key }}">{{! item.title }}</div>
-                <div class="text-thirdly wc">{{! item.tagline }}</div>
-            </div>
-            <button class="button-action" data-key="{{= item.key }}">{{= i18n.app.INSTALL }}</button>
-        </li>
-        {{~}}
-    </ul>
-    <div class="link button-more">{{= i18n.app.MORE }}</div>
 </script>
 
 <script type="text/x-ui-template" id="account">
