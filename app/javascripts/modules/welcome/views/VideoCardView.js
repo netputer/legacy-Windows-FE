@@ -54,7 +54,7 @@
 
                 var deferred = $.Deferred();
                 IO.requestAsync({
-                    url : 'wdj://video/download.json',
+                    url : CONFIG.action.VIDEO_DOWNLOAD,
                     data : {
                         url : url + '&source=windows2x',
                         name : this.model.get('title'),
