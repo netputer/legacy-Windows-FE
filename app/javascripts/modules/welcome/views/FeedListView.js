@@ -11,18 +11,18 @@
         'Configuration',
         'utilities/StringUtil',
         'ui/WindowState',
-        'app/collections/AppsCollection',
-        'welcome/views/UpdateCardView',
-        'welcome/views/XibaibaiCardView',
-        'welcome/views/SingleCardView',
-        'welcome/views/ListCardView',
-        'welcome/views/ItemListView',
-        'welcome/views/CloudPhotoCardView',
+        'welcome/views/AppCardView',
+        'welcome/views/VideoCardView',
+        'welcome/views/EBookCardView',
+        'welcome/views/BannerCardView',
         'welcome/views/BackupCardView',
         'welcome/views/TipsCardView',
-        'welcome/views/WeiboCardView',
-        'welcome/views/TiebaCardView',
         'welcome/views/ChangelogCardView',
+        'welcome/views/CloudPhotoCardView',
+        'welcome/views/WeiboCardView',
+        'welcome/views/UpdateCardView',
+        'welcome/views/XibaibaiCardView',
+        'welcome/views/TiebaCardView',
         'welcome/views/SnapPeaWebCardView',
         'welcome/views/SnapPeaPhotosCardView',
         'welcome/views/SnapPeaFeedbackCardView',
@@ -42,18 +42,18 @@
         CONFIG,
         StringUtil,
         windowState,
-        AppsCollection,
-        UpdateCardView,
-        XibaibaiCardView,
-        SingleCardView,
-        ListCardView,
-        ItemListView,
-        CloudPhotoCardView,
+        AppCardView,
+        VideoCardView,
+        EBookCardView,
+        BannerCardView,
         BackupCardView,
         TipsCardView,
-        WeiboCardView,
-        TiebaCardView,
         ChangelogCardView,
+        CloudPhotoCardView,
+        WeiboCardView,
+        UpdateCardView,
+        XibaibaiCardView,
+        TiebaCardView,
         SnapPeaWebCardView,
         SnapPeaPhotosCardView,
         SnapPeaFeedbackCardView,
@@ -92,88 +92,91 @@
                 var fisrtScreen = true;
                 var randomDisplaySocialCard = _.random(1);
 
+                var view;
                 if (!Settings.get('welcome-card-p2p-show') && FunctionSwitch.IS_CHINESE_VERSION) {
-                    var view = P2pCardView.getInstance({
+                    view = P2pCardView.getInstance({
                         parentView : this
                     });
                     this.$el.append(view.render().$el);
                     Settings.set('welcome-card-p2p-show', true, true);
                 }
 
+                var createDiversonCard = function (feedName) {
+
+                    var lastShownTimestamp;
+                    var targetView;
+                    var show;
+
+                    switch (feedName) {
+                    case 'UpdateFeed':
+                        targetView = UpdateCardView;
+                        break;
+                    case 'BackupLocalFeed':
+                        targetView = BackupCardView;
+                        break;
+                    case 'TipsFeed':
+                        targetView = TipsCardView;
+                        break;
+                    case 'ChangeLogFeed':
+                        if (Settings.get('latestVersion') !== Environment.get('backendVersion')) {
+                            targetView = ChangelogCardView;
+                        }
+                        break;
+                    case 'CloudPhotoFeed':
+                        lastShownTimestamp = Settings.get('welcome_feed_cloud_photo_show') || 1;
+                        show = !Settings.get('welcome_feed_cloud_photo') && (new Date().getTime() - lastShownTimestamp > 7 * 24 * 60 * 60 * 1000 );
+                        if (show) {
+                            targetView = CloudPhotoCardView;
+                        }
+                        break;
+                    case 'WeiBoFeed':
+                        if (Settings.get('welcome_feed_weibo') ||
+                                randomDisplaySocialCard === CONFIG.enums.WELCOME_WEIBO_CARD) {
+                            targetView = WeiboCardView;
+                        }
+                        break;
+                    case 'TieBaFeed':
+                        if (Settings.get('welcome_feed_tieba') ||
+                                randomDisplaySocialCard === CONFIG.enums.WELCOME_TIEBA_CARD) {
+                            targetView = TiebaCardView;
+                        }
+                        break;
+                    case 'XiBaiBaiFeed':
+                        lastShownTimestamp = Settings.get('welcome-card-xibaibai-show') || 1;
+                        show = StringUtil.formatDate('yyyy/MM/dd') !== StringUtil.formatDate('yyyy/MM/dd', lastShownTimestamp);
+                        if (show) {
+                            targetView = XibaibaiCardView;
+                        }
+                        break;
+                    }
+
+                    return targetView;
+                };
+
                 collection.on('refresh', function (collection) {
                     var fragment = document.createDocumentFragment();
-                    var lastShownTimestamp;
                     var show;
                     var logData;
 
                     collection.each(function (feed) {
                         var targetView;
-                        var type = feed.get('type');
-                        switch (type) {
-                        case 0:
-                        case 1:
-                            targetView = SingleCardView;
+                        var type = feed.get('feedItemType');
+
+                        switch(type) {
+                        case 'APP':
+                            targetView = AppCardView;
                             break;
-                        case 10:
-                        case 11:
-                        case 12:
-                            targetView = ListCardView;
+                        case 'VIDEO':
+                            targetView = VideoCardView;
                             break;
-                        case 20:
-                        case 21:
-                        case 22:
-                        case 23:
-                        case 24:
-                        case 25:
-                            targetView = ItemListView;
+                        case 'EBOOK':
+                            targetView = EBookCardView;
                             break;
-                        case 30:
-                            lastShownTimestamp = Settings.get('welcome-card-update-show') || 1;
-                            show = StringUtil.formatDate('yyyy/MM/dd') !== StringUtil.formatDate('yyyy/MM/dd', lastShownTimestamp);
-                            if (show) {
-                                targetView = UpdateCardView;
-                            }
+                        case 'BANNER':
+                            targetView = BannerCardView;
                             break;
-                        case 31:
-                            lastShownTimestamp = Settings.get('welcome-card-xibaibai-show') || 1;
-                            show = StringUtil.formatDate('yyyy/MM/dd') !== StringUtil.formatDate('yyyy/MM/dd', lastShownTimestamp);
-                            if (show) {
-                                targetView = XibaibaiCardView;
-                            }
-                            break;
-                        case 32:
-                            if (!Settings.get('welcome_feed_cloud_photo')) {
-                                targetView = CloudPhotoCardView;
-                            }
-                            break;
-                        case 33:
-                            lastShownTimestamp = Settings.get('welcome-card-backup-show') || Date.now();
-                            show = Math.round((Date.now() - lastShownTimestamp) / 1000 / 3600 / 24) > 3;
-                            if (show) {
-                                targetView = BackupCardView;
-                            }
-                            break;
-                        case 34:
-                            if (Settings.get('welcome_feed_tieba') ||
-                                    randomDisplaySocialCard === CONFIG.enums.WELCOME_WEIBO_CARD) {
-                                targetView = WeiboCardView;
-                            }
-                            break;
-                        case 35:
-                            if (Settings.get('welcome_feed_weibo') ||
-                                    randomDisplaySocialCard === CONFIG.enums.WELCOME_TIEBA_CARD) {
-                                targetView = TiebaCardView;
-                            }
-                            break;
-                        case 98:
-                            if (Settings.get('latestVersion') !== Environment.get('backendVersion')) {
-                                targetView = ChangelogCardView;
-                            }
-                            break;
-                        case 99:
-                            if (!Settings.get('welcome_feed_tips')) {
-                                targetView = TipsCardView;
-                            }
+                        case "WINDOWS_DIVERSION":
+                            targetView = createDiversonCard(feed.get('feedName'));
                             break;
                         case 100:
                             targetView = SnapPeaWebCardView;
@@ -194,6 +197,7 @@
                             targetView = YouTubeCardView;
                             break;
                         }
+
                         if (targetView !== undefined) {
 
                             var target = targetView.getInstance({
@@ -275,3 +279,4 @@
         return factory;
     });
 }(this, this.document));
+

@@ -4,7 +4,6 @@
         'backbone',
         'underscore',
         'doT',
-        'Log',
         'IOBackendDevice',
         'Internationalization',
         'Settings',
@@ -14,7 +13,6 @@
         Backbone,
         _,
         doT,
-        log,
         IO,
         i18n,
         Settings,
@@ -23,49 +21,54 @@
     ) {
         var WeiboCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'weibo')),
-            className : FeedCardView.getClass().prototype.className + ' weibo hide',
+            className : FeedCardView.getClass().prototype.className + ' vbox weibo hide',
             render : function () {
                 this.$el.html(this.template({}));
 
                 var count = Settings.get('welcome_count_weibo') || 0;
 
-                if (!Settings.get('welcome_feed_weibo') &&
-                        count < 5) {
+                if (!Settings.get('welcome_feed_weibo') && count < 5) {
                     this.$el.removeClass('hide');
                     this.options.parentView.initLayout();
 
                     Settings.set('welcome_count_weibo', count + 1, true);
                 } else {
-                    this.hide();
+                    this.setSettings();
                 }
 
                 return this;
             },
-            hide : function () {
+            setSettings : function () {
                 Settings.set('welcome_feed_weibo', true, true);
             },
-            clickButtonAction : function () {
+            clickButtonAction : function (evt) {
+
                 setTimeout(function () {
                     this.$el.addClass('following').find('.button-action').attr({
                         disabled : true
                     }).text(i18n.welcome.CARD_WEIBO_ACTION_CLICKED);
                 }.bind(this), 500);
 
-                this.hide();
+                this.openUrl('http://weibo.com/wandoulabs');
 
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'weibo'
-                });
+                this.setSettings();
+
+                this.log({
+                    action : 'weibo'
+                }, evt);
             },
-            clickButtonIgnore : function () {
-                this.hide();
+            clickButtonIgnore : function (evt) {
+
+                this.setSettings();
+
+                this.log({
+                    action : 'ignore'
+                }, evt);
+
                 this.remove();
             },
             events : {
-                'click .button-action' : 'clickButtonAction',
+                'click .button-action, .icon, .title' : 'clickButtonAction',
                 'click .button-ignore' : 'clickButtonIgnore'
             }
         });

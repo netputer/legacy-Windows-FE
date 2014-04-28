@@ -7,7 +7,6 @@
         'Configuration',
         'Internationalization',
         'Device',
-        'Log',
         'FunctionSwitch',
         'ui/TemplateFactory',
         'ui/AlertWindow',
@@ -20,7 +19,6 @@
         CONFIG,
         i18n,
         Device,
-        log,
         FunctionSwitch,
         TemplateFactory,
         AlertWindow,
@@ -31,7 +29,7 @@
 
         var BackupCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'backup')),
-            className : FeedCardView.getClass().prototype.className + ' backup hide',
+            className : FeedCardView.getClass().prototype.className + ' vbox backup hide',
             render : function () {
                 this.$el.html(this.template({}));
 
@@ -43,10 +41,11 @@
                 }.bind(this));
                 return this;
             },
-            hide : function () {
+            setSetting : function () {
                 Settings.set('welcome-card-backup-show', Date.now(), true);
             },
-            clickButtonAction : function () {
+            clickButtonAction : function (evt) {
+
                 if (!FunctionSwitch.ENABLE_CLOUD_BACKUP_RESTORE && !Device.get('isUSB')) {
                     alert(i18n.new_backuprestore.TIP_IN_WIFI);
                     return;
@@ -56,22 +55,25 @@
                     module : 'backup-restore'
                 });
 
-                this.remove();
-                this.hide();
+                this.setSetting();
 
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'backup'
-                });
-            },
-            clickButtonIgnore : function () {
+                this.log({
+                    action : 'backup'
+                }, evt);
+
                 this.remove();
-                this.hide();
+            },
+            clickButtonIgnore : function (evt) {
+
+                this.log({
+                    action : 'ignore'
+                }, evt);
+
+                this.setSetting();
+                this.remove();
             },
             events : {
-                'click .button-action' : 'clickButtonAction',
+                'click .button-action, .icon' : 'clickButtonAction',
                 'click .button-ignore' : 'clickButtonIgnore'
             }
         });

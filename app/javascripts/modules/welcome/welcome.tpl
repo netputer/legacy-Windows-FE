@@ -8,151 +8,243 @@
     {{= TemplateFactory.get('ui', 'loading-horizental-transparent') }}
 </script>
 
-<script type="text/x-ui-template" id="card-app-set">
-    <div class="count-ctn">
-        <div class="count">{{= it.length }}</div>
-        <div class="title">{{= it.title }}</div>
-    </div>
-    <div class="apps-ctn">
-        <ul class="apps-list">
-            {{~ it.items : item }}
-            <li class="item" title="{{= item.base_info.name }}"><img class="icon" src="{{= item.base_info.icon }}" alt="{{= item.base_info.name }}" /></li>
-            {{~}}
-        </ul>
-        <div class="text-secondary desc">{{= it.desc }}</div>
-        <div class="btn-ctn hbox">
-            <button class="button-action">{{= it.action }}</button>
-            <span class="button-ignore text-secondary">{{= i18n.ui.IGNORE }}</span>
-        </div>
-    </div>
-</script>
-
-<script type="text/x-ui-template" id="sigle-card">
-    <img class="icon button-navigate" alt="{{! it.title }}" />
+<script type="text/x-ui-template" id="app-card">
+    <img class="icon" alt="{{! it.title }}" src='{{= CONFIG.enums.IMAGE_PATH + "/default-app-100X100.png" }}'/>
     <div class="info-ctn vbox">
         <div class="info-top hbox">
             <div class="info">
-                <h1 class="title link button-navigate wc" title="{{! it.title }}">{{! it.title }}</h1>
-                <span class="cate text-thirdly">
-                    {{= StringUtil.format(i18n.welcome.CARD_APP_TAG_LINE, it.categories[0] ? it.categories[0].name : '', it.installedCountStr) }}
-                </span>
+                <h1 class="title button-navigate wc link" title="{{! it.title }}">{{! it.title }}</h1>
             </div>
-            <button class="button-action"></button>
+            <button class="button-action action"></button>
         </div>
-        <div class="comment text-secondary">{{! it.comment }}</div>
-        <footer class="footer text-thirdly">
-            {{= StringUtil.format(i18n.welcome.CARD_APP_FOOTER, it.channel, StringUtil.smartDate(it.updateTime)) }}
-        </footer>
+        <span class="cate text-thirdly">
+            {{= StringUtil.format(i18n.welcome.CARD_APP_TAG_LINE, it.installedCountStr, it.readAbleSize) }}
+        </span>
+        <div class="comment text-secondary">{{! it.editorComment }}</div>
+    </div>
+    <div class="tag">
+        {{? it.appType === 'APP' }}
+        {{= i18n.misc.APP }}
+        {{??}}
+        {{= i18n.misc.GAME }}
+        {{?}}
     </div>
     <div class="ad-badge"></div>
 </script>
 
-<script type="text/x-ui-template" id="list-card">
-    <div class="icon-ctn"></div>
-    <div class="info-ctn">
-        <h1 class="title">{{= it.title }}</h1>
-        <ul class="list-ctn">
-            {{~ it.items : item }}
-            <li class="item button-navigate" data-url="{{= item.url }}" date-name="{{! item.name }}">{{! item.name }}</li>
-            {{~}}
-        </ul>
-    </div>
-</script>
-
-<script type="text/x-ui-template" id="cloud-photo">
-    <div class="icon-ctn"></div>
-    <div class="info-ctn">
-        <h1 class="title">{{= i18n.welcome.CARD_CLOUD_PHOTO_TITLE }}</h1>
-        <p class="desc">{{= i18n.welcome.CARD_CLOUD_PHOTO_DESC }}</p>
-        <div class="btn-ctn hbox">
-            <button class="button-action">{{= i18n.welcome.CARD_CLOUD_PHOTO_OPEN }}</button>
-            <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
+<script type="text/x-ui-template" id="video-card">
+    <img class="icon" alt="{{! it.title }}" />
+    <div class="info-ctn vbox">
+        <div class="info-top hbox">
+            <div class="info">
+                <h1 class="title button-navigate wc link" title="{{! it.title }}">{{! it.title }}</h1>
+            </div>
+            <button class="button-action action">{{! i18n.welcome.CARD_VIDEO_OFFLINE }}</button>
         </div>
-    </div>
-</script>
-
-<script type="text/x-ui-template" id="backup">
-    <div class="icon-ctn"></div>
-    <div class="info-ctn">
-        <h1 class="title">{{= i18n.welcome.CARD_BACKUP_TITLE }}</h1>
-        <p class="desc">{{= i18n.welcome.CARD_BACKUP_DESC }}</p>
-        <div class="btn-ctn hbox">
-            <button class="button-action">{{= i18n.welcome.CARD_BACKUP_ACTION }}</button>
-            <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
-        </div>
-    </div>
-</script>
-
-<script type="text/x-ui-template" id="tips">
-    <div class="icon-ctn"></div>
-    <div class="info-ctn">
-        <h1 class="title">{{= i18n.welcome.CARD_TIPS_TITLE }}</h1>
-        <p class="desc">{{= i18n.welcome.GUIDE_TIPS_TIP }}</p>
-        <div class="btn-ctn hbox">
-            <button class="button-action">{{= i18n.misc.VIEW }}</button>
-            <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
-        </div>
-    </div>
-</script>
-
-<script type="text/x-ui-template" id="weibo">
-    <div class="icon-ctn"></div>
-    <div class="info-ctn">
-        <h1 class="title">{{= i18n.welcome.CARD_WEIBO_TITLE }}</h1>
-        <p class="desc">{{= i18n.welcome.CARD_WEIBO_DESC }}</p>
-        <div class="btn-ctn hbox">
-            <a class="button-action" href="http://weibo.com/wandoulabs" target="_default">{{= i18n.welcome.CARD_WEIBO_ACTION }}</a>
-            <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
-        </div>
-    </div>
-</script>
-
-<script type="text/x-ui-template" id="tieba">
-    <div class="icon-ctn"></div>
-    <div class="info-ctn">
-        <h1 class="title">{{= i18n.welcome.CARD_TIEBA_TITLE }}</h1>
-        <p class="desc">{{= i18n.welcome.CARD_TIEBA_DESC }}</p>
-        <div class="btn-ctn hbox">
-            <a class="button-action" href="http://tieba.baidu.com/f?ie=utf-8&kw=%E8%B1%8C%E8%B1%86%E8%8D%9A" target="_default">{{= i18n.welcome.CARD_WEIBO_ACTION }}</a>
-            <span class="button-ignore">{{= i18n.ui.IGNORE }}</span>
-        </div>
-    </div>
-</script>
-
-<script type="text/x-ui-template" id="changelog">
-    <div class="icon-ctn">
-        {{? it.icon }}
-        <img class="img" src={{= it.icon }} alt="" />
-        {{?}}
-    </div>
-    <div class="info-ctn">
-        <h1 class="title">{{= i18n.welcome.UPDATED }}</h1>
-        <p class="desc text-thirdly">
-            {{? Settings.get('latestVersion') }}
-            {{= Settings.get('latestVersion') + ' -> ' + Environment.get('backendVersion') }}
+        <span class="cate text-thirdly">
+            {{? it.downloadCount > 10000 }}
+            {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_2, Math.round(it.downloadCount / 10000), it.latestEpisodeNum ? (it.latestEpisodeNum < it.totalEpisodesNum ? StringUtil.format(i18n.welcome.CARD_VIDEO_UPDATE_TO, it.latestEpisodeNum) : StringUtil.format(i18n.welcome.CARD_VIDEO_COMPLATE, it.totalEpisodesNum)) : '') }}
             {{??}}
-            {{= Environment.get('backendVersion') }}
+            {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_1, it.downloadCount, it.latestEpisodeNum ? (it.latestEpisodeNum < it.totalEpisodesNum ? StringUtil.format(i18n.welcome.CARD_VIDEO_UPDATE_TO, it.latestEpisodeNum) : StringUtil.format(i18n.welcome.CARD_VIDEO_COMPLATE, it.totalEpisodesNum)) : '') }}
             {{?}}
-        </p>
-        <p class="info text-secondary">{{= it.subtitle }}
-        </p>
-        <div class="btn-ctn hbox">
-            <button class="button-action">{{= i18n.misc.VIEW }}</button>
-            <span class="button-ignore text-thirdly">{{= i18n.ui.IGNORE }}</span>
+        </span>
+        <div class="comment text-secondary">{{! it.description }}</div>
+        <div class="tag">
+            {{! i18n.misc.VIDEO }}
         </div>
+    </div>
+    <div class="ad-badge"></div>
+</script>
+
+<script type="text/x-ui-template" id="ebook-card">
+    <img class="icon" alt="{{! it.title }}" />
+    <div class="info-ctn vbox">
+        <div class="info-top hbox">
+            <div class="info">
+                <h1 class="title button-navigate wc link" title="{{! it.title }}">{{! it.title }}</h1>
+            </div>
+            <button class="button-action action">{{! i18n.welcome.CARD_VIDEO_OFFLINE }}</button>
+        </div>
+        <span class="cate text-thirdly">
+            {{? it.readCount > 10000 }}
+            {{= StringUtil.format(i18n.welcome.CARD_EBOOK_TAG_LINE_2, Math.round(it.readCount / 10000), i18n.welcome['CARD_EBOOK_STATUS_' + it.status]) }}
+            {{??}}
+            {{= StringUtil.format(i18n.welcome.CARD_EBOOK_TAG_LINE_1, it.readCount, i18n.welcome['CARD_EBOOK_STATUS_' + it.status]) }}
+            {{?}}
+        </span>
+        <div class="comment text-secondary">{{! it.description }}</div>
+        <div class="tag">
+            {{! i18n.misc.EBOOK }}
+        </div>
+    </div>
+    <div class="ad-badge"></div>
+</script>
+
+<script type="text/javascript" id="banner-card">
+    <img class="icon" alt="{{! it.title }}" />
+    <div class="info-ctn hbox">
+        <div class="info">
+            <h1 class="title button-navigate wc link" title="{{! it.title}}">{{! it.title }}</h1>
+        </div>
+        <button class="button-action action"></button>
     </div>
 </script>
 
 <script type="text/x-ui-template" id="p2p">
-    <div class="icon-ctn"></div>
-    <div class="info-ctn">
-        <h1 class="title">{{= i18n.welcome.P2PTITLE }}</h1>
-        <p class="info text-secondary">{{= i18n.welcome.P2PDESCRIPTION }}</p>
-        <div class="btn-ctn hbox">
-            <button class="button-action">{{= i18n.welcome.GOTIT }}</button>
-            <span class="button-ignore button-setup text-thirdly">{{= i18n.welcome.SETTING }}</span>
+    <div class="info-ctn hbox">
+        <div class="icon-ctn"></div>
+        <div class="top-ctn">
+            <h1 class="title">{{= i18n.welcome.P2PTITLE }}</h1>
+            <p class="info text-secondary">{{= i18n.welcome.P2PDESCRIPTION }}</p>
         </div>
     </div>
+    <div class="action-ctn">
+        <span class="button-setup text-thirdly">{{= i18n.welcome.SETTING }}</span>
+        <button class="button-ignore link action">{{= i18n.welcome.GOTIT }}</button>
+    <div>
+</script>
+
+<script type="text/x-ui-template" id="backup">
+    <div class="info-ctn hbox">
+        <div class="icon-ctn"></div>
+        <div class="top-ctn">
+            <h1 class="title">{{= i18n.welcome.CARD_BACKUP_TITLE }}</h1>
+            <p class="info text-secondary">{{= i18n.welcome.CARD_BACKUP_DESC }}</p>
+        </div>
+    </div>
+    <div class="action-ctn">
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
+        <button class="button-action action">{{= i18n.welcome.CARD_BACKUP_ACTION }}</button>
+    <div>
+</script>
+
+<script type="text/x-ui-template" id="tips">
+    <div class="info-ctn hbox">
+        <div class="icon-ctn"></div>
+        <div class="top-ctn">
+            <h1 class="button-navigate title">{{= i18n.welcome.CARD_TIPS_TITLE }}</h1>
+            <p class="info text-secondary">{{= i18n.welcome.GUIDE_TIPS_TIP }}</p>
+        </div>
+    </div>
+    <div class="action-ctn">
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
+        <button class="button-action action">{{= i18n.misc.VIEW }}</button>
+    <div>
+</script>
+
+<script type="text/x-ui-template" id="changelog">
+    <div class="info-ctn hbox">
+        <div class="icon-ctn">
+            {{? it.icon }}
+            <img class="img" src={{= it.icon }} alt="" />
+            {{?}}
+        </div>
+        <div class="top-ctn">
+            <h1 class="title link">{{= i18n.welcome.UPDATED }}</h1>
+            <p class="info text-secondary">
+                {{? Settings.get('latestVersion') }}
+                {{= Settings.get('latestVersion') + ' -> ' + Environment.get('backendVersion') }}
+                {{??}}
+                {{= Environment.get('backendVersion') }}
+                {{?}}
+            </p>
+            {{? it.subtitle }}
+            <p class="info text-secondary">{{= it.subtitle }}</p>
+            {{?}}
+        </div>
+    </div>
+    <div class="action-ctn">
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
+        <button class="button-action action">{{= i18n.misc.VIEW }}</button>
+    <div>
+</script>
+
+<script type="text/x-ui-template" id="cloud-photo">
+    <div class="info-ctn hbox">
+        <div class="icon-ctn"></div>
+        <div class="top-ctn">
+            <h1 class="title">{{= i18n.welcome.CARD_CLOUD_PHOTO_TITLE }}</h1>
+            <p class="info text-secondary">{{= i18n.welcome.CARD_CLOUD_PHOTO_DESC }}</p>
+        </div>
+    </div>
+    <div class="action-ctn">
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
+        <button class="button-action action">{{= i18n.welcome.CARD_CLOUD_PHOTO_OPEN }}</button>
+    <div>
+</script>
+
+<script type="text/x-ui-template" id="weibo">
+    <div class="info-ctn hbox">
+        <div class="icon-ctn"></div>
+        <div class="top-ctn">
+            <h1 class="title link">{{= i18n.welcome.CARD_WEIBO_TITLE }}</h1>
+            <p class="info text-secondary">{{= i18n.welcome.CARD_WEIBO_DESC }}</p>
+        </div>
+    </div>
+    <div class="action-ctn">
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.ui.IGNORE }}</span>
+        <button class="button-action action">{{= i18n.welcome.CARD_WEIBO_ACTION }}</button>
+    <div>
+</script>
+
+<script type="text/x-ui-template" id="tieba">
+    <div class="info-ctn hbox">
+        <div class="icon-ctn"></div>
+        <div class="top-ctn">
+            <h1 class="title link">{{= i18n.welcome.CARD_TIEBA_TITLE }}</h1>
+            <p class="info text-secondary">{{= i18n.welcome.CARD_TIEBA_DESC }}</p>
+        </div>
+    </div>
+    <div class="action-ctn">
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.ui.IGNORE }}</span>
+        <button class="button-action action">{{= i18n.welcome.CARD_WEIBO_ACTION }}</button>
+    <div>
+</script>
+
+<script type="text/javascript" id="update-card">
+    <h1 class="title">
+    {{? it.length > 1 }}
+    {{= StringUtil.format(i18n.welcome.CARD_UPDATE_TITLE, it.length) }}
+    {{??}}
+    {{= StringUtil.format(i18n.welcome.CARD_UPDATE_ONE_TITLE) }}
+    {{?}}
+    </h1>
+    <ul class="apps-list">
+        {{~ it.items : item : index}}
+            <li class="item hbox {{? it.items.length === 1 }}no-border{{?}}" title="{{= item.base_info.name }}">
+                <img class="icon" src="{{= item.base_info.icon }}" alt="{{= item.base_info.name }}" />
+                <div class="info-ctn vbox">
+                    <h1 class="info">{{= item.base_info.name }}</h1>
+                    <span class="text-thirdly wc">{{= StringUtil.format(i18n.welcome.CARD_UPDATE_INFO, item.upgrade_info.versionName, StringUtil.readableSize(item.upgrade_info.size)) }}</span>
+                </div>
+                <button class='button-update normal' data-id="{{= item.id}}" >{{= i18n.app.UPDATE }}</button>
+            </li>
+        {{~}}
+    </ul>
+    <div class="action-ctn {{? it.items.length < 3 }}no-padding{{?}}">
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
+        {{? it.length > 1 }}
+        <button class="button-action action">{{= i18n.welcome.CARD_UPDATE_ACTION }}</button>
+        {{?}}
+    <div>
+</script>
+
+<script type="text/x-ui-template" id="xibaibai-card">
+    <h1 class="title link">{{= StringUtil.format(i18n.welcome.CARD_XIBAIBAI_TITLE, it.length) }}</h1>
+    <div class="info-ctn hbox">
+        <div class="icon-ctn">
+            {{~ it.items : item : index}}
+                <img class="icon" src="{{= item.base_info.icon}}"  alt="{{= item.base_info.name }}"/>
+            {{~}}
+        </div>
+        <div class="top-ctn">
+            <p class="info text-secondary">{{= i18n.welcome.CARD_XIBAIBAI_DESC }}</p>
+        </div>
+    </div>
+    <div class="action-ctn">
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.ui.IGNORE }}</span>
+        <button class="button-action action">{{= i18n.welcome.CARD_XIBAIBAI_ACTION }}</button>
+    <div>
 </script>
 
 <script type="text/x-ui-template" id="snappea-web">
@@ -219,25 +311,6 @@
             <button class="button-action">{{= i18n.misc.OPEN }}</button>
         </div>
     </div>
-</script>
-
-<script type="text/x-ui-template" id="item-list-card">
-    <div class="icon-ctn">
-        <div class="text-primary title">{{! it.title }}</div>
-    </div>
-    <ul class="info-ctn">
-        {{~ it.items : item }}
-        <li class="item hbox">
-            <img class="icon button-navigate" src="{{= CONFIG.enums.TASK_DEFAULT_ICON_PATH_APP }}" alt="{{! item.title }}" data-key="{{= item.key }}" />
-            <div class="info">
-                <div class="wc title link button-navigate" data-key="{{= item.key }}">{{! item.title }}</div>
-                <div class="text-thirdly wc">{{! item.tagline }}</div>
-            </div>
-            <button class="button-action" data-key="{{= item.key }}">{{= i18n.app.INSTALL }}</button>
-        </li>
-        {{~}}
-    </ul>
-    <div class="link button-more">{{= i18n.app.MORE }}</div>
 </script>
 
 <script type="text/x-ui-template" id="account">

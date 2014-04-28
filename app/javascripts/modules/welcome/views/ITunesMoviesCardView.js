@@ -5,7 +5,6 @@
         'underscore',
         'doT',
         'Configuration',
-        'Log',
         'Internationalization',
         'browser/views/BrowserModuleView',
         'ui/TemplateFactory',
@@ -15,7 +14,6 @@
         _,
         doT,
         CONFIG,
-        log,
         i18n,
         BrowserModuleView,
         TemplateFactory,
@@ -30,13 +28,7 @@
             },
             clickButtonAction : function () {
                 BrowserModuleView.navigateToThirdParty(83, 'iTunes Movies');
-
-                log({
-                    'event' : 'ui.click.welcome_card_action',
-                    'type' : this.model.get('type'),
-                    'index' : this.getIndex(),
-                    'action' : 'snappea-itunes'
-                });
+                this.log();
             },
             events : {
                 'click .button-action' : 'clickButtonAction'

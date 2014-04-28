@@ -4,8 +4,8 @@
         'backbone',
         'underscore',
         'doT',
-        'Log',
         'IO',
+        'Log',
         'Configuration',
         'ui/TemplateFactory',
         'welcome/views/FeedCardView'
@@ -13,35 +13,38 @@
         Backbone,
         _,
         doT,
-        log,
         IO,
+        log,
         CONFIG,
         TemplateFactory,
         FeedCardView
     ) {
         var P2pCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'p2p')),
-            className : FeedCardView.getClass().prototype.className + ' p2p',
+            className : FeedCardView.getClass().prototype.className + ' vbox p2p',
             render : function () {
                 this.$el.html(this.template({}));
                 return this;
             },
-            clickButtonAction : function () {
+            clickButtonIgnore : function (evt){
+                this.log({
+                    name : 'p2p',
+                    action : 'ignore'
+                }, evt);
+
                 this.remove();
             },
-            clickButtonSetup : function () {
+            clickButtonSetup : function (evt) {
 
                 IO.requestAsync(CONFIG.actions.WINDOW_OPEN_SETTING);
-                this.remove();
 
-                log({
-                    'event' : 'ui.click.welcome_card_action',
+                this.log({
+                    'name' : 'p2p',
                     'action' : 'p2p'
-                });
-
+                }, evt);
             },
             events : {
-                'click .button-action' : 'clickButtonAction',
+                'click .button-ignore' : 'clickButtonIgnore',
                 'click .button-setup' : 'clickButtonSetup'
             }
         });
