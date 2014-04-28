@@ -221,8 +221,8 @@
             </li>
         {{~}}
     </ul>
-    <div class="action-ctn">
-        <span class="button-ignore link button-setup text-thirdly {{? it.items.length < 3}}no-padding{{?}}">{{= i18n.welcome.I_KNOW }}</span>
+    <div class="action-ctn {{? it.items.length < 3 }}no-padding{{?}}">
+        <span class="button-ignore link button-setup text-thirdly">{{= i18n.welcome.I_KNOW }}</span>
         {{? it.length > 1 }}
         <button class="button-action action">{{= i18n.welcome.CARD_UPDATE_ACTION }}</button>
         {{?}}
