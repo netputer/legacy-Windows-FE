@@ -30,10 +30,31 @@
             template : doT.template(TemplateFactory.get('taskManager', 'task-list')),
             className : 'w-task-list-ctn vbox',
             initialize : function () {
+                var enableUpdateData = false;
+                var hasCachedData = false;
                 Object.defineProperties(this, {
                     selected : {
                         get : function () {
                             return taskList ? taskList.selected : [];
+                        }
+                    },
+                    enableUpdateData : {
+                        get : function () {
+                            return enableUpdateData;
+                        },
+                        set : function (value) {
+                            enableUpdateData = value;
+                            if (value && hasCachedData) {
+                                taskList.switchSet('default', tasksCollection.getAll);
+                            }
+                        }
+                    },
+                    hasCachedData : {
+                        get : function () {
+                            return hasCachedData;
+                        },
+                        set : function (value) {
+                            hasCachedData = value;
                         }
                     }
                 });
@@ -57,8 +78,13 @@
                 });
 
                 taskList.listenTo(tasksCollection, 'refresh', function (tasksCollection) {
-                    this.switchSet('default', tasksCollection.getAll);
-                }).listenTo(tasksCollection, 'update', function () {
+                    if (this.enableUpdateData) {
+                        taskList.switchSet('default', tasksCollection.getAll);
+                        this.hasCachedData = false;
+                    } else {
+                        this.hasCachedData = true;
+                    }
+                }.bind(this)).listenTo(tasksCollection, 'update', function () {
                     this.loading = true;
 
                     tasksCollection.once('refresh', function () {

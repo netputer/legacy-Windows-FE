@@ -14,8 +14,7 @@
         'IOBackendDevice',
         'task/views/TaskModuleToolbarView',
         'task/views/TaskListView',
-        'task/views/TaskModuleCapacityView',
-        'task/collections/TasksCollection'
+        'task/views/TaskModuleCapacityView'
     ], function (
         $,
         Backbone,
@@ -30,8 +29,7 @@
         IO,
         TaskModuleToolbarView,
         TaskListView,
-        TaskModuleCapacityView,
-        TasksCollection
+        TaskModuleCapacityView
     ) {
         console.log('TaskModuleView - File loaded.');
 
@@ -178,7 +176,6 @@
             slideIn : function () {
 
                 clearTimeout(timeoutHandle);
-                Backbone.trigger('taskmanager.silde', true);
 
                 this.show = true;
 
@@ -191,14 +188,13 @@
                 this.$el.toggleClass('hide', !this.show);
 
                 timeoutHandle = setTimeout(function () {
-                    Backbone.trigger('taskmanager.silde', false);
                     Backbone.trigger('taskManager.showModule', 'task');
-                }, 500);
+                    taskListView.enableUpdateData = true;
+                }, 600);
             },
             slideOut : function () {
 
                 clearTimeout(timeoutHandle);
-                Backbone.trigger('taskmanager.silde', true);
 
                 if (lastView){
                     Backbone.trigger('taskManager.showModule', lastView);
@@ -207,8 +203,8 @@
                 this.$el.toggleClass('hide', !this.show);
 
                 timeoutHandle = setTimeout(function () {
-                    Backbone.trigger('taskmanager.silde', false);
-                }, 500);
+                    taskListView.enableUpdateData = false;
+                }, 600);
 
             },
             recordFPS : function () {
