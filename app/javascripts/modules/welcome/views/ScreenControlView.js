@@ -27,6 +27,10 @@
             initialize : function () {
                 this.listenTo(Device, 'change:isFastADB', function (Device, isFastADB) {
                     this.setButtonsState(isFastADB);
+                }).listenTo(Device, 'change:isConnected', function (Device, isConnected) {
+                    if (!isConnected) {
+                        this.stopPlay();
+                    }
                 });
             },
             render : function () {
@@ -72,7 +76,7 @@
                     'event' : 'ui.click.welcome.play'
                 });
             },
-            clickButtonPause : function () {
+            stopPlay : function () {
                 this.$('.button-pause')
                     .removeClass('button-pause')
                     .addClass('button-play')
@@ -83,7 +87,9 @@
                 this.$('.button-play .label').html(i18n.misc.PLAY);
 
                 this.options.deviceView.stop();
-
+            },
+            clickButtonPause : function () {
+                this.stopPlay();
                 log({
                     'event' : 'ui.click.welcome.pause'
                 });
