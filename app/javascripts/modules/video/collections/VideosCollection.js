@@ -108,9 +108,8 @@
 
                     if (!!data) {
                         this.trigger('update');
-                    } else {
-                        this.trigger('refresh', this);
                     }
+
                 }, this);
             },
             importAsync : function (paths, session) {
