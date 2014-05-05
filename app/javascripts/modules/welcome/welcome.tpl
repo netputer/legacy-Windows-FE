@@ -42,10 +42,18 @@
             <button class="button-action action">{{! i18n.welcome.CARD_VIDEO_OFFLINE }}</button>
         </div>
         <span class="cate text-thirdly">
-            {{? it.downloadCount > 10000 }}
-            {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_2, Math.round(it.downloadCount / 10000), it.latestEpisodeNum ? (it.latestEpisodeNum < it.totalEpisodesNum ? StringUtil.format(i18n.welcome.CARD_VIDEO_UPDATE_TO, it.latestEpisodeNum) : StringUtil.format(i18n.welcome.CARD_VIDEO_COMPLATE, it.totalEpisodesNum)) : '') }}
+            {{? it.type === 'MOVIE' }}
+                {{? it.downloadCount > 10000 }}
+                    {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_2, Math.round(it.downloadCount / 10000), '') }}
+                {{??}}
+                    {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_1, it.downloadCount, '') }}
+                {{?}}
             {{??}}
-            {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_1, it.downloadCount, it.latestEpisodeNum ? (it.latestEpisodeNum < it.totalEpisodesNum ? StringUtil.format(i18n.welcome.CARD_VIDEO_UPDATE_TO, it.latestEpisodeNum) : StringUtil.format(i18n.welcome.CARD_VIDEO_COMPLATE, it.totalEpisodesNum)) : '') }}
+                {{? it.downloadCount > 10000 }}
+                    {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_2, Math.round(it.downloadCount / 10000), (it.latestEpisodeNum && it.totalEpisodesNum) ? (it.latestEpisodeNum < it.totalEpisodesNum ? StringUtil.format(i18n.welcome.CARD_VIDEO_UPDATE_TO, it.latestEpisodeNum) : StringUtil.format(i18n.welcome.CARD_VIDEO_COMPLATE, it.totalEpisodesNum)) : '') }}
+                {{??}}
+                    {{= StringUtil.format(i18n.welcome.CARD_VIDEO_TAG_LINE_1, it.downloadCount, (it.latestEpisodeNum && it.totalEpisodesNum) ? (it.latestEpisodeNum < it.totalEpisodesNum ? StringUtil.format(i18n.welcome.CARD_VIDEO_UPDATE_TO, it.latestEpisodeNum) : StringUtil.format(i18n.welcome.CARD_VIDEO_COMPLATE, it.totalEpisodesNum)) : '') }}
+                {{?}}
             {{?}}
         </span>
         <div class="comment text-secondary">{{! it.description }}</div>
