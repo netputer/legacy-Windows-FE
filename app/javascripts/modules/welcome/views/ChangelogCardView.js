@@ -81,11 +81,7 @@
                 return this;
             },
             clickButtonAction : function (evt) {
-                $('<a>').attr({
-                    href : this.resp.blog,
-                    target : '_default'
-                })[0].click();
-
+                this.openUrl(this.resp.blog);
                 this.log({
                     action : 'changelog',
                 }, evt);
