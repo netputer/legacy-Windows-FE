@@ -117,6 +117,11 @@
                 }.bind(this));
 
                 var getShellInfoHandler = function () {
+
+                    if (!this.get('isConnected')) {
+                        return;
+                    }
+
                     this.getShellInfoAsync().done(function () {
                         if (Environment.get('deviceId') !== 'Default' && this.get('shell').path) {
                             this.off('change:isConnected', getShellInfoHandler, this);
