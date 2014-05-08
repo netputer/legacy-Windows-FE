@@ -79,17 +79,6 @@
                     this.changeHandler(data);
                 }, this);
 
-                IO.requestAsync(CONFIG.actions.DEVICE_GET_DEVICE_STATE).done(function (resp) {
-                    if (resp.state_code === 200) {
-                        console.log('Device - Get device state success.');
-                        if (!listenBack) {
-                            this.changeHandler(resp.body);
-                        }
-                    } else {
-                        console.error('Device - Get device state failed. Error info: ' + resp.state_line);
-                    }
-                }.bind(this));
-
                 IO.requestAsync(CONFIG.actions.DEVICE_IS_AUTOBACKUP).done(function (resp) {
                     if (resp.state_code === 200) {
                         console.log('Device - Get device autobackup success.');
@@ -152,6 +141,11 @@
                 this.on('change:isConnected change:isUSB change:isWifi change:isFastADB', setCanScreenshotAsync, this);
 
                 var setServiceCenterAsync = function () {
+
+                    if (!this.get('isConnected')) {
+                        return;
+                    }
+
                     this.getDualSimInfoAsync().done(function (resp) {
                         if (resp.body.sim.length > 0) {
                             this.set({
