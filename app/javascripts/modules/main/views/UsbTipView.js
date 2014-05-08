@@ -36,7 +36,12 @@
                 this.$el.html(template());
                 return this;
             },
-
+            clickButtonClose : function () {
+                window.wandoujia.window.close();
+            },
+            events : {
+                'click .button-close' : 'clickButtonClose'
+            }
         });
 
         var factory = _.extend({
