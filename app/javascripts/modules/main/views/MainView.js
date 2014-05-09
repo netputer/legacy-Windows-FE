@@ -210,14 +210,6 @@
             }
         };
 
-        var toggleMask = function (name, isConnected, isWifi) {
-
-            if (isConnected && !name.match(/task|welcome|browser|gallery|doraemon/) && isWifi) {
-                pimMaskView.show();
-            } else {
-                pimMaskView.hide();
-            }
-        };
 
         var MainView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('misc', 'main')),
@@ -300,11 +292,8 @@
                 this.$('.module-ctn').append(pimMaskView.render().$el.hide());
 
 
-                Device.on('change:isWifi, change:isConnected', function (Device) {
-
-                    var isWifi = Device.get('isWifi');
-                    var isConnected = Device.get('isConnected');
-                    toggleMask(SnapPea.CurrentModule, isConnected, isWifi);
+                this.listenTo(Device, 'change:isWifi, change:isConnected', function () {
+                    this.toggleMask();
                 });
 
                 var delegate = IO.Backend.Device.onmessage({
@@ -330,9 +319,21 @@
             getModule : function (name) {
                 return this.modules[name];
             },
-            showModule : function (name, tab) {
+            toggleMask : function () {
+                var isConnected = Device.get('isConnected');
+                var isWifi = Device.get('isWifi');
+                var isShow = true;
 
-                toggleMask(name, Device.get('isConnected'), Device.get('isWifi'));
+                if (isConnected && !this.currentModule.match(/task|welcome|browser|gallery|doraemon/) && isWifi) {
+                    pimMaskView.show();
+                } else {
+                    pimMaskView.hide();
+                    isShow = false;
+                }
+
+                return isShow;
+            },
+            showModule : function (name, tab) {
 
                 this.currentTab = tab;
 
@@ -346,6 +347,11 @@
 
                 this.currentModule = name;
                 if (name === 'task') {
+                    return;
+                }
+
+                var isShow = this.toggleMask();
+                if (isShow) {
                     return;
                 }
 

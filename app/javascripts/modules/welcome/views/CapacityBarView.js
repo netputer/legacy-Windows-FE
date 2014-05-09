@@ -43,7 +43,7 @@
                 });
             },
             render : function () {
-                if (Device.get('isConnected')) {
+                if (Device.get('isConnected') && !Device.get('isWifi')) {
                     Device.getCapacityAsync().always(function () {
                         var data = {
                             deviceCapacity : Device.get('deviceCapacity'),

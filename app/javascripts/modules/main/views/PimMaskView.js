@@ -64,7 +64,7 @@
                 IO.requestAsync(CONFIG.actions.CONNET_PHONE);
             },
             events : {
-                'click .action' : 'clickButtonAction'
+                'click .button-action' : 'clickButtonAction'
             }
         });
 
