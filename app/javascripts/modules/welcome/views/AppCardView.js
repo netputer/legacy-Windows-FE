@@ -108,7 +108,8 @@
                     title : this.model.get('title'),
                     iconPath : this.model.get('icons').px36,
                     packageName : this.model.get('packageName'),
-                    source : 'start-page-single'
+                    source : 'start-page-single',
+                    size : this.model.get('apks')[0].bytes
                 });
 
                 if (target !== undefined && target.isUpdatable) {
