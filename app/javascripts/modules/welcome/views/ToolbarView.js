@@ -169,7 +169,7 @@
             },
             setButtonState : function () {
                 this.$('.button-open-sd, .button-backup, .button-restore, .button-set-wallpaper')
-                    .prop('disabled', !Device.get('isConnected'))
+                    .prop('disabled', Device.get('isWifi') || !Device.get('isConnected'))
                     .attr('title', Device.get('isConnected') ? '' : i18n.welcome.CONNECT_UR_PHONE);
 
                 this.$('.button-screen-shot').prop('disabled', !Device.get('canScreenshot'));
