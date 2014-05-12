@@ -46,6 +46,7 @@
         console.log('Wandoujia 2.0 launched.');
 
         var alert = window.alert;
+        var navigator = window.navigator;
 
         var pimMaskView;
 
@@ -247,11 +248,11 @@
                     var module = data.module;
                     var tab = data.tab;
 
-                    if (Environment.get('deviceId') !== 'Default' || module === 'doraemon' || module === 'browser' || module === 'gallery') {
+                    //if (Environment.get('deviceId') !== 'Default' || module === 'doraemon' || module === 'browser' || module === 'gallery') {
                         this.showModule(module, data.tab);
-                    } else {
-                        this.showModule('welcome');
-                    }
+                    //} else {
+                    //    this.showModule('welcome');
+                    //}
 
                     if (module === 'doraemon') {
                         NavView.getInstance().deselectAll();
@@ -312,7 +313,7 @@
             regModule : function (name, module) {
                 this.modules[name] = module;
 
-                if (module.enablePreload) {
+                if (module.enablePreload && Device.get('isUSB')) {
                     module.preload();
                 }
             },
@@ -324,13 +325,12 @@
                 var isWifi = Device.get('isWifi');
                 var isShow = true;
 
-                if (isConnected && !this.currentModule.match(/task|welcome|browser|gallery|doraemon/) && isWifi) {
+                if (!this.currentModule.match(/task|welcome|browser|gallery|doraemon/) && (!isConnected || isWifi)) {
                     pimMaskView.show();
                 } else {
                     pimMaskView.hide();
                     isShow = false;
                 }
-
                 return isShow;
             },
             showModule : function (name, tab) {
