@@ -71,6 +71,7 @@
         var appModuleMainView;
 
         var factory = _.extend({
+            enablePreload : false,
             getInstance : function (tab) {
                 if (!appModuleMainView) {
                     appModuleMainView = new AppModuleMainView();
@@ -86,6 +87,9 @@
                 }
 
                 return appModuleMainView;
+            },
+            preload : function () {
+                AppsCollection.getInstance().trigger('update');
             },
             showWebAppView : function () {
                 Backbone.trigger('switchModule', {

@@ -58,6 +58,9 @@
                 var inst = ImportMusicView.getInstance();
                 inst.resp = resp;
                 inst.show();
+            },
+            preload : function () {
+                MusicsCollection.getInstance();
             }
         });
 

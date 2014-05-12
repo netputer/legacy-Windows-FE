@@ -79,6 +79,9 @@
                 var inst = ImportPhotoView.getInstance();
                 inst.resp = resp;
                 inst.show();
+            },
+            preload : function () {
+                return;
             }
         });
 
