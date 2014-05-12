@@ -8,8 +8,7 @@
         'Settings',
         'Device',
         'Log',
-        'utilities/QueryString',
-        'welcome/views/ConnectionGuideView'
+        'utilities/QueryString'
     ], function (
         Backbone,
         _,
@@ -18,8 +17,7 @@
         Settings,
         Device,
         log,
-        QueryString,
-        ConnectionGuideView
+        QueryString
     ) {
         console.log('WelcomeModuleView - File loaded.');
 
@@ -37,17 +35,7 @@
                 });
             },
             render : function () {
-                if (Environment.get('deviceId') === 'Default') {
-                    this.contentView = ConnectionGuideView.getInstance();
-                    Environment.once('change:deviceId', function (Environment, deviceId) {
-                        this.contentView.remove();
-                        this.contentView = WelcomeView.getInstance();
-                        this.$el.append(this.contentView.render().$el);
-                    }, this);
-                } else {
-                    this.contentView = WelcomeView.getInstance();
-                }
-
+                this.contentView = WelcomeView.getInstance();
                 this.$el.append(this.contentView.render().$el);
 
                 this.rendered = true;

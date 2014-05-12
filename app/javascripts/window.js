@@ -118,8 +118,8 @@
         });
     });
 
-    window.wandoujia = window.wandoujia || {};
-    window.wandoujia.window = appWindow;
+    window.SnapPea = window.SnapPea || {};
+    window.SnapPea.AppWindow = appWindow;
 
     var canDrag = function(node) {
         return 'drag' === window.getComputedStyle(node).getPropertyValue('-webkit-app-region');
