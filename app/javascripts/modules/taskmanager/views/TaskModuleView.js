@@ -244,6 +244,9 @@
                     taskModuleView = new TaskModuleView();
                 }
                 return taskModuleView;
+            },
+            preload : function () {
+                return;
             }
         });
 
