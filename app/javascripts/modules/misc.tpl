@@ -151,7 +151,12 @@
 <script type="text/x-ui-template" id='pim-mask'>
     <div class='w-main-pim-mask-ctn'>
         <div class='icon'></div>
-        <span class='desc'>{{= i18n.misc.CONNECTION_TIP }}</span>
+        {{? !Device.get('isConnected')}}
+        <h1 class='title'>{{= i18n.welcome.CONNECT_UR_PHONE}}</h1>
+        <span class='desc'>{{= i18n.welcome.CONNECTION_TIP }}</span>
+        {{??}}
+        <h1 class='title-wifi'>{{= i18n.misc.CONNECTION_TIP }}</h1>
+        {{?}}
         <button class='button-action primary max'>{{= i18n.misc.CONNECTION_BUTTON }}</button>
     </div>
 </script>

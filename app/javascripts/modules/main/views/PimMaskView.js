@@ -6,14 +6,16 @@
         'doT',
         'ui/TemplateFactory',
         'IO',
-        'Configuration'
+        'Configuration',
+        'Device'
     ], function (
         _,
         Backbone,
         doT,
         TemplateFactory,
         IO,
-        CONFIG
+        CONFIG,
+        Device
     ) {
         console.log('PimMaskView - File loaded. ');
 
@@ -32,6 +34,8 @@
                         }
                     }
                 });
+
+                this.listenTo(Device, 'change:isConnected change:isUSB change:isWifi', this.render);
             },
             render : function () {
                 this.$el.html(this.template({}));
