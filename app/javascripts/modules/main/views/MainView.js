@@ -353,16 +353,15 @@
                         'opacity' : '1'
                     }).removeClass('need-to-hide');
                 } else {
-                    var $last = $moduleCtn.children().last();
                     moduleInstance.$el.css({
                         'visibility' : 'visible',
                         'opacity' : '1'
                     }).removeClass('need-to-hide');
 
-                    if ($last.length === 0) {
+                    if (name === 'task') {
                         $moduleCtn.append(moduleInstance.render().$el);
                     } else {
-                        $moduleCtn.children().last().before(moduleInstance.render().$el);
+                        pimMaskView.$el.before(moduleInstance.render().$el);
                     }
                 }
 
