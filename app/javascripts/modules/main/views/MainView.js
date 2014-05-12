@@ -248,11 +248,7 @@
                     var module = data.module;
                     var tab = data.tab;
 
-                    //if (Environment.get('deviceId') !== 'Default' || module === 'doraemon' || module === 'browser' || module === 'gallery') {
-                        this.showModule(module, data.tab);
-                    //} else {
-                    //    this.showModule('welcome');
-                    //}
+                    this.showModule(module, data.tab);
 
                     if (module === 'doraemon') {
                         NavView.getInstance().deselectAll();
@@ -323,15 +319,12 @@
             toggleMask : function () {
                 var isConnected = Device.get('isConnected');
                 var isWifi = Device.get('isWifi');
-                var isShow = true;
 
                 if (!this.currentModule.match(/task|welcome|browser|gallery|doraemon/) && (!isConnected || isWifi)) {
                     pimMaskView.show();
                 } else {
                     pimMaskView.hide();
-                    isShow = false;
                 }
-                return isShow;
             },
             showModule : function (name, tab) {
 
@@ -350,10 +343,7 @@
                     return;
                 }
 
-                var isShow = this.toggleMask();
-                if (isShow) {
-                    return;
-                }
+                this.toggleMask();
 
                 var moduleInstance = this.modules[name].getInstance(tab);
                 var $moduleCtn = this.$('.module-ctn');
