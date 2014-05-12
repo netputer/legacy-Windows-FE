@@ -114,7 +114,8 @@
             },
             ENABLE_BACKUP_RESTORE : {
                 get : function () {
-                    return !ProjectConfig.get('DISABLE_BACKUP_RESTORE');
+                    return !ProjectConfig.get('DISABLE_BACKUP_RESTORE') &&
+                                !Environment.get('internetBar');
                 }
             },
             ENABLE_BACKUP_APP_DATA : {
@@ -193,7 +194,8 @@
             },
             ENABLE_PHOTO_SYNC : {
                 get : function () {
-                    return IS_CHINESE_VERSION;
+                    return IS_CHINESE_VERSION &&
+                                !Environment.get('internetBar');
                 }
             },
             ENABLE_PHOTO_SYNC_DOWNLOAD : {
