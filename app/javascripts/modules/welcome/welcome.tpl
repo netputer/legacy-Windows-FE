@@ -33,7 +33,7 @@
 </script>
 
 <script type="text/x-ui-template" id="video-card">
-    <img class="icon" alt="{{! it.title }}" />
+    <div class="icon"></div>
     <div class="info-ctn vbox">
         <div class="info-top hbox">
             <div class="info">
@@ -65,7 +65,7 @@
 </script>
 
 <script type="text/x-ui-template" id="ebook-card">
-    <img class="icon" alt="{{! it.title }}" />
+    <div class="icon"></div>
     <div class="info-ctn vbox">
         <div class="info-top hbox">
             <div class="info">
@@ -89,7 +89,7 @@
 </script>
 
 <script type="text/javascript" id="banner-card">
-    <img class="icon" alt="{{! it.title }}" />
+    <div class="icon"></div>
     <div class="info-ctn hbox">
         <div class="info">
             <h1 class="title button-navigate wc link" title="{{! it.title}}">{{! it.title }}</h1>
@@ -222,10 +222,10 @@
             <li class="item hbox {{? it.items.length === 1 }}no-border{{?}}" title="{{= item.base_info.name }}">
                 <img class="icon" src="{{= item.base_info.icon }}" alt="{{= item.base_info.name }}" />
                 <div class="info-ctn vbox">
-                    <h1 class="info">{{= item.base_info.name }}</h1>
-                    <span class="text-thirdly wc">{{= StringUtil.format(i18n.welcome.CARD_UPDATE_INFO, item.upgrade_info.versionName, StringUtil.readableSize(item.upgrade_info.size)) }}</span>
+                    <span class="info">{{= item.base_info.name }}</span>
+                    <span class="text-thirdly wc version">{{= StringUtil.format(i18n.welcome.CARD_UPDATE_INFO, item.upgrade_info.versionName, StringUtil.readableSize(item.upgrade_info.size)) }}</span>
                 </div>
-                <button class='button-update normal' data-id="{{= item.id}}" >{{= i18n.app.UPDATE }}</button>
+                <button class='button-update {{? it.items.length === 1 }}action{{??}}normal{{?}}' data-id="{{= item.id}}" >{{= i18n.app.UPDATE }}</button>
             </li>
         {{~}}
     </ul>

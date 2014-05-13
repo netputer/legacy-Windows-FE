@@ -9,7 +9,6 @@
         'Device',
         'Internationalization',
         'ui/TemplateFactory',
-        'ui/ImageLoader',
         'utilities/StringUtil',
         'welcome/views/FeedCardView',
         'task/TaskService',
@@ -24,7 +23,6 @@
         Device,
         i18n,
         TemplateFactory,
-        imageLoader,
         StringUtil,
         FeedCardView,
         TaskService,
@@ -107,7 +105,7 @@
                     title : this.model.get('title')
                 })));
 
-                imageLoader(this.model.get('imageUrl'), this.$('.icon'), true);
+                this.$('.icon').css('backgroundImage', 'url(' + this.model.get('imageUrl') + ')');
                 this.renderButton();
 
                 return this;

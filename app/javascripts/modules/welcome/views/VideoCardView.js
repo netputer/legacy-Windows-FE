@@ -9,7 +9,6 @@
         'Device',
         'Internationalization',
         'ui/TemplateFactory',
-        'ui/ImageLoader',
         'welcome/views/FeedCardView',
         'task/TaskService'
     ], function (
@@ -21,7 +20,6 @@
         Device,
         i18n,
         TemplateFactory,
-        imageLoader,
         FeedCardView,
         TaskService
     ) {
@@ -77,7 +75,7 @@
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
-                imageLoader(this.model.get('cover').l, this.$('.icon'), true);
+                this.$('.icon').css('backgroundImage', 'url(' + this.model.get('cover').l + ')');
                 return this;
             },
             clickButtonNavigate : function (evt) {
