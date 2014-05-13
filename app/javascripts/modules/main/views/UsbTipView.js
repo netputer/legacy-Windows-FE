@@ -37,7 +37,7 @@
                 return this;
             },
             clickButtonClose : function () {
-                window.wandoujia.window.close();
+                window.SnapPea.AppWindow.close();
             },
             events : {
                 'click .button-close' : 'clickButtonClose'
