@@ -451,16 +451,6 @@
     <button class="button-restore min">{{= i18n.welcome.TOOL_RECOVERY }}</button>
 </script>
 
-<script type="text/x-ui-template" id="connection-guide">
-    <div class="content-ctn">
-        <div class="tips-ctn">
-            <h1>{{= i18n.welcome.CONNECT_UR_PHONE }}</h1>
-            <div class="tips text-secondary">{{= i18n.welcome.CONNECTION_TIP }}</div>
-            <button class="primary button-connect max">{{= i18n.welcome.CONNECT_PHONE }}</button>
-        </div>
-    </div>
-</script>
-
 <script type="text/x-ui-template" id="autobackup-tip">
     <div class="w-autobackup-tip">
         <span>{{= StringUtil.format(i18n.welcome.AUTO_BACKUP, it.date) }}</span>

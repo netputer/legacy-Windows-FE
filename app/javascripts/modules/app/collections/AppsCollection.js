@@ -492,7 +492,15 @@
                         });
                     });
 
-                    appsCollection.trigger('update');
+                    if (Device.get('isUSB')) {
+                        appsCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                appsCollection.trigger('update');
+                            }
+                        });
+                    }
                 }
                 return appsCollection;
             },

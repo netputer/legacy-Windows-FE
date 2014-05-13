@@ -18,6 +18,7 @@
         'main/views/NavView',
         'task/views/TaskMonitorView',
         'main/views/FastUSBNotificationView',
+        'main/views/PimMaskView',
         'main/collections/PIMCollection',
         'main/views/AgentNotifiPopup',
         'app/AppService'
@@ -37,6 +38,7 @@
         NavView,
         TaskMonitorView,
         FastUSBNotificationView,
+        PimMaskView,
         PIMCollection,
         AgentNotifiPopup,
         AppService
@@ -44,6 +46,9 @@
         console.log('Wandoujia 2.0 launched.');
 
         var alert = window.alert;
+        var navigator = window.navigator;
+
+        var pimMaskView;
 
         var $needToHide;
         var showModule = _.debounce(function(){
@@ -206,6 +211,7 @@
             }
         };
 
+
         var MainView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('misc', 'main')),
             initialize : function () {
@@ -242,11 +248,7 @@
                     var module = data.module;
                     var tab = data.tab;
 
-                    if (Environment.get('deviceId') !== 'Default' || module === 'doraemon' || module === 'browser' || module === 'gallery') {
-                        this.showModule(module, data.tab);
-                    } else {
-                        this.showModule('welcome');
-                    }
+                    this.showModule(module, data.tab);
 
                     if (module === 'doraemon') {
                         NavView.getInstance().deselectAll();
@@ -283,6 +285,14 @@
 
                 this.$('.module-ctn').append(FastUSBNotificationView.getInstance().render().$el);
 
+                pimMaskView = PimMaskView.getInstance();
+                this.$('.module-ctn').append(pimMaskView.render().$el.hide());
+
+
+                this.listenTo(Device, 'change:isWifi, change:isConnected', function () {
+                    this.toggleMask();
+                });
+
                 var delegate = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.REVERSE_PROXY_START
                 }, function () {
@@ -299,14 +309,25 @@
             regModule : function (name, module) {
                 this.modules[name] = module;
 
-                if (module.enablePreload) {
+                if (module.enablePreload && Device.get('isUSB')) {
                     module.preload();
                 }
             },
             getModule : function (name) {
                 return this.modules[name];
             },
+            toggleMask : function () {
+                var isConnected = Device.get('isConnected');
+                var isWifi = Device.get('isWifi');
+
+                if (!this.currentModule.match(/task|welcome|browser|gallery|doraemon/) && (!isConnected || isWifi)) {
+                    pimMaskView.show();
+                } else {
+                    pimMaskView.hide();
+                }
+            },
             showModule : function (name, tab) {
+
                 this.currentTab = tab;
 
                 if (name === this.currentModule) {
@@ -322,6 +343,8 @@
                     return;
                 }
 
+                this.toggleMask();
+
                 var moduleInstance = this.modules[name].getInstance(tab);
                 var $moduleCtn = this.$('.module-ctn');
                 if (moduleInstance.rendered) {
@@ -330,16 +353,15 @@
                         'opacity' : '1'
                     }).removeClass('need-to-hide');
                 } else {
-                    var $last = $moduleCtn.children().last();
                     moduleInstance.$el.css({
                         'visibility' : 'visible',
                         'opacity' : '1'
                     }).removeClass('need-to-hide');
 
-                    if ($last.length === 0) {
+                    if (name === 'task') {
                         $moduleCtn.append(moduleInstance.render().$el);
                     } else {
-                        $moduleCtn.children().last().before(moduleInstance.render().$el);
+                        pimMaskView.$el.before(moduleInstance.render().$el);
                     }
                 }
 

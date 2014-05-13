@@ -6,11 +6,13 @@
         'backbone',
         'underscore',
         'Configuration',
+        'Device',
         'app/models/RecommendAppModel'
     ], function (
         Backbone,
         _,
         CONFIG,
+        Device,
         RecommendAppModel
     ) {
         console.log('RecommendAppsCollection - File loaded.');
@@ -80,7 +82,15 @@
 
                 recommendAppsCollection.data.pos = pos;
 
-                recommendAppsCollection.trigger('update');
+                if (Device.get('isUSB')) {
+                    recommendAppsCollection.trigger('update');
+                } else {
+                    Device.once('change:isUSB', function (Device, isUSB) {
+                        if (isUSB) {
+                            recommendAppsCollection.trigger('update');
+                        }
+                    });
+                }
 
                 return recommendAppsCollection;
             }

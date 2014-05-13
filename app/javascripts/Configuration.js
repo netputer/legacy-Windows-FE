@@ -577,7 +577,7 @@
                 TASK_TYPE_MERGE_VIDEO : 6,
                 TASK_TYPE_UNZIP : 7,
                 TASK_TYPE_RESTORE_APP_DATA : 8,
-                TASH_TYPE_PUSH_PHONE : 9,
+                TASK_TYPE_PUSH_PHONE : 9,
 
                 /* Task state */
                 TASK_STATE_ADDED : 0,

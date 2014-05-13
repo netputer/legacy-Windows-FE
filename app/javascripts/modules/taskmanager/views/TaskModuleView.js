@@ -12,6 +12,7 @@
         'FunctionSwitch',
         'Log',
         'IOBackendDevice',
+        'Device',
         'task/views/TaskModuleToolbarView',
         'task/views/TaskListView',
         'task/views/TaskModuleCapacityView',
@@ -28,6 +29,7 @@
         FunctionSwitch,
         log,
         IO,
+        Device,
         TaskModuleToolbarView,
         TaskListView,
         TaskModuleCapacityView,
@@ -167,7 +169,7 @@
 
                 this.$('.ctn').append(taskListView.render().$el);
 
-                if (FunctionSwitch.ENABLE_TASKMANAGER_CAPACITY) {
+                if (FunctionSwitch.ENABLE_TASKMANAGER_CAPACITY && !Device.get('isWifi')) {
                     this.$('.ctn').append(TaskModuleCapacityView.getInstance().render().$el);
                 }
 

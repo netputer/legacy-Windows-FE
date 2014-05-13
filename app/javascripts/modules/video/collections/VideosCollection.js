@@ -200,7 +200,16 @@
             getInstance : function () {
                 if (!videosCollection) {
                     videosCollection = new VideosCollection();
-                    videosCollection.trigger('update');
+
+                    if (Device.get('isUSB')) {
+                        videosCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                videosCollection.trigger('update');
+                            }
+                        });
+                    }
 
                     videosCollection.on('refresh', function (videosCollection) {
                         PIMCollection.getInstance().get(6).set({

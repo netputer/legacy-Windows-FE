@@ -342,7 +342,7 @@
                             break;
                 }
                 break;
-            case CONFIG.enums.TASH_TYPE_PUSH_PHONE :
+            case CONFIG.enums.TASK_TYPE_PUSH_PHONE :
                 switch (it.state) {
                     case CONFIG.enums.TASK_STATE_PROCESSING :
         }}
@@ -520,7 +520,7 @@
                         break;
                 }
                 break;
-            case CONFIG.enums.TASH_TYPE_PUSH_PHONE :
+            case CONFIG.enums.TASK_TYPE_PUSH_PHONE :
                 switch (it.state) {
                     case CONFIG.enums.TASK_STATE_FAILD :
     }}
@@ -587,7 +587,6 @@
 
 <script type="text/x-ui-template" id="confirm-tip">
     <div class="w-task-popup-tip">
-        <h2>{{= i18n.taskManager.CONFIRM_ON_DEVICE }}</h2>
         <p>{{= i18n.taskManager.CONFIRM_ON_DEVICE_TIP }}</p>
         <div class="button-close"></div>
     </div>
