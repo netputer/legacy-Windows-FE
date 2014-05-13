@@ -7,7 +7,7 @@
         'Environment',
         'Device',
         'Log',
-        'ParserFactory'
+        'utilities/JSONParser'
     ], function (
         Backbone,
         _,
@@ -15,7 +15,7 @@
         Environment,
         Device,
         log,
-        ParserFactory
+        JSONParser
     ) {
         console.log('FeedsCollection - File loaded. ');
 
@@ -79,9 +79,9 @@
 
                                     collection.data.start += collection.data.max + 1;
 
-                                    ParserFactory.addTask(resp, function (result) {
+                                    JSONParser.parse(resp, function (data) {
 
-                                        var cards = result.data.cards;
+                                        var cards = data.cards;
 
                                         if (cards.length < this.data.max) {
                                             this.finish = true;

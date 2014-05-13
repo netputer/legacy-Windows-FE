@@ -9,7 +9,6 @@
         'Device',
         'Internationalization',
         'ui/TemplateFactory',
-        'ui/ImageLoader',
         'utilities/StringUtil',
         'utilities/ReadableSize',
         'welcome/views/FeedCardView',
@@ -23,7 +22,6 @@
         Device,
         i18n,
         TemplateFactory,
-        imageLoader,
         StringUtil,
         ReadableSize,
         FeedCardView,
@@ -64,7 +62,7 @@
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
-                imageLoader(this.model.get('cover').l, this.$('.icon'), true);
+                this.$('.icon').css('backgroundImage', 'url(' + this.model.get('cover').l + ')');
                 return this;
             },
             clickButtonNavigate : function (evt) {

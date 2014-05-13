@@ -67,8 +67,8 @@
 
                 if (show) {
 
-                    if (apps.length >= 3 ) {
-                        items = items.splice(0, 3);
+                    if (apps.length >= 4 ) {
+                        items = items.splice(0, 4);
                     } else {
                         items = items.splice(0, 1);
                     }
@@ -81,7 +81,7 @@
                         })
                     }));
 
-                    this.$el.toggleClass('max', apps.length >= 3);
+                    this.$el.toggleClass('max', apps.length >= 4);
 
                 }
 
