@@ -53,7 +53,7 @@
 
                 log({
                     'event' : 'debug.sync.server.notify.show'
-                });
+                }, true);
 
                 return this;
             },
@@ -82,7 +82,7 @@
 
                 log({
                     'event' : 'debug.sync.server.notify.show.open'
-                });
+                }, true);
             },
             events : {
                 'click' : 'clickButtonOpen'

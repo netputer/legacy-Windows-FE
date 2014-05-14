@@ -14,6 +14,7 @@
 
                 // Universal and device related actions
                 SEND_LOG : 'wdj://window/log.json',
+                HELPER_SEND_LOG : 'wdj://helper/log.json',
                 SCREEN_SHOT : 'wdj://window/screenshot_device.json',
                 FULL_SCREEN : 'wdj://window/full_screenshot.json',
                 WEIBO : 'wdj://window/weibo.json',
