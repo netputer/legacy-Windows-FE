@@ -7,12 +7,17 @@
     define(['Configuration'], function (CONFIG) {
         console.log('Log - File loaded.');
 
-        var Log = function (data) {
+        var Log = function (data, isHelper) {
+
             var logSwitch = true;
             if (logSwitch) {
                 data = data || {};
 
                 var url = CONFIG.actions.SEND_LOG;
+                if (!!isHelper) {
+                    url = CONFIG.actions.HELPER_SEND_LOG;
+                }
+
                 var datas = [];
                 var d;
                 for (d in data) {
