@@ -65,7 +65,12 @@
                 this.isShow = false;
             },
             clickButtonAction : function () {
-                IO.requestAsync(CONFIG.actions.CONNET_PHONE);
+                IO.requestAsync({
+                    url : CONFIG.actions.CONNET_PHONE,
+                    data : {
+                        from : SnapPea.CurrentModule
+                    }
+                });
             },
             events : {
                 'click .button-action' : 'clickButtonAction'

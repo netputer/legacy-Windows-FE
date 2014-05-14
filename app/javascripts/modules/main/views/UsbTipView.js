@@ -33,14 +33,26 @@
 
             },
             render : function () {
-                this.$el.html(template());
+
+                var titleStr = i18n.misc.USE_USB_TITLE;
+                if (this.options.from) {
+                    titleStr = i18m.misc['USB_TITLE_' + this.options.from.toUpperCase()];
+                }
+
+                this.$el.html(template({
+                    title : titleStr
+                }));
                 return this;
             },
             clickButtonClose : function () {
                 window.SnapPea.AppWindow.close();
             },
+            clickButtonAction : function () {
+                window.SnapPea.AppWindow.close();
+            },
             events : {
-                'click .button-close' : 'clickButtonClose'
+                'click .button-close' : 'clickButtonClose',
+                'click .button-action' : 'clickButtonAction'
             }
         });
 

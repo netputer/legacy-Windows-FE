@@ -169,7 +169,7 @@
             },
             setButtonState : function () {
                 this.$('.button-open-sd, .button-backup, .button-restore, .button-set-wallpaper')
-                    .prop('disabled', Device.get('isWifi') || !Device.get('isConnected'))
+                    .prop('disabled', !Device.get('isConnected'))
                     .attr('title', Device.get('isConnected') ? '' : i18n.welcome.CONNECT_UR_PHONE);
 
                 this.$('.button-screen-shot').prop('disabled', !Device.get('canScreenshot'));
@@ -287,6 +287,16 @@
                     return;
                 }
 
+                if (Device.get('isWifi')) {
+                    IO.requestAsync({
+                        url : CONFIG.actions.CONNET_PHONE,
+                        data : {
+                            from : 'open_sd'
+                        }
+                    });
+                    return;
+                }
+
                 var $btn = this.$('.button-open-sd').prop('disabled', true);
                 setTimeout(function () {
                     $btn.prop('disabled', false);
@@ -357,6 +367,16 @@
                 return deferred.promise();
             },
             clickButtonSetWallpaper : function () {
+               if (Device.get('isWifi')) {
+                    IO.requestAsync({
+                        url : CONFIG.actions.CONNET_PHONE,
+                        data : {
+                            from : 'wallpaper'
+                        }
+                    });
+                    return;
+                }
+
                 var model = new TaskModel();
 
                 var path = this.wallpaperUrl.split('/');
