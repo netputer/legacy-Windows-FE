@@ -44,6 +44,12 @@
         var TaskActionView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('taskManager', 'task-action')),
             className : 'action',
+            initialize : function () {
+                this.listenTo(Device, 'change:isConnected', this.changeButtonState);
+            },
+            changeButtonState : function () {
+                this.$('.button-retry').toggle(Device.get('isConnected'));
+            },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;

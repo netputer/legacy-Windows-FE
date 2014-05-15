@@ -48,7 +48,7 @@
                 window.SnapPea.AppWindow.close();
             },
             clickButtonAction : function () {
-                window.SnapPea.AppWindow.close();
+                window.location.href = window.location.href + '?usbError=true';
             },
             events : {
                 'click .button-close' : 'clickButtonClose',

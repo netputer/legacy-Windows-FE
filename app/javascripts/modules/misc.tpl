@@ -195,7 +195,6 @@
             </div>
             {{~}}
         </div>
-        <button class='button-action reconnect max primary'>{{= i18n.misc.RECONNECT }}</button>
     </div>
     <div class='feedback'>
         <span>{{= i18n.misc.FEEDBACK }}</span>
