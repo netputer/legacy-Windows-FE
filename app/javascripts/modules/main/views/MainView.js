@@ -289,12 +289,9 @@
                 this.$('.module-ctn').append(pimMaskView.render().$el.hide());
 
 
-                this.listenTo(Device, 'change:isWifi, change:isConnected', function () {
+                this.listenTo(Device, 'change:isWifi, change:isConnected', _.debounce(function () {
                     var isShow = this.toggleMask();
-                    if (!isShow) {
-                        this.renderModule(this.currentModule, this.currentTab);
-                    }
-                });
+                }.bind(this), 500));
 
                 var delegate = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.REVERSE_PROXY_START
@@ -322,16 +319,12 @@
             toggleMask : function () {
                 var isConnected = Device.get('isConnected');
                 var isWifi = Device.get('isWifi');
-                var isShow = false;
 
                 if (!this.currentModule.match(/task|welcome|browser|gallery|doraemon/) && (!isConnected || isWifi)) {
                     pimMaskView.show();
-                    isShow = true;
                 } else {
                     pimMaskView.hide();
                 }
-
-                return isShow;
             },
             showModule : function (name, tab) {
 
@@ -350,14 +343,7 @@
                     return;
                 }
 
-                var isShow = this.toggleMask();
-                if (!isShow) {
-                    this.renderModule(name, tab);
-                }
-
-                Backbone.trigger('showModule', name);
-            },
-            renderModule : function (name, tab) {
+                this.toggleMask();
                 var moduleInstance = this.modules[name].getInstance(tab);
                 var $moduleCtn = this.$('.module-ctn');
                 if (moduleInstance.rendered) {
@@ -382,6 +368,8 @@
                 if (name === 'welcome') {
                     moduleInstance.$('.feed-ctn').addClass('visible');
                 }
+
+                Backbone.trigger('showModule', name);
             },
             hideModule : function (name) {
                 var moduleInstance = this.modules[name].getInstance();
