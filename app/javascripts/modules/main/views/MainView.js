@@ -290,7 +290,10 @@
 
 
                 this.listenTo(Device, 'change:isWifi, change:isConnected', function () {
-                    this.toggleMask();
+                    var isShow = this.toggleMask();
+                    if (!isShow) {
+                        this.renderModule(this.currentModule, this.currentTab);
+                    }
                 });
 
                 var delegate = IO.Backend.Device.onmessage({
@@ -319,12 +322,16 @@
             toggleMask : function () {
                 var isConnected = Device.get('isConnected');
                 var isWifi = Device.get('isWifi');
+                var isShow = false;
 
                 if (!this.currentModule.match(/task|welcome|browser|gallery|doraemon/) && (!isConnected || isWifi)) {
                     pimMaskView.show();
+                    isShow = true;
                 } else {
                     pimMaskView.hide();
                 }
+
+                return isShow;
             },
             showModule : function (name, tab) {
 
@@ -343,8 +350,14 @@
                     return;
                 }
 
-                this.toggleMask();
+                var isShow = this.toggleMask();
+                if (!isShow) {
+                    this.renderModule(name, tab);
+                }
 
+                Backbone.trigger('showModule', name);
+            },
+            renderModule : function (name, tab) {
                 var moduleInstance = this.modules[name].getInstance(tab);
                 var $moduleCtn = this.$('.module-ctn');
                 if (moduleInstance.rendered) {
@@ -369,8 +382,6 @@
                 if (name === 'welcome') {
                     moduleInstance.$('.feed-ctn').addClass('visible');
                 }
-
-                Backbone.trigger('showModule', name);
             },
             hideModule : function (name) {
                 var moduleInstance = this.modules[name].getInstance();
