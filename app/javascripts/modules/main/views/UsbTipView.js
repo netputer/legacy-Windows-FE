@@ -36,7 +36,7 @@
 
                 var titleStr = i18n.misc.USE_USB_TITLE;
                 if (this.options.from) {
-                    titleStr = i18m.misc['USB_TITLE_' + this.options.from.toUpperCase()];
+                    titleStr = i18n.misc['USB_TITLE_' + this.options.from.toUpperCase()];
                 }
 
                 this.$el.html(template({
