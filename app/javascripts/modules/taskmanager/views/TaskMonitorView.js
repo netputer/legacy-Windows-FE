@@ -303,20 +303,23 @@
                 if (tasksCollection.activeCount > 0) {
                     this.$('.item.active .desc').html(StringUtil.format(i18n.taskManager.RUNNING_COUNT, tasksCollection.activeCount));
                     this.$('.item.active').show();
-                } else {
-                    if (tasksCollection.errorCount > 0) {
-                        this.$('.item.error .desc').html(StringUtil.format(i18n.taskManager.FAILED_COUNT, tasksCollection.errorCount));
-                        this.$('.item.error').show();
-                    } else {
-                        if (tasksCollection.getWaitingPushTasks().length) {
-                            this.$('.item.push .desc').html(StringUtil.format(i18n.taskManager.WATING_PUSH_COUNT, tasksCollection.getWaitingPushTasks().length));
-                            this.$('.item.push').show();
-                        } else {
-                            this.showCacheSize();
-                            this.$('.item.cache').show();
-                        }
-                    }
+                    return;
                 }
+
+                if (tasksCollection.errorCount > 0) {
+                    this.$('.item.error .desc').html(StringUtil.format(i18n.taskManager.FAILED_COUNT, tasksCollection.errorCount));
+                    this.$('.item.error').show();
+                    return;
+                }
+
+                if (tasksCollection.getWaitingPushTasks().length) {
+                    this.$('.item.push .desc').html(StringUtil.format(i18n.taskManager.WATING_PUSH_COUNT, tasksCollection.getWaitingPushTasks().length));
+                    this.$('.item.push').show();
+                    return;
+                }
+
+                this.showCacheSize();
+                this.$('.item.cache').show();
             },
             showCacheSize : _.debounce(function () {
                 IO.requestAsync({

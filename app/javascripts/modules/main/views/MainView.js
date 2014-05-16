@@ -289,9 +289,9 @@
                 this.$('.module-ctn').append(pimMaskView.render().$el.hide());
 
 
-                this.listenTo(Device, 'change:isWifi, change:isConnected', function () {
-                    this.toggleMask();
-                });
+                this.listenTo(Device, 'change:isWifi, change:isConnected', _.debounce(function () {
+                    var isShow = this.toggleMask();
+                }.bind(this), 500));
 
                 var delegate = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.REVERSE_PROXY_START
@@ -344,7 +344,6 @@
                 }
 
                 this.toggleMask();
-
                 var moduleInstance = this.modules[name].getInstance(tab);
                 var $moduleCtn = this.$('.module-ctn');
                 if (moduleInstance.rendered) {

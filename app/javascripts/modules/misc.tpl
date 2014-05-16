@@ -169,7 +169,7 @@
         <div class='icon'></div>
     </div>
     <div class='container vbox'>
-        <div class='title'>{{= i18n.misc.USE_USB_TITLE }}</div>
+        <div class='title'>{{= it.title }}</div>
         <div class='tips'>
             <div class='tip'>{{= i18n.misc.USB_TIP_1 }}</div>
             <div class='tip'>{{= i18n.misc.USB_TIP_2 }}</div>
@@ -195,7 +195,6 @@
             </div>
             {{~}}
         </div>
-        <button class='button-action reconnect max primary'>{{= i18n.misc.RECONNECT }}</button>
     </div>
     <div class='feedback'>
         <span>{{= i18n.misc.FEEDBACK }}</span>
