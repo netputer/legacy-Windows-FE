@@ -176,7 +176,9 @@
         </div>
         <button class='button-action use-usb max primary'>{{= i18n.misc.ALREADY_USE_USB }}</button>
     </div>
-    <div class='feedback'></div>
+    <div class='feedback'>
+        <span>{{= i18n.misc.HELP }}</span>
+    </div>
 </script>
 
 <script type='text/x-ui-template' id='usb-error-tip'>
