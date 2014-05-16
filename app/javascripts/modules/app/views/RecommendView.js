@@ -123,6 +123,7 @@
 
             if (originalLegth === 0 &&
                     modelsPool.length > 0) {
+                this.$('.tip').hide();
                 this.buildList();
             }
         };
