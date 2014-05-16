@@ -35,7 +35,7 @@
                     }
                 });
 
-                this.listenTo(Device, 'change:isConnected change:isUSB change:isWifi', this.render);
+                this.listenTo(Device, 'change:isConnected change:isUSB change:isWifi', _.debounce(this.render, 500));
             },
             render : function () {
                 this.$el.html(this.template({}));
