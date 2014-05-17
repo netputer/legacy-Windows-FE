@@ -294,6 +294,12 @@
                             from : 'open_sd'
                         }
                     });
+
+                    log({
+                        event: 'ui.show.new_wifi',
+                        type : 'SDcard'
+                    });
+
                     return;
                 }
 
@@ -374,6 +380,12 @@
                             from : 'wallpaper'
                         }
                     });
+
+                    log({
+                        event: 'ui.show.new_wifi',
+                        type : 'setWallPaper'
+                    });
+
                     return;
                 }
 

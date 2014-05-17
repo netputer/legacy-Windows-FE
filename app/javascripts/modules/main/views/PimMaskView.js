@@ -7,7 +7,8 @@
         'ui/TemplateFactory',
         'IO',
         'Configuration',
-        'Device'
+        'Device',
+        'Log'
     ], function (
         _,
         Backbone,
@@ -15,7 +16,8 @@
         TemplateFactory,
         IO,
         CONFIG,
-        Device
+        Device,
+        log
     ) {
         console.log('PimMaskView - File loaded. ');
 
@@ -70,6 +72,11 @@
                     data : {
                         from : SnapPea.CurrentModule
                     }
+                });
+
+                log({
+                    event: 'ui.show.new_wifi',
+                    type : SnapPea.CurrentModule
                 });
             },
             events : {
