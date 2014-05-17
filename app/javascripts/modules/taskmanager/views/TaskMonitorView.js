@@ -228,6 +228,9 @@
                         popupPanel.show();
 
                         this.stopListening(Device, 'change:isConnected', disconnectHandler);
+                        this.listenToOnce(Device, 'change:isConnected', function () {
+                            popupPanel.remove();
+                        });
                     }
                 };
 
