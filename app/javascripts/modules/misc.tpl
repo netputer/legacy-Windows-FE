@@ -164,7 +164,7 @@
 <script type='text/x-ui-template' id='usb-tip'>
     <div class='top'>
         <div class='logo'></div>
-        <div class='button-close'>&times;</div>
+        <div class='button-close'></div>
         <img src='{{= CONFIG.enums.IMAGE_PATH + "/connecting.gif" }}' class='connecting'/>
         <div class='icon'></div>
     </div>
@@ -184,7 +184,7 @@
 <script type='text/x-ui-template' id='usb-error-tip'>
     <div class='top'>
         <div class='logo'></div>
-        <div class='button-close'>&times;</div>
+        <div class='button-close'></div>
         <div class='icon'></div>
     </div>
     <div class='container vbox'>
