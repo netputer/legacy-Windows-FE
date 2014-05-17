@@ -521,18 +521,9 @@
                 }
                 break;
             case CONFIG.enums.TASK_TYPE_PUSH_PHONE :
-                switch (it.state) {
-                    case CONFIG.enums.TASK_STATE_FAILD :
     }}
     <button class="button-retry">{{=i18n.taskManager.RETRY_PUSH_PHONE }}</button>
     {{
-                        break;
-                     case CONFIG.enums.TASK_STATE_SUCCESS :
-    }}
-    <button class="button-retry">{{=i18n.taskManager.RETRY_PUSH_PHONE }}</button>
-    {{
-                        break;
-                }
         }
     }}
     {{?}}
