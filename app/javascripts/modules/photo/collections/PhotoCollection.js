@@ -259,7 +259,16 @@
             getInstance : function () {
                 if (!photoCollection) {
                     photoCollection = new PhotoCollection();
-                    photoCollection.trigger('update');
+
+                    if (Device.get('isUSB')) {
+                        photoCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                photoCollection.trigger('update');
+                            }
+                        });
+                    }
                 }
                 return photoCollection;
             },

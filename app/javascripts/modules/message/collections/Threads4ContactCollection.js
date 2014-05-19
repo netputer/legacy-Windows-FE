@@ -3,10 +3,12 @@
     define([
         'backbone',
         'underscore',
+        'Device',
         'message/collections/ThreadsCollection'
     ], function (
         Backbone,
         _,
+        Device,
         ThreadsCollection
     ) {
         console.log('threads4ContactCollection - File loaded.');
@@ -30,7 +32,16 @@
             getInstance : function (args) {
                 if (!threads4ContactCollection) {
                     threads4ContactCollection = new Threads4ContactCollection(args);
-                    threads4ContactCollection.trigger('update');
+
+                    if (Device.get('isUSB')) {
+                        threads4ContactCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                threads4ContactCollection.trigger('update');
+                            }
+                        });
+                    }
                 }
                 return threads4ContactCollection;
             }

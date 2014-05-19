@@ -623,7 +623,16 @@
             getInstance : function () {
                 if (!contactsCollection) {
                     contactsCollection = new ContactsCollection();
-                    contactsCollection.trigger('update');
+
+                    if (Device.get('isUSB')) {
+                        contactsCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                contactsCollection.trigger('update');
+                            }
+                        });
+                    }
 
                     contactsCollection.on('refresh', function (contactsCollection) {
                         var pimCollection = PIMCollection.getInstance();

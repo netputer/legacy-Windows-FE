@@ -287,6 +287,22 @@
                     return;
                 }
 
+                if (Device.get('isWifi')) {
+                    IO.requestAsync({
+                        url : CONFIG.actions.CONNET_PHONE,
+                        data : {
+                            from : 'open_sd'
+                        }
+                    });
+
+                    log({
+                        event: 'ui.show.new_wifi',
+                        type : 'SDcard'
+                    });
+
+                    return;
+                }
+
                 var $btn = this.$('.button-open-sd').prop('disabled', true);
                 setTimeout(function () {
                     $btn.prop('disabled', false);
@@ -357,6 +373,22 @@
                 return deferred.promise();
             },
             clickButtonSetWallpaper : function () {
+               if (Device.get('isWifi')) {
+                    IO.requestAsync({
+                        url : CONFIG.actions.CONNET_PHONE,
+                        data : {
+                            from : 'wallpaper'
+                        }
+                    });
+
+                    log({
+                        event: 'ui.show.new_wifi',
+                        type : 'setWallPaper'
+                    });
+
+                    return;
+                }
+
                 var model = new TaskModel();
 
                 var path = this.wallpaperUrl.split('/');

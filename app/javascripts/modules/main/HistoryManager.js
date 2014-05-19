@@ -94,14 +94,17 @@
                     canReload = false;
                     break;
                 case 'app':
-                    if (SnapPea.CurrentTab === 'web') {
+
+                    if (Device.get('isConnected') && Device.get('isWifi')) {
+                        canReload = false;
+                    } else if (SnapPea.CurrentTab === 'web') {
                         canReload = Account.get('isLogin');
                     } else {
                         canReload = Device.get('isConnected');
                     }
                     break;
                 default:
-                    canReload = Device.get('isConnected');
+                    canReload = Device.get('isConnected') && !Device.get('isWifi');
                 }
 
                 window.externalCall('', 'navigation', JSON.stringify({

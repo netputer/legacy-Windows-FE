@@ -315,7 +315,16 @@
             getInstance : function () {
                 if (!musicsCollection) {
                     musicsCollection = new MusicsCollection();
-                    musicsCollection.trigger('update');
+
+                    if (Device.get('isUSB')) {
+                        musicsCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                musicsCollection.trigger('update');
+                            }
+                        });
+                    }
 
                     musicsCollection.on('refresh', function (musicsCollection) {
                         PIMCollection.getInstance().get(4).set({

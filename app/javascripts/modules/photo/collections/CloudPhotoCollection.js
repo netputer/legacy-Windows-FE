@@ -4,11 +4,13 @@
         'underscore',
         'Configuration',
         'Account',
+        'Device',
         'photo/collections/PhotoCollection'
     ], function (
         _,
         CONFIG,
         Account,
+        Device,
         PhotoCollection
     ) {
         console.log('CloudPhotoCollection - File loaded. ');
@@ -56,7 +58,16 @@
                 if (!cloudPhotoCollection) {
                     cloudPhotoCollection = new CloudPhotoCollection();
                     if (Account.get('isLogin')) {
-                        cloudPhotoCollection.trigger('update');
+
+                        if (Device.get('isUSB')) {
+                            cloudPhotoCollection.trigger('update');
+                        } else {
+                            Device.once('change:isUSB', function (Device, isUSB) {
+                                if (isUSB) {
+                                    cloudPhotoCollection.trigger('update');
+                                }
+                            });
+                        }
                     }
 
                     Account.on('change:isLogin', function (Account, isLogin) {

@@ -176,11 +176,30 @@
                     }
                 }, this);
 
-                var addUnderWifiAndMiuiHandler = IO.Backend.Device.onmessage({
+                var miuiHangdler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.TASK_STATUS_CHANGE
                 }, function (datas) {
+                    var miuiV5 = _.find(datas.status, function (data) {
+                        return data.message === 'NEED_USER_INSTALL_MIUI_V5';
+                    });
+                    if (miuiV5) {
+                        popupPanel = TaskNotifierPanelView.getInstance({
+                            $host : this.$el,
+                            $content : $(doT.template(TemplateFactory.get('taskManager', 'confirm-miui-v5-tip'))({})),
+                            alignToHost : false,
+                            popIn : true,
+                            listenToWifi : true
+                        });
+                        popupPanel.show();
+                        IO.Backend.Device.offmessage(miuiHangdler);
+                    }
+                });
+
+                var underWifiHandler = IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.TASK_ADD
+                }, function (datas) {
                     var needConfirmItems = _.find(datas.status, function (data) {
-                        return data.message === 'CONFIRM_ON_DEVICE' || data.message === 'NEED_USER_INSTALL';
+                        return data.type === CONFIG.enums.TASK_TYPE_PUSH_PHONE;
                     });
                     var popupPanel;
                     if (needConfirmItems !== undefined) {
@@ -192,22 +211,7 @@
                             listenToWifi : true
                         });
                         popupPanel.show();
-                        IO.Backend.Device.offmessage(addUnderWifiAndMiuiHandler);
-                    } else {
-                        var miuiV5 = _.find(datas.status, function (data) {
-                            return data.message === 'NEED_USER_INSTALL_MIUI_V5';
-                        });
-                        if (miuiV5) {
-                            popupPanel = TaskNotifierPanelView.getInstance({
-                                $host : this.$el,
-                                $content : $(doT.template(TemplateFactory.get('taskManager', 'confirm-miui-v5-tip'))({})),
-                                alignToHost : false,
-                                popIn : true,
-                                listenToWifi : true
-                            });
-                            popupPanel.show();
-                            IO.Backend.Device.offmessage(addUnderWifiAndMiuiHandler);
-                        }
+                        IO.Backend.Device.offmessage(underWifiHandler);
                     }
                 }, this);
 
@@ -224,6 +228,9 @@
                         popupPanel.show();
 
                         this.stopListening(Device, 'change:isConnected', disconnectHandler);
+                        this.listenToOnce(Device, 'change:isConnected', function () {
+                            popupPanel.remove();
+                        });
                     }
                 };
 
@@ -299,20 +306,23 @@
                 if (tasksCollection.activeCount > 0) {
                     this.$('.item.active .desc').html(StringUtil.format(i18n.taskManager.RUNNING_COUNT, tasksCollection.activeCount));
                     this.$('.item.active').show();
-                } else {
-                    if (tasksCollection.errorCount > 0) {
-                        this.$('.item.error .desc').html(StringUtil.format(i18n.taskManager.FAILED_COUNT, tasksCollection.errorCount));
-                        this.$('.item.error').show();
-                    } else {
-                        if (tasksCollection.getWaitingPushTasks().length) {
-                            this.$('.item.push .desc').html(StringUtil.format(i18n.taskManager.WATING_PUSH_COUNT, tasksCollection.getWaitingPushTasks().length));
-                            this.$('.item.push').show();
-                        } else {
-                            this.showCacheSize();
-                            this.$('.item.cache').show();
-                        }
-                    }
+                    return;
                 }
+
+                if (tasksCollection.errorCount > 0) {
+                    this.$('.item.error .desc').html(StringUtil.format(i18n.taskManager.FAILED_COUNT, tasksCollection.errorCount));
+                    this.$('.item.error').show();
+                    return;
+                }
+
+                if (tasksCollection.getWaitingPushTasks().length) {
+                    this.$('.item.push .desc').html(StringUtil.format(i18n.taskManager.WATING_PUSH_COUNT, tasksCollection.getWaitingPushTasks().length));
+                    this.$('.item.push').show();
+                    return;
+                }
+
+                this.showCacheSize();
+                this.$('.item.cache').show();
             },
             showCacheSize : _.debounce(function () {
                 IO.requestAsync({

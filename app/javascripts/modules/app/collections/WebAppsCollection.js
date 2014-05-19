@@ -10,6 +10,7 @@
         'Environment',
         'Configuration',
         'Account',
+        'Device',
         'utilities/StringUtil',
         'app/models/AppModel',
         'app/collections/AppsCollection'
@@ -21,6 +22,7 @@
         Environment,
         CONFIG,
         Account,
+        Device,
         StringUtil,
         AppModel,
         AppsCollection
@@ -221,7 +223,16 @@
             getInstance : function () {
                 if (!webAppsCollection) {
                     webAppsCollection = new WebAppsCollection();
-                    webAppsCollection.trigger('update');
+
+                    if (Device.get('isUSB')) {
+                        webAppsCollection.trigger('update');
+                    } else {
+                        Device.once('change:isUSB', function (Device, isUSB) {
+                            if (isUSB) {
+                                webAppsCollection.trigger('update');
+                            }
+                        });
+                    }
                 }
                 return webAppsCollection;
             }

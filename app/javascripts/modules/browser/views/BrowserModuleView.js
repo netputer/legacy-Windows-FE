@@ -9,8 +9,7 @@
         'Internationalization',
         'browser/views/BrowserView',
         'doraemon/collections/ExtensionsCollection',
-        'doraemon/models/ExtensionModel',
-        'WindowController'
+        'doraemon/models/ExtensionModel'
     ], function (
         _,
         Backbone,
@@ -20,8 +19,7 @@
         i18n,
         BrowserView,
         ExtensionsCollection,
-        ExtensionModel,
-        WindowController
+        ExtensionModel
     ) {
         console.log('BrowserModuleView - File loaded.');
 
