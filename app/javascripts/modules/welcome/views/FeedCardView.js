@@ -53,7 +53,8 @@
                     'event' : 'ui.click.welcome_card_action',
                     'name' : this.model ? this.model.get('feedName') : '',
                     'index' : this.getIndex(),
-                    'template' : this.model ? this.model.get('template') : ''
+                    'template' : this.model ? this.model.get('template') : '',
+                    'id' : this.model  ? this.model.id : ''
                 }, evt, data));
             },
             openUrl : function (url){
