@@ -106,7 +106,7 @@
                             this.$('.button-cancel').hide();
                         }
                     }
-                }.bind(this));
+                }, this);
 
                 var callback = function (resp) {
                     WindowController.releaseWindowAsync();

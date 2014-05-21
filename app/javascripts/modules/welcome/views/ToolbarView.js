@@ -472,7 +472,7 @@
                                 });
                             }.bind(this));
                         }
-                    }.bind(this));
+                    }, this);
                 }.bind(this));
             },
             clickButtonTop : function () {
