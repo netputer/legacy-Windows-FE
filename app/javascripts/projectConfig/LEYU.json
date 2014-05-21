@@ -1,0 +1,21 @@
+{
+    "PROJECT_FLAG" : "LEYU",
+
+    "DISABLE_APP" : true,
+    "DISABLE_BACKUP_RESTORE" : true,
+    "DISABLE_BACKUP_RESTORE" : true,
+    "DISABLE_CONTACT" : true,
+    "DISABLE_MUSIC" : true,
+    "DISABLE_OPTIMIZE" : true,
+    "DISABLE_PERFORMANCE_TRACKER" : true,
+    "DISABLE_PIC" : true,
+    "DISABLE_SMS" : true,
+    "DISABLE_TASKMANAGER_ACTION" : true,
+    "DISABLE_TASKMANAGER_CAPACITY" : true,
+    "DISABLE_USER_GUIDE" : true,
+    "DISABLE_VIDEO" : true,
+    "DISABLE_WASH" : true,
+    "DISABLE_WELCOME_FEED" : true,
+
+    "CUSTOM_NAV_WELCOME_TEXT" : "欢迎使用乐语 PC 端"
+}

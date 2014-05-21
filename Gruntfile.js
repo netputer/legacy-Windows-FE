@@ -73,6 +73,16 @@ module.exports = function (grunt) {
                     }
                 }]
             },
+            LEYU : {
+                src : ['<%= path.tmp %>/index.html'],
+                overwrite : true,
+                replacements : [{
+                    from : '/*@@PROJECT_CONFIG@@*/',
+                    to : function (matchedWord) {
+                        return grunt.file.read(paths.config + '/LEYU.json');
+                    }
+                }]
+            },
             TIANYIN : {
                 src : ['<%= path.tmp %>/index.html'],
                 overwrite : true,
@@ -362,6 +372,9 @@ module.exports = function (grunt) {
         case 'SUNING':
             content = '$PROJECT_FLAG : PROJECT_SUNING';
             break;
+        case 'LEYU':
+            content = '$PROJECT_FLAG : PROJECT_LEYU';
+            break;    
         case 'TIANYIN':
             content = '$PROJECT_FLAG : PROJECT_TIANYIN';
             break;
