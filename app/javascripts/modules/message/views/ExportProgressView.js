@@ -122,7 +122,7 @@
                         this.$('.button-cancel').hide();
                         this.$('.button-checkFile').show();
                     }
-                }.bind(this));
+                }, this);
 
                 var callback = function (resp) {
 

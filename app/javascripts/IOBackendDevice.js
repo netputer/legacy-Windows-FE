@@ -15,32 +15,7 @@
 
         IO.Backend.Device = _.extend({}, IO.Backend);
 
-        IO.Backend.Device.onmessage = function (route, callback, listenToAllDevices, context) {
-
-            if (typeof listenToAllDevices !== 'boolean') {
-                context = listenToAllDevices;
-                listenToAllDevices = false;
-            }
-
-            if (!listenToAllDevices) {
-                route['data.deviceId'] = Environment.get('deviceId');
-            } else {
-                route['data.deviceId'] = '';
-            }
-
-            if (Environment.get('deviceId') === 'Default') {
-                Environment.once('change:deviceId', function (Environment, deviceId) {
-                    _.each(this.callbackList, function (item) {
-                        if (item.route['data.deviceId']) {
-                            item.route['data.deviceId'] = deviceId;
-                            item.filter = FilterFunction.generate(item.route);
-                        }
-                    });
-                }, IO.Backend.Device);
-            }
-
-            return IO.Backend.onmessage(route, callback, context);
-        };
+        IO.Backend.Device.onmessage = IO.Backend.onmessage;
 
         window.IO = IO;
 
