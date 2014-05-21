@@ -350,9 +350,17 @@
             <div class="icon"></div>
             <div class="des"></div>
         </div>
-        <div class="offline-tip vbox">
+        <div class="wifi-connection-tip vbox hide">
             <div class="icon"></div>
             <div class="desc">{{= i18n.misc.SCREEN_SHOT_UNDER_USB }}</div>
+        </div>
+        <div class="offline-tip vbox">
+            <div class="desc">{{= i18n.misc.PHTONE_DISCONNECTED }}</div>
+            <button class="transparent button-action hide">{{= i18n.misc.CONNECTION_IMMEDIATELY }}</button>
+            <div class="icon"></div>
+        </div>
+        <div class="connection-tip hide">
+            <div class="desc"></div>
         </div>
         {{= TemplateFactory.get('ui', 'loading-white') }}
     </div>
