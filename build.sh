@@ -4,6 +4,7 @@ work_path="`pwd`"
 PROJECT=$1;
 TARGET=$2;
 NLS=$3;
+BASE=$4;
 
 build_i18n_resources() {
     git submodule init
@@ -11,7 +12,7 @@ build_i18n_resources() {
     cd ${work_path}/i18n/
     install_npm
     rm -rf ${work_path}/i18n/dist
-    grunt build:$PROJECT:$NLS
+    grunt build:$PROJECT:$NLS:$BASE
     cd ${work_path}
 }
 
