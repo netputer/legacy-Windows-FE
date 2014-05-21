@@ -83,26 +83,62 @@
                     }
                 });
 
-                this.listenTo(Device, 'change:isConnected change:isFastADB change:canScreenshot', _.debounce(function (Device) {
+                this.listenTo(Device, 'change:isConnected change:isFastADB', function () {
+
                     if (Device.get('isConnected') || Device.get('isFastADB')) {
                         Device.getScreenshotAsync();
+                        this.$('.connection-tip').addClass('hide');
+                        this.loading = false ;
                     }
+                });
+
+                this.listenTo(Device, 'change:canScreenshot', function (Device) {
                     this.setDisable(!Device.get('canScreenshot'));
-                }));
+                });
+
+                this.listenTo(Device, 'change:connectionState', function (){
+                    if (!Device.get('isConnected')) {
+                        this.setConnectionState();
+                    }
+                });
 
                 this.listenTo(Device, 'change:shell', this.renderShell)
                     .listenTo(Device, 'change:screenshot', this.renderScreenshot);
             },
-            setDisable : function (disable) {
-                this.$('.offline-tip .desc').html(Device.get('isConnected') ? i18n.misc.SCREEN_SHOT_UNDER_USB : i18n.misc.PHTONE_DISCONNECTED);
-                this.$('.screenshot').toggle(!disable);
-                if (disable) {
-                    this.$('.offline-tip').css('display', '-webkit-box');
-                } else {
-                    this.$('.offline-tip').hide();
+            setConnectionState : function () {
+
+                var connectionTip = this.$('.connection-tip');
+                var offlineTip = this.$('.offline-tip');
+
+                var $desc = this.$('.connection-tip .desc');
+                var connectionState = Device.get('connectionState');
+
+                if (connectionState.isDriverInstalling) {
+                    this.loading = true;
+                    offlineTip.addClass('hide');
+                    connectionTip.removeClass('hide');
+                    $desc.html(i18n.misc.DEVICE_DRIVER_INSTALLING);
+                    return;
                 }
 
-                this.$el.css('opacity', disable ? '.7' : '1');
+                if (connectionState.isConnecting) {
+                    this.loading = true;
+                    offlineTip.addClass('hide');
+                    connectionTip.removeClass('hide');
+                    $desc.html(i18n.misc.DEVICE_CONNECTING);
+                    return;
+                }
+
+                this.loading = false;
+                connectionTip.addClass('hide');
+                offlineTip.removeClass('hide');
+            },
+            setDisable : function (disable) {
+
+                if (Device.get('isConnected')) {
+                    this.$('.wifi-connection-tip').toggleClass('hide', !disable);
+                }
+                this.$('.screenshot').toggle(!disable);
             },
             render : function () {
                 this.$el.html(this.template({})).addClass('fade-in').find('.screenshot').attr('src', CONFIG.enums.IMAGE_PATH + '/blank.png');
@@ -118,8 +154,6 @@
                 });
 
                 this.$el.append(screenControlView.render().$el);
-
-                this.setDisable(!Device.get('canScreenshot'));
 
                 this.$el.one('webkitAnimationEnd', function (){
                     this.$el.removeClass('fade-in');
@@ -258,9 +292,18 @@
                     });
                 }
             },
+            clickButtonAction : function () {
+                IO.requestAsync({
+                    url : CONFIG.actions.CONNET_PHONE,
+                    data : {
+                        from : SnapPea.CurrentModule
+                    }
+                });
+            },
             events : {
                 'mouseover .screen' : 'mouseoverScreen',
-                'dblclick .screen img' : 'dbclickScreen'
+                'dblclick .screen img' : 'dbclickScreen',
+                'click .button-action' : 'clickButtonAction'
             }
         });
 
