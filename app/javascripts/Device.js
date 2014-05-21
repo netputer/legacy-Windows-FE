@@ -66,7 +66,12 @@
                 externalSDCapacity : 0,
                 externalSDFreeCapacity : 0,
                 externalSDPath : '',
-                dualSIM : []
+                dualSIM : [],
+                connectionState : {
+                    isConnecting : false,
+                    isDriverInstalling : false,
+                    isPlugOut : true
+                }
             },
             initialize : function () {
                 var listenBack = false;
@@ -77,6 +82,13 @@
                     console.log('Device - Device state change.');
                     listenBack = true;
                     this.changeHandler(data);
+                }, this);
+
+                IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.DEVICE_CONNECTION_STATE_CHANGE,
+                }, function (data) {
+                    console.log('Device - Device connection state change');
+                    this.changeConnectionHandler(data);
                 }, this);
 
                 IO.requestAsync(CONFIG.actions.DEVICE_IS_AUTOBACKUP).done(function (resp) {
@@ -182,6 +194,15 @@
             flashChangeHandler : function (resp) {
                 this.set({
                     isFlashed : resp.body.value
+                });
+            },
+            changeConnectionHandler : function (data) {
+                this.set({
+                    connectionState : {
+                        isConnecting : data.value === 'connecting' || data.value === 'driver_installing',
+                        isDriverInstalling : data.value === 'driver_installing',
+                        isPlugOut : data.value === 'plug_out'
+                    }
                 });
             },
             changeHandler : function (data) {

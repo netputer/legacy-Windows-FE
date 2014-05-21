@@ -361,6 +361,7 @@
                 NAVIGATE_REFRESH : 'navigation.reload',
 
                 // Backend events - Public events
+                DEVICE_CONNECTION_STATE_CHANGE : 'device.connection_state_changed',
                 DEVICE_STATE_CHANGE : 'device.state_changed',
                 DEVICE_OFFLINE_CHANGE : 'device.offline_changed',
                 DEVICE_USB_DETECT : 'usb.detect',
