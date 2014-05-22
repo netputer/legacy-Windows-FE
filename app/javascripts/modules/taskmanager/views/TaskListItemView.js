@@ -26,18 +26,18 @@
             className : 'w-task-manager-list-item hbox',
             initialize : function () {
                 TaskListItemView.__super__.initialize.apply(this, arguments);
-                this.listenTo(Device, 'change:isConnected', function (Device, isConnected) {
-                    if (!isConnected) {
-                        this.taskActionView.$el.children().hide();
-                    }
-                });
 
                 this.$el.on('mouseenter', function () {
-                    this.showActionView();
+                    var isConnected = Device.get('isConnected');
+                    var showByMessage = /CONNECTION_LOST|DEVICE_NOT_FOUND|NEED_USB_CONNECTION/.test(this.model.get('message'));
+
+                    if (isConnected || showByMessage) {
+                        this.$el.addClass('hover');
+                    }
                 }.bind(this));
 
                 this.$el.on('mouseleave', function () {
-                    this.hideActionView();
+                    this.$el.removeClass('hover');
                 }.bind(this));
             },
             render : function () {
@@ -53,9 +53,7 @@
 
                 this.$el.html(this.template(this.model.toJSON()));
 
-                this.taskActionView.$el.children().hide();
                 this.$el.append(this.taskActionView.$el);
-
                 return this;
             },
             uninstall : function () {
@@ -64,15 +62,6 @@
             remove : function () {
                 this.taskActionView.remove();
                 TaskListItemView.__super__.remove.apply(this, arguments);
-            },
-            showActionView : function () {
-                var isConnected = Device.get('isConnected');
-                if (isConnected) {
-                    this.taskActionView.$el.children().toggle(isConnected);
-                }
-            },
-            hideActionView : function () {
-                this.taskActionView.$el.children().hide();
             }
         });
 
