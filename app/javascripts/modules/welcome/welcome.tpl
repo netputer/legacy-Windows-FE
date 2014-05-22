@@ -225,7 +225,7 @@
                     <span class="info">{{= item.base_info.name }}</span>
                     <span class="text-thirdly wc version">{{= StringUtil.format(i18n.welcome.CARD_UPDATE_INFO, item.upgrade_info.versionName, StringUtil.readableSize(item.upgrade_info.size)) }}</span>
                 </div>
-                <button class='button-update {{? it.items.length === 1 }}action{{??}}normal{{?}}' data-id="{{= item.id}}" >{{= i18n.app.UPDATE }}</button>
+                <button class='button-update {{? it.length === 1 }}action{{??}}normal{{?}}' data-id="{{= item.id}}" >{{= i18n.app.UPDATE }}</button>
             </li>
         {{~}}
     </ul>

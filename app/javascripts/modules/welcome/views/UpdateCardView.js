@@ -36,7 +36,7 @@
 
         var UpdateCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'update-card')),
-            className : FeedCardView.getClass().prototype.className + ' vbox update',
+            className : FeedCardView.getClass().prototype.className + ' vbox update hide',
             initialize : function () {
 
                 UpdateCardView.__super__.initialize.apply(this, arguments);
