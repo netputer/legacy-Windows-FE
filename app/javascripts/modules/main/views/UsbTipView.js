@@ -50,9 +50,27 @@
             clickButtonAction : function () {
                 window.location.href = window.location.href + '?usbError=true';
             },
+            clickButtonFeedback : function () {
+                IO.requestAsync({
+                    url : CONFIG.actions.OPEN_URL,
+                    data : {
+                        url : i18n.misc.USB_TIP_HELP
+                    }
+                });
+            },
+            clickButtonHelp : function () {
+                IO.requestAsync({
+                    url : CONFIG.actions.OPEN_URL,
+                    data : {
+                        url : i18n.misc.USB_TIP_FEEDBACK
+                    }
+                });
+            },
             events : {
                 'click .button-close' : 'clickButtonClose',
-                'click .button-action' : 'clickButtonAction'
+                'click .button-action' : 'clickButtonAction',
+                'click .button-help' : 'clickButtonHelp',
+                'click .button-feedback' : 'clickButtonFeedback'
             }
         });
 

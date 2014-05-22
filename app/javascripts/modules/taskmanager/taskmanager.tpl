@@ -271,10 +271,16 @@
         {{
                             break;
                         case CONFIG.enums.TASK_STATE_FAILD :
+                            if (it.message === 'NEED_USB_CONNECTION') {
+        }}
+        <div>{{= i18n.taskManager.NEED_USB_CONNECTION }}</div>
+        {{
+                            } else {
         }}
         <div class="text-warning">{{= i18n.taskManager[it.message] || i18n.taskManager.UNKNOWN_ERROR }}</div>
         {{
-                            break;
+                            }
+                                    break;
                             break;
                         case CONFIG.enums.TASK_STATE_STOPPED :
         }}
@@ -490,7 +496,7 @@
                         }
                         break;
                     case CONFIG.enums.TASK_STATE_FAILD :
-                        if (it.message === 'CONNECTION_LOST' || it.message === 'DEVICE_NOT_FOUND') {
+                        if (it.message === 'CONNECTION_LOST' || it.message === 'DEVICE_NOT_FOUND' || it.message === 'NEED_USB_CONNECTION') {
     }}
     <button class="button-connect primary">{{= i18n.welcome.CONNECT_PHONE }}</button>
     {{
@@ -523,6 +529,7 @@
             case CONFIG.enums.TASK_TYPE_PUSH_PHONE :
     }}
     <button class="button-retry">{{=i18n.taskManager.RETRY_PUSH_PHONE }}</button>
+    <span class="link button-feedback">{{= i18n.taskManager.FEEDBACK }}</span>
     {{
         }
     }}
