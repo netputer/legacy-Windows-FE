@@ -106,7 +106,6 @@
                     .listenTo(Device, 'change:screenshot', this.renderScreenshot);
             },
             setConnectionState : function () {
-
                 var connectionTip = this.$('.connection-tip');
                 var offlineTip = this.$('.offline-tip');
 
