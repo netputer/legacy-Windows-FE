@@ -7,7 +7,7 @@
         <img class="img" src="{{= CONFIG.enums.DEFAULT_30X30 }}"/>
     </div>
     {{?}}
-    {{= it.name }}
+    <span class="wc title">{{= it.name }}</span>
 </script>
 
 <script type="text/x-ui-template" id="gallery-switch">
