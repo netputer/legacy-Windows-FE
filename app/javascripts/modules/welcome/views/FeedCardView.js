@@ -54,7 +54,7 @@
                     'name' : this.model ? this.model.get('feedName') : '',
                     'index' : this.getIndex(),
                     'template' : this.model ? this.model.get('template') : '',
-                    'id' : this.model  ? this.model.id : ''
+                    'feedId' : this.model  ? this.model.get('feedId') : ''
                 }, evt, data));
             },
             openUrl : function (url){
