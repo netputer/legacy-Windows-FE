@@ -390,6 +390,7 @@
                     pimMaskView.show();
                 } else if (this.currentModule === 'welcome' && !isConnected) {
                     pimMaskView.show();
+                    window.externalCall('', 'OpenPIMWithoutConnection', this.currentModule);
                 } else {
                     pimMaskView.hide();
                 }
