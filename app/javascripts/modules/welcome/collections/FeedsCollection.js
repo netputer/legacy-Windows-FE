@@ -37,7 +37,7 @@
                     model.feedItemType = card.feedItemType;
                     model.feedName = card.feedName;
                     model.template = card.template;
-                    model.id = card.id;
+                    model.feedId = card.id;
                     return model;
                 });
             },
