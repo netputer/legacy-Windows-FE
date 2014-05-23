@@ -59,6 +59,7 @@
             initialize : function () {
                 var loading = false;
                 var fade = false;
+                var offlineTip;
                 Object.defineProperties(this, {
                     loading : {
                         set : function (value) {
@@ -80,6 +81,14 @@
                         get : function () {
                             return fade;
                         }
+                    },
+                    offlineTip : {
+                        set : function (value) {
+                            offlineTip = value;
+                        },
+                        get : function () {
+                            return offlineTip;
+                        }
                     }
                 });
 
@@ -92,29 +101,33 @@
                     }
                 });
 
+                this.listenTo(Device, 'change:isUSB', function (Device, isUSB) {
+                    this.$('.offline-tip').toggleClass('hide', isUSB);
+                });
+
                 this.listenTo(Device, 'change:canScreenshot', function (Device) {
                     this.setDisable(!Device.get('canScreenshot'));
                 });
 
                 this.listenTo(Device, 'change:connectionState', function (){
-                    if (!Device.get('isConnected')) {
-                        this.setConnectionState();
-                    }
+                    this.setConnectionState();
                 });
 
                 this.listenTo(Device, 'change:shell', this.renderShell)
-                    .listenTo(Device, 'change:screenshot', this.renderScreenshot);
+                    .listenTo(Device, 'change:screenshot', function(Device, screenshot) {
+                        this.renderScreenshot(Device, screenshot);
+                        this.adjustRotation();
+                    });
             },
             setConnectionState : function () {
                 var connectionTip = this.$('.connection-tip');
-                var offlineTip = this.$('.offline-tip');
 
                 var $desc = this.$('.connection-tip .desc');
                 var connectionState = Device.get('connectionState');
 
                 if (connectionState.isDriverInstalling) {
                     this.loading = true;
-                    offlineTip.addClass('hide');
+                    this.offlineTip.addClass('hide');
                     connectionTip.removeClass('hide');
                     $desc.html(i18n.misc.DEVICE_DRIVER_INSTALLING);
                     return;
@@ -122,15 +135,11 @@
 
                 if (connectionState.isConnecting) {
                     this.loading = true;
-                    offlineTip.addClass('hide');
+                    this.offlineTip.addClass('hide');
                     connectionTip.removeClass('hide');
                     $desc.html(i18n.misc.DEVICE_CONNECTING);
                     return;
                 }
-
-                this.loading = false;
-                connectionTip.addClass('hide');
-                offlineTip.removeClass('hide');
             },
             setDisable : function (disable) {
 
@@ -142,6 +151,7 @@
             render : function () {
                 this.$el.html(this.template({})).addClass('fade-in').find('.screenshot').attr('src', CONFIG.enums.IMAGE_PATH + '/blank.png');
 
+                this.offlineTip = this.$('.offline-tip');
                 this.renderShell(Device, Device.get('shell'));
                 this.renderScreenshot(Device, Device.get('screenshot'));
 
@@ -179,8 +189,6 @@
                         .one('error', errorHandler)
                         .attr('src', 'file:///' + screenshot.path + '?date' + screenshot.date);
                 }
-
-                this.adjustRotation();
             },
             adjustRotation : function () {
                 var isPad = this.$el.hasClass('isPad');
@@ -189,6 +197,21 @@
                 this.$el.toggleClass('turn-left', rotation === 1)
                         .toggleClass('turn-right', rotation === 3)
                         .toggleClass('turn-down', rotation === 2);
+
+                var shell = Device.get('shell');
+                var config = SCREENSHOT_DEFAULTS;
+                if (shell.path) {
+                    config = shell.screenshot;
+                }
+
+                var height = this.offlineTip.height();
+                var top = config.top + config.height - height;
+                if (rotation === 1) {
+                    top = top - config.top - 2 * config.left;
+                } else if (rotation === 3){
+                    top = top - config.top - config.left;
+                }
+                this.offlineTip.css('top', top);
 
                 if (!isPad) {
                     if (rotation === 1 || rotation === 3) {
