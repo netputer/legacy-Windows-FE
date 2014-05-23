@@ -69,8 +69,7 @@
                 dualSIM : [],
                 connectionState : {
                     isConnecting : false,
-                    isDriverInstalling : false,
-                    isPlugOut : true
+                    isDriverInstalling : false
                 }
             },
             initialize : function () {
@@ -197,6 +196,11 @@
                 });
             },
             changeConnectionHandler : function (data) {
+
+                if(data.value === 'plug_out') {
+                    return;
+                }
+
                 this.set({
                     connectionState : {
                         isConnecting : data.value === 'connecting' || data.value === 'driver_installing',
