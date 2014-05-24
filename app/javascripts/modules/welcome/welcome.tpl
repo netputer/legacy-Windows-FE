@@ -142,11 +142,7 @@
 
 <script type="text/x-ui-template" id="changelog">
     <div class="info-ctn hbox">
-        <div class="icon-ctn">
-            {{? it.icon }}
-            <img class="img" src={{= it.icon }} alt="" />
-            {{?}}
-        </div>
+        <div class="icon-ctn"></div>
         <div class="top-ctn">
             <h1 class="title link">{{= i18n.welcome.UPDATED }}</h1>
             <p class="info text-secondary">
