@@ -1,5 +1,10 @@
 {
     "PROJECT_FLAG" : "LEYU",
     "DISABLE_DORAEMON" : true,
+    "DISABLE_WASH" : true,
+    "ENABLE_WELCOME" : false,
+    "DISABLE_OPTIMIZE" : true,
+    "SHOW_FIRST_EXTENSION" : true,
+    "SHOW_FIRST_EXTENSION_WHEN_CONNECTION_CHANGED" : true,
     "CUSTOM_NAV_WELCOME_TEXT" : "欢迎使用乐语门店手机助手"
 }
