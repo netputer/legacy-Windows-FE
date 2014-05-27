@@ -26,21 +26,14 @@
             className : 'w-task-manager-list-item hbox',
             initialize : function () {
                 TaskListItemView.__super__.initialize.apply(this, arguments);
-                this.listenTo(Device, 'change:isConnected', function (Device, isConnected) {
-                    if (!isConnected) {
-                        this.taskActionView.$el.children().hide();
-                    }
+
+                this.events = _.extend(this.events || {}, {
+                    'mouseenter' : 'mouseenterItem',
+                    'mouseleave' : 'mouseleaveItem'
                 });
-
-                this.$el.on('mouseenter', function () {
-                    this.showActionView();
-                }.bind(this));
-
-                this.$el.on('mouseleave', function () {
-                    this.hideActionView();
-                }.bind(this));
             },
             render : function () {
+
                 if (this.taskActionView !== undefined) {
                     this.taskActionView.$el.detach();
                     this.taskActionView.model = this.model;
@@ -53,9 +46,7 @@
 
                 this.$el.html(this.template(this.model.toJSON()));
 
-                this.taskActionView.$el.children().hide();
                 this.$el.append(this.taskActionView.$el);
-
                 return this;
             },
             uninstall : function () {
@@ -65,14 +56,16 @@
                 this.taskActionView.remove();
                 TaskListItemView.__super__.remove.apply(this, arguments);
             },
-            showActionView : function () {
-                var isConnected = Device.get('isConnected');
-                if (isConnected) {
-                    this.taskActionView.$el.children().toggle(isConnected);
+            mouseenterItem  : function () {
+                var isConnected = Device.get('isConnected') && !Device.get('isWifi');
+                var showByMessage = /CONNECTION_LOST|DEVICE_NOT_FOUND|NEED_USB_CONNECTION/.test(this.model.get('message'));
+
+                if (isConnected || showByMessage) {
+                    this.$el.addClass('hover');
                 }
             },
-            hideActionView : function () {
-                this.taskActionView.$el.children().hide();
+            mouseleaveItem : function (){
+                this.$el.removeClass('hover');
             }
         });
 

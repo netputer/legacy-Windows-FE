@@ -36,7 +36,7 @@
 
         var UpdateCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'update-card')),
-            className : FeedCardView.getClass().prototype.className + ' vbox update',
+            className : FeedCardView.getClass().prototype.className + ' vbox update hide',
             initialize : function () {
 
                 UpdateCardView.__super__.initialize.apply(this, arguments);
@@ -50,16 +50,9 @@
             render : function () {
                 var apps = appsCollection.getUpdatableApps();
                 var items = apps.concat();
-                var lastLength = Settings.get('welcome-card-update-number') || 0;
-
-                if (lastLength === apps.length){
-                    Settings.set('welcome-card-update-ignore', false, true);
-                }
 
                 var show = true;
                 if (apps.length === 0) {
-                    show = false;
-                } else if (lastLength === apps.length && Settings.get('welcome-card-update-ignore')) {
                     show = false;
                 }
 
@@ -85,7 +78,6 @@
 
                 }
 
-                Settings.set('welcome-card-update-number', apps.length, true);
                 return this;
             },
             clickButtonAction : function (evt) {
@@ -108,7 +100,6 @@
                 }, evt);
 
                 this.toggle(false);
-                Settings.set('welcome-card-update-ignore', true, true);
             },
             clickButtonUpdate : function (evt) {
 

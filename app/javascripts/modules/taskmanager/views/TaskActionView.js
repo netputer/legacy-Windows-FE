@@ -229,6 +229,14 @@
                     });
                 });
             },
+            clickButtonFeedback : function () {
+                IO.requestAsync({
+                    url : CONFIG.actions.OPEN_URL,
+                    data : {
+                        url : i18n.taskManager.FEEDBACK_LINK
+                    }
+                });
+            },
             events : {
                 'click .button-start' : 'clickButtonStart',
                 'click .button-pause' : 'clickButtonPause',
@@ -247,7 +255,8 @@
                 'click .button-connect' : 'clickButtonConnect',
                 'click .button-change-path' : 'clickButtonChangePath',
                 'click .button-set-as-ringtong' : 'clickButtonSetAsRingtone',
-                'click .button-push-phone' : 'clickButtonPushToPhone'
+                'click .button-push-phone' : 'clickButtonPushToPhone',
+                'click .button-feedback' : 'clickButtonFeedback'
             }
         });
 

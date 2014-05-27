@@ -48,6 +48,7 @@
         var alert = window.alert;
         var navigator = window.navigator;
 
+        var fastUSBNotificationView;
         var pimMaskView;
 
         var $needToHide;
@@ -283,13 +284,13 @@
                 fragment.appendChild(TaskMonitorView.getInstance().render().$el[0]);
                 this.$('.sidebar').append(fragment);
 
-                this.$('.module-ctn').append(FastUSBNotificationView.getInstance().render().$el);
+                fastUSBNotificationView = FastUSBNotificationView.getInstance();
+                this.$('.module-ctn').append(fastUSBNotificationView.render().$el);
 
                 pimMaskView = PimMaskView.getInstance();
                 this.$('.module-ctn').append(pimMaskView.render().$el.hide());
 
-
-                this.listenTo(Device, 'change:isWifi, change:isConnected', _.debounce(function () {
+                this.listenTo(Device, 'change:isWifi change:isConnected change:isFastADB', _.debounce(function () {
                     var isShow = this.toggleMask();
                 }.bind(this), 500));
 
@@ -317,10 +318,12 @@
                 return this.modules[name];
             },
             toggleMask : function () {
-                var isConnected = Device.get('isConnected');
+                var isConnected = Device.get('isConnected') || Device.get('isFastADB');
                 var isWifi = Device.get('isWifi');
 
-                if (!this.currentModule.match(/task|welcome|browser|gallery|doraemon/) && (!isConnected || isWifi)) {
+                if (!this.currentModule.match(/task|browser|gallery|welcome|doraemon/) && (!isConnected || isWifi)) {
+                    pimMaskView.show();
+                } else if (this.currentModule === 'welcome' && !isConnected) {
                     pimMaskView.show();
                 } else {
                     pimMaskView.hide();
@@ -360,7 +363,7 @@
                     if (name === 'task') {
                         $moduleCtn.append(moduleInstance.render().$el);
                     } else {
-                        pimMaskView.$el.before(moduleInstance.render().$el);
+                        fastUSBNotificationView.$el.before(moduleInstance.render().$el);
                     }
                 }
 

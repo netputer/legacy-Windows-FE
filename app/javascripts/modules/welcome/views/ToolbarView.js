@@ -316,6 +316,22 @@
             },
             clickButtonBackup : function () {
 
+                if (Device.get('isWifi')) {
+                    IO.requestAsync({
+                        url : CONFIG.actions.CONNET_PHONE,
+                        data : {
+                            from : 'backup-restore'
+                        }
+                    });
+
+                    log({
+                        event: 'ui.show.new_wifi',
+                        type : 'backup-restore'
+                    });
+
+                    return;
+                }
+
                 Backbone.trigger('switchModule', {
                     module : 'backup-restore'
                 });
@@ -326,6 +342,22 @@
                 });
             },
             clickButtonRestore : function () {
+
+                if (Device.get('isWifi')) {
+                    IO.requestAsync({
+                        url : CONFIG.actions.CONNET_PHONE,
+                        data : {
+                            from : 'backup-restore'
+                        }
+                    });
+
+                    log({
+                        event: 'ui.show.new_wifi',
+                        type : 'backup-restore'
+                    });
+
+                    return;
+                }
 
                 Backbone.trigger('switchModule', {
                     module : 'backup-restore'

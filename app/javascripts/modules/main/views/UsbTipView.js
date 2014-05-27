@@ -35,7 +35,7 @@
             render : function () {
 
                 var titleStr = i18n.misc.USE_USB_TITLE;
-                if (this.options.from) {
+                if (this.options.from && this.options.from !== 'welcome') {
                     titleStr = i18n.misc['USB_TITLE_' + this.options.from.toUpperCase()];
                 }
 
@@ -50,9 +50,27 @@
             clickButtonAction : function () {
                 window.location.href = window.location.href + '?usbError=true';
             },
+            clickButtonFeedback : function () {
+                IO.requestAsync({
+                    url : CONFIG.actions.OPEN_URL,
+                    data : {
+                        url : i18n.misc.USB_TIP_HELP
+                    }
+                });
+            },
+            clickButtonHelp : function () {
+                IO.requestAsync({
+                    url : CONFIG.actions.OPEN_URL,
+                    data : {
+                        url : i18n.misc.USB_TIP_FEEDBACK
+                    }
+                });
+            },
             events : {
                 'click .button-close' : 'clickButtonClose',
-                'click .button-action' : 'clickButtonAction'
+                'click .button-action' : 'clickButtonAction',
+                'click .button-help' : 'clickButtonHelp',
+                'click .button-feedback' : 'clickButtonFeedback'
             }
         });
 

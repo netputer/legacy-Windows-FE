@@ -68,9 +68,17 @@
                             this.$el.html(this.template({
                                 title : resp.title,
                                 subtitle : resp.subtitle,
-                                icon : resp.icon,
                                 blog : resp.blog
                             }));
+
+                            if (resp.icon) {
+                                var $img = $(new window.Image());
+                                $img.one('load', function (){
+                                    this.$('.icon-ctn').css({
+                                        'background' : 'url(\'' + resp.icon + '\') no-repeat 0 0',
+                                    });
+                                }.bind(this)).attr('src', resp.icon);
+                            }
 
                             Settings.set('latestVersion', Environment.get('backendVersion'));
 

@@ -142,11 +142,7 @@
 
 <script type="text/x-ui-template" id="changelog">
     <div class="info-ctn hbox">
-        <div class="icon-ctn">
-            {{? it.icon }}
-            <img class="img" src={{= it.icon }} alt="" />
-            {{?}}
-        </div>
+        <div class="icon-ctn"></div>
         <div class="top-ctn">
             <h1 class="title link">{{= i18n.welcome.UPDATED }}</h1>
             <p class="info text-secondary">
@@ -225,7 +221,7 @@
                     <span class="info">{{= item.base_info.name }}</span>
                     <span class="text-thirdly wc version">{{= StringUtil.format(i18n.welcome.CARD_UPDATE_INFO, item.upgrade_info.versionName, StringUtil.readableSize(item.upgrade_info.size)) }}</span>
                 </div>
-                <button class='button-update {{? it.items.length === 1 }}action{{??}}normal{{?}}' data-id="{{= item.id}}" >{{= i18n.app.UPDATE }}</button>
+                <button class='button-update {{? it.length === 1 }}action{{??}}normal{{?}}' data-id="{{= item.id}}" >{{= i18n.app.UPDATE }}</button>
             </li>
         {{~}}
     </ul>

@@ -177,7 +177,7 @@
         <button class='button-action use-usb max primary'>{{= i18n.misc.ALREADY_USE_USB }}</button>
     </div>
     <div class='feedback'>
-        <span>{{= i18n.misc.HELP }}</span>
+        <span class="link button-help">{{= i18n.misc.HELP }}</span>
     </div>
 </script>
 
