@@ -24,7 +24,16 @@
         var TaskListItemView = BaseListItem.extend({
             template : doT.template(TemplateFactory.get('taskManager', 'list-item')),
             className : 'w-task-manager-list-item hbox',
+            initialize : function () {
+                TaskListItemView.__super__.initialize.apply(this, arguments);
+
+                this.events = _.extend(this.events || {}, {
+                    'mouseenter' : 'mouseenterItem',
+                    'mouseleave' : 'mouseleaveItem'
+                });
+            },
             render : function () {
+
                 if (this.taskActionView !== undefined) {
                     this.taskActionView.$el.detach();
                     this.taskActionView.model = this.model;
@@ -57,10 +66,6 @@
             },
             mouseleaveItem : function (){
                 this.$el.removeClass('hover');
-            },
-            events : {
-                'mouseenter' : 'mouseenterItem',
-                'mouseleave' : 'mouseleaveItem'
             }
         });
 
