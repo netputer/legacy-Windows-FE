@@ -28,7 +28,7 @@
                 TaskListItemView.__super__.initialize.apply(this, arguments);
 
                 this.$el.on('mouseenter', function () {
-                    var isConnected = Device.get('isConnected');
+                    var isConnected = Device.get('isConnected') && !Device.get('isWifi');
                     var showByMessage = /CONNECTION_LOST|DEVICE_NOT_FOUND|NEED_USB_CONNECTION/.test(this.model.get('message'));
 
                     if (isConnected || showByMessage) {

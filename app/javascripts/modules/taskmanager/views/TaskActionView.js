@@ -233,7 +233,7 @@
                 IO.requestAsync({
                     url : CONFIG.actions.OPEN_URL,
                     data : {
-                        url : i18n.taskManager.PUSH_TASK_FEEDBACK
+                        url : i18n.taskManager.FEEDBACK_LINK
                     }
                 });
             },

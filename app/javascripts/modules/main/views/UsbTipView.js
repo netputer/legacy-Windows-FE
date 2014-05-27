@@ -35,7 +35,7 @@
             render : function () {
 
                 var titleStr = i18n.misc.USE_USB_TITLE;
-                if (this.options.from) {
+                if (this.options.from && this.options.from !== 'welcome') {
                     titleStr = i18n.misc['USB_TITLE_' + this.options.from.toUpperCase()];
                 }
 
