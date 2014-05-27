@@ -24,22 +24,6 @@
         var TaskListItemView = BaseListItem.extend({
             template : doT.template(TemplateFactory.get('taskManager', 'list-item')),
             className : 'w-task-manager-list-item hbox',
-            initialize : function () {
-                TaskListItemView.__super__.initialize.apply(this, arguments);
-
-                this.$el.on('mouseenter', function () {
-                    var isConnected = Device.get('isConnected') && !Device.get('isWifi');
-                    var showByMessage = /CONNECTION_LOST|DEVICE_NOT_FOUND|NEED_USB_CONNECTION/.test(this.model.get('message'));
-
-                    if (isConnected || showByMessage) {
-                        this.$el.addClass('hover');
-                    }
-                }.bind(this));
-
-                this.$el.on('mouseleave', function () {
-                    this.$el.removeClass('hover');
-                }.bind(this));
-            },
             render : function () {
                 if (this.taskActionView !== undefined) {
                     this.taskActionView.$el.detach();
@@ -62,6 +46,21 @@
             remove : function () {
                 this.taskActionView.remove();
                 TaskListItemView.__super__.remove.apply(this, arguments);
+            },
+            mouseenterItem  : function () {
+                var isConnected = Device.get('isConnected') && !Device.get('isWifi');
+                var showByMessage = /CONNECTION_LOST|DEVICE_NOT_FOUND|NEED_USB_CONNECTION/.test(this.model.get('message'));
+
+                if (isConnected || showByMessage) {
+                    this.$el.addClass('hover');
+                }
+            },
+            mouseleaveItem : function (){
+                this.$el.removeClass('hover');
+            },
+            events : {
+                'mouseenter' : 'mouseenterItem',
+                'mouseleave' : 'mouseleaveItem'
             }
         });
 
