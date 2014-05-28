@@ -71,13 +71,19 @@
                 clearInterval(this.checkHandle);
                 if (Device.get('isConnected') && this.isOpened) {
                     this.checkHandle = setInterval(function() {
-
                         Device.getCapacityAsync().always(this.setContent.bind(this));
-
                     }.bind(this), 3000);
                 } else {
-                    this.$el.removeClass('show');
+                    this.$('button').prop('disabled', true);
+                    this.$('progress').addClass('disabled');
                 }
+            },
+            render : function () {
+
+                this.$el.html(this.template({}))
+                        .find('button').prop('disabled', true)
+                        .find('progress').addClass('disabled');
+                return this;
             },
             setContent : function () {
                 var data = {
@@ -91,7 +97,7 @@
                     externalSDPath : Device.get('externalSDPath')
                 };
 
-                this.$el.html(this.template(data)).addClass('show');
+                this.$el.html(this.template(data));
 
                 CapacityTipsView.getInstance({
                     $host : this.$('.info-device'),

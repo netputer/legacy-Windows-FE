@@ -36,20 +36,32 @@
     <div class="info hbox">
         <div class="info-device hbox">
             <span class="icomoon icomoon-device"></span>
+            {{? it.deviceCapacity > 0}}
             {{ var percent = parseInt((it.deviceCapacity - it.deviceFreeCapacity) / it.deviceCapacity * 100, 10); }}
+            {{??}}
+            {{ var percent = 0; }}
+            {{?}}
             <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
         {{? it.internalSDCapacity > 0 }}
         <div class="info-sd-internal hbox" data-path="{{= it.internalSDPath }}">
             <span class="icomoon icomoon-sd{{? it.externalSDCapacity > 0 }}-first{{?}}"></span>
+            {{? it.internalSDCapacity > 0}}
             {{ var percent = parseInt((it.internalSDCapacity - it.internalSDFreeCapacity) / it.internalSDCapacity * 100, 10); }}
+            {{??}}
+            {{ var percent = 0; }}
+            {{?}}
             <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
         {{?}}
         {{? it.externalSDCapacity > 0 }}
         <div class="info-sd-external hbox" data-path="{{= it.externalSDPath }}">
             <span class="icomoon icomoon-sd{{? it.internalSDCapacity > 0 }}-second{{?}}"></span>
+            {{? it.externalSDCapacity > 0}}
             {{ var percent = parseInt((it.externalSDCapacity - it.externalSDFreeCapacity) / it.externalSDCapacity * 100, 10); }}
+            {{??}}
+            {{ var percent = 0; }}
+            {{?}}
             <progress class="tiny{{? percent >= 90 }} highlight{{?}}" max="100" value="{{= percent }}" />
         </div>
         {{?}}
