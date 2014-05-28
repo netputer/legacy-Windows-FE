@@ -136,9 +136,10 @@
                 if (this.validateForm()) {
                     this.running = true;
 
-                    ContactsCollection.getInstance().addNewContactAsync(this.generateData()).done(function () {
+                    ContactsCollection.getInstance().addNewContactAsync(this.generateData()).done(function (resp) {
                         this.$('.new-contact')[0].reset();
                         this.showHint(i18n.contact.SAVE_SUCCESS);
+                        this.trigger('save', resp.body.id);
                     }.bind(this)).fail(function () {
                         this.showHint(i18n.contact.SAVE_FAILED);
                     }.bind(this)).always(function () {
