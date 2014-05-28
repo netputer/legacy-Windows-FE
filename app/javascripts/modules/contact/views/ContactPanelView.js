@@ -48,6 +48,13 @@
             },
             render : function () {
                 quickAddPanelView = QuickAddPanelView.getInstance();
+
+                this.listenTo(quickAddPanelView, 'save', function (id){
+                    contactsListView.highlight({
+                        id : id
+                    });
+                });
+
                 this.$el.append(quickAddPanelView.render().$el);
                 return this;
             },
