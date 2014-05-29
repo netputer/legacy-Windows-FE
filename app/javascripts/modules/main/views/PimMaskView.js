@@ -26,6 +26,10 @@
             className : 'w-main-pim-mask module-main vbox',
             initialize : function () {
                 var isShow = false;
+                var transitionEndHandler = function () {
+                    this.$el.hide().removeClass('hide');
+                }.bind(this);
+
                 Object.defineProperties(this, {
                     isShow : {
                         get : function () {
@@ -33,6 +37,11 @@
                         },
                         set : function (value) {
                             isShow = value;
+                        }
+                    },
+                    transitionEndHandler : {
+                        get : function () {
+                            return transitionEndHandler;
                         }
                     }
                 });
@@ -48,7 +57,7 @@
                     return;
                 }
 
-                this.$el.show();
+                this.$el.off('webkitTransitionEnd', this.transitionEndHandler).removeClass('hide').show();
                 this.isShow = true;
             },
             hide : function () {
@@ -57,11 +66,7 @@
                     return;
                 }
 
-                var transitionEndHandler = function () {
-                    this.$el.hide().removeClass('hide');
-                }.bind(this);
-
-                this.$el.one('webkitTransitionEnd', transitionEndHandler);
+                this.$el.one('webkitTransitionEnd', this.transitionEndHandler);
                 this.$el.addClass('hide');
 
                 this.isShow = false;
