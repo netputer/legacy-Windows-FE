@@ -77,7 +77,6 @@
                         set : function (value) {
                             if (value.hasOwnProperty('name') && value.hasOwnProperty('getter')) {
                                 currentSet = value;
-                                that.trigger('switchSet', currentSet);
                             } else {
                                 console.error('SmartList - CurrentSet type error.');
                             }

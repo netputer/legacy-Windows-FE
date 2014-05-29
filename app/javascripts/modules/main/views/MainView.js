@@ -343,7 +343,7 @@
                     }
                 }
 
-                moduleInstance.$('.w-ui-smartlist').addClass('visible');
+                moduleInstance.$('.w-ui-smartlist').visible = true;
                 if (name === 'welcome') {
                     moduleInstance.$('.feed-ctn').addClass('visible');
                 }
@@ -359,7 +359,7 @@
                     }).addClass('need-to-hide');
                 }
 
-                moduleInstance.$('.w-ui-smartlist').removeClass('visible');
+                moduleInstance.$('.w-ui-smartlist').visible = false;
                 if (name === 'welcome') {
                     moduleInstance.$('.feed-ctn').removeClass('visible');
                 }
