@@ -67,26 +67,29 @@
                 AppItemView.__super__.remove.call(this);
             },
             render : function () {
-                if (this.model.get('updateCategory')) {
-                    this.$el.toggleClass('category', true).html(this.template(this.model.toJSON()));
-                    return this;
-                }
 
-                var $checker = this.$('.item-checker');
-                var checked = $checker.length > 0 ? $checker[0].checked : false;
+                if (this.model) {
+                    if (this.model.get('updateCategory')) {
+                        this.$el.toggleClass('category', true).html(this.template(this.model.toJSON()));
+                        return this;
+                    }
 
-                this.$el.toggleClass('category', false).html(this.template(this.model.toJSON()));
+                    var $checker = this.$('.item-checker');
+                    var checked = $checker.length > 0 ? $checker[0].checked : false;
 
-                this.$('.item-checker').prop({
-                    checked : checked
-                });
+                    this.$el.toggleClass('category', false).html(this.template(this.model.toJSON()));
 
-                this.renderUpdateColumn();
+                    this.$('.item-checker').prop({
+                        checked : checked
+                    });
 
-                this.renderIcon();
+                    this.renderUpdateColumn();
 
-                if (this.model.get('running')) {
-                    this.$el.append(TemplateFactory.get('ui', 'loading-horizental'));
+                    this.renderIcon();
+
+                    if (this.model.get('running')) {
+                        this.$el.append(TemplateFactory.get('ui', 'loading-horizental'));
+                    }
                 }
 
                 return this;

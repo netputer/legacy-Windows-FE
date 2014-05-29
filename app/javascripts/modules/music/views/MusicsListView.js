@@ -68,12 +68,6 @@
                         });
                     }
                 });
-
-                this.listenTo(Backbone, 'showModule', function (name) {
-                    if (name === 'music') {
-                        musicsList.resizeList();
-                    }
-                });
             },
             buildList : function () {
                 if (!musicsList) {
@@ -90,8 +84,7 @@
                         itemHeight : 35,
                         listenToCollection : musicsCollection,
                         loading : musicsCollection.loading || musicsCollection.syncing,
-                        showWanXiaoDou : true,
-                        enableResizeListener : true
+                        showWanXiaoDou : true
                     });
 
                     this.$el.append(musicsList.render().$el);

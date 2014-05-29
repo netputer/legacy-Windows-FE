@@ -21,18 +21,18 @@
 
         var ContactItemView = BaseListItem.extend({
             template : doT.template(TemplateFactory.get('contact', 'contact-item')),
-            className : 'w-contact-list-item hbox',
+            className : BaseListItem.prototype.className + ' w-contact-list-item hbox',
             render : function () {
                 this.uninstall();
 
-                this.$el.html(this.template(this.model.toJSON()));
-
-                this.$('.name').toggleClass('text-secondary', this.model.get('read_only'));
-
-                this.groupListView = GroupListView.getInstance({
-                    model : this.model,
-                    $host : this.$('.group-menu')
-                });
+                if (this.model) {
+                    this.$el.html(this.template(this.model.toJSON()));
+                    this.$('.name').toggleClass('text-secondary', this.model.get('read_only'));
+                    this.groupListView = GroupListView.getInstance({
+                        model : this.model,
+                        $host : this.$('.group-menu')
+                    });
+                }
 
                 return this;
             },

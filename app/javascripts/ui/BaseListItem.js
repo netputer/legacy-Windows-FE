@@ -11,6 +11,7 @@
 
         var BaseListItem = Backbone.View.extend({
             tagName : 'li',
+            className : 'base-list-item',
             initialize : function () {
                 this.render = _.wrap(this.render, function (renderFunc) {
                     var $checker = this.$('.item-checker');
