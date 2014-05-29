@@ -54,7 +54,7 @@
                 HeaderMixin.mixin(this);
                 WanXiaoDouMixin.mixin(this);
 
-                var active = {};
+                var activeItems = {};
                 var ctnHeight = 0;
                 var emptyTip = '';
                 var enableContextMenu = false;
@@ -63,6 +63,7 @@
                 var lastSelect;
                 var listenToCollection;
                 var loading = false;
+                var inactiveItems = [];
                 var itemHeight = 0;
                 var itemView;
                 var minOffsetY = 0;
@@ -73,18 +74,17 @@
                 var scrollHeight = 0;
                 var selectable = true;
                 var timer;
-                var unActive = [];
                 var visable = false;
                 var $ctn;
                 var $scrollCtn;
 
                 Object.defineProperties(this, {
-                    active : {
+                    activeItems : {
                         set : function (value) {
-                            active = value;
+                            activeItems = value;
                         },
                         get : function () {
-                            return active;
+                            return activeItems;
                         }
                     },
                     ctnHeight : {
@@ -257,12 +257,12 @@
                             timer = value;
                         }
                     },
-                    unActive : {
+                    inactiveItems : {
                         get : function () {
-                            return unActive;
+                            return inactiveItems;
                         },
                         set : function (value) {
-                            unActive = value;
+                            inactiveItems = value;
                         }
                     },
                     visible : {
@@ -331,16 +331,16 @@
                 this.rowNumber = Math.ceil(this.ctnHeight / this.itemHeight);
             },
             clearList : function () {
-                _.each(this.active, function (itemView){
+                _.each(this.activeItems, function (itemView){
                     itemView.remove();
                 });
 
-                _.each(this.unActive, function (itemView){
+                _.each(this.inactiveItems, function (itemView){
                     itemView.remove();
                 });
 
-                this.active = {};
-                this.unActive = [];
+                this.activeItems = {};
+                this.inactiveItems = [];
                 this.offsetY = 0;
             },
             init : function () {
@@ -360,7 +360,7 @@
                 var end = start + this.rowNumber + 1;
                 end = Math.min(end, this.currentModels.length);
 
-                var activeKeys = _.sortBy(_.keys(this.active), function (num) {
+                var activeKeys = _.sortBy(_.keys(this.activeItems), function (num) {
                     return num;
                 });
                 var activeLength = activeKeys.length;
@@ -380,7 +380,7 @@
                     var i = 0;
                     for (i; i < diff; i ++ ) {
                         itemView = new this.itemView();
-                        this.unActive.push(itemView);
+                        this.inactiveItems.push(itemView);
                         fragment.appendChild(itemView.render().$el[0]);
 
                         top = maxKey++ * this.itemHeight;
@@ -395,8 +395,8 @@
                 } else if (diff < 0) {
                     diff = activeKeys.splice(activeLength + diff, -diff);
                     _.each(diff, function (num) {
-                        this.active[num].remove();
-                        delete this.active[num];
+                        this.activeItems[num].remove();
+                        delete this.activeItems[num];
                     }, this);
                 }
 
@@ -418,7 +418,7 @@
                     var end = start + this.rowNumber + 1;
                     end = Math.min(end, this.currentModels.length);
 
-                    var before = _.keys(this.active);
+                    var before = _.keys(this.activeItems);
                     var after = [];
                     var i;
                     for (i = start; i < end; i ++) {
@@ -426,29 +426,29 @@
                     }
 
                     _.difference(before, after).forEach(function(i) {
-                        this.unActive.push(this.active[i]);
-                        delete this.active[i];
+                        this.inactiveItems.push(this.activeItems[i]);
+                        delete this.activeItems[i];
                     }, this);
 
                     var itemView;
                     _.difference(after, before).forEach(function(i) {
 
-                        itemView = this.unActive.pop();
+                        itemView = this.inactiveItems.pop();
                         itemView.decouple();
                         itemView.model = this.currentModels[i];
                         itemView.setup();
                         itemView.render();
                         this.toggleClass(itemView, i);
 
-                        this.active[i] = itemView;
+                        this.activeItems[i] = itemView;
 
                         itemView.toggleSelect(_.contains(this.selected, itemView.model.id));
 
                     }, this);
 
-                    _.each(_.keys(this.active), function (i) {
+                    _.each(_.keys(this.activeItems), function (i) {
                         var top = i * this.itemHeight + this.offsetY;
-                        this.active[i].$el.css('webkitTransform', 'translate3d(0,' + top + 'px, 0)');
+                        this.activeItems[i].$el.css('webkitTransform', 'translate3d(0,' + top + 'px, 0)');
                     }, this);
 
                     if (!isFromScoller) {
@@ -479,7 +479,7 @@
 
                     var data = {
                         'type' : 'smartlist_scroll_' + window.SnapPea.CurrentModule,
-                        'lengthOnScreen' : this.active.length,
+                        'lengthOnScreen' : this.activeItems.length,
                         'url' : ''
                     };
 
@@ -609,7 +609,7 @@
             },
             remove : function () {
 
-                _.each(this.active, function (item) {
+                _.each(this.activeItems, function (item) {
                     item.remove();
                 });
 
@@ -666,7 +666,7 @@
                 'mouseover .w-ui-smartlist-scroll-ctn' : 'enableScrollHandler',
                 'mouseleave .w-ui-smartlist-scroll-ctn' : 'disableScrollHandler',
                 'mousewheel .w-ui-smartlist-body-ctn' : 'mousewheelBody',
-                'click .w-ui-smartlist-body-ctn  li' : 'clickListItem',
+                'click .w-ui-smartlist-body-ctn > li' : 'clickListItem',
                 'click .w-ui-smartlist-body-ctn > li .item-checker' : 'checkListItem',
                 'click .w-ui-smartlist-body-ctn > li .item-checker-wrap' : 'checkListItem',
                 'contextmenu .w-ui-smartlist-body-ctn > li' : 'rightClickItem',
