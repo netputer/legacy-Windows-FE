@@ -67,7 +67,6 @@
                 var itemHeight = 0;
                 var itemView;
                 var minOffsetY = 0;
-                var maxOffsetY = 0;
                 var offsetY = 0;
                 var rendered = false;
                 var rowNumber = 0;
@@ -186,14 +185,6 @@
                         },
                         get : function () {
                             return loading;
-                        }
-                    },
-                    maxOffsetY : {
-                        get : function () {
-                            return maxOffsetY;
-                        },
-                        set : function (value) {
-                            maxOffsetY = value;
                         }
                     },
                     minOffsetY : {
@@ -389,7 +380,7 @@
                     this.$ctn.append(fragment);
 
                     if (end === this.currentModels.length) {
-                        dy = (-diff - 1) * this.itemHeight;
+                        dy = (diff - 1) * this.itemHeight;
                     }
 
                 } else if (diff < 0) {
@@ -409,7 +400,7 @@
                 if (typeof offsetY !== 'undefined') {
                     this.offsetY = offsetY;
                 } else {
-                    this.offsetY = Math.min(Math.max(this.offsetY + dy, this.minOffsetY), this.maxOffsetY);
+                    this.offsetY = Math.min(Math.max(this.offsetY + dy, this.minOffsetY), 0);
                 }
                 window.cancelAnimationFrame(this.timer);
 
@@ -423,6 +414,10 @@
                     var i;
                     for (i = start; i < end; i ++) {
                         after.push(i + '');
+                    }
+
+                    if (this.inactiveItems.length > 0) {
+                        this.inactiveItems[0].$el.show();
                     }
 
                     _.difference(before, after).forEach(function(i) {
@@ -450,6 +445,10 @@
                         var top = i * this.itemHeight + this.offsetY;
                         this.activeItems[i].$el.css('webkitTransform', 'translate3d(0,' + top + 'px, 0)');
                     }, this);
+
+                    if (this.inactiveItems.length > 0) {
+                        this.inactiveItems[0].$el.hide();
+                    }
 
                     if (!isFromScoller) {
                         this.moveScroller(-this.offsetY);
