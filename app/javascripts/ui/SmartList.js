@@ -73,7 +73,6 @@
                 var scrollHeight = 0;
                 var selectable = true;
                 var timer;
-                var visable = false;
                 var $ctn;
                 var $scrollCtn;
 
@@ -256,15 +255,9 @@
                             inactiveItems = value;
                         }
                     },
-                    visible : {
+                    isVisible : {
                         get : function () {
-                            return visible;
-                        },
-                        set : function (value) {
-                            visible = value;
-                            if (value) {
-                                this.calculateSettings();
-                            }
+                            return this.$el.hasClass('visible');
                         }
                     },
                     $ctn : {
@@ -299,7 +292,11 @@
                     this.init();
                 }, this);
 
-                this.listenTo(WindowState, 'resize', this.calculateSettings);
+                this.listenTo(WindowState, 'resize', function () {
+                    if (this.isVisible) {
+                        this.calculateSettings();
+                    }
+                });
             },
             render : function () {
                 this.$el.html(this.template({}));

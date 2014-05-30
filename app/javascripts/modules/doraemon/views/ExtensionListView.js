@@ -82,6 +82,12 @@
 
                     extensionList.on('contextMenu', this.showContextMenu, this);
 
+                    this.listenTo(Backbone, 'showModule', function (name) {
+                        if (name === 'doraemon') {
+                            extensionList.calculateSettings();
+                        }
+                    });
+
                 } else {
                     extensionList.switchSet('default', extensionsCollection.getAll);
                 }

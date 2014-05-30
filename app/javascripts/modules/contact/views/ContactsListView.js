@@ -237,6 +237,12 @@
 
                 this.listenTo(Device, 'change:isFastADB', this.toggleEmptyTip);
 
+                this.listenTo(Backbone, 'showModule', function (name) {
+                    if (name === 'contact') {
+                        contactsList.calculateSettings();
+                    }
+                });
+
                 this.$el.append(contactsList.render().$el);
 
                 contactsList.on('switchSet', this.toggleEmptyTip, this);

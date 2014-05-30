@@ -223,6 +223,11 @@
                         .listenTo(appList, 'contextMenu', this.showContextMenu)
                         .listenTo(appList, 'select:change', function (selected) {
                             this.trigger('select:change', selected);
+                        })
+                        .listenTo(Backbone, 'showModule', function (name) {
+                            if (name === 'app') {
+                                appList.calculateSettings();
+                            }
                         });
 
                     this.toggleListeners('normal');
