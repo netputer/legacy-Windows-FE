@@ -215,7 +215,13 @@
                 this.listenTo(conversationList, 'select:change', function (selected) {
                     this.trigger('select:change', selected);
                 });
+
                 this.listenTo(Device, 'change:isFastADB', this.toggleEmptyTip);
+                this.listenTo(Backbone, 'showModule', function (name) {
+                    if (name === 'message') {
+                        conversationList.calculateSettings();
+                    }
+                });
 
                 this.$el.append(conversationList.render().$el);
             },

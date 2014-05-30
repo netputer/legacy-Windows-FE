@@ -94,7 +94,12 @@
                 this.$el.append(taskList.render().$el);
 
                 this.listenTo(taskList, 'select:change', this.selectChangeHandler)
-                    .listenTo(taskList, 'contextMenu', this.showContextMenu);
+                    .listenTo(taskList, 'contextMenu', this.showContextMenu)
+                    .listenTo(Backbone, 'showModule', function (name) {
+                        if (name === 'task') {
+                            taskList.calculateSettings();
+                        }
+                    });
             },
             selectChangeHandler : function (selected) {
                 this.trigger('select:change', selected);

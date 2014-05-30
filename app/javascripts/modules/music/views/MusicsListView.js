@@ -105,6 +105,12 @@
 
                     this.listenTo(Device, 'change:isFastADB', this.toggleEmptyTip);
 
+                    this.listenTo(Backbone, 'showModule', function (name) {
+                        if (name === 'music') {
+                            musicsList.calculateSettings();
+                        }
+                    });
+
                 } else {
                     musicsList.switchSet('default', musicsCollection.getMusics);
                 }
