@@ -132,10 +132,6 @@
                         this.tryToShowFlashTip();
                     }
                     this.toggleEmptyTip();
-                }).listenTo(Backbone, 'showModule', function (name) {
-                    if (name === 'app') {
-                        appList.resizeList();
-                    }
                 });
 
                 _.each(pimCollection.where({
@@ -210,8 +206,7 @@
                         $observer : this.options.$observer,
                         itemHeight : 45,
                         listenToCollection : appsCollection,
-                        loading : appsCollection.loading || appsCollection.syncing,
-                        enableResizeListener : true
+                        loading : appsCollection.loading || appsCollection.syncing
                     });
 
                     this.$('.flash').after(appList.render().$el);
@@ -228,6 +223,11 @@
                         .listenTo(appList, 'contextMenu', this.showContextMenu)
                         .listenTo(appList, 'select:change', function (selected) {
                             this.trigger('select:change', selected);
+                        })
+                        .listenTo(Backbone, 'showModule', function (name) {
+                            if (name === 'app') {
+                                appList.calculateSettings();
+                            }
                         });
 
                     this.toggleListeners('normal');
@@ -497,6 +497,7 @@
                 }
             },
             clickTab : function (evt) {
+
                 Backbone.trigger('switchModule', {
                     module : 'app',
                     tab : $(evt.currentTarget).data('tab')

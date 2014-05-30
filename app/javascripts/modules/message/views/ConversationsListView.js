@@ -96,11 +96,6 @@
                 });
 
                 this.bindConversationsCollectionEvents();
-                this.listenTo(Backbone, 'showModule', function (name) {
-                    if (name === 'message') {
-                        conversationList.resizeList();
-                    }
-                });
             },
             bindConversationsCollectionEvents : function () {
                 conversationsCollection = ConversationsCollection.getInstance();
@@ -212,8 +207,7 @@
                     $observer : this.options.$observer,
                     itemHeight : 45,
                     listenToCollection : conversationsCollection,
-                    loading : conversationsCollection.loading || conversationsCollection.syncing,
-                    enableResizeListener : true
+                    loading : conversationsCollection.loading || conversationsCollection.syncing
                 });
 
                 this.listenTo(conversationList, 'switchSet', this.toggleEmptyTip);
@@ -221,7 +215,13 @@
                 this.listenTo(conversationList, 'select:change', function (selected) {
                     this.trigger('select:change', selected);
                 });
+
                 this.listenTo(Device, 'change:isFastADB', this.toggleEmptyTip);
+                this.listenTo(Backbone, 'showModule', function (name) {
+                    if (name === 'message') {
+                        conversationList.calculateSettings();
+                    }
+                });
 
                 this.$el.append(conversationList.render().$el);
             },
