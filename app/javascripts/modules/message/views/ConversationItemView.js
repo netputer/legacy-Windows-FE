@@ -23,10 +23,7 @@
             className : 'w-message-conversation-list-item hbox',
             template : doT.template(TemplateFactory.get('message', 'conversation-list-item')),
             render : function () {
-                if (this.model) {
-                    this.$el.html(this.template(this.model.toJSON()));
-                }
-
+                this.$el.html(this.template(this.model.toJSON()));
                 return this;
             }
         });

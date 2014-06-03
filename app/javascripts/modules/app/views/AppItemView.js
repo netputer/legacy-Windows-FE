@@ -68,28 +68,26 @@
             },
             render : function () {
 
-                if (this.model) {
-                    if (this.model.get('updateCategory')) {
-                        this.$el.toggleClass('category', true).html(this.template(this.model.toJSON()));
-                        return this;
-                    }
+                if (this.model.get('updateCategory')) {
+                    this.$el.toggleClass('category', true).html(this.template(this.model.toJSON()));
+                    return this;
+                }
 
-                    var $checker = this.$('.item-checker');
-                    var checked = $checker.length > 0 ? $checker[0].checked : false;
+                var $checker = this.$('.item-checker');
+                var checked = $checker.length > 0 ? $checker[0].checked : false;
 
-                    this.$el.toggleClass('category', false).html(this.template(this.model.toJSON()));
+                this.$el.toggleClass('category', false).html(this.template(this.model.toJSON()));
 
-                    this.$('.item-checker').prop({
-                        checked : checked
-                    });
+                this.$('.item-checker').prop({
+                    checked : checked
+                });
 
-                    this.renderUpdateColumn();
+                this.renderUpdateColumn();
 
-                    this.renderIcon();
+                this.renderIcon();
 
-                    if (this.model.get('running')) {
-                        this.$el.append(TemplateFactory.get('ui', 'loading-horizental'));
-                    }
+                if (this.model.get('running')) {
+                    this.$el.append(TemplateFactory.get('ui', 'loading-horizental'));
                 }
 
                 return this;
