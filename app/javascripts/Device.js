@@ -204,8 +204,7 @@
                 this.set({
                     connectionState : {
                         isConnecting : data.value === 'connecting' || data.value === 'driver_installing',
-                        isDriverInstalling : data.value === 'driver_installing',
-                        isPlugOut : data.value === 'plug_out'
+                        isDriverInstalling : data.value === 'driver_installing'
                     }
                 });
             },
@@ -224,6 +223,15 @@
                     isRoot : data.is_root,
                     deviceName : data.device_name
                 });
+
+                if (!data.connection_state) {
+                    this.set({
+                        connectionState : {
+                            isConnecting : false,
+                            isDriverInstalling : false
+                        }
+                    });
+                }
             },
             getSDCapacityAsync : function () {
                 var deferred = $.Deferred();

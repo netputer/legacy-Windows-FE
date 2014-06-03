@@ -60,6 +60,9 @@
                 var loading = false;
                 var fade = false;
                 var offlineTip;
+                var wifiTip;
+                var screenShot;
+                var connectionTip;
                 Object.defineProperties(this, {
                     loading : {
                         set : function (value) {
@@ -89,27 +92,57 @@
                         get : function () {
                             return offlineTip;
                         }
+                    },
+                    wifiTip : {
+                        set : function (value) {
+                            wifiTip = value;
+                        },
+                        get : function () {
+                            return wifiTip;
+                        }
+                    },
+                    screenShot : {
+                        set : function (value) {
+                            screenShot = value;
+                        },
+                        get : function () {
+                            return screenShot;
+                        }
+                    },
+                    connectionTip : {
+                        set : function (value) {
+                            connectionTip = value;
+                        },
+                        get : function () {
+                            return connectionTip;
+                        }
                     }
                 });
 
-                this.listenTo(Device, 'change:isConnected change:isFastADB', function () {
+                this.listenTo(Device, 'change:isConnected', function (Device, isConnected) {
+                    var isUSB = Device.get('isUSB');
+                    var isWifi = Device.get('isWifi');
 
-                    if (Device.get('isConnected') || Device.get('isFastADB')) {
-                        Device.getScreenshotAsync();
-                        this.$('.connection-tip').addClass('hide');
+                    if (isConnected) {
+                        this.wifiTip.toggleClass('hide', !isWifi);
+                        this.offlineTip.addClass('hide');
+                        this.screenShot.toggle(isUSB);
+
+                        if (isUSB) {
+                            Device.getScreenshotAsync();
+                        }
                         this.loading = false ;
+                    } else {
+                        this.wifiTip.addClass('hide');
+                        this.offlineTip.removeClass('hide');
+                        this.screenShot.hide();
                     }
-                });
 
-                this.listenTo(Device, 'change:isUSB', function (Device, isUSB) {
-                    this.$('.offline-tip').toggleClass('hide', isUSB);
-                });
-
-                this.listenTo(Device, 'change:canScreenshot', function (Device) {
-                    this.setDisable(!Device.get('canScreenshot'));
+                    this.connectionTip.addClass('hide');
                 });
 
                 this.listenTo(Device, 'change:connectionState', function (){
+                    this.wifiTip.addClass('hide');
                     this.setConnectionState();
                 });
 
@@ -120,15 +153,13 @@
                     });
             },
             setConnectionState : function () {
-                var connectionTip = this.$('.connection-tip');
-
                 var $desc = this.$('.connection-tip .desc');
                 var connectionState = Device.get('connectionState');
 
                 if (connectionState.isDriverInstalling) {
                     this.loading = true;
                     this.offlineTip.addClass('hide');
-                    connectionTip.removeClass('hide');
+                    this.connectionTip.removeClass('hide');
                     $desc.html(i18n.misc.DEVICE_DRIVER_INSTALLING);
                     return;
                 }
@@ -136,22 +167,18 @@
                 if (connectionState.isConnecting) {
                     this.loading = true;
                     this.offlineTip.addClass('hide');
-                    connectionTip.removeClass('hide');
+                    this.connectionTip.removeClass('hide');
                     $desc.html(i18n.misc.DEVICE_CONNECTING);
                     return;
                 }
-            },
-            setDisable : function (disable) {
-
-                if (Device.get('isConnected')) {
-                    this.$('.wifi-connection-tip').toggleClass('hide', !disable);
-                }
-                this.$('.screenshot').toggle(!disable);
             },
             render : function () {
                 this.$el.html(this.template({})).addClass('fade-in').find('.screenshot').attr('src', CONFIG.enums.IMAGE_PATH + '/blank.png');
 
                 this.offlineTip = this.$('.offline-tip');
+                this.wifiTip = this.$('.wifi-connection-tip');
+                this.screenShot = this.$('.screenshot');
+                this.connectionTip = this.$('.connection-tip');
                 this.renderShell(Device, Device.get('shell'));
                 this.renderScreenshot(Device, Device.get('screenshot'));
 
