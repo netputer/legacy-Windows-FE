@@ -197,6 +197,7 @@
             },
             update : function (id) {
                 if (!(this.model && id === this.model.id)) {
+                    if (this.model) {
                         this.model.off('change:isUpdating', this.updatingHandler)
                             .off('change:base_info', this.render)
                             .off('change:isWeb', this.render, this);
