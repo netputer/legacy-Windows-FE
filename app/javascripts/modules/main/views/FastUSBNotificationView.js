@@ -8,7 +8,7 @@
         'Device',
         'Configuration',
         'Internationalization',
-        'IO'
+        'IOBackendDevice'
     ], function (
         _,
         Backbone,
@@ -45,7 +45,7 @@
                     }
                 });
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.DEVICE_USB_DETECT
                 }, this.stateHandler, this);
 

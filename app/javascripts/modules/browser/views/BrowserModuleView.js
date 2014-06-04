@@ -3,7 +3,7 @@
     define([
         'underscore',
         'backbone',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'Environment',
         'Internationalization',
@@ -191,7 +191,7 @@
             }
         });
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.SIDEBAR_PREVIEW
         }, function (data) {
             factory.navigateToThirdParty(data.id || data, data.name, data.targetURL);

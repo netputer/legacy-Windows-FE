@@ -10,7 +10,7 @@
         'ui/TemplateFactory',
         'ui/UIHelper',
         'ui/AlertWindow',
-        'IO',
+        'IOBackendDevice',
         'Internationalization',
         'Configuration',
         'contact/models/ExportContextModel',
@@ -118,12 +118,12 @@
                 });
                 WindowController.blockWindowAsync();
 
-                progressHandler = IO.Backend.onmessage({
+                progressHandler = IO.Backend.Device.onmessage({
                     'data.channel' : sessionId
                 }, function (msg) {
                     this.setProgress(msg.current, msg.total);
                     if (msg.current === msg.total) {
-                        IO.Backend.offmessage(progressHandler);
+                        IO.Backend.Device.offmessage(progressHandler);
                     }
                 }, this);
             },
@@ -184,7 +184,7 @@
                         WindowController.releaseWindowAsync();
                         alert(i18n.contact.EXPORT_CANTACT_CANCEL);
                         this.trigger('_CANCEL');
-                        IO.Backend.offmessage(progressHandler);
+                        IO.Backend.Device.offmessage(progressHandler);
                     }.bind(this)
                 });
             },

@@ -4,7 +4,7 @@
         'jquery',
         'underscore',
         'backbone',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'Internationalization',
         'utilities/StringUtil',

@@ -5,7 +5,7 @@
         'ui/AlertWindow',
         'utilities/StringUtil',
         'Internationalization',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'Device',
         'Settings',
@@ -74,12 +74,12 @@
             });
 
             if (!exportPath) {
-                var handler = IO.Backend.onmessage({
+                var handler = IO.Backend.Device.onmessage({
                     'data.channel' : session
                 }, function (data) {
                     if (!exportPath) {
                         exportPath = data.info;
-                        IO.Backend.offmessage(handler);
+                        IO.Backend.Device.offmessage(handler);
                     }
                 });
             }
@@ -422,7 +422,7 @@
                 }
             };
 
-            var handler = IO.Backend.onmessage({
+            var handler = IO.Backend.Device.onmessage({
                 'data.channel' : session
             }, playHandler, this);
 
@@ -433,7 +433,7 @@
                     session : session
                 },
                 success : function (resp) {
-                    IO.Backend.offmessage(handler);
+                    IO.Backend.Device.offmessage(handler);
                     var currentModel = musicsCollection.get(MusicService.currentPlayingAudio.id);
 
                     currentModel.set({

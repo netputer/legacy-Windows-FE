@@ -8,7 +8,7 @@
         'Configuration',
         'Environment',
         'utilities/QueryString',
-        'IO',
+        'IOBackendDevice',
         'Distributor',
         'Strategy',
     ], function (
@@ -312,7 +312,7 @@
             }
         });
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.SETTING_PRIVACY
         }, function (data) {
             SETTING = '0x' + parseInt(data, 10).toString(16);

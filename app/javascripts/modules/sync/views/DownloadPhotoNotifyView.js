@@ -34,7 +34,7 @@
             className : 'w-download-photo-notify',
             template : doT.template(TemplateFactory.get('sync', 'download-photo-notify')),
             initialize : function () {
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.SYNC_PHOTO_NOTIFY_UPDATE
                 }, function (message) {
                     this.options.num = parseInt(message, 10);

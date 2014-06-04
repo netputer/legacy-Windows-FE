@@ -25,7 +25,7 @@
 
         $('body').append(fragment);
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.WEB_SWITCH_MODULE
         }, function (data) {
             Backbone.trigger('switchModule', {

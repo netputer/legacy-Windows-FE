@@ -9,7 +9,7 @@
         'Configuration',
         'Account',
         'Device',
-        'IO',
+        'IOBackendDevice',
         'Internationalization',
         'doraemon/models/ExtensionModel'
     ], function (
@@ -121,7 +121,7 @@
                     }
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.SIDEBAR_UPDATED
                 }, function (data) {
                     var currentSelected = this.find(function (extension) {
@@ -146,7 +146,7 @@
                     this.trigger('refresh', this);
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.SIDEBAR_STAR
                 }, function (data) {
                     if (!Account.get('isLogin')) {
@@ -162,7 +162,7 @@
                     }
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.SIDEBAR_ITEM_UPDATED
                 }, function (data) {
                     var extension = this.get(data.id);

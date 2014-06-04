@@ -4,7 +4,7 @@
         'backbone',
         'jquery',
         'underscore',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'Internationalization',
         'ui/AlertWindow',
@@ -117,7 +117,7 @@
 
         Device.on('change:isConnected', updateNativeToolbarState);
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.NAVIGATE_BACK
         }, function (data) {
             var SnapPea = window.SnapPea;
@@ -154,7 +154,7 @@
             }
         });
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.NAVIGATE_FORWARD
         }, function (data) {
             var SnapPea = window.SnapPea;
@@ -188,7 +188,7 @@
             }
         });
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.NAVIGATE_REFRESH
         }, function (data) {
             var SnapPea = window.SnapPea;
@@ -252,7 +252,7 @@
             });
         });
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.HISTORY_CHANGED
         }, updateNativeToolbarState, this);
 

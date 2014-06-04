@@ -5,7 +5,7 @@
         'underscore',
         'doT',
         'utilities/StringUtil',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'Device',
         'Environment',
@@ -137,12 +137,12 @@
                             this.remove();
                         }.bind(this));
 
-                        var handler = IO.Backend.onmessage({
+                        var handler = IO.Backend.Device.onmessage({
                             'data.channel' : session
                         }, function (data) {
                             this.setProgress(data.current / data.total * 90);
                             if (data.current >= data.total || cancel) {
-                                IO.Backend.offmessage(handler);
+                                IO.Backend.Device.offmessage(handler);
                             }
                         }, this);
                     }

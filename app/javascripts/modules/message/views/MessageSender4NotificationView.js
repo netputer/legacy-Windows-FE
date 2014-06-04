@@ -4,7 +4,7 @@
         'doT',
         'underscore',
         'Configuration',
-        'IO',
+        'IOBackendDevice',
         'Device',
         'Settings',
         'Log',
@@ -67,7 +67,7 @@
 
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.SMS_CALLLOG_SMS_RECEIVE
                 }, function (msg) {
                     this.nextList.push((new MessageModel(msg)).toJSON());

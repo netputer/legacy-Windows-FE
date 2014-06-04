@@ -4,7 +4,7 @@
         'backbone',
         'underscore',
         'jquery',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'Device',
         'contact/models/AccountModel'

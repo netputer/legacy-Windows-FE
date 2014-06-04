@@ -5,7 +5,7 @@
         'underscore',
         'jquery',
         'doT',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'Environment',
         'Settings',

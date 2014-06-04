@@ -157,8 +157,6 @@
             };
         }
 
-        window.IO = IO;
-
         return IO;
     });
 }(this));

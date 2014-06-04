@@ -4,7 +4,7 @@
         'underscore',
         'backbone',
         'Configuration',
-        'IO',
+        'IOBackendDevice',
         'ui/AlertWindow',
         'ui/Panel'
     ], function (
@@ -22,14 +22,14 @@
 
         var IframeMessageListener = _.extend({}, Backbone.Events);
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.CUSTOM_IFRAME_ALERT
         }, function (data) {
             alert(data.data);
         });
 
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.CUSTOM_IFRAME_CONFIRM
         }, function (data) {
             confirm(data.data, function () {
@@ -43,7 +43,7 @@
             });
         });
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.CUSTOM_IFRAME_DISPOSABLE
         }, function (data) {
             data = data.data;

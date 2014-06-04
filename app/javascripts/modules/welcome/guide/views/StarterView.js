@@ -191,7 +191,7 @@
 
                 var successHandler, failedHandler;
 
-                successHandler = IO.Backend.onmessage({
+                successHandler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.APP_INSTALL_SUCCESS
                 }, function (data) {
                     if ($target.data('packagename') === data.package_name) {
@@ -200,11 +200,11 @@
                         });
                     }
 
-                    IO.Backend.offmessage(successHandler);
-                    IO.Backend.offmessage(failedHandler);
+                    IO.Backend.Device.offmessage(successHandler);
+                    IO.Backend.Device.offmessage(failedHandler);
                 }, this);
 
-                failedHandler = IO.Backend.onmessage({
+                failedHandler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.APP_INSTALL_FAILED
                 }, function (data) {
                     if ($target.data('packagename') === data.package_name) {
@@ -213,8 +213,8 @@
                         });
                     }
 
-                    IO.Backend.offmessage(successHandler);
-                    IO.Backend.offmessage(failedHandler);
+                    IO.Backend.Device.offmessage(successHandler);
+                    IO.Backend.Device.offmessage(failedHandler);
                 }, this);
 
                 log({

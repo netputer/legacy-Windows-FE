@@ -4,7 +4,7 @@
         'underscore',
         'backbone',
         'jquery',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'Device',
         'video/models/VideoModel',
@@ -98,7 +98,7 @@
                     });
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.VIDEO_UPDATED
                 }, function (data) {
                     if (syncing) {

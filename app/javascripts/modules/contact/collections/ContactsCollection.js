@@ -5,7 +5,7 @@
         'underscore',
         'jquery',
         'Configuration',
-        'IO',
+        'IOBackendDevice',
         'Device',
         'message/collections/ConversationsCollection',
         'message/collections/ThreadsCollection',
@@ -119,7 +119,7 @@
                     AccountCollection.getInstance().trigger('update');
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.CONTACT_UPDATED
                 }, function (data) {
                     if (syncing) {

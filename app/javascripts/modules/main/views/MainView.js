@@ -11,7 +11,7 @@
         'ui/AlertWindow',
         'ui/WindowState',
         'Configuration',
-        'IO',
+        'IOBackendDevice',
         'Internationalization',
         'Device',
         'Environment',
@@ -145,13 +145,13 @@
                     module : 'photo'
                 });
 
-                var handler = IO.Backend.onmessage({
+                var handler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.CUSTOM_IFRAME_PHOTO_RENDERED
                 }, function () {
                     IO.sendCustomEventsAsync(CONFIG.events.CUSTOM_IFRAME_PHOTO_SELECT_TAB, {
                         tab : 'cloud'
                     });
-                    IO.Backend.offmessage(handler);
+                    IO.Backend.Device.offmessage(handler);
                 });
                 break;
             case CONFIG.enums.NAVIGATE_TYPE_ILLEGAL_LOGOUT:
@@ -261,7 +261,7 @@
                     });
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.WEB_NAVIGATE
                 }, navigateHandler, this);
 
@@ -294,7 +294,7 @@
                     var isShow = this.toggleMask();
                 }.bind(this), 500));
 
-                var delegate = IO.Backend.onmessage({
+                var delegate = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.REVERSE_PROXY_START
                 }, function () {
                     var popupPanel = new AgentNotifiPopup({
@@ -302,7 +302,7 @@
                     });
 
                     popupPanel.show();
-                    IO.Backend.offmessage(delegate);
+                    IO.Backend.Device.offmessage(delegate);
                 });
 
                 return this;

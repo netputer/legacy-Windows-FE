@@ -11,7 +11,7 @@
         'Internationalization',
         'Configuration',
         'Device',
-        'IO',
+        'IOBackendDevice',
         'task/TaskService',
         'task/collections/TasksCollection'
     ], function (

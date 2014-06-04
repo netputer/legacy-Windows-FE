@@ -5,7 +5,7 @@
         'underscore',
         'Configuration',
         'Device',
-        'IO',
+        'IOBackendDevice',
         'FunctionSwitch',
         'Settings',
         'Environment',
@@ -78,7 +78,7 @@
         };
 
         var showNotifiyWindow = function () {
-            var autoBackupHandler = IO.Backend.onmessage({
+            var autoBackupHandler = IO.Backend.Device.onmessage({
                 'data.channel' : CONFIG.events.AUTO_BACKUP_COMPLETE
             }, function (message) {
                 WelcomeService.getSystemSettingAsync(CONFIG.enums.SETTING_AUTO_BACKUP_COMPLETE).done(function (resp) {
@@ -86,7 +86,7 @@
                         showAutoBackupNotifyWindow(message);
                     }
                 });
-                IO.Backend.offmessage(autoBackupHandler);
+                IO.Backend.Device.offmessage(autoBackupHandler);
             });
         };
 
@@ -98,7 +98,7 @@
             });
         }
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.DOWNLOAD_PHOTO_COMPLETE
         }, function () {
             if (!Settings.get('ios.banner.isclosed')) {

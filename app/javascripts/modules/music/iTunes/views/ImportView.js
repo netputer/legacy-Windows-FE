@@ -5,7 +5,7 @@
         'doT',
         'jquery',
         'Log',
-        'IO',
+        'IOBackendDevice',
         'ui/Panel',
         'ui/AlertWindow',
         'ui/UIHelper',
@@ -160,14 +160,14 @@
                 var current = this.$('.' + importAudiosProgressCls + ' .current');
                 var total = this.$('.' + importAudiosProgressCls + ' .total');
 
-                var handler = IO.Backend.onmessage({
+                var handler = IO.Backend.Device.onmessage({
                     'data.channel' : session
                 }, function (message) {
 
                     current.html(message.current);
                     total.html(message.total);
                     if (message.current === message.total) {
-                        IO.Backend.offmessage(handler);
+                        IO.Backend.Device.offmessage(handler);
                     }
 
                 }, this);
@@ -202,14 +202,14 @@
                 var current = this.$('.' + createPlaylistCls + ' .current');
                 var total = this.$('.' + createPlaylistCls + ' .total');
 
-                var handler = IO.Backend.onmessage({
+                var handler = IO.Backend.Device.onmessage({
                     'data.channel' : session
                 }, function (message) {
                     current.html(message.current);
                     total.html(message.total);
 
                     if (message.current === message.total) {
-                        IO.Backend.offmessage(handler);
+                        IO.Backend.Device.offmessage(handler);
                     }
 
                 }, this);
@@ -238,7 +238,7 @@
             },
 
             importAudiosFail : function (data) {
-                IO.Backend.offmessage(currentHandler);
+                IO.Backend.Device.offmessage(currentHandler);
                 var audiosData = {
                     tip : i18n.music.AUDIOS_IMPORT_FAILD,
                     className : importAudiosProgressCls,
@@ -290,7 +290,7 @@
 
                 tipPanelView.show();
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : Configuration.events.DEVICE_STATE_CHANGE
                 }, function (data) {
                     $('.retry', this.$el).prop('disabled', !Device.get('isConnected') || Device.get('isWifi') || Device.get('isInternet'));
@@ -302,7 +302,7 @@
 
             createPlaylistSuccess : function (data) {
                 this.updatePanelTitleAndBtn(true);
-                IO.Backend.offmessage(currentHandler);
+                IO.Backend.Device.offmessage(currentHandler);
 
                 var failed = [];
                 var success = [];
@@ -356,7 +356,7 @@
                     }, this);
 
                     tipPanelView.show();
-                    IO.Backend.onmessage({
+                    IO.Backend.Device.onmessage({
                         'data.channel' : Configuration.events.DEVICE_STATE_CHANGE
                     }, function (data) {
                         $('.retry', this.$el).prop('disabled', !Device.get('isConnected') || Device.get('isWifi') || Device.get('isInternet'));
@@ -366,7 +366,7 @@
             },
 
             createPlaylistFail : function (success, total) {
-                IO.Backend.offmessage(currentHandler);
+                IO.Backend.Device.offmessage(currentHandler);
                 var playlistData = {
                     tip : i18n.music.CREATE_PLAYLIST_FAILD,
                     className : createPlaylistCls,
@@ -379,7 +379,7 @@
 
             clickCancelImport : function () {
                 var data = {session: currentSesstion};
-                IO.Backend.offmessage(currentHandler);
+                IO.Backend.Device.offmessage(currentHandler);
                 itunesCollection.cancelAsync(data);
                 itunesCollection.finishAsync().always(this.closePanel.bind(this));
 
