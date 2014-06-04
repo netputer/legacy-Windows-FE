@@ -7,7 +7,7 @@
         'jquery',
         'Configuration',
         'Internationalization',
-        'IO',
+        'IOBackendDevice',
         'Log',
         'utilities/QueryString',
         'Environment',
@@ -75,7 +75,7 @@
             initialize : function () {
                 var listenBack = false;
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.DEVICE_STATE_CHANGE
                 }, function (data) {
                     console.log('Device - Device state change.');
@@ -83,7 +83,7 @@
                     this.changeHandler(data);
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.DEVICE_CONNECTION_STATE_CHANGE,
                 }, function (data) {
                     console.log('Device - Device connection state change');
@@ -101,7 +101,7 @@
 
                 this.isUserFlashedAsync().done(this.flashChangeHandler.bind(this));
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.DEVICE_OFFLINE_CHANGE
                 }, _.debounce(function (data) {
                     console.log('Device - Device offline change.');

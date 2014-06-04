@@ -7,7 +7,7 @@
         'FunctionSwitch',
         'Configuration',
         'Log',
-        'IO',
+        'IOBackendDevice',
         'ui/Toolbar',
         'ui/TemplateFactory',
         'task/collections/TasksCollection',

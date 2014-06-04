@@ -52,7 +52,7 @@
                 _.each([loginHandler, changeStateHandler, backupLoginHandler, restoreLoginHandler], function (handler) {
 
                     if (handler) {
-                        IO.Backend.offmessage(handler);
+                        IO.Backend.Device.offmessage(handler);
                         handler = undefined;
                     }
                 });
@@ -86,7 +86,7 @@
                 });
 
                 this.setRemoteState();
-                changeStateHandler = IO.Backend.onmessage({
+                changeStateHandler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.SYNC_CLOUD_SETTING_CHANGE
                 }, function () {
                     this.setRemoteState();
@@ -207,7 +207,7 @@
                 switch (remoteAction) {
                 case 0:
                     Account.openLoginDialog('', 'backup-restore');
-                    loginHandler = IO.Backend.onmessage({
+                    loginHandler = IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                     }, function (message) {
                         if (message.auth) {
@@ -216,7 +216,7 @@
                             }.bind(this));
                         }
 
-                        IO.Backend.offmessage(loginHandler);
+                        IO.Backend.Device.offmessage(loginHandler);
                         loginHandler = undefined;
 
                     }, this);
@@ -254,14 +254,14 @@
                 }
 
                 Account.openLoginDialog('', 'backup-restore');
-                backupLoginHandler = IO.Backend.onmessage({
+                backupLoginHandler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                 }, function (message) {
                     if (message.auth) {
                         this.trigger('__DO_ACTION', 'BACKUP_REMOTE');
                     }
 
-                    IO.Backend.offmessage(backupLoginHandler);
+                    IO.Backend.Device.offmessage(backupLoginHandler);
                     backupLoginHandler = undefined;
 
                 }, this);
@@ -292,14 +292,14 @@
                 }
 
                 Account.openLoginDialog('', 'backup-restore');
-                restoreLoginHandler = IO.Backend.onmessage({
+                restoreLoginHandler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                 }, function (message) {
                     if (message.auth) {
                         this.trigger('__DO_ACTION', 'RESTORE_REMOTE');
                     }
 
-                    IO.Backend.offmessage(restoreLoginHandler);
+                    IO.Backend.Device.offmessage(restoreLoginHandler);
                     restoreLoginHandler = undefined;
 
                 }, this);

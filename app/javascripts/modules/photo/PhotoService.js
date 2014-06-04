@@ -8,7 +8,7 @@
         'ui/AlertWindow',
         'utilities/StringUtil',
         'Internationalization',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'Settings',
         'Device',
@@ -89,13 +89,13 @@
             });
 
             if (!exportPath) {
-                var handler = IO.Backend.onmessage({
+                var handler = IO.Backend.Device.onmessage({
                     'data.channel' : session
                 }, function (data) {
                     if (!exportPath) {
                         exportPath = data.info;
                         tmpExportPath = data.info;
-                        IO.Backend.offmessage(handler);
+                        IO.Backend.Device.offmessage(handler);
                     }
                 });
             }

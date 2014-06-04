@@ -10,7 +10,7 @@
         'Internationalization',
         'Configuration',
         'Device',
-        'IO',
+        'IOBackendDevice',
         'utilities/StringUtil',
         'task/collections/TasksCollection',
         'task/views/TaskDashboardView',
@@ -147,7 +147,7 @@
                     tasksCollection.trigger('refresh', tasksCollection);
                 }, this);
 
-                var addWhenDisconnectHandler = IO.Backend.onmessage({
+                var addWhenDisconnectHandler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.TASK_ADD
                 }, function (data) {
                     if (data > 0 && !Device.get('isConnected')) {
@@ -172,11 +172,11 @@
                         };
                         popupPanel.listenTo(tasksCollection, 'refresh', notEnoughSpaceHandler);
 
-                        IO.Backend.offmessage(addWhenDisconnectHandler);
+                        IO.Backend.Device.offmessage(addWhenDisconnectHandler);
                     }
                 }, this);
 
-                var miuiHangdler = IO.Backend.onmessage({
+                var miuiHangdler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.TASK_STATUS_CHANGE
                 }, function (datas) {
                     var miuiV5 = _.find(datas.status, function (data) {
@@ -191,11 +191,11 @@
                             listenToWifi : true
                         });
                         popupPanel.show();
-                        IO.Backend.offmessage(miuiHangdler);
+                        IO.Backend.Device.offmessage(miuiHangdler);
                     }
                 });
 
-                var underWifiHandler = IO.Backend.onmessage({
+                var underWifiHandler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.TASK_ADD
                 }, function (datas) {
                     var needConfirmItems = _.find(datas.status, function (data) {
@@ -211,7 +211,7 @@
                             listenToWifi : true
                         });
                         popupPanel.show();
-                        IO.Backend.offmessage(underWifiHandler);
+                        IO.Backend.Device.offmessage(underWifiHandler);
                     }
                 }, this);
 
@@ -266,7 +266,7 @@
                 };
                 this.listenTo(tasksCollection, 'refresh', notEnoughSpaceHandler);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.TASK_JOB_FILE_ERROR
                 }, function (data) {
 
@@ -281,7 +281,7 @@
 
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.TASK_DOWNLOAD_DIR_CHANGED
                 }, function () {
                     var collection = TasksCollection.getInstance();
@@ -358,7 +358,7 @@
                     $anima.detach();
                 });
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.TASK_STATUS_CHANGE
                 }, function (data) {
                     switch (data.message) {

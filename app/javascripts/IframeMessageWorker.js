@@ -45,7 +45,7 @@
                 listenerId : listenerId
             });
 
-            var handler = IO.Backend.onmessage({
+            var handler = IO.Backend.Device.onmessage({
                 'data.channel' : listenerId
             }, function (data) {
                 if (data.action === 'yes') {
@@ -53,7 +53,7 @@
                 } else {
                     cancelHandler.call(this);
                 }
-                IO.Backend.offmessage(handler);
+                IO.Backend.Device.offmessage(handler);
             });
         };
 

@@ -1,7 +1,7 @@
 /*global define, Backbone, $, _*/
 (function (window) {
     define([
-        'IO',
+        'IOBackendDevice',
         'underscore',
         'Configuration',
         'Internationalization'

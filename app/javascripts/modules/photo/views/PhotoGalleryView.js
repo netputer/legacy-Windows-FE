@@ -9,7 +9,7 @@
         'ui/WindowState',
         'Internationalization',
         'Log',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'Environment',
         'Settings',
@@ -70,7 +70,7 @@
                     }
                 });
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.CUSTOM_IFRAME_PHOTO_SELECT_TAB
                 }, function (data) {
                     this.selectTab(data.tab);

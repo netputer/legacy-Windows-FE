@@ -102,7 +102,7 @@
                 var sessionId = _.uniqueId('import_contact');
                 this.lastSession = sessionId;
 
-                var handler = IO.Backend.onmessage({
+                var handler = IO.Backend.Device.onmessage({
                     'data.channel' : sessionId
                 }, function (msg) {
                     if (msg.info === 'dup') {
@@ -114,7 +114,7 @@
                         this.setProgress(msg.current, msg.total);
                         if (msg.current === msg.total) {
                             contactsCollection.syncAsync();
-                            IO.Backend.offmessage(handler);
+                            IO.Backend.Device.offmessage(handler);
                             this.$('.button-finish').show();
                             this.$('.button-cancel').hide();
                         }

@@ -7,7 +7,7 @@
     define([
         'backbone',
         'jquery',
-        'IO',
+        'IOBackendDevice',
         'Configuration'
     ], function (
         Backbone,
@@ -212,7 +212,7 @@
             }
         }
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
         }, function (msg) {
             console.log('Account - Account state change.');

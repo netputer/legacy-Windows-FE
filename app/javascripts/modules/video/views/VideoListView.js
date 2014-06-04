@@ -7,7 +7,7 @@
         'jquery',
         'Configuration',
         'Internationalization',
-        'IO',
+        'IOBackendDevice',
         'Account',
         'ui/TemplateFactory',
         'ui/WindowState',

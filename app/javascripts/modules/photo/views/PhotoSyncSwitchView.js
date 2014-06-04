@@ -37,7 +37,7 @@
             initialize : function () {
                 this.listenTo(Account, 'change:isLogin', this.refreshState);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.SYNC_CLOUD_SETTING_CHANGE
                 }, this.refreshState, this);
             },
@@ -121,13 +121,13 @@
                     listenerId : listenerId
                 });
 
-                var handler = IO.Backend.onmessage({
+                var handler = IO.Backend.Device.onmessage({
                     'data.channel' : listenerId
                 }, function (data) {
                     if (data.action === 'yes') {
                         callback.call(this);
                     }
-                    IO.Backend.offmessage(handler);
+                    IO.Backend.Device.offmessage(handler);
                 }, this);
             },
             tryLogin : function () {
@@ -141,7 +141,7 @@
 
                 Account.openRegDialog('', 'cloud-photo-switch');
 
-                var handler = IO.Backend.onmessage({
+                var handler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                 }, function (message) {
                     if (message.auth) {
@@ -149,7 +149,7 @@
                             this.switchState('on');
                             this.tryToUpload();
                         }.bind(this));
-                        IO.Backend.offmessage(handler);
+                        IO.Backend.Device.offmessage(handler);
                     }
                 }, this);
             },
@@ -159,7 +159,7 @@
                 SyncService.uploadPhotoAsync();
             },
             listenSyncPhoto : function () {
-                var handler = IO.Backend.onmessage({
+                var handler = IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.SYNC_PHOTO_COMPLETE
                 }, function () {
                     SyncService.getIsPhotoSyncOnAsync().done(function (resp) {
@@ -168,7 +168,7 @@
                         }
                     }.bind(this));
 
-                    IO.Backend.offmessage(handler);
+                    IO.Backend.Device.offmessage(handler);
                 }, this);
             },
             events : {

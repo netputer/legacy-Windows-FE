@@ -11,7 +11,7 @@
         'ui/AlertWindow',
         'ui/SmartList',
         'utilities/StringUtil',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'FunctionSwitch',
         'Internationalization',

@@ -10,7 +10,7 @@
         'social/views/FacebookOauthView',
         'Environment',
         'Configuration',
-        'IO',
+        'IOBackendDevice',
         'utilities/StringUtil'
     ], function (
         _,
@@ -126,7 +126,7 @@
             return deferred.promise();
         };
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : 'social.share_app'
         }, function (data) {
             var previewContentSize = SocialService.getPreviewContentSize();

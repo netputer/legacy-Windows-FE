@@ -178,7 +178,7 @@
                     this.parsePhotos(msg);
                     this.toggleButtonDisable(true);
 
-                    var progressHandler = IO.Backend.onmessage({
+                    var progressHandler = IO.Backend.Device.onmessage({
                         'data.channel' : sessionId
                     }, function (msg) {
 
@@ -187,7 +187,7 @@
                         }
 
                         if (msg.current === msg.total) {
-                            IO.Backend.offmessage(progressHandler);
+                            IO.Backend.Device.offmessage(progressHandler);
                             this.photoList.loading = false;
                             this.toggleButtonDisable(false);
                         }

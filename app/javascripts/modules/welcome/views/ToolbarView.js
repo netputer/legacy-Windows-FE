@@ -417,14 +417,14 @@
                 TaskService.downloadAsync(model).done(function (resp) {
                     var jobId = resp.body.value;
 
-                    var handler = IO.Backend.onmessage({
+                    var handler = IO.Backend.Device.onmessage({
                         'data.channel' : CONFIG.events.PHOTO_DOWNLOAD_WITH_IDS
                     }, function (msg) {
                         var content,
                             boxViewInsance;
 
                         if (msg[0] === Number(jobId)) {
-                            IO.Backend.offmessage(handler);
+                            IO.Backend.Device.offmessage(handler);
 
                             this.setAsWallpaperAsync(msg[1]).done(function () {
                                 content = i18n.taskManager.SET_AS_WALLPAPER_SUCCESS;

@@ -43,14 +43,14 @@
                     }
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.AUTO_BACKUP_START
                 }, function (message) {
                     this.setDescriptionMessage(i18n.welcome.START_AUTO_BACKUP);
                     this.$el.show();
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.AUTO_BACKUP_CHANGE
                 }, function (message) {
                     // sync finished
@@ -75,7 +75,7 @@
                     }
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.AUTO_BACKUP_COMPLETE
                 }, function (message) {
                     this.setDescriptionMessage(i18n.welcome.AUTO_BACKUP_COMPLETE);

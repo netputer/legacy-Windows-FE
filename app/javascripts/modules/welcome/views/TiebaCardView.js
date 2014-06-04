@@ -4,7 +4,7 @@
         'backbone',
         'underscore',
         'doT',
-        'IO',
+        'IOBackendDevice',
         'Internationalization',
         'Settings',
         'ui/TemplateFactory',

@@ -6,7 +6,7 @@
         'backbone',
         'jquery',
         'underscore',
-        'IO',
+        'IOBackendDevice',
         'Environment',
         'Configuration',
         'Account',
@@ -73,7 +73,7 @@
                     }
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.WEB_APP_LIST_UPDATED
                 }, function (data) {
                     if (syncing) {
@@ -87,7 +87,7 @@
                     }
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.APP_INSTALL_SUCCESS
                 }, function (data) {
                     var target = this.find(function (app) {

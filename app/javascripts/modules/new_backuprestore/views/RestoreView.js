@@ -239,12 +239,12 @@
                 }
 
                 if (this.resotreSmsAndContact) {
-                    IO.Backend.offmessage(this.resotreSmsAndContact);
+                    IO.Backend.Device.offmessage(this.resotreSmsAndContact);
                     this.resotreSmsAndContact = undefined;
                 }
 
                 if (this.progressHanlder) {
-                    IO.Backend.offmessage(this.progressHanlder);
+                    IO.Backend.Device.offmessage(this.progressHanlder);
                     this.progressHanlder = undefined;
                 }
             },
@@ -444,25 +444,25 @@
 
                 }.bind(this));
 
-                var smsHandler = IO.Backend.onmessage({
+                var smsHandler = IO.Backend.Device.onmessage({
                     'data.channel' : this.sessionId + 'sms'
                 }, function (data) {
                     var smsDupCount = parseInt(data, 10);
                     RestoreContextModel.set('smsDupCount', smsDupCount);
                     progressView.updateProgress(CONFIG.enums.CONTACT, smsDupCount, RestoreContextModel.get('restoreData')[CONFIG.enums.CONTACT]);
-                    IO.Backend.offmessage(smsHandler);
+                    IO.Backend.Device.offmessage(smsHandler);
                 }, this);
 
-                var contactHandler = IO.Backend.onmessage({
+                var contactHandler = IO.Backend.Device.onmessage({
                     'data.channel' : this.sessionId + 'contacts'
                 }, function (data) {
                     var contactsDupCount = parseInt(data, 10);
                     RestoreContextModel.set('contactsDupCount', contactsDupCount);
                     progressView.updateProgress(CONFIG.enums.SMS, contactsDupCount, RestoreContextModel.get('restoreData')[CONFIG.enums.SMS]);
-                    IO.Backend.offmessage(contactHandler);
+                    IO.Backend.Device.offmessage(contactHandler);
                 }, this);
 
-                this.resotreSmsAndContact = IO.Backend.onmessage({
+                this.resotreSmsAndContact = IO.Backend.Device.onmessage({
                     'data.channel' : this.sessionId
                 }, function (data) {
                     this.handleProgress(data);
@@ -777,7 +777,7 @@
 
                 }.bind(this));
 
-                this.progressHanlder = IO.Backend.onmessage({
+                this.progressHanlder = IO.Backend.Device.onmessage({
                     'data.channel' : this.sessionId
                 }, function (data) {
 

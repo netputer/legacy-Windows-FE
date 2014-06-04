@@ -7,7 +7,7 @@
         'ui/TemplateFactory',
         'ui/Notification',
         'utilities/StringUtil',
-        'IO',
+        'IOBackendDevice',
         'Configuration',
         'Internationalization',
         'Environment',
@@ -83,7 +83,7 @@
         });
 
         // Backend events binding
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.MESSAGE_MARK_AS_READ
         }, function (data) {
             var message = new MessageModel(data);
@@ -103,7 +103,7 @@
 
         var noNewMessageWindow = true;
 
-        IO.Backend.onmessage({
+        IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.SMS_CALLLOG_SMS_RECEIVE
         }, function (data) {
             var contactName = data.contact_name || data.address;
@@ -134,12 +134,12 @@
             //if (noNewMessageWindow) {
             noNewMessageWindow = !notification.show();
 
-            var handler = IO.Backend.onmessage({
+            var handler = IO.Backend.Device.onmessage({
                 'data.channel' : CONFIG.events.MESSAGE_CLOSE_MESSAGE_NOTIFICATION
             }, function () {
                 notification.cancel();
                 noNewMessageWindow = true;
-                IO.Backend.offmessage(handler);
+                IO.Backend.Device.offmessage(handler);
             });
             //}
         });

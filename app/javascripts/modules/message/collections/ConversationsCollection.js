@@ -143,7 +143,7 @@
                     });
                 }, this);
 
-                IO.Backend.onmessage({
+                IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.SMS_CALLLOG_SMS_UPDATED
                 }, function (data) {
                     if (syncing) {
