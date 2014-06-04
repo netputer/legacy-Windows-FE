@@ -217,7 +217,7 @@
                         set : function (value) {
                             var oldRowNumber = rowNumber;
                             rowNumber = value;
-                            if (oldRowNumber !== 0 && oldRowNumber !== rowNumber) {
+                            if (oldRowNumber !== 0 && oldRowNumber !== rowNumber && rowNumber < this.currentModels.length) {
                                 this.createItemView(rowNumber - oldRowNumber);
                             }
                         }
