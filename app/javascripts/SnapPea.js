@@ -140,7 +140,7 @@
         mainView.regModule('tools', ToolsModuleView);
 
         var init = function () {
-                BindingDeviceWindowView.getInstance().checkAsync();
+            BindingDeviceWindowView.getInstance().checkAsync();
         };
 
         // Binding device
