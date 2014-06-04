@@ -322,7 +322,7 @@
         }, function (data) {
             SETTING = '0x' + parseInt(data, 10).toString(16);
             FunctionSwitch.trigger('change', FunctionSwitch);
-        });
+        }, true);
 
         window.FunctionSwitch = FunctionSwitch;
 

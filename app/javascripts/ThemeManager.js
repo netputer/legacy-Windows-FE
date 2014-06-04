@@ -52,7 +52,7 @@
             'data.channel' : CONFIG.events.THEME_CHANGED
         }, function (data) {
             ThemeManager.themeFolder = data.value;
-        });
+        }, true);
 
         return ThemeManager;
     });
