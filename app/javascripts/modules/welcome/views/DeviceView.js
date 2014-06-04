@@ -156,20 +156,16 @@
                 var $desc = this.$('.connection-tip .desc');
                 var connectionState = Device.get('connectionState');
 
-                if (connectionState.isDriverInstalling) {
+                if (connectionState.isDriverInstalling || connectionState.isConnecting) {
                     this.loading = true;
                     this.offlineTip.addClass('hide');
                     this.connectionTip.removeClass('hide');
-                    $desc.html(i18n.misc.DEVICE_DRIVER_INSTALLING);
-                    return;
                 }
 
-                if (connectionState.isConnecting) {
-                    this.loading = true;
-                    this.offlineTip.addClass('hide');
-                    this.connectionTip.removeClass('hide');
+                if (connectionState.isDriverInstalling) {
+                    $desc.html(i18n.misc.DEVICE_DRIVER_INSTALLING);
+                } else if (connectionState.isConnecting) {
                     $desc.html(i18n.misc.DEVICE_CONNECTING);
-                    return;
                 }
             },
             render : function () {
