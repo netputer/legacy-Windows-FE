@@ -89,7 +89,7 @@
                 var sessionId = _.uniqueId('Import_sms');
                 this.lastSessionId = sessionId;
 
-                var handler = IO.Backend.Device.onmessage({
+                var handler = IO.Backend.onmessage({
                     'data.channel' : sessionId
                 }, function (msg) {
                     if (msg.info === 'dup') {
@@ -101,7 +101,7 @@
                         this.setProgress(msg.current, msg.total);
                         if (msg.current === msg.total) {
                             conversationConllection.syncAsync();
-                            IO.Backend.Device.offmessage(handler);
+                            IO.Backend.offmessage(handler);
                             this.$('.button-finish').show();
                             this.$('.button-cancel').hide();
                         }

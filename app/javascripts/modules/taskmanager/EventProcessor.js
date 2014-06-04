@@ -3,7 +3,7 @@
     define([
         'underscore',
         'backbone',
-        'IOBackendDevice',
+        'IO',
         'Configuration',
         'Device'
     ], function (
@@ -18,7 +18,7 @@
         var messageNormalList = [];
 
         var EventProcessorBase = function () {
-            IO.Backend.Device.onmessage({
+            IO.Backend.onmessage({
                 'data.channel' : CONFIG.events.TASK_STATUS_CHANGE
             }, function (datas) {
 
@@ -41,7 +41,7 @@
                 }
             }, this);
 
-            IO.Backend.Device.onmessage({
+            IO.Backend.onmessage({
                 'data.channel' : CONFIG.events.TASK_ADD
             }, function (data) {
                 var originalLength = messageNormalList.length;
@@ -59,7 +59,7 @@
                 }
             }, this);
 
-            IO.Backend.Device.onmessage({
+            IO.Backend.onmessage({
                 'data.channel' : CONFIG.events.TASK_STOP
             }, function (data) {
                 var originalLength = messageNormalList.length;

@@ -10,7 +10,7 @@
         'Settings',
         'Device',
         'Internationalization',
-        'IOBackendDevice',
+        'IO',
         'Configuration',
         'video/collections/VideosCollection',
         'main/views/BatchErrorView'
@@ -92,13 +92,13 @@
             });
 
             if (!exportPath) {
-                var handler = IO.Backend.Device.onmessage({
+                var handler = IO.Backend.onmessage({
                     'data.channel' : session
                 }, function (data) {
                     if (!exportPath) {
                         tmpExportPath = data.info;
                         exportPath = data.info;
-                        IO.Backend.Device.offmessage(handler);
+                        IO.Backend.offmessage(handler);
                     }
                 });
             }
@@ -339,13 +339,13 @@
                 Backbone.trigger('video.loadingEnd');
             });
 
-            var progressHandler = IO.Backend.Device.onmessage({
+            var progressHandler = IO.Backend.onmessage({
                 'data.channel' : session
             }, function (msg) {
                 Backbone.trigger('video.loadingUpdate', msg);
 
                 if (msg.current === msg.total) {
-                    IO.Backend.Device.offmessage(progressHandler);
+                    IO.Backend.offmessage(progressHandler);
                 }
             }, this);
         };

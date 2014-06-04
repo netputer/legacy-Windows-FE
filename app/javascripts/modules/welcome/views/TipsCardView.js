@@ -4,7 +4,7 @@
         'backbone',
         'underscore',
         'doT',
-        'IOBackendDevice',
+        'IO',
         'Internationalization',
         'ui/TemplateFactory',
         'welcome/views/FeedCardView'

@@ -6,7 +6,7 @@
         'backbone',
         'jquery',
         'underscore',
-        'IOBackendDevice',
+        'IO',
         'Device',
         'Configuration',
         'FunctionSwitch',
@@ -122,7 +122,7 @@
                     }
                 }, this);
 
-                IO.Backend.Device.onmessage({
+                IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.APP_LIST_UPDATED
                 }, function (data) {
                     if (syncing) {
@@ -137,7 +137,7 @@
                     }
                 }, this);
 
-                IO.Backend.Device.onmessage({
+                IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.APP_INSTALLED
                 }, function (data) {
                     var target = this.get(data.package_name);

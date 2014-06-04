@@ -87,7 +87,7 @@
             }
         });
 
-        IO.Backend.Device.onmessage({
+        IO.Backend.onmessage({
             'data.channel' : CONFIG.events.SIDEBAR_GALLERY
         }, function (data) {
             Backbone.trigger('switchModule', {

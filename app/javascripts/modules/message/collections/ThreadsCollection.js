@@ -6,7 +6,7 @@
         'jquery',
         'Configuration',
         'Device',
-        'IOBackendDevice',
+        'IO',
         'message/models/ThreadModel',
         'message/models/MessageModel'
     ], function (
@@ -128,7 +128,7 @@
                     }
                 }, this);
 
-                IO.Backend.Device.onmessage({
+                IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.SMS_CALLLOG_SMS_RECEIVE
                 }, function (data) {
                     if (this.getThreadWithMessage(data.id)) {
@@ -136,7 +136,7 @@
                     }
                 }, this);
 
-                IO.Backend.Device.onmessage({
+                IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.SMS_CALLLOG_SMS_UPDATED
                 }, function (data) {
                     if (!!data) {

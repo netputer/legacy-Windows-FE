@@ -2,7 +2,7 @@
 (function (window) {
     define([
         'backbone',
-        'IOBackendDevice',
+        'IO',
         'Configuration'
     ], function (
         Backbone,

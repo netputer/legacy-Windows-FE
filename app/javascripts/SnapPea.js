@@ -67,7 +67,7 @@
         'Environment',
         'ui/Notification',
         'ui/TemplateFactory',
-        'IOBackendDevice',
+        'IO',
         'Configuration',
         'Log',
         'IframeMessageListener',
@@ -143,7 +143,7 @@
             BindingDeviceWindowView.getInstance().checkAsync();
         });
 
-        IO.Backend.Device.onmessage({
+        IO.Backend.onmessage({
             'data.channel' : CONFIG.events.SYNC_BACKUP_START
         }, function (data) {
             Backbone.trigger('switchModule', {

@@ -16,7 +16,7 @@
         'Environment',
         'Internationalization',
         'IframeMessageWorker',
-        'IOBackendDevice',
+        'IO',
         'Configuration'
     ], function (
         _,
@@ -415,10 +415,10 @@
                     models : collection.models
                 });
 
-                var handler = IO.Backend.Device.onmessage({
+                var handler = IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.CUSTOM_IFRAME_PHOTO_DELETED
                 }, function (data) {
-                    IO.Backend.Device.offmessage(handler);
+                    IO.Backend.offmessage(handler);
                     collection.remove(data.data);
 
                     this.loading = false;

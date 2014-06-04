@@ -4,7 +4,7 @@
         'underscore',
         'backbone',
         'jquery',
-        'IOBackendDevice',
+        'IO',
         'Configuration',
         'Device',
         'music/models/MusicModel',
@@ -152,7 +152,7 @@
                     });
                 }, this);
 
-                IO.Backend.Device.onmessage({
+                IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.MUSIC_UPDATED
                 }, function (data) {
                     if (syncing) {

@@ -7,7 +7,7 @@
         'jquery',
         'Internationalization',
         'Configuration',
-        'IOBackendDevice',
+        'IO',
         'Device',
         'Settings',
         'ui/AlertWindow',
@@ -384,12 +384,12 @@
             }
 
             if (!exportPath) {
-                var handler = IO.Backend.Device.onmessage({
+                var handler = IO.Backend.onmessage({
                     'data.channel' : session
                 }, function (data) {
                     if (!exportPath) {
                         exportPath = data.info;
-                        IO.Backend.Device.offmessage(handler);
+                        IO.Backend.offmessage(handler);
                     }
                 });
             }

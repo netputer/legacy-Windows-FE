@@ -6,7 +6,7 @@
         'doT',
         'jquery',
         'Settings',
-        'IOBackendDevice',
+        'IO',
         'ui/TemplateFactory',
         'ui/Notification',
         'Internationalization',

@@ -6,7 +6,7 @@
         'jquery',
         'utilities/QueryString',
         'Configuration',
-        'IOBackendDevice'
+        'IO'
     ], function (
         Backbone,
         _,
@@ -48,7 +48,7 @@
 
         ThemeManager.themeFolder = QueryString.get('theme_folder');
 
-        IO.Backend.Device.onmessage({
+        IO.Backend.onmessage({
             'data.channel' : CONFIG.events.THEME_CHANGED
         }, function (data) {
             ThemeManager.themeFolder = data.value;

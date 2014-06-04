@@ -4,7 +4,7 @@
         'underscore',
         'backbone',
         'jquery',
-        'IOBackendDevice',
+        'IO',
         'Configuration',
         'Device',
         'photo/models/PhotoModel'
@@ -90,7 +90,7 @@
                     });
                 }, this);
 
-                this.updateHandler = IO.Backend.Device.onmessage({
+                this.updateHandler = IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.PHOTO_UPDATED
                 }, function (data) {
                     if (syncing) {
@@ -125,7 +125,7 @@
                 this.set([]);
                 this.off();
                 this.stopListening();
-                IO.Backend.Device.offmessage(this.updateHandler);
+                IO.Backend.offmessage(this.updateHandler);
             },
             syncAsync : function () {
                 var deferred = $.Deferred();
@@ -160,16 +160,16 @@
 
                 var session = _.uniqueId('photo_get_thumbnails_');
                 var count = 0;
-                var handler = IO.Backend.Device.onmessage({
+                var handler = IO.Backend.onmessage({
                     'data.channel' : session
                 }, function (data) {
                     if (count === ids.length) {
-                        IO.Backend.Device.offmessage(handler);
+                        IO.Backend.offmessage(handler);
                     }
 
                     count += data.val.length;
                     if (count === ids.length) {
-                        IO.Backend.Device.offmessage(handler);
+                        IO.Backend.offmessage(handler);
                     }
                     _.each(data.val, function (item) {
                         this.get(item.key).set({
@@ -189,13 +189,13 @@
                     },
                     success : function (resp) {
                         if (count === ids.length) {
-                            IO.Backend.Device.offmessage(handler);
+                            IO.Backend.offmessage(handler);
                         } else if (resp.body && (resp.body.value !== ids.length)) {
                             var successCount = this.filter(function (photo) {
                                 return photo.get('thumb');
                             }).length;
                             if (successCount === resp.body.value) {
-                                IO.Backend.Device.offmessage(handler);
+                                IO.Backend.offmessage(handler);
                             } else {
                                 count = ids.length;
                             }

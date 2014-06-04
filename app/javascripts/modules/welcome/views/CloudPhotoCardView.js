@@ -6,7 +6,7 @@
         'doT',
         'Configuration',
         'Account',
-        'IOBackendDevice',
+        'IO',
         'Internationalization',
         'Settings',
         'ui/TemplateFactory',
@@ -58,12 +58,12 @@
 
                 Account.openRegDialog('', 'guide-cloud-photo');
 
-                var handler = IO.Backend.Device.onmessage({
+                var handler = IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                 }, function (message) {
                     if (message.auth) {
                         turnPhotoAsync();
-                        IO.Backend.Device.offmessage(handler);
+                        IO.Backend.offmessage(handler);
                     }
                 }, this);
 

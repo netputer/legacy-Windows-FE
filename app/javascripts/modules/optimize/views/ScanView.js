@@ -11,7 +11,7 @@
         'Log',
         'Internationalization',
         'Settings',
-        'IOBackendDevice',
+        'IO',
         'Device',
         'optimize/OptimizeService',
         'optimize/views/InstallProgressView',

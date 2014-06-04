@@ -8,7 +8,7 @@
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'Internationalization',
-        'IOBackendDevice',
+        'IO',
         'WindowController'
     ], function (
         doT,
@@ -79,7 +79,7 @@
                 this.width = 360;
                 this.disableX = true;
 
-                var sessionHandler = IO.Backend.Device.onmessage({
+                var sessionHandler = IO.Backend.onmessage({
                     'data.channel' : this.options.session
                 }, function (data) {
                     if (this.options.delay) {
@@ -92,7 +92,7 @@
                     this.progressBar = Math.max(data.current * 100 + (data.current_progress || 0), 0);
                     this.total = data.total;
                     if (data.current === data.total) {
-                        IO.Backend.Device.offmessage(sessionHandler);
+                        IO.Backend.offmessage(sessionHandler);
 
                         this.$('.tip').html(StringUtil.format(this.options.successText, data.total));
 
@@ -110,7 +110,7 @@
                 }, this);
 
                 var removeHandler = function () {
-                    IO.Backend.Device.offmessage(sessionHandler);
+                    IO.Backend.offmessage(sessionHandler);
                     this.off(EventsMapping.REMOVE, removeHandler);
                     if (this.blockWindow) {
                         WindowController.releaseWindowAsync();
@@ -125,7 +125,7 @@
                             session : this.options.session
                         }
                     }).always(function () {
-                        IO.Backend.Device.offmessage(sessionHandler);
+                        IO.Backend.offmessage(sessionHandler);
                     }.bind(this));
                 }, this);
 

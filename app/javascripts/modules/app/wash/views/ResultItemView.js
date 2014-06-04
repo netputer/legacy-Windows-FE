@@ -14,7 +14,7 @@
         'ui/TemplateFactory',
         'ui/Panel',
         'utilities/FormatString',
-        'IOBackendDevice',
+        'IO',
         'task/TaskService',
         'app/collections/AppsCollection',
         'app/wash/views/FeedbackCardView'
@@ -132,7 +132,7 @@
                 var piratePackageName = this.model.get('sourceApk').packageName;
 
                 if (updatePackageName !== piratePackageName) {
-                    var installHanderl = IO.Backend.Device.onmessage({
+                    var installHanderl = IO.Backend.onmessage({
                         'data.channel' : CONFIG.events.APP_INSTALLED
                     }, function (data) {
                         if (data.package_name === updatePackageName) {
@@ -151,7 +151,7 @@
                                 });
                             }
 
-                            IO.Backend.Device.offmessage(installHanderl);
+                            IO.Backend.offmessage(installHanderl);
                         }
                     }, this);
                 }
