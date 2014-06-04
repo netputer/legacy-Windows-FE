@@ -335,9 +335,11 @@
 
                 this.toggleEmptyTip(this.currentModels.length === 0);
                 if (this.currentModels.length === 0) {
+                    this.$scrollCtn.hide();
                     return;
                 }
 
+                this.$scrollCtn.show();
                 this.calculateSettings();
                 this.createItemView();
                 this.scrollHeight = this.currentModels.length * this.itemHeight;
