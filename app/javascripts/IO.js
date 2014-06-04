@@ -27,13 +27,10 @@
 
         MessageRouterMixin.mixin(IO.Backend);
 
-        IO.initBackendSocket = function () {
+        IO.Backend.socket = new BackendSocket('wdjs://window/events');
 
-            IO.Backend.socket = new BackendSocket('wdjs://window/events');
-
-            IO.Backend.socket.onmessage = function (message) {
-                IO.Backend.trigger('message', message);
-            };
+        IO.Backend.socket.onmessage = function (message) {
+            IO.Backend.trigger('message', message);
         };
 
         IO.Backend.requestAsync = function (url, options) {
