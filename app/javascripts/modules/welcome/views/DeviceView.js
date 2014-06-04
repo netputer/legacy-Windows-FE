@@ -157,13 +157,17 @@
                 var connectionState = Device.get('connectionState');
 
                 if (connectionState === CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
-                    return;
+                    this.loading = false;
+                    this.wifiTip.addClass('hide');
+                    this.offlineTip.removeClass('hide');
+                    this.connectionTip.addClass('hide');
+                    this.screenShot.hide();
+                } else {
+                    this.loading = true;
+                    this.offlineTip.addClass('hide');
+                    this.connectionTip.removeClass('hide');
+                    $desc.html(i18n.misc['DEVICE_' + connectionState.toUpperCase()]);
                 }
-
-                this.loading = true;
-                this.offlineTip.addClass('hide');
-                this.connectionTip.removeClass('hide');
-                $desc.html(i18n.misc['DEVICE_' + connectionState.toUpperCase()]);
             },
             render : function () {
                 this.$el.html(this.template({})).addClass('fade-in').find('.screenshot').attr('src', CONFIG.enums.IMAGE_PATH + '/blank.png');

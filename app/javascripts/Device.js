@@ -84,7 +84,7 @@
                     'data.channel' : CONFIG.events.DEVICE_CONNECTION_STATE_CHANGE,
                 }, function (data) {
                     console.log('Device - Device connection state change');
-                    this.changeConnectionHandler(data);
+                    this.set({connectionState : data.value.toUpperCase()});
                 }, true, this);
 
                 IO.requestAsync(CONFIG.actions.DEVICE_IS_AUTOBACKUP).done(function (resp) {
@@ -191,14 +191,6 @@
                 this.set({
                     isFlashed : resp.body.value
                 });
-            },
-            changeConnectionHandler : function (data) {
-
-                if(data.value === CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
-                    return;
-                }
-
-                this.set({connectionState : data.value.toUpperCase()});
             },
             changeHandler : function (data) {
                 this.set({

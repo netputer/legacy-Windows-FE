@@ -136,9 +136,16 @@
         mainView.regModule('gallery', GalleryView);
         mainView.regModule('backup-restore', BackupRestoreModuleView);
 
-        Environment.once('change:deviceId', function () {
-            BindingDeviceWindowView.getInstance().checkAsync();
-        });
+        var init = function () {
+                BindingDeviceWindowView.getInstance().checkAsync();
+        };
+
+        // Binding device
+        if (Environment.get('deviceId') !== 'Default') {
+            init.call(this);
+        } else {
+            Environment.once('change:deviceId', init, this);
+        }
 
         IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.SYNC_BACKUP_START
