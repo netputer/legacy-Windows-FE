@@ -156,17 +156,14 @@
                 var $desc = this.$('.connection-tip .desc');
                 var connectionState = Device.get('connectionState');
 
-                if (connectionState.isDriverInstalling || connectionState.isConnecting) {
-                    this.loading = true;
-                    this.offlineTip.addClass('hide');
-                    this.connectionTip.removeClass('hide');
+                if (connectionState === CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
+                    return;
                 }
 
-                if (connectionState.isDriverInstalling) {
-                    $desc.html(i18n.misc.DEVICE_DRIVER_INSTALLING);
-                } else if (connectionState.isConnecting) {
-                    $desc.html(i18n.misc.DEVICE_CONNECTING);
-                }
+                this.loading = true;
+                this.offlineTip.addClass('hide');
+                this.connectionTip.removeClass('hide');
+                $desc.html(i18n.misc['DEVICE_' + connectionState.toUpperCase()]);
             },
             render : function () {
                 this.$el.html(this.template({})).addClass('fade-in').find('.screenshot').attr('src', CONFIG.enums.IMAGE_PATH + '/blank.png');
@@ -187,7 +184,7 @@
 
                 this.$el.append(screenControlView.render().$el);
 
-                this.$el.one('webkitAnimationEnd', function (){
+                this.$el.one('webkitAnimationEnd', function () {
                     this.$el.removeClass('fade-in');
                 }.bind(this));
 

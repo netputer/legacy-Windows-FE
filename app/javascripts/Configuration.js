@@ -477,6 +477,11 @@
             },
             enums : {
 
+
+                CONNECTION_STATE_CONNECTING : 'connecting',
+                CONNECTION_STATE_DRIVER_INSTALLING : 'driver_installing',
+                CONNECTION_STATE_PLUG_OUT: 'plug_out',
+
                 LAUNCH_TIME_KEY : 'wandoujia-launch-times',
 
                 IMAGE_PATH : image_path,

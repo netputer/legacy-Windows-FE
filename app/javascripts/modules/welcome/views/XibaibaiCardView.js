@@ -42,9 +42,7 @@
                 XibaibaiCardView.__super__.initialize.apply(this, arguments);
 
                 appsCollection = appsCollection || AppsCollection.getInstance();
-                this.listenTo(appsCollection, 'refresh', function () {
-                    this.render();
-                });
+                this.listenTo(appsCollection, 'refresh', this.render);
             },
             render : function () {
                 XibaibaiService.scanAppsAsync().done(function (appsQueryResultCollection) {
