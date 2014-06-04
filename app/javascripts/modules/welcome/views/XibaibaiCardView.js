@@ -32,14 +32,21 @@
         XibaibaiService
     ) {
 
+        var appsCollection;
+
         var XibaibaiCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'xibaibai-card')),
             className : FeedCardView.getClass().prototype.className + ' vbox xibaibai hide',
             tagName : 'li',
+            initialize : function () {
+                XibaibaiCardView.__super__.initialize.apply(this, arguments);
+
+                appsCollection = appsCollection || AppsCollection.getInstance();
+                this.listenTo(appsCollection, 'refresh', this.render);
+            },
             render : function () {
                 XibaibaiService.scanAppsAsync().done(function (appsQueryResultCollection) {
                     if (appsQueryResultCollection.length !== 0) {
-                        var appsCollection = AppsCollection.getInstance();
 
                         this.$el.html(this.template({
                             items : _.map(appsQueryResultCollection.models.concat().splice(0, 2), function (item) {
