@@ -84,7 +84,7 @@
                     'data.channel' : CONFIG.events.DEVICE_CONNECTION_STATE_CHANGE,
                 }, function (data) {
                     console.log('Device - Device connection state change');
-                    this.set({connectionState : data.value.toUpperCase()});
+                    this.set({connectionState : data.value});
                 }, true, this);
 
                 IO.requestAsync(CONFIG.actions.DEVICE_IS_AUTOBACKUP).done(function (resp) {
@@ -207,10 +207,6 @@
                     isRoot : data.is_root,
                     deviceName : data.device_name
                 });
-
-                if (!data.connection_state) {
-                    this.set({connectionState : CONFIG.enums.CONNECTION_STATE_PLUG_OUT});
-                }
             },
             getSDCapacityAsync : function () {
                 var deferred = $.Deferred();
