@@ -95,7 +95,7 @@
         SelectDelegateMixin.highlightSelected = function () {
             var allSelected = this.getAllSelected();
 
-            _.each(this.active, function (item) {
+            _.each(this.activeItems, function (item) {
                 item.toggleSelect(allSelected.indexOf(item.model.get('id')) >= 0);
             }, this);
         };
@@ -144,13 +144,13 @@
             this.selectedSet[this.currentSet.name] = this.selected = selected.concat();
 
             if (added instanceof Array) {
-                _.each(this.active, function (itemView) {
+                _.each(this.activeItems, function (itemView) {
                     if (added.indexOf(itemView.model.id) >= 0) {
                         itemView.toggleSelect(true);
                     }
                 }, this);
             } else {
-                _.each(this.active, function (itemView) {
+                _.each(this.activeItems, function (itemView) {
                     if (itemView.model.id === added) {
                         itemView.toggleSelect(true);
                     }
@@ -214,13 +214,13 @@
             this.selectedSet[this.currentSet.name] = this.selected = selected.concat();
 
             if (removed instanceof Array) {
-                _.each(this.active, function (itemView) {
+                _.each(this.activeItems, function (itemView) {
                     if (removed.indexOf(itemView.model.id) >= 0) {
                         itemView.toggleSelect(false);
                     }
                 }, this);
             } else {
-                _.each(this.active, function (itemView) {
+                _.each(this.activeItems, function (itemView) {
                     if (itemView.model.id === removed) {
                         itemView.toggleSelect(false);
                     }

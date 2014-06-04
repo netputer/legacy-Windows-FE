@@ -55,7 +55,7 @@
                 WanXiaoDouMixin.mixin(this);
 
                 var activeItems = {};
-                var ctnHeight = 0;
+                var containerHeight = 0;
                 var emptyTip = '';
                 var enableContextMenu = false;
                 var enableDragAndDrop = false;
@@ -73,8 +73,8 @@
                 var scrollHeight = 0;
                 var selectable = true;
                 var timer;
-                var $ctn;
-                var $scrollCtn;
+                var $container;
+                var $scrollContainer;
 
                 Object.defineProperties(this, {
                     activeItems : {
@@ -85,13 +85,13 @@
                             return activeItems;
                         }
                     },
-                    ctnHeight : {
+                    containerHeight : {
                         set : function (value) {
                             var maxHeight = parseInt(this.$el.parent().css('max-height'), 10);
-                            ctnHeight = _.isNaN(maxHeight) ? parseInt(value, 10) : maxHeight;
+                            containerHeight = _.isNaN(maxHeight) ? parseInt(value, 10) : maxHeight;
                         },
                         get : function () {
-                            return ctnHeight;
+                            return containerHeight;
                         }
                     },
                     emptyTip : {
@@ -260,20 +260,20 @@
                             return this.$el.hasClass('visible');
                         }
                     },
-                    $ctn : {
+                    $container : {
                         get : function () {
-                            return $ctn;
+                            return $container;
                         },
                         set : function (value) {
-                            $ctn = value;
+                            $container = value;
                         }
                     },
-                    $scrollCtn : {
+                    $scrollContainer : {
                         get : function () {
-                            return $scrollCtn;
+                            return $scrollContainer;
                         },
                         set : function (value) {
-                            $scrollCtn = value;
+                            $scrollContainer = value;
                         }
                     }
                 });
@@ -300,8 +300,8 @@
             },
             render : function () {
                 this.$el.html(this.template({}));
-                this.$ctn = this.$('.w-ui-smartlist-body-ctn');
-                this.$scrollCtn = this.$('.w-ui-smartlist-scroll-ctn');
+                this.$container = this.$('.w-ui-smartlist-body-ctn');
+                this.$scrollContainer = this.$('.w-ui-smartlist-scroll-ctn');
 
                 this.loading = Boolean(this.loading);
                 this.rendered = true;
@@ -314,9 +314,9 @@
                 return this;
             },
             calculateSettings : function () {
-                this.ctnHeight = this.$ctn.height();
-                this.minOffsetY = this.ctnHeight - (this.currentModels.length * this.itemHeight);
-                this.rowNumber = Math.ceil(this.ctnHeight / this.itemHeight);
+                this.containerHeight = this.$container.height();
+                this.minOffsetY = this.containerHeight - (this.currentModels.length * this.itemHeight);
+                this.rowNumber = Math.ceil(this.containerHeight / this.itemHeight);
             },
             clearList : function () {
                 _.each(this.activeItems, function (itemView){
@@ -335,9 +335,11 @@
 
                 this.toggleEmptyTip(this.currentModels.length === 0);
                 if (this.currentModels.length === 0) {
+                    this.$scrollContainer.hide();
                     return;
                 }
 
+                this.$scrollContainer.show();
                 this.calculateSettings();
                 this.createItemView();
                 this.scrollHeight = this.currentModels.length * this.itemHeight;
@@ -374,7 +376,7 @@
                         top = maxKey++ * this.itemHeight;
                         this.toggleClass(itemView, maxKey);
                     }
-                    this.$ctn.append(fragment);
+                    this.$container.append(fragment);
 
                     if (end === this.currentModels.length) {
                         dy = (diff - 1) * this.itemHeight;
@@ -458,7 +460,7 @@
                 this.$el.removeClass('scrolling');
             }, 200),
             moveScroller : function (scrollTop) {
-                this.$scrollCtn.scrollTop(scrollTop);
+                this.$scrollContainer.scrollTop(scrollTop);
 
                 if (!this.$el.hasClass('scrolling')) {
                     this.$el.addClass('scrolling');
@@ -467,7 +469,7 @@
                 this.removeScrollingClass();
             },
             scrollHandler : function () {
-                this.build(0, -this.$scrollCtn.scrollTop(), true);
+                this.build(0, -this.$scrollContainer.scrollTop(), true);
             },
             trackerLog : function () {
                 var ran = _.random(0, 9);
@@ -622,12 +624,12 @@
             enableScrollHandler : function (evt) {
                 evt.stopPropagation();
                 evt.preventDefault();
-                this.$scrollCtn.on('scroll', this.scrollHandler.bind(this));
+                this.$scrollContainer.on('scroll', this.scrollHandler.bind(this));
             },
             disableScrollHandler : function (evt) {
                 evt.stopPropagation();
                 evt.preventDefault();
-                this.$scrollCtn.off('scroll', this.scrollHandler.bind(this));
+                this.$scrollContainer.off('scroll', this.scrollHandler.bind(this));
             },
             dragoverBody : function (evt) {
                 evt.stopPropagation();
