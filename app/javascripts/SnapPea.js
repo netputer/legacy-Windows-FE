@@ -153,7 +153,5 @@
         if (FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
             PerformanceTracker.launch();
         }
-
-        IO.initBackendSocket();
     });
 }(this));
