@@ -67,10 +67,7 @@
                 externalSDFreeCapacity : 0,
                 externalSDPath : '',
                 dualSIM : [],
-                connectionState : {
-                    isConnecting : false,
-                    isDriverInstalling : false
-                }
+                connectionState : CONFIG.enums.CONNECTION_STATE_PLUG_OUT
             },
             initialize : function () {
                 var listenBack = false;
@@ -88,7 +85,7 @@
                 }, function (data) {
                     console.log('Device - Device connection state change');
                     this.changeConnectionHandler(data);
-                }, this);
+                }, true, this);
 
                 IO.requestAsync(CONFIG.actions.DEVICE_IS_AUTOBACKUP).done(function (resp) {
                     if (resp.state_code === 200) {
@@ -197,16 +194,11 @@
             },
             changeConnectionHandler : function (data) {
 
-                if(data.value === 'plug_out') {
+                if(data.value === CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
                     return;
                 }
 
-                this.set({
-                    connectionState : {
-                        isConnecting : data.value === 'connecting' || data.value === 'driver_installing',
-                        isDriverInstalling : data.value === 'driver_installing'
-                    }
-                });
+                this.set({connectionState : data.value.toUpperCase()});
             },
             changeHandler : function (data) {
                 this.set({
@@ -225,12 +217,7 @@
                 });
 
                 if (!data.connection_state) {
-                    this.set({
-                        connectionState : {
-                            isConnecting : false,
-                            isDriverInstalling : false
-                        }
-                    });
+                    this.set({connectionState : CONFIG.enums.CONNECTION_STATE_PLUG_OUT});
                 }
             },
             getSDCapacityAsync : function () {
