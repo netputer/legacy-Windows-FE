@@ -11,7 +11,7 @@
         'Configuration',
         'FunctionSwitch',
         'Log',
-        'IOBackendDevice',
+        'IO',
         'Device',
         'task/views/TaskModuleToolbarView',
         'task/views/TaskListView',
@@ -145,7 +145,7 @@
                     }
                 }.bind(this));
 
-                IO.Backend.Device.onmessage({
+                IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.WEB_NAVIGATE
                 }, function (msg) {
 
@@ -155,7 +155,7 @@
 
                 }, this);
 
-                IO.Backend.Device.onmessage({
+                IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.TASK_SHOW_PUSH_WINDOW
                 }, downloadHandler, this);
             },

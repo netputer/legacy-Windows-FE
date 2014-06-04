@@ -8,7 +8,7 @@
         'Configuration',
         'Log',
         'Environment',
-        'IOBackendDevice',
+        'IO',
         'browser/views/BrowserModuleView',
         'task/TaskService'
     ], function (
@@ -62,7 +62,7 @@
                     }
                 });
 
-                handler = IO.Backend.Device.onmessage({
+                handler = IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.CUSTOM_WELCOME_BILLBOARD_NAVIGATE
                 }, function (data) {
                     switch (data.type) {
@@ -102,7 +102,7 @@
                 return this;
             },
             remove : function () {
-                IO.Backend.Device.offmessage(handler);
+                IO.Backend.offmessage(handler);
                 this.$('iframe').off('readystatechange');
                 BillboardView.__super__.call(this);
             }

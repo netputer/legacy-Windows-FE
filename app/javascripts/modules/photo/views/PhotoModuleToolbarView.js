@@ -13,7 +13,7 @@
         'Account',
         'Device',
         'Configuration',
-        'IOBackendDevice',
+        'IO',
         'FunctionSwitch',
         'photo/collections/PhotoCollection',
         'photo/collections/PhonePhotoCollection',
@@ -136,11 +136,11 @@
                     models : targetCollection.toJSON()
                 });
 
-                var handler = IO.Backend.Device.onmessage({
+                var handler = IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.CUSTOM_IFRAME_PHOTO_DELETED
                 }, function (data) {
                     targetCollection.remove(data.data);
-                    IO.Backend.Device.offmessage(handler);
+                    IO.Backend.offmessage(handler);
                 });
             },
             clickButtonFullscreen : function () {

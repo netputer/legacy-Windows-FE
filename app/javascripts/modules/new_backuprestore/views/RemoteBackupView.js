@@ -128,7 +128,7 @@
             },
             offMessageHandler : function () {
                 if (this.backupHandler) {
-                    IO.Backend.Device.offmessage(this.backupHandler);
+                    IO.Backend.offmessage(this.backupHandler);
                     this.backupHandler = undefined;
                 }
             },
@@ -272,7 +272,7 @@
 
                 this.initProgressItems(BackupContextModel.brSpec);
 
-                this.backupHandler = IO.Backend.Device.onmessage({
+                this.backupHandler = IO.Backend.onmessage({
                     'data.channel' : this.sessionId
                 }, function (message) {
                     var type = BackupRestoreService.GetBRTypeBy30x0x(message.data_type);

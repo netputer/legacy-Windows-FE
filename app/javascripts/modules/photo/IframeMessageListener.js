@@ -6,7 +6,7 @@
         'underscore',
         'backbone',
         'Configuration',
-        'IOBackendDevice',
+        'IO',
         'Account',
         'Log',
         'photo/views/ImportPhotoView',
@@ -32,33 +32,33 @@
         var handlers = [];
 
         IframeMessageListener.init = function () {
-            handlers.push(IO.Backend.Device.onmessage({
+            handlers.push(IO.Backend.onmessage({
                 'data.channel' : CONFIG.events.PHOTO_SHOW_IMPORTOR
             }, function () {
                 ImportPhotoView.getInstance().show();
             }));
 
-            handlers.push(IO.Backend.Device.onmessage({
+            handlers.push(IO.Backend.onmessage({
                 'data.channel' : CONFIG.events.CUSTOM_IFRAME_PHOTO_SHARE
             }, function (data) {
                 data = data.data;
                 SocialService.sharePhotoAsync(data.path, data.orientation, data.type, data.size);
             }));
 
-            handlers.push(IO.Backend.Device.onmessage({
+            handlers.push(IO.Backend.onmessage({
                 'data.channel' : CONFIG.events.CUSTOM_IFRAME_PHOTO_DELETE
             }, function (data) {
                 var isCloud = data.data.models[0].is_cloud;
                 PhotoService.deletePhototsAsync(data.data.ids, isCloud);
             }));
 
-            handlers.push(IO.Backend.Device.onmessage({
+            handlers.push(IO.Backend.onmessage({
                 'data.channel' : CONFIG.events.CUSTOM_IFRAME_PHOTO_EXPORT
             }, function (data) {
                 PhotoService.exportPhotosAsync(data.data.ids, data.data.models);
             }));
 
-            handlers.push(IO.Backend.Device.onmessage({
+            handlers.push(IO.Backend.onmessage({
                 'data.channel' : CONFIG.events.CUSTOM_IFRAME_PHOTO_SYNC_ALERT
             }, function (data) {
                 var photoSyncAlertView = PhotoSyncAlertView.getInstance();
@@ -72,14 +72,14 @@
                     } else {
                         Account.openRegDialog('', 'photo-sync');
 
-                        var handler = IO.Backend.Device.onmessage({
+                        var handler = IO.Backend.onmessage({
                             'data.channel' : CONFIG.events.ACCOUNT_STATE_CHANGE
                         }, function (message) {
                             if (message.auth) {
                                 IO.sendCustomEventsAsync(data.data.listenerId, {
                                     action : 'yes'
                                 });
-                                IO.Backend.Device.offmessage(handler);
+                                IO.Backend.offmessage(handler);
                             }
                         });
                     }
@@ -105,7 +105,7 @@
 
         IframeMessageListener.destory = function () {
             _.each(handlers, function (handler) {
-                IO.Backend.Device.offmessage(handler);
+                IO.Backend.offmessage(handler);
             });
         };
 

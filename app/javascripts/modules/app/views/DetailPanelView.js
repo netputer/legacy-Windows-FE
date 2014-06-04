@@ -10,7 +10,7 @@
         'Log',
         'Device',
         'Configuration',
-        'IOBackendDevice',
+        'IO',
         'ui/TemplateFactory',
         'ui/AlertWindow',
         'ui/ImageLoader',
@@ -98,7 +98,7 @@
                 }).listenTo(Device, 'change', this.setButtonState)
                     .listenTo(FunctionSwitch, 'change', this.setButtonState);
 
-                IO.Backend.Device.onmessage({
+                IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.TASK_STATUS_CHANGE
                 }, function (data) {
                     if (data.message === 'INSTALL_SUCCESS') {

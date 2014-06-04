@@ -4,7 +4,7 @@
         'backbone',
         'underscore',
         'jquery',
-        'IOBackendDevice',
+        'IO',
         'Configuration'
     ], function (
         Backbone,

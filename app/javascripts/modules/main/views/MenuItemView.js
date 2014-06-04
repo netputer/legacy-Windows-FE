@@ -54,14 +54,14 @@
                     }
                 });
 
-                IO.Backend.Device.onmessage({
+                IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.AUTO_BACKUP_START
                 }, function (message) {
                     this.$('.w-ui-syncing').data('title', i18n.new_backuprestore.NAV_AUTO_BACKUPING).css('display', 'inline-block');
                 }, this);
 
 
-                IO.Backend.Device.onmessage({
+                IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.AUTO_BACKUP_COMPLETE
                 }, function (message) {
                     this.$('.w-ui-syncing').css('display', 'none');

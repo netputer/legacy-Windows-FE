@@ -4,7 +4,7 @@
         'underscore',
         'jquery',
         'backbone',
-        'IOBackendDevice',
+        'IO',
         'Configuration',
         'Internationalization',
         'task/models/TaskModel',
@@ -203,7 +203,7 @@
                     });
                 }, this);
 
-                IO.Backend.Device.onmessage({
+                IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.TASK_CHANGE
                 }, function (data) {
 

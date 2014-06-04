@@ -276,17 +276,17 @@
             },
             offMessageHandler : function () {
                 if (this.nonAppHandler) {
-                    IO.Backend.Device.offmessage(this.nonAppHandler);
+                    IO.Backend.offmessage(this.nonAppHandler);
                     this.nonAppHandler = undefined;
                 }
 
                 if (this.appHandler) {
-                    IO.Backend.Device.offmessage(this.appHandler);
+                    IO.Backend.offmessage(this.appHandler);
                     this.appHandler = undefined;
                 }
 
                 if (this.appDataHandler) {
-                    IO.Backend.Device.offmessage(this.appDataHandler);
+                    IO.Backend.offmessage(this.appDataHandler);
                     this.appDataHandler = undefined;
                 }
 
@@ -441,7 +441,7 @@
                 this.sessionId = _.uniqueId('backup.session_id_');
                 this.setDomState(false);
 
-                this.nonAppHandler = IO.Backend.Device.onmessage({
+                this.nonAppHandler = IO.Backend.onmessage({
                     'data.channel' : this.sessionId
                 }, function (data) {
 
@@ -507,7 +507,7 @@
                 var exportDir = BackupContextModel.get('appPath');
                 var fileType = BackupContextModel.get('appType');
 
-                this.appHandler = IO.Backend.Device.onmessage({
+                this.appHandler = IO.Backend.onmessage({
                     'data.channel' : this.sessionId
                 }, function (data) {
                     progressView.updateProgressStatus(CONFIG.enums.BR_TYPE_APP, BackupRestoreService.CONSTS.BR_PI_STATUS.RUNNING, data.current, data.total);
@@ -560,7 +560,7 @@
                 var exportDir = BackupContextModel.get('appPath');
                 var tipView = BackupAppDataTipView.getInstance();
 
-                this.appDataHandler = IO.Backend.Device.onmessage({
+                this.appDataHandler = IO.Backend.onmessage({
                     'data.channel' : this.sessionId
                 }, function (data) {
                     if (data.message === CONFIG.enums.BACKUP_APP_DATA_MESSAGE_NEED_USER) {

@@ -113,10 +113,10 @@
                 var sessionId = _.uniqueId('Export_sms');
                 this.lastSessionId = sessionId;
 
-                var handler = IO.Backend.Device.onmessage({'data.channel' : sessionId }, function (msg) {
+                var handler = IO.Backend.onmessage({'data.channel' : sessionId }, function (msg) {
                     this.setProgress(msg.current, msg.total);
                     if (msg.current === msg.total) {
-                        IO.Backend.Device.offmessage(handler);
+                        IO.Backend.offmessage(handler);
                         conversationsCollection.syncAsync();
                         this.$('.button-finish').show();
                         this.$('.button-cancel').hide();
@@ -134,7 +134,7 @@
                         this.remove();
                         switch (resp.state_code) {
                         case 402:
-                            IO.Backend.Device.offmessage(handler);
+                            IO.Backend.offmessage(handler);
                             break;
                         case 500:
                             alert(i18n.misc.CONNECTION_LOSE);

@@ -6,7 +6,7 @@
         'doT',
         'jquery',
         'Log',
-        'IOBackendDevice',
+        'IO',
         'Configuration',
         'ui/TemplateFactory',
         'FunctionSwitch',

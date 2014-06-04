@@ -8,7 +8,7 @@
         'DB',
         'ui/TemplateFactory',
         'FunctionSwitch',
-        'IOBackendDevice',
+        'IO',
         'Configuration',
         'Settings',
         'Internationalization',
@@ -108,19 +108,19 @@
 
                 if (FunctionSwitch.ENABLE_USER_GUIDE) {
                     if (!Settings.get('user_guide_shown')) {
-                        var handlerReady = IO.Backend.Device.onmessage({
+                        var handlerReady = IO.Backend.onmessage({
                             'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_READY
                         }, function () {
                             this.switchToGuide();
-                            IO.Backend.Device.offmessage(handlerReady);
+                            IO.Backend.offmessage(handlerReady);
                         }, this);
                     }
 
-                    IO.Backend.Device.onmessage({
+                    IO.Backend.onmessage({
                         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_FINISH
                     }, this.switchToBillboard, this);
 
-                    IO.Backend.Device.onmessage({
+                    IO.Backend.onmessage({
                         'data.channel' : CONFIG.events.CUSTOM_WELCOME_USER_GUIDE_EMPTY
                     }, this.switchToBillboard, this);
                 }

@@ -8,7 +8,7 @@
         'doT',
         'jquery',
         'Configuration',
-        'IOBackendDevice',
+        'IO',
         'Internationalization',
         'FunctionSwitch',
         'utilities/FlashDetector',
@@ -232,7 +232,7 @@
 
                 this.listenTo(extensionsCollection, 'remove', removeBrowser);
 
-                flashErrorHandler = IO.Backend.Device.onmessage({
+                flashErrorHandler = IO.Backend.onmessage({
                     'data.channel' : CONFIG.events.FLASH_ERROR
                 }, function (data) {
                     if (this.model.id === data.extension_id) {
@@ -253,7 +253,7 @@
                     this.appDependencyView.remove();
                     this.appDependencyView = undefined;
                 }
-                IO.Backend.Device.offmessage(this.flashErrorHandler);
+                IO.Backend.offmessage(this.flashErrorHandler);
                 BrowserView.__super__.remove.apply(this);
             },
             renderContent : function () {
