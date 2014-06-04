@@ -34,8 +34,6 @@
                 this.listenTo(Device, 'change:isConnected', function () {
                     this.$('.play').toggleClass('disabled', !Device.get('isConnected'));
                 });
-
-                this.listenTo(this.model.collection, 'refresh', this.render);
             },
             remove : function () {
                 if (this.settingButton) {
@@ -54,6 +52,7 @@
                 }
 
                 this.$('.play').toggleClass('disabled', !Device.get('isConnected'));
+                this.listenTo(this.model.collection, 'refresh', this.render);
 
                 return this;
             },
