@@ -785,7 +785,7 @@
                         downloadView.updateProgress(data, 100);
                     }
 
-                }, this);
+                }.bind(this));
             },
             remove : function () {
 
