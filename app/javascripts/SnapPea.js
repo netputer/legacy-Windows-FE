@@ -137,7 +137,7 @@
         mainView.regModule('backup-restore', BackupRestoreModuleView);
 
         var init = function () {
-                BindingDeviceWindowView.getInstance().checkAsync();
+            BindingDeviceWindowView.getInstance().checkAsync();
         };
 
         // Binding device
