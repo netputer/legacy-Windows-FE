@@ -123,6 +123,21 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="auto-connection-notifi">
+    <div class="w-misc-auto-connection-notifi">
+        <div class="tip">{{= i18n.misc.AUTO_CONN_NOTIFI_TIP }}</div>
+        <div class="button-close"></div>
+        <button class="primary button-action">{{= i18n.misc.AUTO_CONN_TRY }}</button>
+    </div>
+</script>
+
+<script type="text/x-ui-template" id="disconnection-notifi">
+    <div class="w-misc-disconnection-notifi">
+        <div class="tip">{{= i18n.misc.DISCONN_NOTIFI_TIP }}</div>
+        <div class="button-close"></div>
+    </div>
+</script>
+
 <script type="text/x-ui-template" id="binding-devie-cloud">
     <div class="w-misc-device-binding-cloud cf">
     <div class="main-ctn hbox">
