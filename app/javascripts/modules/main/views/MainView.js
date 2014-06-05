@@ -23,7 +23,6 @@
         'main/collections/PIMCollection',
         'main/views/AgentNotifiPopup',
         'main/views/AutoConnectionNotifiPopup',
-        'main/views/DisconnectionNotifiPopup',
         'app/AppService'
     ], function (
         Backbone,
@@ -46,7 +45,6 @@
         PIMCollection,
         AgentNotifiPopup,
         AutoConnectionNotifiPopup,
-        DisconnectionNotifiPopup,
         AppService
     ) {
         console.log('Wandoujia 2.0 launched.');
@@ -322,48 +320,40 @@
                 var isConnected = Device.get('isConnected');
                 var listenHandler;
                 var autoConnectionNotifiPopup;
-                var disconnectionNotifiPopup;
 
-                var showConnectionTip = function () {
+                var showTip = function (type) {
 
-                    if (disconnectionNotifiPopup) {
-                        disconnectionNotifiPopup.destory();
-                    }
-
-                    autoConnectionNotifiPopup = new AutoConnectionNotifiPopup({
-                        $host : $('.w-misc-agent-host'),
-                        alignToHost : true
-                    });
-                    autoConnectionNotifiPopup.show();
-                    Settings.set('auto-connection-notifi-popup', ++connectDisplayCount);
-                };
-
-                var showDisconnectionTip = function () {
                     if (autoConnectionNotifiPopup) {
                         autoConnectionNotifiPopup.destory();
                     }
 
-                    disconnectionNotifiPopup = new DisconnectionNotifiPopup({
+                    autoConnectionNotifiPopup = new AutoConnectionNotifiPopup({
                         $host : $('.w-misc-agent-host'),
-                        alignToHost : true
+                        alignToHost : true,
+                        type : type
                     });
-                    disconnectionNotifiPopup.show();
-                    Settings.set('disconnection-notifi-popup', ++disconnectDisplayConut);
+                    autoConnectionNotifiPopup.show();
+
+                    if (type === 'connection') {
+                        Settings.set('auto-connection-notifi-popup', ++connectDisplayCount);
+                    } else {
+                        Settings.set('disconnection-notifi-popup', ++disconnectDisplayConut);
+                    }
                 };
 
                 if (connectDisplayCount < 3 && currentWifiState && isConnected) {
-                    showConnectionTip();
+                    showTip('connection');
                 }
 
                 listenHandler = this.listenTo(Device, 'change:isWifi change:isUSB', _.debounce(function (Device) {
 
                     isConnected = Device.get('isConnected');
-                    isWifi = Device.get('isWifi');
+                    var isWifi = Device.get('isWifi');
 
                     if (isWifi && connectDisplayCount < 3) {
-                        showConnectionTip();
+                        showTip('connection');
                     } else if (!isWifi && currentWifiState && !isConnected && disconnectDisplayConut < 3){
-                        showDisconnectionTip();
+                        showTip('disconnection');
                     }
                     currentWifiState = isWifi;
 
@@ -375,10 +365,6 @@
                 this.listenTo(Device, 'change:isUSB', function (Device, isUSB) {
                     if (!isUSB) {
                         return;
-                    }
-
-                    if (disconnectionNotifiPopup) {
-                        disconnectionNotifiPopup.destory();
                     }
 
                     if (autoConnectionNotifiPopup) {

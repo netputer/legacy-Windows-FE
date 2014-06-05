@@ -18,7 +18,13 @@
             className : 'w-ui-popup-tip w-layout-hide w-ui-popup-tip-white',
             initialize : function () {
                 AutoConnectionNotifiPopup.__super__.initialize.apply(this, arguments);
-                this.$content = doT.template(TemplateFactory.get('misc', 'auto-connection-notifi'))();
+
+                if (this.options.type === 'connection') {
+                     this.$content = doT.template(TemplateFactory.get('misc', 'auto-connection-notifi'))();
+                } else {
+                    this.$content = doT.template(TemplateFactory.get('misc', 'disconnection-notifi'))();
+                }
+
                 this.once('show', function () {
                     setTimeout(this.destory.bind(this), 30000);
                 }, this);
