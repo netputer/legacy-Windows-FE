@@ -85,7 +85,7 @@
                 }, function (data) {
                     console.log('Device - Device connection state change');
                     this.set({connectionState : data.value});
-                }, true, this);
+                }, this);
 
                 IO.requestAsync(CONFIG.actions.DEVICE_IS_AUTOBACKUP).done(function (resp) {
                     if (resp.state_code === 200) {
