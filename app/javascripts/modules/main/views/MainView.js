@@ -388,6 +388,7 @@
 
                 if (!this.currentModule.match(/task|browser|gallery|welcome|doraemon/) && (!isConnected || isWifi)) {
                     pimMaskView.show();
+                    window.externalCall('', 'OpenPIMWithoutConnection', this.currentModule);
                 } else {
                     pimMaskView.hide();
                 }
