@@ -6,6 +6,7 @@
         'jquery',
         'doT',
         'Device',
+        'IOBackendDevice',
         'Internationalization',
         'ui/TemplateFactory'
     ], function (
@@ -14,6 +15,7 @@
         $,
         doT,
         Device,
+        IO,
         i18n,
         TemplateFactory
     ) {
