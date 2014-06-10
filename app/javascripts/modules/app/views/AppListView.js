@@ -408,7 +408,7 @@
                     } else {
                         appList.sortModels(true);
                     }
-                    appList.build();
+                    appList.rebuild();
                 });
 
                 this.$('.sort').append(sortMenu.render().$el);
