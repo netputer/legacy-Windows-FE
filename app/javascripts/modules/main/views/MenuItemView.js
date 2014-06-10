@@ -110,6 +110,11 @@
                         $count.data('title', StringUtil.format(i18n.message.UNREAD_DES, count));
                     }
                 });
+
+                this.listenTo(Device, 'change:isWifi', function (Device, isWifi) {
+                    var count = this.model.get('count');
+                    this.$('.count').toggle(!isWifi && count > 0);
+                });
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));

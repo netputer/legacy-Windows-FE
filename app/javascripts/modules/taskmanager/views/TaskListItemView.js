@@ -57,11 +57,19 @@
                 TaskListItemView.__super__.remove.apply(this, arguments);
             },
             mouseenterItem  : function () {
-                var isConnected = Device.get('isConnected') && !Device.get('isWifi');
+                var isConnected = Device.get('isConnected');
                 var showByMessage = /CONNECTION_LOST|DEVICE_NOT_FOUND|NEED_USB_CONNECTION/.test(this.model.get('message'));
+                var isWifi = Device.get('isWifi');
+                var type = this.model.get('type');
 
-                if (isConnected || showByMessage) {
-                    this.$el.addClass('hover');
+                if (type === CONFIG.enums.TASK_TYPE_PUSH_PHONE)  {
+                    if (isWifi) {
+                        this.$el.addClass('hover');
+                    }
+                } else {
+                    if (!isWifi && (isConnected || showByMessage)){
+                        this.$el.addClass('hover');
+                    }
                 }
             },
             mouseleaveItem : function (){
