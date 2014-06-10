@@ -313,6 +313,11 @@
 
                 return this;
             },
+            rebuild : function () {
+                this.clearList();
+                this.init();
+                this.build();
+            },
             calculateSettings : function () {
                 this.containerHeight = this.$container.height();
                 this.minOffsetY = this.containerHeight - (this.currentModels.length * this.itemHeight);
@@ -396,6 +401,11 @@
                 this.build(evt.originalEvent.wheelDeltaY / 3);
             },
             build : function (dy, offsetY, isFromScoller) {
+
+                if (typeof dy === 'undefined') {
+                    dy = 0;
+                }
+
                 if (typeof offsetY !== 'undefined') {
                     this.offsetY = offsetY;
                 } else {
