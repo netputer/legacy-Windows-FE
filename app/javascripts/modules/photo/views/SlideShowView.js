@@ -56,7 +56,7 @@
                     }
                 });
 
-                this.listenTo(Device, 'change:isMounted', _.debounce(function (Device, isMounted) {
+                this.listenTo(Device, 'change:isMounted', function (Device, isMounted) {
                     // always show control buttons for cloud photo
                     if (this.currentPhoto && this.currentPhoto.get('is_cloud')) {
                         return;
@@ -65,7 +65,7 @@
                     if (isMounted) {
                         this.$('.control .tip').html(i18n.taskManager.INSTALL_FAILED_SDCARD_MOUNT);
                     }
-                }));
+                });
             },
             adjustSize : function () {
                 if (this.currentPhoto) {
