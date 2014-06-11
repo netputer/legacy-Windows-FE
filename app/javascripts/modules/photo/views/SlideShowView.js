@@ -56,28 +56,16 @@
                     }
                 });
 
-                this.listenTo(Device, 'change:isConnected change:isMounted', _.debounce(function (Device) {
+                this.listenTo(Device, 'change:isMounted', function (Device, isMounted) {
                     // always show control buttons for cloud photo
                     if (this.currentPhoto && this.currentPhoto.get('is_cloud')) {
                         return;
                     }
 
-                    if (Device.get('isMounted')) {
+                    if (isMounted) {
                         this.$('.control .tip').html(i18n.taskManager.INSTALL_FAILED_SDCARD_MOUNT);
-                    } else if (!Device.get('isConnected')) {
-                        this.$('.control .tip').html(i18n.welcome.CONNECT_UR_PHONE);
                     }
-
-                    if (Device.get('isConnected') && !Device.get('isMounted')) {
-                        this.$('.control .tip').slideUp('fast', function () {
-                            this.$('.control .buttons').slideDown('fast');
-                        }.bind(this));
-                    } else {
-                        this.$('.control .buttons').slideUp('fast', function () {
-                            this.$('.control .tip').slideDown('fast');
-                        }.bind(this));
-                    }
-                }));
+                });
             },
             adjustSize : function () {
                 if (this.currentPhoto) {
@@ -109,12 +97,8 @@
                     }
                 }.bind(this));
 
-                if (!Device.get('isConnected') || Device.get('isMounted')) {
-                    if (Device.get('isMounted')) {
-                        this.$('.control .tip').html(i18n.taskManager.INSTALL_FAILED_SDCARD_MOUNT).show();
-                    } else {
-                        this.$('.control .tip').html(i18n.welcome.CONNECT_UR_PHONE).show();
-                    }
+                if (Device.get('isMounted')) {
+                    this.$('.control .tip').html(i18n.taskManager.INSTALL_FAILED_SDCARD_MOUNT).show();
                     this.$('.control .buttons').hide();
                 }
 
