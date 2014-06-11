@@ -37,11 +37,7 @@
             className : 'group-manager-item hbox',
             initialize : function () {
                 GroupManagerItemView.__super__.initialize.apply(this, arguments);
-
                 accountCollection = AccountCollection.getInstance();
-                var name = this.model.get('account_name');
-                var type = this.model.get('account_type');
-                this.account = accountCollection.getAccountByNameAndType(name, type);
             },
             remove : function () {
                 accountCollection = undefined;
@@ -65,6 +61,10 @@
                 if (newTitle) {
                     this.title.html(newTitle);
                 }
+
+                var name = this.model.get('account_name');
+                var type = this.model.get('account_type');
+                this.account = accountCollection.getAccountByNameAndType(name, type);
 
                 return this;
             },
