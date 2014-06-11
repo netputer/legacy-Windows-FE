@@ -617,6 +617,7 @@
 
                 /* Sina share pic size */
                 SINA_SHARE_PIC_LIMIT_SIZE : 5,
+                SHARE_WIDGET_PIC_LIMIT_SIZE : 5,
 
                 // Photo type
                 PHOTO_ALL_TYPE : 0,
