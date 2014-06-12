@@ -259,10 +259,9 @@
                 contactContextMenu.show();
             },
             showPinyinHint : function () {
-                contactsList.once('build', function () {
-                    var topItem = contactsList.onScreenItems[0];
-                    if (topItem) {
-                        this.$('.pinyin-hint').html(topItem.model.firstLetter).show();
+                contactsList.once('build', function (keys) {
+                    if (keys.length > 0) {
+                        this.$('.pinyin-hint').html(contactsList.activeItems[keys[0]].model.firstLetter).show();
                         hidePinyinHint.call(this);
                     }
                 }, this);
