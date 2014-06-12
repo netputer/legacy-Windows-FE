@@ -167,10 +167,11 @@
     <div class='w-main-pim-mask-ctn'>
         <div class='icon'></div>
         {{? !Device.get('isConnected')}}
-        <h1 class='title'>{{= i18n.welcome.CONNECT_UR_PHONE}}</h1>
+        <h1 class='title'>{{= i18n.welcome.CONNECT_UR_PHONE }}</h1>
         <span class='desc'>{{= i18n.welcome.CONNECTION_TIP }}</span>
         {{??}}
-        <h1 class='title-wifi'>{{= i18n.misc.CONNECTION_TIP }}</h1>
+        <h1 class='title'>{{= i18n.misc.CONNECT_UR_PHONE }}</h1>
+        <span class='desc'>{{= i18n.misc.CONNECTION_TIP }}</span>
         {{?}}
         <button class='button-action primary max'>{{= i18n.misc.CONNECTION_BUTTON }}</button>
     </div>
