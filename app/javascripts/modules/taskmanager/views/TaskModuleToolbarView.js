@@ -125,6 +125,9 @@
 
                 alertPanel.on('button_yes', function () {
                     tasksCollection.deleteTasksAsync(taskListView.selected, alertPanel.deleteFile);
+                    tasksCollection.once('refresh', function () {
+                        taskListView.switchDataSet();
+                    });
                 });
 
                 log({

@@ -78,7 +78,6 @@
 
                 taskList.listenTo(tasksCollection, 'refresh', function (tasksCollection) {
                     if (this.enableUpdateData) {
-                        taskList.switchSet('default', tasksCollection.getAll);
                         this.hasCachedData = false;
                     } else {
                         this.hasCachedData = true;
@@ -100,6 +99,9 @@
                             taskList.calculateSettings();
                         }
                     });
+            },
+            switchDataSet : function () {
+                taskList.switchSet('default', tasksCollection.getAll);
             },
             selectChangeHandler : function (selected) {
                 this.trigger('select:change', selected);
