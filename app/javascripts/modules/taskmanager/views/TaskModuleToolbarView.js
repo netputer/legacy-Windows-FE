@@ -103,6 +103,7 @@
             clickButtonPause : function () {
                 tasksCollection.pauseTasksAsync(taskListView.selected);
 
+
                 log({
                     'event' : 'ui.click.task_pause_item',
                     'position' : 'toolbar'
