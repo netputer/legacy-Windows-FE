@@ -450,7 +450,8 @@
 
                     }, this);
 
-                    _.each(_.keys(this.activeItems), function (i) {
+                    var keys = _.keys(this.activeItems);
+                    _.each(keys, function (i) {
                         var top = i * this.itemHeight + this.offsetY;
                         this.activeItems[i].$el.css('webkitTransform', 'translate3d(0,' + top + 'px, 0)');
                     }, this);
@@ -463,7 +464,7 @@
                         this.moveScroller(-this.offsetY);
                     }
                     this.trackerLog();
-
+                    this.trigger(EventsMapping.BUILD, keys);
                 }.bind(this));
             },
             removeScrollingClass : _.debounce(function (){
