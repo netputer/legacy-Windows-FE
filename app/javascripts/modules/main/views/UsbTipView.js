@@ -5,6 +5,7 @@
         'underscore',
         'jquery',
         'doT',
+        'Log',
         'Device',
         'Internationalization',
         'ui/TemplateFactory'
@@ -13,6 +14,7 @@
         _,
         $,
         doT,
+        log,
         Device,
         i18n,
         TemplateFactory
@@ -50,21 +52,32 @@
             clickButtonAction : function () {
                 window.location.href = window.location.href + '?usbError=true';
             },
-            clickButtonFeedback : function () {
+            clickButtonHelp : function () {
                 IO.requestAsync({
                     url : CONFIG.actions.OPEN_URL,
                     data : {
                         url : i18n.misc.USB_TIP_HELP
                     }
                 });
+
+                log({
+                    'event' : 'ui.click.new_wifi_tip',
+                    'type' : 'help'
+                });
             },
-            clickButtonHelp : function () {
+            clickButtonFeedback : function () {
                 IO.requestAsync({
                     url : CONFIG.actions.OPEN_URL,
                     data : {
                         url : i18n.misc.USB_TIP_FEEDBACK
                     }
                 });
+
+                log({
+                    'event' : 'ui.click.new_wifi_tip',
+                    'type' : 'feedback'
+                });
+
             },
             events : {
                 'click .button-close' : 'clickButtonClose',
