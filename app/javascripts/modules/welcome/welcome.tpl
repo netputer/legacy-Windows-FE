@@ -257,7 +257,7 @@
         <h1 class="title">{{= i18n.welcome.SNAPPEA_WEB }}</h1>
         <p class="desc">{{= i18n.welcome.SNAPPEN_WEB_DES}}</p>
         <div class="btn-ctn hbox">
-            <a class="button-action" href="http://www.snappea.com/" target="_default">{{= i18n.welcome.SNAPPEA_WEB_ACTION}}</a>
+            <button class="button-action">{{= i18n.welcome.SNAPPEA_WEB_ACTION}}</button>
         </div>
     </div>
 </script>
@@ -278,9 +278,6 @@
     <div class="info-ctn">
         <h1 class="title">{{= i18n.welcome.SNAPPEA_PHOTO }}</h1>
         <p class="desc">{{= i18n.welcome.SNAPPEN_PHOTO_DES }}</p>
-        <div class="btn-ctn hbox">
-            <a class="button-action" href="https://chrome.google.com/webstore/detail/snappea-photos/epindigjbiphgfhnmlpcocaiafjgbabe" target="_default">{{= i18n.welcome.SNAPPEA_PHOTO_ACTION }}</a>
-        </div>
     </div>
 </script>
 
@@ -290,7 +287,7 @@
         <h1 class="title">{{= i18n.welcome.SNAPPEA_FACEBOOK }}</h1>
         <p class="desc">{{= i18n.welcome.SNAPPEN_FACEBOOK_DES }}</p>
         <div class="btn-ctn hbox">
-            <a class="button-action" href="https://www.facebook.com/SnapPeaInc" target="_default">{{= i18n.welcome.SNAPPEA_FACEBOOK_ACTION }}</a>
+            <button class="button-action">{{= i18n.welcome.SNAPPEA_FACEBOOK_ACTION }}</button>
         </div>
     </div>
 </script>
