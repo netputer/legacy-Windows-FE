@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
  * @fileoverview
  * - Using the 'QRCode for Javascript library'
