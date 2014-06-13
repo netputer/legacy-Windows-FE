@@ -259,9 +259,9 @@
     <div class="icon-ctn"></div>
     <div class="info-ctn">
         <h1 class="title">{{= i18n.welcome.SNAPPEA_WEB }}</h1>
-        <p class="desc">{{= i18n.welcome.SNAPPEN_WEB_DES}}</p>
+        <p class="desc">{{= i18n.welcome.SNAPPEN_WEB_DES }}</p>
         <div class="btn-ctn hbox">
-            <button class="button-action">{{= i18n.welcome.SNAPPEA_WEB_ACTION}}</button>
+            <button class="button-action">{{= i18n.welcome.SNAPPEA_WEB_ACTION }}</button>
         </div>
     </div>
 </script>
