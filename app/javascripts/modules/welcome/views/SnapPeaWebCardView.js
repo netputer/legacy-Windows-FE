@@ -20,7 +20,7 @@
         FeedCardView
     ) {
 
-        var url = '380-wdj-extension://__MSG_@@extension_id__/index.html?type=game#game';
+        var url = '380-wdj-extension://__MSG_@@extension_id__/index.html?type=app#app';
 
         var SnapPeaWebCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'snappea-web')),
