@@ -4,7 +4,8 @@
 
     var base_path = window.require.s.contexts._.config.baseUrl;
     var source_base_path = base_path + '../i18n/' + window.navigator.language.toLowerCase();
-    var image_path = source_base_path + '/images';
+    //change by zhangyaochun
+    var image_path = base_path + '../i18n/images';
 
     define([], function () {
         var Configuration = {
@@ -616,6 +617,7 @@
 
                 /* Sina share pic size */
                 SINA_SHARE_PIC_LIMIT_SIZE : 5,
+                SHARE_WIDGET_PIC_LIMIT_SIZE : 5,
 
                 // Photo type
                 PHOTO_ALL_TYPE : 0,
