@@ -29,7 +29,7 @@
 
                 var url = '382-wdj-extension://__MSG_@@extension_id__/index.html?type=game#game';
 
-                this.openDoraemon(this.url);
+                this.openDoraemon(url);
 
                 this.log({
                     action : 'games'
