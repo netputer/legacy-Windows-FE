@@ -17,6 +17,7 @@
         TemplateFactory,
         FeedCardView
     ) {
+        
         var SnapPeaPhotosCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'snappea-photos')),
             className : FeedCardView.getClass().prototype.className + ' snappea-photos',
@@ -25,8 +26,11 @@
                 return this;
             },
             clickButtonAction : function (evt) {
+
+                this.openDoraemon(383);
+
                 this.log({
-                    action : 'photos'
+                    action : 'youtube'
                 }, evt);
             },
             events : {

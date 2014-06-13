@@ -19,6 +19,7 @@
         TemplateFactory,
         FeedCardView
     ) {
+
         var SnapPeaWebCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'snappea-web')),
             className : FeedCardView.getClass().prototype.className + ' snappea-web',
@@ -27,8 +28,13 @@
                 return this;
             },
             clickButtonAction : function (evt) {
+
+                var url = '380-wdj-extension://__MSG_@@extension_id__/index.html?type=app#app';
+
+                this.openDoraemon(url);
+
                 this.log({
-                    action : 'web'
+                    action : 'apps'
                 }, evt);
             },
             events : {
