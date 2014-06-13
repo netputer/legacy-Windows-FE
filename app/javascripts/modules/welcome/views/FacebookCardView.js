@@ -32,7 +32,7 @@
                 this.openDoraemon(this.url);
 
                 this.log({
-                    action : 'facebook'
+                    action : 'games'
                 }, evt);
             },
             events : {
