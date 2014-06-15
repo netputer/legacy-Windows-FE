@@ -6,6 +6,8 @@ TARGET=$2;
 NLS=$3;
 
 build_i18n_resources() {
+    git submodule init
+    git submodule update
     cd ${work_path}/i18n/
     install_npm
     rm -rf ${work_path}/i18n/dist
