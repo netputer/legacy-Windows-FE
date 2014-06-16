@@ -62,7 +62,8 @@
                 category : '',
                 fav : '',
                 star : 0,
-                inWhiteList : false
+                inWhiteList : false,
+                displayToolbar : true
             },
             initialize : function () {
                 this.on('change:selected', function (model, selected) {

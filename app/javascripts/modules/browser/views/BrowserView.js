@@ -276,11 +276,13 @@
                     }
                 }
 
-                this.browserToolbarView = BrowserToolbarView.getInstance({
-                    model : this.model,
-                    $iframe : this.$iframe
-                });
-                this.$el.prepend(this.browserToolbarView.render().$el);
+                if (this.model.get('displayToolbar')) {
+                    this.browserToolbarView = BrowserToolbarView.getInstance({
+                        model : this.model,
+                        $iframe : this.$iframe
+                    });
+                    this.$el.prepend(this.browserToolbarView.render().$el);
+                }
 
                 var url = this.model.get('targetURL') || this.model.get('web_url');
                 if (this.autoGotoURL && url) {
