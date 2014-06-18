@@ -78,6 +78,7 @@
 
                 taskList.listenTo(tasksCollection, 'refresh', function (tasksCollection) {
                     if (this.enableUpdateData) {
+                        taskList.switchSet('default', tasksCollection.getAll);
                         this.hasCachedData = false;
                     } else {
                         this.hasCachedData = true;
