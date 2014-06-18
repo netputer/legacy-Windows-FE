@@ -10,6 +10,8 @@
                 return set.name === name;
             });
 
+            var oldSet = this.currentSet;
+
             if (targetSet === undefined) {
                 var set = {
                     name : name,
@@ -33,7 +35,7 @@
                 }
             }
 
-            this.trigger('switchSet', this.currentSet);
+            this.trigger('switchSet', this.currentSet, oldSet);
         };
 
         DataSetMixin.clearSet = function () {
