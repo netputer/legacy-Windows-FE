@@ -53,7 +53,10 @@
                 this.taskActionView.remove();
             },
             remove : function () {
-                this.taskActionView.remove();
+
+                if (this.taskActionView) {
+                    this.taskActionView.remove();
+                }
                 TaskListItemView.__super__.remove.apply(this, arguments);
             },
             mouseenterItem  : function () {
