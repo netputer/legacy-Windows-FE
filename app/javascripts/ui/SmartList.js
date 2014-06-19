@@ -286,40 +286,6 @@
                     }
                 }
 
-                this.on('switchSet', function (currentSet, oldSet) {
-
-                    var currentModels = this.currentModels;
-                    this.toggleEmptyTip(currentModels.length === 0);
-
-                    this.switchComparator();
-
-                    if (currentModels.length === 0) {
-                        this.clearList();
-                        this.init();
-                        return;
-                    }
-
-                    if (currentSet.name != oldSet.name) {
-                        this.clearList();
-                        this.init();
-                    } else {
-
-                        this.createItemView();
-                        this.minOffsetY = this.containerHeight - (currentModels.length * this.itemHeight);
-
-                        var scrollTop = this.$scrollContainer.scrollTop();
-                        var scrollHeight = currentModels.length * this.itemHeight;
-                        if (scrollTop > scrollHeight) {
-                            scrollTop = scrollHeight - this.$container.height();
-                        }
-                        this.scrollHeight = scrollHeight;
-                        this.$scrollContainer.scrollTop(scrollTop).show();
-
-                        this.build(0, -scrollTop, false, true);
-                    }
-
-                }, this);
-
                 this.listenTo(WindowState, 'resize', function () {
                     if (this.isVisible) {
                         this.calculateSettings();
