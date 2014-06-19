@@ -215,12 +215,7 @@
                             return rowNumber;
                         },
                         set : function (value) {
-                            var oldRowNumber = rowNumber;
                             rowNumber = value;
-                            if (oldRowNumber !== 0 && oldRowNumber !== rowNumber && oldRowNumber !== undefined) {
-                                var dy = this.createItemView(rowNumber - oldRowNumber);
-                                this.build(dy);
-                            }
                         }
                     },
                     scrollHeight : {
@@ -288,10 +283,29 @@
                 }
 
                 this.listenTo(WindowState, 'resize', function () {
+                    var oldRowNumber;
+                    var deltaY;
                     if (this.isVisible) {
-                        this.calculateSettings();
+                        oldRowNumber = this.calculateSettings();
+                        if (this.needBuild(oldRowNumber)) {
+                            deltaY = this.createItemView(this.rowNumber - oldRowNumber);
+                            this.calculateOffSetY(deltaY);
+                            this.build();
+                        }
                     }
                 });
+            },
+            needBuild : function (oldRowNumber) {
+                var rowNumber = this.rowNumber;
+                var currentModels = this.currentModels;
+                if (oldRowNumber === rowNumber ||
+                    (oldRowNumber >= currentModels.length && rowNumber > oldRowNumber) ||
+                    (rowNumber < oldRowNumber && rowNumber >= currentModels.length)) {
+
+                    return false;
+                }
+
+                return true;
             },
             render : function () {
                 this.$el.html(this.template({}));
@@ -316,7 +330,10 @@
             calculateSettings : function () {
                 this.containerHeight = this.$container.height();
                 this.minOffsetY = this.containerHeight - (this.currentModels.length * this.itemHeight);
+
+                var oldRowNumber = this.rowNumber;
                 this.rowNumber = Math.ceil(this.containerHeight / this.itemHeight);
+                return oldRowNumber;
             },
             clearList : function () {
                 _.each(this.activeItems, function (itemView){
@@ -343,8 +360,9 @@
                 }
 
                 this.$scrollContainer.show();
-                var dy = this.createItemView();
-                this.build(dy);
+                var deltaY = this.createItemView();
+                this.calculateOffSetY(deltaY);
+                this.build();
                 this.scrollHeight = currentModels.length * this.itemHeight;
             },
             createItemView : function (diff) {
@@ -361,6 +379,8 @@
 
                 if(_.isUndefined(diff)) {
                     diff = end - start - activeLength;
+                } else if (diff < 0) {
+                    diff = Math.max(diff, end - start - activeLength);
                 }
 
                 var maxKey = _.max(activeKeys);
@@ -399,20 +419,17 @@
                 return dy;
             },
             mousewheelBody : function (evt) {
-                this.build(evt.originalEvent.wheelDeltaY / 3);
+                var deltaY = evt.originalEvent.wheelDeltaY / 3;
+                this.calculateOffSetY(deltaY);
+                this.build();
+                this.moveScroller(-this.offsetY);
             },
-            build : function (dy, offsetY, isFromScoller, flashAll) {
+            calculateOffSetY : function (deltaY) {
+                this.offsetY = Math.min(Math.max(this.offsetY + deltaY, this.minOffsetY), 0);
+            },
+            build : function (flashAll) {
 
                 var currentModels = this.currentModels;
-                if (_.isUndefined(dy)) {
-                    dy = 0;
-                }
-
-                if (_.isUndefined(offsetY)) {
-                    this.offsetY = Math.min(Math.max(this.offsetY + dy, this.minOffsetY), 0);
-                } else {
-                    this.offsetY = offsetY;
-                }
 
                 if (_.isUndefined(flashAll)) {
                     flashAll = false;
@@ -474,13 +491,10 @@
                         this.activeItems[i].$el.css('webkitTransform', 'translate3d(0,' + top + 'px, 0)');
                     }, this);
 
-                    if (this.inactiveItems.length > 0) {
-                        this.inactiveItems[0].$el.hide();
-                    }
+                    _.each(this.inactiveItems, function (item) {
+                        item.$el.hide();
+                    });
 
-                    if (!isFromScoller) {
-                        this.moveScroller(-this.offsetY);
-                    }
                     this.trackerLog();
                     this.trigger(EventsMapping.BUILD, keys);
 
@@ -499,7 +513,8 @@
                 this.removeScrollingClass();
             },
             scrollHandler : function () {
-                this.build(0, -this.$scrollContainer.scrollTop(), true);
+                this.offsetY = -this.$scrollContainer.scrollTop();
+                this.build();
             },
             trackerLog : function () {
                 var currentModels = this.currentModels;
@@ -650,7 +665,8 @@
             },
             scrollTo : function (model) {
                 var index = this.currentModels.indexOf(model);
-                this.build(0, -index * this.itemHeight);
+                this.offsetY = -index * this.itemHeight;
+                this.build();
             },
             enableScrollHandler : function (evt) {
                 evt.stopPropagation();

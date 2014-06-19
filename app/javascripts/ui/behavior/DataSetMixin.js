@@ -42,32 +42,27 @@
 
             this.switchComparator();
 
-            if (currentModels.length === 0) {
+            if (currentModels.length === 0 || (this.currentSet.name != oldSet.name)) {
                 this.clearList();
                 this.init();
                 return;
             }
 
-            if (this.currentSet.name != oldSet.name) {
-                this.clearList();
-                this.init();
-            } else {
+            this.calculateSettings();
 
-                this.calculateSettings();
-
-                var scrollTop = this.$scrollContainer.scrollTop();
-                var scrollHeight = currentModels.length * this.itemHeight;
-                if (scrollTop >= scrollHeight) {
-                    scrollTop = Math.max(0, scrollHeight - this.containerHeight);
-                }
-                this.scrollHeight = scrollHeight;
-                this.offsetY = -scrollTop;
-                this.$scrollContainer.scrollTop(scrollTop).show();
-
-                this.createItemView();
-
-                this.build(0, -scrollTop, true, true);
+            var scrollTop = this.$scrollContainer.scrollTop();
+            var scrollHeight = currentModels.length * this.itemHeight;
+            if (scrollTop >= scrollHeight) {
+                scrollTop = Math.max(0, scrollHeight - this.containerHeight);
             }
+            this.scrollHeight = scrollHeight;
+            this.offsetY = -scrollTop;
+            this.$scrollContainer.scrollTop(scrollTop).show();
+
+            this.createItemView();
+
+            this.build(true);
+
         };
 
         DataSetMixin.clearSet = function () {
