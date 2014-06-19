@@ -217,8 +217,9 @@
                         set : function (value) {
                             var oldRowNumber = rowNumber;
                             rowNumber = value;
-                            if (oldRowNumber !== 0 && oldRowNumber !== rowNumber && rowNumber < this.currentModels.length) {
-                                this.createItemView(rowNumber - oldRowNumber);
+                            if (oldRowNumber !== 0 && oldRowNumber !== rowNumber && oldRowNumber !== undefined) {
+                                var dy = this.createItemView(rowNumber - oldRowNumber);
+                                this.build(dy);
                             }
                         }
                     },
@@ -334,13 +335,14 @@
 
                 var currentModels = this.currentModels;
                 this.toggleEmptyTip(currentModels.length === 0);
+                this.calculateSettings();
+
                 if (currentModels.length === 0) {
                     this.$scrollContainer.hide();
                     return;
                 }
 
                 this.$scrollContainer.show();
-                this.calculateSettings();
                 var dy = this.createItemView();
                 this.build(dy);
                 this.scrollHeight = currentModels.length * this.itemHeight;
@@ -472,10 +474,9 @@
                         this.activeItems[i].$el.css('webkitTransform', 'translate3d(0,' + top + 'px, 0)');
                     }, this);
 
-                    _.each(this.inactiveItems, function (item) {
-                        item.$el.hide();
-                    });
-
+                    if (this.inactiveItems.length > 0) {
+                        this.inactiveItems[0].$el.hide();
+                    }
 
                     if (!isFromScoller) {
                         this.moveScroller(-this.offsetY);

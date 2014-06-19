@@ -35,6 +35,8 @@
                 }
             }
 
+            this.trigger('switchSet', this.currentSet);
+
             var currentModels = this.currentModels;
             this.toggleEmptyTip(currentModels.length === 0);
 
@@ -51,18 +53,20 @@
                 this.init();
             } else {
 
-                this.createItemView();
-                this.minOffsetY = this.containerHeight - (currentModels.length * this.itemHeight);
+                this.calculateSettings();
 
                 var scrollTop = this.$scrollContainer.scrollTop();
                 var scrollHeight = currentModels.length * this.itemHeight;
-                if (scrollTop > scrollHeight) {
-                    scrollTop = scrollHeight - this.$container.height();
+                if (scrollTop >= scrollHeight) {
+                    scrollTop = Math.max(0, scrollHeight - this.containerHeight);
                 }
                 this.scrollHeight = scrollHeight;
+                this.offsetY = -scrollTop;
                 this.$scrollContainer.scrollTop(scrollTop).show();
 
-                this.build(0, -scrollTop, false, true);
+                this.createItemView();
+
+                this.build(0, -scrollTop, true, true);
             }
         };
 
