@@ -192,6 +192,7 @@
                 timeoutHandle = setTimeout(function () {
                     Backbone.trigger('taskManager.showModule', 'task');
                     taskListView.enableUpdateData = true;
+                    taskListView.$('.w-ui-smartlist').addClass('visible');
                 }, 600);
             },
             slideOut : function () {
@@ -206,6 +207,7 @@
 
                 timeoutHandle = setTimeout(function () {
                     taskListView.enableUpdateData = false;
+                    taskListView.$('.w-ui-smartlist').removeClass('visible');
                 }, 600);
 
             },
