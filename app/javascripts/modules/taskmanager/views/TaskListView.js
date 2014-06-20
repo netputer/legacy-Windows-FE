@@ -101,6 +101,9 @@
                         }
                     });
             },
+            switchDataSet : function () {
+                taskList.switchSet('default', tasksCollection.getAll);
+            },
             selectChangeHandler : function (selected) {
                 this.trigger('select:change', selected);
             },

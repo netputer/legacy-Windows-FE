@@ -215,11 +215,7 @@
                             return rowNumber;
                         },
                         set : function (value) {
-                            var oldRowNumber = rowNumber;
                             rowNumber = value;
-                            if (oldRowNumber !== 0 && oldRowNumber !== rowNumber && rowNumber < this.currentModels.length) {
-                                this.createItemView(rowNumber - oldRowNumber);
-                            }
                         }
                     },
                     scrollHeight : {
@@ -286,17 +282,30 @@
                     }
                 }
 
-                this.on('switchSet', function () {
-                    this.switchComparator();
-                    this.clearList();
-                    this.init();
-                }, this);
-
                 this.listenTo(WindowState, 'resize', function () {
+                    var oldRowNumber;
+                    var deltaY;
                     if (this.isVisible) {
-                        this.calculateSettings();
+                        oldRowNumber = this.calculateSettings();
+                        if (this.needBuild(oldRowNumber)) {
+                            deltaY = this.createItemView(this.rowNumber - oldRowNumber);
+                            this.calculateOffSetY(deltaY);
+                            this.build();
+                        }
                     }
                 });
+            },
+            needBuild : function (oldRowNumber) {
+                var rowNumber = this.rowNumber;
+                var currentModels = this.currentModels;
+                if (oldRowNumber === rowNumber ||
+                    (oldRowNumber >= currentModels.length && rowNumber > oldRowNumber) ||
+                    (rowNumber < oldRowNumber && rowNumber >= currentModels.length)) {
+
+                    return false;
+                }
+
+                return true;
             },
             render : function () {
                 this.$el.html(this.template({}));
@@ -313,10 +322,18 @@
 
                 return this;
             },
+            rebuild : function () {
+                this.clearList();
+                this.init();
+                this.build();
+            },
             calculateSettings : function () {
                 this.containerHeight = this.$container.height();
                 this.minOffsetY = this.containerHeight - (this.currentModels.length * this.itemHeight);
+
+                var oldRowNumber = this.rowNumber;
                 this.rowNumber = Math.ceil(this.containerHeight / this.itemHeight);
+                return oldRowNumber;
             },
             clearList : function () {
                 _.each(this.activeItems, function (itemView){
@@ -333,29 +350,39 @@
             },
             init : function () {
 
-                this.toggleEmptyTip(this.currentModels.length === 0);
-                if (this.currentModels.length === 0) {
+                var currentModels = this.currentModels;
+                this.toggleEmptyTip(currentModels.length === 0);
+                this.calculateSettings();
+
+                if (currentModels.length === 0) {
                     this.$scrollContainer.hide();
                     return;
                 }
 
                 this.$scrollContainer.show();
-                this.calculateSettings();
-                this.createItemView();
-                this.scrollHeight = this.currentModels.length * this.itemHeight;
+                var deltaY = this.createItemView();
+                this.calculateOffSetY(deltaY);
+                this.build();
+                this.scrollHeight = currentModels.length * this.itemHeight;
             },
             createItemView : function (diff) {
 
+                var currentModels = this.currentModels;
                 var start = Math.floor(-this.offsetY / this.itemHeight);
                 var end = start + this.rowNumber + 1;
-                end = Math.min(end, this.currentModels.length);
+                end = Math.min(end, currentModels.length);
 
                 var activeKeys = _.sortBy(_.keys(this.activeItems), function (num) {
                     return num;
                 });
                 var activeLength = activeKeys.length;
 
-                diff = typeof diff !== 'undefined' ?  diff : end - start - activeLength;
+                if(_.isUndefined(diff)) {
+                    diff = end - start - activeLength;
+                } else if (diff < 0) {
+                    diff = Math.max(diff, end - start - activeLength);
+                }
+
                 var maxKey = _.max(activeKeys);
                 if (maxKey === -Infinity) {
                     maxKey = 0;
@@ -378,7 +405,7 @@
                     }
                     this.$container.append(fragment);
 
-                    if (end === this.currentModels.length) {
+                    if (end === currentModels.length) {
                         dy = (diff - 1) * this.itemHeight;
                     }
 
@@ -389,24 +416,30 @@
                         delete this.activeItems[num];
                     }, this);
                 }
-
-                this.build(dy);
+                return dy;
             },
             mousewheelBody : function (evt) {
-                this.build(evt.originalEvent.wheelDeltaY / 3);
+                var deltaY = evt.originalEvent.wheelDeltaY / 3;
+                this.calculateOffSetY(deltaY);
+                this.build();
+                this.moveScroller(-this.offsetY);
             },
-            build : function (dy, offsetY, isFromScoller) {
-                if (typeof offsetY !== 'undefined') {
-                    this.offsetY = offsetY;
-                } else {
-                    this.offsetY = Math.min(Math.max(this.offsetY + dy, this.minOffsetY), 0);
+            calculateOffSetY : function (deltaY) {
+                this.offsetY = Math.min(Math.max(this.offsetY + deltaY, this.minOffsetY), 0);
+            },
+            build : function (flashAll) {
+
+                var currentModels = this.currentModels;
+
+                if (_.isUndefined(flashAll)) {
+                    flashAll = false;
                 }
                 window.cancelAnimationFrame(this.timer);
 
                 this.timer = window.requestAnimationFrame(function() {
                     var start = Math.floor(-this.offsetY / this.itemHeight);
                     var end = start + this.rowNumber + 1;
-                    end = Math.min(end, this.currentModels.length);
+                    end = Math.min(end, currentModels.length);
 
                     var before = _.keys(this.activeItems);
                     var after = [];
@@ -415,44 +448,55 @@
                         after.push(i + '');
                     }
 
-                    if (this.inactiveItems.length > 0) {
-                        this.inactiveItems[0].$el.show();
+                    _.each(this.inactiveItems, function (item) {
+                        item.$el.show();
+                    });
+
+                    var diffBeforeAfter = _.difference(before, after);
+                    var diffAfterBefore = _.difference(after, before);
+                    if (flashAll) {
+                        _.intersection(before, after).forEach(function (i) {
+                            if (currentModels[i].get('id') !== this.activeItems[i].model.get('id')) {
+                                diffBeforeAfter.push(i);
+                                diffAfterBefore.push(i);
+                            }
+                        }, this);
+
+                        diffAfterBefore = _.uniq(diffAfterBefore);
+                        diffBeforeAfter = _.uniq(diffBeforeAfter);
                     }
 
-                    _.difference(before, after).forEach(function(i) {
+                    _.each(diffBeforeAfter, function(i) {
                         this.inactiveItems.push(this.activeItems[i]);
                         delete this.activeItems[i];
                     }, this);
 
                     var itemView;
-                    _.difference(after, before).forEach(function(i) {
+                    _.each(diffAfterBefore, function(i) {
 
                         itemView = this.inactiveItems.pop();
                         itemView.decouple();
-                        itemView.model = this.currentModels[i];
+                        itemView.model = currentModels[i];
                         itemView.setup();
                         itemView.render();
                         this.toggleClass(itemView, i);
-
                         this.activeItems[i] = itemView;
-
                         itemView.toggleSelect(_.contains(this.selected, itemView.model.id));
 
                     }, this);
 
-                    _.each(_.keys(this.activeItems), function (i) {
+                    var keys = _.keys(this.activeItems);
+                    _.each(keys, function (i) {
                         var top = i * this.itemHeight + this.offsetY;
                         this.activeItems[i].$el.css('webkitTransform', 'translate3d(0,' + top + 'px, 0)');
                     }, this);
 
-                    if (this.inactiveItems.length > 0) {
-                        this.inactiveItems[0].$el.hide();
-                    }
+                    _.each(this.inactiveItems, function (item) {
+                        item.$el.hide();
+                    });
 
-                    if (!isFromScoller) {
-                        this.moveScroller(-this.offsetY);
-                    }
                     this.trackerLog();
+                    this.trigger(EventsMapping.BUILD, keys);
 
                 }.bind(this));
             },
@@ -469,9 +513,11 @@
                 this.removeScrollingClass();
             },
             scrollHandler : function () {
-                this.build(0, -this.$scrollContainer.scrollTop(), true);
+                this.offsetY = -this.$scrollContainer.scrollTop();
+                this.build();
             },
             trackerLog : function () {
+                var currentModels = this.currentModels;
                 var ran = _.random(0, 9);
                 if (ran > 8 && FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
 
@@ -481,8 +527,8 @@
                         'url' : ''
                     };
 
-                    if (this.currentModels.length > 0 && this.currentModels[0].collection) {
-                        data.url = this.currentModels[0].collection.url || '';
+                    if (currentModels.length > 0 && currentModels[0].collection) {
+                        data.url = currentModels[0].collection.url || '';
                     }
 
                     var index = _.uniqueId('smartlist_scroll_');
@@ -619,7 +665,8 @@
             },
             scrollTo : function (model) {
                 var index = this.currentModels.indexOf(model);
-                this.build(0, -index * this.itemHeight);
+                this.offsetY = -index * this.itemHeight;
+                this.build();
             },
             enableScrollHandler : function (evt) {
                 evt.stopPropagation();

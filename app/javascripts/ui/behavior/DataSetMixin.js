@@ -10,6 +10,8 @@
                 return set.name === name;
             });
 
+            var oldSet = this.currentSet;
+
             if (targetSet === undefined) {
                 var set = {
                     name : name,
@@ -34,6 +36,33 @@
             }
 
             this.trigger('switchSet', this.currentSet);
+
+            var currentModels = this.currentModels;
+            this.toggleEmptyTip(currentModels.length === 0);
+
+            this.switchComparator();
+
+            if (currentModels.length === 0 || (this.currentSet.name != oldSet.name)) {
+                this.clearList();
+                this.init();
+                return;
+            }
+
+            this.calculateSettings();
+
+            var scrollTop = this.$scrollContainer.scrollTop();
+            var scrollHeight = currentModels.length * this.itemHeight;
+            if (scrollTop >= scrollHeight) {
+                scrollTop = Math.max(0, scrollHeight - this.containerHeight);
+            }
+            this.scrollHeight = scrollHeight;
+            this.offsetY = -scrollTop;
+            this.$scrollContainer.scrollTop(scrollTop).show();
+
+            this.createItemView();
+
+            this.build(true);
+
         };
 
         DataSetMixin.clearSet = function () {

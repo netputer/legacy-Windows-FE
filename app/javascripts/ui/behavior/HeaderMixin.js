@@ -35,7 +35,7 @@
 
             sortModels.call(this, $column, $column.hasClass('asc'));
 
-            this.build();
+            this.rebuild();
         };
 
         var HeaderMixin = {};
