@@ -174,7 +174,7 @@
             render : function () {
                 this.$el.html(this.template({}));
 
-                deviceView = DeviceView.getInstance();
+                deviceView = DeviceView.getInstance().render();
                 infoView = InfoView.getInstance();
                 toolbarView = ToolbarView.getInstance();
                 capacityBarView = CapacityBarView.getInstance();
@@ -183,7 +183,8 @@
                 this.listenTo(toolbarView, 'top', this.scrollTopAnimation);
 
                 setTimeout(function () {
-                    var $top = this.$('.top').append(deviceView.render().$el)
+
+                    var $top = this.$('.top').append(deviceView.$el)
                                 .append(infoView.render().$el);
                     this.loading = FunctionSwitch.ENABLE_WELCOME_FEED;
 

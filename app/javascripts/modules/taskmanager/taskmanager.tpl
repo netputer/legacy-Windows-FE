@@ -181,9 +181,16 @@
         {{
                             break;
                         case CONFIG.enums.TASK_STATE_FAILD :
+                            if (it.message === 'DEVICE_NOT_FOUND') {
+        }}
+        <div>{{= i18n.taskManager.DEVICE_NOT_FOUND }}</div>
+        {{
+                            } else {
         }}
         <div class="text-warning">{{= i18n.taskManager[it.message] || i18n.taskManager.UNKNOWN_ERROR }}</div>
-        {{              break;
+        {{
+                            }
+                        break;
                     }
                     break;
                 case CONFIG.enums.TASK_TYPE_PARSING_VIDEO_URL:

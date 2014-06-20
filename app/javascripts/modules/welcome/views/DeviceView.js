@@ -59,6 +59,10 @@
             initialize : function () {
                 var loading = false;
                 var fade = false;
+                var offlineTip;
+                var wifiTip;
+                var screenShot;
+                var connectionTip;
                 Object.defineProperties(this, {
                     loading : {
                         set : function (value) {
@@ -80,33 +84,98 @@
                         get : function () {
                             return fade;
                         }
+                    },
+                    offlineTip : {
+                        set : function (value) {
+                            offlineTip = value;
+                        },
+                        get : function () {
+                            return offlineTip;
+                        }
+                    },
+                    wifiTip : {
+                        set : function (value) {
+                            wifiTip = value;
+                        },
+                        get : function () {
+                            return wifiTip;
+                        }
+                    },
+                    screenShot : {
+                        set : function (value) {
+                            screenShot = value;
+                        },
+                        get : function () {
+                            return screenShot;
+                        }
+                    },
+                    connectionTip : {
+                        set : function (value) {
+                            connectionTip = value;
+                        },
+                        get : function () {
+                            return connectionTip;
+                        }
                     }
                 });
 
-                this.listenTo(Device, 'change:isConnected change:isFastADB change:canScreenshot', _.debounce(function (Device) {
-                    if (Device.get('isConnected') || Device.get('isFastADB')) {
-                        Device.getScreenshotAsync();
+                this.listenTo(Device, 'change:isConnected', function (Device, isConnected) {
+                    var isUSB = Device.get('isUSB');
+                    var isWifi = Device.get('isWifi');
+
+                    if (isConnected) {
+                        this.wifiTip.toggleClass('hide', !isWifi);
+                        this.offlineTip.addClass('hide');
+                        this.screenShot.toggle(isUSB);
+
+                        if (isUSB) {
+                            Device.getScreenshotAsync();
+                        }
+                        this.loading = false ;
+                    } else {
+                        this.wifiTip.addClass('hide');
+                        this.offlineTip.removeClass('hide');
+                        this.screenShot.hide();
                     }
-                    this.setDisable(!Device.get('canScreenshot'));
-                }));
+
+                    this.connectionTip.addClass('hide');
+                });
+
+                this.listenTo(Device, 'change:connectionState', function (){
+                    this.wifiTip.addClass('hide');
+                    this.setConnectionState();
+                });
 
                 this.listenTo(Device, 'change:shell', this.renderShell)
-                    .listenTo(Device, 'change:screenshot', this.renderScreenshot);
+                    .listenTo(Device, 'change:screenshot', function(Device, screenshot) {
+                        this.renderScreenshot(Device, screenshot);
+                        this.adjustRotation();
+                    });
             },
-            setDisable : function (disable) {
-                this.$('.offline-tip .desc').html(Device.get('isConnected') ? i18n.misc.SCREEN_SHOT_UNDER_USB : i18n.misc.PHTONE_DISCONNECTED);
-                this.$('.screenshot').toggle(!disable);
-                if (disable) {
-                    this.$('.offline-tip').css('display', '-webkit-box');
-                } else {
-                    this.$('.offline-tip').hide();
-                }
+            setConnectionState : function () {
+                var $desc = this.$('.connection-tip .desc');
+                var connectionState = Device.get('connectionState');
 
-                this.$el.css('opacity', disable ? '.7' : '1');
+                if (connectionState === CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
+                    this.loading = false;
+                    this.wifiTip.addClass('hide');
+                    this.offlineTip.removeClass('hide');
+                    this.connectionTip.addClass('hide');
+                    this.screenShot.hide();
+                } else {
+                    this.loading = true;
+                    this.offlineTip.addClass('hide');
+                    this.connectionTip.removeClass('hide');
+                    $desc.html(i18n.misc['DEVICE_' + connectionState.toUpperCase()]);
+                }
             },
             render : function () {
                 this.$el.html(this.template({})).addClass('fade-in').find('.screenshot').attr('src', CONFIG.enums.IMAGE_PATH + '/blank.png');
 
+                this.offlineTip = this.$('.offline-tip');
+                this.wifiTip = this.$('.wifi-connection-tip');
+                this.screenShot = this.$('.screenshot');
+                this.connectionTip = this.$('.connection-tip');
                 this.renderShell(Device, Device.get('shell'));
                 this.renderScreenshot(Device, Device.get('screenshot'));
 
@@ -119,9 +188,7 @@
 
                 this.$el.append(screenControlView.render().$el);
 
-                this.setDisable(!Device.get('canScreenshot'));
-
-                this.$el.one('webkitAnimationEnd', function (){
+                this.$el.one('webkitAnimationEnd', function () {
                     this.$el.removeClass('fade-in');
                 }.bind(this));
 
@@ -146,8 +213,6 @@
                         .one('error', errorHandler)
                         .attr('src', 'file:///' + screenshot.path + '?date' + screenshot.date);
                 }
-
-                this.adjustRotation();
             },
             adjustRotation : function () {
                 var isPad = this.$el.hasClass('isPad');
@@ -156,6 +221,21 @@
                 this.$el.toggleClass('turn-left', rotation === 1)
                         .toggleClass('turn-right', rotation === 3)
                         .toggleClass('turn-down', rotation === 2);
+
+                var shell = Device.get('shell');
+                var config = SCREENSHOT_DEFAULTS;
+                if (shell.path) {
+                    config = shell.screenshot;
+                }
+
+                var height = this.offlineTip.height();
+                var top = config.top + config.height - height;
+                if (rotation === 1) {
+                    top = top - config.top - 2 * config.left;
+                } else if (rotation === 3){
+                    top = top - config.top - config.left;
+                }
+                this.offlineTip.css('top', top);
 
                 if (!isPad) {
                     if (rotation === 1 || rotation === 3) {
@@ -258,9 +338,18 @@
                     });
                 }
             },
+            clickButtonAction : function () {
+                IO.requestAsync({
+                    url : CONFIG.actions.CONNET_PHONE,
+                    data : {
+                        from : SnapPea.CurrentModule
+                    }
+                });
+            },
             events : {
                 'mouseover .screen' : 'mouseoverScreen',
-                'dblclick .screen img' : 'dbclickScreen'
+                'dblclick .screen img' : 'dbclickScreen',
+                'click .button-action' : 'clickButtonAction'
             }
         });
 

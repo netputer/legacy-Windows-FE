@@ -357,6 +357,7 @@
                 NAVIGATE_REFRESH : 'navigation.reload',
 
                 // Backend events - Public events
+                DEVICE_CONNECTION_STATE_CHANGE : 'device.connection_state_changed',
                 DEVICE_STATE_CHANGE : 'device.state_changed',
                 DEVICE_OFFLINE_CHANGE : 'device.offline_changed',
                 DEVICE_USB_DETECT : 'usb.detect',
@@ -469,6 +470,11 @@
                 SHOW_IOS_ADVERTISMENT : 'ios.show.advertismnet'
             },
             enums : {
+
+
+                CONNECTION_STATE_CONNECTING : 'connecting',
+                CONNECTION_STATE_DRIVER_INSTALLING : 'driver_installing',
+                CONNECTION_STATE_PLUG_OUT: 'plug_out',
 
                 LAUNCH_TIME_KEY : 'wandoujia-launch-times',
 
