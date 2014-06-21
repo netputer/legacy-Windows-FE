@@ -348,7 +348,11 @@
                 APPLY_DEFAULT_APP : 'wdj://restore/apply_default_app.json',
                 RECOVER_DEFAULT_APP : 'wdj://restore/recover_default_app.json',
 
-                STRATEGY : 'wdj://window/strategy.json'
+                STRATEGY : 'wdj://window/strategy.json',
+
+                TOOLBOX_INIT : 'wdj://window/tools_init.json',
+                TOOLBOX_FALSH_INIT : 'wdj://window/shuaji_init.json',
+                TOOLBOX_FALSH_CANCEL : 'wdj://window/shuaji_cancel.json'
             },
             events : {
                 // Backend events - History
@@ -466,7 +470,9 @@
                 CUSTOM_IFRAME_PHOTO_RENDERED : 'iframe.photo.rendered',
                 CUSTOM_IFRAME_PHOTO_SELECT_TAB : 'iframe.photo.select.tab',
 
-                SHOW_IOS_ADVERTISMENT : 'ios.show.advertismnet'
+                SHOW_IOS_ADVERTISMENT : 'ios.show.advertismnet',
+
+                FALSH_DEVICE_STATUS_CHANGE : 'shuaji.status_changed'
             },
             enums : {
 

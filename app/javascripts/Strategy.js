@@ -12,7 +12,8 @@
                 this.load();
             },
             defaults : {
-                enableQqTijian : false
+                enableQqTijian : false,
+                enableFalshDevice : false
             },
             load : function () {
                 IO.requestAsync(CONFIG.actions.STRATEGY).done(function (resp) {
@@ -23,7 +24,8 @@
             },
             changeHandler : function (data) {
                 this.set({
-                    enableQqTijian : data.enable_qq_tijian
+                    enableQqTijian : data.enable_qq_tijian,
+                    enableFalshDevice : data.enable_shuaji
                 });
             }
         });
