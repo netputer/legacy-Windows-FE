@@ -236,6 +236,10 @@
                         url : i18n.taskManager.FEEDBACK_LINK
                     }
                 });
+
+                log({
+                    'event' : 'ui.click.push_feedback'
+                });
             },
             events : {
                 'click .button-start' : 'clickButtonStart',
