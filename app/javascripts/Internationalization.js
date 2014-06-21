@@ -15,7 +15,8 @@
         'i18n!nls/message',
         'i18n!nls/optimize',
         'i18n!nls/sync',
-        'i18n!nls/new_backuprestore'
+        'i18n!nls/new_backuprestore',
+        'i18n!nls/tools'
     ], function (
         ui,
         misc,
@@ -31,7 +32,8 @@
         message,
         optimize,
         sync,
-        new_backuprestore
+        new_backuprestore,
+        tools
     ) {
         console.log('Internationalization - File loaded.');
 
@@ -50,7 +52,8 @@
             message : message,
             optimize : optimize,
             sync : sync,
-            new_backuprestore : new_backuprestore
+            new_backuprestore : new_backuprestore,
+            tools : tools
         };
 
         window.i18n = window.i18n || i18n;
