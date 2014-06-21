@@ -181,6 +181,12 @@
                         Strategy.get('enableQqTijian');
                 }
             },
+            ENABLE_FALSH_DEVICE : {
+                get : function () {
+                    return IS_CHINESE_VERSION &&
+                        Strategy.get('enableFalshDevice');
+                }
+            },
             ENABLE_PERFORMANCE_TRACKER : {
                 get : function () {
                     return Distributor.PERFORMANCE_TRACK && !ProjectConfig.get('DISABLE_PERFORMANCE_TRACKER');
@@ -283,6 +289,11 @@
             ENABLE_WELCOME_FEED : {
                 get : function () {
                     return !ProjectConfig.get('DISABLE_WELCOME_FEED');
+                }
+            },
+            ENABLE_TOOLS : {
+                get : function () {
+                    return !ProjectConfig.get('DISABLE_TOOLS');
                 }
             },
             IS_CHINESE_VERSION : {
