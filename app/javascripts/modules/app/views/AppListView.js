@@ -178,18 +178,20 @@
             toggleListeners : function (tab) {
                 var newCollection;
                 var oldCollection;
-                if (tab === 'web') {
-                    newCollection = webAppsCollection;
+
+                if (tab !== 'web' && SnapPea.currentTab !== 'web') {
+                    newCollection = appsCollection;
                     oldCollection = appsCollection;
                 } else {
-                    newCollection = appsCollection;
-                    oldCollection = webAppsCollection;
+                    newCollection = webAppsCollection;
+                    oldCollection = appsCollection;
                 }
-                this.listenTo(newCollection, 'refresh', this.buildList)
-                    .stopListening(oldCollection, 'refresh', this.buildList);
 
-                appList.listenTo(newCollection, 'syncStart update syncEnd refresh', loadingHandler)
-                    .stopListening(oldCollection, 'syncStart update syncEnd refresh', loadingHandler);
+                this.stopListening(oldCollection, 'refresh', this.buildList)
+                    .listenTo(newCollection, 'refresh', this.buildList);
+
+                appList.stopListening(oldCollection, 'syncStart update syncEnd refresh', loadingHandler)
+                    .listenTo(newCollection, 'syncStart update syncEnd refresh', loadingHandler);
                 appList.loading = newCollection.loading || newCollection.syncing;
                 appList.listenToCollection = newCollection;
             },
@@ -408,7 +410,7 @@
                     } else {
                         appList.sortModels(true);
                     }
-                    appList.build();
+                    appList.rebuild();
                 });
 
                 this.$('.sort').append(sortMenu.render().$el);

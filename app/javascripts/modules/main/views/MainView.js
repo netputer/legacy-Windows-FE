@@ -15,12 +15,14 @@
         'Internationalization',
         'Device',
         'Environment',
+        'Settings',
         'main/views/NavView',
         'task/views/TaskMonitorView',
         'main/views/FastUSBNotificationView',
         'main/views/PimMaskView',
         'main/collections/PIMCollection',
         'main/views/AgentNotifiPopup',
+        'main/views/AutoConnectionNotifiPopup',
         'app/AppService'
     ], function (
         Backbone,
@@ -35,12 +37,14 @@
         i18n,
         Device,
         Environment,
+        Settings,
         NavView,
         TaskMonitorView,
         FastUSBNotificationView,
         PimMaskView,
         PIMCollection,
         AgentNotifiPopup,
+        AutoConnectionNotifiPopup,
         AppService
     ) {
         console.log('Wandoujia 2.0 launched.');
@@ -305,7 +309,68 @@
                     IO.Backend.Device.offmessage(delegate);
                 });
 
+                this.regConnectionTip();
+
                 return this;
+            },
+            regConnectionTip : function () {
+                var connectDisplayCount = Settings.get('auto-connection-notifi-popup') || 0;
+                var disconnectDisplayConut = Settings.get('disconnection-notifi-popup') || 0;
+                var currentWifiState = Device.get('isWifi');
+                var isConnected = Device.get('isConnected');
+                var listenHandler;
+                var autoConnectionNotifiPopup;
+
+                var showTip = function (type) {
+
+                    if (autoConnectionNotifiPopup) {
+                        autoConnectionNotifiPopup.destory();
+                    }
+
+                    autoConnectionNotifiPopup = new AutoConnectionNotifiPopup({
+                        $host : $('.w-misc-agent-host'),
+                        alignToHost : true,
+                        type : type
+                    });
+                    autoConnectionNotifiPopup.show();
+
+                    if (type === 'connection') {
+                        Settings.set('auto-connection-notifi-popup', ++connectDisplayCount);
+                    } else {
+                        Settings.set('disconnection-notifi-popup', ++disconnectDisplayConut);
+                    }
+                };
+
+                if (connectDisplayCount < 3 && currentWifiState && isConnected) {
+                    showTip('connection');
+                }
+
+                listenHandler = this.listenTo(Device, 'change:isWifi change:isUSB', _.debounce(function (Device) {
+
+                    isConnected = Device.get('isConnected');
+                    var isWifi = Device.get('isWifi');
+
+                    if (isWifi && connectDisplayCount < 3) {
+                        showTip('connection');
+                    } else if (!isWifi && currentWifiState && !isConnected && disconnectDisplayConut < 3){
+                        showTip('disconnection');
+                    }
+                    currentWifiState = isWifi;
+
+                    if (connectDisplayCount === 3 && disconnectDisplayConut === 3) {
+                        this.stopListening(Device, 'change:isWifi', listenHandler);
+                    }
+                }.bind(this), 500));
+
+                this.listenTo(Device, 'change:isUSB', function (Device, isUSB) {
+                    if (!isUSB) {
+                        return;
+                    }
+
+                    if (autoConnectionNotifiPopup) {
+                        autoConnectionNotifiPopup.destory();
+                    }
+                });
             },
             regModule : function (name, module) {
                 this.modules[name] = module;

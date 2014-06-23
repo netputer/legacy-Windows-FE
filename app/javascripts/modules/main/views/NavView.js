@@ -161,7 +161,9 @@
                     } else {
                         var selectDefault = function () {
                             if (extensionsCollection.length > 0) {
-                                extensionsCollection.at(0).set('selected', true);
+                                var model = extensionsCollection.at(0);
+                                model.set('selected', true);
+                                BrowserModuleView.navigateToThirdParty(model.id);
                             }
                         };
 

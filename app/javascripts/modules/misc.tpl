@@ -123,6 +123,21 @@
     </div>
 </script>
 
+<script type="text/x-ui-template" id="auto-connection-notifi">
+    <div class="w-misc-auto-connection-notifi">
+        <div class="tip">{{= i18n.misc.AUTO_CONN_NOTIFI_TIP }}</div>
+        <div class="button-close"></div>
+        <button class="primary button-action">{{= i18n.misc.AUTO_CONN_TRY }}</button>
+    </div>
+</script>
+
+<script type="text/x-ui-template" id="disconnection-notifi">
+    <div class="w-misc-disconnection-notifi">
+        <div class="tip">{{= i18n.misc.DISCONN_NOTIFI_TIP }}</div>
+        <div class="button-close"></div>
+    </div>
+</script>
+
 <script type="text/x-ui-template" id="binding-devie-cloud">
     <div class="w-misc-device-binding-cloud cf">
     <div class="main-ctn hbox">
@@ -152,10 +167,11 @@
     <div class='w-main-pim-mask-ctn'>
         <div class='icon'></div>
         {{? !Device.get('isConnected')}}
-        <h1 class='title'>{{= i18n.welcome.CONNECT_UR_PHONE}}</h1>
+        <h1 class='title'>{{= i18n.welcome.CONNECT_UR_PHONE }}</h1>
         <span class='desc'>{{= i18n.welcome.CONNECTION_TIP }}</span>
         {{??}}
-        <h1 class='title-wifi'>{{= i18n.misc.CONNECTION_TIP }}</h1>
+        <h1 class='title'>{{= i18n.misc.CONNECT_UR_PHONE }}</h1>
+        <span class='desc'>{{= i18n.misc.CONNECTION_TIP }}</span>
         {{?}}
         <button class='button-action primary max'>{{= i18n.misc.CONNECTION_BUTTON }}</button>
     </div>
