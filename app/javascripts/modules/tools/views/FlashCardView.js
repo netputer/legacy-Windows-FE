@@ -25,7 +25,7 @@
         AlertWindow,
         ButtonSetMixin
     ) {
-        console.log('FalshCardView - File loaded');
+        console.log('FlashCardView - File loaded');
 
         var progressHandler;
         var confirmWindow;
@@ -38,11 +38,11 @@
                     draggable : true,
                     width : 360,
                     height : 180,
-                    title : i18n.tools.FALSH_TITLE
+                    title : i18n.tools.FLASH_TITLE
                 });
             }
 
-            confirmWindow.$bodyContent = $(doT.template(TemplateFactory.get('tools', 'tools-falsh-confirm'))({
+            confirmWindow.$bodyContent = $(doT.template(TemplateFactory.get('tools', 'tools-flash-confirm'))({
                 'error' : error
             }));
 
@@ -67,9 +67,9 @@
             confirmWindow.show();
         };
 
-        var FalshCardView = Backbone.View.extend({
-            className : 'w-tools-card falsh hbox',
-            template : doT.template(TemplateFactory.get('tools', 'tools-falsh-card')),
+        var FlashCardView = Backbone.View.extend({
+            className : 'w-tools-card flash hbox',
+            template : doT.template(TemplateFactory.get('tools', 'tools-flash-card')),
             initialize : function () {
 
                 var $progressBar;
@@ -135,10 +135,10 @@
 
                 return this;
             },
-            startFalsh : function () {
+            startFlash : function () {
 
                 IO.requestAsync({
-                    url : CONFIG.actions.TOOLBOX_FALSH_INIT,
+                    url : CONFIG.actions.TOOLBOX_FLASH_INIT,
                     success : function (resp) {
                         if (resp.body.value) {
                             IO.Backend.Device.offmessage(progressHandler);
@@ -151,7 +151,7 @@
                 var intervalHandler;
                 var timeoutHandler;
                 progressHandler = IO.Backend.Device.onmessage({
-                    'data.channel' : CONFIG.events.FALSH_DEVICE_STATUS_CHANGE
+                    'data.channel' : CONFIG.events.FLASH_DEVICE_STATUS_CHANGE
                 }, function (msg) {
 
                     if (msg.progress) {
@@ -181,7 +181,7 @@
 
                         if (msg.error !== 'launch') {
                             confirm(msg.error.toUpperCase(), function (){
-                                this.startFalsh();
+                                this.startFlash();
 
                                 log({
                                     'event' : 'ui.click.shuaji_error_retry'
@@ -205,14 +205,14 @@
                     IO.Backend.Device.offmessage(progressHandler);
                 }
 
-                this.startFalsh();
+                this.startFlash();
 
                 log({
                     'event' : 'ui.click.shuaji'
                 });
             },
             clickCancelButton : function () {
-                IO.requestAsync(CONFIG.actions.TOOLBOX_FALSH_CANCEL);
+                IO.requestAsync(CONFIG.actions.TOOLBOX_FLASH_CANCEL);
                 IO.Backend.Device.offmessage(progressHandler);
                 this.changeStatus(false);
 
@@ -227,7 +227,7 @@
                 this.$desc.toggle(!showProgress);
                 this.$actionButton.toggle(!showProgress);
                 this.$cancelButton.toggle(showProgress).prop('disabled', !showProgress);
-                this.$title.html(showProgress ? i18n.tools.FALSHING_DEVICE : i18n.tools.FALSH_TITLE);
+                this.$title.html(showProgress ? i18n.tools.FLASHING_DEVICE : i18n.tools.FLASH_TITLE);
             },
             setProgress : function (num) {
                 this.$progressBar.attr('value', num);
@@ -238,14 +238,14 @@
             }
         });
 
-        var falshCardView;
+        var flashCardView;
         var factory = {
             getInstance : function (){
-                if (!falshCardView) {
-                    falshCardView = new FalshCardView();
+                if (!flashCardView) {
+                    flashCardView = new FlashCardView();
                 }
 
-                return falshCardView;
+                return flashCardView;
             }
         };
 

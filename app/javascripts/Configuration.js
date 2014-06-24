@@ -351,8 +351,8 @@
                 STRATEGY : 'wdj://window/strategy.json',
 
                 TOOLBOX_INIT : 'wdj://window/tools_init.json',
-                TOOLBOX_FALSH_INIT : 'wdj://window/shuaji_init.json',
-                TOOLBOX_FALSH_CANCEL : 'wdj://window/shuaji_cancel.json'
+                TOOLBOX_FLASH_INIT : 'wdj://window/shuaji_init.json',
+                TOOLBOX_FLASH_CANCEL : 'wdj://window/shuaji_cancel.json'
             },
             events : {
                 // Backend events - History
@@ -473,7 +473,7 @@
 
                 SHOW_IOS_ADVERTISMENT : 'ios.show.advertismnet',
 
-                FALSH_DEVICE_STATUS_CHANGE : 'shuaji.status_changed'
+                FLASH_DEVICE_STATUS_CHANGE : 'shuaji.status_changed'
             },
             enums : {
 
