@@ -181,12 +181,6 @@
                         Strategy.get('enableQqTijian');
                 }
             },
-            ENABLE_FALSH_DEVICE : {
-                get : function () {
-                    return IS_CHINESE_VERSION &&
-                        Strategy.get('enableFalshDevice');
-                }
-            },
             ENABLE_PERFORMANCE_TRACKER : {
                 get : function () {
                     return Distributor.PERFORMANCE_TRACK && !ProjectConfig.get('DISABLE_PERFORMANCE_TRACKER');
