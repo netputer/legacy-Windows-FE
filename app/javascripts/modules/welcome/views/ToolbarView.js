@@ -295,11 +295,6 @@
                         }
                     });
 
-                    log({
-                        event: 'ui.show.new_wifi',
-                        type : 'SDcard'
-                    });
-
                     return;
                 }
 
@@ -324,11 +319,6 @@
                         }
                     });
 
-                    log({
-                        event: 'ui.show.new_wifi',
-                        type : 'backup-restore'
-                    });
-
                     return;
                 }
 
@@ -349,11 +339,6 @@
                         data : {
                             from : 'backup-restore'
                         }
-                    });
-
-                    log({
-                        event: 'ui.show.new_wifi',
-                        type : 'backup-restore'
                     });
 
                     return;
@@ -411,11 +396,6 @@
                         data : {
                             from : 'wallpaper'
                         }
-                    });
-
-                    log({
-                        event: 'ui.show.new_wifi',
-                        type : 'setWallPaper'
                     });
 
                     return;

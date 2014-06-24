@@ -78,21 +78,6 @@
                         from : SnapPea.CurrentModule
                     }
                 });
-
-                var state;
-                if (Device.get('isWifi')) {
-                    state = 'wifi';
-                } else if (Device.get('isFastADB')) {
-                    state = 'isFastADB';
-                } else {
-                    state = 'disconnected';
-                }
-
-                log({
-                    'event': 'ui.show.new_wifi',
-                    'type' : SnapPea.CurrentModule,
-                    'state' : state
-                });
             },
             events : {
                 'click .button-action' : 'clickButtonAction'

@@ -28,6 +28,22 @@
 
                 if (this.options.usbError === null || this.options.usbError === true) {
                     template = doT.template(TemplateFactory.get('misc', 'usb-tip'));
+
+                    var state;
+                    if (Device.get('isWifi')) {
+                        state = 'wifi';
+                    } else if (Device.get('isFastADB')) {
+                        state = 'isFastADB';
+                    } else {
+                        state = 'disconnected';
+                    }
+
+                    log({
+                        'event': 'ui.show.new_wifi',
+                        'type' : this.options.from,
+                        'state' : state
+                    });
+
                 } else {
                     this.$el.addClass('error');
                     template = doT.template(TemplateFactory.get('misc', 'usb-error-tip'));
@@ -37,7 +53,7 @@
             render : function () {
 
                 var titleStr = i18n.misc.USE_USB_TITLE;
-                if (this.options.from && this.options.from !== 'welcome') {
+                if (this.options.from && (this.options.from !== 'welcome' || this.options.from !== 'task')) {
                     titleStr = i18n.misc['USB_TITLE_' + this.options.from.toUpperCase()];
                 }
 
