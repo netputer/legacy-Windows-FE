@@ -11,7 +11,7 @@
         'ui/TemplateFactory',
         'tools/views/ManageSDCardView',
         'tools/views/FeatureCardView',
-        'tools/views/FalshCardView',
+        'tools/views/FlashCardView',
         'Strategy'
     ], function (
         $,
@@ -24,7 +24,7 @@
         TemplateFactory,
         ManageSDCardView,
         FeatureCardView,
-        FalshCardView,
+        FlashCardView,
         Strategy
     ) {
         console.log('ToolsModuleView - File loaded');
@@ -57,17 +57,17 @@
 
                 setTimeout(function () {
 
-                    if (!FunctionSwitch.ENABLE_FALSH_DEVICE) {
-                        this.listenTo(Strategy, 'change:enableFalshDevice', function () {
-                            if (FunctionSwitch.ENABLE_FALSH_DEVICE) {
-                                falshCardView = FalshCardView.getInstance();
-                                $cardCtn.prepend(falshCardView.render().$el);
+                    if (!FunctionSwitch.ENABLE_FLASH_DEVICE) {
+                        this.listenTo(Strategy, 'change:enableFlashDevice', function () {
+                            if (FunctionSwitch.ENABLE_FLASH_DEVICE) {
+                                flashCardView = FlashCardView.getInstance();
+                                $cardCtn.prepend(flashCardView.render().$el);
                                 IO.requestAsync(CONFIG.actions.TOOLBOX_INIT);
                             }
                         });
                     } else {
-                        falshCardView = FalshCardView.getInstance();
-                        $cardCtn.append(falshCardView.render().$el);
+                        flashCardView = FlashCardView.getInstance();
+                        $cardCtn.append(flashCardView.render().$el);
                         IO.requestAsync(CONFIG.actions.TOOLBOX_INIT);
                     }
 
