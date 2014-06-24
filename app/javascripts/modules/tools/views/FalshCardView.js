@@ -54,7 +54,6 @@
                 cancelCallback.call(context);
             };
 
-
             confirmWindow.on(UIHelper.EventsMapping.BUTTON_YES, yesHandler);
             confirmWindow.on(UIHelper.EventsMapping.BUTTON_CANCEL, yesHandler);
 
@@ -63,7 +62,6 @@
                 confirmWindow.off(UIHelper.EventsMapping.BUTTON_CANCEL, yesHandler);
                 confirmWindow.off(UIHelper.EventsMapping.REMOVE, removeHandler);
             };
-
             confirmWindow.on(UIHelper.EventsMapping.REMOVE, removeHandler);
 
             confirmWindow.show();
