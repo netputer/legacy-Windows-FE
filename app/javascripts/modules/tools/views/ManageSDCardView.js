@@ -24,12 +24,30 @@
         var ManageSDCardView = Backbone.View.extend({
             className : 'w-tools-card sdcard hbox',
             template : doT.template(TemplateFactory.get('tools', 'tools-sd-card')),
+            initialize : function () {
+                var $button;
+                Object.defineProperties(this, {
+                    $button : {
+                        get : function () {
+                            return $button;
+                        },
+                        set : function (value) {
+                            $button = value;
+                        }
+                    }
+                });
+            },
             render : function () {
                 this.$el.html(this.template({}));
+
+                setTimeout(function (){
+                    this.$button = this.$('.button-action');
+                }.bind(this), 0);
+
                 return this;
             },
             clickButtonClick : function () {
-                var $btn = this.$('.button-action').prop('disabled', true);
+                this.$button.prop('disabled', true);
 
                 setTimeout(function () {
                     $btn.prop('disabled', false);
