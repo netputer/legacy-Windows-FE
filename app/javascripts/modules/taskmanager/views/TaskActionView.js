@@ -205,7 +205,12 @@
             },
             clickButtonConnect : function (evt) {
                 evt.stopPropagation();
-                IO.requestAsync(CONFIG.actions.CONNET_PHONE);
+                IO.requestAsync({
+                    url : CONFIG.actions.CONNET_PHONE,
+                    data : {
+                        from : SnapPea.CurrentModule
+                    }
+                });
             },
             clickButtonPushToPhone : function (evt) {
                 evt.stopPropagation();
