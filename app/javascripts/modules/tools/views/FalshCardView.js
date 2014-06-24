@@ -28,16 +28,20 @@
         console.log('FalshCardView - File loaded');
 
         var progressHandler;
-
-        var confirmWindow = new AlertWindow({
-            buttonSet : ButtonSetMixin.BUTTON_SET.YES_CANCEL,
-            draggable : true,
-            width : 360,
-            height : 180,
-            title : i18n.tools.FALSH_TITLE
-        });
+        var confirmWindow;
 
         var confirm = function (error, yesCallback, cancelCallback, context) {
+
+            if (_.isUndefined(confirmWindow)) {
+                confirmWindow = new AlertWindow({
+                    buttonSet : ButtonSetMixin.BUTTON_SET.YES_CANCEL,
+                    draggable : true,
+                    width : 360,
+                    height : 180,
+                    title : i18n.tools.FALSH_TITLE
+                });
+            }
+
             confirmWindow.$bodyContent = $(doT.template(TemplateFactory.get('tools', 'tools-falsh-confirm'))({
                 'error' : error
             }));
@@ -206,7 +210,7 @@
                 this.startFalsh();
 
                 log({
-                    'event' : 'ui.click.shauji'
+                    'event' : 'ui.click.shuaji'
                 });
             },
             clickCancelButton : function () {
@@ -215,7 +219,7 @@
                 this.changeStatus(false);
 
                 log({
-                    'event' : 'ui.click.shauji_cancel'
+                    'event' : 'ui.click.shuaji_cancel'
                 });
 
             },
@@ -225,13 +229,7 @@
                 this.$desc.toggle(!showProgress);
                 this.$actionButton.toggle(!showProgress);
                 this.$cancelButton.toggle(showProgress).prop('disabled', !showProgress);
-
-
-                if (showProgress) {
-                    this.$title.html(i18n.tools.FALSHING_DEVICE);
-                } else {
-                    this.$title.html(i18n.tools.FALSH_TITLE);
-                }
+                this.$title.html(showProgress ? i18n.tools.FALSHING_DEVICE : i18n.tools.FALSH_TITLE);
             },
             setProgress : function (num) {
                 this.$progressBar.attr('value', num);
