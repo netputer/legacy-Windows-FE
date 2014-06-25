@@ -118,7 +118,7 @@
                     name : model.get('title'),
                     icon : model.get('iconPath'),
                     should_delete : model.get('should_delete'),
-                    source : 'local_import'
+                    source : model.get('source') || 'local_import'
                 },
                 success : function (resp) {
                     if (resp.state_code === 200) {
