@@ -183,7 +183,7 @@
 
                 return deferred.promise();
             },
-            uninstallAsync: function () {
+            uninstallAsync: function(source) {
                 var deferred = $.Deferred();
                 var baseInfo = this.get('base_info');
                 this.set('running', true);
@@ -191,7 +191,8 @@
                 IO.requestAsync({
                     url : CONFIG.actions.APP_UNINSTALL,
                     data : {
-                        package_name : baseInfo.package_name
+                        package_name : baseInfo.package_name,
+                        consumption_source : source || ''
                     },
                     success : function (resp) {
                         if (resp.state_code === 200) {

@@ -205,6 +205,16 @@
             order : 80,
             root : true,
             tab : 'optimize'
+        }, {
+            count : -1,
+            hide : true,
+            icon : 'tools',
+            id : 21,
+            label : i18n.misc.NAV_TOOLS,
+            module : 'tools',
+            order : 200,
+            root : true,
+            tab : 'all'
         }];
 
         var MenuModel = Backbone.Model.extend({

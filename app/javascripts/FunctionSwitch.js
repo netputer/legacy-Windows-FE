@@ -285,6 +285,11 @@
                     return !ProjectConfig.get('DISABLE_WELCOME_FEED');
                 }
             },
+            ENABLE_TOOLS : {
+                get : function () {
+                    return !ProjectConfig.get('DISABLE_TOOLS');
+                }
+            },
             IS_CHINESE_VERSION : {
                 get : function () {
                     return IS_CHINESE_VERSION;
