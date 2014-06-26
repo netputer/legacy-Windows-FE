@@ -167,7 +167,7 @@
             clickButtonUninstall : function () {
                 var originalApp = appsCollection.get(this.model.get('sourceApk').packageName);
 
-                originalApp.uninstallAsync().done(function (resp) {
+                originalApp.uninstallAsync('xibaibai').done(function (resp) {
                     if ((Device.get('isWifi') || Device.get('isInternet')) && !originalApp.isSystem) {
                         alert(i18n.app.ALERT_TIP_UNINSTALL_WIFI_CONFIRM);
                     }
