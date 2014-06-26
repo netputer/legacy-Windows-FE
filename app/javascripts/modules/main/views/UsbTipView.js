@@ -6,6 +6,7 @@
         'jquery',
         'doT',
         'Log',
+        'IOBackendDevice',
         'Device',
         'Internationalization',
         'ui/TemplateFactory'
@@ -15,6 +16,7 @@
         $,
         doT,
         log,
+        IO,
         Device,
         i18n,
         TemplateFactory
