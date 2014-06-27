@@ -31,7 +31,7 @@
             initialize : function () {
 
                 if (this.options.title !== null) {
-                    this.options.title = decodeURI(this.options.title);
+                    this.options.title = decodeURIComponent(this.options.title);
                     template = doT.template(TemplateFactory.get('misc', 'usb-app-tip'));
                 } else if (this.options.usbError === null || this.options.usbError === true) {
                     template = doT.template(TemplateFactory.get('misc', 'usb-tip'));
@@ -64,7 +64,7 @@
                 }
 
                 this.$el.html(template({
-                    title : titleStr,
+                    title : title,
                     name : this.options.title
                 }));
                 return this;
