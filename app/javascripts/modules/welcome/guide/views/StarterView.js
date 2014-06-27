@@ -96,52 +96,30 @@
 
                 return deferred.promise();
             },
-            checkAppsAsync : function () {
-                var deferred = $.Deferred();
-
-                var appsCollection = AppsCollection.getInstance();
-                var refreshHandler = function () {
-                    if (!appsCollection.syncing && !appsCollection.loading && Device.get('isConnected') && appsCollection.length > 0) {
-                        this.stopListening(appsCollection, 'refresh', refreshHandler);
-                        this.stopListening(Device, 'change:isConnected', refreshHandler);
-                        deferred.resolve();
-                    }
-                };
-
-                if (!appsCollection.syncing && !appsCollection.loading && Device.get('isConnected') && appsCollection.length > 0) {
-                    setTimeout(deferred.resolve);
-                } else {
-                    this.listenTo(appsCollection, 'refresh', refreshHandler);
-                    this.listenTo(Device, 'change:isConnected', refreshHandler);
-                }
-
-                return deferred.promise();
-            },
             checkAsync : function () {
                 var deferred = $.Deferred();
 
                 if (Settings.get('user_guide_shown_starter' + this.options.type)) {
                     setTimeout(deferred.reject);
                 } else {
-                    $.when(this.loadAppsAsync(), this.checkAppsAsync()).done(function () {
-                        var appsCollection = AppsCollection.getInstance();
-
-                        var i;
+                    this.loadAppsAsync().done(function () {
                         var apps = this.queryResults[this.options.type].apps;
                         var length = apps.length;
-                        var app;
-                        for (i = 0; i < length; i++) {
-                            app = apps[i];
-                            if (appsCollection.get(app.apks[0].packageName) === undefined) {
-                                this.apps.push(app);
-                            }
-                            if (this.apps.length === 14) {
-                                break;
-                            }
+                        if (length === 0) {
+                            deferred.reject();
                         }
 
-                        if (this.apps.length === 0) {
-                            deferred.reject();
+                        var appLength = this.apps.length;
+                        var delta = 0;
+                        var spliceArr = [];
+                        if (appLength < 14) {
+                            delta = 14 - appLength;
+                            if (length > delta) {
+                                spliceArr = apps.splice(0, delta);
+                            } else {
+                                spliceArr = apps;
+                            }
+                            this.apps = this.apps.concat(spliceArr);
                         }
 
                         log({

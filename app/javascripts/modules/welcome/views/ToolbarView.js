@@ -166,6 +166,20 @@
                         }
                     }
                 });
+
+                this.listenTo(Device, 'change:isConnected', function (Device) {
+                    if (this.$el.hasClass('fixed')) {
+                        this.toggleButton(true);
+                    }
+                });
+            },
+            toggleButton : function (showConnectButton) {
+
+                var state = Device.get('connectionState');
+                showConnectButton = showConnectButton  && !Device.get('isConnected');
+
+                this.$('.w-ui-buttongroup, .button-backup, .button-restore, .button-open-sd, .button-set-wallpaper').toggle(!showConnectButton);
+                this.$('.button-connect-phone').toggle(showConnectButton);
             },
             setButtonState : function () {
                 this.$('.button-open-sd, .button-backup, .button-restore, .button-set-wallpaper')
@@ -462,12 +476,21 @@
                     'event' : 'ui.click.welcome_button_top'
                 });
             },
+            clickButtonConnectPhone : function () {
+                IO.requestAsync({
+                    url : CONFIG.actions.CONNET_PHONE,
+                    data : {
+                        from : 'welcome_toolbar'
+                    }
+                });
+            },
             events : {
                 'click .button-screen-shot' : 'clickButtonScreenShot',
                 'click .button-open-sd' : 'clickButtonOpenSD',
                 'click .button-backup' : 'clickButtonBackup',
                 'click .button-restore' : 'clickButtonRestore',
                 'click .button-set-wallpaper' : 'clickButtonSetWallpaper',
+                'click .button-connect-phone' : 'clickButtonConnectPhone',
                 'click .button-top' : 'clickButtonTop'
             }
         });
