@@ -187,7 +187,7 @@
         <div class='icon'></div>
     </div>
     <div class='container vbox'>
-        <div class='title'>{{= it.title}}</div>
+        <div class='title'>{{= it.title }}</div>
         <div class='tips'>
             <div class='tip'>{{= i18n.misc.USB_TIP_1 }}</div>
             <div class='tip'>{{= i18n.misc.USB_TIP_2 }}</div>

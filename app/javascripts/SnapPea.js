@@ -161,7 +161,7 @@
             PerformanceTracker.launch();
         }
 
-        var encodeURI = window.encodeURI;
+        var encodeURI = window.encodeURIComponent;
         IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.TASK_ADD
         }, function (data) {
