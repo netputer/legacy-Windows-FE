@@ -207,6 +207,12 @@
                     isRoot : data.is_root,
                     deviceName : data.device_name
                 });
+
+                if (this.get('isConnected') || this.get('isFastADB')) {
+                    this.set('connectionState', CONFIG.enums.CONNECTION_STATE_CONNECTED, {
+                        silent : true
+                    });
+                }
             },
             getSDCapacityAsync : function () {
                 var deferred = $.Deferred();

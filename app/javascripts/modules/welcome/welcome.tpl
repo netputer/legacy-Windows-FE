@@ -388,6 +388,9 @@
         <span class="icomoon icomoon-wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
     </button>
     {{?}}
+    <button class="w-icon-btn button-connect-phone transparent min">
+        <span class="icomoon icomoon-connect-phone"></span>{{= i18n.misc.USE_USB_TITLE }}
+    </button>
     <div class='spliter'></div>
     <button class="button-top transparent min">{{= i18n.welcome.TOP }}</button>
 </script>

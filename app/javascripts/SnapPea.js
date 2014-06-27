@@ -160,5 +160,17 @@
         if (FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
             PerformanceTracker.launch();
         }
+
+        var encodeURI = window.encodeURI;
+        IO.Backend.Device.onmessage({
+            'data.channel' : CONFIG.events.TASK_ADD
+        }, function (data) {
+            IO.requestAsync({
+                url : CONFIG.actions.CONNET_PHONE,
+                data : {
+                    title : encodeURI(data.status[0].title)
+                }
+            });
+        });
     });
 }(this));

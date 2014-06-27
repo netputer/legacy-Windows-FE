@@ -28,23 +28,26 @@
             className : 'w-misc-usb-tips',
             initialize : function () {
 
-                if (this.options.usbError === null || this.options.usbError === true) {
+                if (this.options.title !== null) {
+                    this.options.title = decodeURI(this.options.title);
+                    template = doT.template(TemplateFactory.get('misc', 'usb-app-tip'));
+                } else if (this.options.usbError === null || this.options.usbError === true) {
                     template = doT.template(TemplateFactory.get('misc', 'usb-tip'));
                 } else {
                     this.$el.addClass('error');
                     template = doT.template(TemplateFactory.get('misc', 'usb-error-tip'));
                 }
-
             },
             render : function () {
 
-                var titleStr = i18n.misc.USE_USB_TITLE;
+                var title = i18n.misc.USE_USB_TITLE;
                 if (this.options.from && this.options.from !== 'welcome') {
-                    titleStr = i18n.misc['USB_TITLE_' + this.options.from.toUpperCase()];
+                    title = i18n.misc['USB_TITLE_' + this.options.from.toUpperCase()];
                 }
 
                 this.$el.html(template({
-                    title : titleStr
+                    title : titleStr,
+                    name : this.options.title
                 }));
                 return this;
             },
