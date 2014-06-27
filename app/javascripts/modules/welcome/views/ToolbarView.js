@@ -176,7 +176,7 @@
             toggleButton : function (showConnectButton) {
 
                 var state = Device.get('connectionState');
-                showConnectButton = showConnectButton  && !Device.get('isConnected');
+                showConnectButton = showConnectButton && !Device.get('isConnected');
 
                 this.$('.w-ui-buttongroup, .button-backup, .button-restore, .button-open-sd, .button-set-wallpaper').toggle(!showConnectButton);
                 this.$('.button-connect-phone').toggle(showConnectButton);
