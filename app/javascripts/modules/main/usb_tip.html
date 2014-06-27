@@ -23,7 +23,8 @@
                 ) {
                     var usbTipView = UsbTipView.getInstance({
                         'usbError' :  QueryString.get('usbError'),
-                        'from' : QueryString.get('from')
+                        'from' : QueryString.get('from'),
+                        'title' : QueryString.get('title')
                     });
                     $('body').append(usbTipView.render().$el);
                 });

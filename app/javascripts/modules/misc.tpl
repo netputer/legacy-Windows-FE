@@ -166,7 +166,9 @@
 <script type="text/x-ui-template" id='pim-mask'>
     <div class='w-main-pim-mask-ctn'>
         <div class='icon'></div>
-        {{? !Device.get('isConnected')}}
+        {{? Device.get('connectionState') !== CONFIG.enums.CONNECTION_STATE_CONNECTED && Device.get('connectionState') !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT }}
+        <h1 class='title'>{{= i18n.misc.CONNECTING_UR_PHONE }}</h1>
+        {{?? !Device.get('isConnected')}}
         <h1 class='title'>{{= i18n.welcome.CONNECT_UR_PHONE }}</h1>
         <span class='desc'>{{= i18n.welcome.CONNECTION_TIP }}</span>
         {{??}}
@@ -218,5 +220,26 @@
         <span>{{= i18n.misc.FEEDBACK }}</span>
     </div>
 </script>
+
+<script type='text/x-ui-template' id='usb-app-tip'>
+    <div class='top'>
+        <div class='logo'></div>
+        <div class='button-close'></div>
+        <img src='{{= CONFIG.enums.IMAGE_PATH + "/connecting.gif" }}' class='connecting'/>
+        <div class='icon'></div>
+    </div>
+    <div class='container vbox'>
+        <div class='title'>{{= it.title }}</div>
+        <div class='tips'>
+            <div class='tip'>{{= StringUtil.format(i18n.misc.USB_TIP_APP_1, it.name) }}</div>
+            <div class='tip'>{{= i18n.misc.USB_TIP_APP_2 }}</div>
+        </div>
+        <button class='button-action use-usb max primary'>{{= i18n.misc.ALREADY_USE_USB }}</button>
+    </div>
+    <div class='feedback'>
+        <span class="link button-help">{{= i18n.misc.HELP }}</span>
+    </div>
+</script>
+
 
 </templates>

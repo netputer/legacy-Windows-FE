@@ -302,6 +302,7 @@
             }, 10 * 1000),
             showMessage : function (tasksCollection) {
                 this.$('.item').hide();
+                var count = 0;
 
                 if (tasksCollection.activeCount > 0) {
                     this.$('.item.active .desc').html(StringUtil.format(i18n.taskManager.RUNNING_COUNT, tasksCollection.activeCount));
@@ -315,8 +316,9 @@
                     return;
                 }
 
-                if (tasksCollection.getWaitingPushTasks().length) {
-                    this.$('.item.push .desc').html(StringUtil.format(i18n.taskManager.WATING_PUSH_COUNT, tasksCollection.getWaitingPushTasks().length));
+                count = tasksCollection.getWaitingPushTasks().length;
+                if (count) {
+                    this.$('.item.push .desc').html(StringUtil.format(i18n.taskManager.WATING_PUSH_COUNT, count));
                     this.$('.item.push').show();
                     return;
                 }
