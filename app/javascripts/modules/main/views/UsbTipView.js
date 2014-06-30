@@ -8,7 +8,6 @@
         'Log',
         'IOBackendDevice',
         'Device',
-        'IOBackendDevice',
         'Internationalization',
         'ui/TemplateFactory'
     ], function (
@@ -19,7 +18,6 @@
         log,
         IO,
         Device,
-        IO,
         i18n,
         TemplateFactory
     ) {
