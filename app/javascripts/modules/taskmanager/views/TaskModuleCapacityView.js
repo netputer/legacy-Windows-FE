@@ -142,6 +142,7 @@
                 });
             },
             clickButtonOpenSD : function () {
+                window.externalCall('', 'OpenPIMWithoutConnection', 'open_sd_card');
                 this.openSD();
 
                 log({

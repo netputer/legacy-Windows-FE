@@ -66,7 +66,8 @@
                 externalSDCapacity : 0,
                 externalSDFreeCapacity : 0,
                 externalSDPath : '',
-                dualSIM : []
+                dualSIM : [],
+                connectionState : CONFIG.enums.CONNECTION_STATE_PLUG_OUT
             },
             initialize : function () {
                 var listenBack = false;
@@ -79,16 +80,12 @@
                     this.changeHandler(data);
                 }, this);
 
-                IO.requestAsync(CONFIG.actions.DEVICE_GET_DEVICE_STATE).done(function (resp) {
-                    if (resp.state_code === 200) {
-                        console.log('Device - Get device state success.');
-                        if (!listenBack) {
-                            this.changeHandler(resp.body);
-                        }
-                    } else {
-                        console.error('Device - Get device state failed. Error info: ' + resp.state_line);
-                    }
-                }.bind(this));
+                IO.Backend.Device.onmessage({
+                    'data.channel' : CONFIG.events.DEVICE_CONNECTION_STATE_CHANGE,
+                }, function (data) {
+                    console.log('Device - Device connection state change');
+                    this.set({connectionState : data.value});
+                }, this);
 
                 IO.requestAsync(CONFIG.actions.DEVICE_IS_AUTOBACKUP).done(function (resp) {
                     if (resp.state_code === 200) {
@@ -117,6 +114,11 @@
                 }.bind(this));
 
                 var getShellInfoHandler = function () {
+
+                    if (!this.get('isConnected')) {
+                        return;
+                    }
+
                     this.getShellInfoAsync().done(function () {
                         if (Environment.get('deviceId') !== 'Default' && this.get('shell').path) {
                             this.off('change:isConnected', getShellInfoHandler, this);
@@ -147,6 +149,11 @@
                 this.on('change:isConnected change:isUSB change:isWifi change:isFastADB', setCanScreenshotAsync, this);
 
                 var setServiceCenterAsync = function () {
+
+                    if (!this.get('isConnected')) {
+                        return;
+                    }
+
                     this.getDualSimInfoAsync().done(function (resp) {
                         if (resp.body.sim.length > 0) {
                             this.set({
@@ -200,6 +207,12 @@
                     isRoot : data.is_root,
                     deviceName : data.device_name
                 });
+
+                if (this.get('isConnected') || this.get('isFastADB')) {
+                    this.set('connectionState', CONFIG.enums.CONNECTION_STATE_CONNECTED, {
+                        silent : true
+                    });
+                }
             },
             getSDCapacityAsync : function () {
                 var deferred = $.Deferred();

@@ -162,6 +162,8 @@
                     .toggleClass('light', progress2 >= 0.65)
                     .toggleClass('fixed', progress2 === 1);
 
+                toolbarView.toggleButton(progress2 === 1);
+
                 deviceView.$el.css({
                     'opacity' : (Device.get('canScreenshot') ? 1 : 0.7) - (0.2 * progress2),
                     '-webkit-transform' : 'translate3d(' + -Math.round(50 * progress2) + 'px, ' + -Math.round(180 * progress2)  + 'px, 0)'
@@ -174,7 +176,7 @@
             render : function () {
                 this.$el.html(this.template({}));
 
-                deviceView = DeviceView.getInstance();
+                deviceView = DeviceView.getInstance().render();
                 infoView = InfoView.getInstance();
                 toolbarView = ToolbarView.getInstance();
                 capacityBarView = CapacityBarView.getInstance();
@@ -183,7 +185,8 @@
                 this.listenTo(toolbarView, 'top', this.scrollTopAnimation);
 
                 setTimeout(function () {
-                    var $top = this.$('.top').append(deviceView.render().$el)
+
+                    var $top = this.$('.top').append(deviceView.$el)
                                 .append(infoView.render().$el);
                     this.loading = FunctionSwitch.ENABLE_WELCOME_FEED;
 
@@ -211,6 +214,14 @@
                                 if (feedsCollection.finish && feedsCollection.length > 2) {
                                     var noticeText = noticeArray[_.random(0, noticeArray.length - 1)] + ' <a href="javascript:;" class="back-to-top">' + i18n.welcome.TOP + '</a>';
                                     this.$('.w-ui-loading-horizental-ctn').show().html(noticeText);
+                                }
+                            });
+
+                            this.listenToOnce(feedsCollection, 'refresh', function (){
+                                if (!FunctionSwitch.IS_NEW_USER) {
+                                    setTimeout(function () {
+                                        this.scrollToBillboard();
+                                    }.bind(this), 600);
                                 }
                             });
                         }
@@ -242,15 +253,14 @@
                 return this;
             },
             scrollToGuide : function () {
-                if (Settings.get('user_guide_first_shown')) {
-                    return;
-                }
-
                 this.$el.animate({
                     scrollTop : guideView.$el.offset().top - 65
                 }, 1000);
-
-                Settings.set('user_guide_first_shown', true, true);
+            },
+            scrollToBillboard : function () {
+                this.$el.animate({
+                    scrollTop : feedListView.$el.offset().top - 65
+                }, 1000);
             },
             switchToGuide : function () {
                 guideView.$el.show().css('height', '360px').one('webkitTransitionEnd', this.scrollToGuide.bind(this));
@@ -259,6 +269,7 @@
                 feedListView.initLayout();
             },
             switchToBillboard : function () {
+
                 if (guideView.$el.css('height') === '0px') {
                     guideView.remove();
                 } else {
