@@ -166,7 +166,7 @@
 <script type="text/x-ui-template" id='pim-mask'>
     <div class='w-main-pim-mask-ctn'>
         <div class='icon'></div>
-        {{? Device.get('isUSBConnecting') }}
+        {{? Device.get('connectionState') !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && Device.get('connectionState') !== CONFIG.enums.CONNECTION_STATE_CONNECTED }}
         <h1 class='title'>{{= i18n.misc.CONNECTING_UR_PHONE }}</h1>
         {{?? !Device.get('isConnected')}}
         <h1 class='title'>{{= i18n.welcome.CONNECT_UR_PHONE }}</h1>
@@ -189,8 +189,13 @@
     <div class='container vbox'>
         <div class='title'>{{= it.title }}</div>
         <div class='tips'>
+            {{? !it.showDefault}}
             <div class='tip'>{{= i18n.misc.USB_TIP_1 }}</div>
             <div class='tip'>{{= i18n.misc.USB_TIP_2 }}</div>
+            {{??}}
+            <div class='tip'>{{= i18n.misc.USB_DEFAULT_TIP_1 }}</div>
+            <div class='tip'>{{= i18n.misc.USB_DEFAULT_TIP_2 }}</div>
+            {{?}}
         </div>
         <button class='button-action use-usb max primary'>{{= i18n.misc.ALREADY_USE_USB }}</button>
     </div>

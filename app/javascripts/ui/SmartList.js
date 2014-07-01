@@ -69,7 +69,7 @@
                 var minOffsetY = 0;
                 var offsetY = 0;
                 var rendered = false;
-                var rowNumber = 0;
+                var rowCount = 0;
                 var scrollHeight = 0;
                 var selectable = true;
                 var timer;
@@ -210,12 +210,12 @@
                             return rendered;
                         }
                     },
-                    rowNumber : {
+                    rowCount : {
                         get : function () {
-                            return rowNumber;
+                            return rowCount;
                         },
                         set : function (value) {
-                            rowNumber = value;
+                            rowCount = value;
                         }
                     },
                     scrollHeight : {
@@ -283,24 +283,24 @@
                 }
 
                 this.listenTo(WindowState, 'resize', function () {
-                    var oldRowNumber;
+                    var oldRowCount;
                     var deltaY;
                     if (this.isVisible) {
-                        oldRowNumber = this.calculateSettings();
-                        if (this.needBuild(oldRowNumber)) {
-                            deltaY = this.createItemView(this.rowNumber - oldRowNumber);
+                        oldRowCount = this.calculateSettings();
+                        if (this.needBuild(oldRowCount)) {
+                            deltaY = this.createItemView(this.rowCount - oldRowCount);
                             this.calculateOffSetY(deltaY);
                             this.build();
                         }
                     }
                 });
             },
-            needBuild : function (oldRowNumber) {
-                var rowNumber = this.rowNumber;
+            needBuild : function (oldRowCount) {
+                var rowCount = this.rowCount;
                 var currentModels = this.currentModels;
-                if (oldRowNumber === rowNumber ||
-                    (oldRowNumber >= currentModels.length && rowNumber > oldRowNumber) ||
-                    (rowNumber < oldRowNumber && rowNumber >= currentModels.length)) {
+                if (oldRowCount === rowCount ||
+                    (oldRowCount >= currentModels.length && rowCount > oldRowCount) ||
+                    (rowCount < oldRowCount && rowCount >= currentModels.length)) {
 
                     return false;
                 }
@@ -331,9 +331,9 @@
                 this.containerHeight = this.$container.height();
                 this.minOffsetY = this.containerHeight - (this.currentModels.length * this.itemHeight);
 
-                var oldRowNumber = this.rowNumber;
-                this.rowNumber = Math.ceil(this.containerHeight / this.itemHeight);
-                return oldRowNumber;
+                var oldRowCount = this.rowCount;
+                this.rowCount = Math.ceil(this.containerHeight / this.itemHeight);
+                return oldRowCount;
             },
             clearList : function () {
                 _.each(this.activeItems, function (itemView){
@@ -369,7 +369,7 @@
 
                 var currentModels = this.currentModels;
                 var start = Math.floor(-this.offsetY / this.itemHeight);
-                var end = start + this.rowNumber + 1;
+                var end = start + this.rowCount + 1;
                 end = Math.min(end, currentModels.length);
 
                 var activeKeys = _.sortBy(_.keys(this.activeItems), function (num) {
@@ -436,9 +436,9 @@
                 }
                 window.cancelAnimationFrame(this.timer);
 
-                this.timer = window.requestAnimationFrame(function() {
+                var build = function() {
                     var start = Math.floor(-this.offsetY / this.itemHeight);
-                    var end = start + this.rowNumber + 1;
+                    var end = start + this.rowCount + 1;
                     end = Math.min(end, currentModels.length);
 
                     var before = _.keys(this.activeItems);
@@ -498,7 +498,13 @@
                     this.trackerLog();
                     this.trigger(EventsMapping.BUILD, keys);
 
-                }.bind(this));
+                }.bind(this);
+
+                if (flashAll) {
+                    build();
+                } else {
+                    this.timer = window.requestAnimationFrame(build);
+                }
             },
             removeScrollingClass : _.debounce(function (){
                 this.$el.removeClass('scrolling');
@@ -664,9 +670,23 @@
                 SmartList.__super__.remove.call(this);
             },
             scrollTo : function (model) {
-                var index = this.currentModels.indexOf(model);
-                this.offsetY = -index * this.itemHeight;
+                var currentModels = this.currentModels;
+                var index = currentModels.indexOf(model);
+
+                if (currentModels.length > this.rowCount) {
+
+                    if (currentModels.length - index <= this.rowCount) {
+                        this.offsetY = -(currentModels.length - this.rowCount + 1) * this.itemHeight;
+                    } else {
+                        this.offsetY = -index * this.itemHeight;
+                    }
+
+                } else {
+                    this.offsetY = 0;
+                }
+
                 this.build();
+                this.moveScroller(-this.offsetY);
             },
             enableScrollHandler : function (evt) {
                 evt.stopPropagation();
