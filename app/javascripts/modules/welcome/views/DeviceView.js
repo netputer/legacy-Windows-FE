@@ -228,7 +228,8 @@
                     config = shell.screenshot;
                 }
 
-                var height = this.offlineTip.height() || 204;
+                var offlineTipDefaultHeight = 204;
+                var height = this.offlineTip.height() || offlineTipDefaultHeight;
                 var top = config.top + config.height - height;
                 if (rotation === 1) {
                     top = top - config.top - 2 * config.left;
