@@ -36,6 +36,7 @@
         var Device = Backbone.Model.extend({
             defaults : {
                 isConnected : false,
+                isUSBConnecting : false,
                 isMounted : false,
                 hasSDCard : false,
                 hasEmulatedSD : false,
@@ -205,18 +206,9 @@
                     SDKVersion : data.sdk_version,
                     productId : data.product_id,
                     isRoot : data.is_root,
-                    deviceName : data.device_name
+                    deviceName : data.device_name,
+                    isUSBConnecting : data.type === CONFIG.enums.USB_CONNECTING
                 });
-
-                if (this.get('isConnected') || this.get('isFastADB')) {
-                    this.set('connectionState', CONFIG.enums.CONNECTION_STATE_CONNECTED, {
-                        silent : true
-                    });
-                } else if (!this.get('isConnected') && !this.get('isFastADB')) {
-                    this.set('connectionState', CONFIG.enums.CONNECTION_STATE_PLUG_OUT, {
-                        silent : true
-                    });
-                }
             },
             getSDCapacityAsync : function () {
                 var deferred = $.Deferred();
