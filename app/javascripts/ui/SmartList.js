@@ -436,7 +436,7 @@
                 }
                 window.cancelAnimationFrame(this.timer);
 
-                this.timer = window.requestAnimationFrame(function() {
+                var build = function() {
                     var start = Math.floor(-this.offsetY / this.itemHeight);
                     var end = start + this.rowNumber + 1;
                     end = Math.min(end, currentModels.length);
@@ -498,7 +498,13 @@
                     this.trackerLog();
                     this.trigger(EventsMapping.BUILD, keys);
 
-                }.bind(this));
+                }.bind(this);
+
+                if (flashAll) {
+                    build();
+                } else {
+                    this.timer = window.requestAnimationFrame(build);
+                }
             },
             removeScrollingClass : _.debounce(function (){
                 this.$el.removeClass('scrolling');
@@ -664,9 +670,23 @@
                 SmartList.__super__.remove.call(this);
             },
             scrollTo : function (model) {
-                var index = this.currentModels.indexOf(model);
-                this.offsetY = -index * this.itemHeight;
+                var currentModels = this.currentModels;
+                var index = currentModels.indexOf(model);
+
+                if (currentModels.length > this.rowNumber) {
+
+                    if (currentModels.length - index <= this.rowNumber) {
+                        this.offsetY = -(currentModels.length - this.rowNumber + 1) * this.itemHeight;
+                    } else {
+                        this.offsetY = -index * this.itemHeight;
+                    }
+
+                } else {
+                    this.offsetY = 0;
+                }
+
                 this.build();
+                this.moveScroller(-this.offsetY);
             },
             enableScrollHandler : function (evt) {
                 evt.stopPropagation();
