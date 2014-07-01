@@ -189,8 +189,13 @@
     <div class='container vbox'>
         <div class='title'>{{= it.title }}</div>
         <div class='tips'>
+            {{? !it.showDefault}}
             <div class='tip'>{{= i18n.misc.USB_TIP_1 }}</div>
             <div class='tip'>{{= i18n.misc.USB_TIP_2 }}</div>
+            {{??}}
+            <div class='tip'>{{= i18n.misc.USB_DEFAULT_TIP_1 }}</div>
+            <div class='tip'>{{= i18n.misc.USB_DEFAULT_TIP_2 }}</div>
+            {{?}}
         </div>
         <button class='button-action use-usb max primary'>{{= i18n.misc.ALREADY_USE_USB }}</button>
     </div>

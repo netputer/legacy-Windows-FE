@@ -477,12 +477,7 @@
                 });
             },
             clickButtonConnectPhone : function () {
-                IO.requestAsync({
-                    url : CONFIG.actions.CONNET_PHONE,
-                    data : {
-                        from : 'welcome_toolbar'
-                    }
-                });
+                IO.requestAsync(CONFIG.actions.CONNET_PHONE);
             },
             events : {
                 'click .button-screen-shot' : 'clickButtonScreenShot',

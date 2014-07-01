@@ -57,13 +57,16 @@
             render : function () {
 
                 var title = i18n.misc.USE_USB_TITLE;
-                if (this.options.from && this.options.from !== 'welcome') {
+                var showDefault = true;
+                if (this.options.from) {
                     title = i18n.misc['USB_TITLE_' + this.options.from.toUpperCase()];
+                    showDefault = false;
                 }
 
                 this.$el.html(template({
                     title : title,
-                    name : this.options.title
+                    name : this.options.title,
+                    showDefault : showDefault
                 }));
                 return this;
             },
