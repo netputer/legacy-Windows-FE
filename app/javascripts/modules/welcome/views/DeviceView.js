@@ -228,7 +228,7 @@
                     config = shell.screenshot;
                 }
 
-                var height = this.offlineTip.height();
+                var height = this.offlineTip.height() || 204;
                 var top = config.top + config.height - height;
                 if (rotation === 1) {
                     top = top - config.top - 2 * config.left;
@@ -339,12 +339,7 @@
                 }
             },
             clickButtonAction : function () {
-                IO.requestAsync({
-                    url : CONFIG.actions.CONNET_PHONE,
-                    data : {
-                        from : SnapPea.CurrentModule
-                    }
-                });
+                IO.requestAsync(CONFIG.actions.CONNET_PHONE);
             },
             events : {
                 'mouseover .screen' : 'mouseoverScreen',
