@@ -73,7 +73,8 @@
         'IframeMessageListener',
         'PerformanceTracker',
         'main/views/BindingDeviceWindowView',
-        'new_backuprestore/views/BackupRestoreModuleView'
+        'new_backuprestore/views/BackupRestoreModuleView',
+        'WindowController'
     ], function (
         $,
         Backbone,
@@ -108,7 +109,8 @@
         IframeMessageListener,
         PerformanceTracker,
         BindingDeviceWindowView,
-        BackupRestoreModuleView
+        BackupRestoreModuleView,
+        WindowController
     ) {
 
         var launchedTimes = Settings.get(CONFIG.enums.LAUNCH_TIME_KEY);
@@ -167,12 +169,19 @@
         IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.TASK_ADD
         }, function (data) {
-            IO.requestAsync({
-                url : CONFIG.actions.CONNET_PHONE,
-                data : {
-                    title : window.encodeURIComponent(data.status[0].title)
-                }
-            });
+
+            var connectionState = Device.get('connectionState');
+            if (connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED && connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
+                WindowController.ShowWidzard();
+            } else {
+                IO.requestAsync({
+                    url : CONFIG.actions.CONNET_PHONE,
+                    data : {
+                        title : window.encodeURIComponent(data.status[0].title)
+                    }
+                });
+            }
+
         });
     });
 }(this));

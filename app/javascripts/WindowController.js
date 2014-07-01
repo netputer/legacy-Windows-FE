@@ -57,6 +57,13 @@
             return deferred.promise();
         };
 
+        WindowController.ShowWidzard = function (module) {
+            if (_.isUndefined(module)) {
+                module = '';
+            }
+            window.externalCall('', 'ShowWizard', module);
+        };
+
         return WindowController;
     });
 }(this));
