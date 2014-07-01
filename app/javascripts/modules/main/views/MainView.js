@@ -393,7 +393,7 @@
                     pimMaskView.show();
 
                     if (connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED && connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
-                        WindowController.ShowWidzard(this.currentModule);
+                        WindowController.ShowWizard(this.currentModule);
                     }
 
                 } else {

@@ -173,7 +173,7 @@
 
             var connectionState = Device.get('connectionState');
             if (connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED && connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
-                WindowController.ShowWidzard();
+                WindowController.ShowWizard();
             } else if (!Device.get('isConnected') && !Settings.get('show-download-tip')) {
                 IO.requestAsync({
                     url : CONFIG.actions.CONNET_PHONE,

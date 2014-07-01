@@ -57,7 +57,7 @@
             return deferred.promise();
         };
 
-        WindowController.ShowWidzard = function (module) {
+        WindowController.ShowWizard = function (module) {
             if (_.isUndefined(module)) {
                 module = '';
             }
