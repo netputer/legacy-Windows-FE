@@ -498,6 +498,7 @@
                 WIFI_DEVICE : 3,
                 INTERNET_DEVICE : 4,
                 ADB_DEVICE : 6,
+                USB_CONNECTING : 7,
 
                 /* Web navigate types */
                 NAVIGATE_TYPE_MARKET : 'market',

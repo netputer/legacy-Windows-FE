@@ -392,7 +392,7 @@
                 if (!this.currentModule.match(/task|browser|gallery|welcome|doraemon/) && (!isConnected || isWifi)) {
                     pimMaskView.show();
 
-                    if (connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED && connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
+                    if (Device.get('isUSBConnecting')) {
                         WindowController.ShowWizard(this.currentModule);
                     }
 

@@ -171,8 +171,7 @@
             'data.channel' : CONFIG.events.TASK_ADD
         }, function (data) {
 
-            var connectionState = Device.get('connectionState');
-            if (connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED && connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
+            if (Device.get('isUSBConnecting')) {
                 WindowController.ShowWizard();
             } else if (!Device.get('isConnected') && !Settings.get('show-download-tip')) {
                 IO.requestAsync({
