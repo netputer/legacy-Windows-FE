@@ -166,6 +166,7 @@
             PerformanceTracker.launch();
         }
 
+        Settings.remove('show-download-tip');
         IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.TASK_ADD
         }, function (data) {
@@ -173,13 +174,15 @@
             var connectionState = Device.get('connectionState');
             if (connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED && connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
                 WindowController.ShowWidzard();
-            } else {
+            } else if (!Device.get('isConnected') && !Settings.get('show-download-tip')) {
                 IO.requestAsync({
                     url : CONFIG.actions.CONNET_PHONE,
                     data : {
                         title : window.encodeURIComponent(data.status[0].title)
                     }
                 });
+
+                Settings.set('show-download-tip', true);
             }
 
         });
