@@ -212,6 +212,10 @@
                     this.set('connectionState', CONFIG.enums.CONNECTION_STATE_CONNECTED, {
                         silent : true
                     });
+                } else if (!this.get('isConnected') && !this.get('isFastADB')) {
+                    this.set('connectionState', CONFIG.enums.CONNECTION_STATE_PLUG_OUT, {
+                        silent : true
+                    });
                 }
             },
             getSDCapacityAsync : function () {
