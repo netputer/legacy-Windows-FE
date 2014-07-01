@@ -167,7 +167,7 @@
                     }
                 });
 
-                this.listenTo(Device, 'change:isConnected', function (Device) {
+                this.listenTo(Device, 'change:connectionState change:isConnected', function (Device) {
                     if (this.$el.hasClass('fixed')) {
                         this.toggleButton(true);
                     }
@@ -176,7 +176,7 @@
             toggleButton : function (showConnectButton) {
 
                 var state = Device.get('connectionState');
-                showConnectButton = showConnectButton && !Device.get('isConnected');
+                showConnectButton = showConnectButton && state === CONFIG.enums.CONNECTION_STATE_PLUG_OUT;
 
                 this.$('.w-ui-buttongroup, .button-backup, .button-restore, .button-open-sd, .button-set-wallpaper').toggle(!showConnectButton);
                 this.$('.button-connect-phone').toggle(showConnectButton);

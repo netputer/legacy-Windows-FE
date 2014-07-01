@@ -193,6 +193,17 @@
                 });
             },
             changeHandler : function (data) {
+
+                if (data.type === CONFIG.enums.ADB_DEVICE || (data.connection_state && data.type === CONFIG.enums.USB_DEVICE))  {
+                    this.set('connectionState', CONFIG.enums.CONNECTION_STATE_CONNECTED, {
+                        silent : true
+                    });
+                } else if (data.type !== CONFIG.enums.ADB_DEVICE && !data.connection_state && data.type !== CONFIG.enums.USB_CONNECTING) {
+                    this.set('connectionState', CONFIG.enums.CONNECTION_STATE_PLUG_OUT, {
+                        silent : true
+                    });
+                }
+
                 this.set({
                     isConnected : data.connection_state,
                     isMounted : data.mmount_state === 1 ? true : false,
@@ -207,16 +218,6 @@
                     isRoot : data.is_root,
                     deviceName : data.device_name
                 });
-
-                if (this.get('isFastADB') || this.get('isConnected')) {
-                    this.set(connectionState, CONFIG.enums.CONNECTION_STATE_CONNECTED, {
-                        slient : true
-                    });
-                } else if (!this.get('isFastADB') && !this.get('isConnected') && data.type !== CONFIG.enums.USB_CONNECTING) {
-                    this.set(connectionState, CONFIG.enums.CONNECTION_STATE_PLUG_OUT, {
-                        slient : true
-                    });
-                }
             },
             getSDCapacityAsync : function () {
                 var deferred = $.Deferred();
