@@ -175,7 +175,11 @@
         <h1 class='title'>{{= i18n.misc.CONNECT_UR_PHONE }}</h1>
         <span class='desc'>{{= i18n.misc.CONNECTION_TIP }}</span>
         {{?}}
-        <button class='button-action primary max'>{{= i18n.misc.CONNECTION_BUTTON }}</button>
+        {{? Device.get('connectionState') !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && Device.get('connectionState') !== CONFIG.enums.CONNECTION_STATE_CONNECTED }}
+            <button class='button-check primary max'>{{= i18n.misc.CHECK_CONNECTION_STATE }}</button>
+        {{??}}
+            <button class='button-action primary max'>{{= i18n.misc.CONNECTION_BUTTON }}</button>
+        {{?}}
     </div>
 </script>
 

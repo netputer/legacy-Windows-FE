@@ -8,7 +8,8 @@
         'IO',
         'Configuration',
         'Device',
-        'Log'
+        'Log',
+        'WindowController'
     ], function (
         _,
         Backbone,
@@ -17,7 +18,8 @@
         IO,
         CONFIG,
         Device,
-        log
+        log,
+        WindowController
     ) {
         console.log('PimMaskView - File loaded. ');
 
@@ -79,8 +81,12 @@
                     }
                 });
             },
+            clickButtonCheck : function () {
+                 WindowController.ShowErrorWizard();
+            },
             events : {
-                'click .button-action' : 'clickButtonAction'
+                'click .button-action' : 'clickButtonAction',
+                'click .button-check' : 'clickButtonCheck'
             }
         });
 

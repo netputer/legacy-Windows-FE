@@ -389,7 +389,7 @@
                 var isWifi = Device.get('isWifi');
                 var connectionState = Device.get('connectionState');
 
-                if (!this.currentModule.match(/task|browser|gallery|welcome|doraemon/) && (!isConnected || isWifi)) {
+                if (!_.contains(['task','browser','gallery','welcome','doraemon'], this.currentModule) && (!isConnected || isWifi)) {
                     pimMaskView.show();
 
                     if (connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED) {
