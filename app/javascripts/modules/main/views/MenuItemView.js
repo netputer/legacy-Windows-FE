@@ -111,9 +111,9 @@
                     }
                 });
 
-                this.listenTo(Device, 'change:isWifi', function (Device, isWifi) {
+                this.listenTo(Device, 'change:isConnected', function (Device, isConnected) {
                     var count = this.model.get('count');
-                    this.$('.count').toggle(!isWifi && count > 0);
+                    this.$('.count').toggle(isConnected && !Device.get('isWifi') && count > 0);
                 });
             },
             render : function () {
