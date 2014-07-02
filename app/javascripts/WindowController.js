@@ -57,11 +57,19 @@
             return deferred.promise();
         };
 
-        WindowController.ShowWizard = function (module) {
+        WindowController.ShowWizard = _.debounce(function (module) {
             if (_.isUndefined(module)) {
                 module = '';
             }
-            window.externalCall('', 'ShowWizard', module);
+
+            if (!_.contains(['welcome','browser','task'], SnapPea.CurrentModule)) {
+                window.externalCall('', 'ShowWizard', module);
+            }
+
+        }, 500);
+
+        WindowController.ShowErrorWizard =function () {
+            window.externalCall('', 'ShowErrorWizard');
         };
 
         return WindowController;
