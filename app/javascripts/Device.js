@@ -80,6 +80,17 @@
                     this.changeHandler(data);
                 }, this);
 
+                IO.requestAsync(CONFIG.actions.DEVICE_GET_DEVICE_STATE).done(function (resp) {
+                    if (resp.state_code === 200) {
+                        console.log('Device - Get device state success.');
+                        if (!listenBack) {
+                            this.changeHandler(resp.body);
+                        }
+                    } else {
+                        console.error('Device - Get device state failed. Error info: ' + resp.state_line);
+                    }
+                }.bind(this));
+
                 IO.Backend.Device.onmessage({
                     'data.channel' : CONFIG.events.DEVICE_CONNECTION_STATE_CHANGE,
                 }, function (data) {
