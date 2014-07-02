@@ -168,13 +168,17 @@
 
         Settings.remove('show-download-tip');
         IO.Backend.Device.onmessage({
-            'data.channel' : CONFIG.events.TASK_ADD
+            'data.channel' : CONFIG.events.TASK_STOP
         }, function (data) {
 
             var connectionState = Device.get('connectionState');
-
+            var message = data.status[0].message;
             if (connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED) {
-                WindowController.ShowWizard();
+
+                if (message === 'DEVICE_NOT_FOUND') {
+                    WindowController.ShowWizard('', true);
+                }
+
             } else if (!Device.get('isConnected') && !Settings.get('show-download-tip')) {
                 IO.requestAsync({
                     url : CONFIG.actions.CONNET_PHONE,

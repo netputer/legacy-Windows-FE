@@ -294,6 +294,10 @@
         }}
         <div>{{= i18n.taskManager.NEED_USB_CONNECTION }}</div>
         {{
+                            } else if (it.message === 'DEVICE_NOT_FOUND') {
+        }}
+        <div>{{= i18n.taskManager.DEVICE_NOT_FOUND }}</div>
+        {{
                             } else {
         }}
         <div class="text-warning">{{= i18n.taskManager[it.message] || i18n.taskManager.UNKNOWN_ERROR }}</div>
