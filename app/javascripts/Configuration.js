@@ -234,7 +234,6 @@
                 ACCOUNT_BIND : 'wdj://account/bind.json',
                 ACCOUNT_REGIST : 'wdj://account/register.json',
                 ACCOUNT_INFO : 'wdj://account/account_info.json',
-                ACCOUNT_SHARE : 'wdj://account/share.json',
                 ACCOUNT_RESET : 'wdj://account/reset.json',
 
                 // Backup
@@ -454,7 +453,6 @@
                 CUSTOM_IFRAME_ALERT : 'iframe.alert',
                 CUSTOM_IFRAME_CONFIRM : 'iframe.confirm',
                 CUSTOM_IFRAME_DISPOSABLE : 'iframe.disposable',
-                CUSTOM_IFRAME_PHOTO_SHARE : 'iframe.photo.share',
                 CUSTOM_IFRAME_PHOTO_DELETE : 'iframe.photo.delete',
                 CUSTOM_IFRAME_PHOTO_DELETED : 'iframe.photo.deleted',
                 CUSTOM_IFRAME_PHOTO_EXPORT : 'iframe.photo.export',
@@ -618,9 +616,6 @@
                 SCREEN_SHOT_DESTINATION_FILE : 0,
                 SCREEN_SHOT_DESTINATION_CLIPBOARD : 1,
 
-                /* Sina share pic size */
-                SINA_SHARE_PIC_LIMIT_SIZE : 5,
-
                 // Photo type
                 PHOTO_ALL_TYPE : 0,
                 PHOTO_PHONE_TYPE : 1,
@@ -634,11 +629,6 @@
                 URL_WELCOME_BILLBOARD : 'http://www.wandoujia.com/webstore/billboard',
                 URL_WELCOME_BILLBOARD_EN : 'https://s3.amazonaws.com/snappea_welcome/startpage.html',
                 URL_WANDOUJIA_APP_DETAIL_PAGE : 'http://apps.wandoujia.com/apps/{1}?{2}',
-
-                /* Facebook share api */
-                FACEBOOK_LOGOUT_URI : 'https://www.facebook.com/logout.php',
-                FACEBOOK_REDIRECT_URI : 'http://www.snappea.com/facebook/proxy.html',
-                FACEBOOK_OAUTH_API : 'https://graph.facebook.com/oauth/authorize?client_id=265004820250785&scope=publish_stream&display=popup&response_type=token&redirect_uri=',
 
                 GALLERY_URL : 'http://www.wandoujia.com/webstore/sidebar/gallery',
 
