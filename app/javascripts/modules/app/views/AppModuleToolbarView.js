@@ -20,7 +20,6 @@
         'app/views/AppListView',
         'app/views/AppPanelView',
         'app/views/LocalInstallWindowView',
-        'social/views/QuickShareView',
         'app/collections/AppsCollection',
         'app/AppService',
         'task/TaskService'
@@ -42,7 +41,6 @@
         AppListView,
         AppPanelView,
         LocalInstallWindowView,
-        QuickShareView,
         AppsCollection,
         AppService,
         TaskService
@@ -133,16 +131,7 @@
                 if (appListView.selected.length === 1) {
                     app = appsCollection.get(appListView.selected[0]);
                 }
-                AppService.batchUninstallAsync(appListView.selected).done(function (resp) {
-                    var failed = resp.body.failed;
-                    if (app !== undefined && !failed.length) {
-                        if (FunctionSwitch.ENABLE_SHARE_UNINSTALL) {
-                            QuickShareView.getInstance({
-                                model : app
-                            }).show();
-                        }
-                    }
-                });
+                AppService.batchUninstallAsync(appListView.selected);
 
                 log({
                     'event' : 'ui.click.app.button.uninstall',

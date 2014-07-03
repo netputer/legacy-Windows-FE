@@ -212,28 +212,6 @@
             dblclickThumb : function () {
                 SlideShowView.getInstance().start(this.model);
             },
-            clickButtonShare : function (evt) {
-                evt.stopPropagation();
-
-                var doShare = function () {
-                    IframeMessageWorker.trigger(CONFIG.events.CUSTOM_IFRAME_PHOTO_SHARE, {
-                        path : this.model.get('originalPic'),
-                        orientation : this.model.get('orientation'),
-                        type : CONFIG.enums.SOCIAL_PHOTO,
-                        size : this.model.get('size')
-                    });
-                }.bind(this);
-
-                if (!this.model.get('originalPic')) {
-                    this.loading = true;
-                    this.model.getOriginalPicAsync().done(function () {
-                        this.loading = false;
-                        doShare.call(this);
-                    }.bind(this));
-                } else {
-                    doShare.call(this);
-                }
-            },
             clickButtonRetry : function (evt) {
                 evt.stopPropagation();
 
@@ -250,7 +228,6 @@
             events : {
                 'mousedown' : 'mousedownItem',
                 'click' : 'clickItem',
-                'click .button-share' : 'clickButtonShare',
                 'dblclick .thumb' : 'dblclickThumb',
                 'click .button-retry' : 'clickButtonRetry',
                 'click .button-info' : 'clickButtonInfo'

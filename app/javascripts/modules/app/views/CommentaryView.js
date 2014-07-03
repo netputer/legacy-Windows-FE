@@ -11,9 +11,7 @@
         'utilities/StringUtil',
         'Configuration',
         'Internationalization',
-        'IO',
-        'Account',
-        'social/SocialService'
+        'IO'
     ], function (
         Backbone,
         doT,
@@ -25,9 +23,7 @@
         StringUtil,
         CONFIG,
         i18n,
-        IO,
-        Account,
-        SocialService
+        IO
     ) {
         console.log('CommentaryView - File loaded');
 
@@ -90,7 +86,6 @@
                         package_name : this.model.get('base_info').package_name,
                         content : value,
                         title : this.model.get('base_info').name,
-                        share : '',
                         version_code : this.model.get('base_info').version_code,
                         verify_code :  verifyCode || ''
                     },
@@ -221,33 +216,6 @@
                     this.handleCommentaryAsync();
                 }
             },
-            clickButtonShare : function () {
-                var baseInfo = this.model.get('base_info');
-
-                var previewContentSize = SocialService.getPreviewContentSize();
-                var previewImg = $('<img/>')
-                    .attr('src', StringUtil.format(CONFIG.enums.SOCIAL_APP_BIO_URL, baseInfo.package_name))
-                    .css({'max-width' : previewContentSize.width});
-
-                var data = {
-                    textUrl : StringUtil.format(CONFIG.enums.SOCIAL_TEXT_PREVIEW_URL, CONFIG.enums.SOCIAL_APP, baseInfo.package_name),
-                    hasPreview : true,
-                    previewContent : previewImg,
-                    shareData : {
-                        need_shell : 0,
-                        pic : StringUtil.format(CONFIG.enums.SOCIAL_APP_BIO_URL, baseInfo.package_name),
-                        rotation : 0
-                    },
-                    extraData : {
-                        app_title : baseInfo.name,
-                        app_package_name : baseInfo.package_name
-                    },
-                    type : CONFIG.enums.SOCIAL_APP
-                };
-
-                SocialService.setContent(data);
-                SocialService.show();
-            },
             clickButtonComment : function () {
                 if (!Account.get('isLogin')) {
                     Account.openLoginDialog('', 'app-commentary');
@@ -269,7 +237,6 @@
                 'click .button-like' : 'clickButtonLike',
                 'click .button-dislike' : 'clickButtonDislike',
                 'click .button-login' : 'clickButtonLogin',
-                'click .button-share' : 'clickButtonShare',
                 'click .code' : 'clickCode',
                 'keydown .input-content' : 'keydownInputContent'
             }

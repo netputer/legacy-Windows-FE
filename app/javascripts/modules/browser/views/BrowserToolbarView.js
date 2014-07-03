@@ -16,7 +16,6 @@
         'browser/views/BrowserMenuView',
         'doraemon/collections/ExtensionsCollection',
         'doraemon/views/ReportWindowView',
-        'social/SocialService',
         'utilities/StringUtil'
     ], function (
         _,
@@ -34,7 +33,6 @@
         BrowserMenuView,
         ExtensionsCollection,
         ReportWindowView,
-        SocialService,
         StringUtil
     ) {
         console.log('BrowserToolbarView - File loaded.');
