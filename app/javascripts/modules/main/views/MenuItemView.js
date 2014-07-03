@@ -13,6 +13,7 @@
         'Log',
         'Device',
         'IO',
+        'WindowController',
         'main/collections/PIMCollection',
         'app/collections/AppsCollection'
     ], function (
@@ -28,6 +29,7 @@
         log,
         Device,
         IO,
+        WindowController,
         PIMCollection,
         AppsCollection
     ) {
@@ -166,6 +168,18 @@
                         module : this.model.get('module'),
                         tab : this.model.get('tab')
                     });
+                }
+
+
+                var isConnected = Device.get('isConnected');
+                var isWifi = Device.get('isWifi');
+                var connectionState = Device.get('connectionState');
+                var module = this.model.get('module');
+
+                if (!_.contains(['task','browser','gallery','welcome','doraemon'], module) &&
+                    !_.contains([CONFIG.enums.CONNECTION_STATE_PLUG_OUT, CONFIG.enums.CONNECTION_STATE_CONNECTED], connectionState) &&
+                    (!isConnected || isWifi)) {
+                    WindowController.ShowWizard(module);
                 }
             },
             clickTitleCount : function (evt) {

@@ -16,7 +16,6 @@
         'Device',
         'Environment',
         'Settings',
-        'WindowController',
         'main/views/NavView',
         'task/views/TaskMonitorView',
         'main/views/FastUSBNotificationView',
@@ -39,7 +38,6 @@
         Device,
         Environment,
         Settings,
-        WindowController,
         NavView,
         TaskMonitorView,
         FastUSBNotificationView,
@@ -387,14 +385,9 @@
             toggleMask : function () {
                 var isConnected = Device.get('isConnected') || Device.get('isFastADB');
                 var isWifi = Device.get('isWifi');
-                var connectionState = Device.get('connectionState');
 
                 if (!_.contains(['task','browser','gallery','welcome','doraemon'], this.currentModule) && (!isConnected || isWifi)) {
                     pimMaskView.show();
-
-                    if (connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED) {
-                        WindowController.ShowWizard(this.currentModule);
-                    }
 
                 } else {
                     pimMaskView.hide();
