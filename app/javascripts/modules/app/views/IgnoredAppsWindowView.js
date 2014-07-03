@@ -19,7 +19,6 @@
         'app/collections/AppsCollection',
         'app/views/AppItemView',
         'task/TaskService',
-        'social/SocialService',
         'Account',
         'Settings'
     ], function (
@@ -39,7 +38,6 @@
         AppsCollection,
         AppItemView,
         TaskService,
-        SocialService,
         Account,
         Settings
     ) {

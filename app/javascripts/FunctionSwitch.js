@@ -169,11 +169,6 @@
                     return IS_CHINESE_VERSION;
                 }
             },
-            ENABLE_MY_MUTIL_SOCIAL_PLATFORM : {
-                get : function () {
-                    return IS_CHINESE_VERSION;
-                }
-            },
             ENABLE_OPTIMIZE : {
                 get : function () {
                     return IS_CHINESE_VERSION &&
@@ -220,11 +215,6 @@
                 }
             },
             ENABLE_SHARE_SET_WALLPAPER : {
-                get : function () {
-                    return IS_CHINESE_VERSION;
-                }
-            },
-            ENABLE_SHARE_UNINSTALL : {
                 get : function () {
                     return IS_CHINESE_VERSION;
                 }

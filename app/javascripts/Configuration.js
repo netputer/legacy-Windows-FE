@@ -68,15 +68,6 @@
                 DEVICE_GET_UDID : 'wdj://device/get_udid.json',
                 DEVICE_GET_SHELL : 'wdj://device/shell.json',
 
-                // SOCIAL
-                GET_WELCOM_PAGE_IMG : 'wdj://social/save_welcome_page.json',
-                AUTH : 'wdj://social/auth.json',
-                STATUS_UPLOAD : 'wdj://social/statuses_upload.json',
-                USER_SHOW : 'wdj://social/users_show.json',
-                USER_LOGOUT : 'wdj://social/users_logout.json',
-                AUTH_INFO : 'wdj://social/auth_info.json',
-                GET_TOKEN : 'wdj://social/get_token.json',
-
                 // Contact Module
                 CONTACT_GET_SHOW : 'wdj://contacts/show.json',
                 CONTACT_GET_CONTACT : 'wdj://contacts/get.json',
@@ -243,7 +234,6 @@
                 ACCOUNT_BIND : 'wdj://account/bind.json',
                 ACCOUNT_REGIST : 'wdj://account/register.json',
                 ACCOUNT_INFO : 'wdj://account/account_info.json',
-                ACCOUNT_SHARE : 'wdj://account/share.json',
                 ACCOUNT_RESET : 'wdj://account/reset.json',
 
                 // Backup
@@ -463,7 +453,6 @@
                 CUSTOM_IFRAME_ALERT : 'iframe.alert',
                 CUSTOM_IFRAME_CONFIRM : 'iframe.confirm',
                 CUSTOM_IFRAME_DISPOSABLE : 'iframe.disposable',
-                CUSTOM_IFRAME_PHOTO_SHARE : 'iframe.photo.share',
                 CUSTOM_IFRAME_PHOTO_DELETE : 'iframe.photo.delete',
                 CUSTOM_IFRAME_PHOTO_DELETED : 'iframe.photo.deleted',
                 CUSTOM_IFRAME_PHOTO_EXPORT : 'iframe.photo.export',
@@ -627,9 +616,6 @@
                 SCREEN_SHOT_DESTINATION_FILE : 0,
                 SCREEN_SHOT_DESTINATION_CLIPBOARD : 1,
 
-                /* Sina share pic size */
-                SINA_SHARE_PIC_LIMIT_SIZE : 5,
-
                 // Photo type
                 PHOTO_ALL_TYPE : 0,
                 PHOTO_PHONE_TYPE : 1,
@@ -643,11 +629,6 @@
                 URL_WELCOME_BILLBOARD : 'http://www.wandoujia.com/webstore/billboard',
                 URL_WELCOME_BILLBOARD_EN : 'https://s3.amazonaws.com/snappea_welcome/startpage.html',
                 URL_WANDOUJIA_APP_DETAIL_PAGE : 'http://apps.wandoujia.com/apps/{1}?{2}',
-
-                /* Facebook share api */
-                FACEBOOK_LOGOUT_URI : 'https://www.facebook.com/logout.php',
-                FACEBOOK_REDIRECT_URI : 'http://www.snappea.com/facebook/proxy.html',
-                FACEBOOK_OAUTH_API : 'https://graph.facebook.com/oauth/authorize?client_id=265004820250785&scope=publish_stream&display=popup&response_type=token&redirect_uri=',
 
                 GALLERY_URL : 'http://www.wandoujia.com/webstore/sidebar/gallery',
 
@@ -671,24 +652,6 @@
                 SYNC_PROGRESS_COMPLETED : 4,
 
                 FLASH_DOWNLOAD_URL : 'http://dl.wandoujia.com/files/flash/latest/flashplayer',
-
-                // Social Urls
-                SOCIAL_APP_BIO_URL : 'http://app-bio.wandoujia.com/apps/{1}',
-                SOCIAL_TEXT_PREVIEW_POST_URL : 'http://social-services.wandoujia.com/preview/text?content_type={1}',
-                SOCIAL_TEXT_PREVIEW_URL : 'http://social-services.wandoujia.com/preview/text?content_type={1}&content={2}',
-                SOCIAL_IMAGE_PREVIEW_URL : 'http://social-services.wandoujia.com/preview/image?content_type={1}&content={2}',
-
-                // Social Share Type
-                SOCIAL_PHOTO : 'photo',
-                SOCIAL_APP : 'app',
-                SOCIAL_WELCOME : 'welcome',
-                SOCIAL_SET_WALLPAPER : 'set_wallpaper',
-                SOCIAL_UNINSTALL_APP : 'uninstall_app',
-                SOCIAL_WASH : 'wandoujia_wash',
-
-                // Social Share Errorcode
-                SOCIAL_SHARE_FAILED : '10',
-                SOCIAL_SHARE_COOKIE_EXPIRED : '101',
 
                 // Backup Restore
                 BR_TYPE_CONTACT : 1,

@@ -11,7 +11,6 @@
         'Log',
         'photo/views/ImportPhotoView',
         'photo/PhotoService',
-        'social/SocialService',
         'sync/views/PhotoSyncAlertView'
     ], function (
         _,
@@ -22,7 +21,6 @@
         log,
         ImportPhotoView,
         PhotoService,
-        SocialService,
         PhotoSyncAlertView
     ) {
         console.log('IframeMessageListener - File loaded. ');
@@ -36,13 +34,6 @@
                 'data.channel' : CONFIG.events.PHOTO_SHOW_IMPORTOR
             }, function () {
                 ImportPhotoView.getInstance().show();
-            }));
-
-            handlers.push(IO.Backend.Device.onmessage({
-                'data.channel' : CONFIG.events.CUSTOM_IFRAME_PHOTO_SHARE
-            }, function (data) {
-                data = data.data;
-                SocialService.sharePhotoAsync(data.path, data.orientation, data.type, data.size);
             }));
 
             handlers.push(IO.Backend.Device.onmessage({
