@@ -140,7 +140,6 @@
                         this.model.starAsync().done(function () {
                             extensionsCollection.add(this.model);
                             extensionsCollection.trigger('star', this.model);
-                            this.clickButtonShare();
                         }.bind(this));
 
                         log({

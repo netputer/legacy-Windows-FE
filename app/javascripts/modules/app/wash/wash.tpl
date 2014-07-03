@@ -61,7 +61,6 @@
     <h1 class="text-primary title">{{= i18n.app.RESULT_FINISH }}</h1>
     <p class="text-secondary desc">{{= i18n.app.RESULT_FINISH_TIP }}</p>
     <div class="btn-ctn">
-        <button class="grand button-share primary">{{= i18n.app.WASH_SHARE }}</button>
         <button class="grand button-restart">{{= i18n.app.TRY_AGAIN }}</button>
     </div>
     <p class="text-thirdly survey">
