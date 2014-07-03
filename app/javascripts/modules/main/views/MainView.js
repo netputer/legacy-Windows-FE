@@ -61,6 +61,7 @@
             $needToHide = undefined;
         }, 200);
 
+        window.SnapPea = window.SnapPea || {};
         window.SnapPea.isPimModule = function (module) {
             return !_.contains(['task', 'browser', 'gallery', 'welcome', 'doraemon'], module);
         };
