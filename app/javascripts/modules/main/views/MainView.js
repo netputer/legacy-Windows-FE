@@ -62,7 +62,7 @@
         }, 200);
 
         window.SnapPea.isPimModule = function (module) {
-            return !_.contains(['task','browser','gallery','welcome','doraemon'], module);
+            return !_.contains(['task', 'browser', 'gallery', 'welcome', 'doraemon'], module);
         };
 
         WindowState.on('resize', function (){
@@ -441,7 +441,7 @@
 
                 Backbone.trigger('showModule', name);
 
-                if(Device.get('isUSBConnecting') && _.contains(['browser', 'welcome', 'gallery', 'doraemon'], name)) {
+                if (Device.get('isUSBConnecting') && _.contains(['browser', 'welcome', 'gallery', 'doraemon'], name)) {
                     window.externalCall('', 'CancelShowWizard');
                 }
             },
