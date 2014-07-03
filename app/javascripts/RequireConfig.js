@@ -21,7 +21,6 @@ require.config({
         photo : 'modules/photo',
         video : 'modules/video',
         new_backuprestore : 'modules/new_backuprestore',
-        social : 'modules/social',
         sync : 'modules/sync',
         guide : 'modules/welcome/guide',
         tools : 'modules/tools'

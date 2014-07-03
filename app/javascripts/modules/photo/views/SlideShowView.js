@@ -118,19 +118,6 @@
                     this.$('.control .buttons').hide();
                 }
 
-                var $buttonShare = this.$('.button-share');
-                var title;
-                switch (navigator.language) {
-                case CONFIG.enums.LOCALE_ZH_CN:
-                    title = i18n.misc.SHARE;
-                    break;
-                case CONFIG.enums.LOCALE_EN_US:
-                case CONFIG.enums.LOCALE_TH_TH:
-                    title = i18n.misc.SHARE_TO_FACEBOOK;
-                    break;
-                }
-                $buttonShare.attr('title', title);
-
                 return this;
             },
             showNext : function () {
@@ -358,22 +345,6 @@
                     this.$('.button-pause').removeClass('button-pause').addClass('button-play').attr('title', i18n.photo.SLIDE_SHOW);
                 }
             },
-            sharePic : function (type) {
-                var doShare = function () {
-                    IframeMessageWorker.trigger(CONFIG.events.CUSTOM_IFRAME_PHOTO_SHARE, {
-                        path : this.currentPhoto.get('originalPic'),
-                        orientation : this.currentPhoto.get('orientation'),
-                        type : type,
-                        size : this.currentPhoto.get('size')
-                    });
-                }.bind(this);
-
-                if (!this.currentPhoto.get('originalPic')) {
-                    this.loadAsync().done(doShare);
-                } else {
-                    doShare.call(this);
-                }
-            },
             clickPhoto : function (evt) {
                 evt.stopPropagation();
                 var $img = $(evt.target);
@@ -473,11 +444,6 @@
                     }
                 }.bind(this));
             },
-            clickButtonShare : function () {
-                this.stopPlaying();
-
-                this.sharePic(CONFIG.enums.SOCIAL_PHOTO);
-            },
             clickButtonRetry : function (evt) {
                 evt.stopPropagation();
 
@@ -539,7 +505,6 @@
                 'click .button-delete' : 'clickButtonDelete',
                 'click .button-export' : 'clickButtonExport',
                 'click .button-wallpaper' : 'clickButtonWallpaper',
-                'click .button-share' : 'clickButtonShare',
                 'click .button-retry' : 'clickButtonRetry'
             }
         });

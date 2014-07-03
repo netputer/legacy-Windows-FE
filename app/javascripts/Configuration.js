@@ -68,15 +68,6 @@
                 DEVICE_GET_UDID : 'wdj://device/get_udid.json',
                 DEVICE_GET_SHELL : 'wdj://device/shell.json',
 
-                // SOCIAL
-                GET_WELCOM_PAGE_IMG : 'wdj://social/save_welcome_page.json',
-                AUTH : 'wdj://social/auth.json',
-                STATUS_UPLOAD : 'wdj://social/statuses_upload.json',
-                USER_SHOW : 'wdj://social/users_show.json',
-                USER_LOGOUT : 'wdj://social/users_logout.json',
-                AUTH_INFO : 'wdj://social/auth_info.json',
-                GET_TOKEN : 'wdj://social/get_token.json',
-
                 // Contact Module
                 CONTACT_GET_SHOW : 'wdj://contacts/show.json',
                 CONTACT_GET_CONTACT : 'wdj://contacts/get.json',
@@ -664,24 +655,6 @@
                 SYNC_PROGRESS_COMPLETED : 4,
 
                 FLASH_DOWNLOAD_URL : 'http://dl.wandoujia.com/files/flash/latest/flashplayer',
-
-                // Social Urls
-                SOCIAL_APP_BIO_URL : 'http://app-bio.wandoujia.com/apps/{1}',
-                SOCIAL_TEXT_PREVIEW_POST_URL : 'http://social-services.wandoujia.com/preview/text?content_type={1}',
-                SOCIAL_TEXT_PREVIEW_URL : 'http://social-services.wandoujia.com/preview/text?content_type={1}&content={2}',
-                SOCIAL_IMAGE_PREVIEW_URL : 'http://social-services.wandoujia.com/preview/image?content_type={1}&content={2}',
-
-                // Social Share Type
-                SOCIAL_PHOTO : 'photo',
-                SOCIAL_APP : 'app',
-                SOCIAL_WELCOME : 'welcome',
-                SOCIAL_SET_WALLPAPER : 'set_wallpaper',
-                SOCIAL_UNINSTALL_APP : 'uninstall_app',
-                SOCIAL_WASH : 'wandoujia_wash',
-
-                // Social Share Errorcode
-                SOCIAL_SHARE_FAILED : '10',
-                SOCIAL_SHARE_COOKIE_EXPIRED : '101',
 
                 // Backup Restore
                 BR_TYPE_CONTACT : 1,
