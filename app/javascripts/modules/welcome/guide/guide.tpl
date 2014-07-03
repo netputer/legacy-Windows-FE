@@ -37,56 +37,6 @@
             <button class="primary button-action grand">{{= it.action }}</button>
         </nav>
     </section>
-    <!-- <section class="section vbox">
-        <div class="stage vbox">
-            <h1 class="text-secondary">{{= i18n.welcome.GUIDE_REG }}</h1>
-            <p class="text-thirdly desc">{{= i18n.welcome.GUIDE_REG_DESC }}</p>
-            <form class="text-secondary">
-                <label>
-                    <div class="label">{{= i18n.misc.ACCOUNT }}</div>
-                    <input type="text" class="username" placeholder="{{= i18n.welcome.GUIDE_REG_ACCOUNT_PLACEHOLDER }}" />
-                    <div class="text-warning">{{= i18n.welcome.GUIDE_REG_ACCOUNT_WARN }}</div>
-                </label>
-                <label>
-                    <div class="label">{{= i18n.welcome.GUIDE_REG_PASSWORD }}</div>
-                    <input type="password" class="password" placeholder="{{= i18n.welcome.GUIDE_REG_PASSWORD_PLACEHOLDER }}" />
-                    <div class="text-warning">{{= i18n.welcome.GUIDE_REG_PASSWORD_WARN }}</div>
-                </label>
-                <label>
-                    <input type="password" class="password-verify" placeholder="{{= i18n.welcome.GUIDE_REG_PSW_VERIFY_PLACEHOLDER }}" />
-                    <div class="text-warning">{{= i18n.welcome.GUIDE_REG_PSW_VERIFY_WARN }}</div>
-                </label>
-                <label>
-                    <div class="label">{{= i18n.misc.NICKNAME }}</div>
-                    <input type="text" class="nickname" placeholder="{{= i18n.misc.NICKNAME }}" />
-                    <div class="text-warning">{{= i18n.welcome.GUIDE_REG_NICKNAME_WARN }}</div>
-                </label>
-                <label>
-                    <div class="label">{{= i18n.welcome.GUIDE_REG_CAPTCHA }}</div>
-                    <input type="text" class="captcha" />
-                    <img src="https://account.wandoujia.com/v4/api/seccode" class="captcha-image" title="{{= i18n.welcome.CLICK_TO_CHANGE}}" />
-                </label>
-                <label>
-                    <input type="checkbox" class="privacy" checked />{{= i18n.welcome.GUIDE_REG_PRAVICY }}
-                </label>
-            </form>
-            <hr />
-            <div class="login-ctn hbox">
-                <span class="link button-login">{{= i18n.welcome.GUIDE_REG_LOGIN_WITH_ACCOUNT }}</span>
-                <span>{{= i18n.welcome.GUIDE_REG_LOGIN_WITH_SNS }}</span>
-                <ul class="sns-login">
-                    <li class="button-weibo"></li>
-                    <li class="button-qq"></li>
-                    <li class="button-renren"></li>
-                </ul>
-            </div>
-        </div>
-        <nav class="control hbox">
-            <div class="text-counter text-thirdly"></div>
-            <span class="link button-skip">{{= i18n.ui.SKIP }}</span>
-            <button class="primary button-reg">{{= i18n.welcome.GUIDE_REG_NOW }}</button>
-        </nav>
-    </section> -->
     <section class="section vbox">
         <div class="stage hbox">
             <div class="text">

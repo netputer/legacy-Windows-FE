@@ -231,7 +231,6 @@
                 // Account Module
                 ACCOUNT_LOGIN : 'wdj://account/login.json',
                 ACCOUNT_LOGOUT : 'wdj://account/logout.json',
-                ACCOUNT_BIND : 'wdj://account/bind.json',
                 ACCOUNT_REGIST : 'wdj://account/register.json',
                 ACCOUNT_INFO : 'wdj://account/account_info.json',
                 ACCOUNT_RESET : 'wdj://account/reset.json',
