@@ -13,8 +13,7 @@
         'Internationalization',
         'IO',
         'Account',
-        'social/SocialService',
-        'social/views/SocialPlatformSelectorView'
+        'social/SocialService'
     ], function (
         Backbone,
         doT,
@@ -28,8 +27,7 @@
         i18n,
         IO,
         Account,
-        SocialService,
-        SocialPlatformSelectorView
+        SocialService
     ) {
         console.log('CommentaryView - File loaded');
 
@@ -54,17 +52,7 @@
                     tip.zero();
                 });
 
-                if (this.socialPlatformSelectorView) {
-                    this.socialPlatformSelectorView.remove();
-                }
-                this.socialPlatformSelectorView = SocialPlatformSelectorView.getInstance();
-                this.$('.comment-actions').prepend(this.socialPlatformSelectorView.render().$el);
-
                 return this;
-            },
-            remove : function () {
-                this.socialPlatformSelectorView.remove();
-                CommentaryView.__super__.remove.call(this);
             },
             initState : function (Account) {
                 this.$('.input-content').prop({
@@ -102,7 +90,7 @@
                         package_name : this.model.get('base_info').package_name,
                         content : value,
                         title : this.model.get('base_info').name,
-                        share : this.socialPlatformSelectorView.getActivePlatformString(),
+                        share : '',
                         version_code : this.model.get('base_info').version_code,
                         verify_code :  verifyCode || ''
                     },
@@ -161,11 +149,8 @@
                             disabled : false
                         });
 
-                        this.socialPlatformSelectorView.$el.hide();
-
                         setTimeout(function () {
                             this.$('.monitor').html('');
-                            this.socialPlatformSelectorView.$el.show();
                         }.bind(this), 3000);
 
                         deferred.reject();
