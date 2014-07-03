@@ -42,9 +42,6 @@
                     }
                 }.bind(this));
             },
-            isActive : function (platform) {
-                return this.get('platforms')[platform] === true;
-            },
             openRegDialog : function (title, source, platform) {
                 var deferred = $.Deferred();
 
