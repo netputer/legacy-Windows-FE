@@ -61,6 +61,10 @@
             $needToHide = undefined;
         }, 200);
 
+        window.SnapPea.isPimModule = function (module) {
+            return !_.contains(['task', 'browser', 'gallery', 'welcome', 'doraemon'], module);
+        };
+
         WindowState.on('resize', function (){
             if (!$needToHide) {
                 $needToHide = $('.need-to-hide').addClass('w-module-hide');
@@ -386,9 +390,8 @@
                 var isConnected = Device.get('isConnected') || Device.get('isFastADB');
                 var isWifi = Device.get('isWifi');
 
-                if (!_.contains(['task','browser','gallery','welcome','doraemon'], this.currentModule) && (!isConnected || isWifi)) {
+                if (window.SnapPea.isPimModule(this.currentModule) && (!isConnected || isWifi)) {
                     pimMaskView.show();
-
                 } else {
                     pimMaskView.hide();
                 }
@@ -437,6 +440,10 @@
                 }
 
                 Backbone.trigger('showModule', name);
+
+                if (Device.get('isUSBConnecting') && _.contains(['browser', 'welcome', 'gallery', 'doraemon'], name)) {
+                    window.externalCall('', 'CancelShowWizard');
+                }
             },
             hideModule : function (name) {
                 var moduleInstance = this.modules[name].getInstance();

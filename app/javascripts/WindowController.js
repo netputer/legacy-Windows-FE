@@ -67,7 +67,7 @@
                 forceDisplay = false;
             }
 
-            if (forceDisplay || !_.contains(['welcome','browser','task'], SnapPea.CurrentModule)) {
+            if (forceDisplay || window.SnapPea.isPimModule(SnapPea.CurrentModule)) {
                 window.externalCall('', 'ShowWizard', module);
             }
 

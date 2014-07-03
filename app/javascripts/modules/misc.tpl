@@ -166,7 +166,7 @@
 <script type="text/x-ui-template" id='pim-mask'>
     <div class='w-main-pim-mask-ctn'>
         <div class='icon'></div>
-        {{? Device.get('connectionState') !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && Device.get('connectionState') !== CONFIG.enums.CONNECTION_STATE_CONNECTED }}
+        {{? Device.get('isUSBConnecting') }}
         <h1 class='title'>{{= i18n.misc.CONNECTING_UR_PHONE }}</h1>
         {{?? !Device.get('isConnected')}}
         <h1 class='title'>{{= i18n.welcome.CONNECT_UR_PHONE }}</h1>

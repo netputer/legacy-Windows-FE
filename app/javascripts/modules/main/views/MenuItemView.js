@@ -171,14 +171,8 @@
                 }
 
 
-                var isConnected = Device.get('isConnected');
-                var isWifi = Device.get('isWifi');
-                var connectionState = Device.get('connectionState');
                 var module = this.model.get('module');
-
-                if (!_.contains(['task','browser','gallery','welcome','doraemon'], module) &&
-                    !_.contains([CONFIG.enums.CONNECTION_STATE_PLUG_OUT, CONFIG.enums.CONNECTION_STATE_CONNECTED], connectionState) &&
-                    (!isConnected || isWifi)) {
+                if (window.SnapPea.isPimModule(module) && Device.get('isUSBConnecting')) {
                     WindowController.ShowWizard(module);
                 }
             },

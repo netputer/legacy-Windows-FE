@@ -67,7 +67,8 @@
                 externalSDFreeCapacity : 0,
                 externalSDPath : '',
                 dualSIM : [],
-                connectionState : CONFIG.enums.CONNECTION_STATE_PLUG_OUT
+                connectionState : CONFIG.enums.CONNECTION_STATE_PLUG_OUT,
+                isUSBConnecting : false
             },
             initialize : function () {
                 var listenBack = false;
@@ -95,7 +96,10 @@
                     'data.channel' : CONFIG.events.DEVICE_CONNECTION_STATE_CHANGE,
                 }, function (data) {
                     console.log('Device - Device connection state change');
-                    this.set({connectionState : data.value});
+                    this.set({
+                        connectionState : data.value,
+                        isUSBConnecting : data.value !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && data.value !== CONFIG.enums.CONNECTION_STATE_CONNECTED
+                    });
                 }, this);
 
                 IO.requestAsync(CONFIG.actions.DEVICE_IS_AUTOBACKUP).done(function (resp) {
@@ -227,7 +231,8 @@
                     SDKVersion : data.sdk_version,
                     productId : data.product_id,
                     isRoot : data.is_root,
-                    deviceName : data.device_name
+                    deviceName : data.device_name,
+                    isUSBConnecting : this.connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && this.connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED
                 });
             },
             getSDCapacityAsync : function () {
