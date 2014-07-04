@@ -341,6 +341,11 @@
             },
             clickButtonAction : function () {
                 IO.requestAsync(CONFIG.actions.CONNET_PHONE);
+
+                log({
+                    'event' : 'ui.click.connection_usb',
+                    'pos' : 'device'
+                });
             },
             events : {
                 'mouseover .screen' : 'mouseoverScreen',
