@@ -211,7 +211,7 @@
                 if (Device.get('isUSBConnecting')) {
                     WindowController.ShowWizard('', true);
                 } else {
-                    IO.requestAsync({url : CONFIG.actions.CONNET_PHONE});
+                    IO.requestAsync(CONFIG.actions.CONNET_PHONE);
                 }
             },
             clickButtonPushToPhone : function (evt) {
