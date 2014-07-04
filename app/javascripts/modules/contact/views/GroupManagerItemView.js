@@ -28,7 +28,6 @@
 
         console.log('GroupManagerItemView - File loaded.');
 
-        var accountCollection;
         var alert = window.alert;
 
         var GroupManagerItemView = BaseListItem.extend({
@@ -37,11 +36,7 @@
             className : 'group-manager-item hbox',
             initialize : function () {
                 GroupManagerItemView.__super__.initialize.apply(this, arguments);
-                accountCollection = AccountCollection.getInstance();
-            },
-            remove : function () {
-                accountCollection = undefined;
-                GroupManagerItemView.__super__.remove.call(this);
+                this.accountCollection = AccountCollection.getInstance();
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
@@ -64,7 +59,7 @@
 
                 var name = this.model.get('account_name');
                 var type = this.model.get('account_type');
-                this.account = accountCollection.getAccountByNameAndType(name, type);
+                this.account = this.accountCollection.getAccountByNameAndType(name, type);
 
                 return this;
             },
@@ -111,7 +106,7 @@
                     return;
                 }
 
-                var groups = accountCollection.getGroupsByAccount(this.account.get('id')).models;
+                var groups = this.accountCollection.getGroupsByAccount(this.account.get('id')).models;
                 var hasGroupName = _.find(groups, function (group) {
                     return group.get('title') === newTitle;
                 });
