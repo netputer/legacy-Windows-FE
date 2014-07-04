@@ -482,10 +482,9 @@
                 /* Device and connection type */
                 VIRTUAL_DEVICE : 0,
                 OFFLINE_DEVICE : 1,
-                USB_DEVICE : 2,
+                ADB_DEVICE : 2,
                 WIFI_DEVICE : 3,
-                INTERNET_DEVICE : 4,
-                ADB_DEVICE : 6,
+                USB_DEVICE : 4,
                 USB_CONNECTING : 7,
 
                 /* Web navigate types */
