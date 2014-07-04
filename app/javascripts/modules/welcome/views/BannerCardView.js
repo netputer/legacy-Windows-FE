@@ -57,6 +57,7 @@
 
                     data = action.app;
                     break;
+                case 'OPEN_DORAEMON':
                 case 'OPEN_URL':
                     data = action;
                     break;
@@ -76,6 +77,11 @@
                     defaultAction : {
                         get : function () {
                             return defaultAction;
+                        }
+                    },
+                    doraemonId : {
+                        get : function () {
+                            return data.id + '-' + data.url;
                         }
                     },
                     $button : {
@@ -117,6 +123,9 @@
                     break;
                 case 'OPEN_URL':
                     this.renderOpenUrlButton();
+                    break;
+                case 'OPEN_DORAEMON':
+                    this.renderDoraemonButton();
                     break;
                 }
 
@@ -208,15 +217,30 @@
                 case 'OPEN_URL':
                     this.openUrl(this.defaultAction.url);
                     break;
+                case 'OPEN_DORAEMON':
+                    this.openDoraemon(this.doraemonId);
+                    break;
                 }
 
                 this.log({
                     action : this.type.toLowerCase()
                 }, evt);
             },
+            clickButtonDoraemon : function (evt) {
+
+                this.openDoraemon(this.doraemonId);
+
+                this.log({
+                    action : this.type.toLowerCase()
+                }, evt);
+            },
+            renderDoraemonButton : function () {
+                this.$button.html(i18n.misc.VIEW);
+            },
             events : {
                 'click .install' : 'clickButtonInstall',
                 'click .open_url' : 'clickButtonOpenUrl',
+                'click .open_doraemon' : 'clickButtonDoraemon',
                 'click .button-navigate, .icon' : 'clickButtonNavigate'
             }
         });

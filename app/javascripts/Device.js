@@ -98,7 +98,7 @@
                     console.log('Device - Device connection state change');
                     this.set({
                         connectionState : data.value,
-                        isUSBConnecting : data.value !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && data.value !== CONFIG.enums.CONNECTION_STATE_CONNECTED
+                        isUSBConnecting : data.value !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT
                     });
                 }, this);
 
@@ -209,7 +209,7 @@
             },
             changeHandler : function (data) {
 
-                if (data.type === CONFIG.enums.ADB_DEVICE || (data.connection_state && data.type === CONFIG.enums.USB_DEVICE))  {
+                if (data.type === CONFIG.enums.ADB_DEVICE || data.connection_state) {
                     this.set('connectionState', CONFIG.enums.CONNECTION_STATE_CONNECTED, {
                         silent : true
                     });
@@ -218,6 +218,11 @@
                         silent : true
                     });
                 }
+
+                var connectionState = this.get('connectionState');
+                this.set({
+                    'isUSBConnecting' : connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED
+                });
 
                 this.set({
                     isConnected : data.connection_state,
@@ -231,8 +236,7 @@
                     SDKVersion : data.sdk_version,
                     productId : data.product_id,
                     isRoot : data.is_root,
-                    deviceName : data.device_name,
-                    isUSBConnecting : this.connectionState !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && this.connectionState !== CONFIG.enums.CONNECTION_STATE_CONNECTED
+                    deviceName : data.device_name
                 });
             },
             getSDCapacityAsync : function () {

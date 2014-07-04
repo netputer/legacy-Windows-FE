@@ -188,6 +188,25 @@
                 Settings.set('show-download-tip', true);
             }
 
+            if (message === 'DEVICE_NOT_FOUND') {
+                log({
+                    'event' : 'ui.add.wating_push_task',
+                    'category' : data.status[0].category
+                });
+            }
         });
+
+        IO.Backend.Device.onmessage({
+            'data.channel' : CONFIG.events.TASK_ADD
+        }, function (data) {
+            var connectionState = Device.get('connectionState');
+            if (connectionState === CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
+                log({
+                    'event' : 'ui.add.offline_task',
+                    'category' : data.status[0].category
+                });
+            }
+        });
+
     });
 }(this));
