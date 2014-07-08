@@ -167,7 +167,7 @@
 
                 this.$('.ctn').append(taskListView.render().$el);
 
-                if (FunctionSwitch.ENABLE_TASKMANAGER_CAPACITY && !Device.get('isWifi')) {
+                if (FunctionSwitch.ENABLE_TASKMANAGER_CAPACITY) {
                     this.$('.ctn').append(TaskModuleCapacityView.getInstance().render().$el);
                 }
 
