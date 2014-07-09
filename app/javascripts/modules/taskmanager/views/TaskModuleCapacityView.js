@@ -69,7 +69,7 @@
             },
             checkCapacity : function () {
                 clearInterval(this.checkHandle);
-                if (Device.get('isConnected') && this.isOpened) {
+                if (Device.get('isConnected') && this.isOpened && Device.get('isUSB')) {
                     this.checkHandle = setInterval(function() {
                         Device.getCapacityAsync().always(this.setContent.bind(this));
                     }.bind(this), 3000);

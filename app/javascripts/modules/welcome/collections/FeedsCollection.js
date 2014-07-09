@@ -28,7 +28,8 @@
                 max : 30,
                 start : 0,
                 platform : 'windows',
-                launchedCount : Settings.get(CONFIG.enums.LAUNCH_TIME_KEY)
+                launchedCount : Settings.get(CONFIG.enums.LAUNCH_TIME_KEY),
+                vc : Environment.get('backendVersion').split('.')[3]
             },
             parse : function (cards) {
 

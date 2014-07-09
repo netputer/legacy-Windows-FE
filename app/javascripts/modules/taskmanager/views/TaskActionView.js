@@ -16,7 +16,8 @@
         'utilities/StringUtil',
         'task/collections/TasksCollection',
         'task/views/DeleteConfirmWindowView',
-        'music/collections/MusicsCollection'
+        'music/collections/MusicsCollection',
+        'WindowController'
     ], function (
         Backbone,
         _,
@@ -33,7 +34,8 @@
         StringUtil,
         TasksCollection,
         DeleteConfirmWindowView,
-        MusicsCollection
+        MusicsCollection,
+        WindowController
     ) {
         console.log('TaskActionView - File loaded.');
 
@@ -205,12 +207,12 @@
             },
             clickButtonConnect : function (evt) {
                 evt.stopPropagation();
-                IO.requestAsync({
-                    url : CONFIG.actions.CONNET_PHONE,
-                    data : {
-                        from : SnapPea.CurrentModule
-                    }
-                });
+
+                if (Device.get('isUSBConnecting')) {
+                    WindowController.ShowWizard('', true);
+                } else {
+                    IO.requestAsync(CONFIG.actions.CONNET_PHONE);
+                }
             },
             clickButtonPushToPhone : function (evt) {
                 evt.stopPropagation();

@@ -478,6 +478,10 @@
             },
             clickButtonConnectPhone : function () {
                 IO.requestAsync(CONFIG.actions.CONNET_PHONE);
+                log({
+                    'event' : 'ui.click.connection_usb',
+                    'pos' : 'toolbar'
+                });
             },
             events : {
                 'click .button-screen-shot' : 'clickButtonScreenShot',
