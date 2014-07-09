@@ -483,9 +483,9 @@
                 VIRTUAL_DEVICE : 0,
                 OFFLINE_DEVICE : 1,
                 ADB_DEVICE : 2,
-                WIFI_DEVICE : 3,
-                USB_DEVICE : 4,
-                USB_CONNECTING : 7,
+                USB_CONNECTING : 3,
+                WIFI_DEVICE : 4,
+                USB_DEVICE : 5,
 
                 /* Web navigate types */
                 NAVIGATE_TYPE_MARKET : 'market',
