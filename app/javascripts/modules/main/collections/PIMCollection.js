@@ -207,7 +207,7 @@
             tab : 'optimize'
         }, {
             count : -1,
-            hide : true,
+            hide : !FunctionSwitch.ENABLE_TOOLS,
             icon : 'tools',
             id : 21,
             label : i18n.misc.NAV_TOOLS,
