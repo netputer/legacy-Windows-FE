@@ -64,11 +64,12 @@
                     }
                 });
 
-                if (Device.get('udid')) {
-                    this.data.udid = Device.get('udid');
+                var deviceId = Environment.get('deviceId');
+                if (deviceId !== 'Default') {
+                    this.data.udid = deviceId;
                 } else {
-                    this.listenToOnce(Device, 'change:udid', function (Device, udid) {
-                        this.data.udid = udid;
+                    this.listenToOnce(Environment, 'change:deviceId', function (Environment, deviceId) {
+                        this.data.udid = deviceId;
                     });
                 }
 
@@ -119,8 +120,8 @@
                         if (this.data.udid) {
                             doFetch.call(this);
                         } else {
-                            this.listenToOnce(Device, 'change:udid', function (Device, udid) {
-                                this.data.udid = udid;
+                            this.listenToOnce(Environment, 'change:deviceId', function (Environment, deviceId) {
+                                this.data.udid = deviceId;
                                 doFetch.call(this);
                             });
                         }

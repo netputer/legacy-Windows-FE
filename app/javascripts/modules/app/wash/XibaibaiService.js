@@ -89,7 +89,7 @@
                             url : CONFIG.actions.APP_WASH_SCAN,
                             data : {
                                 id : 'wandoujia_windows',
-                                udid : Device.get('udid') || '',
+                                udid : Environment.get('deviceId') || '',
                                 version : Environment.get('backendVersion'),
                                 token : StringUtil.MD5('wandoujia_windows' + CONFIG.enums.APP_WASH_AUTH_KEY + data),
                                 data : data
