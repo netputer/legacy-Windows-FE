@@ -50,7 +50,7 @@
                 this.$button.prop('disabled', true);
 
                 setTimeout(function () {
-                    $btn.prop('disabled', false);
+                    this.$button.prop('disabled', false);
                 }.bind(this), 2000);
 
                 Device.manageSDCardAsync();
