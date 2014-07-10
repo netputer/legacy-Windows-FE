@@ -43,25 +43,21 @@
             },
             selectTargetItem : function () {
                 var contentDocument = this.options.$iframe[0].contentDocument;
-                var $targetItem;
+                var targetItem;
 
                 if (contentDocument) {
-                    this.$items.each(function (index, item) {
-                        var $item = $(item);
-                        var url = $item.attr('data');
-                        if (url.indexOf(contentDocument.location.href) === 0) {
-                            $targetItem = $item;
-                            return false;
-                        }
+                    targetItem = _.find(this.$items, function (item) {
+                        var url = $(item).attr('data');
+                        return url.indexOf(contentDocument.location.href) === 0;
                     });
 
-                    if ($targetItem) {
+                    if (targetItem) {
                         this.$('.root-item.selected').removeClass('selected');
-                        $targetItem.addClass('selected');
+                        targetItem = $(targetItem).addClass('selected');
                     }
                 }
 
-                this.relocatePointer($targetItem);
+                this.relocatePointer(targetItem);
             },
             relocatePointer : function ($targetTab) {
 
