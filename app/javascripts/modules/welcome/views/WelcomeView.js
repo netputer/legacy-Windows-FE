@@ -165,7 +165,7 @@
                 toolbarView.toggleButton(progress2 === 1);
 
                 deviceView.$el.css({
-                    'opacity' : (Device.get('canScreenshot') ? 1 : 0.7) - (0.2 * progress2),
+                    'opacity' : 1 - 0.2 * progress2,
                     '-webkit-transform' : 'translate3d(' + -Math.round(50 * progress2) + 'px, ' + -Math.round(180 * progress2)  + 'px, 0)'
                 });
 
