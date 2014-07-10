@@ -280,6 +280,11 @@
                     return !ProjectConfig.get('DISABLE_TOOLS');
                 }
             },
+            ENABLE_FLASH_DEVICE : {
+                get : function () {
+                    return Strategy.get('enableFlashDevice');
+                }
+            },
             IS_CHINESE_VERSION : {
                 get : function () {
                     return IS_CHINESE_VERSION;
