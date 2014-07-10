@@ -26,7 +26,7 @@
             initialize : function () {
 
                this.options.$iframe.on('readystatechange', function (evt) {
-                    if (evt.originalEvent.srcElement.readyState === 'loading') {
+                    if (evt.originalEvent.srcElement.readyState === 'complete') {
                         this.selectTargetItem();
                     }
                 }.bind(this));
@@ -43,17 +43,28 @@
             },
             selectTargetItem : function () {
                 var contentDocument = this.options.$iframe[0].contentDocument;
+                var targetItem;
+
                 if (contentDocument) {
-                    var $targetItem = this.$('li.root-item[data="' + decodeURIComponent(contentDocument.location.href) + '"]');
-                    if ($targetItem.length > 0) {
+                    targetItem = _.find(this.$items, function (item) {
+                        var url = $(item).attr('data');
+                        return url.indexOf(contentDocument.location.href) === 0;
+                    });
+
+                    if (targetItem) {
                         this.$('.root-item.selected').removeClass('selected');
-                        $targetItem.addClass('selected');
+                        targetItem = $(targetItem).addClass('selected');
                     }
                 }
-                this.relocatePointer();
+
+                this.relocatePointer(targetItem);
             },
-            relocatePointer : function () {
-                var $targetTab =  this.$('.root-item.selected');
+            relocatePointer : function ($targetTab) {
+
+                if (_.isUndefined($targetTab)) {
+                    $targetTab =  this.$('.root-item.selected');
+                }
+
                 if ($targetTab.length > 0) {
                     var $pointer = this.$el.parent().find('.w-browser-menu-pointer').show();
                     $pointer.css({
@@ -64,7 +75,10 @@
             },
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
-                setTimeout(this.selectTargetItem.bind(this), 0);
+                setTimeout(function () {
+                    this.$items = this.$('li.root-item');
+                    this.selectTargetItem();
+                }.bind(this), 0);
                 return this;
             },
             clickRootItem : function (evt) {
@@ -76,7 +90,7 @@
                     $target.addClass('selected');
                 }
                 var data = $target.attr('data');
-                this.relocatePointer();
+                this.relocatePointer($target);
 
                 this.trigger('select', data);
 
