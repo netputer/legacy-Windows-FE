@@ -10,7 +10,7 @@
         'ui/SmartList',
         'ui/BaseListItem',
         'utilities/StringUtil',
-        'Device',
+        'Environment',
         'Internationalization',
         'Configuration',
         'app/collections/AppsCollection'
@@ -24,7 +24,7 @@
         SmartList,
         BaseListItem,
         StringUtil,
-        Device,
+        Environment,
         i18n,
         CONFIG,
         AppsCollection
@@ -265,7 +265,7 @@
                         type : 'POST',
                         url : CONFIG.actions.APP_WASH_FEEDBACK,
                         data : {
-                            udid : Device.get('udid') || '',
+                            udid : Environment.get('deviceId'),
                             from : 'windows',
                             'package' : packageName,
                             md5 : packageName ? (app.get('fileMd5') || app.get('base_info').md5) : '',

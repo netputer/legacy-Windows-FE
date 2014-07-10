@@ -5,7 +5,7 @@
         'backbone',
         'doT',
         'jquery',
-        'Device',
+        'Environment',
         'IO',
         'Configuration',
         'ui/TemplateFactory'
@@ -14,7 +14,7 @@
         Backbone,
         doT,
         $,
-        Device,
+        Environment,
         IO,
         CONFIG,
         TemplateFactory
@@ -89,7 +89,7 @@
                         type : 'POST',
                         url : CONFIG.actions.APP_WASH_FEEDBACK,
                         data : {
-                            udid : Device.get('udid') || '',
+                            udid : Environment.get('deviceId'),
                             from : 'windows',
                             'package' : this.model.get('sourceApk').packageName,
                             md5 : this.model.get('sourceApk').md5,

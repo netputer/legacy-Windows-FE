@@ -54,7 +54,6 @@
                 externalFreeCapacity : 0,
                 isAutoBackup : false,
                 deviceName : QueryString.get('device_name') || i18n.misc.DEFAULT_DEVICE_NAME,
-                udid : '',
                 shell : {},
                 screenshot : {},
                 canScreenshot : false,
@@ -123,10 +122,6 @@
                 this.on('change:deviceName', function () {
                     this.isUserFlashedAsync().done(this.flashChangeHandler.bind(this));
                 }, this);
-
-                this.getUdidAsync().done(function (resp) {
-                    this.set('udid', resp.body.value);
-                }.bind(this));
 
                 var getShellInfoHandler = function () {
 
