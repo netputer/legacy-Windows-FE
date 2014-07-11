@@ -357,7 +357,7 @@
                             }, this);
 
                             alertDialog.show();
-                        };
+                        }.bind(this);
 
                         IO.requestAsync({
                             url  : CONFIG.actions.DEVICE_OPEN_SD_CARD,
@@ -432,7 +432,7 @@
 
                                     deferred.reject(resp);
                                 }
-                            }
+                            }.bind(this)
                         });
                     }.bind(this);
 
