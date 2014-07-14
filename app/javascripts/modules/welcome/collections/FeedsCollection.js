@@ -65,9 +65,8 @@
                 });
 
                 var deviceId = Environment.get('deviceId');
-                if (deviceId !== 'Default') {
-                    this.data.udid = deviceId;
-                } else {
+                this.data.udid = deviceId;
+                if (deviceId === 'Default') {
                     this.listenToOnce(Environment, 'change:deviceId', function (Environment, deviceId) {
                         this.data.udid = deviceId;
                     });
@@ -117,14 +116,8 @@
                             this.snapPeaFetch();
                             return;
                         }
-                        if (this.data.udid) {
-                            doFetch.call(this);
-                        } else {
-                            this.listenToOnce(Environment, 'change:deviceId', function (Environment, deviceId) {
-                                this.data.udid = deviceId;
-                                doFetch.call(this);
-                            });
-                        }
+
+                        doFetch.call(this);
                     }
                 }, this);
             },
