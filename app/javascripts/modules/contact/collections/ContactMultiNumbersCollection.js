@@ -75,19 +75,29 @@
 
         var factory = _.extend({
             getInstance : function () {
+
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 if (!contactMultiNumbersCollection) {
                     contactMultiNumbersCollection = new ContactMultiNumbersCollection();
 
-                    if (Device.get('isUSB')) {
+                    if (window.SnapPea.enablePim()) {
                         contactMultiNumbersCollection.trigger('update');
                     } else {
-                        Device.once('change:isUSB', function (Device, isUSB) {
-                            if (isUSB) {
-                                contactMultiNumbersCollection.trigger('update');
+                        listenHandler = function (Device) {
+
+                            if (window.SnapPea.enablePim()) {
+                                this.trigger('update');
+                                this.stopListening(this, events, listenHandler);
                             }
-                        });
-                    }                          }
-                return contactMultiNumbersCollection;
+                        };
+
+                        contactMultiNumbersCollection.listenTo(Device, events, listenHandler);
+                    }
+
+                    return contactMultiNumbersCollection;
+                }
             }
         });
 

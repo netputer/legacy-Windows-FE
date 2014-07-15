@@ -63,7 +63,7 @@
                 });
             },
             render : function () {
-                BindingDeviceWindowView.__super__.render.call(this, arguments);
+                BindingDeviceWindowView.__super__.render.apply(this, arguments);
 
                 if (navigator.language !== CONFIG.enums.LOCALE_ZH_CN) {
                     this.$bodyContent = $(doT.template(TemplateFactory.get('misc', 'binding-devie-i18n'))({}));

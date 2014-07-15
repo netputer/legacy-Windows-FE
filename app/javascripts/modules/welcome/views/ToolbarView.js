@@ -22,7 +22,8 @@
         'welcome/views/DeviceView',
         'welcome/WelcomeService',
         'task/TaskService',
-        'task/models/TaskModel'
+        'task/models/TaskModel',
+        'main/views/NotInSameWifiView'
     ], function (
         Backbone,
         _,
@@ -45,7 +46,8 @@
         DeviceView,
         WelcomeService,
         TaskService,
-        TaskModel
+        TaskModel,
+        NotInSameWifiView
     ) {
 
         var destination = Settings.get('screenShot-destination') !== undefined ? Settings.get('screenShot-destination') : CONFIG.enums.SCREEN_SHOT_DESTINATION_FILE;
@@ -301,14 +303,10 @@
                     return;
                 }
 
-                if (Device.get('isWifi')) {
-                    IO.requestAsync({
-                        url : CONFIG.actions.CONNET_PHONE,
-                        data : {
-                            from : 'open_sd'
-                        }
-                    });
-
+                if (!window.SnapPea.enablePim()) {
+                    NotInSameWifiView.getInstance({
+                        type : 'sdcard'
+                    }).show();
                     return;
                 }
 
@@ -325,17 +323,6 @@
             },
             clickButtonBackup : function () {
 
-                if (Device.get('isWifi')) {
-                    IO.requestAsync({
-                        url : CONFIG.actions.CONNET_PHONE,
-                        data : {
-                            from : 'backup-restore'
-                        }
-                    });
-
-                    return;
-                }
-
                 Backbone.trigger('switchModule', {
                     module : 'backup-restore'
                 });
@@ -346,17 +333,6 @@
                 });
             },
             clickButtonRestore : function () {
-
-                if (Device.get('isWifi')) {
-                    IO.requestAsync({
-                        url : CONFIG.actions.CONNET_PHONE,
-                        data : {
-                            from : 'backup-restore'
-                        }
-                    });
-
-                    return;
-                }
 
                 Backbone.trigger('switchModule', {
                     module : 'backup-restore'
@@ -404,14 +380,10 @@
                 return deferred.promise();
             },
             clickButtonSetWallpaper : function () {
-               if (Device.get('isWifi')) {
-                    IO.requestAsync({
-                        url : CONFIG.actions.CONNET_PHONE,
-                        data : {
-                            from : 'wallpaper'
-                        }
-                    });
-
+                if (!window.SnapPea.enablePim()) {
+                    NotInSameWifiView.getInstance({
+                        type : 'wallpaper'
+                    }).show();
                     return;
                 }
 

@@ -105,7 +105,6 @@
                     'event' : 'ui.click.new_wifi_tip',
                     'type' : 'feedback'
                 });
-
             },
             events : {
                 'click .button-close' : 'clickButtonClose',

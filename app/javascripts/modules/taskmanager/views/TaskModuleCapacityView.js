@@ -11,7 +11,8 @@
         'IO',
         'Device',
         'ui/TemplateFactory',
-        'task/views/CapacityTipsView'
+        'task/views/CapacityTipsView',
+        'main/views/NotInSameWifiView'
     ], function (
         _,
         $,
@@ -23,7 +24,8 @@
         IO,
         Device,
         TemplateFactory,
-        CapacityTipsView
+        CapacityTipsView,
+        NotInSameWifiView
     ) {
         console.log('TaskModuleCapacityView - File loaded.');
 
@@ -69,20 +71,28 @@
             },
             checkCapacity : function () {
                 clearInterval(this.checkHandle);
-                if (Device.get('isConnected') && this.isOpened && Device.get('isUSB')) {
+                if (window.SnapPea.enablePim() && this.isOpened) {
                     this.checkHandle = setInterval(function() {
                         Device.getCapacityAsync().always(this.setContent.bind(this));
                     }.bind(this), 3000);
-                } else {
-                    this.$('button').prop('disabled', true);
-                    this.$('progress').addClass('disabled');
+
+                    return;
                 }
+
+                var disabled = !Device.get('isConnected') || Device.get('isUSBConnecting');
+                this.$('button').prop('disabled', disabled);
+                this.$('progress').toggleClass('disabled', disabled);
             },
             render : function () {
 
-                this.$el.html(this.template({}))
-                        .find('button').prop('disabled', true)
-                        .find('progress').addClass('disabled');
+                this.$el.html(this.template({}));
+
+                setTimeout(function () {
+                    if (!Device.get('isConnected') || Device.get('isUSBConnecting')){
+                        this.$('button').prop('disabled', true);
+                        this.$('progress').addClass('disabled');
+                    }
+                }.bind(this), 0);
                 return this;
             },
             setContent : function () {
@@ -125,6 +135,7 @@
                 }
             },
             openSD : function (path) {
+
                 var $btn = this.$('.button-open-sd').prop('disabled', true);
 
                 setTimeout(function () {
@@ -142,6 +153,15 @@
                 });
             },
             clickButtonOpenSD : function () {
+
+                if (!window.SnapPea.enablePim()) {
+                    NotInSameWifiView.getInstance({
+                        type : 'sdcard'
+                    }).show();
+
+                    return;
+                }
+
                 window.externalCall('', 'OpenPIMWithoutConnection', 'open_sd_card');
                 this.openSD();
 

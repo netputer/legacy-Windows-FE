@@ -55,19 +55,27 @@
 
         var factory = _.extend({
             getInstance: function () {
+
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 if (!cloudPhotoCollection) {
                     cloudPhotoCollection = new CloudPhotoCollection();
                     if (Account.get('isLogin')) {
 
-                        if (Device.get('isUSB')) {
-                            cloudPhotoCollection.trigger('update');
-                        } else {
-                            Device.once('change:isUSB', function (Device, isUSB) {
-                                if (isUSB) {
-                                    cloudPhotoCollection.trigger('update');
-                                }
-                            });
-                        }
+                    if (window.SnapPea.enablePim()) {
+                        cloudPhotoCollection.trigger('update');
+                    } else {
+                        listenHandler = function (Device) {
+
+                            if (window.SnapPea.enablePim()) {
+                                this.trigger('update');
+                                this.stopListening(this, events, listenHandler);
+                            }
+                        };
+
+                        cloudPhotoCollection.listenTo(Device, events, listenHandler);
+                    }
                     }
 
                     Account.on('change:isLogin', function (Account, isLogin) {

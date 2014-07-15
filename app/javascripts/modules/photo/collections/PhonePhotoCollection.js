@@ -23,17 +23,25 @@
 
         var factory = _.extend({
             getInstance: function () {
+
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 if (!phonePhotoCollection) {
                     phonePhotoCollection = new PhonePhotoCollection();
 
-                    if (Device.get('isUSB')) {
+                    if (window.SnapPea.enablePim()) {
                         phonePhotoCollection.trigger('update');
                     } else {
-                        Device.once('change:isUSB', function (Device, isUSB) {
-                            if (isUSB) {
-                                phonePhotoCollection.trigger('update');
+                        listenHandler = function (Device) {
+
+                            if (window.SnapPea.enablePim()) {
+                                this.trigger('update');
+                                this.stopListening(this, events, listenHandler);
                             }
-                        });
+                        };
+
+                        phonePhotoCollection.listenTo(Device, events, listenHandler);
                     }
                 }
                 return phonePhotoCollection;

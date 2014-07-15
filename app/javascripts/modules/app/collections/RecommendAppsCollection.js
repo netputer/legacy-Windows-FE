@@ -74,6 +74,10 @@
 
         var factory = _.extend({
             getInstance : function (pos, packageName) {
+
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 var recommendAppsCollection = new RecommendAppsCollection();
 
                 if (packageName) {
@@ -82,14 +86,17 @@
 
                 recommendAppsCollection.data.pos = pos;
 
-                if (Device.get('isUSB')) {
+                if (window.SnapPea.enablePim()) {
                     recommendAppsCollection.trigger('update');
                 } else {
-                    Device.once('change:isUSB', function (Device, isUSB) {
-                        if (isUSB) {
-                            recommendAppsCollection.trigger('update');
+                    listenHandler = function (Device) {
+                        if (window.SnapPea.enablePim()) {
+                            this.trigger('update');
+                            this.stopListening(this, events, listenHandler);
                         }
-                    });
+                    };
+
+                    recommendAppsCollection.listenTo(Device, events, listenHandler);
                 }
 
                 return recommendAppsCollection;

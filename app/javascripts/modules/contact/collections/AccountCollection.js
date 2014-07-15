@@ -262,20 +262,26 @@
 
         var factory = _.extend({
             getInstance : function () {
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 if (!accountCollection) {
                     accountCollection = new AccountCollection();
                     accountCollection.trigger('update');
 
-                    if (Device.get('isUSB')) {
+                    if (window.SnapPea.enablePim()) {
                         accountCollection.trigger('update');
                     } else {
-                        Device.once('change:isUSB', function (Device, isUSB) {
-                            if (isUSB) {
-                                 accountCollection.trigger('update');
-                            }
-                        });
-                    }
+                        listenHandler = function (Device) {
 
+                            if (window.SnapPea.enablePim()) {
+                                this.trigger('update');
+                                this.stopListening(this, events, listenHandler);
+                            }
+                        };
+
+                        accountCollection.listenTo(Device, events, listenHandler);
+                    }
                 }
                 return accountCollection;
             }

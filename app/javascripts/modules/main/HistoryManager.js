@@ -95,7 +95,7 @@
                     break;
                 case 'app':
 
-                    if (Device.get('isConnected') && Device.get('isWifi')) {
+                    if (!window.SnapPea.enablePim()) {
                         canReload = false;
                     } else if (SnapPea.CurrentTab === 'web') {
                         canReload = Account.get('isLogin');
@@ -115,7 +115,7 @@
             }
         };
 
-        Device.on('change:isConnected', updateNativeToolbarState);
+        Device.on('change:isConnected change:isSameWifi', _.debounce(updateNativeToolbarState, 500));
 
         IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.NAVIGATE_BACK

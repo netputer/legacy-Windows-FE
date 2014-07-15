@@ -190,17 +190,25 @@
 
         var factory = _.extend({
             getInstance : function (args) {
+
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 if (!threadsCollection) {
                     threadsCollection = new ThreadsCollection(args);
 
-                    if (Device.get('isUSB')) {
+                    if (window.SnapPea.enablePim()) {
                         threadsCollection.trigger('update');
                     } else {
-                        Device.once('change:isUSB', function (Device, isUSB) {
-                            if (isUSB) {
-                                threadsCollection.trigger('update');
+                        listenHandler = function (Device) {
+
+                            if (window.SnapPea.enablePim()) {
+                                this.trigger('update');
+                                this.stopListening(this, events, listenHandler);
                             }
-                        });
+                        };
+
+                        threadsCollection.listenTo(Device, events, listenHandler);
                     }
                 }
 

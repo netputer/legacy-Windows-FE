@@ -172,14 +172,16 @@
         <h1 class='title'>{{= i18n.welcome.CONNECT_UR_PHONE }}</h1>
         <span class='desc'>{{= i18n.welcome.CONNECTION_TIP }}</span>
         {{??}}
-        <h1 class='title'>{{= i18n.misc.CONNECT_UR_PHONE }}</h1>
+        <h1 class='title'>{{= i18n.misc.CAN_NOT_USE_PIM }}</h1>
         <span class='desc'>{{= i18n.misc.CONNECTION_TIP }}</span>
         {{?}}
-        {{? Device.get('connectionState') !== CONFIG.enums.CONNECTION_STATE_PLUG_OUT && Device.get('connectionState') !== CONFIG.enums.CONNECTION_STATE_CONNECTED }}
+        {{? Device.get('isUSBConnecting') }}
             <button class='button-check primary max'>{{= i18n.misc.CHECK_CONNECTION_STATE }}</button>
-        {{??}}
-            <button class='button-action primary max'>{{= i18n.misc.CONNECTION_BUTTON }}</button>
         {{?}}
+    </div>
+    <div class="ip-ctn">
+        <span class="text-thirdly client-ip">{{= StringUtil.format(i18n.misc.CLIENT_IP, it.clientIp) }}</span>
+        <span class="text-thirdly device-ip">{{= StringUtil.format(i18n.misc.DEVICE_IP, it.deviceIp) }}</span>
     </div>
 </script>
 
@@ -247,6 +249,20 @@
     </div>
     <div class='feedback'>
         <span class="link button-help">{{= i18n.misc.HELP }}</span>
+    </div>
+</script>
+
+<script type="text/x-ui-template" id="not-in-same-wifi">
+    <div class="w-misc-not-in-same-wifi hbox">
+        <div class="pic-ctn {{= it.type }}"></div>
+        <div class="content-ctn">
+            <span class="header-text">{{= i18n.misc['CAN_NOT_USE_' + it.type.toUpperCase()] }}</span>
+            <span class="content-text hbox">{{= i18n.misc.NOT_IN_SAME_WIFI }}</span>
+        </div>
+        <div class="ip-ctn">
+            <span class="text-thirdly client-ip">{{= StringUtil.format(i18n.misc.CLIENT_IP, it.clientIp) }}</span>
+            <span class="text-thirdly device-ip">{{= StringUtil.format(i18n.misc.DEVICE_IP, it.deviceIp) }}</span>
+        </div>
     </div>
 </script>
 

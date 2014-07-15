@@ -468,6 +468,10 @@
 
         var factory = _.extend({
             getInstance : function () {
+
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 if (!appsCollection) {
                     appsCollection = new AppsCollection();
 
@@ -492,14 +496,17 @@
                         });
                     });
 
-                    if (Device.get('isUSB')) {
+                    if (window.SnapPea.enablePim()) {
                         appsCollection.trigger('update');
                     } else {
-                        Device.once('change:isUSB', function (Device, isUSB) {
-                            if (isUSB) {
-                                appsCollection.trigger('update');
+                        listenHandler = function (Device) {
+                            if (window.SnapPea.enablePim()) {
+                                this.trigger('update');
+                                this.stopListening(this, events, listenHandler);
                             }
-                        });
+                        };
+
+                        appsCollection.listenTo(Device, events, listenHandler);
                     }
                 }
                 return appsCollection;

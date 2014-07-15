@@ -73,7 +73,7 @@
 
         }, 500);
 
-        WindowController.ShowErrorWizard =function () {
+        WindowController.ShowErrorWizard = function () {
             window.externalCall('', 'ShowErrorWizard');
         };
 
