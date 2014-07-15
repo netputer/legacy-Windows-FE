@@ -74,7 +74,11 @@
                 window.SnapPea.AppWindow.close();
             },
             clickButtonAction : function () {
-                window.location.href = window.location.href + '?usbError=true';
+                if (location.search === '') {
+                    window.location.href = window.location.href + '?usbError=true';
+                } else {
+                    window.location.href = window.location.href + '&usbError=true';
+                }
             },
             clickButtonHelp : function () {
                 IO.requestAsync({
