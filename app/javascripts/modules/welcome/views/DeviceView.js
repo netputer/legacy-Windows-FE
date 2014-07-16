@@ -119,32 +119,7 @@
                     }
                 });
 
-                this.listenTo(Device, 'change:isConnected', function (Device, isConnected) {
-                    var isUSB = Device.get('isUSB');
-                    var isWifi = Device.get('isWifi');
-
-                    if (isConnected) {
-                        this.wifiTip.toggleClass('hide', !isWifi);
-                        this.offlineTip.addClass('hide');
-                        this.screenShot.toggle(isUSB);
-
-                        if (isUSB) {
-                            Device.getScreenshotAsync();
-                        }
-                        this.loading = false ;
-                    } else {
-                        this.wifiTip.addClass('hide');
-                        this.offlineTip.removeClass('hide');
-                        this.screenShot.hide();
-                    }
-
-                    this.connectionTip.addClass('hide');
-                });
-
-                this.listenTo(Device, 'change:connectionState', function (){
-                    this.wifiTip.addClass('hide');
-                    this.setConnectionState();
-                });
+                this.listenTo(Device, 'change:isConnected change:connectionState', _.debounce(this.setConnectionState, 200));
 
                 this.listenTo(Device, 'change:shell', this.renderShell)
                     .listenTo(Device, 'change:screenshot', function(Device, screenshot) {
@@ -153,20 +128,42 @@
                     });
             },
             setConnectionState : function () {
-                var $desc = this.$('.connection-tip .desc');
+
+                var isUSB = Device.get('isUSB');
                 var connectionState = Device.get('connectionState');
+                var isUSBConnecting = Device.get('isUSBConnecting');
+                var isConnected = Device.get('isConnected');
+                var $desc = this.$('.connection-tip .desc');
 
                 if (connectionState === CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
                     this.loading = false;
-                    this.wifiTip.addClass('hide');
                     this.offlineTip.removeClass('hide');
                     this.connectionTip.addClass('hide');
                     this.screenShot.hide();
-                } else {
+                    this.wifiTip.addClass('hide');
+                    return;
+                }
+
+                if (isUSBConnecting) {
                     this.loading = true;
                     this.offlineTip.addClass('hide');
                     this.connectionTip.removeClass('hide');
+                    this.screenShot.hide();
+                    this.wifiTip.addClass('hide');
                     $desc.html(i18n.misc['DEVICE_' + connectionState.toUpperCase()]);
+                    return;
+                }
+
+                if (isConnected) {
+                    this.loading = false ;
+                    this.connectionTip.addClass('hide');
+                    this.wifiTip.toggleClass('hide', isUSB);
+                    this.offlineTip.addClass('hide');
+                    this.screenShot.toggle(isUSB);
+
+                    if (isUSB) {
+                        Device.getScreenshotAsync();
+                    }
                 }
             },
             render : function () {
@@ -191,6 +188,8 @@
                 this.$el.one('webkitAnimationEnd', function () {
                     this.$el.removeClass('fade-in');
                 }.bind(this));
+
+                this.setConnectionState();
 
                 return this;
             },
