@@ -115,7 +115,7 @@
             }
         };
 
-        Device.on('change:isConnected change:isSameWifi', _.debounce(updateNativeToolbarState, 500));
+        Device.on('change:isConnected change:isSameWifi', _.debounce(updateNativeToolbarState, 200));
 
         IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.NAVIGATE_BACK

@@ -135,7 +135,6 @@
                 }
             },
             openSD : function (path) {
-
                 var $btn = this.$('.button-open-sd').prop('disabled', true);
 
                 setTimeout(function () {
