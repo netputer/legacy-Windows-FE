@@ -69,8 +69,8 @@
                 connectionState : CONFIG.enums.CONNECTION_STATE_PLUG_OUT,
                 isUSBConnecting : false,
                 isSameWifi : false,
-                device_ip : '0.0.0.0',
-                pc_ip : '0.0.0.0'
+                device_ip : '',
+                pc_ip : ''
             },
             initialize : function () {
                 var listenBack = false;
@@ -235,9 +235,9 @@
                     productId : data.product_id,
                     isRoot : data.is_root,
                     deviceName : data.device_name,
-                    isSameWifi : _.isUndefined(data.is_same_wifi) ? false : data.is_same_wifi,
-                    device_ip : _.isUndefined(data.device_ip) ? '0.0.0.0' : data.device_ip,
-                    pc_ip : _.isUndefined(data.pc_ip) ? '0.0.0.0' : data.pc_ip
+                    isSameWifi : data.is_same_wifi,
+                    device_ip : data.device_ip,
+                    pc_ip : data.pc_ip
                 });
             },
             getSDCapacityAsync : function () {
