@@ -621,17 +621,25 @@
 
         var factory = _.extend({
             getInstance : function () {
+
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 if (!contactsCollection) {
                     contactsCollection = new ContactsCollection();
 
-                    if (Device.get('isUSB')) {
+                    if (window.SnapPea.isPimEnabled) {
                         contactsCollection.trigger('update');
                     } else {
-                        Device.once('change:isUSB', function (Device, isUSB) {
-                            if (isUSB) {
-                                contactsCollection.trigger('update');
+                        listenHandler = function (Device) {
+
+                            if (window.SnapPea.isPimEnabled) {
+                                this.trigger('update');
+                                this.stopListening(this, events, listenHandler);
                             }
-                        });
+                        };
+
+                        contactsCollection.listenTo(Device, events, listenHandler);
                     }
 
                     contactsCollection.on('refresh', function (contactsCollection) {

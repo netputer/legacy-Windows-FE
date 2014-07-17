@@ -9,7 +9,8 @@
         'Configuration',
         'Device',
         'Log',
-        'WindowController'
+        'WindowController',
+        'utilities/StringUtil'
     ], function (
         _,
         Backbone,
@@ -19,7 +20,8 @@
         CONFIG,
         Device,
         log,
-        WindowController
+        WindowController,
+        StringUtil
     ) {
         console.log('PimMaskView - File loaded. ');
 
@@ -49,9 +51,16 @@
                 });
 
                 this.listenTo(Device, 'change:isConnected change:isUSB change:isWifi change:connectionState', _.debounce(this.render, 500));
+                this.listenTo(Device, 'change:pcIp change:deviceIp', _.debounce(function (Device) {
+                    this.$('.client-ip').html(StringUtil.format(i18n.misc.CLIENT_IP, Device.get('pcIp')));
+                    this.$('.device-ip').html(StringUtil.format(i18n.misc.DEVICE_IP, Device.get('deviceIp')));
+                }.bind(this), 500));
             },
             render : function () {
-                this.$el.html(this.template({}));
+                this.$el.html(this.template({
+                    'clientIp' : Device.get('pcIp'),
+                    'deviceIp' : Device.get('deviceIp')
+                }));
                 return this;
             },
             show : function () {
@@ -84,9 +93,15 @@
             clickButtonCheck : function () {
                  WindowController.ShowErrorWizard();
             },
+            clickButtonHelp : function () {
+                log({
+                    'event' : 'ui.click.pim_mask_help'
+                });
+            },
             events : {
                 'click .button-action' : 'clickButtonAction',
-                'click .button-check' : 'clickButtonCheck'
+                'click .button-check' : 'clickButtonCheck',
+                'click .button-help' : 'clickButtonHelp'
             }
         });
 

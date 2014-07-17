@@ -52,7 +52,7 @@
 
         var importProgressView;
         var $bodyView;
-        var conversationConllection = ConversationsCollection.getInstance();
+        var conversationConllection;
         var ImportProgressView = Panel.extend({
             initialize : function () {
                 ImportProgressView.__super__.initialize.apply(this, arguments);
@@ -70,6 +70,8 @@
                     $button : $('<button>').html(i18n.ui.CANCEL).addClass('button-cancel'),
                     eventName : 'button-cancel'
                 }];
+
+                conversationConllection = ConversationsCollection.getInstance();
             },
             setProgress : function (current, total) {
                 var content = current + ' / ' + total;

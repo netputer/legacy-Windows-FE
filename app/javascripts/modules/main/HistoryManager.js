@@ -76,14 +76,6 @@
                     canGoForward : forwarStack.length > 0 || forwardCount > 0,
                     canReload : true
                 }));
-            } else if (currentModule === 'backup-restore') {
-
-                window.externalCall('', 'navigation', JSON.stringify({
-                    canGoBack : false,
-                    canGoForward : false,
-                    canReload : false
-                }));
-
             } else {
                 var canReload = false;
 
@@ -91,11 +83,12 @@
                 case 'welcome':
                 case 'app-wash':
                 case 'optimize':
+                case 'backup-restore':
                     canReload = false;
                     break;
                 case 'app':
 
-                    if (Device.get('isConnected') && Device.get('isWifi')) {
+                    if (!window.SnapPea.isPimEnabled) {
                         canReload = false;
                     } else if (SnapPea.CurrentTab === 'web') {
                         canReload = Account.get('isLogin');
@@ -115,7 +108,7 @@
             }
         };
 
-        Device.on('change:isConnected', updateNativeToolbarState);
+        Device.on('change:isConnected change:isSameWifi', _.debounce(updateNativeToolbarState, 200));
 
         IO.Backend.Device.onmessage({
             'data.channel' : CONFIG.events.NAVIGATE_BACK

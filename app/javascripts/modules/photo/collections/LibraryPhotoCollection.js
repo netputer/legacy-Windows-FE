@@ -53,17 +53,25 @@
 
         var factory = _.extend({
             getInstance : function () {
+
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 if (!libraryPhotoCollection) {
                     libraryPhotoCollection = new LibraryPhotoCollection();
 
-                    if (Device.get('isUSB')) {
+                    if (window.SnapPea.isPimEnabled) {
                         libraryPhotoCollection.trigger('update');
                     } else {
-                        Device.once('change:isUSB', function (Device, isUSB) {
-                            if (isUSB) {
-                                libraryPhotoCollection.trigger('update');
+                        listenHandler = function (Device) {
+
+                            if (window.SnapPea.isPimEnabled) {
+                                this.trigger('update');
+                                this.stopListening(this, events, listenHandler);
                             }
-                        });
+                        };
+
+                        libraryPhotoCollection.listenTo(Device, events, listenHandler);
                     }
                 }
                 return libraryPhotoCollection;

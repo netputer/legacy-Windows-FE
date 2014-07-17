@@ -35,7 +35,7 @@
         console.log('ExportProgressView - file loader');
 
         var alert = window.alert;
-        var conversationsCollection = ConversationsCollection.getInstance();
+        var conversationsCollection;
         var ExportProgressBodyView = Backbone.View.extend({
             template : doT.template(TemplateFactory.get('message', 'export-progress')),
             className : 'w-message-export-progress-body',
@@ -102,6 +102,8 @@
                     $button : $('<button>').html(i18n.ui.CANCEL).addClass('button-cancel'),
                     eventName : 'button-cancel'
                 }];
+
+                conversationsCollection = ConversationsCollection.getInstance();
             },
             render : function () {
                 _.extend(this.events, ExportProgressView.__super__.events);

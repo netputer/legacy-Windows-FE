@@ -67,7 +67,10 @@
                 externalSDPath : '',
                 dualSIM : [],
                 connectionState : CONFIG.enums.CONNECTION_STATE_PLUG_OUT,
-                isUSBConnecting : false
+                isUSBConnecting : false,
+                isSameWifi : false,
+                deviceIp : '',
+                pcIp : ''
             },
             initialize : function () {
                 var listenBack = false;
@@ -231,7 +234,10 @@
                     SDKVersion : data.sdk_version,
                     productId : data.product_id,
                     isRoot : data.is_root,
-                    deviceName : data.device_name
+                    deviceName : data.device_name,
+                    isSameWifi : data.is_same_wifi,
+                    deviceIp : data.device_ip,
+                    pcIp : data.pc_ip
                 });
             },
             getSDCapacityAsync : function () {

@@ -221,19 +221,27 @@
 
         var factory = _.extend({
             getInstance : function () {
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 if (!webAppsCollection) {
                     webAppsCollection = new WebAppsCollection();
 
-                    if (Device.get('isUSB')) {
+                    if (window.SnapPea.isPimEnabled) {
                         webAppsCollection.trigger('update');
                     } else {
-                        Device.once('change:isUSB', function (Device, isUSB) {
-                            if (isUSB) {
-                                webAppsCollection.trigger('update');
+                        listenHandler = function (Device) {
+
+                            if (window.SnapPea.isPimEnabled) {
+                                this.trigger('update');
+                                this.stopListening(this, events, listenHandler);
                             }
-                        });
+                        };
+
+                        webAppsCollection.listenTo(Device, events, listenHandler);
                     }
                 }
+
                 return webAppsCollection;
             }
         });

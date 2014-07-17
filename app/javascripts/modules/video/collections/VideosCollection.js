@@ -198,17 +198,25 @@
 
         var factory = _.extend({
             getInstance : function () {
+
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 if (!videosCollection) {
                     videosCollection = new VideosCollection();
 
-                    if (Device.get('isUSB')) {
+                    if (window.SnapPea.isPimEnabled) {
                         videosCollection.trigger('update');
                     } else {
-                        Device.once('change:isUSB', function (Device, isUSB) {
-                            if (isUSB) {
-                                videosCollection.trigger('update');
+                        listenHandler = function (Device) {
+
+                            if (window.SnapPea.isPimEnabled) {
+                                this.trigger('update');
+                                this.stopListening(this, events, listenHandler);
                             }
-                        });
+                        };
+
+                        videosCollection.listenTo(Device, events, listenHandler);
                     }
 
                     videosCollection.on('refresh', function (videosCollection) {

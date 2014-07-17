@@ -374,6 +374,10 @@
 
         var factory = _.extend({
             getInstance : function () {
+
+                var listenHandler;
+                var events = 'change:isConnected change:isSameWifi';
+
                 if (!conversationsCollection) {
                     conversationsCollection = new ConversationsCollection();
 
@@ -384,14 +388,18 @@
                         });
                     });
 
-                    if (Device.get('isUSB')) {
+                    if (window.SnapPea.isPimEnabled) {
                         conversationsCollection.trigger('update');
                     } else {
-                        Device.once('change:isUSB', function (Device, isUSB) {
-                            if (isUSB) {
-                                conversationsCollection.trigger('update');
+                        listenHandler = function (Device) {
+
+                            if (window.SnapPea.isPimEnabled) {
+                                this.trigger('update');
+                                this.stopListening(this, events, listenHandler);
                             }
-                        });
+                        };
+
+                        conversationsCollection.listenTo(Device, events, listenHandler);
                     }
                 }
                 return conversationsCollection;

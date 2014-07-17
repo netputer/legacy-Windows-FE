@@ -409,7 +409,7 @@
     <div class="btn-ctn hbox">
         <button type="button" class="button-save primary">{{= i18n.misc.SAVE }}</button>
         <div class="running">
-        <div class="w-ui-loading-small" style="display: block; ">
+        <div class="w-ui-loading small" style="display: block;">
             <div class="anima">
                 <div class="rotor rotor1"></div>
                 <div class="rotor rotor2"></div>

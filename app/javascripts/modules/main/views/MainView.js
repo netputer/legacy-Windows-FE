@@ -66,6 +66,12 @@
             return !_.contains(['task', 'browser', 'gallery', 'welcome', 'doraemon'], module);
         };
 
+        Object.defineProperty(window.SnapPea, 'isPimEnabled', {
+            get : function () {
+                return Device.get('isConnected') && ((Device.get('isWifi') && Device.get('isSameWifi')) || Device.get('isUSB'));
+            }
+        });
+
         WindowState.on('resize', function (){
             if (!$needToHide) {
                 $needToHide = $('.need-to-hide').addClass('w-module-hide');
@@ -299,7 +305,7 @@
                 pimMaskView = PimMaskView.getInstance();
                 this.$('.module-ctn').append(pimMaskView.render().$el.hide());
 
-                this.listenTo(Device, 'change:isWifi change:isConnected change:isFastADB', _.debounce(function () {
+                this.listenTo(Device, 'change:isWifi change:isConnected change:isFastADB change:isSameWifi', _.debounce(function () {
                     var isShow = this.toggleMask();
                 }.bind(this), 500));
 
@@ -388,10 +394,8 @@
                 return this.modules[name];
             },
             toggleMask : function () {
-                var isConnected = Device.get('isConnected') || Device.get('isFastADB');
-                var isWifi = Device.get('isWifi');
 
-                if (window.SnapPea.isPimModule(this.currentModule) && (!isConnected || isWifi)) {
+                if (window.SnapPea.isPimModule(this.currentModule) && !window.SnapPea.isPimEnabled) {
                     pimMaskView.show();
                 } else {
                     pimMaskView.hide();
