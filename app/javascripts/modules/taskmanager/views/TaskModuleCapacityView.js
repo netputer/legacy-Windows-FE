@@ -71,7 +71,7 @@
             },
             checkCapacity : function () {
                 clearInterval(this.checkHandle);
-                if (window.SnapPea.enablePim() && this.isOpened) {
+                if (window.SnapPea.isPimEnabled && this.isOpened) {
                     this.checkHandle = setInterval(function() {
                         Device.getCapacityAsync().always(this.setContent.bind(this));
                     }.bind(this), 3000);
@@ -153,7 +153,7 @@
             },
             clickButtonOpenSD : function () {
 
-                if (!window.SnapPea.enablePim()) {
+                if (!window.SnapPea.isPimEnabled) {
                     NotInSameWifiView.getInstance({
                         type : 'sdcard'
                     }).show();

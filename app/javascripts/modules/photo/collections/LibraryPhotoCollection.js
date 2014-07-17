@@ -60,12 +60,12 @@
                 if (!libraryPhotoCollection) {
                     libraryPhotoCollection = new LibraryPhotoCollection();
 
-                    if (window.SnapPea.enablePim()) {
+                    if (window.SnapPea.isPimEnabled) {
                         libraryPhotoCollection.trigger('update');
                     } else {
                         listenHandler = function (Device) {
 
-                            if (window.SnapPea.enablePim()) {
+                            if (window.SnapPea.isPimEnabled) {
                                 this.trigger('update');
                                 this.stopListening(this, events, listenHandler);
                             }

@@ -303,7 +303,7 @@
                     return;
                 }
 
-                if (!window.SnapPea.enablePim()) {
+                if (!window.SnapPea.isPimEnabled) {
                     NotInSameWifiView.getInstance({
                         type : 'sdcard'
                     }).show();
@@ -380,7 +380,7 @@
                 return deferred.promise();
             },
             clickButtonSetWallpaper : function () {
-                if (!window.SnapPea.enablePim()) {
+                if (!window.SnapPea.isPimEnabled) {
                     NotInSameWifiView.getInstance({
                         type : 'wallpaper'
                     }).show();

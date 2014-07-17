@@ -59,10 +59,10 @@
             initialize : function () {
                 var loading = false;
                 var fade = false;
-                var offlineTip;
-                var wifiTip;
-                var screenShot;
-                var connectionTip;
+                var $offlineTip;
+                var $wifiTip;
+                var $screenShot;
+                var $connectionTip;
                 Object.defineProperties(this, {
                     loading : {
                         set : function (value) {
@@ -85,36 +85,36 @@
                             return fade;
                         }
                     },
-                    offlineTip : {
+                    $offlineTip : {
                         set : function (value) {
-                            offlineTip = value;
+                            $offlineTip = value;
                         },
                         get : function () {
-                            return offlineTip;
+                            return $offlineTip;
                         }
                     },
-                    wifiTip : {
+                    $wifiTip : {
                         set : function (value) {
-                            wifiTip = value;
+                            $wifiTip = value;
                         },
                         get : function () {
-                            return wifiTip;
+                            return $wifiTip;
                         }
                     },
-                    screenShot : {
+                    $screenShot : {
                         set : function (value) {
-                            screenShot = value;
+                            $screenShot = value;
                         },
                         get : function () {
-                            return screenShot;
+                            return $screenShot;
                         }
                     },
-                    connectionTip : {
+                    $connectionTip : {
                         set : function (value) {
-                            connectionTip = value;
+                            $connectionTip = value;
                         },
                         get : function () {
-                            return connectionTip;
+                            return $connectionTip;
                         }
                     }
                 });
@@ -137,29 +137,29 @@
 
                 if (connectionState === CONFIG.enums.CONNECTION_STATE_PLUG_OUT) {
                     this.loading = false;
-                    this.offlineTip.removeClass('hide');
-                    this.connectionTip.addClass('hide');
-                    this.screenShot.hide();
-                    this.wifiTip.addClass('hide');
+                    this.$offlineTip.removeClass('hide');
+                    this.$connectionTip.addClass('hide');
+                    this.$screenShot.hide();
+                    this.$wifiTip.addClass('hide');
                     return;
                 }
 
                 if (isUSBConnecting) {
                     this.loading = true;
-                    this.offlineTip.addClass('hide');
-                    this.connectionTip.removeClass('hide');
-                    this.screenShot.hide();
-                    this.wifiTip.addClass('hide');
+                    this.$offlineTip.addClass('hide');
+                    this.$connectionTip.removeClass('hide');
+                    this.$screenShot.hide();
+                    this.$wifiTip.addClass('hide');
                     $desc.html(i18n.misc['DEVICE_' + connectionState.toUpperCase()]);
                     return;
                 }
 
                 if (isConnected) {
                     this.loading = false ;
-                    this.connectionTip.addClass('hide');
-                    this.wifiTip.toggleClass('hide', isUSB);
-                    this.offlineTip.addClass('hide');
-                    this.screenShot.toggle(isUSB);
+                    this.$connectionTip.addClass('hide');
+                    this.$wifiTip.toggleClass('hide', isUSB);
+                    this.$offlineTip.addClass('hide');
+                    this.$screenShot.toggle(isUSB);
 
                     if (isUSB) {
                         Device.getScreenshotAsync();
@@ -169,10 +169,10 @@
             render : function () {
                 this.$el.html(this.template({})).addClass('fade-in').find('.screenshot').attr('src', CONFIG.enums.IMAGE_PATH + '/blank.png');
 
-                this.offlineTip = this.$('.offline-tip');
-                this.wifiTip = this.$('.wifi-connection-tip');
-                this.screenShot = this.$('.screenshot');
-                this.connectionTip = this.$('.connection-tip');
+                this.$offlineTip = this.$('.offline-tip');
+                this.$wifiTip = this.$('.wifi-connection-tip');
+                this.$screenShot = this.$('.screenshot');
+                this.$connectionTip = this.$('.connection-tip');
                 this.renderShell(Device, Device.get('shell'));
                 this.renderScreenshot(Device, Device.get('screenshot'));
 
@@ -228,14 +228,14 @@
                 }
 
                 var offlineTipDefaultHeight = 204;
-                var height = this.offlineTip.height() || offlineTipDefaultHeight;
+                var height = this.$offlineTip.height() || offlineTipDefaultHeight;
                 var top = config.top + config.height - height;
                 if (rotation === 1) {
                     top = top - config.top - 2 * config.left;
                 } else if (rotation === 3){
                     top = top - config.top - config.left;
                 }
-                this.offlineTip.css('top', top);
+                this.$offlineTip.css('top', top);
 
                 if (!isPad) {
                     if (rotation === 1 || rotation === 3) {

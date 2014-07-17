@@ -37,12 +37,12 @@
                 if (!threads4ContactCollection) {
                     threads4ContactCollection = new Threads4ContactCollection(args);
 
-                    if (window.SnapPea.enablePim()) {
+                    if (window.SnapPea.isPimEnabled) {
                         threads4ContactCollection.trigger('update');
                     } else {
                         listenHandler = function (Device) {
 
-                            if (window.SnapPea.enablePim()) {
+                            if (window.SnapPea.isPimEnabled) {
                                 this.trigger('update');
                                 this.stopListening(this, events, listenHandler);
                             }

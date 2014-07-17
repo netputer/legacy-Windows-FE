@@ -264,12 +264,12 @@
                 if (!photoCollection) {
                     photoCollection = new PhotoCollection();
 
-                    if (window.SnapPea.enablePim()) {
+                    if (window.SnapPea.isPimEnabled) {
                         photoCollection.trigger('update');
                     } else {
                         listenHandler = function (Device) {
 
-                            if (window.SnapPea.enablePim()) {
+                            if (window.SnapPea.isPimEnabled) {
                                 this.trigger('update');
                                 this.stopListening(this, events, listenHandler);
                             }

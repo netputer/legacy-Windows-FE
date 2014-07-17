@@ -88,7 +88,7 @@
                     break;
                 case 'app':
 
-                    if (!window.SnapPea.enablePim()) {
+                    if (!window.SnapPea.isPimEnabled) {
                         canReload = false;
                     } else if (SnapPea.CurrentTab === 'web') {
                         canReload = Account.get('isLogin');

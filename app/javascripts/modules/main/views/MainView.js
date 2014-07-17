@@ -66,9 +66,11 @@
             return !_.contains(['task', 'browser', 'gallery', 'welcome', 'doraemon'], module);
         };
 
-        window.SnapPea.enablePim = function () {
-            return Device.get('isConnected') && ((Device.get('isWifi') && Device.get('isSameWifi')) || Device.get('isUSB'));
-        };
+        Object.defineProperty(window.SnapPea, 'isPimEnabled', {
+            get : function () {
+                return Device.get('isConnected') && ((Device.get('isWifi') && Device.get('isSameWifi')) || Device.get('isUSB'));
+            }
+        });
 
         WindowState.on('resize', function (){
             if (!$needToHide) {
@@ -393,7 +395,7 @@
             },
             toggleMask : function () {
 
-                if (window.SnapPea.isPimModule(this.currentModule) && !window.SnapPea.enablePim()) {
+                if (window.SnapPea.isPimModule(this.currentModule) && !window.SnapPea.isPimEnabled) {
                     pimMaskView.show();
                 } else {
                     pimMaskView.hide();
