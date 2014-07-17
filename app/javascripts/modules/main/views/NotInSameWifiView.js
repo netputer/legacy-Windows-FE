@@ -27,7 +27,7 @@
         i18n,
         Environment
     ) {
-        console.log('NotInSameWifiView - File loaded. ');
+        console.log('NotInSameWifiView - File loaded.');
 
         var NotInSameWifiView = Panel.extend({
             initialize : function () {
@@ -38,22 +38,33 @@
                     this.$('.client-ip').html(StringUtil.format(i18n.misc.CLIENT_IP, Device.get('pc_ip')));
                     this.$('.device-ip').html(StringUtil.format(i18n.misc.DEVICE_IP, Device.get('device_ip')));
                 }.bind(this), 500));
+
+                this.events = _.extend(this.events, NotInSameWifiView.__super__.events);
             },
             render : function () {
 
+                NotInSameWifiView.__super__.render.apply(this, arguments);
                 this.$bodyContent = $(doT.template(TemplateFactory.get('misc', 'not-in-same-wifi'))({
                     type : this.options.type,
                     clientIp : Device.get('pc_ip'),
                     deviceIp : Device.get('device_ip')
                 }));
 
-                NotInSameWifiView.__super__.render.apply(this, arguments);
                 return this;
             },
             clickButtonAction : function() {
-                alert(1);
+                IO.requestAsync({
+                    url : CONFIG.actions.OPEN_URL,
+                    data : {
+                        url : ''
+                    }
+                });
+
+                log({
+                    'event' : 'ui.click.not-in-same-wifi-help'
+                });
             },
-            events: {
+            events : {
                 'click .button-action' : 'clickButtonAction'
             }
         });
