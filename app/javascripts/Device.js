@@ -69,8 +69,8 @@
                 connectionState : CONFIG.enums.CONNECTION_STATE_PLUG_OUT,
                 isUSBConnecting : false,
                 isSameWifi : false,
-                device_ip : '',
-                pc_ip : ''
+                deviceIP : '',
+                pcIp : ''
             },
             initialize : function () {
                 var listenBack = false;
@@ -236,8 +236,8 @@
                     isRoot : data.is_root,
                     deviceName : data.device_name,
                     isSameWifi : data.is_same_wifi,
-                    device_ip : data.device_ip,
-                    pc_ip : data.pc_ip
+                    deviceIP : data.device_ip,
+                    pcIP : data.pc_ip
                 });
             },
             getSDCapacityAsync : function () {

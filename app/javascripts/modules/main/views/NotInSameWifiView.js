@@ -32,11 +32,10 @@
         var NotInSameWifiView = Panel.extend({
             initialize : function () {
                 NotInSameWifiView.__super__.initialize.apply(this, arguments);
-                this.on('button-action', this.clickButtonAction, this);
 
-                this.listenTo(Device, 'change:pc_ip change:device_ip', _.debounce(function (Device) {
-                    this.$('.client-ip').html(StringUtil.format(i18n.misc.CLIENT_IP, Device.get('pc_ip')));
-                    this.$('.device-ip').html(StringUtil.format(i18n.misc.DEVICE_IP, Device.get('device_ip')));
+                this.listenTo(Device, 'change:pcIp change:deviceIp', _.debounce(function (Device) {
+                    this.$('.client-ip').html(StringUtil.format(i18n.misc.CLIENT_IP, Device.get('pcIp')));
+                    this.$('.device-ip').html(StringUtil.format(i18n.misc.DEVICE_IP, Device.get('deviceIp')));
                 }.bind(this), 500));
 
                 this.events = _.extend(this.events, NotInSameWifiView.__super__.events);
@@ -46,26 +45,19 @@
                 NotInSameWifiView.__super__.render.apply(this, arguments);
                 this.$bodyContent = $(doT.template(TemplateFactory.get('misc', 'not-in-same-wifi'))({
                     type : this.options.type,
-                    clientIp : Device.get('pc_ip'),
-                    deviceIp : Device.get('device_ip')
+                    clientIp : Device.get('pcIp'),
+                    deviceIp : Device.get('deviceIp')
                 }));
 
                 return this;
             },
-            clickButtonAction : function() {
-                IO.requestAsync({
-                    url : CONFIG.actions.OPEN_URL,
-                    data : {
-                        url : ''
-                    }
-                });
-
+            clickButtonHelp : function() {
                 log({
-                    'event' : 'ui.click.not-in-same-wifi-help'
+                    'event' : 'ui.click.main_not_in_same_wifi_help'
                 });
             },
             events : {
-                'click .button-action' : 'clickButtonAction'
+                'click .button-help' : 'clickButtonHelp'
             }
         });
 

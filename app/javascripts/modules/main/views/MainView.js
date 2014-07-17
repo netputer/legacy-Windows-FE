@@ -61,13 +61,13 @@
             $needToHide = undefined;
         }, 200);
 
-        window.SnapPea = window.SnapPea || {
-            isPimModule : function (module) {
-                return !_.contains(['task', 'browser', 'gallery', 'welcome', 'doraemon'], module);
-            },
-            enablePim : function () {
-                return Device.get('isConnected') && ((Device.get('isWifi') && Device.get('isSameWifi')) || Device.get('isUSB'));
-            }
+        window.SnapPea = window.SnapPea || {};
+        window.SnapPea.isPimModule = function (module) {
+            return !_.contains(['task', 'browser', 'gallery', 'welcome', 'doraemon'], module);
+        };
+
+        window.SnapPea.enablePim = function () {
+            return Device.get('isConnected') && ((Device.get('isWifi') && Device.get('isSameWifi')) || Device.get('isUSB'));
         };
 
         WindowState.on('resize', function (){
