@@ -81,26 +81,12 @@
                 }
             },
             clickButtonHelp : function () {
-                IO.requestAsync({
-                    url : CONFIG.actions.OPEN_URL,
-                    data : {
-                        url : i18n.misc.USB_TIP_HELP
-                    }
-                });
-
                 log({
                     'event' : 'ui.click.new_wifi_tip',
                     'type' : 'help'
                 });
             },
             clickButtonFeedback : function () {
-                IO.requestAsync({
-                    url : CONFIG.actions.OPEN_URL,
-                    data : {
-                        url : i18n.misc.USB_TIP_FEEDBACK
-                    }
-                });
-
                 log({
                     'event' : 'ui.click.new_wifi_tip',
                     'type' : 'feedback'

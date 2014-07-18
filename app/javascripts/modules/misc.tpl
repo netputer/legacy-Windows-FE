@@ -206,7 +206,7 @@
         <button class='button-action use-usb max primary'>{{= i18n.misc.ALREADY_USE_USB }}</button>
     </div>
     <div class='feedback'>
-        <span class="link button-help">{{= i18n.misc.HELP }}</span>
+        <a class='button-help' target='_default' href='http://www.wandoujia.com/help/?do=topic&id=87262553'>{{= i18n.misc.HELP }}</a>
     </div>
 </script>
 
@@ -228,7 +228,8 @@
         </div>
     </div>
     <div class='feedback'>
-        <span>{{= i18n.misc.FEEDBACK }}</span>
+        {{= i18n.misc.STILL_CAN_NOT_CONNECTION }}
+        <a class='button-feedback' href='http://www.wandoujia.com/help/?do=add_ticket' target='_default'>{{= i18n.misc.ASK_HELP }}</a>
     </div>
 </script>
 
@@ -248,7 +249,7 @@
         <button class='button-action use-usb max primary'>{{= i18n.misc.ALREADY_USE_USB }}</button>
     </div>
     <div class='feedback'>
-        <span class="link button-help">{{= i18n.misc.HELP }}</span>
+        <a class='button-help' target='_default' href='http://www.wandoujia.com/help/?do=topic&id=87262553'>{{= i18n.misc.HELP }}</a>
     </div>
 </script>
 

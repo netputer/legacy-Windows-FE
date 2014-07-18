@@ -58,7 +58,7 @@
                         }, importProgressView.remove.bind(importProgressView), this);
                     }
                 }.bind(this)).fail(function (resp) {
-                    alert(i18n.message.UPDATA_USB_PROXY_4_4, importProgressView.remove.bind(importProgressView));
+                    alert(i18n.message.UPDATE_USB_PROXY_4_4, importProgressView.remove.bind(importProgressView));
                 });
             },
             buildEvents: function () {
