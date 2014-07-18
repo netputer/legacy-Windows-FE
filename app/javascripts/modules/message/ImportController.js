@@ -49,8 +49,8 @@
             },
             checkDefault : function () {
                 MessageService.applyDefaultApp().done(function (resp) {
-                    var isDefault = resp.body.value;
-                    if (isDefault) {
+                    isDefaultApp = resp.body.value;
+                    if (isDefaultApp) {
                         importProgressView.importSms();
                     } else {
                         confirm(i18n.message.APPLY_DEFAULT_4_4, function () {
