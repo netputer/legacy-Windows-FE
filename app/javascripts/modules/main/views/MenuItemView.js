@@ -153,7 +153,9 @@
                             'event' : 'ui.click.nav',
                             'id' : this.model.id,
                             'label' : this.model.get('label'),
-                            'isFastADB' : Device.get('isFastADB')
+                            'isFastADB' : Device.get('isFastADB'),
+                            'isWifi' : Device.get('isWifi'),
+                            'isSameWifi' : Device.get('isSameWifi')
                         });
                     }
                 }

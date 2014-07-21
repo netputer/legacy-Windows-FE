@@ -165,7 +165,9 @@
                 this.openSD();
 
                 log({
-                    'event' : 'ui.click.task_button_open_sd'
+                    'event' : 'ui.click.task_button_open_sd',
+                    'isWifi' : Device.get('isWifi'),
+                    'isSameWifi' : Device.get('isSameWifi')
                 });
             },
             clickButtonChangeLocation : function () {
