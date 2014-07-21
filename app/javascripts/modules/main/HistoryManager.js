@@ -196,15 +196,6 @@
                 if (appListView.list.currentSet.name === 'web') {
                     if (!Account.get('isLogin')) {
                         Account.openLoginDialog('', 'app-list-refresh');
-                        var loginHandler = function (Account, isLogin) {
-                            if (isLogin) {
-                                WebAppsCollection.getInstance().syncAsync().fail(function () {
-                                    alert(i18n.misc.REFRESH_ERROR);
-                                });
-                                Account.off('change:isLogin', loginHandler);
-                            }
-                        };
-                        Account.on('change:isLogin', loginHandler, this);
                         return;
                     }
                 }
