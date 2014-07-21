@@ -28,10 +28,13 @@
             className : 'w-misc-usb-tips',
             initialize : function () {
 
-                if (this.options.title !== null) {
+                if (this.options.usbError === 'true') {
+                    this.$el.addClass('error');
+                    template = doT.template(TemplateFactory.get('misc', 'usb-error-tip'));
+                } else if (this.options.title !== null) {
                     this.options.title = window.decodeURIComponent(this.options.title);
                     template = doT.template(TemplateFactory.get('misc', 'usb-app-tip'));
-                } else if (this.options.usbError === null || this.options.usbError === true) {
+                } else {
                     template = doT.template(TemplateFactory.get('misc', 'usb-tip'));
 
                     var state;
@@ -48,10 +51,6 @@
                         'type' : this.options.from,
                         'state' : state
                     });
-
-                } else {
-                    this.$el.addClass('error');
-                    template = doT.template(TemplateFactory.get('misc', 'usb-error-tip'));
                 }
             },
             render : function () {
