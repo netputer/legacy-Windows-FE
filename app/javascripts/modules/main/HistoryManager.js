@@ -196,15 +196,6 @@
                 if (appListView.list.currentSet.name === 'web') {
                     if (!Account.get('isLogin')) {
                         Account.openLoginDialog('', 'app-list-refresh');
-                        var loginHandler = function (Account, isLogin) {
-                            if (isLogin) {
-                                WebAppsCollection.getInstance().syncAsync().fail(function () {
-                                    alert(i18n.misc.REFRESH_ERROR);
-                                });
-                                Account.off('change:isLogin', loginHandler);
-                            }
-                        };
-                        Account.on('change:isLogin', loginHandler, this);
                         return;
                     }
                 }
@@ -232,11 +223,14 @@
             }
 
             _.each(targetCollections, function (targetCollection) {
-                targetCollection.syncAsync().fail(function (resp) {
-                    if (resp.state_code !== 702) {
-                        alert(i18n.misc.REFRESH_ERROR);
-                    }
-                });
+
+                if (!targetCollection.syncing) {
+                    targetCollection.syncAsync().fail(function (resp) {
+                        if (resp.state_code !== 702) {
+                            alert(i18n.misc.REFRESH_ERROR);
+                        }
+                    });
+                }
             });
 
             log({
