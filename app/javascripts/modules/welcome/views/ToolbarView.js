@@ -318,7 +318,9 @@
                 Device.manageSDCardAsync();
 
                 log({
-                    'event' : 'ui.click.welcome_button_manage_sd'
+                    'event' : 'ui.click.welcome_button_manage_sd',
+                    'isWifi' : Device.get('isWifi'),
+                    'isSameWifi' : Device.get('isSameWifi')
                 });
             },
             clickButtonBackup : function () {
@@ -434,7 +436,9 @@
                                 setTimeout(deviceView.showScreenshotAsync, 1000);
 
                                 log({
-                                    'event' : 'ui.click.welcome_button_set_as_wallpaper'
+                                    'event' : 'ui.click.welcome_button_set_as_wallpaper',
+                                    'isWifi' : Device.get('isWifi'),
+                                    'isSameWifi' : Device.get('isSameWifi')
                                 });
                             }.bind(this));
                         }
