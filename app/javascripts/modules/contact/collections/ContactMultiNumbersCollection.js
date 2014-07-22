@@ -92,12 +92,11 @@
                                 this.stopListening(this, events, listenHandler);
                             }
                         };
-
                         contactMultiNumbersCollection.listenTo(Device, events, listenHandler);
                     }
-
-                    return contactMultiNumbersCollection;
                 }
+
+                return contactMultiNumbersCollection;
             }
         });
 

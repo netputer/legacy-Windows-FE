@@ -325,7 +325,6 @@
             rebuild : function () {
                 this.clearList();
                 this.init();
-                this.build();
             },
             calculateSettings : function () {
                 this.containerHeight = this.$container.height();
@@ -364,6 +363,7 @@
                 this.calculateOffSetY(deltaY);
                 this.build();
                 this.scrollHeight = currentModels.length * this.itemHeight;
+                this.$scrollContainer.scrollTop(0);
             },
             createItemView : function (diff) {
 
