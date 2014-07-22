@@ -35,8 +35,6 @@
         AppsCollection,
         TaskService
     ) {
-        var queryResponse;
-
         var StarterView = CardView.getClass().extend({
             className : CardView.getClass().prototype.className + ' w-guide-starter',
             template : doT.template(TemplateFactory.get('guide', 'starter')),
@@ -56,43 +54,42 @@
                 this.on('next', function () {
                     Settings.set('user_guide_shown_starter' + this.options.type, true, true);
                 }, this);
+
+
             },
             loadAppsAsync : function () {
                 var deferred = $.Deferred();
+                var fetchUrl = CONFIG.actions.APP_STARTER;
 
-                if (!queryResponse) {
-                    IO.requestAsync({
-                        url : CONFIG.actions.APP_STARTER,
-                        data : {
-                            f : 'windows',
-                            pos : 'w/nux',
-                            opt_fields : [
-                                'apps.downloadCount',
-                                'apps.likesRate',
-                                'apps.tagline',
-                                'apps.title',
-                                'apps.icons.px68',
-                                'apps.ad',
-                                'apps.apks.downloadUrl.url',
-                                'apps.apks.bytes',
-                                'apps.apks.packageName',
-                                'apps.apks.versionCode',
-                                'apps.apks.versionName'
-                            ].join(',')
-                        },
-                        success : function (resp) {
-                            this.queryResults = resp;
-                            queryResponse = resp;
-                            deferred.resolve();
-                        }.bind(this),
-                        error : deferred.reject
-                    });
-                } else {
-                    setTimeout(function () {
-                        this.queryResults = queryResponse;
-                        deferred.resolve();
-                    }.bind(this));
+                if (this.options.type === 1) {
+                    fetchUrl = CONFIG.actions.APP_GAME;
                 }
+
+                IO.requestAsync({
+                    url : fetchUrl,
+                    data : {
+                        f : 'windows',
+                        pos : 'w/nux',
+                        opt_fields : [
+                            'apps.downloadCount',
+                            'apps.likesRate',
+                            'apps.tagline',
+                            'apps.title',
+                            'apps.icons.px68',
+                            'apps.ad',
+                            'apps.apks.downloadUrl.url',
+                            'apps.apks.bytes',
+                            'apps.apks.packageName',
+                            'apps.apks.versionCode',
+                            'apps.apks.versionName'
+                        ].join(',')
+                    },
+                    success : function (resp) {
+                        this.queryResults = resp;
+                        deferred.resolve();
+                    }.bind(this),
+                    error : deferred.reject
+                });
 
                 return deferred.promise();
             },
