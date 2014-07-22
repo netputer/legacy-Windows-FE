@@ -48,7 +48,7 @@
                 if (contentDocument) {
                     targetItem = _.find(this.$items, function (item) {
                         var url = $(item).attr('data');
-                        return url.indexOf(contentDocument.location.href) === 0;
+                        return contentDocument.location.href.indexOf(url) === 0;
                     });
 
                     if (targetItem) {
