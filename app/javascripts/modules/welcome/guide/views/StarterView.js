@@ -82,10 +82,7 @@
                             'apps.apks.versionName'
                         ].join(',')
                     },
-                    success : function (resp) {
-                        this.queryResults = resp;
-                        deferred.resolve();
-                    }.bind(this),
+                    success : deferred.resolve,
                     error : deferred.reject
                 });
 
@@ -97,8 +94,8 @@
                 if (Settings.get('user_guide_shown_starter' + this.options.type)) {
                     setTimeout(deferred.reject);
                 } else {
-                    this.loadAppsAsync().done(function () {
-                        var apps = this.queryResults[0].apps;
+                    this.loadAppsAsync().done(function (resp) {
+                        var apps = resp[0].apps;
                         var length = apps.length;
                         if (length === 0) {
                             deferred.reject();
