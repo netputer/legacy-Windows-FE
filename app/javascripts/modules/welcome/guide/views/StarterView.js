@@ -98,23 +98,16 @@
                     setTimeout(deferred.reject);
                 } else {
                     this.loadAppsAsync().done(function () {
-                        var apps = this.queryResults[this.options.type].apps;
+                        var apps = this.queryResults[0].apps;
                         var length = apps.length;
                         if (length === 0) {
                             deferred.reject();
                         }
 
-                        var appLength = this.apps.length;
-                        var delta = 0;
-                        var spliceArr = [];
-                        if (appLength < 14) {
-                            delta = 14 - appLength;
-                            if (length > delta) {
-                                spliceArr = apps.splice(0, delta);
-                            } else {
-                                spliceArr = apps;
-                            }
-                            this.apps = this.apps.concat(spliceArr);
+                        if (length < 14) {
+                            this.apps = apps;
+                        } else {
+                            this.apps = apps.splice(0, 14);
                         }
 
                         log({
