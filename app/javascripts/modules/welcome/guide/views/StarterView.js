@@ -124,7 +124,7 @@
                         var appsCollection = AppsCollection.getInstance();
 
                         var i;
-                        var apps = this.queryResults[this.options.type].apps;
+                        var apps = this.queryResults[0].apps;
                         var length = apps.length;
                         var app;
                         for (i = 0; i < length; i++) {
