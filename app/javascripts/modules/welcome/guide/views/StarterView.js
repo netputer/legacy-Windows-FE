@@ -54,8 +54,6 @@
                 this.on('next', function () {
                     Settings.set('user_guide_shown_starter' + this.options.type, true, true);
                 }, this);
-
-
             },
             loadAppsAsync : function () {
                 var deferred = $.Deferred();
