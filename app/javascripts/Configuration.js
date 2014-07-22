@@ -322,8 +322,8 @@
                 APP_WASH_FEEDBACK : 'http://apps.wandoujia.com/api/v1/xibaibai/feedback',
                 APP_WASH_GET_TEXT : 'http://apps.wandoujia.com/api/v1/xibaibai/feedback',
                 APP_WASH_SCAN : 'http://apps.wandoujia.com/api/v1/xibaibai/scanner',
-                APP_STARTER : 'http://apps.wandoujia.com/api/v1/apps?app_type=starter',
-                APP_GAME : 'http://apps.wandoujia.com/api/v1/apps?app_type=essentialGames',
+                APP_STARTER : 'http://apps.wandoujia.com/api/v1/apps?app_type=starter&max_list=1',
+                APP_GAME : 'http://apps.wandoujia.com/api/v1/apps?app_type=essentialGames&max_list=1',
                 APP_SPECIAL : 'http://apps.wandoujia.com/api/v1/special',
 
                 CLOUD_REG : 'https://account.wandoujia.com/v4/api/register',
