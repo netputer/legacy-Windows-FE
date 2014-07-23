@@ -184,8 +184,11 @@
                 this.$('.button-connect-phone').toggle(showConnectButton);
             },
             setButtonState : function () {
-                this.$('.button-open-sd, .button-backup, .button-restore, .button-set-wallpaper')
+                this.$('.button-open-sd, .button-backup, .button-restore')
                     .prop('disabled', !Device.get('isConnected'))
+                    .attr('title', Device.get('isConnected') ? '' : i18n.welcome.CONNECT_UR_PHONE);
+
+                this.$('.button-set-wallpaper').prop('disabled', !(Device.get('isConnected') && this.wallpaperUrl))
                     .attr('title', Device.get('isConnected') ? '' : i18n.welcome.CONNECT_UR_PHONE);
 
                 this.$('.button-screen-shot').prop('disabled', !Device.get('canScreenshot'));
