@@ -59,7 +59,7 @@
         var tips = [];
 
         var ToolbarView = Backbone.View.extend({
-            className : 'w-welcome-toolbar hbox',
+            className : 'w-welcome-toolbar',
             template : doT.template(TemplateFactory.get('welcome', 'toolbar')),
             initialize : function () {
                 deviceView = DeviceView.getInstance();
@@ -180,8 +180,8 @@
                 var state = Device.get('connectionState');
                 showConnectButton = showConnectButton && state === CONFIG.enums.CONNECTION_STATE_PLUG_OUT;
 
-                this.$('.w-ui-buttongroup, .button-backup, .button-restore, .button-open-sd, .button-set-wallpaper').toggle(!showConnectButton);
-                this.$('.button-connect-phone').toggle(showConnectButton);
+                this.$('.normal-buttons').toggleClass('hide', showConnectButton);
+                this.$('.connect-buttons').toggleClass('hide', !showConnectButton);
             },
             setButtonState : function () {
                 this.$('.button-open-sd, .button-backup, .button-restore')

@@ -151,12 +151,6 @@
                     <p>{{= i18n.misc.BIND_CLOUD_TEXT_SECOND_LINE }}</p>
                 </div>
             </div>
-            <div class="content-text hbox">
-                <div class="icon-check"></div>
-                <div class="desc-text">
-                    {{= i18n.misc.BIND_CLOUD_WIFI}}
-                </div>
-            </div>
         </div>
     </div>
     <div class="arrow-bg"></div>
@@ -179,7 +173,7 @@
             <button class='button-check primary max'>{{= i18n.misc.CHECK_CONNECTION_STATE }}</button>
         {{?}}
     </div>
-    {{? Device.get('isConnected')}}
+    {{? Device.get('isConnected') }}
     <div class="ip-ctn">
         <span class="text-thirdly client-ip">{{= StringUtil.format(i18n.misc.CLIENT_IP, it.clientIp) }}</span>
         <span class="text-thirdly device-ip">{{= StringUtil.format(i18n.misc.DEVICE_IP, it.deviceIp) }}</span>
