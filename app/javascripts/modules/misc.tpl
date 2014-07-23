@@ -179,10 +179,12 @@
             <button class='button-check primary max'>{{= i18n.misc.CHECK_CONNECTION_STATE }}</button>
         {{?}}
     </div>
+    {{? Device.get('isConnected')}}
     <div class="ip-ctn">
         <span class="text-thirdly client-ip">{{= StringUtil.format(i18n.misc.CLIENT_IP, it.clientIp) }}</span>
         <span class="text-thirdly device-ip">{{= StringUtil.format(i18n.misc.DEVICE_IP, it.deviceIp) }}</span>
     </div>
+    {{?}}
 </script>
 
 <script type='text/x-ui-template' id='usb-tip'>
