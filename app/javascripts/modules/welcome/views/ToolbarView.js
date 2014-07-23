@@ -180,7 +180,12 @@
                 var state = Device.get('connectionState');
                 showConnectButton = showConnectButton && state === CONFIG.enums.CONNECTION_STATE_PLUG_OUT;
 
-                this.$('.w-ui-buttongroup, .button-backup, .button-restore, .button-open-sd, .button-set-wallpaper').toggle(!showConnectButton);
+                this.$('.w-ui-buttongroup, .button-backup, .button-restore, .button-open-sd').toggle(!showConnectButton);
+
+                if (!!this.wallpaperUrl) {
+                    this.$('.button-set-wallpaper').show();
+                }
+
                 this.$('.button-connect-phone').toggle(showConnectButton);
             },
             setButtonState : function () {
