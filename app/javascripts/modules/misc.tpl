@@ -151,12 +151,6 @@
                     <p>{{= i18n.misc.BIND_CLOUD_TEXT_SECOND_LINE }}</p>
                 </div>
             </div>
-            <div class="content-text hbox">
-                <div class="icon-check"></div>
-                <div class="desc-text">
-                    {{= i18n.misc.BIND_CLOUD_WIFI}}
-                </div>
-            </div>
         </div>
     </div>
     <div class="arrow-bg"></div>
