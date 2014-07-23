@@ -367,32 +367,38 @@
 </script>
 
 <script type="text/x-ui-template" id="toolbar">
-    <span class="w-ui-buttongroup screen-shot-setting">
-        <button class="w-icon-btn transparent min button-screen-shot" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
-            <span class="icomoon icomoon-screenshot"></span>{{= i18n.welcome.SCREEN_SHOT_TEXT }}
+    <div class="normal-buttons hbox">
+        <span class="w-ui-buttongroup screen-shot-setting">
+            <button class="w-icon-btn transparent min button-screen-shot" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
+                <span class="icomoon icomoon-screenshot"></span>{{= i18n.welcome.SCREEN_SHOT_TEXT }}
+            </button>
+        </span>
+        {{? FunctionSwitch.ENABLE_BACKUP_RESTORE }}
+        <button class="w-icon-btn button-backup transparent min">
+            <span class="icomoon icomoon-backup"></span>{{= i18n.welcome.TOOL_BACKUP }}
         </button>
-    </span>
-    {{? FunctionSwitch.ENABLE_BACKUP_RESTORE }}
-    <button class="w-icon-btn button-backup transparent min">
-        <span class="icomoon icomoon-backup"></span>{{= i18n.welcome.TOOL_BACKUP }}
-    </button>
-    <button class="w-icon-btn button-restore transparent min">
-        <span class="icomoon icomoon-restore"></span>{{= i18n.welcome.TOOL_RECOVERY }}
-    </button>
-    {{?}}
-    <button class="w-icon-btn button-open-sd transparent min" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
-        <span class="icomoon icomoon-sd"></span>{{= i18n.misc.MANAGE_SD_CARD }}
-    </button>
-    {{? FunctionSwitch.IS_CHINESE_VERSION }}
-    <button class="w-icon-btn button-set-wallpaper transparent min" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
-        <span class="icomoon icomoon-wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
-    </button>
-    {{?}}
-    <button class="w-icon-btn button-connect-phone transparent min">
-        <span class="icomoon icomoon-connect-phone"></span>{{= i18n.misc.USE_USB_TITLE }}
-    </button>
-    <div class='spliter'></div>
-    <button class="button-top transparent min">{{= i18n.welcome.TOP }}</button>
+        <button class="w-icon-btn button-restore transparent min">
+            <span class="icomoon icomoon-restore"></span>{{= i18n.welcome.TOOL_RECOVERY }}
+        </button>
+        {{?}}
+        <button class="w-icon-btn button-open-sd transparent min" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
+            <span class="icomoon icomoon-sd"></span>{{= i18n.misc.MANAGE_SD_CARD }}
+        </button>
+        {{? FunctionSwitch.IS_CHINESE_VERSION }}
+        <button class="w-icon-btn button-set-wallpaper transparent min" data-title="{{= i18n.welcome.READING_INFO_WARNING }}">
+            <span class="icomoon icomoon-wallpaper"></span>{{= i18n.photo.SET_AS_WALLPAPER }}
+        </button>
+        {{?}}
+        <div class='spliter'></div>
+        <button class="button-top transparent min">{{= i18n.welcome.TOP }}</button>
+    </div>
+    <div class="connect-buttons hbox hide">
+        <button class="w-icon-btn button-connect-phone transparent min">
+            <span class="icomoon icomoon-connect-phone"></span>{{= i18n.misc.USE_USB_TITLE }}
+        </button>
+        <div class='spliter'></div>
+        <button class="button-top transparent min">{{= i18n.welcome.TOP }}</button>
+    </div>
 </script>
 
 <script type="text/x-ui-template" id="capacitybar">
