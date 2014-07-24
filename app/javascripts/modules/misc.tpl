@@ -145,7 +145,6 @@
         <div class="content-ctn">
             <span class="header-text">{{= i18n.misc.BIND_CLOUD_HEADER }}</span>
             <div class="content-text-first hbox">
-                <div class="icon-check"></div>
                 <div class="desc-text">
                     <p>{{= i18n.misc.BIND_CLOUD_TEXT_FIRST_LINE }}</p>
                     <p>{{= i18n.misc.BIND_CLOUD_TEXT_SECOND_LINE }}</p>
