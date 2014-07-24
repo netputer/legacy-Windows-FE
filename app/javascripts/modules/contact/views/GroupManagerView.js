@@ -73,7 +73,7 @@
                 });
 
                 this.groupList.listenTo(accountCollection, 'refresh', function () {
-                    this.groupList.switchSet('default', function () {
+                    this.groupList.switchSet(this.accountId, function () {
                         return accountCollection.getGroupsByAccount(this.accountId).models;
                     }.bind(this));
                 }.bind(this));
@@ -82,7 +82,7 @@
                 return this;
             },
             refresh : function () {
-                this.groupList.switchSet('default', function () {
+                this.groupList.switchSet(this.accountId, function () {
                     return accountCollection.getGroupsByAccount(this.accountId).models;
                 }.bind(this));
             },
