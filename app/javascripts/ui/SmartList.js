@@ -436,75 +436,75 @@
                 }
                 window.cancelAnimationFrame(this.timer);
 
-                var build = function() {
-                    var start = Math.floor(-this.offsetY / this.itemHeight);
-                    var end = start + this.rowCount + 1;
-                    end = Math.min(end, currentModels.length);
-
-                    var before = _.keys(this.activeItems);
-                    var after = [];
-                    var i;
-                    for (i = start; i < end; i ++) {
-                        after.push(i + '');
-                    }
-
-                    _.each(this.inactiveItems, function (item) {
-                        item.$el.show();
-                    });
-
-                    var diffBeforeAfter = _.difference(before, after);
-                    var diffAfterBefore = _.difference(after, before);
-                    if (flashAll) {
-                        _.intersection(before, after).forEach(function (i) {
-                            if (currentModels[i].get('id') !== this.activeItems[i].model.get('id')) {
-                                diffBeforeAfter.push(i);
-                                diffAfterBefore.push(i);
-                            }
-                        }, this);
-
-                        diffAfterBefore = _.uniq(diffAfterBefore);
-                        diffBeforeAfter = _.uniq(diffBeforeAfter);
-                    }
-
-                    _.each(diffBeforeAfter, function(i) {
-                        this.inactiveItems.push(this.activeItems[i]);
-                        delete this.activeItems[i];
-                    }, this);
-
-                    var itemView;
-                    _.each(diffAfterBefore, function(i) {
-
-                        itemView = this.inactiveItems.pop();
-                        itemView.decouple();
-                        itemView.model = currentModels[i];
-                        itemView.setup();
-                        itemView.render();
-                        this.toggleClass(itemView, i);
-                        this.activeItems[i] = itemView;
-                        itemView.toggleSelect(_.contains(this.selected, itemView.model.id));
-
-                    }, this);
-
-                    var keys = _.keys(this.activeItems);
-                    _.each(keys, function (i) {
-                        var top = i * this.itemHeight + this.offsetY;
-                        this.activeItems[i].$el.css('webkitTransform', 'translate3d(0,' + top + 'px, 0)');
-                    }, this);
-
-                    _.each(this.inactiveItems, function (item) {
-                        item.$el.hide();
-                    });
-
-                    this.trackerLog();
-                    this.trigger(EventsMapping.BUILD, keys);
-
-                }.bind(this);
-
                 if (flashAll) {
-                    build();
+                    this.buildItem(currentModels, flashAll);
                 } else {
-                    this.timer = window.requestAnimationFrame(build);
+                    this.timer = window.requestAnimationFrame(function() {
+                        this.buildItem(currentModels, flashAll);
+                    }.bind(this));
                 }
+            },
+            buildItem : function(currentModels, flashAll) {
+                var start = Math.floor(-this.offsetY / this.itemHeight);
+                var end = start + this.rowCount + 1;
+                end = Math.min(end, currentModels.length);
+
+                var before = _.keys(this.activeItems);
+                var after = [];
+                var i;
+                for (i = start; i < end; i ++) {
+                    after.push(i + '');
+                }
+
+                _.each(this.inactiveItems, function (item) {
+                    item.$el.show();
+                });
+
+                var diffBeforeAfter = _.difference(before, after);
+                var diffAfterBefore = _.difference(after, before);
+                if (flashAll) {
+                    _.intersection(before, after).forEach(function (i) {
+                        if (currentModels[i].get('id') !== this.activeItems[i].model.get('id')) {
+                            diffBeforeAfter.push(i);
+                            diffAfterBefore.push(i);
+                        }
+                    }, this);
+
+                    diffAfterBefore = _.uniq(diffAfterBefore);
+                    diffBeforeAfter = _.uniq(diffBeforeAfter);
+                }
+
+                _.each(diffBeforeAfter, function(i) {
+                    this.inactiveItems.push(this.activeItems[i]);
+                    delete this.activeItems[i];
+                }, this);
+
+                var itemView;
+                _.each(diffAfterBefore, function(i) {
+
+                    itemView = this.inactiveItems.pop();
+                    itemView.decouple();
+                    itemView.model = currentModels[i];
+                    itemView.setup();
+                    itemView.render();
+                    this.toggleClass(itemView, i);
+                    this.activeItems[i] = itemView;
+                    itemView.toggleSelect(_.contains(this.selected, itemView.model.id));
+
+                }, this);
+
+                var keys = _.keys(this.activeItems);
+                _.each(keys, function (i) {
+                    var top = i * this.itemHeight + this.offsetY;
+                    this.activeItems[i].$el.css('webkitTransform', 'translate3d(0,' + top + 'px, 0)');
+                }, this);
+
+                _.each(this.inactiveItems, function (item) {
+                    item.$el.hide();
+                });
+
+                this.trackerLog();
+                this.trigger(EventsMapping.BUILD, keys);
             },
             removeScrollingClass : _.debounce(function (){
                 this.$el.removeClass('scrolling');
