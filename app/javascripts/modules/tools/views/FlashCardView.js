@@ -38,7 +38,7 @@
                 confirmWindow = new AlertWindow({
                     buttonSet : ButtonSetMixin.BUTTON_SET.YES_CANCEL,
                     draggable : true,
-                    width : 360,
+                    width : 380,
                     height : 180,
                     title : i18n.tools.FLASH_TITLE
                 });
