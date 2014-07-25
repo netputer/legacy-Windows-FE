@@ -47,7 +47,7 @@
         <div class="icon"></div>
         <div class="desc-ctn">
             <h1 class="title text-secondary">{{= i18n.tools.CONFIRM_TITLE }}</h1>
-            <span class="dsec text-thirdly">{{= i18n.tools["FLASH_ERROR_" + it.error] }}</span>
+            <span class="desc text-thirdly">{{= i18n.tools["FLASH_ERROR_" + it.error] }}</span>
         </div>
     </div>
 </script>
