@@ -55,6 +55,8 @@
             if (scrollTop >= scrollHeight) {
                 scrollTop = Math.max(0, scrollHeight - this.containerHeight);
             }
+            scrollTop = -Math.max(-scrollTop, this.minOffsetY);
+
             this.scrollHeight = scrollHeight;
             this.offsetY = -scrollTop;
             this.$scrollContainer.scrollTop(scrollTop).show();
