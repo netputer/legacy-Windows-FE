@@ -97,7 +97,7 @@
                     }
                     break;
                 default:
-                    canReload = Device.get('isConnected') && !Device.get('isWifi');
+                    canReload = window.SnapPea.isPimEnabled;
                 }
 
                 window.externalCall('', 'navigation', JSON.stringify({
