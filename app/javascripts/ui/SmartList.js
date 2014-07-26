@@ -457,7 +457,7 @@
                 }
 
                 _.each(this.inactiveItems, function (item) {
-                    item.$el.show();
+                    item.$el.removeClass('hide');
                 });
 
                 var diffBeforeAfter = _.difference(before, after);
@@ -500,7 +500,7 @@
                 }, this);
 
                 _.each(this.inactiveItems, function (item) {
-                    item.$el.hide();
+                    item.$el.addClass('hide');
                 });
 
                 this.trackerLog();
