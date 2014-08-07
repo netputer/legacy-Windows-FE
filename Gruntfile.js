@@ -265,7 +265,7 @@ module.exports = function (grunt) {
             grunt.file.copy(path, dist);
             isDelete && fs.unlinkSync(path);
         }
-    }
+    };
 
     var runSubTask = function (command) {
         var exec = require('child_process').exec;
@@ -289,7 +289,7 @@ module.exports = function (grunt) {
         var nlsJson = grunt.file.read(sourcePath);
         var nlsContent = 'define({"'+ nlsFlag  +'" : ' + nlsJson + '});';
         grunt.file.write(targetPath, nlsContent);
-    }
+    };
 
     grunt.registerTask('processI18n', function (nls) {
 
@@ -402,6 +402,8 @@ module.exports = function (grunt) {
     });
 
     grunt.event.on('watch', function (action, filePath, target) {
+        var targetPath;
+
         switch (target) {
         case 'projectConfig':
             grunt.file.copy(paths.app + '/index.html', paths.tmp + '/index.html');
@@ -413,7 +415,7 @@ module.exports = function (grunt) {
                 return;
             }
 
-            var targetPath = paths.tmp + '/i18n/' + nlsFlag + '/nls/' + path.basename(filePath).replace('json', 'js');
+            targetPath = paths.tmp + '/i18n/' + nlsFlag + '/nls/' + path.basename(filePath).replace('json', 'js');
             switch (action) {
             case 'added':
             case 'changed':
@@ -428,7 +430,7 @@ module.exports = function (grunt) {
                 return;
             }
 
-            var targetPath = filePath.replace(paths.app, paths.tmp);
+            targetPath = filePath.replace(paths.app, paths.tmp);
 
             switch (action) {
             case 'added':
@@ -463,7 +465,7 @@ module.exports = function (grunt) {
             encoding : 'utf-8'
         });
 
-        var re = new RegExp(nls, "g");
+        var re = new RegExp(nls, 'g');
 
         var replacement = '" + navigator.language.toLowerCase() + "';
         if (requireTask === 'debug') {
@@ -478,7 +480,7 @@ module.exports = function (grunt) {
             encoding : 'utf-8'
         });
 
-        var re = new RegExp('i18n!../i18n/' + nls, "g");
+        re = new RegExp('i18n!../i18n/' + nls, 'g');
         replacement = 'i18n!../i18n/" + navigator.language.toLowerCase() + "';
         if (requireTask === 'debug') {
             replacement = 'i18n!../i18n/\' + navigator.language.toLowerCase() + \'';
@@ -516,7 +518,7 @@ module.exports = function (grunt) {
         script += 'link.type = "text/css";';
         script += 'link.rel = "stylesheet";';
         script += 'document.getElementsByTagName("head")[0].appendChild(link);';
-        script += '</script>'
+        script += '</script>';
 
         fileList.forEach(function (file) {
             var content = grunt.file.read(file, {
