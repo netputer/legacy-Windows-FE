@@ -165,9 +165,9 @@ module.exports = function (grunt) {
             },
             options : {
                 almond : true,
-                appDir : '<%= path.tmp %>/javascripts',
-                dir :　'<%= path.dist %>/javascripts',
-                baseUrl : './',
+                appDir : '<%= path.tmp %>',
+                dir :　'<%= path.dist %>',
+                baseUrl : './javascripts',
                 mainConfigFile : '<%= path.tmp %>/javascripts/RequireConfig.js',
                 preserveLicenseComments : true,
                 useStrict : false,
@@ -333,8 +333,8 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('copyCss', function (nls) {
-
-        var stylePath = paths.tmp + '/i18n/' + nls + '/stylesheets';
+        // var stylePath = paths.tmp + '/i18n/' + nls + '/stylesheets';
+        var stylePath = paths.dist + '/i18n/' + nls + '/stylesheets';
         fs.mkdirSync(stylePath);
         fs.readdirSync(paths.tmp + '/stylesheets/').forEach(function (file){
             if (file.substr(0, 1) === '.' || file === 'compass') {
@@ -346,8 +346,8 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('copyImage', function (nls) {
-
-        var imagesPath = paths.tmp + '/i18n/' + nls + '/images';
+        // var imagesPath = paths.tmp + '/i18n/' + nls + '/images';
+        var imagesPath = paths.dist + '/i18n/' + nls + '/images';
         copyFolderRecursive(paths.tmp + '/images', imagesPath);
     });
 
@@ -543,6 +543,7 @@ module.exports = function (grunt) {
 
         project = project ? project.toUpperCase() : 'WDJ';
         nls = nls ? nls.toLowerCase() : 'zh-cn';
+        nlsFlag = nls = nls ? nls.toLowerCase() : 'zh-cn';
         requireTask = requireTask ? requireTask.toLowerCase() : 'source';
 
         console.log('project : ', project);
@@ -551,10 +552,14 @@ module.exports = function (grunt) {
 
         var taskList = [
             'jshint:all',
+            'clean:dist',
             'copy:tmp',
+            'processI18n:' + nls,
             'switchI18nReleasePath:' + nls,
             'replaceCss',
             'replace:' + project,
+            'createScssConfig:' + project,
+            'compass',
             'requirejs:' + requireTask,
             'switchI18nRunTimePath:' + nls + ':' + requireTask,
             'useminPrepare',
@@ -562,7 +567,9 @@ module.exports = function (grunt) {
             'htmlmin',
             'concat',
             'uglify',
-            'usemin'
+            'usemin',
+            'copyCss:' + nls,
+            'copyImage:' + nls
         ];
 
         grunt.task.run(taskList);
