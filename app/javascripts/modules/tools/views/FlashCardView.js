@@ -57,11 +57,11 @@
             };
 
             confirmWindow.on(UIHelper.EventsMapping.BUTTON_YES, yesHandler);
-            confirmWindow.on(UIHelper.EventsMapping.BUTTON_CANCEL, yesHandler);
+            confirmWindow.on(UIHelper.EventsMapping.BUTTON_CANCEL, cancelHandler);
 
             var removeHandler = function () {
                 confirmWindow.off(UIHelper.EventsMapping.BUTTON_YES, yesHandler);
-                confirmWindow.off(UIHelper.EventsMapping.BUTTON_CANCEL, yesHandler);
+                confirmWindow.off(UIHelper.EventsMapping.BUTTON_CANCEL, cancelHandler);
                 confirmWindow.off(UIHelper.EventsMapping.REMOVE, removeHandler);
             };
             confirmWindow.on(UIHelper.EventsMapping.REMOVE, removeHandler);
