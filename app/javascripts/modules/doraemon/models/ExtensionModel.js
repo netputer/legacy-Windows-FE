@@ -4,12 +4,14 @@
         'IOBackendDevice',
         'underscore',
         'Configuration',
-        'Internationalization'
+        'Internationalization',
+        'Settings'
     ], function (
         IO,
         _,
         CONFIG,
-        i18n
+        i18n,
+        Settings
     ) {
         console.log('ExtensionModel - File loaded.');
 
@@ -62,8 +64,7 @@
                 category : '',
                 fav : '',
                 star : 0,
-                inWhiteList : false,
-                displayToolbar : true
+                inWhiteList : false
             },
             initialize : function () {
                 this.on('change:selected', function (model, selected) {
@@ -80,6 +81,53 @@
                 }
 
                 this.set('inWhiteList', _.contains(whiteList, this.id));
+                this.once('change:extension', function (model, extension) {
+
+                    if (!extension.remote_tabs_url) {
+                        return;
+                    }
+
+                    var navigation = Settings.get(this.id + '-navigation');
+                    if (navigation) {
+                        this.attributes.extension.app.navigation = navigation;
+                    }
+                    this.getNavigationAsync();
+                });
+            },
+            getNavigationAsync : function () {
+                var deferred = $.Deferred();
+
+                IO.requestAsync({
+                    url : this.attributes.extension.remote_tabs_url,
+                    success : function (resp) {
+                        console.log('ExtensionModel - Get Navigation success.');
+
+                        this.attributes.extension.app.launch = {
+                            'web_url' : resp.shift().options.doraemonUrl
+                        };
+
+                        var navigation = []
+                        _.each(resp, function (item) {
+                            navigation.push({
+                                'label' : item.name,
+                                'web_url' :  item.options.doraemonUrl
+                            });
+                        });
+                        this.attributes.extension.app.navigation = navigation;
+                        this.trigger('change:extension');
+
+                        Settings.set(this.id + '-navigation', navigation);
+
+                        deferred.resolve(resp);
+                    }.bind(this),
+                    fail : function (resp) {
+                        console.error('ExtensionModel - Get Navigation faild.');
+                        this.trigger('change:extension');
+                        deferred.reject(resp);
+                    }.bind(this)
+                });
+
+                return deferred.promise();
             },
             zipAsync : function () {
                 var deferred = $.Deferred();
