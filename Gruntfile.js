@@ -111,6 +111,7 @@ module.exports = function (grunt) {
                         '!**/nls/**',
                         'javascripts/**/*.tpl',
                         '**/*.html',
+                        '!bower_components/**/*.html',
                         'stylesheets/**/*.{sass,scss,png,ttf}',
                         'bower_components/wookmark-jquery/jquery.wookmark.js',
                         'bower_components/requirejs-doT/doT.js',
