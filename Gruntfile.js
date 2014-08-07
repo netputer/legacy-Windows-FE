@@ -490,16 +490,6 @@ module.exports = function (grunt) {
         grunt.file.write(SnapPeaPath, content);
     });
 
-    grunt.registerTask('switchI18nReleasePath', function (nls) {
-        var i18nPath = paths.tmp + '/javascripts/Internationalization.js';
-        var content = grunt.file.read(i18nPath, {
-            encoding : 'utf-8'
-        });
-
-        content = content.replace(/nls/g, '../i18n/' + nls + '/nls');
-        grunt.file.write(i18nPath, content);
-    });
-
     grunt.registerTask('replaceCss', function (file) {
 
         var fileList;
@@ -556,7 +546,7 @@ module.exports = function (grunt) {
             'clean:dist',
             'copy:tmp',
             'processI18n:' + nls,
-            'switchI18nReleasePath:' + nls,
+            'switchI18nPath:' + nls,
             'replaceCss',
             'replace:' + project,
             'createScssConfig:' + project,
