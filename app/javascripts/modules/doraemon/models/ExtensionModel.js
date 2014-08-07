@@ -106,7 +106,7 @@
                             'web_url' : resp.shift().options.doraemonUrl
                         };
 
-                        var navigation = []
+                        var navigation = [];
                         _.each(resp, function (item) {
                             navigation.push({
                                 'label' : item.name,
@@ -124,7 +124,7 @@
                         console.error('ExtensionModel - Get Navigation faild.');
                         this.trigger('change:extension');
                         deferred.reject(resp);
-                    }.bind(this)
+                    }.bind(thisamf)
                 });
 
                 return deferred.promise();
