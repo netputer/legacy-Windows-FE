@@ -1,0 +1,13 @@
+.effect {
+    /*********************************************
+     * taskmanager
+     ********************************************/
+    .w-task-module-main {
+        background-color: rgba(0, 0, 0, .7);
+        -webkit-transition: background-color .5s;
+
+        .ctn {
+            box-shadow: 1px 0 10px rgba(0, 0, 0, .2);
+        }
+    }
+}

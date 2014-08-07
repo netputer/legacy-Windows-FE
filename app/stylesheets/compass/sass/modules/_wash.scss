@@ -1,0 +1,505 @@
+/********************************************************************************
+ * This is the CSS declaration of Application Wash Module
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+/********************************************************************************
+ * App wash module main
+ ********************************************************************************/
+.w-app-wash-module-main {
+    background: {
+        color: #f6f6f6;
+        image: url(../images/wash-bg.png);
+        position: center bottom;
+        repeat: no-repeat;
+    }
+    text-shadow: 0 1px 0 #fff;
+
+    > .button-close {
+        @include button-close;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+    }
+}
+
+.w-app-wash-intro,
+.w-app-wash-scanning,
+.w-app-wash-finish,
+.w-app-wash-error {
+    margin-top: 6%;
+    text-align: center;
+
+    .title {
+        font-size: 25px;
+        font-weight: normal;
+        line-height: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.5em;
+    }
+
+    .btn-ctn {
+        margin-top: 25px;
+    }
+}
+
+.w-app-wash-intro {
+    bottom: 0;
+    left: 0;
+    margin-top: 0;
+    position: absolute;
+    right: 0;
+    top: 6%;
+
+    .button-start {
+        margin: 25px 0 15px;
+    }
+}
+
+.w-app-wash-report-ctn {
+    background-color: rgba(255, 255, 255, .6);
+    bottom: 0;
+    left: 191px;
+    padding: 9px;
+    position: fixed;
+    right: 0;
+}
+
+.w-app-wash-scanning {
+    .title {
+        margin-bottom: 5px;
+    }
+
+    progress {
+        margin: 40px auto 0 auto;
+        width: 320px;
+    }
+}
+
+.w-app-wash-result {
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+    text-align: center;
+
+    .summary {
+        background-color: #f6f6f6;
+        left: 191px;
+        text-align: center;
+        padding: 40px 0 40px;
+        pointer-events: none;
+        position: fixed;
+        right: 12px;
+        top: 1px;
+
+        button {
+            pointer-events: auto;
+        }
+
+        .title {
+            font-size: 25px;
+            font-weight: normal;
+            line-height: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .ads-app-ctn {
+            width: 180px;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.5em;
+        }
+
+        ul {
+            text-align: center;
+
+            li {
+                display: inline-block;
+                text-align: center;
+
+                .count {
+                    background-color: rgba(0, 0, 0, .7);
+                    border-radius: 5px;
+                    color: #fff;
+                    display: inline-block;
+                    font-family: 'Roboto-Light';
+                    font-size: 35px;
+                    height: 60px;
+                    line-height: 60px;
+                    text-shadow: none;
+                    width: 60px;
+                }
+
+                .des {
+                    font-size: 14px;
+                    margin: 15px 0 25px;
+                }
+
+                + li {
+                    margin-left: 40px;
+                }
+            }
+        }
+
+        .btn-ctn {
+            margin-top: 25px;
+        }
+    }
+
+    .result {
+        display: inline-block;
+        max-width: 730px;
+        padding: 40px 15px 20px;
+
+        .result-item {
+            box-sizing: border-box;
+            float: left;
+            height: 225px;
+            margin: 5px 10px 15px;
+            position: relative;
+            width: 345px;
+            -webkit-perspective: 500;
+
+            .front,
+            .back {
+                background-color: rgba(255, 255, 255, .8);
+                border: 1px $splitLineColor solid;
+                border-bottom: none;
+                border-radius: 3px 3px 0 0;
+                box-shadow: $cardShadow;
+                box-sizing: border-box;
+                height: inherit;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: inherit;
+                -webkit: {
+                    backface-visibility: hidden;
+                    perspective-origin: 50% 50%;
+                    transition: all .4s ease-in-out;
+                    transform-style: preserve-3d;
+                }
+
+                .button-ctn {
+                    margin: 0 20px 15px;
+                    text-align: right;
+                }
+            }
+
+            .back {
+                opacity: 0;
+                padding: 20px 15px 0;
+                text-align: left;
+                -webkit-transform: rotateY(-180deg);
+
+                .title {
+                    margin-bottom: 10px;
+                }
+
+                ul {
+                    -webkit-box-flex: 1;
+
+                    li {
+                        height: 24px;
+                        line-height: 24px;
+                        padding: 0 20px;
+
+                        label {
+                            display: block;
+
+                            input[type="radio"] {
+                                margin-right: 5px;
+                            }
+
+                            input[type="text"] {
+                                box-sizing: border-box;
+                                height: 24px;
+                                margin-left: 10px;
+                                width: 135px;
+                            }
+                        }
+                    }
+                }
+
+                &.replace-confirm {
+                    visibility: hidden;
+
+                    .wording-ctn {
+                        padding: 40px;
+                        -webkit-box-flex: 1;
+
+                        p + p {
+                            margin-top: 1em;
+                        }
+                    }
+                }
+            }
+
+            &.flip {
+                .front {
+                    opacity: 0;
+                    visibility: hidden;
+                    -webkit-transform: rotateY(180deg);
+                }
+
+                .back {
+                    opacity: 1;
+                    -webkit-transform: rotateY(0);
+                }
+
+                &.replace {
+                    .back {
+                        &.replace-confirm {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+
+                        &.feedback {
+                            opacity: 0;
+                            visibility: hidden;
+                        }
+                    }
+                }
+            }
+
+            .front {
+                .tag {
+                    color: #fff;
+                    height: 18px;
+                    right: 15px;
+                    text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+                    position: absolute;
+                    top: -1px;
+                    width: 50px;
+
+                    &.pirate {
+                        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(208, 77, 42)), to(rgb(183, 73, 39)));
+                    }
+
+                    &.ads {
+                        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(250, 137, 41)), to(rgb(216, 128, 36)));
+                    }
+                }
+
+                .app-info {
+                    height: 60px;
+                    margin: 15px 20px 10px;
+                    -webkit-box-align: center;
+
+                    .icon {
+                        height: 60px;
+                        margin-right: 20px;
+                        width: 60px;
+
+                        img {
+                            height: 60px;
+                            width: 60px;
+                        }
+                    }
+
+                    .title {
+                        font-size: 14px;
+                        text-align: left;
+                        -webkit-box-flex: 1;
+                    }
+                }
+
+                .content {
+                    padding: 25px 20px 20px;
+                    text-align: left;
+                    -webkit-box-flex: 1;
+
+                    .info {
+                        @include sprite-sprite(info);
+                        display: inline-block;
+                        height: 16px;
+                        margin: -2px 0 0 5px;
+                        vertical-align: middle;
+                        width: 16px;
+                    }
+                }
+
+                .button-ctn {
+                    position: relative;
+
+                    .button-ignore,
+                    .button-reset {
+                        margin-left: 12px;
+                    }
+                }
+
+                &:after {
+                    background-color: $standardColor;
+                    bottom: 0;
+                    content: '';
+                    display: block;
+                    height: 6px;
+                    left: 0;
+                    position: absolute;
+                    width: 100%;
+                }
+
+                &.uninstall {
+                    &:after {
+                        background-color: #777;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.w-app-wash-finish {
+    .survey  {
+        margin-top: 15px;
+    }
+}
+
+.w-app-wash-error {
+    .button-retry {
+        margin-top: 25px;
+    }
+}
+
+.w-wash-feedback {
+    .step {
+        label {
+            display: block;
+            height: 25px;
+            line-height: 25px;
+
+            input[type="radio"] {
+                margin-right: 5px;
+            }
+
+            input[type="text"] {
+                height: 26px;
+                margin-left: 10px;
+                width: 135px;
+            }
+        }
+    }
+}
+
+.w-wash-feedback-app-list {
+    border: 1px $borderColor solid;
+    border-radius: 3px;
+    -webkit-box-flex: 1;
+
+    .w-wash-feedback-app-list-item {
+        .item-checker {
+            display: none;
+        }
+
+        .wrap {
+            padding: 5px 0;
+            -webkit-box-align: center;
+
+            input[type="radio"] {
+                margin-left: 15px;
+            }
+
+            .icon-ctn {
+                height: 32px;
+                margin: 0 10px;
+                width: 32px;
+
+                img {
+                    height: 32px;
+                    width: 32px;
+                }
+            }
+        }
+    }
+}
+
+.w-app-wash-notification {
+    margin: 15px 10px;
+
+    .icon-ctn {
+        margin-right: 15px;
+        width: 64px;
+
+        .icon {
+            @include sprite-sprite(xibaibai);
+            height: 64px;
+            width: 64px;
+        }
+    }
+
+    .info {
+        -webkit-box-flex: 1;
+
+        p {
+            margin: 5px 0 10px;
+        }
+
+        .button-wash {
+            float: right;
+        }
+    }
+}
+
+.w-app-wash-info {
+    box-sizing: border-box;
+    width: 260px;
+
+    .info {
+        padding: 3px 0;
+
+        .item-ctn {
+            -webkit-box-flex: 1;
+
+            .item {
+                display: inline-block;
+                width: 95px;
+
+                .icon {
+                    display: inline-block;
+                    height: 16px;
+                    margin: -2px 5px 0 0;
+                    vertical-align: middle;
+                    width: 16px;
+
+                    &.warn {
+                        @include sprite-sprite(error);
+                    }
+
+                    &.check {
+                        @include sprite-sprite(pass);
+                    }
+                }
+            }
+        }
+
+        + .info {
+            border-top: 1px $borderColor dotted;
+        }
+    }
+}
+
+.w-app-wash-close-popup-ctn {
+    .close-popup-tip {
+        margin-top: 25px;
+        -webkit-box-pack: center;
+
+        .tip1 {
+            @include misc-sprite(close-popup-tip-1);
+            height: misc-sprite-height(close-popup-tip-1);
+            width: misc-sprite-width(close-popup-tip-1);
+        }
+
+        .tip2 {
+            @include misc-sprite(close-popup-tip-2);
+            height: misc-sprite-height(close-popup-tip-1);
+            width: misc-sprite-width(close-popup-tip-2);
+            margin-left: 30px;
+        }
+    }
+}

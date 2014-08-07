@@ -1,0 +1,115 @@
+/********************************************************************************
+ * This is the CSS declaration of Window Component
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "../skins/default/default";
+/********************************************************************************
+ * Old Window
+ ********************************************************************************/
+.w-window .w-window-header .w-window-close {
+    @include button-close;
+}
+
+/********************************************************************************
+ * Window
+ ********************************************************************************/
+.w-ui-window {
+    background: #fff;
+    border: 1px $windowBorderColor solid;
+    border-radius: 5px;
+    box-shadow: $componentShadow;
+    cursor: default;
+    left: 0;
+    min-height: 140px;
+    min-width: 360px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    -webkit-transform: scale(1.05);
+    -webkit-transition: opacity .1s linear, -webkit-transform .1s linear;
+
+    &.show {
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
+}
+
+.w-ui-window-header {
+    background: $headerGradient;
+    border-radius: 5px 5px 0 0;
+    border-bottom: 1px $splitLineColor solid;
+    box-shadow: 0 1px 0 #fff inset;
+    padding: 7px 8px 7px 10px;
+    -webkit-box-align: center;
+}
+
+.w-ui-window-header-title {
+    -webkit-box-flex: 1;
+}
+
+.w-ui-window-header-x {
+    @include button-close;
+}
+
+.w-ui-window-body {
+    min-height: 2em;
+    padding: 15px 15px 10px;
+    -webkit-box-flex: 1;
+
+    p + p {
+        margin-top: 1em;
+    }
+}
+
+.w-ui-window-footer {
+    border-radius: 0 0 5px 5px;
+    padding: 0 15px 15px;
+
+    label {
+        display: block;
+
+        input[type="checkbox"] {
+            margin-right: 3px;
+        }
+    }
+}
+
+.w-ui-window.w-ui-alert {
+    min-height: 148px;
+    width: 360px;
+}
+
+.w-ui-window-footer-monitor {
+    line-height: 25px;
+    -webkit-box-flex: 1;
+}
+
+.w-ui-window-footer-button-ctn {
+    text-align: right;
+}
+
+/********************************************************************************
+ * Alert Window
+ ********************************************************************************/
+.w-ui-alert-window {
+    min-height: 148px;
+    min-width: 360px;
+}
+
+/********************************************************************************
+ * Batch action window
+ ********************************************************************************/
+.w-batch-action-body {
+    .progress-ctn {
+        margin-top: 5px;
+
+        progress {
+            -webkit-box-flex: 1;
+        }
+    }
+
+    .tip {
+        -webkit-box-flex: 1;
+    }
+}

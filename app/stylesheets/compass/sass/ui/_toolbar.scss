@@ -1,0 +1,130 @@
+/********************************************************************************
+ * This is the CSS declaration of Toolbar component
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ @import "../skins/default/default";
+
+.w-ui-toolbar {
+    background : -webkit-linear-gradient(#f0f0f0 0%, #f9f9f9 7%);
+    border-bottom: 1px #d6d6d6 solid;
+    height: 35px;
+    position: relative;
+    width: 100%;
+    -webkit-box-align: center;
+
+    .w-icon-btn {
+        &.primary {
+            .icomoon {
+                color: #fff;
+            }
+        }
+
+        &:hover:not(.primary):not([disabled]) {
+            .icomoon {
+                color: $standardColor;
+            }
+        }
+
+        &:active:not(.primary):not([disabled]) {
+            .icomoon {
+                color: $textActive;
+            }
+        }
+    }
+
+    button {
+        &:not(.primary) {
+            background: transparent;
+            border-color: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            color: $textSecondary;
+
+            &:enabled:hover:not(.active):not(:active),
+            &:enabled:focus {
+                background: transparent;
+                color: $textPrimary;
+            }
+
+            &:enabled:active,
+            &.active {
+                background: transparent;
+                box-shadow: none;
+                color: $textActive;
+            }
+
+            &.min {
+                min-width: 0;
+                padding: 2px 5px;
+            }
+        }
+
+        &.primary + button.min {
+            margin-left: 5px;
+        }
+    }
+
+    .w-ui-button.w-ui-menubutton {
+        max-width: 105px;
+        padding-left: 5px;
+        padding-right: 5px;
+
+        .arrow-ctn {
+            .arrow {
+                border-color: #999 transparent transparent transparent;
+            }
+            opacity: 1;
+        }
+
+        &:enabled:hover {
+            .arrow-ctn {
+                .arrow {
+                    border-top-color: $standardColor;
+                }
+            }
+        }
+
+        &:enabled:active,
+        &.active,
+        &.active:hover {
+            .arrow-ctn {
+                .arrow {
+                    border-top-color: $textActive;
+                }
+            }
+        }
+    }
+
+    input[type="checkbox"] {
+        display: block;
+        margin: 0 10px;
+    }
+
+    .split {
+        background-color: #fff;
+        border: {
+            color: #d6d6d6;
+            style: solid;
+            width: 0 0 0 1px;
+        }
+        height: 16px;
+        margin: 0 2px;
+        width: 1px;
+    }
+
+    button + button {
+        margin-left: 0;
+    }
+
+    .selector-wrap {
+        color: #999;
+        padding-right: 10px;
+        text-shadow: 0 1px 0 #fff;
+        -webkit-box: {
+            align: center;
+            flex: 1;
+            pack: end;
+        }
+    }
+}

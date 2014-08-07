@@ -1,0 +1,181 @@
+/********************************************************************************
+ * This is the CSS declaration of iTunes Importor
+ * 
+ * @author lixiaomeng@wandoujia.com
+ ********************************************************************************/
+ @import "../skins/default/default";
+
+.select-library-list {
+    max-height: 120px;
+    overflow: auto;
+}
+
+.w-iTunes-select-library-panel,
+.w-iTunes-select-source-panel {
+    & ul {
+        margin-top: 10px;
+    }
+
+    & li {
+        margin: 5px 0;
+
+        & input {
+            margin: -3px 5px 0 0;
+        } 
+    }
+}
+
+@mixin placeBlank {
+    margin: 2px 0 0 18px;
+}
+
+.w-iTunes-select-source-panel {
+    & .source-tip {
+        @include placeBlank;
+        color: #646464;
+    }
+}
+
+.w-iTunes-select-source-panel .less-capacity {
+    @include placeBlank;
+    color: #ff5404;
+    display: none;
+}
+
+.w-iTunes-import-panel {
+    & .progress-wrap{
+        margin-top: 15px;
+    }
+
+    & .progress-value {
+        float: right;
+    }
+}
+
+@mixin list-base {
+    height: 240px;
+    width: 570px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+.w-iTunes-audio-list-panel {
+    & .audio-list-content {
+        @include list-base;
+    }
+
+    & .select-count-wrap {
+        margin-top: 10px;
+    }
+}
+
+.w-iTunes-playlist-panel {
+    & .playlist-content{
+       @include list-base;
+    }
+
+    & .select-count-wrap {
+        margin-top: 10px;
+    }
+}
+
+.w-iTunes-error-tip {
+    color: #ff5404;
+}
+
+.w-itunes-play-list-header {
+    .check-select-all {
+        margin-left: 10px;
+    }
+
+    .cell {
+        padding-left: 12px;
+
+        &.list-name {
+            width : 336px;
+        }
+
+        &.audio-songs {
+            width: 200px;
+        }
+    }
+}
+
+.itunes-play-list-item {
+    height : 30px;
+    -webkit-box-align: center;
+
+    .list-name {
+        margin-left: 10px;
+        width : 376px;
+
+        input {
+            margin-right: 10px;
+        }
+    }
+
+    .cell {
+        padding-left: 12px;
+
+        &.list-songs {
+            width: 300px;
+        }
+    }
+}
+
+.w-itunes-audio-list-header {
+
+    .check-select-all {
+        margin-left: 10px;
+    }
+
+    .cell {
+        padding-left: 12px;
+
+        &.audio-name {
+            width : 150px;
+        }
+
+        &.audio-artist {
+            width: 130px;
+        }
+
+        &.audio-album {
+            width: 140px;
+        }
+
+        &.audio-size {
+            width: 60px;
+        }
+    }
+}
+
+.itunes-audio-list-item {
+    height : 30px;
+    -webkit-box-align: center;
+
+    .audio-name {
+        margin-left: 10px;
+        width : 176px;
+
+        input {
+            margin-right: 10px;
+        }
+    }
+
+    .cell {
+        padding-left: 12px;
+
+        &.audio-artist {
+            width: 130px;
+        }
+
+        &.audio-album {
+            width: 140px;
+        }
+
+        &.audio-size {
+            width: 60px;
+        }
+    }
+}

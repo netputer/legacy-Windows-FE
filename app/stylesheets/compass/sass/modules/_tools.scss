@@ -1,0 +1,160 @@
+/********************************************************************************
+ * This is the CSS declaration of Tools Module
+ *
+ * @author lixiaopeng@wandoujia.com
+ ********************************************************************************/
+@import "../skins/default/default";
+/********************************************************************************
+ * Tools Module Main
+ ********************************************************************************/
+.w-tools-module-main {
+    background-color: #f0f0f0;
+
+    .w-tools-banner {
+        background-image: url(../images/tools-banner.png);
+        height: 288px;
+        width : 100%;
+
+        .center {
+            height: 288px;
+            margin: 0 auto;
+            padding: 0 10px;
+            width: 778px;
+
+            .icon {
+                @include tools-sprite(tools-icon);
+                height: 230px;
+                left: 230px;
+                position: relative;
+                top: 30px;
+                width: 210px;
+            }
+
+            .desc-ctn {
+                color: #fff;
+                display: inline-block;
+                left: 70px;
+                position: relative;
+                top: 80px;
+
+                .title {
+                    font-size: 24px;
+                    line-height: 24px;
+                }
+
+                .desc {
+                    font-size: 14px;
+                    line-height: 25px;
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+
+    .w-tools-ctn {
+        height: 100%;
+        margin: 29px auto;
+        padding-left: 29px;
+        width: 798px;
+    }
+}
+
+.w-tools-flash-confirm {
+    .icon {
+        @include tools-sprite(error);
+        height: 80px;
+        margin-top: 10px;
+        margin-left: 20px;
+        width: 80px;
+    }
+
+    .desc-ctn {
+        padding-top: 20px;
+        padding-left: 20px;
+
+        .title {
+            margin-bottom: 10px;
+        }
+
+        .desc {
+            display: block;
+            width: 220px;
+            word-break: break-all;
+        }
+    }
+}
+
+.w-tools-card {
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    float: left;
+    height: 135px;
+    margin: 10px;
+    padding: 15px 15px 10px;
+    width: 350px;
+
+    .info-ctn {
+        -webkit-box-flex: 1;
+    }
+
+    .icon {
+        margin-left: 15px;
+        margin-top: 15px;
+    }
+
+    .info-ctn {
+        padding: 15px 10px 30px 30px;
+
+        .title {
+            line-height: 26px;
+            -webkit-box-flex: 1;
+        }
+
+        .desc {
+            margin-top: 10px;
+        }
+    }
+
+    &.sdcard {
+        .icon {
+            @include tools-sprite(sdcard);
+            height: 74px;
+            width: 53px;
+        }
+    }
+
+    &.feature {
+        .icon {
+            @include tools-sprite(feature);
+            height : 80px;
+            width : 80px;
+        }
+
+        .desc {
+            font-size: 18px;
+            line-height: 115px;
+            text-align: center;
+            -webkit-box-flex: 1;
+        }
+    }
+
+    &.flash {
+        .icon {
+            @include tools-sprite(flash);
+            height: 74px;
+            margin-left: 20px;
+            width: 48px;
+        }
+
+        progress {
+            display: none;
+            margin-top: 20px;
+            width: 210px;
+        }
+
+        .button-cancel {
+            display: none;
+        }
+    }
+}

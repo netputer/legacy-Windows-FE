@@ -4,17 +4,10 @@
 *.sublime-workspace
 *.sublime-project
 .project
-
 /node_modules/
 /dist/
 /tmp/
-
-app/images
-app/javascripts/nls
-app/stylesheets
-
 /lint.log
 /result.txt
 /duplicated.txt
-
 tools/build.xml
