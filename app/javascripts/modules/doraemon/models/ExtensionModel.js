@@ -89,7 +89,11 @@
 
                     var navigation = Settings.get(this.id + '-navigation');
                     if (navigation) {
-                        this.attributes.extension.app.navigation = navigation;
+
+                        extension.app.navigation = navigation;
+                        this.set('extension', extension, {
+                            silent : true
+                        });
                     }
                     this.getNavigationAsync();
                 });
@@ -102,7 +106,8 @@
                     success : function (resp) {
                         console.log('ExtensionModel - Get Navigation success.');
 
-                        this.attributes.extension.app.launch = {
+                        var extension = this.get('extension');
+                        extension.app.launch = {
                             'web_url' : resp.shift().options.doraemonUrl
                         };
 
@@ -113,8 +118,8 @@
                                 'web_url' :  item.options.doraemonUrl
                             });
                         });
-                        this.attributes.extension.app.navigation = navigation;
-                        this.trigger('change:extension');
+                        extension.app.navigation = navigation;
+                        this.set('extension', extension);
 
                         Settings.set(this.id + '-navigation', navigation);
 
@@ -124,7 +129,7 @@
                         console.error('ExtensionModel - Get Navigation faild.');
                         this.trigger('change:extension');
                         deferred.reject(resp);
-                    }.bind(thisamf)
+                    }.bind(this)
                 });
 
                 return deferred.promise();
