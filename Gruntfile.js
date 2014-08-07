@@ -146,6 +146,17 @@ module.exports = function (grunt) {
                         'bower_components/qrcode.js/qrcode.js'
                     ]
                 }]
+            },
+            tmpToDist : {
+                files : [{
+                    expand : true,
+                    dot : true,
+                    cwd : '<%= path.tmp %>',
+                    dest : '<%= path.dist %>',
+                    src : [
+                        '**/*'
+                    ]
+                }]
             }
         },
         requirejs : {
@@ -346,9 +357,26 @@ module.exports = function (grunt) {
         });
     });
 
+    grunt.registerTask('copyCssFromTmp', function (nls) {
+        var stylePath = paths.tmp + '/i18n/' + nls + '/stylesheets';
+        fs.mkdirSync(stylePath);
+        fs.readdirSync(paths.tmp + '/stylesheets/').forEach(function (file){
+            if (file.substr(0, 1) === '.' || file === 'compass') {
+                return;
+            } else {
+                copyFolderRecursive(paths.tmp + '/stylesheets/' + file, stylePath + '/' + file);
+            }
+        });
+    });
+
     grunt.registerTask('copyImage', function (nls) {
         // var imagesPath = paths.tmp + '/i18n/' + nls + '/images';
         var imagesPath = paths.dist + '/i18n/' + nls + '/images';
+        copyFolderRecursive(paths.tmp + '/images', imagesPath);
+    });
+
+    grunt.registerTask('copyImageFromTmp', function (nls) {
+        var imagesPath = paths.tmp + '/i18n/' + nls + '/images';
         copyFolderRecursive(paths.tmp + '/images', imagesPath);
     });
 
@@ -386,16 +414,18 @@ module.exports = function (grunt) {
         console.log('nls : ', nls);
 
         var taskList = [
-            'clean:server',
             'jshint:all',
+            'clean:dist',
             'copy:tmp',
             'processI18n:' + nls,
             'switchI18nPath',
+            'replaceCss',
             'replace:' + project,
             'createScssConfig:' + project,
             'compass:server',
-            'copyCss:' + nls,
-            'copyImage:' + nls,
+            'copyCssFromTmp:' + nls,
+            'copyImageFromTmp:' + nls,
+            'copy:tmpToDist',
             'watch'
         ];
 
