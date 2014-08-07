@@ -39,7 +39,7 @@
             initialize : function () {
                 extensionsCollection = extensionsCollection || ExtensionsCollection.getInstance();
                 this.listenToOnce(extensionsCollection, 'add', addHandler);
-                this.listenTo(this.model, 'change:extension', this.render);
+                this.listenToOnce(this.model, 'change:extension', this.render);
             },
             render : function () {
                 if (this.model.get('extension')) {

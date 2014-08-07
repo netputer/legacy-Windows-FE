@@ -37,7 +37,7 @@
             initialize : function () {
                 appsCollection = appsCollection || AppsCollection.getInstance();
 
-                this.listenTo(this.model, 'change:extension', function (model, extension) {
+                this.listenToOnce(this.model, 'change:extension', function (model, extension) {
                     if (extension.android_apps && extension.android_apps.length > 0 && extension.android_apps[0].package_name) {
                         this.loadAppInfoAsync().done(function (resp) {
                             this.renderContent(resp[0]);
