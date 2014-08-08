@@ -297,41 +297,30 @@ module.exports = function (grunt) {
         });
     };
 
-    var createNls = function (sourcePath, targetPath) {
+    var createNls = function (sourcePath, targetNls) {
         var nlsJson = grunt.file.read(sourcePath);
-        var nlsContent = 'define({"'+ nlsFlag  +'" : ' + nlsJson + '});';
+        var nlsContent = 'define({"' + targetNls + '" : ' + nlsJson + '});';
+        var targetPath = paths.tmp + '/i18n/' + targetNls + '/nls/' + path.basename(sourcePath).replace('json', 'js');
+
         grunt.file.write(targetPath, nlsContent);
     };
 
     grunt.registerTask('processI18n', function (nls) {
+        var sourcePath = paths.app + '/javascripts/nls/' + nls;
 
-        var i18nPath = paths.tmp + '/i18n';
-        fs.mkdirSync(i18nPath);
-
-        var i18nNlsPath = i18nPath + '/' + nls;
-        fs.mkdirSync(i18nNlsPath);
-
-        i18nNlsPath += '/nls';
-        fs.mkdirSync(i18nNlsPath);
-        fs.mkdirSync(i18nNlsPath + '/' + nls);
-
-        var content;
-        fs.readdirSync(paths.app + '/javascripts/nls/' + nls).forEach(function (file){
-            if (file.substr(0, 1) === '.') {
-                return;
-            } else {
-                createNls(paths.app + '/javascripts/nls/' + nls + '/' + file, i18nNlsPath + '/' + file.replace('json', 'js'));
-            }
+        grunt.file.recurse(sourcePath, function (abspath, rootdir, subdir, filename) {
+            createNls(abspath, nls);
         });
 
-        var fd;
-        if (nls !== 'zh-cn') {
-            var mainScss = paths.tmp + '/stylesheets/compass/sass/main.scss';
-            fd = fs.openSync(mainScss, 'a');
-
-            fs.writeSync(fd, '@import "_locale-' + nls + '.scss"');
-            fs.closeSync(fd);
+        if (nls === 'zh-cn') {
+            return;
         }
+
+        var mainScss = paths.tmp + '/stylesheets/compass/sass/main.scss';
+        var content = grunt.file.read(mainScss);
+        var newContent = '@import "_locale-' + nls + '";';
+
+        grunt.file.write(mainScss, content + '\n' + newContent);
     });
 
     grunt.registerTask('switchI18nPath', function () {
@@ -450,7 +439,7 @@ module.exports = function (grunt) {
             switch (action) {
             case 'added':
             case 'changed':
-                createNls(filePath, targetPath);
+                createNls(filePath, nlsFlag);
                 console.log('create - ' + targetPath);
                 break;
             }
