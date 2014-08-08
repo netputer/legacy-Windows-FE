@@ -369,20 +369,12 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('createScssConfig', function (project) {
+        if (['WDJ', 'SUNING', 'TIANYIN'].indexOf(project) < 0) {
+            return;
+        }
 
         var filePath = paths.tmp + '/stylesheets/compass/sass/_projectflag.scss';
-        var content = '';
-        switch (project) {
-        case 'WDJ':
-            content = '$PROJECT_FLAG : PROJECT_WDJ';
-            break;
-        case 'SUNING':
-            content = '$PROJECT_FLAG : PROJECT_SUNING';
-            break;
-        case 'TIANYIN':
-            content = '$PROJECT_FLAG : PROJECT_TIANYIN';
-            break;
-        }
+        var content = '$PROJECT_FLAG : PROJECT_' + project;
 
         grunt.file.write(filePath, content);
     });
