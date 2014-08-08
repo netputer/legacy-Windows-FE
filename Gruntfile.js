@@ -504,35 +504,36 @@ module.exports = function (grunt) {
         grunt.file.write(SnapPeaPath, content);
     });
 
-    grunt.registerTask('replaceCss', function (file) {
-
+    grunt.registerTask('replaceCss', function (filePath) {
         var fileList;
-        if (typeof file !== 'undefined') {
-            fileList = [file];
+
+        if (typeof filePath !== 'undefined') {
+            fileList = [filePath];
         } else {
-            var src = [
+            fileList = grunt.file.expand([
                 paths.tmp + '/index.html',
                 paths.tmp + '/javascripts/**/*.html'
-            ];
-            fileList = grunt.file.expand(src);
+            ]);
         }
 
-        var script = '<script type="text/javascript">';
-        script += 'var link = document.createElement("link");';
-        script += 'link.href = "%s";';
-        script += 'link.type = "text/css";';
-        script += 'link.rel = "stylesheet";';
-        script += 'document.getElementsByTagName("head")[0].appendChild(link);';
-        script += '</script>';
+        var regex = /<link[^>]+(?:href)=\s*["']?([^"]+\.(?:css))["']\s*\/>/;
+        var scriptTemplate = '<script type="text/javascript">'
+                   + 'var link = document.createElement("link");'
+                   + 'link.href = "%s";'
+                   + 'link.type = "text/css";'
+                   + 'link.rel = "stylesheet";'
+                   + 'document.getElementsByTagName("head")[0].appendChild(link);'
+                   + '</script>';
 
         fileList.forEach(function (file) {
             var content = grunt.file.read(file);
 
-            var result = content.match(/<[^>]+(?:href)=\s*["']?([^"]+\.(?:css))/);
-            var link = result[0] + '" />';
-            var href = result[1];
+            content = content.replace(regex, function (link, href) {
+                var newHref = href.replace('stylesheets/', 'i18n/" + navigator.language.toLowerCase() + "/stylesheets/');
 
-            content = content.replace(link, util.format(script, href.replace('stylesheets', 'i18n/" + navigator.language.toLowerCase() + "/stylesheets' )));
+                return scriptTemplate.replace('%s', newHref);
+            });
+
             grunt.file.write(file, content);
         });
     });
