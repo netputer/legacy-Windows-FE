@@ -253,7 +253,7 @@ module.exports = function (grunt) {
     });
 
     var projectFlag;
-    var nlsFlag;
+    var NLS_FLAG;
 
     var copyFolderRecursive = function(path, dist, isDelete) {
         isDelete = isDelete ? true : false;
@@ -398,7 +398,7 @@ module.exports = function (grunt) {
     grunt.registerTask('server', function (project, nls) {
 
         projectFlag = project = project ? project.toUpperCase() : 'WDJ';
-        nlsFlag = nls = nls ? nls.toLowerCase() : 'zh-cn';
+        NLS_FLAG = nls = nls ? nls.toLowerCase() : 'zh-cn';
 
         console.log('project : ', project);
         console.log('nls : ', nls);
@@ -436,11 +436,11 @@ module.exports = function (grunt) {
                 return;
             }
 
-            targetPath = paths.tmp + '/i18n/' + nlsFlag + '/nls/' + path.basename(filePath).replace('json', 'js');
+            targetPath = paths.tmp + '/i18n/' + NLS_FLAG + '/nls/' + path.basename(filePath).replace('json', 'js');
             switch (action) {
             case 'added':
             case 'changed':
-                createNls(filePath, nlsFlag);
+                createNls(filePath, NLS_FLAG);
                 console.log('create - ' + targetPath);
                 break;
             }
@@ -554,7 +554,7 @@ module.exports = function (grunt) {
 
         project = project ? project.toUpperCase() : 'WDJ';
         nls = nls ? nls.toLowerCase() : 'zh-cn';
-        nlsFlag = nls = nls ? nls.toLowerCase() : 'zh-cn';
+        NLS_FLAG = nls = nls ? nls.toLowerCase() : 'zh-cn';
         requireTask = requireTask ? requireTask.toLowerCase() : 'source';
 
         console.log('project : ', project);
