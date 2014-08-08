@@ -1,3 +1,4 @@
+// jshint ignore: start
 'use strict';
 
 var LIVERELOAD_PORT = 35729;
@@ -375,7 +376,7 @@ module.exports = function (grunt) {
         var content = '';
         switch (project) {
         case 'WDJ':
-            content = '$PROJECT_FLAG : PROJECT_WD';
+            content = '$PROJECT_FLAG : PROJECT_WDJ';
             break;
         case 'SUNING':
             content = '$PROJECT_FLAG : PROJECT_SUNING';
