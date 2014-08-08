@@ -326,9 +326,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('switchI18nPath', function () {
         var i18nPath = paths.tmp + '/javascripts/Internationalization.js';
-        var content = grunt.file.read(i18nPath, {
-            encoding : 'utf-8'
-        });
+        var content = grunt.file.read(i18nPath);
 
         content = content.replace(/nls/g, '../i18n/\' + navigator.language.toLowerCase() + \'/nls');
         grunt.file.write(i18nPath, content);
@@ -482,9 +480,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('switchI18nRunTimePath', function (nls, requireTask) {
         var i18nPath = paths.dist + '/javascripts/Internationalization.js';
-        var content = grunt.file.read(i18nPath, {
-            encoding : 'utf-8'
-        });
+        var content = grunt.file.read(i18nPath);
 
         var re = new RegExp(nls, 'g');
 
@@ -497,9 +493,7 @@ module.exports = function (grunt) {
 
 
         var SnapPeaPath = paths.dist + '/javascripts/SnapPea.js';
-        content = grunt.file.read(SnapPeaPath, {
-            encoding : 'utf-8'
-        });
+        content = grunt.file.read(SnapPeaPath);
 
         re = new RegExp('i18n!../i18n/' + nls, 'g');
         replacement = 'i18n!../i18n/" + navigator.language.toLowerCase() + "';
@@ -532,9 +526,7 @@ module.exports = function (grunt) {
         script += '</script>';
 
         fileList.forEach(function (file) {
-            var content = grunt.file.read(file, {
-                encoding : 'utf-8'
-            });
+            var content = grunt.file.read(file);
 
             var result = content.match(/<[^>]+(?:href)=\s*["']?([^"]+\.(?:css))/);
             var link = result[0] + '" />';
