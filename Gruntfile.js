@@ -390,6 +390,17 @@ module.exports = function (grunt) {
         runSubTask('./build.sh wdj source zh-cn');
     });
 
+    grunt.registerTask('buildI18n', function (nls, compassMode) {
+        var taskList = [
+            'processI18n:' + nls,
+            'compass:' + compassMode,
+            'copyCssFromTmp:' + nls,
+            'copyImageFromTmp:' + nls
+        ];
+
+        grunt.task.run(taskList);
+    });
+
     grunt.registerTask('server', function (project, nls) {
 
         projectFlag = project = project ? project.toUpperCase() : 'WDJ';
@@ -402,14 +413,11 @@ module.exports = function (grunt) {
             'jshint:all',
             'clean:dist',
             'copy:tmp',
-            'processI18n:' + nls,
+            'createScssConfig:' + project,
+            'buildI18n:' + nls + ':server',
             'switchI18nPath',
             'replaceCss',
             'replace:' + project,
-            'createScssConfig:' + project,
-            'compass:server',
-            'copyCssFromTmp:' + nls,
-            'copyImageFromTmp:' + nls,
             'copy:tmpToDist',
             'watch'
         ];
@@ -555,13 +563,12 @@ module.exports = function (grunt) {
             'jshint:all',
             'clean:dist',
             'copy:tmp',
-            'processI18n:' + nls,
-            'switchI18nPath:' + nls,
+            'createScssConfig:' + project,
+            'buildI18n:' + nls + ':dist',
+            'switchI18nPath',
+            'requirejs:' + requireTask,
             'replaceCss',
             'replace:' + project,
-            'createScssConfig:' + project,
-            'compass',
-            'requirejs:' + requireTask,
             'switchI18nRunTimePath:' + nls + ':' + requireTask,
             'useminPrepare',
             'copy:dist',
