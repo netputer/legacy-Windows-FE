@@ -139,7 +139,7 @@ module.exports = function (grunt) {
                     cwd : '<%= path.tmp %>',
                     dest : '<%= path.dist %>',
                     src : [
-                        'i18n/**/stylesheets/{,*/}*.{css,ttf}',
+                        'i18n/**/*',
                         'bower_components/wookmark-jquery/jquery.wookmark.js',
                         'bower_components/requirejs-doT/doT.js',
                         'bower_components/requirejs-text/text.js',
@@ -575,9 +575,7 @@ module.exports = function (grunt) {
             'htmlmin',
             'concat',
             'uglify',
-            'usemin',
-            'copyCss:' + nls,
-            'copyImage:' + nls
+            'usemin'
         ];
 
         grunt.task.run(taskList);
