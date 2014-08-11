@@ -97,6 +97,11 @@ module.exports = function (grunt) {
                 options : {
                     debugInfo : true
                 }
+            },
+            dist : {
+                options : {
+                    outputStyle : 'compressed'
+                }
             }
         },
         copy : {
