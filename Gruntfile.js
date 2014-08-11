@@ -528,13 +528,13 @@ module.exports = function (grunt) {
         }
 
         var regex = /<link[^>]+(?:href)=\s*["']?([^"]+\.(?:css))["']\s*\/>/;
-        var scriptTemplate = '<script type="text/javascript">'
-                   + 'var link = document.createElement("link");'
-                   + 'link.href = "%s";'
-                   + 'link.type = "text/css";'
-                   + 'link.rel = "stylesheet";'
-                   + 'document.getElementsByTagName("head")[0].appendChild(link);'
-                   + '</script>';
+        var scriptTemplate = '<script type="text/javascript">' +
+                                'var link = document.createElement("link");' +
+                                'link.href = "%s";' +
+                                'link.type = "text/css";' +
+                                'link.rel = "stylesheet";' +
+                                'document.getElementsByTagName("head")[0].appendChild(link);' +
+                                '</script>';
 
         fileList.forEach(function (file) {
             var content = grunt.file.read(file);
