@@ -413,14 +413,20 @@ module.exports = function (grunt) {
             'jshint:all',
             'clean:dist',
             'copy:tmp',
-            'createScssConfig:' + project,
-            'buildI18n:' + nls + ':server',
+            'createScssConfig:' + project
+        ];
+
+        nls.split(',').forEach(function (lang) {
+            taskList.push('buildI18n:' + lang + ':server');
+        });
+
+        taskList.push(
             'switchI18nPath',
             'replaceCss',
             'replace:' + project,
             'copy:tmpToDist',
             'watch'
-        ];
+        );
 
         grunt.task.run(taskList);
     });
@@ -559,24 +565,32 @@ module.exports = function (grunt) {
         console.log('nls : ', nls);
         console.log('task : ', requireTask);
 
+        var langs = nls.split(',');
+
         var taskList = [
             'jshint:all',
             'clean:dist',
             'copy:tmp',
-            'createScssConfig:' + project,
-            'buildI18n:' + nls + ':dist',
+            'createScssConfig:' + project
+        ];
+
+        langs.forEach(function (lang) {
+            taskList.push('buildI18n:' + lang + ':dist');
+        });
+
+        taskList.push(
             'switchI18nPath',
             'requirejs:' + requireTask,
             'replaceCss',
             'replace:' + project,
-            'switchI18nRunTimePath:' + nls + ':' + requireTask,
+            'switchI18nRunTimePath:' + langs[0] + ':' + requireTask,
             'useminPrepare',
             'copy:dist',
             'htmlmin',
             'concat',
             'uglify',
             'usemin'
-        ];
+        );
 
         grunt.task.run(taskList);
 
