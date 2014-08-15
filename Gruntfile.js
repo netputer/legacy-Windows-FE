@@ -385,9 +385,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('test', function () {
-        // grunt.option('force', true);
-        grunt.task.run('jshint:all');
-        runSubTask('./build.sh wdj source zh-cn');
+        grunt.task.run('build:WDJ:source:zh-cn');
     });
 
     grunt.registerTask('buildI18n', function (nls, compassMode) {
