@@ -338,19 +338,6 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('copyCss', function (nls) {
-        // var stylePath = paths.tmp + '/i18n/' + nls + '/stylesheets';
-        var stylePath = paths.dist + '/i18n/' + nls + '/stylesheets';
-        fs.mkdirSync(stylePath);
-        fs.readdirSync(paths.tmp + '/stylesheets/').forEach(function (file){
-            if (file.substr(0, 1) === '.' || file === 'compass') {
-                return;
-            } else {
-                copyFolderRecursive(paths.tmp + '/stylesheets/' + file, stylePath + '/' + file);
-            }
-        });
-    });
-
-    grunt.registerTask('copyCssFromTmp', function (nls) {
         var stylePath = paths.tmp + '/i18n/' + nls + '/stylesheets';
         fs.mkdirSync(stylePath);
         fs.readdirSync(paths.tmp + '/stylesheets/').forEach(function (file){
@@ -363,12 +350,6 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('copyImage', function (nls) {
-        // var imagesPath = paths.tmp + '/i18n/' + nls + '/images';
-        var imagesPath = paths.dist + '/i18n/' + nls + '/images';
-        copyFolderRecursive(paths.tmp + '/images', imagesPath);
-    });
-
-    grunt.registerTask('copyImageFromTmp', function (nls) {
         var imagesPath = paths.tmp + '/i18n/' + nls + '/images';
         copyFolderRecursive(paths.tmp + '/images', imagesPath);
     });
@@ -392,8 +373,8 @@ module.exports = function (grunt) {
         var taskList = [
             'processI18n:' + nls,
             'compass:' + compassMode,
-            'copyCssFromTmp:' + nls,
-            'copyImageFromTmp:' + nls
+            'copyCss:' + nls,
+            'copyImage:' + nls
         ];
 
         grunt.task.run(taskList);
