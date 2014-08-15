@@ -257,7 +257,7 @@ module.exports = function (grunt) {
         }
     });
 
-    var projectFlag;
+    var PROJECT_FLAG;
     var NLS_FLAG;
 
     var copyFolderRecursive = function(path, dist, isDelete) {
@@ -381,8 +381,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('server', function (project, nls) {
-
-        projectFlag = project = project ? project.toUpperCase() : 'WDJ';
+        PROJECT_FLAG = project = project ? project.toUpperCase() : 'WDJ';
         NLS_FLAG = nls = nls ? nls.toLowerCase() : 'zh-cn';
 
         console.log('project : ', project);
@@ -416,7 +415,7 @@ module.exports = function (grunt) {
         switch (target) {
         case 'projectConfig':
             grunt.file.copy(paths.app + '/index.html', paths.tmp + '/index.html');
-            runSubTask('grunt replace:' + projectFlag);
+            runSubTask('grunt replace:' + PROJECT_FLAG);
             runSubTask('grunt replaceCss:' + paths.tmp + '/index.html');
             break;
         case 'i18n' :
@@ -452,7 +451,7 @@ module.exports = function (grunt) {
 
                 if (extName === '.html') {
                     if (baseName === 'index.html') {
-                        runSubTask('grunt replace:' + projectFlag);
+                        runSubTask('grunt replace:' + PROJECT_FLAG);
                     }
                     runSubTask('grunt replaceCss:' + targetPath);
                 }
