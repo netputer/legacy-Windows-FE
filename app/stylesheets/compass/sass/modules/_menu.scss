@@ -1,0 +1,165 @@
+/********************************************************************************
+ * This is the CSS declaration of Sidebar Menu
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ @import "skins/default/default";
+ /********************************************************************************
+ * Menus
+ ********************************************************************************/
+.w-menu {
+    overflow-y: auto;
+    position: relative;
+    width: 189px;
+    -webkit-box-flex: 1;
+
+    .w-menu-pim {
+        border-top: 1px solid #3f4346;
+        box-shadow: 0 1px 0 #515559 inset;
+        padding-top: 7px;
+        margin-top: 9px;
+
+        @if $PROJECT_FLAG == PROJECT_SUNING {
+            .disconnected & {
+                opacity: .4;
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+.w-sidebar-menu {
+    .title {
+        color : #ccc;
+        font-size: 12px;
+        height: 27px;
+        text-shadow: 0 1px 0 #000;
+        -webkit-box-align: center;
+
+        .label {
+            -webkit-box-flex: 1;
+        }
+
+        .icon {
+            height: 24px;
+            margin: 0 4px 0 12px;
+            width: 24px;
+        }
+
+        .count {
+            margin-right: 10px;
+            display: none;
+            text-shadow: none;
+            background-color: #aaa;
+            border-radius: 2px;
+            color: #fff;
+            font-size: 10px;
+            line-height: 14px;
+            min-width: 16px;
+            padding: 0 2px;
+            text-align: center;
+
+            &.highlight {
+                background-color: $standardColor;
+                color: #fff;
+            }
+        }
+
+        &:not(.selected):hover {
+            color : $textWhite;
+
+            .count {
+                background-color: $standardColor;
+            }
+        }
+
+        &.selected {
+            background-color: #1B1D20;
+            color: #fff;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+
+            @if $PROJECT_FLAG == PROJECT_SUNING {
+                background-color: #009CC2;
+            }
+
+            .count {
+                background-color: transparent;
+                background-image: none;
+                color: #ccc;
+                display: block;
+
+                &.highlight{
+                    background-color: $standardColor;
+                    color: #FFF;
+                    display: block;
+                }
+            }
+        }
+
+        @each $icon in contact, sms, app, music, photo, video, wash, backup, tools {
+            .icon.#{$icon} {
+                @include nav-sprite(nav-#{$icon});
+            }
+
+            &:not(.selected):hover {
+                .icon.#{$icon} {
+                    @include nav-sprite(nav-#{$icon}-hover);
+                }
+            }
+
+            &.selected {
+                .icon.#{$icon} {
+                    @include nav-sprite(nav-#{$icon}-active);
+                }
+            }
+        }
+
+        .icon {
+            &.welcome {
+                @include nav-sprite(nav-home);
+            }
+        }
+    }
+
+    .hide {
+        display: none;
+    }
+
+    &.w-menu-welcome {
+        margin-top: 10px;
+    }
+}
+
+.w-menu-shadow {
+    height: 0;
+    overflow: visible;
+    position: relative;
+
+    .shadow {
+        background-color: transparent;
+        background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.2), transparent);
+        height: 8px;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        top: -8px;
+        width: 100%;
+        -webkit-mask-box-image: -webkit-linear-gradient(left, transparent 0%, rgba(0,0,0,0.8) 50%, transparent 100%);
+    }
+}
+
+.w-ui-syncing {
+    @include nav-sprite(syncing);
+    display: none;
+    height: 16px;
+    position : relative;
+    right : 10px;
+    top: 3px;
+    width: 16px;
+    -webkit-animation: sync-rotate 1s linear infinite;
+}
+
+@-webkit-keyframes sync-rotate {
+    from {-webkit-transform:rotate(0deg);}
+    to {-webkit-transform:rotate(360deg);}
+}

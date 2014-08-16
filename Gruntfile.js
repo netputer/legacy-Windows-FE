@@ -1,3 +1,4 @@
+// jshint ignore: start
 'use strict';
 
 var LIVERELOAD_PORT = 35729;
@@ -21,7 +22,8 @@ module.exports = function (grunt) {
         path : paths,
         clean : {
             dist : ['<%= path.tmp %>/', '<%= path.dist %>/'],
-            server : ['<%= path.tmp %>/']
+            server : ['<%= path.tmp %>/'],
+            i18n : ['<%= path.dist %>/i18n']
         },
         watch : {
             i18n : {
@@ -96,6 +98,11 @@ module.exports = function (grunt) {
                 options : {
                     debugInfo : true
                 }
+            },
+            dist : {
+                options : {
+                    outputStyle : 'compressed'
+                }
             }
         },
         copy : {
@@ -111,6 +118,7 @@ module.exports = function (grunt) {
                         '!**/nls/**',
                         'javascripts/**/*.tpl',
                         '**/*.html',
+                        '!bower_components/**/*.html',
                         'stylesheets/**/*.{sass,scss,png,ttf}',
                         'bower_components/wookmark-jquery/jquery.wookmark.js',
                         'bower_components/requirejs-doT/doT.js',
@@ -132,7 +140,7 @@ module.exports = function (grunt) {
                     cwd : '<%= path.tmp %>',
                     dest : '<%= path.dist %>',
                     src : [
-                        'i18n/**/stylesheets/{,*/}*.{css,ttf}',
+                        'i18n/**/*',
                         'bower_components/wookmark-jquery/jquery.wookmark.js',
                         'bower_components/requirejs-doT/doT.js',
                         'bower_components/requirejs-text/text.js',
@@ -143,6 +151,17 @@ module.exports = function (grunt) {
                         'bower_components/backbone/backbone.js',
                         'bower_components/requirejs-i18n/i18n.js',
                         'bower_components/qrcode.js/qrcode.js'
+                    ]
+                }]
+            },
+            tmpToDist : {
+                files : [{
+                    expand : true,
+                    dot : true,
+                    cwd : '<%= path.tmp %>',
+                    dest : '<%= path.dist %>',
+                    src : [
+                        '**/*'
                     ]
                 }]
             }
@@ -165,9 +184,9 @@ module.exports = function (grunt) {
             },
             options : {
                 almond : true,
-                appDir : '<%= path.tmp %>/javascripts',
-                dir :　'<%= path.dist %>/javascripts',
-                baseUrl : './',
+                appDir : '<%= path.tmp %>',
+                dir :　'<%= path.dist %>',
+                baseUrl : './javascripts',
                 mainConfigFile : '<%= path.tmp %>/javascripts/RequireConfig.js',
                 preserveLicenseComments : true,
                 useStrict : false,
@@ -239,8 +258,8 @@ module.exports = function (grunt) {
         }
     });
 
-    var projectFlag;
-    var nlsFlag;
+    var PROJECT_FLAG;
+    var NLS_FLAG;
 
     var copyFolderRecursive = function(path, dist, isDelete) {
         isDelete = isDelete ? true : false;
@@ -265,75 +284,43 @@ module.exports = function (grunt) {
             grunt.file.copy(path, dist);
             isDelete && fs.unlinkSync(path);
         }
-    }
-
-    var runSubTask = function (command) {
-        var exec = require('child_process').exec;
-
-        exec(command, function (error, stdout, stderr) {
-            if (stdout) {
-                console.log('stdout: ' + stdout);
-            }
-
-            if (stderr) {
-                console.log('stderr: ' + stderr);
-            }
-
-            if (error) {
-                console.log('exec error: ' + error);
-            }
-        });
     };
 
-    var createNls = function (sourcePath, targetPath) {
+    var createNls = function (sourcePath, targetNls) {
         var nlsJson = grunt.file.read(sourcePath);
-        var nlsContent = 'define({"'+ nlsFlag  +'" : ' + nlsJson + '});';
+        var nlsContent = 'define({"' + targetNls + '" : ' + nlsJson + '});';
+        var targetPath = paths.tmp + '/i18n/' + targetNls + '/nls/' + path.basename(sourcePath).replace('json', 'js');
+
         grunt.file.write(targetPath, nlsContent);
-    }
+    };
 
     grunt.registerTask('processI18n', function (nls) {
+        var sourcePath = paths.app + '/javascripts/nls/' + nls;
 
-        var i18nPath = paths.tmp + '/i18n';
-        fs.mkdirSync(i18nPath);
-
-        var i18nNlsPath = i18nPath + '/' + nls;
-        fs.mkdirSync(i18nNlsPath);
-
-        i18nNlsPath += '/nls';
-        fs.mkdirSync(i18nNlsPath);
-        fs.mkdirSync(i18nNlsPath + '/' + nls);
-
-        var content;
-        fs.readdirSync(paths.app + '/javascripts/nls/' + nls).forEach(function (file){
-            if (file.substr(0, 1) === '.') {
-                return;
-            } else {
-                createNls(paths.app + '/javascripts/nls/' + nls + '/' + file, i18nNlsPath + '/' + file.replace('json', 'js'));
-            }
+        grunt.file.recurse(sourcePath, function (abspath, rootdir, subdir, filename) {
+            createNls(abspath, nls);
         });
 
-        var fd;
-        if (nls !== 'zh-cn') {
-            var mainScss = paths.tmp + '/stylesheets/compass/sass/main.scss';
-            fd = fs.openSync(mainScss, 'a');
-
-            fs.writeSync(fd, '@import "_locale-' + nls + '.scss"');
-            fs.closeSync(fd);
+        if (nls === 'zh-cn') {
+            return;
         }
+
+        var mainScss = paths.tmp + '/stylesheets/compass/sass/main.scss';
+        var content = grunt.file.read(mainScss);
+        var newContent = '@import "_locale-' + nls + '";';
+
+        grunt.file.write(mainScss, content + '\n' + newContent);
     });
 
     grunt.registerTask('switchI18nPath', function () {
         var i18nPath = paths.tmp + '/javascripts/Internationalization.js';
-        var content = grunt.file.read(i18nPath, {
-            encoding : 'utf-8'
-        });
+        var content = grunt.file.read(i18nPath);
 
         content = content.replace(/nls/g, '../i18n/\' + navigator.language.toLowerCase() + \'/nls');
         grunt.file.write(i18nPath, content);
     });
 
     grunt.registerTask('copyCss', function (nls) {
-
         var stylePath = paths.tmp + '/i18n/' + nls + '/stylesheets';
         fs.mkdirSync(stylePath);
         fs.readdirSync(paths.tmp + '/stylesheets/').forEach(function (file){
@@ -346,78 +333,84 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('copyImage', function (nls) {
-
         var imagesPath = paths.tmp + '/i18n/' + nls + '/images';
         copyFolderRecursive(paths.tmp + '/images', imagesPath);
     });
 
     grunt.registerTask('createScssConfig', function (project) {
+        if (['WDJ', 'SUNING', 'TIANYIN'].indexOf(project) < 0) {
+            return;
+        }
 
         var filePath = paths.tmp + '/stylesheets/compass/sass/_projectflag.scss';
-        var content = '';
-        switch (project) {
-        case 'WDJ':
-            content = '$PROJECT_FLAG : PROJECT_WD';
-            break;
-        case 'SUNING':
-            content = '$PROJECT_FLAG : PROJECT_SUNING';
-            break;
-        case 'TIANYIN':
-            content = '$PROJECT_FLAG : PROJECT_TIANYIN';
-            break;
-        }
+        var content = '$PROJECT_FLAG : PROJECT_' + project;
 
         grunt.file.write(filePath, content);
     });
 
     grunt.registerTask('test', function () {
-        // grunt.option('force', true);
-        grunt.task.run('jshint:all');
-        runSubTask('./build.sh wdj source zh-cn');
+        grunt.task.run('build:WDJ:source:zh-cn');
     });
 
-    grunt.registerTask('server', function (project, nls) {
-
-        projectFlag = project = project ? project.toUpperCase() : 'WDJ';
-        nlsFlag = nls = nls ? nls.toLowerCase() : 'zh-cn';
-
-        console.log('project : ', project);
-        console.log('nls : ', nls);
-
+    grunt.registerTask('buildI18n', function (nls, compassMode) {
         var taskList = [
-            'clean:server',
-            'jshint:all',
-            'copy:tmp',
             'processI18n:' + nls,
-            'switchI18nPath',
-            'replace:' + project,
-            'createScssConfig:' + project,
-            'compass:server',
+            'compass:' + compassMode,
             'copyCss:' + nls,
-            'copyImage:' + nls,
-            'watch'
+            'copyImage:' + nls
         ];
 
         grunt.task.run(taskList);
     });
 
+    grunt.registerTask('server', function (project, nls) {
+        PROJECT_FLAG = project = project ? project.toUpperCase() : 'WDJ';
+        NLS_FLAG = nls = nls ? nls.toLowerCase() : 'zh-cn';
+
+        console.log('project : ', project);
+        console.log('nls : ', nls);
+
+        var taskList = [
+            'jshint:all',
+            'clean:dist',
+            'copy:tmp',
+            'createScssConfig:' + project
+        ];
+
+        nls.split(',').forEach(function (lang) {
+            taskList.push('buildI18n:' + lang + ':server');
+        });
+
+        taskList.push(
+            'switchI18nPath',
+            'replaceCss',
+            'replace:' + project,
+            'copy:tmpToDist',
+            'watch'
+        );
+
+        grunt.task.run(taskList);
+    });
+
     grunt.event.on('watch', function (action, filePath, target) {
+        var targetPath;
+
         switch (target) {
         case 'projectConfig':
             grunt.file.copy(paths.app + '/index.html', paths.tmp + '/index.html');
-            runSubTask('grunt replace:' + projectFlag);
-            runSubTask('grunt replaceCss:' + paths.tmp + '/index.html');
+            grunt.task.run(['replace:' + PROJECT_FLAG]);
+            grunt.task.run(['replaceCss:' + paths.tmp + '/index.html']);
             break;
         case 'i18n' :
             if (grunt.file.isDir(filePath)) {
                 return;
             }
 
-            var targetPath = paths.tmp + '/i18n/' + nlsFlag + '/nls/' + path.basename(filePath).replace('json', 'js');
+            targetPath = paths.tmp + '/i18n/' + NLS_FLAG + '/nls/' + path.basename(filePath).replace('json', 'js');
             switch (action) {
             case 'added':
             case 'changed':
-                createNls(filePath, targetPath);
+                createNls(filePath, NLS_FLAG);
                 console.log('create - ' + targetPath);
                 break;
             }
@@ -428,7 +421,7 @@ module.exports = function (grunt) {
                 return;
             }
 
-            var targetPath = filePath.replace(paths.app, paths.tmp);
+            targetPath = filePath.replace(paths.app, paths.tmp);
 
             switch (action) {
             case 'added':
@@ -441,9 +434,9 @@ module.exports = function (grunt) {
 
                 if (extName === '.html') {
                     if (baseName === 'index.html') {
-                        runSubTask('grunt replace:' + projectFlag);
+                        grunt.task.run(['replace:' + PROJECT_FLAG]);
                     }
-                    runSubTask('grunt replaceCss:' + targetPath);
+                    grunt.task.run(['replaceCss:' + targetPath]);
                 }
 
                 break;
@@ -459,11 +452,9 @@ module.exports = function (grunt) {
 
     grunt.registerTask('switchI18nRunTimePath', function (nls, requireTask) {
         var i18nPath = paths.dist + '/javascripts/Internationalization.js';
-        var content = grunt.file.read(i18nPath, {
-            encoding : 'utf-8'
-        });
+        var content = grunt.file.read(i18nPath);
 
-        var re = new RegExp(nls, "g");
+        var re = new RegExp(nls, 'g');
 
         var replacement = '" + navigator.language.toLowerCase() + "';
         if (requireTask === 'debug') {
@@ -474,11 +465,9 @@ module.exports = function (grunt) {
 
 
         var SnapPeaPath = paths.dist + '/javascripts/SnapPea.js';
-        content = grunt.file.read(SnapPeaPath, {
-            encoding : 'utf-8'
-        });
+        content = grunt.file.read(SnapPeaPath);
 
-        var re = new RegExp('i18n!../i18n/' + nls, "g");
+        re = new RegExp('i18n!../i18n/' + nls, 'g');
         replacement = 'i18n!../i18n/" + navigator.language.toLowerCase() + "';
         if (requireTask === 'debug') {
             replacement = 'i18n!../i18n/\' + navigator.language.toLowerCase() + \'';
@@ -487,47 +476,36 @@ module.exports = function (grunt) {
         grunt.file.write(SnapPeaPath, content);
     });
 
-    grunt.registerTask('switchI18nReleasePath', function (nls) {
-        var i18nPath = paths.tmp + '/javascripts/Internationalization.js';
-        var content = grunt.file.read(i18nPath, {
-            encoding : 'utf-8'
-        });
-
-        content = content.replace(/nls/g, '../i18n/' + nls + '/nls');
-        grunt.file.write(i18nPath, content);
-    });
-
-    grunt.registerTask('replaceCss', function (file) {
-
+    grunt.registerTask('replaceCss', function (filePath) {
         var fileList;
-        if (typeof file !== 'undefined') {
-            fileList = [file];
+
+        if (typeof filePath !== 'undefined') {
+            fileList = [filePath];
         } else {
-            var src = [
+            fileList = grunt.file.expand([
                 paths.tmp + '/index.html',
                 paths.tmp + '/javascripts/**/*.html'
-            ];
-            fileList = grunt.file.expand(src);
+            ]);
         }
 
-        var script = '<script type="text/javascript">';
-        script += 'var link = document.createElement("link");';
-        script += 'link.href = "%s";';
-        script += 'link.type = "text/css";';
-        script += 'link.rel = "stylesheet";';
-        script += 'document.getElementsByTagName("head")[0].appendChild(link);';
-        script += '</script>'
+        var regex = /<link[^>]+(?:href)=\s*["']?([^"]+\.(?:css))["']\s*\/>/;
+        var scriptTemplate = '<script type="text/javascript">' +
+                                'var link = document.createElement("link");' +
+                                'link.href = "%s";' +
+                                'link.type = "text/css";' +
+                                'link.rel = "stylesheet";' +
+                                'document.getElementsByTagName("head")[0].appendChild(link);' +
+                                '</script>';
 
         fileList.forEach(function (file) {
-            var content = grunt.file.read(file, {
-                encoding : 'utf-8'
+            var content = grunt.file.read(file);
+
+            content = content.replace(regex, function (link, href) {
+                var newHref = href.replace('stylesheets/', 'i18n/" + navigator.language.toLowerCase() + "/stylesheets/');
+
+                return scriptTemplate.replace('%s', newHref);
             });
 
-            var result = content.match(/<[^>]+(?:href)=\s*["']?([^"]+\.(?:css))/);
-            var link = result[0] + '" />';
-            var href = result[1];
-
-            content = content.replace(link, util.format(script, href.replace('stylesheets', 'i18n/" + navigator.language.toLowerCase() + "/stylesheets' )));
             grunt.file.write(file, content);
         });
     });
@@ -541,32 +519,44 @@ module.exports = function (grunt) {
 
         project = project ? project.toUpperCase() : 'WDJ';
         nls = nls ? nls.toLowerCase() : 'zh-cn';
+        NLS_FLAG = nls = nls ? nls.toLowerCase() : 'zh-cn';
         requireTask = requireTask ? requireTask.toLowerCase() : 'source';
 
         console.log('project : ', project);
         console.log('nls : ', nls);
         console.log('task : ', requireTask);
 
+        var langs = nls.split(',');
+
         var taskList = [
             'jshint:all',
+            'clean:dist',
             'copy:tmp',
-            'switchI18nReleasePath:' + nls,
+            'createScssConfig:' + project
+        ];
+
+        langs.forEach(function (lang) {
+            taskList.push('buildI18n:' + lang + ':dist');
+        });
+
+        taskList.push(
+            'switchI18nPath',
+            'requirejs:' + requireTask,
             'replaceCss',
             'replace:' + project,
-            'requirejs:' + requireTask,
-            'switchI18nRunTimePath:' + nls + ':' + requireTask,
+            'switchI18nRunTimePath:' + langs[0] + ':' + requireTask,
             'useminPrepare',
             'copy:dist',
             'htmlmin',
             'concat',
             'uglify',
             'usemin'
-        ];
+        );
 
         grunt.task.run(taskList);
 
         if (removeI18n) {
-            runSubTask('rm -rf ' + paths.dist + '/i18n');
+            grunt.task.run(['clean:i18n']);
         }
     });
 };

@@ -1,0 +1,121 @@
+.w-anima-fade-in-fast {
+    -webkit-animation: anima-fadeIn .2s;
+}
+
+.w-anima-fade-in {
+    -webkit-animation: anima-fadeIn .4s;
+}
+
+.w-anima-pop-in {
+    -webkit-animation: anima-pop-in .4s;
+}
+
+@-webkit-keyframes anima-fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes anima-fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes anima-breath {
+    0% {
+        opacity: 0.3;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+
+@-webkit-keyframes anima-pop-in {
+    0% {
+        -webkit-transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1.1);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+}
+
+.w-anima-slide-in-right {
+    -webkit-animation: {
+        direction: reverse;
+        duration: .4s;
+        iteration-count: 1;
+        name: anima-slide-right;
+        timing-function: ease-out;
+    }
+}
+
+.w-anima-slide-out-right {
+    -webkit-animation: {
+        duration: .4s;
+        iteration-count: 1;
+        name: anima-slide-right;
+        timing-function: ease-out;
+    }
+}
+
+.w-anima-fade-slide-in-right {
+    -webkit-animation: {
+        direction: reverse;
+        duration: .4s;
+        iteration-count: 1;
+        name: anima-slide-right, anima-fadeOut;
+        timing-function: ease-out;
+    }
+}
+
+.w-anima-fade-slide-out-right {
+    -webkit-animation: {
+        duration: .4s;
+        iteration-count: 1;
+        name: anima-slide-right, anima-fadeOut;
+        timing-function: ease-out;
+    }
+}
+
+.w-anima-slide-up {
+    -webkit-animation: {
+        duration: .4s;
+        iteration-count: 1;
+        name: anima-slide-up;
+        timing-function: ease-out;
+    }
+}
+
+@-webkit-keyframes anima-slide-right {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0)
+    }
+    100% {
+        -webkit-transform: translate3d(100%, 0, 0)
+    }
+}
+
+@-webkit-keyframes anima-slide-up {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0)
+    }
+    100% {
+        -webkit-transform: translate3d(0, -100%, 0)
+    }
+}

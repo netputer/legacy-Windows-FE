@@ -1,0 +1,18 @@
+{
+    "TITLE"  : "手机工具箱",
+    "DESC" : "折腾手机，<br />一个好用的工具箱就够了！<br />管理 SD 卡、root 和刷机原来如此简单。",
+    "MANAGE_SD_CARD_TITLE"  : "SD 卡管理",
+    "MANAGE_SD_CARD" : "立即管理",
+    "MANAGE_SD_CARD_DESC" : "帮助你简单方便的管理 SD 卡里的文件和资源",
+    "FEATURE_DESC" : "更多工具即将来临...",
+    "FLASH_TITLE" : "一键刷机",
+    "FLASH_DEVICE" : "立即启动",
+    "FLASH_CANCEL" : "取消",
+    "FLASHING_DEVICE" : "初始化一键刷机",
+    "FLASH_DEVICE_DESC" : "root、刷机就是这么简单，刷机精灵帮你无痛刷机。（需要下载并安装刷机精灵）",
+    "CONFIRM_TITLE" : "刷机精灵初始化失败",
+    "CONFIRM_DESC" : "是否重新尝试初始化？",
+    "FLASH_ERROR_DOWNLOAD" : "下载刷机精灵失败，请确保电脑连接网络后重试",
+    "FLASH_ERROR_INSTALL" : "安装刷机精灵失败，是否要重试",
+    "FLASH_ERROR_NO_SPACE" : "磁盘空间不足，请清理磁盘释放空间后重试"
+}

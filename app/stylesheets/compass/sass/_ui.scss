@@ -1,0 +1,425 @@
+ /********************************************************************************
+ * This is the CSS declaration of UI components
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "skins/default/default";
+
+.w-ui-helper {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/********************************************************************************
+ * Popup Tip Panel
+ ********************************************************************************/
+.w-ui-popup-panel,
+.w-ui-popup-tip {
+    border-radius: 3px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
+    position: absolute;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-transition: opacity .2s linear;
+}
+
+.w-ui-popup-tip {
+    background-color: rgba(0, 0, 0, .8);
+    color: #fff;
+    padding: 3px 8px;
+
+    .arrow {
+        border: {
+            color: rgba(0, 0, 0, .8) transparent transparent transparent;
+            style: solid;
+            width: 5px;
+        }
+        height: 0;
+        position: absolute;
+        top: -10px;
+        width: 0;
+        -webkit-transform: rotate(180deg);
+        -webkit-transition: opacity .2s linear;
+
+        &.bottom {
+            top: auto;
+            bottom: -10px;
+            -webkit-transform: rotate(0);
+        }
+    }
+}
+
+.w-ui-popup-tip-white {
+    color : #333;
+    background-color: #fff;
+
+    .arrow {
+        border: {
+            color: #fff transparent transparent transparent;
+        }
+    }
+}
+
+.w-ui-popup-panel {
+    background-color: #fff;
+    border: 1px #bababa solid;
+    color: #555;
+    max-width: 260px;
+    padding: 10px 15px;
+
+    .arrow {
+        background-color: #fff;
+        border: {
+            color: #bababa #bababa transparent transparent;
+            style: solid;
+            width: 1px;
+        }
+        height: 8px;
+        position: absolute;
+        top: -5px;
+        width: 8px;
+        -webkit-transform: rotate(-45deg);
+        -webkit-transition: opacity .2s linear;
+
+        &.bottom {
+            top: auto;
+            bottom: -5px;
+            -webkit-transform: rotate(135deg);
+        }
+    }
+}
+
+.w-ui-loading {
+    background-color: rgba(255, 255, 255, .7);
+    border-radius: 5px;
+    display: none;
+    height: 50px;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    position: absolute;
+    top: 50%;
+    width: 50px;
+
+    &.white {
+        background-color: transparent;
+
+        .anima {
+            .rotor {
+                background-color: #fff;
+            }
+        }
+    }
+
+    .anima {
+        height: 48px;
+        margin: -24px 0 0 -24px;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        width: 48px;
+        -webkit-transform: scale(.6);
+
+        .rotor {
+            background-color: $textPrimary;
+            border-radius: 4px;
+            opacity: 0;
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            -webkit-animation: {
+                duration: .88s;
+                timing-function: linear;
+                iteration-count: infinite;
+            }
+        }
+
+        .rotor1 {
+            left: 0;
+            top: 20px;
+            -webkit-animation-name: rotor1;
+        }
+
+        .rotor2 {
+            left: 6px;
+            top: 6px;
+            -webkit-animation-name: rotor2;
+        }
+
+        .rotor3 {
+            left: 20px;
+            top: 0;
+            -webkit-animation-name: rotor3;
+        }
+
+        .rotor4 {
+            right: 6px;
+            top: 6px;
+            -webkit-animation-name: rotor4;
+        }
+
+        .rotor5 {
+            right: 0;
+            top: 20px;
+            -webkit-animation-name: rotor5;
+        }
+
+        .rotor6 {
+            bottom: 6px;
+            right: 6px;
+            -webkit-animation-name: rotor6;
+        }
+
+        .rotor7 {
+            bottom: 0;
+            left: 20px;
+            -webkit-animation-name: rotor7;
+        }
+
+        .rotor8 {
+            bottom: 6px;
+            left: 6px;
+            -webkit-animation-name: rotor8;
+        }
+    }
+
+    &.small {
+        height: 25px;
+        width: 25px;
+
+        .anima {
+            height: 24px;
+            width: 24px;
+
+            .rotor {
+                background-color: #fff;
+                width: 4.5px;
+                height: 4.5px;
+            }
+        }
+    }
+}
+
+@-webkit-keyframes rotor1 {
+    0% {
+        opacity: 0;
+    }
+    0.01% {
+        opacity: 0;
+    }
+    0.02% {
+        opacity: 1;
+    }
+    95.01% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes rotor2 {
+    0% {
+        opacity: 0.08;
+    }
+    7.51% {
+        opacity: 0;
+    }
+    12.51% {
+        opacity: 0;
+    }
+    12.52% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.08;
+    }
+}
+
+@-webkit-keyframes rotor3 {
+    0% {
+        opacity: 0.21;
+    }
+    20.01% {
+        opacity: 0;
+    }
+    25.01% {
+        opacity: 0;
+    }
+    25.02% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.21;
+    }
+}
+
+@-webkit-keyframes rotor4 {
+    0% {
+        opacity: 0.34;
+    }
+    32.51% {
+        opacity: 0;
+    }
+    37.51% {
+        opacity: 0;
+    }
+    37.52% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.34;
+    }
+}
+
+@-webkit-keyframes rotor5 {
+    0% {
+        opacity: 0.47;
+    }
+    45.01% {
+        opacity: 0;
+    }
+    50.01% {
+        opacity: 0;
+    }
+    50.02% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.47;
+    }
+}
+
+@-webkit-keyframes rotor6 {
+    0% {
+        opacity: 0.61;
+    }
+    57.51% {
+        opacity: 0;
+    }
+    62.51% {
+        opacity: 0;
+    }
+    62.52% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.61;
+    }
+}
+
+@-webkit-keyframes rotor7 {
+    0% {
+        opacity: 0.74;
+    }
+    70.01% {
+        opacity: 0;
+    }
+    75.01% {
+        opacity: 0;
+    }
+    75.02% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.74;
+    }
+}
+
+@-webkit-keyframes rotor8 {
+    0% {
+        opacity: 0.87;
+    }
+    82.51% {
+        opacity: 0;
+    }
+    87.51% {
+        opacity: 0;
+    }
+    87.52% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.87;
+    }
+}
+
+.w-ui-loading-horizental-ctn {
+    background-color: rgba(255, 255, 255, .8);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    &.transparent {
+        background-color: transparent;
+    }
+
+    .w-ui-loading-horizental {
+        height: 6px;
+        left: 50%;
+        margin: -3px 0 0 -33.5px;
+        position: absolute;
+        top: 50%;
+        width: 77px;
+
+        .ball {
+            background-color: $standardColor;
+            border-radius: 3px;
+            height: 6px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 6px;
+            -webkit-animation: {
+                duration: 1.3s;
+                iteration-count: infinite;
+                name: bounce_followingBallsG;
+            }
+            -webkit-transform: translate3d(0, 0, 0);
+
+            &.ball1 {
+                -webkit-animation-delay: 0;
+            }
+
+            &.ball2 {
+                -webkit-animation-delay: 0.13s;
+            }
+
+            &.ball3 {
+                -webkit-animation-delay: 0.26s;
+            }
+
+            &.ball4 {
+                -webkit-animation-delay: 0.39s;
+            }
+        }
+    }
+}
+
+@-webkit-keyframes bounce_followingBallsG {
+    0% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    50% {
+        opacity: 0;
+        -webkit-transform: translate3d(71px, 0, 0);
+    }
+    100%{
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+}
+
+.w-ui-toast-box {
+    background-color: rgba(0, 0, 0, .8);
+    border-radius: 3px;
+    bottom: 10px;
+    color: #fff;
+    padding: 10px 15px;
+    position: absolute;
+    -webkit-transition: opacity .2s linear;
+}

@@ -1,0 +1,127 @@
+/********************************************************************************
+ * This is the CSS declaration of typography
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+@import "skins/default/default";
+/********************************************************************************
+ * Typography
+ ********************************************************************************/
+@font-face {
+    font-family: "Roboto-Light";
+    src: url("Roboto-Light.ttf");
+}
+
+@font-face {
+    font-family: "Roboto-Thin";
+    src: url("Roboto-Thin.ttf");
+}
+
+body,
+button,
+input,
+textarea {
+    color: #000;
+    font: 12px/1.5em Arial, Helvetica, Microsoft Yahei, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: $linkColor;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:active {
+        color: $textActive;
+    }
+
+    &[disabled],
+    &[disabled]:hover,
+    &[disabled]:active {
+        cursor: default;
+        text-decoration: none;
+        opacity: .4;
+        pointer-events: none;
+    }
+}
+
+h1 {
+    font-size: 16px;
+}
+
+h2 {
+    font-size: 14px;
+}
+
+h3 {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+::selection {
+    background-color: #cfe4ff;
+    color: #333;
+    text-shadow: none;
+}
+
+.link {
+    color: $linkColor;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:active {
+        color: $textActive;
+    }
+
+    &[disabled],
+    &[disabled]:hover,
+    &[disabled]:active {
+        cursor: default;
+        text-decoration: none;
+        opacity: .4;
+        pointer-events: none;
+    }
+}
+
+.help {
+    cursor: help;
+}
+
+.text-primary {
+    color: $textPrimary;
+}
+
+.text-secondary {
+    color: $textSecondary;
+}
+
+.text-thirdly {
+    color: $textGrey;
+}
+
+.text-warning {
+    color: $textHighlight;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.wc {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+.enable-select {
+    cursor: text;
+    -webkit-user-select: text;
+}

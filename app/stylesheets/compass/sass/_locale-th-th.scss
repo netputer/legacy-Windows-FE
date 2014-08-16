@@ -1,0 +1,237 @@
+@import "th-th/*.png";
+
+body {
+    &,
+    button,
+    input,
+    textarea {
+        font: 12px/1.5em 'Sergio UI', Arial, sans-serif;
+        text-rendering: auto;
+    }
+}
+
+.w-welcome-feed-card {
+    &.snappea-web,
+    &.snappea-photos,
+    &.snappea-facebook,
+    &.snappea-itunes,
+    &.snappea-youtube,
+    &.snappea-feedback {
+        -webkit-box-align: center;
+
+        .info-ctn {
+            .title {
+                color: #fff;
+            }
+
+            .desc {
+                color: rgba(255, 255, 255, .7);
+                margin: 5px 0;
+            }
+
+            .btn-ctn {
+                .button-ignore {
+                    color: #fff;
+                }
+
+                a,
+                button {
+                    background: -webkit-linear-gradient(-90deg, rgba(255, 255, 255, .1) 0%, rgba(0, 0, 0, .1) 100%);
+                    border: 1px solid rgba(0, 0, 0, .25);
+                    box-shadow: 0 1px 0 rgba(255, 255, 255, .4) inset;
+                    color: #fff;
+                    text-shadow: 0 1px 0 rgba(0, 0, 0, .4);
+
+                    &:enabled:hover:not(.active):not(:active),
+                    &:enabled:focus {
+                        background: -webkit-linear-gradient(-90deg, rgba(255, 255, 255, .1) 0%, rgba(0, 0, 0, .05) 100%);
+                        color: #fff;
+                    }
+
+                    &:enabled:active {
+                        background: -webkit-linear-gradient(-90deg, rgba(0, 0, 0, .1) 0%, rgba(255, 255, 255, .1) 100%);
+                    }
+                }
+
+                a {
+                    box-sizing: border-box;
+                    display: inline-block;
+                    text-align: center;
+                    text-decoration: none;
+                    padding: 3px 10px;
+
+                    &:hover {
+                        background: -webkit-linear-gradient(-90deg, rgba(255, 255, 255, .1) 0%, rgba(0, 0, 0, .05) 100%);
+                    }
+                }
+            }
+        }
+    }
+
+    &.snappea-facebook,
+    &.snappea-feedback {
+        background-color: #00bcce; // Blue
+    }
+
+    &.snappea-web,
+    &.snappea-photos {
+        background-color: #5fb462; // Green
+    }
+
+    &.snappea-itunes,
+    &.snappea-youtube {
+        background-color: #f24949; // Red
+    }
+
+    @each $card in web, photos, facebook, itunes, youtube, feedback {
+        &.snappea-#{$card} {
+            .icon-ctn {
+                @include th-th-sprite(snappea-#{$card});
+            }
+        }
+    }
+}
+
+.w-contact-detail-panel {
+    .info-ctn {
+        dt {
+            margin: 0 5px 12px 0;
+            text-align: right;
+            width: 90px;
+        }
+
+        dd {
+            max-width: 237px;
+            min-width: 205px;
+        }
+    }
+}
+
+.w-contact-detail-panel.edit {
+    .contact-info {
+        dt {
+            width: 120px;
+        }
+
+        .input-phone,
+        .input-email,
+        .input-im,
+        .input-address,
+        .input-organization {
+            width: 170px;
+        }
+
+        .input-note {
+            width: 170px;
+        }
+    }
+
+    .category-selector {
+        margin-bottom: 15px;
+        padding: 0 20px;
+    }
+}
+
+.w-app-mount-sd-tip {
+    .mount-sd {
+        @include th-th-sprite(unmount-sd);
+    }
+}
+
+.w-contact-sim-tip {
+    .sim-tip {
+        @include th-th-sprite(sim-tip);
+    }
+}
+
+.w-misc-sd-mount-ctn {
+    .mount-sd-tip {
+        @include th-th-sprite(unmount-sd);
+    }
+}
+
+.wel-tip-content {
+    a.app-tip-title {
+        cursor: default;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.w-message-sender-window {
+    .help {
+        display: none;
+    }
+}
+
+.w-backuprestore-start {
+    .action-panel {
+        .container {
+            cursor: pointer;
+            -webkit-transition: all .2s;
+
+            &:hover {
+                .icon,
+                .info,
+                .action-container {
+                    top: 0;
+                }
+
+                background: #E6E6E6;
+            }
+
+            .desc {
+                color: #000;
+            }
+        }
+    }
+
+    .info-panel {
+        .info-panel {
+            &.auto-backup-remote{
+                display: none;
+            }
+        }
+    }
+}
+
+.w-backuprestore-local-restore-advance,
+.w-backuprestore-local-backup-advance {
+
+    .container {
+
+        height: 175px;
+
+        dd {
+             label:nth-child(4) {
+                display: none;
+             }
+
+            .beta {
+                display: none;
+            }
+        }
+
+        dt:nth-child(3) {
+            display: none;
+        }
+
+        .backup-app-list,
+        .backup-full-app {
+            display: none;
+        }
+    }
+}
+
+.local-backup-advance-window {
+    height: 240px;
+}
+
+
+.w-contact-avatar-list {
+    .empty-tip {
+        top : 60px;
+    }
+}

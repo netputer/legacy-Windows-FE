@@ -1,0 +1,149 @@
+/********************************************************************************
+ * This is the CSS declaration of layout
+ *
+ * @author wangye.zhao@wandoujia.com
+ ********************************************************************************/
+ @import "skins/default/default";
+/********************************************************************************
+ * Layout
+ ********************************************************************************/
+.cf {
+    display: block;
+
+    &:after {
+        content: '.';
+        clear: both;
+        display: block;
+        height: 0;
+        visibility: hidden;
+    }
+}
+
+.hbox,
+.vbox {
+    display: -webkit-box;
+    -webkit-box: {
+        align: stretch;
+        direction: normal;
+        orient: horizontal;
+        pack: start;
+    }
+}
+
+.hbox {
+    -webkit-box-orient: horizontal;
+}
+
+.vbox {
+    -webkit-box-orient: vertical;
+}
+
+.box-reverse {
+    -webkit-box-direction: reverse;
+}
+
+/********************************************************************************
+ * Main Layout
+ ********************************************************************************/
+html, body, .w-main {
+    height: 100%;
+    overflow: hidden;
+}
+
+.w-main {
+    position: relative;
+
+    .sidebar {
+        background-color: #43484d;
+        border-left: 1px solid #717375;
+        height: 100%;
+        position: absolute;
+        width: 189px;
+    }
+
+    .module-ctn {
+        border: {
+            color: $borderColor;
+            style: solid;
+            width: 1px 0 0 0;
+        }
+        bottom: 0;
+        left: 190px;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        .module-main {
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+    }
+}
+
+.w-module-hide {
+    display: none;
+}
+
+.w-layout-hide {
+    opacity: 0;
+    pointer-events: none;
+
+    .w-layout-hide {
+        display: none;
+    }
+}
+
+.w-layout-hidden {
+    visibility: hidden;
+}
+
+
+.w-main-pim-mask {
+    background-color: #f6f6f6;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-transition: opacity 0.5s;
+
+    .w-main-pim-mask-ctn {
+
+        text-align: center;
+        width: 505px;
+
+        .icon {
+            background: url('../images/connection-tips.png');
+            height: 97px;
+            margin: 0 auto;
+            width: 275px;
+        }
+
+        .title {
+            margin: 30px auto 15px;
+        }
+
+        .desc {
+            color: #4a4a4a;
+            display: block;
+            font-size: 14px;
+            line-height: 25px;
+            margin: 0 auto 15px;
+        }
+    }
+
+    &.hide {
+        opacity: 0;
+    }
+
+    .ip-ctn {
+        bottom: 5px;
+        position: fixed;
+        right: 5px;
+
+        span {
+            display: block;
+        }
+    }
+}
+
+
