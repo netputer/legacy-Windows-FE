@@ -22,7 +22,8 @@ module.exports = function (grunt) {
         path : paths,
         clean : {
             dist : ['<%= path.tmp %>/', '<%= path.dist %>/'],
-            server : ['<%= path.tmp %>/']
+            server : ['<%= path.tmp %>/'],
+            i18n : ['<%= path.dist %>/i18n']
         },
         watch : {
             i18n : {
@@ -573,7 +574,7 @@ module.exports = function (grunt) {
         grunt.task.run(taskList);
 
         if (removeI18n) {
-            runSubTask('rm -rf ' + paths.dist + '/i18n');
+            grunt.task.run(['clean:i18n']);
         }
     });
 };
