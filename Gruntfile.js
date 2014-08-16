@@ -286,24 +286,6 @@ module.exports = function (grunt) {
         }
     };
 
-    var runSubTask = function (command) {
-        var exec = require('child_process').exec;
-
-        exec(command, function (error, stdout, stderr) {
-            if (stdout) {
-                console.log('stdout: ' + stdout);
-            }
-
-            if (stderr) {
-                console.log('stderr: ' + stderr);
-            }
-
-            if (error) {
-                console.log('exec error: ' + error);
-            }
-        });
-    };
-
     var createNls = function (sourcePath, targetNls) {
         var nlsJson = grunt.file.read(sourcePath);
         var nlsContent = 'define({"' + targetNls + '" : ' + nlsJson + '});';
