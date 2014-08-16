@@ -415,8 +415,8 @@ module.exports = function (grunt) {
         switch (target) {
         case 'projectConfig':
             grunt.file.copy(paths.app + '/index.html', paths.tmp + '/index.html');
-            runSubTask('grunt replace:' + PROJECT_FLAG);
-            runSubTask('grunt replaceCss:' + paths.tmp + '/index.html');
+            grunt.task.run(['replace:' + PROJECT_FLAG]);
+            grunt.task.run(['replaceCss:' + paths.tmp + '/index.html']);
             break;
         case 'i18n' :
             if (grunt.file.isDir(filePath)) {
@@ -451,9 +451,9 @@ module.exports = function (grunt) {
 
                 if (extName === '.html') {
                     if (baseName === 'index.html') {
-                        runSubTask('grunt replace:' + PROJECT_FLAG);
+                        grunt.task.run(['replace:' + PROJECT_FLAG]);
                     }
-                    runSubTask('grunt replaceCss:' + targetPath);
+                    grunt.task.run(['replaceCss:' + targetPath]);
                 }
 
                 break;
