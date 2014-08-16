@@ -353,14 +353,12 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('buildI18n', function (nls, compassMode) {
-        var taskList = [
+        grunt.task.run([
             'processI18n:' + nls,
             'compass:' + compassMode,
             'copyCss:' + nls,
             'copyImage:' + nls
-        ];
-
-        grunt.task.run(taskList);
+        ]);
     });
 
     grunt.registerTask('server', function (project, nls) {
@@ -517,8 +515,7 @@ module.exports = function (grunt) {
             removeI18n = false;
         }
 
-        project = project ? project.toUpperCase() : 'WDJ';
-        nls = nls ? nls.toLowerCase() : 'zh-cn';
+        PROJECT_FLAG = project = project ? project.toUpperCase() : 'WDJ';
         NLS_FLAG = nls = nls ? nls.toLowerCase() : 'zh-cn';
         requireTask = requireTask ? requireTask.toLowerCase() : 'source';
 
