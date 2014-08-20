@@ -7,4 +7,4 @@ NLS=$3;
 
 npm install
 grunt build:$PROJECT:$TARGET:$NLS
-rm -f ${work_path}/dist/javascript/build.txt
+rm -f ${work_path}/dist/build.txt
