@@ -31,11 +31,20 @@
         TaskService,
         XibaibaiService
     ) {
+        var appsCollection;
 
         var XibaibaiCardView = FeedCardView.getClass().extend({
             template : doT.template(TemplateFactory.get('welcome', 'xibaibai-card')),
             className : FeedCardView.getClass().prototype.className + ' vbox xibaibai hide',
             tagName : 'li',
+            initialize : function () {
+                XibaibaiCardView.__super__.initialize.apply(this, arguments);
+
+                appsCollection = appsCollection || AppsCollection.getInstance();
+                this.listenTo(appsCollection, 'refresh', function () {
+                    this.render();
+                });
+            },
             render : function () {
                 XibaibaiService.scanAppsAsync().done(function (appsQueryResultCollection) {
                     if (appsQueryResultCollection.length !== 0) {
