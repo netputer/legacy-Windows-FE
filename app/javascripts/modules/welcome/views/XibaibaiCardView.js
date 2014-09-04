@@ -44,6 +44,7 @@
                 this.listenTo(appsCollection, 'refresh', function () {
                     this.render();
                 });
+                this.listenTo(appsCollection, 'refresh', this.render);
             },
             render : function () {
                 XibaibaiService.scanAppsAsync().done(function (appsQueryResultCollection) {
