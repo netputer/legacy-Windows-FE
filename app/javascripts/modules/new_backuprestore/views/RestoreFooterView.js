@@ -145,7 +145,7 @@
                         }, this);
                     }
                 }.bind(this)).fail(function (resp) {
-                    alert(i18n.new_backuprestore.UPDATA_USB_PROXY_4_4);
+                    alert(i18n.new_backuprestore.UPDATE_USB_PROXY_4_4);
                 });
             },
             clickBtnStartRestore : function () {
