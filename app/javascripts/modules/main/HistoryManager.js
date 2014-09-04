@@ -76,13 +76,6 @@
                     canGoForward : forwarStack.length > 0 || forwardCount > 0,
                     canReload : true
                 }));
-            } else if (currentModule === 'backup-restore') {
-
-                window.externalCall('', 'navigation', JSON.stringify({
-                    canGoBack : false,
-                    canGoForward : false,
-                    canReload : false
-                }));
 
             } else {
                 var canReload = false;
@@ -91,6 +84,7 @@
                 case 'welcome':
                 case 'app-wash':
                 case 'optimize':
+                case 'backup-restore':
                     canReload = false;
                     break;
                 case 'app':
