@@ -59,8 +59,8 @@
         'optimize/views/OptimizeModuleView',
         'app/wash/views/AppWashModuleView',
         'sync/SyncModule',
+        'tools/views/ToolsModuleView',
         'FunctionSwitch',
-        'social/SocialService',
         'Device',
         'Settings',
         'Environment',
@@ -93,8 +93,8 @@
         OptimizeModuleView,
         AppWashModuleView,
         SyncModule,
+        ToolsModuleView,
         FunctionSwitch,
-        SocialService,
         Device,
         Settings,
         Environment,
@@ -135,6 +135,7 @@
         mainView.regModule('app-wash', AppWashModuleView);
         mainView.regModule('gallery', GalleryView);
         mainView.regModule('backup-restore', BackupRestoreModuleView);
+        mainView.regModule('tools', ToolsModuleView);
 
         var init = function () {
             BindingDeviceWindowView.getInstance().checkAsync();

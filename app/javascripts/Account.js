@@ -42,34 +42,6 @@
                     }
                 }.bind(this));
             },
-            isActive : function (platform) {
-                return this.get('platforms')[platform] === true;
-            },
-            openBindDialog : function (platform) {
-                var deferred = $.Deferred();
-
-                if (!this.isActive(platform)) {
-                    IO.requestAsync({
-                        url : CONFIG.actions.ACCOUNT_BIND,
-                        data : {
-                            plat : (platform === this.TQQ || platform === this.QZONE) ? this.QQ : platform
-                        },
-                        success : function (resp) {
-                            if (resp.state_code === 200) {
-                                console.log('Account - Bind ' + platform + ' success.');
-                                deferred.resolve(resp);
-                            } else {
-                                console.error('Account - Bind ' + platform + ' failed. Error info: ' + resp.state_line);
-                                deferred.reject(resp);
-                            }
-                        }
-                    });
-                } else {
-                    deferred.resolve();
-                }
-
-                return deferred.promise();
-            },
             openRegDialog : function (title, source, platform) {
                 var deferred = $.Deferred();
 
@@ -125,23 +97,6 @@
                 } else {
                     deferred.resolve();
                 }
-
-                return deferred.promise();
-            },
-            shareAsync : function (shareData) {
-                var deferred = $.Deferred();
-
-                IO.requestAsync({
-                    url : CONFIG.actions.ACCOUNT_SHARE,
-                    data : shareData,
-                    success : function (resp) {
-                        if (resp.state_code === 200) {
-                            deferred.resolve(resp);
-                        } else {
-                            deferred.reject(resp);
-                        }
-                    }
-                });
 
                 return deferred.promise();
             },

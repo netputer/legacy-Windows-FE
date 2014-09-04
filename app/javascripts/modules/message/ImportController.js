@@ -49,8 +49,8 @@
             },
             checkDefault : function () {
                 MessageService.applyDefaultApp().done(function (resp) {
-                    var isDefault = resp.body.value;
-                    if (isDefault) {
+                    isDefaultApp = resp.body.value;
+                    if (isDefaultApp) {
                         importProgressView.importSms();
                     } else {
                         confirm(i18n.message.APPLY_DEFAULT_4_4, function () {
@@ -131,7 +131,7 @@
                 }, this);
 
                 importProgressView.on('_IMPORT_SMS_FINISH', function () {
-                    if (Device.get('SDKVersion') >= CONFIG.enums.ANDROID_4_4) {
+                    if (isDefaultApp) {
                         MessageService.recoverDefaultApp();
                         alert(i18n.message.RECOVER_DEAFULT_4_4);
                     }

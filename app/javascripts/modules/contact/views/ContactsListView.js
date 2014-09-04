@@ -94,12 +94,6 @@
                         }
                     }
                 }.bind(this));
-
-                this.listenTo(Backbone, 'showModule', function (name) {
-                    if (name === 'contact') {
-                        contactsList.resizeList();
-                    }
-                });
             },
             refresh : function (tab, accountId, groupId) {
                 currentTab = tab || currentTab;
@@ -234,8 +228,7 @@
                     itemHeight : 45,
                     $observer : this.options.$observer,
                     listenToCollection : contactsCollection,
-                    loading : contactsCollection.loading || contactsCollection.syncing,
-                    enableResizeListener : true
+                    loading : contactsCollection.loading || contactsCollection.syncing
                 });
 
                 this.listenTo(contactsList, 'select:change', function (selected) {
@@ -243,6 +236,12 @@
                 });
 
                 this.listenTo(Device, 'change:isFastADB', this.toggleEmptyTip);
+
+                this.listenTo(Backbone, 'showModule', function (name) {
+                    if (name === 'contact') {
+                        contactsList.calculateSettings();
+                    }
+                });
 
                 this.$el.append(contactsList.render().$el);
 
@@ -260,10 +259,9 @@
                 contactContextMenu.show();
             },
             showPinyinHint : function () {
-                contactsList.once('build', function () {
-                    var topItem = contactsList.onScreenItems[0];
-                    if (topItem) {
-                        this.$('.pinyin-hint').html(topItem.model.firstLetter).show();
+                contactsList.once('build', function (keys) {
+                    if (keys.length > 0) {
+                        this.$('.pinyin-hint').html(contactsList.activeItems[keys[0]].model.firstLetter).show();
                         hidePinyinHint.call(this);
                     }
                 }, this);

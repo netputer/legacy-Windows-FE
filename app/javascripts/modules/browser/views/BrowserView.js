@@ -144,7 +144,6 @@
             initialize : function () {
                 var id;
                 var progress = 0;
-                var flashErrorHandler;
                 var $iframe;
                 var isDetach = false;
                 var model;
@@ -175,11 +174,6 @@
                         },
                         get : function () {
                             return progress;
-                        }
-                    },
-                    flashErrorHandler :  {
-                        get : function () {
-                            return flashErrorHandler;
                         }
                     },
                     additionalClass : {
@@ -231,14 +225,6 @@
                 extensionsCollection = extensionsCollection || ExtensionsCollection.getInstance();
 
                 this.listenTo(extensionsCollection, 'remove', removeBrowser);
-
-                flashErrorHandler = IO.Backend.Device.onmessage({
-                    'data.channel' : CONFIG.events.FLASH_ERROR
-                }, function (data) {
-                    if (this.model.id === data.extension_id) {
-                        this.$('.flash-notifier').slideDown('fast');
-                    }
-                }, this);
             },
             remove : function () {
                 if (this.infoPanelView) {
@@ -306,8 +292,6 @@
             renderFlashNotifier : function () {
                 if (FlashDetector.getVersion()) {
                     this.$('.flash-notifier').remove();
-                } else {
-                    this.$('.flash-notifier').hide();
                 }
             },
             render : function () {

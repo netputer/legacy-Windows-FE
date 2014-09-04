@@ -169,11 +169,6 @@
                     return IS_CHINESE_VERSION;
                 }
             },
-            ENABLE_MY_MUTIL_SOCIAL_PLATFORM : {
-                get : function () {
-                    return IS_CHINESE_VERSION;
-                }
-            },
             ENABLE_OPTIMIZE : {
                 get : function () {
                     return IS_CHINESE_VERSION &&
@@ -220,11 +215,6 @@
                 }
             },
             ENABLE_SHARE_SET_WALLPAPER : {
-                get : function () {
-                    return IS_CHINESE_VERSION;
-                }
-            },
-            ENABLE_SHARE_UNINSTALL : {
                 get : function () {
                     return IS_CHINESE_VERSION;
                 }
@@ -283,6 +273,16 @@
             ENABLE_WELCOME_FEED : {
                 get : function () {
                     return !ProjectConfig.get('DISABLE_WELCOME_FEED');
+                }
+            },
+            ENABLE_TOOLS : {
+                get : function () {
+                    return !ProjectConfig.get('DISABLE_TOOLS');
+                }
+            },
+            ENABLE_FLASH_DEVICE : {
+                get : function () {
+                    return Strategy.get('enableFlashDevice');
                 }
             },
             IS_CHINESE_VERSION : {

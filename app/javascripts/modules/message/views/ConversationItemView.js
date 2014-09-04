@@ -24,7 +24,6 @@
             template : doT.template(TemplateFactory.get('message', 'conversation-list-item')),
             render : function () {
                 this.$el.html(this.template(this.model.toJSON()));
-
                 return this;
             }
         });

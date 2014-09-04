@@ -26,9 +26,7 @@
                 this.uninstall();
 
                 this.$el.html(this.template(this.model.toJSON()));
-
                 this.$('.name').toggleClass('text-secondary', this.model.get('read_only'));
-
                 this.groupListView = GroupListView.getInstance({
                     model : this.model,
                     $host : this.$('.group-menu')

@@ -8,7 +8,6 @@
         'ui/TemplateFactory',
         'utilities/StringUtil',
         'Configuration',
-        'social/SocialService',
         'Log',
         'app/wash/views/FeedbackWindowView'
     ], function (
@@ -19,7 +18,6 @@
         TemplateFactory,
         StringUtil,
         CONFIG,
-        SocialService,
         log,
         FeedbackWindowView
     ) {
@@ -57,33 +55,6 @@
                 this.template = doT.template(TemplateFactory.get('wash', 'result-replace-finish'));
                 this.render();
             },
-            clickButtonShare : function () {
-                var data = {
-                    textUrl : StringUtil.format(CONFIG.enums.SOCIAL_TEXT_PREVIEW_URL, CONFIG.enums.SOCIAL_WASH, JSON.stringify({
-                        mockNum : this.original.pirate,
-                        adsNum : this.original.ads
-                    })),
-                    hasPreview : false,
-                    shareData : {
-                        need_shell : 0,
-                        rotation : 0
-                    },
-                    extraData : {
-                        mockNum : this.original.pirate,
-                        adsNum : this.original.ads
-                    },
-                    type : CONFIG.enums.SOCIAL_WASH
-                };
-
-                SocialService.setContent(data);
-                SocialService.show();
-
-                this.trigger('next');
-
-                log({
-                    'event' : 'ui.click.wash.button_share_finish_view'
-                });
-            },
             clickButtonFeedback : function () {
                 FeedbackWindowView.getInstance().show();
 
@@ -92,7 +63,6 @@
                 });
             },
             events : {
-                'click .button-share' : 'clickButtonShare',
                 'click .button-feedback' : 'clickButtonFeedback'
             }
         });

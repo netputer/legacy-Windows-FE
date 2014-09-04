@@ -34,8 +34,6 @@
                 this.listenTo(Device, 'change:isConnected', function () {
                     this.$('.play').toggleClass('disabled', !Device.get('isConnected'));
                 });
-
-                this.listenTo(this.model.collection, 'refresh', this.render);
             },
             remove : function () {
                 if (this.settingButton) {
@@ -145,7 +143,11 @@
                 }.bind(this));
             },
             clickButtonStop : function () {
-                MusicService.stopAsync();
+                MusicService.stopAsync().done(function(resp) {
+                    this.model.set({
+                        playing : !resp.body.value
+                    });
+                }.bind(this));
             },
             dblclickItem : function () {
                 if (Device.get('isConnected')) {

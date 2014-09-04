@@ -32,69 +32,9 @@
         console.log('SmartList - File loaded.');
 
         var setTimeout = window.setTimeout;
-
         var EventsMapping = UIHelper.EventsMapping;
 
-        var calculateSettings = function () {
-            this.ctnHeight = this.$ctn.height();
-
-            // Calculate content height and set scroll substitution height
-            this.contentHeight = this.currentModels.length * this.itemHeight;
-
-            if (this.contentHeight > this.ctnHeight) {
-                this.scrollHeight = this.contentHeight;
-            } else {
-                this.scrollHeight = 0;
-            }
-        };
-
-        var supplyItems = function (offset) {
-            offset = _.isNumber(offset) ? offset : 0;
-
-            // Cache vars
-            var models = this.currentModels;
-            var $itemCtn = this.$ctn;
-            var modelCount = models.length;
-            var ctnHeight = this.ctnHeight;
-            var onScreenItems = this.onScreenItems;
-            var itemHeight = this.itemHeight;
-
-            if (onScreenItems.length > 0) {
-                _.each(onScreenItems, function (item) {
-                    item.remove();
-                }, this);
-            }
-
-            onScreenItems.length = 0;
-
-            // Render items
-            var fragment = document.createDocumentFragment();
-            var itemView;
-            var i;
-            var model;
-            for (i = offset; i < modelCount; i++) {
-                model = models[i];
-                itemView = new this.itemView({
-                    model : model
-                });
-                itemView.setup();
-
-                onScreenItems.push(itemView);
-
-                fragment.appendChild(itemView.render().$el[0]);
-                if ((onScreenItems.length * itemHeight) >= ctnHeight) {
-                    break;
-                }
-            }
-            if (this.onScreenItems.length > 0) {
-                $itemCtn.toggleClass('odd', models.indexOf(this.onScreenItems[0].model) % 2 === 1);
-            }
-            $itemCtn.append(fragment);
-
-            this.toggleEmptyTip(models.length === 0);
-
-            this.trigger(EventsMapping.BUILD);
-        };
+        var count = 0;
 
         var addEmptyTip = function (emptyTip) {
             if (typeof emptyTip === 'object') {
@@ -114,153 +54,44 @@
                 HeaderMixin.mixin(this);
                 WanXiaoDouMixin.mixin(this);
 
-                var rendered = false;
-                var ctnHeight = 0;
-                var itemView;
-                var contentHeight = 0;
-                var itemHeight = 0;
-                var scrollHeight = 0;
-                var onScreenItems = [];
-                var lastSelect;
+                var activeItems = {};
+                var containerHeight = 0;
                 var emptyTip = '';
-                var loading = false;
-                var renderQueue = [];
-
-                var removeScrollingClass = _.debounce(function () {
-                    this.$el.removeClass('scrolling');
-                }.bind(this), 200);
-
-                var scrollHandler = function (evt) {
-                    if (!this.$el.hasClass('scrolling')) {
-                        this.$el.addClass('scrolling');
-                    }
-
-                    removeScrollingClass.call(this);
-
-                    window.requestAnimationFrame(function () {
-                        this.build(evt.target.scrollTop);
-                    }.bind(this));
-
-                    var ran = _.random(0, 9);
-                    if (ran > 8 && FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
-
-                        var data = {
-                            'type' : 'smartlist_scroll_' + window.SnapPea.CurrentModule,
-                            'lengthOnScreen' : onScreenItems.length,
-                            'url' : ''
-                        };
-
-                        if (this.currentModels.length > 0) {
-                            data.url = this.currentModels[0].collection.url || '';
-                        }
-
-                        var index = _.uniqueId('smartlist_scroll_');
-                        window.wandoujia.data = window.wandoujia.data || {};
-                        window.wandoujia.data[index] = data;
-                        window.wandoujia.getFPS('recordFPS', index);
-                    }
-                }.bind(this);
-
-                var enableResizeListener = false;
                 var enableContextMenu = false;
-                var selectable = true;
-                var listenToCollection;
-                var enableMutilselect = true;
                 var enableDragAndDrop = false;
-                var $ctn;
-                var $scrollCtn;
-                var lastHeight;
+                var enableMutilselect = true;
+                var lastSelect;
+                var listenToCollection;
+                var loading = false;
+                var inactiveItems = [];
+                var itemHeight = 0;
+                var itemView;
+                var minOffsetY = 0;
+                var offsetY = 0;
+                var rendered = false;
+                var rowCount = 0;
+                var scrollHeight = 0;
+                var selectable = true;
+                var timer;
+                var $container;
+                var $scrollContainer;
 
                 Object.defineProperties(this, {
-                    lastHeight : {
-                        get : function () {
-                            return lastHeight;
-                        },
+                    activeItems : {
                         set : function (value) {
-                            lastHeight = value;
-                        }
-                    },
-                    enableResizeListener : {
-                        get : function () {
-                            return enableResizeListener;
-                        },
-                        set : function (value) {
-                            enableResizeListener = value;
-                        }
-                    },
-                    isVisible : {
-                        get : function () {
-                            return this.$el.hasClass('visible');
-                        }
-                    },
-                    rendered : {
-                        set : function (value) {
-                            rendered = value;
+                            activeItems = value;
                         },
                         get : function () {
-                            return rendered;
+                            return activeItems;
                         }
                     },
-                    ctnHeight : {
+                    containerHeight : {
                         set : function (value) {
-                            // Get max-height value if parent container has this CSS attribute
                             var maxHeight = parseInt(this.$el.parent().css('max-height'), 10);
-
-                            ctnHeight = _.isNaN(maxHeight) ? parseInt(value, 10) : maxHeight;
+                            containerHeight = _.isNaN(maxHeight) ? parseInt(value, 10) : maxHeight;
                         },
                         get : function () {
-                            return ctnHeight;
-                        }
-                    },
-                    itemHeight : {
-                        set : function (value) {
-                            itemHeight = parseInt(value, 10);
-                        },
-                        get : function () {
-                            return itemHeight;
-                        }
-                    },
-                    itemView : {
-                        set : function (value) {
-                            itemView = value;
-                        },
-                        get : function () {
-                            return itemView;
-                        }
-                    },
-                    contentHeight : {
-                        set : function (value) {
-                            contentHeight = parseInt(value, 10);
-                        },
-                        get : function () {
-                            return contentHeight;
-                        }
-                    },
-                    scrollHeight : {
-                        set : function (value) {
-                            scrollHeight = value = parseInt(value, 10);
-                            this.$('.w-ui-smartlist-scroll-substitution').height(value);
-                        },
-                        get : function () {
-                            return scrollHeight;
-                        }
-                    },
-                    onScreenItems : {
-                        set : function (value) {
-                            if (value instanceof Array) {
-                                onScreenItems = value;
-                            }
-                        },
-                        get : function () {
-                            return onScreenItems;
-                        }
-                    },
-                    lastSelect : {
-                        set : function (value) {
-                            lastSelect = value;
-                        },
-                        get : function () {
-                            return lastSelect;
+                            return containerHeight;
                         }
                     },
                     emptyTip : {
@@ -283,57 +114,12 @@
                             return emptyTip;
                         }
                     },
-                    loading : {
-                        set : function (value) {
-                            loading = value = Boolean(value);
-                            if (rendered) {
-                                var $loading = this.$('.w-ui-loading');
-                                if (value) {
-                                    $loading.show();
-                                } else {
-                                    $loading.hide();
-                                }
-                            }
-                        },
-                        get : function () {
-                            return loading;
-                        }
-                    },
-                    renderQueue : {
-                        set : function (value) {
-                            renderQueue = value;
-                        },
-                        get : function () {
-                            return renderQueue;
-                        }
-                    },
-                    scrollHandler : {
-                        get : function () {
-                            return scrollHandler;
-                        }
-                    },
                     enableContextMenu : {
                         set : function (value) {
                             enableContextMenu = Boolean(value);
                         },
                         get : function () {
                             return enableContextMenu;
-                        }
-                    },
-                    selectable : {
-                        set : function (value) {
-                            selectable = Boolean(value);
-                        },
-                        get : function () {
-                            return selectable;
-                        }
-                    },
-                    listenToCollection : {
-                        set : function (collection) {
-                            listenToCollection = collection;
-                        },
-                        get : function () {
-                            return listenToCollection;
                         }
                     },
                     enableMutilselect : {
@@ -352,20 +138,138 @@
                             enableDragAndDrop = Boolean(value);
                         }
                     },
-                    $ctn : {
-                        get : function () {
-                            return $ctn;
-                        },
+                    itemHeight : {
                         set : function (value) {
-                            $ctn = value;
+                            itemHeight = parseInt(value, 10);
+                        },
+                        get : function () {
+                            return itemHeight;
                         }
                     },
-                    $scrollCtn : {
+                    itemView : {
+                        set : function (value) {
+                            itemView = value;
+                        },
                         get : function () {
-                            return $scrollCtn;
+                            return itemView;
+                        }
+                    },
+                    listenToCollection : {
+                        set : function (collection) {
+                            listenToCollection = collection;
+                        },
+                        get : function () {
+                            return listenToCollection;
+                        }
+                    },
+                    lastSelect : {
+                        set : function (value) {
+                            lastSelect = value;
+                        },
+                        get : function () {
+                            return lastSelect;
+                        }
+                    },
+                    loading : {
+                        set : function (value) {
+                            loading = value = Boolean(value);
+                            if (rendered) {
+                                var $loading = this.$('.w-ui-loading');
+                                if (value) {
+                                    $loading.show();
+                                } else {
+                                    $loading.hide();
+                                }
+                            }
+                        },
+                        get : function () {
+                            return loading;
+                        }
+                    },
+                    minOffsetY : {
+                        get : function () {
+                            return minOffsetY;
                         },
                         set : function (value) {
-                            $scrollCtn = value;
+                            minOffsetY = value;
+                        }
+                    },
+                    offsetY : {
+                        get : function () {
+                            return offsetY;
+                        },
+                        set : function (value) {
+                            offsetY = value;
+                        }
+                    },
+                    rendered : {
+                        set : function (value) {
+                            rendered = value;
+                        },
+                        get : function () {
+                            return rendered;
+                        }
+                    },
+                    rowCount : {
+                        get : function () {
+                            return rowCount;
+                        },
+                        set : function (value) {
+                            rowCount = value;
+                        }
+                    },
+                    scrollHeight : {
+                        set : function (value) {
+                            scrollHeight = value = parseInt(value, 10);
+                            this.$('.w-ui-smartlist-scroll-substitution').height(value);
+                        },
+                        get : function () {
+                            return scrollHeight;
+                        }
+                    },
+                    selectable : {
+                        set : function (value) {
+                            selectable = Boolean(value);
+                        },
+                        get : function () {
+                            return selectable;
+                        }
+                    },
+                    timer : {
+                        get : function () {
+                            return timer;
+                        },
+                        set : function (value) {
+                            timer = value;
+                        }
+                    },
+                    inactiveItems : {
+                        get : function () {
+                            return inactiveItems;
+                        },
+                        set : function (value) {
+                            inactiveItems = value;
+                        }
+                    },
+                    isVisible : {
+                        get : function () {
+                            return this.$el.hasClass('visible');
+                        }
+                    },
+                    $container : {
+                        get : function () {
+                            return $container;
+                        },
+                        set : function (value) {
+                            $container = value;
+                        }
+                    },
+                    $scrollContainer : {
+                        get : function () {
+                            return $scrollContainer;
+                        },
+                        set : function (value) {
+                            $scrollContainer = value;
                         }
                     }
                 });
@@ -378,71 +282,272 @@
                     }
                 }
 
-                this.on('switchSet', function () {
-                    calculateSettings.call(this);
-                    this.switchComparator();
-                    this.build();
-                }, this);
+                this.listenTo(WindowState, 'resize', function () {
+                    var oldRowCount;
+                    var deltaY;
+                    if (this.isVisible) {
+                        oldRowCount = this.calculateSettings();
+                        if (this.needBuild(oldRowCount)) {
+                            deltaY = this.createItemView(this.rowCount - oldRowCount);
+                            this.calculateOffSetY(deltaY);
+                            this.build();
+                        }
+                    }
+                });
+            },
+            needBuild : function (oldRowCount) {
+                var rowCount = this.rowCount;
+                var currentModels = this.currentModels;
+                if (oldRowCount === rowCount ||
+                    (oldRowCount >= currentModels.length && rowCount > oldRowCount) ||
+                    (rowCount < oldRowCount && rowCount >= currentModels.length)) {
+
+                    return false;
+                }
+
+                return true;
             },
             render : function () {
                 this.$el.html(this.template({}));
-                this.$ctn = this.$('.w-ui-smartlist-body-ctn');
-                this.$scrollCtn = this.$('.w-ui-smartlist-scroll-ctn');
+                this.$container = this.$('.w-ui-smartlist-body-ctn');
+                this.$scrollContainer = this.$('.w-ui-smartlist-scroll-ctn');
 
                 this.loading = Boolean(this.loading);
-
-                this.$scrollCtn.on('scroll', this.scrollHandler);
-
-                if (this.enableResizeListener) {
-                    this.listenTo(WindowState, 'resize', this.resizeHandler);
-                }
-
-                setTimeout(function () {
-                    calculateSettings.call(this);
-                    supplyItems.call(this);
-                }.bind(this));
-
                 this.rendered = true;
-
                 this.trigger(EventsMapping.RENDERED);
 
-                this.lastHeight = WindowState.height;
+                setTimeout(function () {
+                    this.init();
+                }.bind(this));
 
                 return this;
             },
-            resizeHandler : function (state) {
-
-                if (state.height !== this.lastHeight && this.isVisible) {
-                    this.resizeList();
-                }
-
-                this.lastHeight = state.height;
+            rebuild : function () {
+                this.clearList();
+                this.init();
             },
-            resizeList : function () {
+            calculateSettings : function () {
+                this.containerHeight = this.$container.height();
+                this.minOffsetY = this.containerHeight - (this.currentModels.length * this.itemHeight);
 
-                var topModel;
+                var oldRowCount = this.rowCount;
+                this.rowCount = Math.ceil(this.containerHeight / this.itemHeight);
+                return oldRowCount;
+            },
+            clearList : function () {
+                _.each(this.activeItems, function (itemView){
+                    itemView.remove();
+                });
 
-                if (this.onScreenItems[0]) {
-                    topModel = this.onScreenItems[0].model;
+                _.each(this.inactiveItems, function (itemView){
+                    itemView.remove();
+                });
+
+                this.activeItems = {};
+                this.inactiveItems = [];
+                this.offsetY = 0;
+            },
+            init : function () {
+
+                var currentModels = this.currentModels;
+                this.toggleEmptyTip(currentModels.length === 0);
+                this.calculateSettings();
+
+                if (currentModels.length === 0) {
+                    this.$scrollContainer.hide();
+                    return;
                 }
 
-                this.ctnHeight = this.$ctn.height();
+                this.$scrollContainer.show();
+                var deltaY = this.createItemView();
+                this.calculateOffSetY(deltaY);
+                this.build();
+                this.scrollHeight = currentModels.length * this.itemHeight;
+                this.$scrollContainer.scrollTop(0);
+            },
+            createItemView : function (diff) {
 
-                if (topModel !== undefined) {
-                    var index = 0;
+                var currentModels = this.currentModels;
+                var start = Math.floor(-this.offsetY / this.itemHeight);
+                var end = start + this.rowCount + 1;
+                end = Math.min(end, currentModels.length);
 
-                    _.find(this.currentModels, function (model, i) {
-                        if (model.id === topModel.id) {
-                            index = i;
-                            return true;
-                        }
+                var activeKeys = _.sortBy(_.keys(this.activeItems), function (num) {
+                    return num;
+                });
+                var activeLength = activeKeys.length;
 
-                        return false;
-                    });
+                if(_.isUndefined(diff)) {
+                    diff = end - start - activeLength;
+                } else if (diff < 0) {
+                    diff = Math.max(diff, end - start - activeLength);
+                }
 
-                    supplyItems.call(this, index);
+                var maxKey = _.max(activeKeys);
+                if (maxKey === -Infinity) {
+                    maxKey = 0;
+                }
+
+                var fragment = document.createDocumentFragment();
+                var top;
+                var dy = 0;
+
+                if (diff > 0) {
+                    var itemView;
+                    var i = 0;
+                    for (i; i < diff; i ++ ) {
+                        itemView = new this.itemView();
+                        this.inactiveItems.push(itemView);
+                        fragment.appendChild(itemView.render().$el[0]);
+
+                        top = maxKey++ * this.itemHeight;
+                        this.toggleClass(itemView, maxKey);
+                    }
+                    this.$container.append(fragment);
+
+                    if (end === currentModels.length) {
+                        dy = (diff - 1) * this.itemHeight;
+                    }
+
+                } else if (diff < 0) {
+                    diff = activeKeys.splice(activeLength + diff, -diff);
+                    _.each(diff, function (num) {
+                        this.activeItems[num].remove();
+                        delete this.activeItems[num];
+                    }, this);
+                }
+                return dy;
+            },
+            mousewheelBody : function (evt) {
+                var deltaY = evt.originalEvent.wheelDeltaY / 3;
+                this.calculateOffSetY(deltaY);
+                this.build();
+                this.moveScroller(-this.offsetY);
+            },
+            calculateOffSetY : function (deltaY) {
+                this.offsetY = Math.min(Math.max(this.offsetY + deltaY, this.minOffsetY), 0);
+            },
+            build : function (flashAll) {
+
+                var currentModels = this.currentModels;
+
+                if (_.isUndefined(flashAll)) {
+                    flashAll = false;
+                }
+                window.cancelAnimationFrame(this.timer);
+
+                if (flashAll) {
+                    this.buildItem(currentModels, flashAll);
                 } else {
-                    supplyItems.call(this);
+                    this.timer = window.requestAnimationFrame(function() {
+                        this.buildItem(currentModels, flashAll);
+                    }.bind(this));
+                }
+            },
+            buildItem : function(currentModels, flashAll) {
+                var start = Math.floor(-this.offsetY / this.itemHeight);
+                var end = start + this.rowCount + 1;
+                end = Math.min(end, currentModels.length);
+
+                var before = _.keys(this.activeItems);
+                var after = [];
+                var i;
+                for (i = start; i < end; i ++) {
+                    after.push(i + '');
+                }
+
+                _.each(this.inactiveItems, function (item) {
+                    item.$el.removeClass('hide');
+                });
+
+                var diffBeforeAfter = _.difference(before, after);
+                var diffAfterBefore = _.difference(after, before);
+                if (flashAll) {
+                    _.intersection(before, after).forEach(function (i) {
+                        if (currentModels[i].get('id') !== this.activeItems[i].model.get('id')) {
+                            diffBeforeAfter.push(i);
+                            diffAfterBefore.push(i);
+                        }
+                    }, this);
+
+                    diffAfterBefore = _.uniq(diffAfterBefore);
+                    diffBeforeAfter = _.uniq(diffBeforeAfter);
+                }
+
+                _.each(diffBeforeAfter, function(i) {
+                    this.inactiveItems.push(this.activeItems[i]);
+                    delete this.activeItems[i];
+                }, this);
+
+                var itemView;
+                _.each(diffAfterBefore, function(i) {
+
+                    itemView = this.inactiveItems.pop();
+                    itemView.decouple();
+                    itemView.model = currentModels[i];
+                    itemView.setup();
+                    itemView.render();
+                    this.toggleClass(itemView, i);
+                    this.activeItems[i] = itemView;
+                    itemView.toggleSelect(_.contains(this.selected, itemView.model.id));
+
+                }, this);
+
+                var keys = _.keys(this.activeItems);
+                _.each(keys, function (i) {
+                    var top = i * this.itemHeight + this.offsetY;
+                    this.activeItems[i].$el.css('webkitTransform', 'translate3d(0,' + top + 'px, 0)');
+                }, this);
+
+                _.each(this.inactiveItems, function (item) {
+                    item.$el.addClass('hide');
+                });
+
+                this.trackerLog();
+                this.trigger(EventsMapping.BUILD, keys);
+            },
+            removeScrollingClass : _.debounce(function (){
+                this.$el.removeClass('scrolling');
+            }, 200),
+            moveScroller : function (scrollTop) {
+                this.$scrollContainer.scrollTop(scrollTop);
+
+                if (!this.$el.hasClass('scrolling')) {
+                    this.$el.addClass('scrolling');
+                }
+
+                this.removeScrollingClass();
+            },
+            scrollHandler : function () {
+                this.offsetY = -this.$scrollContainer.scrollTop();
+                this.build();
+            },
+            trackerLog : function () {
+                var currentModels = this.currentModels;
+                var ran = _.random(0, 9);
+                if (ran > 8 && FunctionSwitch.ENABLE_PERFORMANCE_TRACKER) {
+
+                    var data = {
+                        'type' : 'smartlist_scroll_' + window.SnapPea.CurrentModule,
+                        'lengthOnScreen' : this.activeItems.length,
+                        'url' : ''
+                    };
+
+                    if (currentModels.length > 0 && currentModels[0].collection) {
+                        data.url = currentModels[0].collection.url || '';
+                    }
+
+                    var index = _.uniqueId('smartlist_scroll_');
+                    window.wandoujia.data = window.wandoujia.data || {};
+                    window.wandoujia.data[index] = data;
+                    window.wandoujia.getFPS('recordFPS', index);
+                }
+            },
+            toggleClass : function (itemView, index) {
+                if (index % 2) {
+                    itemView.$el.removeClass('even').addClass('odd');
+                } else {
+                    itemView.$el.removeClass('odd').addClass('even');
                 }
             },
             toggleEmptyTip : function (show) {
@@ -453,156 +558,6 @@
                     $tipCtn.toggleClass('w-layout-hide');
                 }
             },
-            build : function (scrollTop) {
-                var $scrollCtn = this.$scrollCtn;
-                $scrollCtn.off('scroll', this.scrollHandler);
-
-                var scrollCtn = $scrollCtn[0];
-                if (scrollTop === undefined || !_.isNumber(scrollTop)) {
-                    scrollTop = scrollCtn.scrollTop;
-                }
-
-                if (scrollTop === 0) {
-                    scrollCtn.scrollTop = 0;
-                }
-
-                // Cache vars
-                var models = this.currentModels;
-                var modelCount = models.length;
-                var $itemCtn = this.$('.w-ui-smartlist-body-ctn');
-                var screenDimension = this.onScreenItems.length;
-
-                var screenHeight = screenDimension * this.itemHeight;
-                if (modelCount < screenDimension) {
-                    var itemToDrop = this.onScreenItems.slice(modelCount, screenDimension);
-
-                    _.each(itemToDrop, function (item) {
-                        item.remove();
-                    }, this);
-
-                    this.onScreenItems = this.onScreenItems.slice(0, modelCount);
-                    screenDimension = this.onScreenItems.length;
-                } else if (screenHeight < this.ctnHeight && modelCount > screenHeight / this.itemHeight) {
-                    supplyItems.call(this, 0);
-
-                    $scrollCtn.on('scroll', this.scrollHandler);
-                    return;
-                }
-
-                // Calculate positions
-                var topOffset = scrollTop / this.itemHeight;
-                var upItemsCount = Math.ceil(topOffset);
-
-                var newModels;
-                if (upItemsCount + screenDimension > modelCount) {
-                    newModels = models.slice(modelCount - screenDimension, modelCount);
-                } else {
-                    newModels = models.slice(upItemsCount, upItemsCount + screenDimension);
-                }
-
-                var oldOnScreenIds = _.map(this.onScreenItems, function (item) {
-                    return item.model.id;
-                });
-
-                // Render items
-                if (!_.isEqual(oldOnScreenIds, _.pluck(newModels, 'id'))) {
-                    $itemCtn.children().detach();
-
-                    var model, view;
-                    var fragment = document.createDocumentFragment();
-                    var i;
-                    var length = newModels.length;
-                    for (i = 0; i < length; i++) {
-                        model = newModels[i];
-                        view = this.onScreenItems[i];
-                        view.decouple();
-                        view.model = model;
-                        view.setup();
-
-                        fragment.appendChild(view.render().$el[0], fragment.firstChild);
-                    }
-
-                    if (this.onScreenItems.length > 0) {
-                        $itemCtn.toggleClass('odd', models.indexOf(this.onScreenItems[0].model) % 2 === 1);
-                    }
-                    $itemCtn.append(fragment);
-                }
-
-                if (this.onScreenItems.length !== 0) {
-                    if (screenDimension !== modelCount) {
-                        if (models[0] === this.onScreenItems[0].model) {
-                            // this.onScreenItems[0].$el[0].scrollIntoView();
-                            $itemCtn[0].scrollTop = 0;
-                        } else if (models[modelCount - 1] === this.onScreenItems[screenDimension - 1].model) {
-                            this.onScreenItems[screenDimension - 1].$el[0].scrollIntoView();
-                            scrollCtn.scrollTop = scrollCtn.scrollHeight;
-                        }
-                    } else {
-                        if (scrollCtn.scrollTop === 0) {
-                            // this.onScreenItems[0].$el[0].scrollIntoView();
-                            $itemCtn[0].scrollTop = 0;
-                        } else {
-                            this.onScreenItems[screenDimension - 1].$el[0].scrollIntoView();
-                        }
-                    }
-                }
-
-                this.toggleEmptyTip(models.length === 0);
-
-                this.trigger(EventsMapping.BUILD);
-
-                $scrollCtn.on('scroll', this.scrollHandler);
-            },
-            buildQueue : function (scrollTop) {
-                if (this.renderQueue.length === 0) {
-                    this.renderQueue.push(scrollTop);
-                } else if (this.renderQueue[this.renderQueue.length - 1] !== scrollTop) {
-                    this.renderQueue.push(scrollTop);
-                }
-
-                if (!this.renderDelegate && this.renderQueue.length > 0) {
-                    this.renderDelegate = window.requestAnimationFrame(function () {
-                        if (this.renderQueue.length > 0) {
-                            var target = this.renderQueue.shift();
-                            this.build(target);
-                        } else {
-                            window.cancelAnimationFrame(this.renderDelegate);
-                            this.renderDelegate = undefined;
-                        }
-                    }.bind(this), 15);
-                }
-            },
-            mousewheelBody : _.throttle(function (evt) {
-                if (this.renderQueue.length === 0) {
-                    var $scrollCtn = this.$scrollCtn;
-
-                    var models = this.currentModels;
-
-                    if (this.onScreenItems.length !== models.length) {
-                        var offset = 0;
-                        var currentIndex = _.pluck(models, 'id').indexOf(this.onScreenItems[0].model.id);
-
-                        if (evt.originalEvent.wheelDelta > 0) {
-                            offset = Math.max((currentIndex - 3) * this.itemHeight, 0);
-                            if (currentIndex - 1 >= 0) {
-                                $scrollCtn[0].scrollTop = offset;
-                            }
-                        } else {
-                            offset = Math.min((currentIndex + 3) * this.itemHeight, this.contentHeight);
-                            if (currentIndex + this.onScreenItems.length + 1 <= models.length) {
-                                $scrollCtn[0].scrollTop = offset;
-                            }
-                        }
-                    } else {
-                        if (evt.originalEvent.wheelDelta > 0) {
-                            $scrollCtn[0].scrollTop -= this.itemHeight;
-                        } else {
-                            $scrollCtn[0].scrollTop += this.itemHeight;
-                        }
-                    }
-                }
-
-            }, 35),
             clickListItem : function (evt) {
                 if (evt.currentTarget.tagName === 'LI' && this.selectable) {
                     var selected = this.selected.concat();
@@ -703,9 +658,8 @@
                 }
             },
             remove : function () {
-                this.$scrollCtn.off('scroll', this.scrollHandler);
 
-                _.each(this.onScreenItems, function (item) {
+                _.each(this.activeItems, function (item) {
                     item.remove();
                 });
 
@@ -716,12 +670,33 @@
                 SmartList.__super__.remove.call(this);
             },
             scrollTo : function (model) {
-                var index = this.currentModels.indexOf(model);
-                this.$scrollCtn[0].scrollTop = index * this.itemHeight;
+                var currentModels = this.currentModels;
+                var index = currentModels.indexOf(model);
 
-                if (this.onScreenItems[0]) {
-                    this.onScreenItems[0].$el[0].scrollIntoView();
+                if (currentModels.length > this.rowCount) {
+
+                    if (currentModels.length - index <= this.rowCount) {
+                        this.offsetY = -(currentModels.length - this.rowCount + 1) * this.itemHeight;
+                    } else {
+                        this.offsetY = -index * this.itemHeight;
+                    }
+
+                } else {
+                    this.offsetY = 0;
                 }
+
+                this.build();
+                this.moveScroller(-this.offsetY);
+            },
+            enableScrollHandler : function (evt) {
+                evt.stopPropagation();
+                evt.preventDefault();
+                this.$scrollContainer.on('scroll', this.scrollHandler.bind(this));
+            },
+            disableScrollHandler : function (evt) {
+                evt.stopPropagation();
+                evt.preventDefault();
+                this.$scrollContainer.off('scroll', this.scrollHandler.bind(this));
             },
             dragoverBody : function (evt) {
                 evt.stopPropagation();
@@ -753,6 +728,8 @@
                 }
             },
             events : {
+                'mouseover .w-ui-smartlist-scroll-ctn' : 'enableScrollHandler',
+                'mouseleave .w-ui-smartlist-scroll-ctn' : 'disableScrollHandler',
                 'mousewheel .w-ui-smartlist-body-ctn' : 'mousewheelBody',
                 'click .w-ui-smartlist-body-ctn > li' : 'clickListItem',
                 'click .w-ui-smartlist-body-ctn > li .item-checker' : 'checkListItem',

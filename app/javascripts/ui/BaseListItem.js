@@ -13,17 +13,24 @@
             tagName : 'li',
             initialize : function () {
                 this.render = _.wrap(this.render, function (renderFunc) {
+
                     var $checker = this.$('.item-checker');
-                    if ($checker.length > 0) {
-                        var checked = $checker.prop('checked');
-                        renderFunc.call(this);
-                        this.$('.item-checker').prop('checked', checked);
-                    } else {
-                        renderFunc.call(this);
+
+                    if (this.model) {
+                        if ($checker.length > 0) {
+                            var checked = $checker.prop('checked');
+                            renderFunc.call(this);
+                            this.$('.item-checker').prop('checked', checked);
+                        } else {
+                            renderFunc.call(this);
+                        }
                     }
 
                     return this;
+
                 }.bind(this));
+
+                this.$el.addClass('w-smartlist-base-list-item');
             },
             toggleSelect : function (select) {
                 select = select !== undefined ? select : !this.$('.item-checker').prop('checked');

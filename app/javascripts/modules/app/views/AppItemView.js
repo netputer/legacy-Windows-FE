@@ -67,6 +67,7 @@
                 AppItemView.__super__.remove.call(this);
             },
             render : function () {
+
                 if (this.model.get('updateCategory')) {
                     this.$el.toggleClass('category', true).html(this.template(this.model.toJSON()));
                     return this;

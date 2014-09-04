@@ -4,11 +4,15 @@
         'underscore',
         'Configuration',
         'Account',
+        'Device',
+        'IO',
         'photo/collections/PhotoCollection'
     ], function (
         _,
         CONFIG,
         Account,
+        Device,
+        IO,
         PhotoCollection
     ) {
         console.log('CloudPhotoCollection - File loaded. ');
@@ -23,6 +27,7 @@
                 return;
             },
             syncAsync : function () {
+
                 var deferred = $.Deferred();
 
                 this.syncing = true;

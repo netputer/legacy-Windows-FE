@@ -22,7 +22,6 @@
         'app/collections/WebAppsCollection',
         'app/views/CommentaryView',
         'app/views/RecommendView',
-        'social/views/QuickShareView',
         'app/AppService',
         'browser/views/BrowserModuleView',
         'task/collections/TasksCollection'
@@ -46,7 +45,6 @@
         WebAppsCollection,
         CommentaryView,
         RecommendView,
-        QuickShareView,
         AppService,
         BrowserModuleView,
         TasksCollection
@@ -316,12 +314,6 @@
                             } else {
                                 if (resp.body.success[0].item === this.model.id) {
                                     this.trigger('hide');
-                                }
-
-                                if (FunctionSwitch.ENABLE_SHARE_UNINSTALL) {
-                                    QuickShareView.getInstance({
-                                        model : model
-                                    }).show();
                                 }
                             }
                         }.bind(this)).fail(function () {

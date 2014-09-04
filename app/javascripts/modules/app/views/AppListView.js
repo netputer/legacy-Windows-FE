@@ -132,10 +132,6 @@
                         this.tryToShowFlashTip();
                     }
                     this.toggleEmptyTip();
-                }).listenTo(Backbone, 'showModule', function (name) {
-                    if (name === 'app') {
-                        appList.resizeList();
-                    }
                 });
 
                 _.each(pimCollection.where({
@@ -182,18 +178,20 @@
             toggleListeners : function (tab) {
                 var newCollection;
                 var oldCollection;
-                if (tab === 'web') {
-                    newCollection = webAppsCollection;
+
+                if (tab !== 'web' && SnapPea.currentTab !== 'web') {
+                    newCollection = appsCollection;
                     oldCollection = appsCollection;
                 } else {
-                    newCollection = appsCollection;
-                    oldCollection = webAppsCollection;
+                    newCollection = webAppsCollection;
+                    oldCollection = appsCollection;
                 }
-                this.listenTo(newCollection, 'refresh', this.buildList)
-                    .stopListening(oldCollection, 'refresh', this.buildList);
 
-                appList.listenTo(newCollection, 'syncStart update syncEnd refresh', loadingHandler)
-                    .stopListening(oldCollection, 'syncStart update syncEnd refresh', loadingHandler);
+                this.stopListening(oldCollection, 'refresh', this.buildList)
+                    .listenTo(newCollection, 'refresh', this.buildList);
+
+                appList.stopListening(oldCollection, 'syncStart update syncEnd refresh', loadingHandler)
+                    .listenTo(newCollection, 'syncStart update syncEnd refresh', loadingHandler);
                 appList.loading = newCollection.loading || newCollection.syncing;
                 appList.listenToCollection = newCollection;
             },
@@ -210,8 +208,7 @@
                         $observer : this.options.$observer,
                         itemHeight : 45,
                         listenToCollection : appsCollection,
-                        loading : appsCollection.loading || appsCollection.syncing,
-                        enableResizeListener : true
+                        loading : appsCollection.loading || appsCollection.syncing
                     });
 
                     this.$('.flash').after(appList.render().$el);
@@ -228,6 +225,11 @@
                         .listenTo(appList, 'contextMenu', this.showContextMenu)
                         .listenTo(appList, 'select:change', function (selected) {
                             this.trigger('select:change', selected);
+                        })
+                        .listenTo(Backbone, 'showModule', function (name) {
+                            if (name === 'app') {
+                                appList.calculateSettings();
+                            }
                         });
 
                     this.toggleListeners('normal');
@@ -408,7 +410,7 @@
                     } else {
                         appList.sortModels(true);
                     }
-                    appList.build();
+                    appList.rebuild();
                 });
 
                 this.$('.sort').append(sortMenu.render().$el);
@@ -497,6 +499,7 @@
                 }
             },
             clickTab : function (evt) {
+
                 Backbone.trigger('switchModule', {
                     module : 'app',
                     tab : $(evt.currentTarget).data('tab')

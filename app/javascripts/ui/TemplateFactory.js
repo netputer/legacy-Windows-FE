@@ -10,7 +10,6 @@
         'text!app/app.tpl',
         'text!message/message.tpl',
         'text!task/taskmanager.tpl',
-        'text!social/social.tpl',
         'text!music/iTunes/iTunes.tpl',
         'text!modules/photo/photo.tpl',
         'text!contact/contact.tpl',
@@ -22,7 +21,8 @@
         'text!video/video.tpl',
         'text!app/wash/wash.tpl',
         'text!guide/guide.tpl',
-        'text!new_backuprestore/backuprestore.tpl'
+        'text!new_backuprestore/backuprestore.tpl',
+        'text!tools/tools.tpl'
     ], function (
         $,
         StringUtil,
@@ -31,7 +31,6 @@
         AppTplStr,
         MessageTplStr,
         TaskManagerTplStr,
-        SocialTplStr,
         iTunesTplStr,
         PhotoTplStr,
         ContactTplStr,
@@ -43,7 +42,8 @@
         VideoTplStr,
         WashTplStr,
         GuideTplStr,
-        BackupRestoreTplStr
+        BackupRestoreTplStr,
+        ToolsTplStr
     ) {
 
         var templateList = {
@@ -53,7 +53,6 @@
             app : $(StringUtil.compressHTML(AppTplStr)),
             message : $(StringUtil.compressHTML(MessageTplStr)),
             taskManager : $(StringUtil.compressHTML(TaskManagerTplStr)),
-            social : $(StringUtil.compressHTML(SocialTplStr)),
             iTunes : $(StringUtil.compressHTML(iTunesTplStr)),
             photo : $(StringUtil.compressHTML(PhotoTplStr)),
             welcome : $(StringUtil.compressHTML(WelcomeTplStr)),
@@ -64,7 +63,8 @@
             video : $(StringUtil.compressHTML(VideoTplStr)),
             wash : $(StringUtil.compressHTML(WashTplStr)),
             guide : $(StringUtil.compressHTML(GuideTplStr)),
-            new_backuprestore : $(StringUtil.compressHTML(BackupRestoreTplStr))
+            new_backuprestore : $(StringUtil.compressHTML(BackupRestoreTplStr)),
+            tools : $(ToolsTplStr)
         };
 
         var TemplateFactory = {};

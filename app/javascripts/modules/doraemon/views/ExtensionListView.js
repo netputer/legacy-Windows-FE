@@ -49,13 +49,6 @@
                 extensionsCollection.on('add', this.buildList, this);
                 extensionsCollection.on('remove', this.buildList, this);
                 extensionsCollection.on('itemUpdate', this.buildList, this);
-
-                this.listenTo(Backbone, 'showModule', function (name) {
-                    if (name === 'doraemon') {
-                        extensionList.resizeList();
-                    }
-                });
-
             },
             buildList : function () {
                 if (!extensionList) {
@@ -69,8 +62,7 @@
                         $observer : this.options.$observer,
                         itemHeight : 45,
                         enableContextMenu : true,
-                        listenToCollection : extensionsCollection,
-                        enableResizeListener : true
+                        listenToCollection : extensionsCollection
                     });
 
                     this.$el.append(extensionList.render().$el);
@@ -89,6 +81,12 @@
                     });
 
                     extensionList.on('contextMenu', this.showContextMenu, this);
+
+                    this.listenTo(Backbone, 'showModule', function (name) {
+                        if (name === 'doraemon') {
+                            extensionList.calculateSettings();
+                        }
+                    });
 
                 } else {
                     extensionList.switchSet('default', extensionsCollection.getAll);
