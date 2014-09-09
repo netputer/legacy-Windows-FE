@@ -67,7 +67,6 @@
             <button class="w-icon-btn button-dislike min" data-title="{{= i18n.app.UNLIKE }}"><span class="icomoon icomoon-dislike"></span></button>
         </span>
         <button class="w-icon-btn button-comment min"><span class="icomoon icomoon-comment"></span>{{= i18n.app.COMMENTARY }}</button>
-        <button class="w-icon-btn button-share min"><span class="icomoon icomoon-share"></span>{{= i18n.misc.SHARE}}</button>
     </div>
     <div class="input-ctn">
         <textarea placeholder="{{= StringUtil.format(i18n.app.COMMENTARY_PLACEHOLDER, it.base_info.name) }}" class="input-content"></textarea>
