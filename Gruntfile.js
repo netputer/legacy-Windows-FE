@@ -111,6 +111,7 @@ module.exports = function (grunt) {
                         '!**/nls/**',
                         'javascripts/**/*.tpl',
                         '**/*.html',
+                        '*.js',
                         'stylesheets/**/*.{sass,scss,png,ttf}',
                         'bower_components/wookmark-jquery/jquery.wookmark.js',
                         'bower_components/requirejs-doT/doT.js',
@@ -142,7 +143,8 @@ module.exports = function (grunt) {
                         'bower_components/underscore/underscore.js',
                         'bower_components/backbone/backbone.js',
                         'bower_components/requirejs-i18n/i18n.js',
-                        'bower_components/qrcode.js/qrcode.js'
+                        'bower_components/qrcode.js/qrcode.js',
+                        '*.js'
                     ]
                 }]
             }
