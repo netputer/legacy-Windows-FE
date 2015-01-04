@@ -76,6 +76,8 @@
                 musicList.on('switchSet', function (currentSet) {
                     musicList.emptyTip = i18n.music.NO_SELECTED_MUSIC_TEXT;
                     musicList.toggleEmptyTip(musicList.currentModels.length === 0);
+
+                    this.setFooterContent();
                 }, this);
 
                 musicList.on('select:change', function () {
@@ -90,17 +92,29 @@
                 return this;
             },
             parseMusics : function (resp) {
-                var newMusicIds = [];
+                var newMusics = [];
+
                 _.each(resp.body.audio, function (music) {
                     music.id = StringUtil.MD5(music.path);
-                    this.collection.add(new MusicModel(music));
-                    newMusicIds.push(music.id);
+                    newMusics.push(new MusicModel(music));
+                });
+
+                var newMusicIds = [];
+
+                _.each(newMusics, function (item) {
+                    var music = this.collection.get(item.id);
+                    if (music) {
+                        music.set(item.toJSON());
+                    } else {
+                        this.collection.add(item);
+                    }
+                    newMusicIds.push(item.id);
                 }, this);
-                musicList.addSelect(newMusicIds);
 
                 musicList.switchSet('default', function () {
                     return this.collection.models;
                 }.bind(this));
+                musicList.addSelect(newMusicIds);
             },
             selectMusics : function (type) {
                 alertWindow.show();
