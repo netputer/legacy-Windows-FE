@@ -21,8 +21,7 @@
         var ACCOUNT_TYPE_MAPPING = {
             1 : i18n.contact.ACCOUNT_TYPE_PHONE,
             2 : i18n.contact.ACCOUNT_TYPE_SIM,
-            3 : i18n.contact.ACCOUNT_TYPE_GOOGLE,
-            4 : i18n.contact.ACCOUNT_TYPE_OTHER
+            3 : i18n.contact.ACCOUNT_TYPE_GOOGLE
         };
 
         var AccountModel = Backbone.Model.extend({
@@ -33,8 +32,22 @@
                 var account = this.get('account');
                 this.set(account);
                 this.unset('account');
+
+                var displayName;
+                var source = this.get('source');
+                switch (source) {
+                case 3:
+                    displayName = ACCOUNT_TYPE_MAPPING[source] + this.get('name');
+                    break;
+                case 4:
+                    displayName = this.get('name');
+                    break;
+                default:
+                    displayName = ACCOUNT_TYPE_MAPPING[source];
+                }
+
                 this.set({
-                    displayName : this.get('source') === 3 ? (ACCOUNT_TYPE_MAPPING[this.get('source')] + this.get('name')) : ACCOUNT_TYPE_MAPPING[this.get('source')]
+                    displayName : displayName
                 });
 
                 Object.defineProperties(this, {
