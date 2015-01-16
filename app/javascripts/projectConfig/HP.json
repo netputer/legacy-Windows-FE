@@ -1,0 +1,7 @@
+{
+    "PROJECT_FLAG" : "HP",
+    "DISABLE_WASH" : true,
+    "DISABLE_VIDEO_FEED_CARD": true,
+    "DISABLE_EBOOK_FEED_CARD" : true,
+    "DISABLE_FLASH_DEVICE" : true
+}

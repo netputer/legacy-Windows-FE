@@ -15,7 +15,8 @@
         'guide/views/XibaibaiView',
         'guide/views/StarterView',
         'guide/views/TipsView',
-        'utilities/QueryString'
+        'utilities/QueryString',
+        'FunctionSwitch'
     ], function (
         Backbone,
         $,
@@ -31,7 +32,8 @@
         XibaibaiView,
         StarterView,
         TipsView,
-        queryString
+        queryString,
+        FunctionSwitch
     ) {
 
         var GuideView = Backbone.View.extend({
@@ -67,7 +69,9 @@
                 }.bind(this)).then(function () {
                     return this.regCardAsync(CloudBackupView.getInstance());
                 }.bind(this)).then(function () {
-                    return this.regCardAsync(XibaibaiView.getInstance());
+                    if (FunctionSwitch.ENABLE_APP_WASH) {
+                        return this.regCardAsync(XibaibaiView.getInstance());
+                    }
                 }.bind(this)).then(function () {
                     return this.regCardAsync(TipsView.getInstance());
                 }.bind(this)).then(function () {

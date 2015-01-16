@@ -82,6 +82,16 @@ module.exports = function (grunt) {
                         return grunt.file.read(paths.config + '/TIANYIN.json');
                     }
                 }]
+            },
+            HP : {
+                src : ['<%= path.tmp %>/index.html'],
+                overwrite : true,
+                replacements : [{
+                    from : '/*@@PROJECT_CONFIG@@*/',
+                    to : function (matchedWord) {
+                        return grunt.file.read(paths.config + '/HP.json');
+                    }
+                }]
             }
         },
         compass : {
@@ -366,6 +376,9 @@ module.exports = function (grunt) {
             break;
         case 'TIANYIN':
             content = '$PROJECT_FLAG : PROJECT_TIANYIN';
+            break;
+        case 'HP':
+            content = '$PROJECT_FLAG : PROJECT_HP';
             break;
         }
 

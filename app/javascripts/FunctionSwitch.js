@@ -282,7 +282,8 @@
             },
             ENABLE_FLASH_DEVICE : {
                 get : function () {
-                    return Strategy.get('enableFlashDevice');
+                    return !ProjectConfig.get('DISABLE_FLASH_DEVICE') &&
+                        Strategy.get('enableFlashDevice');
                 }
             },
             IS_CHINESE_VERSION : {
@@ -308,6 +309,16 @@
             IS_NEW_USER : {
                 get : function () {
                     return Settings.get(CONFIG.enums.LAUNCH_TIME_KEY) <= 3;
+                }
+            },
+            ENABLE_VIDEO_FEED_CARD : {
+                get : function () {
+                    return !ProjectConfig.get('DISABLE_VIDEO_FEED_CARD');
+                }
+            },
+            ENABLE_EBOOK_FEED_CARD : {
+                get : function () {
+                    return !ProjectConfig.get('DISABLE_EBOOK_FEED_CARD');
                 }
             }
         });
