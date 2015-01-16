@@ -131,6 +131,11 @@
                         }
                         break;
                     case 'XiBaiBaiFeed':
+
+                        if (!FunctionSwitch.ENABLE_APP_WASH) {
+                            return;
+                        }
+
                         lastShownTimestamp = Settings.get('welcome-card-xibaibai-show') || 1;
                         show = StringUtil.formatDate('yyyy/MM/dd') !== StringUtil.formatDate('yyyy/MM/dd', lastShownTimestamp);
                         if (show) {
@@ -156,9 +161,15 @@
                             targetView = AppCardView;
                             break;
                         case 'VIDEO':
+                            if (!FunctionSwitch.ENABLE_VIDEO_FEED_CARD) {
+                                return;
+                            }
                             targetView = VideoCardView;
                             break;
                         case 'EBOOK':
+                            if (!FunctionSwitch.ENABLE_EBOOK_FEED_CARD) {
+                                return;
+                            }
                             targetView = EBookCardView;
                             break;
                         case 'BANNER':

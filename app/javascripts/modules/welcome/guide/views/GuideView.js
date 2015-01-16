@@ -12,7 +12,6 @@
         'IO',
         'guide/views/BindView',
         'guide/views/CloudBackupView',
-        'guide/views/XibaibaiView',
         'guide/views/StarterView',
         'guide/views/TipsView',
         'utilities/QueryString'
@@ -28,7 +27,6 @@
         IO,
         BindView,
         CloudBackupView,
-        XibaibaiView,
         StarterView,
         TipsView,
         queryString
@@ -66,8 +64,6 @@
                     }));
                 }.bind(this)).then(function () {
                     return this.regCardAsync(CloudBackupView.getInstance());
-                }.bind(this)).then(function () {
-                    return this.regCardAsync(XibaibaiView.getInstance());
                 }.bind(this)).then(function () {
                     return this.regCardAsync(TipsView.getInstance());
                 }.bind(this)).then(function () {
