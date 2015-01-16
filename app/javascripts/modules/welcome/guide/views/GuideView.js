@@ -14,8 +14,7 @@
         'guide/views/CloudBackupView',
         'guide/views/StarterView',
         'guide/views/TipsView',
-        'utilities/QueryString',
-        'FunctionSwitch'
+        'utilities/QueryString'
     ], function (
         Backbone,
         $,
@@ -30,8 +29,7 @@
         CloudBackupView,
         StarterView,
         TipsView,
-        queryString,
-        FunctionSwitch
+        queryString
     ) {
 
         var GuideView = Backbone.View.extend({
