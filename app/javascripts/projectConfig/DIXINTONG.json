@@ -1,0 +1,14 @@
+{
+    "PROJECT_FLAG" : "DIXINTONG",
+
+    "DISABLE_APP_PANEL" : true,
+    "DISABLE_APP_UPGRADE" : true,
+    "DISABLE_OPTIMIZE" : true,
+    "DISABLE_PERFORMANCE_TRACKER" : true,
+    "DISABLE_SMS" : true,
+    "DISABLE_USER_GUIDE" : true,
+    "DISABLE_WASH" : true,
+    "DISABLE_WELCOME_FEED" : true,
+
+    "CUSTOM_NAV_WELCOME_TEXT" : "迪信通手机助手"
+}

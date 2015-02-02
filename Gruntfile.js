@@ -92,6 +92,36 @@ module.exports = function (grunt) {
                         return grunt.file.read(paths.config + '/HP.json');
                     }
                 }]
+            },
+            DIXINTONG : {
+                src : ['<%= path.tmp %>/index.html'],
+                overwrite : true,
+                replacements : [{
+                    from : '/*@@PROJECT_CONFIG@@*/',
+                    to : function (matchedWord) {
+                        return grunt.file.read(paths.config + '/DIXINTONG.json');
+                    }
+                }]
+            },
+            MEIZU : {
+                src : ['<%= path.tmp %>/index.html'],
+                overwrite : true,
+                replacements : [{
+                    from : '/*@@PROJECT_CONFIG@@*/',
+                    to : function (matchedWord) {
+                        return grunt.file.read(paths.config + '/MEIZU.json');
+                    }
+                }]
+            },
+            SHENGTIAN : {
+                src : ['<%= path.tmp %>/index.html'],
+                overwrite : true,
+                replacements : [{
+                    from : '/*@@PROJECT_CONFIG@@*/',
+                    to : function (matchedWord) {
+                        return grunt.file.read(paths.config + '/SHENGTIAN.json');
+                    }
+                }]
             }
         },
         compass : {
@@ -367,21 +397,7 @@ module.exports = function (grunt) {
 
         var filePath = paths.tmp + '/stylesheets/compass/sass/_projectflag.scss';
         var content = '';
-        switch (project) {
-        case 'WDJ':
-            content = '$PROJECT_FLAG : PROJECT_WD';
-            break;
-        case 'SUNING':
-            content = '$PROJECT_FLAG : PROJECT_SUNING';
-            break;
-        case 'TIANYIN':
-            content = '$PROJECT_FLAG : PROJECT_TIANYIN';
-            break;
-        case 'HP':
-            content = '$PROJECT_FLAG : PROJECT_HP';
-            break;
-        }
-
+        content = '$PROJECT_FLAG : PROJECT_' + project;
         grunt.file.write(filePath, content);
     });
 
