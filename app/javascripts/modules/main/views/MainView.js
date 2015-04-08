@@ -145,6 +145,9 @@
                     alert(i18n.welcome.CONNECT_UR_PHONE);
                 }
                 break;
+            case CONFIG.enums.NAVIGATE_TYPE_OPTIMIZE:
+                this.getModule('optimize').navigate(msg);
+                break;
             case CONFIG.enums.NAVIGATE_TYPE_TASK_MANAGER:
                 TaskMonitorView.getInstance().toggleListView(true);
                 break;
