@@ -31,6 +31,11 @@
 
                 this.rendered = true;
                 return this;
+            },
+            navigate : function (msg) {
+                Backbone.trigger('switchModule', {
+                    module : 'optimize'
+                });
             }
         });
 

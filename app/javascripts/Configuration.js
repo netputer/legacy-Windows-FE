@@ -508,6 +508,7 @@
                 NAVIGATE_TYPE_VIDEO : 'video',
                 NAVIGATE_TYPE_VIDEO_SEARCH : 'group_video',
                 NAVIGATE_TYPE_DORAEMON : 'doraemon',
+                NAVIGATE_TYPE_OPTIMIZE : 'optimize',
 
                 /* Update ignore states */
                 UPDATE_IGNORE_NONE : 'none',
