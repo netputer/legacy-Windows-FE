@@ -1,3 +1,5 @@
 {
-    "PROJECT_FLAG" : "WDJ"
+    "PROJECT_FLAG" : "WDJ",
+    "DISABLE_WASH" : true,
+    "DISABLE_DORAEMON" : true
 }
